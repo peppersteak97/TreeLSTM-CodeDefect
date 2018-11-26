@@ -64,5 +64,5 @@ class TreeLSTMCell:
         ct = tf.add(tf.multiply(it, ct), self.f)
         ot = tf.nn.sigmoid(tf.multiply(w_out, self.inputs_wt) + tf.multiply(u_out, self.h) + b_out)
         ht = tf.multiply(ot, tf.nn.tanh(ct))
-        return np.array(ht, ct)
+        return [ht, ct]
 
