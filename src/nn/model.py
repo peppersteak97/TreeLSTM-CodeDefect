@@ -1,16 +1,11 @@
 import tensorflow as tf
 import numpy as np
 
+# 定义TreeLSTM的Cell类
 class TreeLSTMCell:
 
-    # 定义TreeLSTM的Cell类
-
-    def _init_(self):
-        # 输入的节点特征向量，由ast2vec得到，维度不确定
-        self.inputs_wt = tf.placeholder(tf.float32, [None, None],"inputs")
-
-    #  实例化之后调用一次
-    def weight_variable(self, dim, init=tf.random_normal_initializer(mean=0, stddev=1)):
+    #  构造函数
+    def __init__(self, dim, init=tf.random_normal_initializer(mean=0, stddev=1)):
         with tf.variable_scope("lstm_cell"):
             # Forget Gate 可训练参量
             w_for = tf.get_variable("forget_w", shape=dim, initializer=init)
@@ -28,7 +23,9 @@ class TreeLSTMCell:
             u_out = tf.get_variable("output_u", shape=dim, initializer=init)
             b_out = tf.get_variable("output_b", shape=dim, initializer=init)
 
-    def init_inputs(self, np_hc):
+    def init_inputs(self, np_hc, inputs_wt):
+        # 当前节点的特征向量
+        self.inputs_wt = inputs_wt
         # np_hc是tensor数组
         with tf.variable_scope("lstm_cell", reuse=True):
             # Forget Gate 可训练参量
