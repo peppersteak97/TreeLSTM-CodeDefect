@@ -1,0 +1,14 @@
+  public void testCancelDoesNotChangeConfig() {
+
+    Integer testInteger = Integer.valueOf(0);
+
+    _option.setValue(testInteger);
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+
+    assertEquals("Cancel (resetToCurrent) should not change the config",
+                 OptionConstants.INDENT_LEVEL.getDefault(),
+                 DrJava.getConfig().getSetting(OptionConstants.INDENT_LEVEL));
+
+  }

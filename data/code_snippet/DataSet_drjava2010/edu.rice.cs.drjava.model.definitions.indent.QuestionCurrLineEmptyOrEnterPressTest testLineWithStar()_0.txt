@@ -1,0 +1,4 @@
+  public void testLineWithStar() throws javax.swing.text.BadLocationException {
+    _setDocText("/*\n * foo\n */");
+    assertTrue("line with a star", !_rule.testApplyRule(_doc, 5, Indenter.IndentReason.OTHER));
+  }

@@ -1,0 +1,5 @@
+  public void resetClipboardHistoryDialogPosition() {
+    if (DrJava.getConfig().getSetting(DIALOG_CLIPBOARD_HISTORY_STORE_POSITION).booleanValue()) {
+      DrJava.getConfig().setSetting(DIALOG_CLIPBOARD_HISTORY_STATE, "default");
+    }
+  }

@@ -1,0 +1,11 @@
+  public void testInnerGapDelete() {
+    insertGap(model1, 8);
+    assertEquals("#0.0", 8, model1.absOffset());
+    model1.move(-6);
+    assertEquals("#0.0", 2, model1.absOffset());
+    model1.delete(3);
+    assertEquals("#1.0", 2, model1.absOffset());
+    assertEquals("#1.1", 5, model1.currentToken().getSize());
+    model1.move(3);
+    assertEquals("#2.0", 5, model1.absOffset());
+  }

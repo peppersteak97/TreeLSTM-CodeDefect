@@ -1,0 +1,7 @@
+    public void delete() {
+        if (!isDeleted()) {
+            super.delete();
+            m_main.removePropertyChangeListener(this);
+            m_dependant.removePropertyChangeListener(this);
+        }
+    }

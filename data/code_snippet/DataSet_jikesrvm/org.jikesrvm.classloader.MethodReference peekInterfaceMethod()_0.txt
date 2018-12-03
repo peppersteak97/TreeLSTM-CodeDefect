@@ -1,0 +1,11 @@
+  public RVMMethod peekInterfaceMethod() {
+    if (resolvedMember != null) return resolvedMember;
+
+    RVMClass declaringClass = (RVMClass) type.peekType();
+    if (declaringClass == null) return null;
+    if (!declaringClass.isResolved()) {
+      declaringClass.resolve();
+    }
+    if (!declaringClass.isInterface()) return null;
+    return resolveInterfaceMethodInternal(declaringClass);
+  }

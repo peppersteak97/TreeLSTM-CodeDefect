@@ -1,0 +1,4 @@
+  private byte readSignedByte() {
+    if (VM.VerifyAssertions) VM._assert(bcIndex <= bcLength);
+    return bcodes[bcIndex++];
+  }

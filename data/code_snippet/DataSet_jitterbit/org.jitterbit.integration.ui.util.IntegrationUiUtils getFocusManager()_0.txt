@@ -1,0 +1,3 @@
+    public static KongaFocusManager getFocusManager() {
+        return s_focusManager;
+    }

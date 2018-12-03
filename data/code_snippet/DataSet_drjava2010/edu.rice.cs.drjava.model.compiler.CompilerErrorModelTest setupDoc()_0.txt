@@ -1,0 +1,57 @@
+  private void setupDoc() {
+    files = new File[] { new File("/tmp/nowhere") };
+    texts = new String[] { 
+      "This is a block of test text.\n" + "It doesn't matter what goes in here.\n" +
+                 "But it does matter if it is manipulated properly!\n"};
+    getter = new TestDocGetter(files, texts);
+  }
+  
+  /** Setup for test cases with several documents. */
+  private void setupDocs() {
+    files = new File[] { 
+      new File("/tmp/nowhere1"),
+      new File("/tmp/nowhere2"),
+      new File("/tmp/nowhere3"),
+      new File("/tmp/nowhere4"),
+      new File("/tmp/nowhere5") 
+    };
+    texts = new String[] { 
+      "This is the first block of test text.\n" + "It doesn't matter what goes in here.\n" +
+                 "But it does matter if it is manipulated properly!\n",
+      "This is the second block of test text.\n" + "It doesn't matter what goes in here.\n" +
+                 "But it does matter if it is manipulated properly!\n",
+      "This is the third block of test text.\n" + "It doesn't matter what goes in here.\n" +
+                 "But it does matter if it is manipulated properly!\n",
+      "This is the fourth block of test text.\n" + "It doesn't matter what goes in here.\n" +
+                 "But it does matter if it is manipulated properly!\n",
+      "This is the fifth block of test text.\n" + "It doesn't matter what goes in here.\n" +
+                 "But it does matter if it is manipulated properly!\n" };
+    getter = new TestDocGetter(files, texts);
+  }
+  
+  /** Extra setup for test cases with several documents. */
+  private void fullSetup() {
+    setupDocs();
+    errors = new DJError[] { 
+      new DJError(files[0], "Test error with File (no line)", false),
+      new DJError(files[4], 3, 0, "Test error with File", false),
+      new DJError(files[2], "Test warning with File (no line)", true),
+      new DJError(files[4], "Test warning with File (no line)", true),
+      new DJError(files[2], 3, 0, "Test warning with File", true),
+      new DJError(files[4], 1, 0, "Test warning with File", true),
+      new DJError(files[1], "Test warning with File (no line)", true),
+      new DJError(files[1], "Test error with File (no line)", false),
+      new DJError(files[2], "Test error with File (no line)", false),
+      new DJError(files[3], "Test error with File (no line)", false),
+      new DJError(files[3], 3, 0, "Test error with File", false),
+      new DJError(files[4], "Test error with File (no line)", false),
+      new DJError(files[0], 2, 0, "Test error with File", false),
+      new DJError(files[2], 2, 0, "Test warning with File", true),
+      new DJError(files[0], 1, 0, "Test error with File", false) 
+    };
+        
+    DJError[] copy = new DJError[errors.length];
+    for (int i = 0; i < errors.length; i++) copy[i] = errors[i];
+    model = new CompilerErrorModel(copy, getter);
+  }
+}

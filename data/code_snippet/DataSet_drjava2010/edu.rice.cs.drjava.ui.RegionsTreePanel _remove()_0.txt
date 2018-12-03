@@ -1,0 +1,15 @@
+  protected void _remove() {   
+    int[] rows = _regTree.getSelectionRows();
+    int len = rows.length;
+    int row = (len > 0) ? rows[0] : 0;
+    _frame.removeCurrentLocationHighlight();
+    for (R r: getSelectedRegions()) {
+    }
+    int rowCount = _regTree.getRowCount();
+    
+    _requestFocusInWindow();
+    _regTree.scrollRowToVisible(row);
+    
+    _regTree.setSelectionRow(row);
+    if (_regTree.getLeadSelectionPath().getPathCount() < 2) _regTree.setSelectionRow(row + 1);
+  }

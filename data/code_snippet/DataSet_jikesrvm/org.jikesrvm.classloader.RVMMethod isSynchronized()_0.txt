@@ -1,0 +1,3 @@
+  public final boolean isSynchronized() {
+    return (modifiers & ACC_SYNCHRONIZED) != 0;
+  }

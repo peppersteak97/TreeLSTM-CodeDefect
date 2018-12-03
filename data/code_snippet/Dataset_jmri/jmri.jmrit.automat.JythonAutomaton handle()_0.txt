@@ -1,0 +1,18 @@
+    protected boolean handle() {
+        if (interp == null) {
+            log.error("No interpreter, so cannot handle automat");
+        }
+        try {
+            exec.invoke(interp, new Object[]{"retval = handle()"});
+            java.lang.reflect.Method get =
+                        interp.getClass().getMethod("get", new Class[]{String.class});
+            Object retval = get.invoke(interp, new Object[]{"retval"});
+            System.out.println("retval = "+retval);
+            if (retval.toString().equals("1")) return true;
+            return false;
+        } catch (Exception e) {
+            log.error("Exception invoking jython command: "+e);
+            e.printStackTrace();
+            return false;
+        }
+    }

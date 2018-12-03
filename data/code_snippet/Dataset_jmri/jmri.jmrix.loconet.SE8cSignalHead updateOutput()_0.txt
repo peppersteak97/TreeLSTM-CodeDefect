@@ -1,0 +1,51 @@
+    protected void updateOutput()  {
+        LocoNetMessage l = new LocoNetMessage(4);
+        l.setOpCode(LnConstants.OPC_SW_REQ);
+        
+        int address = 0;
+        boolean closed = false;
+        if (!mLit) {
+            address = mNumber+1;
+            closed = true;
+        } else if ( !mFlashOn &&
+                    ( (mAppearance == FLASHGREEN) ||
+                      (mAppearance == FLASHYELLOW) ||
+                      (mAppearance == FLASHRED) ) ) {
+            address = mNumber+1;
+            closed = true;
+        } else {
+            switch (mAppearance) {
+            case FLASHRED:
+            case RED:
+                address = mNumber;
+                closed = false;
+                break;
+            case FLASHYELLOW:
+            case YELLOW:
+                address = mNumber+1;
+                closed = false;
+                break;
+            case FLASHGREEN:
+            case GREEN:
+                address = mNumber;
+                closed = true;
+                break;
+            case DARK:
+                address = mNumber+1;
+                closed = true;
+                break;
+            default:
+                log.error("Invalid state request: "+mAppearance);
+                return;
+            }
+        }
+        int hiadr = (address-1)/128;
+        int loadr = (address-1)-hiadr*128;
+        if (closed) hiadr |= 0x20;
+        
+        hiadr |= 0x10;
+        
+        l.setElement(1,loadr);
+        l.setElement(2,hiadr);
+        LnTrafficController.instance().sendLocoNetMessage(l);
+    }

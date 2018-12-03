@@ -1,0 +1,8 @@
+  public String toString() {
+    try {
+      StringWriter w = new StringWriter();
+      writeOld(w);
+      return w.toString();
+    }
+    catch(IOException e) { return e.toString(); }
+  }

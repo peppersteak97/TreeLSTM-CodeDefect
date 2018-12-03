@@ -1,0 +1,5 @@
+    static public SignalHeadManager signalHeadManagerInstance()  {
+        if (instance().signalHeadManager != null) return instance().signalHeadManager;
+        instance().signalHeadManager = new AbstractSignalHeadManager();
+        return instance().signalHeadManager;
+    }

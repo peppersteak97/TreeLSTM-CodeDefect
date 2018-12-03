@@ -1,0 +1,8 @@
+    protected IntegrationDataPanel createDataPanel() {
+        WebServiceCallPanel p = new WebServiceCallPanel(getObject().getDataObject());
+        IntegrationEntityPageModel model = getPageModel();
+        for (IBoundProperty pc : p.getBoundPropertyControls()) {
+            model.bindProperty(pc);
+        }
+        return p;
+    }

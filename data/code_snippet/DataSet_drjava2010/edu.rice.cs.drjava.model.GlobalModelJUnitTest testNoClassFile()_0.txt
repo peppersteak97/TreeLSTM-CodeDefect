@@ -1,0 +1,25 @@
+  public void testNoClassFile() throws Exception {
+    if (printMessages) System.out.println("----testNoClassFile-----");
+    
+    final OpenDefinitionsDocument doc = setupDocument(MONKEYTEST_PASS_TEXT);
+    final File file = new File(_tempDir, "MonkeyTestPass.java");
+    saveFile(doc, new FileSelector(file));
+    
+    JUnitTestListener listener = new JUnitCompileBeforeTestListener();
+    
+    _model.addListener(listener);
+    
+    
+    listener.runJUnit(doc);
+    
+    if (printMessages) System.out.println("after test");
+    listener.assertCompileBeforeJUnitCount(1);
+    listener.assertNonTestCaseCount(0);
+    listener.assertJUnitStartCount(1);
+    listener.assertJUnitEndCount(1);
+    listener.assertJUnitSuiteStartedCount(1);
+    listener.assertJUnitTestStartedCount(1);
+    listener.assertJUnitTestEndedCount(1);
+    _model.removeListener(listener);
+    _log.log("testNoClassFile completed");
+  }

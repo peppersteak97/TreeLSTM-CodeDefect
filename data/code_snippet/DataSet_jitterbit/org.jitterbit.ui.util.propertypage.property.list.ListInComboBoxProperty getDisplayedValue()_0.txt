@@ -1,0 +1,3 @@
+	public Object getDisplayedValue() {
+		return getComboBox().getSelectedItem();
+	}

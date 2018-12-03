@@ -1,0 +1,6 @@
+  protected final MemoryOperand consumeMO() {
+    if (VM.VerifyAssertions) VM._assert(MOStack != null, "No memory operand to consume");
+    MemoryOperand mo = MOStack.mo;
+    MOStack = MOStack.next;
+    return mo;
+  }

@@ -1,0 +1,3 @@
+  public boolean isCheckCast() {
+    return trapCode == RuntimeEntrypoints.TRAP_CHECKCAST;
+  }

@@ -1,0 +1,3 @@
+    private void initialize() {
+        m_project.getProject().addInterchangeProjectListener(this);
+    }

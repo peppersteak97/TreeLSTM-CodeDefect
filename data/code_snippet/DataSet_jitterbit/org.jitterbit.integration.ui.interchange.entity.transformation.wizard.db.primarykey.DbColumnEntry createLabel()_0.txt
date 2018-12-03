@@ -1,0 +1,14 @@
+    private JLabel createLabel() {
+        JLabel label = IntegrationUiStyleSheet.DefaultText.makeJLabel(m_column.getName());
+        if (m_column.isPrimaryKey()) {
+            label.setIcon(PackageResources.Icons.PRIMARY_KEY);
+        }
+        label.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                toggleSelection();
+            }
+        });
+        return label;
+    }

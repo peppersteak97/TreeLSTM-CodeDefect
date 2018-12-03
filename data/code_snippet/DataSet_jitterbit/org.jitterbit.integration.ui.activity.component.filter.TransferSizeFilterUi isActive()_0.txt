@@ -1,0 +1,3 @@
+    public boolean isActive() {
+        return (m_comparisonOp != null && m_sizeUnit != null && m_value >= 0);
+    }

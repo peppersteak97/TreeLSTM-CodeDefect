@@ -1,0 +1,3 @@
+    public static synchronized ServerGuid getServerId() {
+        return s_serverGuid;
+    }

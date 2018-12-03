@@ -1,0 +1,8 @@
+    public USPostalAddress getAddress() {
+        return new USPostalAddress(
+                        m_address_1.getValue(), 
+                        m_address_2.getValue(), 
+                        m_city.getValue(), 
+                        (USStates) m_state.getSelectedItem(), 
+                        m_zip.getValue());
+    }

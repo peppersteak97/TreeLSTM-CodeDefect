@@ -1,0 +1,17 @@
+        if (isDataValid())
+        {
+            button.setText(textField.getText());
+            button.setIsLockable(lockableCheckBox.isSelected());
+            button.setIdentity(Integer.parseInt(idField.getText()));
+            String name = button.getFont().getName();
+            button.setFont(new Font(name,
+                                    button.getFont().getStyle(),
+                                    Integer.parseInt(fontField.getText())));
+            button.setVisible(visibleCheckBox.isSelected());
+            button.setDisplay(visibleCheckBox.isSelected());
+            int butWidth = button.getFontMetrics(button.getFont()).stringWidth(button.getText());
+            butWidth = butWidth + 20;	// pad out the width a bit
+            if (butWidth < FunctionButton.BUT_WDTH) butWidth = FunctionButton.BUT_WDTH;
+            button.setPreferredSize(new Dimension(butWidth,FunctionButton.BUT_HGHT));
+            finishEdit();
+        }

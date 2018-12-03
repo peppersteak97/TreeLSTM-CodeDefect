@@ -1,0 +1,3 @@
+    public String getDatabaseValue() {
+        return m_databaseValue;
+    }

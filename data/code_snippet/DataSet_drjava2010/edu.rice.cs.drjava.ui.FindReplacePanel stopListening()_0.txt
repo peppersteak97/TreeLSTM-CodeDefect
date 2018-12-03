@@ -1,0 +1,8 @@
+  public void stopListening() {
+    if (_defPane != null) {
+      _defPane.removeCaretListener(_caretListener);
+      _defPane = null;
+      _displayed = false;
+      _frame.clearStatusMessage();
+    } 
+  }

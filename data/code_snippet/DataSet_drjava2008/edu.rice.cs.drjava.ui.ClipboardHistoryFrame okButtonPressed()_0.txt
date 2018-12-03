@@ -1,0 +1,15 @@
+  private void okButtonPressed() {
+    _lastState = new FrameState(ClipboardHistoryFrame.this);
+    setVisible(false);
+    if (_historyList.getModel().getSize()>0) {
+      _buttonPressed = JOptionPane.OK_OPTION;
+      String s = ((ListItem)_historyList.getModel().getElementAt(_historyList.getSelectedIndex())).getFull();
+      _chm.put(s);
+      _okAction.value(s);
+    }
+    else {
+      _buttonPressed = JOptionPane.CANCEL_OPTION;
+      Toolkit.getDefaultToolkit().beep();
+      _cancelAction.value(null);
+    }
+  }

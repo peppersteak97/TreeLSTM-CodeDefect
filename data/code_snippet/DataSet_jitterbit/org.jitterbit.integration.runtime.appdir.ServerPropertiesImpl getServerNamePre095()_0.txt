@@ -1,0 +1,9 @@
+    private String getServerNamePre095() {
+        try {
+            return KongaIoUtils.read(new File(m_file.getParentFile(), OLD_NAME_FILE));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }

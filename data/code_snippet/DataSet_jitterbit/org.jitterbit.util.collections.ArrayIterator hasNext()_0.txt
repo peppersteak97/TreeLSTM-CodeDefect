@@ -1,0 +1,3 @@
+    public boolean hasNext() {
+        return (m_currentIndex < m_length);
+    }

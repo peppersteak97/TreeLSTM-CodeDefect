@@ -1,0 +1,3 @@
+  public String toString() {
+    return "InvokeCompiledMethod (0x" + Integer.toHexString(cmid) + ") " + "@" + origIdx;
+  }

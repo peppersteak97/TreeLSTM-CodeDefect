@@ -1,0 +1,6 @@
+    private void customizeComboBox() {
+        m_comboBox = m_controls.getComboBox();
+        m_comboBox.setPrototypeDisplayValue(OperationPanel.COMBO_PROTOTYPE);
+        m_comboListener = new ComboListener();
+        m_comboBox.addActionListener(m_comboListener);
+    }

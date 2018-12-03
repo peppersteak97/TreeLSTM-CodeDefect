@@ -1,0 +1,9 @@
+    void read() throws KongaSaxParserException {
+        File file = m_fileProducer.getFile();
+        if (file == null) {
+            return;
+        }
+        m_mappings = new ArrayList<String>();
+        DefaultKongaSaxParser parser = createParser();
+        parser.load(file);
+    }

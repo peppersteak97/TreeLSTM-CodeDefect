@@ -1,0 +1,3 @@
+	public List getAffectedObjects() {
+		return m_liAffectedObjects;
+	}

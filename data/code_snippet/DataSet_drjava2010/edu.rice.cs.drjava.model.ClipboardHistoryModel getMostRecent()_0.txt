@@ -1,0 +1,4 @@
+  public synchronized String getMostRecent() {
+    if (_history.size() == 0) { return null; }
+    else { return _history.getLast(); }
+  }

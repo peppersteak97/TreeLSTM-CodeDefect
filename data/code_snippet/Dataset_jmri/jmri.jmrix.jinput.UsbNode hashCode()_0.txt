@@ -1,0 +1,5 @@
+    public int hashCode() { 
+        if (component != null) return component.hashCode();
+        if (controller == null) return super.hashCode();
+        else return controller.hashCode();
+    }

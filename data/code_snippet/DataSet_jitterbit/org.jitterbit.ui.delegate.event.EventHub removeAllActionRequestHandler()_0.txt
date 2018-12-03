@@ -1,0 +1,6 @@
+	public void removeAllActionRequestHandler() {
+		if (m_actionRequestHandlers != null) {
+            m_actionRequestHandlers.clear();
+            m_actionRequestHandlers = null;
+        }
+	}

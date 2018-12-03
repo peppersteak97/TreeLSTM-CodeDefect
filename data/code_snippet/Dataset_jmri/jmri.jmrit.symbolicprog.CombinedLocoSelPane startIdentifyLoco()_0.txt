@@ -1,0 +1,16 @@
+    protected void startIdentifyLoco() {
+        final CombinedLocoSelPane me = this;
+        IdentifyLoco id = new IdentifyLoco() {
+                private CombinedLocoSelPane who = me;
+                protected void done(int dccAddress) {
+                    who.selectLoco(dccAddress);
+                }
+                protected void message(String m) {
+                    if (_statusLabel != null) _statusLabel.setText(m);
+                }
+                protected void error() {
+                    idloco.setSelected(false);
+                }
+            };
+        id.start();
+    }

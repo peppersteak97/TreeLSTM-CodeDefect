@@ -1,0 +1,3 @@
+  public boolean isRuntimeFinal() {
+   return hasRuntimeFinalAnnotation();
+  }

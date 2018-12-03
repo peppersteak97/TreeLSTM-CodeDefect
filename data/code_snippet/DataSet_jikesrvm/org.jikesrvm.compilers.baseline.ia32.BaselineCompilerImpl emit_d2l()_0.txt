@@ -1,0 +1,35 @@
+  protected final void emit_d2l() {
+    if (VM.BuildFor32Addr) {
+
+      asm.emitFLD_Reg_RegInd_Quad(FP0, SP);
+      asm.emitFLD_Reg_Abs_Quad(FP0, Magic.getTocPointer().plus(Entrypoints.maxlongField.getOffset()));
+      asm.emitFUCOMIP_Reg_Reg(FP0, FP1);
+      ForwardReference fr1 = asm.forwardJcc(Assembler.LLE);
+      ForwardReference fr2 = asm.forwardJMP();
+      fr1.resolve(asm);
+      asm.emitMOV_RegDisp_Imm(SP, ONE_SLOT, 0x7FFFFFFF);
+      asm.emitMOV_RegInd_Imm(SP, -1);
+      ForwardReference fr4 = asm.forwardJMP();
+      fr3.resolve(asm);
+      asm.emitMOV_RegDisp_Imm(SP, ONE_SLOT, 0);
+      asm.emitMOV_RegInd_Imm(SP, 0);
+      fr2.resolve(asm);
+      fr4.resolve(asm);
+    } else {
+      asm.emitMOVLPD_Reg_Abs(XMM0, Magic.getTocPointer().plus(Entrypoints.maxlongFloatField.getOffset()));
+      asm.emitMOVLPD_Reg_RegInd(XMM1, SP);
+      adjustStack(WORDSIZE, true);
+      asm.emitUCOMISD_Reg_Reg(XMM0, XMM1);
+      ForwardReference fr1 = asm.forwardJcc(Assembler.LLE);
+      asm.emitCVTTSD2SIQ_Reg_Reg_Quad(T0, XMM1);
+      ForwardReference fr2 = asm.forwardJMP();
+      fr1.resolve(asm);
+      asm.emitMOV_Reg_Imm_Quad(T0, 0x7FFFFFFFFFFFFFFFL);
+      ForwardReference fr4 = asm.forwardJMP();
+      fr3.resolve(asm);
+      asm.emitXOR_Reg_Reg(T0, T0);
+      fr2.resolve(asm);
+      fr4.resolve(asm);
+      asm.emitPUSH_Reg(T0);
+    }
+  }

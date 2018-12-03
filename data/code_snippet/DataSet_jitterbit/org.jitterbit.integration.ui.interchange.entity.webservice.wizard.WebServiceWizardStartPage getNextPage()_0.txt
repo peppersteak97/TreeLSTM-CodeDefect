@@ -1,0 +1,18 @@
+    public IWizardPage getNextPage() {
+        IWizardPage page = null;
+        if (m_nextPageCache == null) {
+            m_nextPageCache = new HashMap<WebServiceInfo, IWizardPage>();
+        }
+        else {
+            page = m_nextPageCache.get(m_webServiceCallInfo);
+        }
+        if (page == null) {
+            if (m_wsdlFile == null) {
+                m_wsdlFile = new WsdlFile();
+            }
+            page = new WebServiceWizardOperationPage(getWizard(), 
+                            m_webServiceCallInfo, m_wsdlFile);
+            m_nextPageCache.put(m_webServiceCallInfo, page);
+        }
+        return page;
+    }

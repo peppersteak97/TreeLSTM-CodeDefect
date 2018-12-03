@@ -1,0 +1,4 @@
+    void install() {
+        KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        kfm.addKeyEventDispatcher(this);
+    }

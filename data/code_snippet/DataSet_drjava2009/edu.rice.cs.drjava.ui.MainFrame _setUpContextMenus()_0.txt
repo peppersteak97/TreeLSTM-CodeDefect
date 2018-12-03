@@ -1,0 +1,222 @@
+  private void _setUpContextMenus() {      
+    /*
+     * Phil Repicky -smallproj
+     * 2/14/2005
+     * Make these do something:
+     * _navPaneFolderPopupMenu.add("Open a File in this Folder Action");
+     * _navPaneFolderPopupMenu.add("Make a New File in this Folder Action");
+     */
+    
+    
+    
+    
+    
+    _model.getDocCollectionWidget().addMouseListener(new RightClickMouseAdapter() {
+      protected void _popupAction(MouseEvent e) {
+        boolean showContextMenu = true;
+        if (!_model.getDocumentNavigator().isSelectedAt(e.getX(), e.getY())) {
+          showContextMenu = _model.getDocumentNavigator().selectDocumentAt(e.getX(), e.getY());
+        }
+        if (showContextMenu) {
+          boolean rootSelected = _model.getDocumentNavigator().isRootSelected();
+          boolean folderSelected = false;
+          boolean docSelected = false;
+          boolean externalSelected = false;
+          boolean auxiliarySelected = false;
+          boolean externalBinSelected = false;
+          boolean auxiliaryBinSelected = false;
+          
+          final int docSelectedCount = _model.getDocumentNavigator().getDocumentSelectedCount();          
+          final int groupSelectedCount = _model.getDocumentNavigator().getGroupSelectedCount();
+          try {
+            java.util.Set<String> groupNames = _model.getDocumentNavigator().getNamesOfSelectedTopLevelGroup();
+            
+            if (docSelectedCount > 0) {
+              rootSelected = false;
+              if (groupNames.contains(_model.getSourceBinTitle())) {
+                docSelected = true;
+              }
+              if (groupNames.contains(_model.getExternalBinTitle())) {
+                externalSelected = true;
+              }
+              if (groupNames.contains(_model.getAuxiliaryBinTitle())) {
+                auxiliarySelected = true;
+              }
+            }
+            else {
+              if (groupSelectedCount > 0) {
+                if (!_model.getDocumentNavigator().isTopLevelGroupSelected()) {
+                  folderSelected = true;
+                }
+                else {
+                  if (groupNames.contains(_model.getSourceBinTitle())) {
+                    folderSelected = true;
+                  }
+                  if (groupNames.contains(_model.getExternalBinTitle())) {
+                    externalBinSelected = true;
+                  }
+                  if (groupNames.contains(_model.getAuxiliaryBinTitle())) {
+                    auxiliaryBinSelected = true;
+                  }
+                }
+              }
+            }
+          }
+          catch(GroupNotSelectedException ex) {
+            if (_model.isProjectActive()) {
+              rootSelected = true;
+            }
+            else {
+              docSelected = true;
+              rootSelected = false;
+              folderSelected = false;
+              externalSelected = false;
+              auxiliarySelected = false;
+              externalBinSelected = false;
+              auxiliaryBinSelected = false;
+            }
+          }
+          
+          if (!rootSelected && !folderSelected && !docSelected && !externalSelected &&
+              !auxiliarySelected && !externalBinSelected && !auxiliaryBinSelected) {
+            return;
+          }
+          
+          final JPopupMenu m = new JPopupMenu();
+          if (docSelectedCount == 0) { docSelected = externalSelected = auxiliarySelected = false; }
+          if (groupSelectedCount == 0) { folderSelected = false; }
+          
+          if (rootSelected) {
+            m.add(Utilities.createDelegateAction("Save Project", _saveProjectAction));
+            m.add(Utilities.createDelegateAction("Close Project", _closeProjectAction));
+            m.add(_compileProjectAction);
+            m.add(_runProjectAction);
+            m.add(_junitProjectAction);
+            m.add(_projectPropertiesAction);
+          }
+          if (folderSelected) {
+            if (m.getComponentCount() > 0) { m.addSeparator(); }
+            if (groupSelectedCount==1) {
+              m.add(_newFileFolderAction);
+              m.add(_openOneFolderAction);
+              
+              m.add(Utilities.createDelegateAction("Open All Files in Folder", _openAllFolderAction));
+              m.add(_closeFolderAction);
+              m.add(_compileFolderAction);
+              m.add(_junitFolderAction);
+            }
+            else if (groupSelectedCount>1) {
+              if (!externalBinSelected && !auxiliaryBinSelected) {
+                m.add(Utilities.createDelegateAction("Open All Files in All Folders (" + groupSelectedCount + ")",
+                                                     _openAllFolderAction));
+              }
+              m.add(Utilities.
+                      createDelegateAction("Close All Folders ("+groupSelectedCount+")", _closeFolderAction));
+              m.add(Utilities.
+                      createDelegateAction("Compile All Folders ("+groupSelectedCount+")", _compileFolderAction));
+              m.add(Utilities.
+                      createDelegateAction("Test All Folders ("+groupSelectedCount+")", _junitFolderAction));
+              
+            }
+          }
+          if (docSelected || externalSelected || auxiliarySelected) {
+            if (m.getComponentCount() > 0) { m.addSeparator(); }
+            if (docSelectedCount==1) {
+              m.add(Utilities.createDelegateAction("Save File", _saveAction));
+              m.add(Utilities.createDelegateAction("Save File As...", _saveAsAction));
+              m.add(Utilities.createDelegateAction("Rename File", _renameAction));
+              m.add(Utilities.createDelegateAction("Revert File to Saved", _revertAction));
+              m.add(Utilities.createDelegateAction("Close File", _closeAction));
+              m.add(Utilities.createDelegateAction("Print File...", _printDefDocAction));
+              m.add(Utilities.createDelegateAction("Print File Preview...", _printDefDocPreviewAction));
+              m.add(Utilities.createDelegateAction("Compile File", _compileAction));
+              m.add(Utilities.createDelegateAction("Test File", _junitAction));
+              m.add(Utilities.createDelegateAction("Preview Javadoc for File", _javadocCurrentAction));
+              m.add(Utilities.createDelegateAction("Run File's Main Method", _runAction));
+              m.add(Utilities.createDelegateAction("Run File as Applet", _runAppletAction));
+            }
+            else if (docSelectedCount>1) {
+              m.add(Utilities.createDelegateAction("Save All Files ("+docSelectedCount+")", _saveAction));
+              m.add(Utilities.createDelegateAction("Revert All Files to Saved ("+docSelectedCount+")", _revertAction));
+              m.add(Utilities.createDelegateAction("Close All Files  ("+docSelectedCount+")", _closeAction));
+              m.add(Utilities.createDelegateAction("Compile All Files ("+docSelectedCount+")", _compileAction));
+              m.add(Utilities.createDelegateAction("Test All Files ("+docSelectedCount+")", _junitAction));
+            }
+          }
+          if (externalSelected && !docSelected && !auxiliarySelected) {
+            if (m.getComponentCount() > 0) { m.addSeparator(); }
+            if (docSelectedCount==1) {
+              m.add(Utilities.createDelegateAction("Include File With Project",
+                                                   _moveToAuxiliaryAction));
+            }
+            else if (docSelectedCount>1) {
+              m.add(Utilities.createDelegateAction("Include All Files With Project ("+docSelectedCount+")",
+                                                   _moveToAuxiliaryAction));
+            }
+          }
+          if (auxiliarySelected && !docSelected && !externalSelected) {
+            if (m.getComponentCount() > 0) { m.addSeparator(); }
+            if (docSelectedCount==1) {
+              m.add(Utilities.createDelegateAction("Do Not Include File With Project",
+                                                   _removeAuxiliaryAction));
+            }
+            else if (docSelectedCount>1) {
+              m.add(Utilities.createDelegateAction("Do Not Include Any Files With Project ("+docSelectedCount+")",
+                                                   _removeAuxiliaryAction));
+            }
+          }
+          if (!folderSelected && (externalBinSelected || auxiliaryBinSelected)) {
+            if (m.getComponentCount() > 0) { m.addSeparator(); }
+            m.add(Utilities.createDelegateAction("Close All Files", _closeFolderAction));
+            m.add(Utilities.createDelegateAction("Compile All Files", _compileFolderAction));
+            m.add(Utilities.createDelegateAction("Test All Files", _junitFolderAction));
+          }
+          if (externalBinSelected && !auxiliaryBinSelected) {
+            m.add(Utilities.createDelegateAction("Include All Files With Project",
+                                                 _moveAllToAuxiliaryAction));
+          }
+          if (auxiliaryBinSelected && !externalBinSelected) {
+            m.add(Utilities.createDelegateAction("Do Not Include Any Files With Project",
+                                                 _removeAllAuxiliaryAction));
+          }
+          
+          m.show(e.getComponent(), e.getX(), e.getY());
+        }
+      }
+    });
+    
+    _interactionsPanePopupMenu = new JPopupMenu();
+    _interactionsPanePopupMenu.add(cutAction);
+    _interactionsPanePopupMenu.add(copyAction);
+    _interactionsPanePopupMenu.add(pasteAction);
+    _interactionsPanePopupMenu.addSeparator();
+    _interactionsPanePopupMenu.add(_printInteractionsAction);
+    _interactionsPanePopupMenu.add(_printInteractionsPreviewAction);
+    _interactionsPanePopupMenu.addSeparator();
+    _interactionsPanePopupMenu.add(_executeHistoryAction);
+    _interactionsPanePopupMenu.add(_loadHistoryScriptAction);
+    _interactionsPanePopupMenu.add(_saveHistoryAction);
+    _interactionsPanePopupMenu.add(_clearHistoryAction);
+    _interactionsPanePopupMenu.addSeparator();
+    _interactionsPanePopupMenu.add(_resetInteractionsAction);
+    _interactionsPanePopupMenu.add(_viewInteractionsClassPathAction);
+    _interactionsPanePopupMenu.add(_copyInteractionToDefinitionsAction);
+    _interactionsPane.addMouseListener(new RightClickMouseAdapter() {
+      protected void _popupAction(MouseEvent e) {
+        _interactionsPane.requestFocusInWindow();
+        _interactionsPanePopupMenu.show(e.getComponent(), e.getX(), e.getY());
+      }
+    });
+    
+    _consolePanePopupMenu = new JPopupMenu();
+    _consolePanePopupMenu.add(_clearConsoleAction);
+    _consolePanePopupMenu.addSeparator();
+    _consolePanePopupMenu.add(_printConsoleAction);
+    _consolePanePopupMenu.add(_printConsolePreviewAction);
+    _consolePane.addMouseListener(new RightClickMouseAdapter() {
+      protected void _popupAction(MouseEvent e) {
+        _consolePane.requestFocusInWindow();
+        _consolePanePopupMenu.show(e.getComponent(), e.getX(), e.getY());
+      }
+    });
+  }

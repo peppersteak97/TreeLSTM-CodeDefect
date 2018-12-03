@@ -1,0 +1,3 @@
+    public int getMonth() {
+        return m_month.getValue();
+    }

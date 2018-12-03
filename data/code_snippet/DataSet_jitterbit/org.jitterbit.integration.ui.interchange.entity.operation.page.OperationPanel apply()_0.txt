@@ -1,0 +1,34 @@
+    public void apply() throws IntegrationDataPanelException {
+        try {
+            m_operation.setName(m_topPanel.getOperationName());
+        }
+        catch (IllegalNameException e) {
+            throw new IntegrationDataPanelException(e);
+        }
+        m_operation.setDescription(m_topPanel.getDescription());
+        OperationType opType = m_topPanel.getOperationType();
+        m_operation.setOperationType(opType);
+        m_operation.setSchedule(m_schedulePanel.getSchedule());
+
+        switch (opType) {
+        case Transformation:
+            m_transformationPanel.applyToOperation(m_operation);
+            break;
+        case WebServiceCall:
+            m_wsCallPanel.applyToOperation(m_operation);
+            break;
+        case HostedWebService:
+            m_hostedWsCallPanel.applyToOperation(m_operation);
+            break;
+        case Archive:
+            m_archivePanel.applyToOperation(m_operation);
+            break;
+        }
+
+        m_optionsPanel.applyToOperation(m_operation);
+
+        m_operation.setSuccessMessage(m_onSuccessPanel.getMessage());
+        m_operation.setSuccessOperation(m_onSuccessPanel.getNextOperation());
+        m_operation.setFailureMessage(m_onFailurePanel.getMessage());
+        m_operation.setFailureOperation(m_onFailurePanel.getNextOperation());
+    }

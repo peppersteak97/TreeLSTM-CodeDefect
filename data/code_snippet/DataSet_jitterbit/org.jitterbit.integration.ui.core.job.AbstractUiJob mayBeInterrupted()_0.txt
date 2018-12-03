@@ -1,0 +1,1 @@
+     * {@link #mayBeInterrupted()} returns <tt>true</tt>.

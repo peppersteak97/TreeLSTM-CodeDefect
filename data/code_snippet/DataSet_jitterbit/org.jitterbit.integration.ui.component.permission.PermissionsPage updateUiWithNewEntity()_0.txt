@@ -1,0 +1,4 @@
+    private void updateUiWithNewEntity() {
+        updatePermissionsPanelWithNewEntity();
+        m_buttons.update();
+    }

@@ -1,0 +1,5 @@
+    private void clearPreferences() {
+        for (int n = 0; n < HISTORY_SIZE; ++n) {
+            m_preferences.putFile(getRecentProjectLocationKey(n), null);
+        }
+    }

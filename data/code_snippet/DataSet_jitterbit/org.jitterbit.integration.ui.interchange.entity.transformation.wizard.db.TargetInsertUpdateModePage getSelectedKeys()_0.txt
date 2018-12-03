@@ -1,0 +1,9 @@
+    private Set<DatabaseColumn> getSelectedKeys() {
+        Set<DatabaseColumn> keys = new HashSet<DatabaseColumn>();
+        for (IPrimaryKeys pk : m_ui.getSelectedKeys()) {
+            for (DatabaseColumn col : pk.getPrimaryKeys()) {
+                keys.add(col);
+            }
+        }
+        return keys;
+    }

@@ -1,0 +1,13 @@
+  public Instruction nextInstructionInCodeOrder() {
+    if (next == null) {
+      if (VM.VerifyAssertions) VM._assert(BBend.conforms(this));
+      BasicBlock nBlock = BBend.getBlock(this).block.nextBasicBlockInCodeOrder();
+      if (nBlock == null) {
+        return null;
+      } else {
+        return nBlock.firstInstruction();
+      }
+    } else {
+      return next;
+    }
+  }

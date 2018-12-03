@@ -1,0 +1,13 @@
+    private void layoutComponents() {
+        TwoColumnPanel p = new TwoColumnPanel();
+        p.addRow(createDriverCapsule(), InputFieldFactory.getCapsule(m_timeoutField));
+        p.addRow(InputFieldFactory.getCapsule(m_serverField), 
+                        InputFieldFactory.getCapsule(m_databaseField));
+        p.setRightAnchor(TwoColumnPanel.SOUTHWEST);
+        p.addRow(InputFieldFactory.getCapsule(m_loginField), 
+                ComponentFactories.buttonFactory().newButton(new PasswordAction()));
+        p.addRow(InputFieldFactory.getCapsule(m_paramsField));
+        p.addRow(InputFieldFactory.getCapsule(m_manualConnectionStringChoice));
+        p.addRow(InputFieldFactory.getCapsule(m_manualConnectionStringField));
+        wrap(p);
+    }

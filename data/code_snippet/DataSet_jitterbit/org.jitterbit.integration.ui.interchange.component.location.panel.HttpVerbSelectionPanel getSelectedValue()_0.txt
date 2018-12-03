@@ -1,0 +1,8 @@
+    HttpVerb getSelectedValue() {
+        for (IOptionSelector<IHttpVerbOption> selector : m_optionSelectors) {
+            if (selector.isSelected()) {
+                return selector.getOption().getValue();
+            }
+        }
+        return null;
+    }

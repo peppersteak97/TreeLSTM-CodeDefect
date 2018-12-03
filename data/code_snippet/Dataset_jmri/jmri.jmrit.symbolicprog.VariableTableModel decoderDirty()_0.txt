@@ -1,0 +1,7 @@
+    public boolean decoderDirty() {
+        int len = rowVector.size();
+        for (int i=0; i< len; i++) {
+            if (((VariableValue)(rowVector.elementAt(i))).getState() == CvValue.EDITED ) return true;
+        }
+        return false;
+    }

@@ -1,0 +1,12 @@
+    private void createUi() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setFill(OneColumnPanel.NONE);
+        p.setInsets(5, 5, 5, 5);
+        p.add(m_rootSelector);
+        p.add(m_extensionCheck);
+        p.add(createSearchCapsule());
+        p.add(createTableCapsule());
+        m_panel = InvisiblePanel.newPanel();
+        p.addToParent(m_panel, null);
+        UiUtils.setOpaqueRecursivelySkipDefaults(m_panel, false);
+    }

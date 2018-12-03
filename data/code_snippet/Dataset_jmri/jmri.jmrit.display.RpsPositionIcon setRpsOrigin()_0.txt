@@ -1,0 +1,4 @@
+    public void setRpsOrigin() {
+        sxOrigin = getX();
+        syOrigin = getY();
+    }

@@ -1,0 +1,5 @@
+    private void createInputPanel() {
+        m_inputPanel = new InputPanel();
+        m_inputPanel.setSendInputChangeEvents(true);
+        m_inputPanel.addInputField(m_newNameField, m_newNameField, m_newNameField);
+    }

@@ -1,0 +1,4 @@
+    private void createButton() {
+        m_downloadButton = ComponentFactories.buttonFactory().newButton(
+                new DownloadAction());
+    }

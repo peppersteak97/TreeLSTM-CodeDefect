@@ -1,0 +1,7 @@
+    private void addRootFolders() {
+        for (RootFolder folder : InterchangeViewMetaData.getInstance().getRootFolders()) {
+            addRootFolder(folder);
+        }
+        addRootFolder(SystemSource.SYSTEM_SOURCES_ROOT);
+        addRootFolder(SystemTarget.SYSTEM_TARGETS_ROOT);
+    }

@@ -1,0 +1,14 @@
+    private void createLaunchOptions() {
+        m_launchOptions = new ArrayList<ILaunchOption>();
+        m_launchOptions.add(new OpenLocalProjectOption(this));
+        m_launchOptions.add(new ImportJitterPackOption(this));
+        if (DownloadProjectFunctionality.isEnabled()) {
+            if (OPEN_DOWNLOAD_WIZARD_IN_DIALOG) {
+                m_launchOptions.add(new DownloadProjectOptionWithDialog(this));
+            }
+            else {
+                m_launchOptions.add(new DownloadProjectOptionInMainWindow(this));
+            }
+        }
+        m_launchOptions.add(new CreateNewProjectOption(this));
+    }

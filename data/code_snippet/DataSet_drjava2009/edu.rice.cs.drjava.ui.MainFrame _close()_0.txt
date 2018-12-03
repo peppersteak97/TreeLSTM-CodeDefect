@@ -1,0 +1,45 @@
+  private void _close() {
+    
+    List<OpenDefinitionsDocument> l = _model.getDocumentNavigator().getSelectedDocuments();    
+    for (OpenDefinitionsDocument doc: l) {
+      if ((_model.isProjectActive() && doc.inProjectPath()) || doc.isAuxiliaryFile()) {
+        queryNecessary = true;
+        break;
+      }
+    }
+    if (queryNecessary) {
+      int rc;
+      String fileName = null;
+      Object[] options = {"Yes", "No"};
+      if (l.size() == 1) {
+        OpenDefinitionsDocument doc = l.get(0);
+        try {
+          if (doc.isUntitled()) fileName = "File";
+          else fileName = _model.getActiveDocument().getFile().getName();
+        }
+        catch(FileMovedException e) { fileName = e.getFile().getName(); }
+        String text = "Closing this file will permanently remove it from the current project." + 
+          "\nAre you sure that you want to close this file?";
+        
+        rc = JOptionPane.showOptionDialog(MainFrame.this, text,"Close " + fileName + "?", JOptionPane.YES_NO_OPTION,
+                                          JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+      }
+      else {
+        fileName = l.size()+" files";
+        String text = "Closing these "+fileName+" will permanently remove them from the current project." + 
+          "\nAre you sure that you want to close these files?";
+        
+        rc = JOptionPane.showOptionDialog(MainFrame.this, text, "Close "+l.size()+" files?", JOptionPane.YES_NO_OPTION,
+                                          JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+      }
+      if (rc != JOptionPane.YES_OPTION) return;
+      
+      updateStatusField("Closing " + fileName);
+      _model.setProjectChanged(true);
+    }
+    
+    
+    for(OpenDefinitionsDocument doc: l) {
+      _model.closeFile(doc);
+    }
+  }

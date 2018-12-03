@@ -1,0 +1,7 @@
+    public void addToEventSystem() {
+        if (m_isListeningToEvents || m_mode == SNAPSHOT) {
+            return;
+        }
+        m_support.hookIntoEventSystem(this, this);
+        m_isListeningToEvents = true;
+    }

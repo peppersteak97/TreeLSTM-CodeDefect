@@ -1,0 +1,4 @@
+    public void apply() {
+        m_startDate = m_timeControl.getStart();
+        m_endDate = m_timeControl.getEnd();
+    }

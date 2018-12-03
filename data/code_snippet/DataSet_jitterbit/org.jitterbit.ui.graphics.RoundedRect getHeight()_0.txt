@@ -1,0 +1,1 @@
+	public int getHeight() { return m_iHeight; }

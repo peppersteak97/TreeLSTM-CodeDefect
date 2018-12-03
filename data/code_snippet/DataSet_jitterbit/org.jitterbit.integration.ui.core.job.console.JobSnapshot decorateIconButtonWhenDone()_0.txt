@@ -1,0 +1,13 @@
+    private void decorateIconButtonWhenDone() {
+        m_iconButton.setIcon(INFO);
+        IntegrationUiStyleSheet.enableRolloverForButton(m_iconButton);
+        m_iconButton.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (m_infoWindow == null) {
+                    m_infoWindow = new InfoDisplayer(m_startTime, m_endTime);
+                }
+                m_infoWindow.show(m_iconButton);
+            }
+        });
+    }

@@ -1,0 +1,3 @@
+    public IDatabaseLocationUi getUi() {
+        return new DefaultDatabaseLocationUi(this);
+    }

@@ -1,0 +1,8 @@
+    public Iterable<IPage> getOpenPages() {
+        return new Iterable<IPage>() {
+
+            public Iterator<IPage> iterator() {
+                return getPageEditor().getOpenPages();
+            }
+        };
+    }

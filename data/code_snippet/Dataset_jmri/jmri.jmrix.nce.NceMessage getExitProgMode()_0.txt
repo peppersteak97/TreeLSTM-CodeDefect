@@ -1,0 +1,22 @@
+    static public NceMessage getExitProgMode() {
+        NceMessage m = new NceMessage(1);
+        if (getCommandOptions() >= OPTION_2006) {
+            if (ncsProgMode == false)
+            	return null;
+    		if (NceUSB.getUsbSystem() == NceUSB.USB_SYSTEM_SB3
+    				|| NceUSB.getUsbSystem() == NceUSB.USB_SYSTEM_POWERHOUSE){
+    			log.error("attempt to send unsupported binary command EXIT_PROG_CMD to NCE USB");
+    		}
+            ncsProgMode = false;
+            m.setBinary(true);
+            m.setReplyLen(1);
+            m.setOpCode(EXIT_PROG_CMD);
+            m.setTimeout(SHORT_TIMEOUT);
+        }
+        else {
+            m.setBinary(false);
+            m.setOpCode('X');
+            m.setTimeout(SHORT_TIMEOUT);
+        }
+        return m;
+    }

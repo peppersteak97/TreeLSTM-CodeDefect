@@ -1,0 +1,4 @@
+    public void setClean() {
+        setSubTitle(getObject().getDataObject().getName());
+        super.setClean();
+    }

@@ -1,0 +1,7 @@
+  public boolean has13ToolsJar() {
+    try {
+      Class<?> main = Class.forName("com.sun.tools.javadoc.Main");
+      return !_javadocMainHasExecuteMethod(main);
+    }
+    catch (Throwable t) { return false; }
+  }

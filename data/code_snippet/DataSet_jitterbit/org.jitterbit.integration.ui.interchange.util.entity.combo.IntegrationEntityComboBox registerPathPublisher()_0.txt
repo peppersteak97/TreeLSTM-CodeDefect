@@ -1,0 +1,9 @@
+   private void registerPathPublisher() {
+		m_pathPublisher = new PathPublisher();
+		BasicComboBoxUI comboBoxUi = (BasicComboBoxUI) getUI();
+		Accessible a = comboBoxUi.getAccessibleChild(this, 0);
+		if (a instanceof ComboPopup) {
+			JList jlist = ((ComboPopup) a).getList();
+			jlist.addListSelectionListener(m_pathPublisher);
+		}
+	}

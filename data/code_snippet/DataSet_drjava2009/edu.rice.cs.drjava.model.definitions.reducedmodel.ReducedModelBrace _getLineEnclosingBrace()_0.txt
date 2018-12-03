@@ -1,0 +1,19 @@
+  public BraceInfo _getLineEnclosingBrace() {
+    Stack<Brace> braceStack = new Stack<Brace>();
+    TokenList.Iterator iter = _cursor.copy();
+    final int distToStart = _parent.getDistToStart();
+    
+    if (distToStart == -1) {
+      iter.dispose();
+      return BraceInfo.NULL;
+    }
+    
+    
+    iter.move(-relDistance);
+    final int offset = iter.getBlockOffset();
+    relDistance += offset;
+    distance += offset;
+    
+      iter.dispose();
+      return BraceInfo.NULL;
+    }

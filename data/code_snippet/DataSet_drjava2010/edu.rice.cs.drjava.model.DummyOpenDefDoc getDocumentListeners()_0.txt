@@ -1,0 +1,1 @@
+  public DocumentListener[] getDocumentListeners() { throw new UnsupportedOperationException("Dummy method"); }

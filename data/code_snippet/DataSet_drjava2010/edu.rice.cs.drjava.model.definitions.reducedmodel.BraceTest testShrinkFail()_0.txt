@@ -1,0 +1,6 @@
+  public void testShrinkFail() {
+    try{
+     lparen.shrink(5);
+     fail("Expected BraceException");
+    }catch(BraceException b){};
+  }

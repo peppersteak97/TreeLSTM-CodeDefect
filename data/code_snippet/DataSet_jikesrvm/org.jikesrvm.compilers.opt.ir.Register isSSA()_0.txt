@@ -1,0 +1,1 @@
+  public boolean isSSA() { return (flags & SSA) != 0; }

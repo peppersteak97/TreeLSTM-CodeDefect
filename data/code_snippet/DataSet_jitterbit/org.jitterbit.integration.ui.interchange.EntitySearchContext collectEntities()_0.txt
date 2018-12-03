@@ -1,0 +1,10 @@
+    private List<? extends IIntegrationEntityUiDelegate> collectEntities() {
+        InterchangeProjectUi modelUi = m_view.getDataModelUi();
+        List<IIntegrationEntityUiDelegate> uiDels = 
+            new ArrayList<IIntegrationEntityUiDelegate>();
+        for (IRootFolderUi rootUi : modelUi.getRootFolderUis()) {
+            addUiDelegates(uiDels, rootUi);
+        }
+        Collections.sort(uiDels, Comparators.UI_DELEGATE_BY_NAME);
+        return uiDels;
+    }

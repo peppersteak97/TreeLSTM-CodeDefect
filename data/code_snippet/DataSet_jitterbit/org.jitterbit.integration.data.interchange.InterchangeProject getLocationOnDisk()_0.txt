@@ -1,0 +1,4 @@
+    public File getLocationOnDisk() {
+        String path = getProperty(PROPERTY_LOCATION_ON_DISK);
+        return (path == null) ? null : new File(path);
+    }

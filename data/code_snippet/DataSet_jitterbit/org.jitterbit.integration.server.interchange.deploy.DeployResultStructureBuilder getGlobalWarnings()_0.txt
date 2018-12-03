@@ -1,0 +1,3 @@
+    public String[] getGlobalWarnings() {
+        return m_globalWarnings.toArray(new String[m_globalWarnings.size()]);
+    }

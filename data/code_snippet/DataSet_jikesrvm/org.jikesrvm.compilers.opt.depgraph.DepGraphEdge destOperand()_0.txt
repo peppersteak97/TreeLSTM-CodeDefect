@@ -1,0 +1,3 @@
+  RegisterOperand destOperand() {
+    return _destOperand;
+  }

@@ -1,0 +1,3 @@
+    protected synchronized Object getValue() { 
+        return value; 
+    }

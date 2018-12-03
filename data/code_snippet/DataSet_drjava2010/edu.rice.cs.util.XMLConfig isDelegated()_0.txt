@@ -1,0 +1,1 @@
+  public boolean isDelegated() { return (_parent != null); }

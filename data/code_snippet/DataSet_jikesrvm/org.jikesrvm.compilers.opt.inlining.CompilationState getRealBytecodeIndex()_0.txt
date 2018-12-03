@@ -1,0 +1,3 @@
+  public int getRealBytecodeIndex() {
+    return realBCI;
+  }

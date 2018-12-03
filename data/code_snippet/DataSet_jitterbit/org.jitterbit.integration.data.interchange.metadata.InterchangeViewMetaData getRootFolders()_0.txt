@@ -1,0 +1,3 @@
+    public List<RootFolder> getRootFolders() {
+        return m_dataLoader.getRootFolders();
+    }

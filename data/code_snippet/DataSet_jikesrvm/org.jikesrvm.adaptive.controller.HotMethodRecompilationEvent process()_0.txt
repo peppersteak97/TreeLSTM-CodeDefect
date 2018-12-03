@@ -1,0 +1,9 @@
+  public void process() {
+    ControllerPlan plan = Controller.recompilationStrategy.considerHotMethod(getCompiledMethod(), this);
+
+    ControllerMemory.incrementNumMethodsConsidered();
+
+    if (plan != null) {
+      plan.execute();
+    }
+  }

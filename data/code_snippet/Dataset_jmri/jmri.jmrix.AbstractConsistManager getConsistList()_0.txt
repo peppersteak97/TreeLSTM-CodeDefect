@@ -1,0 +1,1 @@
+	public ArrayList getConsistList() { return ConsistList; }

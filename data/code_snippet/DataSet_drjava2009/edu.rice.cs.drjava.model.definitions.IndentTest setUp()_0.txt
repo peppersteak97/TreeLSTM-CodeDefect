@@ -1,0 +1,7 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    DrJava.getConfig().resetToDefaults();
+    _notifier = new GlobalEventNotifier();
+    _doc = new DefinitionsDocument(_notifier);
+    setConfigSetting(OptionConstants.INDENT_LEVEL, indentLevel);
+  }

@@ -1,0 +1,12 @@
+    public List<? extends IIntegrationLink> collect() {
+        m_links = new ArrayList<IIntegrationLink>();
+        collectSourceLink();
+        collectTargetLink();
+        collectScheduleLink();
+        collectFunctionLinks();
+        collectOperationLinks();
+        collectMessageLinks();
+
+        
+        return m_links;
+    }

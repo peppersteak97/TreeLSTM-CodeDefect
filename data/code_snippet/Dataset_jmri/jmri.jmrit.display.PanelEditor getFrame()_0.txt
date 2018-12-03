@@ -1,0 +1,1 @@
+    public JFrame getFrame() { return frame; }

@@ -1,0 +1,9 @@
+    public void run() {
+        String cachedContents = getCachedFileContents();
+        if (cachedContents == null) {
+            download();
+        }
+        else {
+            parse(cachedContents);
+        }
+    }

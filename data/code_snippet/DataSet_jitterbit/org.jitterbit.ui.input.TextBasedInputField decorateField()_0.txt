@@ -1,0 +1,3 @@
+    public void decorateField() {
+        decorateField(this, isFieldValid());
+    }

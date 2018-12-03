@@ -1,0 +1,19 @@
+    public void buttonActionCmdPerformed(){
+		for (int i = 3; i < NUM_FUNCTION_BUTTONS; i++) {
+
+			if (alt1Button.isSelected()) {
+				if (i < NUM_FUNC_BUTTONS_INIT) {
+					functionButton[i].setVisible(false);
+				} else {
+					functionButton[i].setVisible(functionButton[i].getDisplay());
+				}
+
+			} else {
+				if (i < NUM_FUNC_BUTTONS_INIT) {
+					functionButton[i].setVisible(functionButton[i].getDisplay());
+				} else {
+					functionButton[i].setVisible(false);
+				}
+			}
+		}
+	}

@@ -1,0 +1,32 @@
+  private void _setUpToolBar() {
+    _toolBar.setFloatable(false);
+    
+    JButton printButton = new JButton("Print...",_getIcon("Print16.gif"));
+    printButton.setToolTipText("Print this document");
+    printButton.addActionListener(_printListener);
+    _toolBar.add(printButton);
+    _toolBar.addSeparator();
+    _toolBar.add(_closeAction);
+    
+    _toolBar.add(Box.createHorizontalGlue());
+    
+    _toolBar.add(_prevPageAction);
+    _toolBar.add(_nextPageAction);
+    _toolBar.addSeparator();
+    
+    JLabel gotop = new JLabel("Page");
+    
+    JLabel of = new JLabel(" of " + _print.getNumberOfPages());
+    
+    _toolBar.add(gotop);
+    _toolBar.addSeparator();
+    JComponent c = _pageChanger.getComponent();
+    Dimension d = c.getPreferredSize();
+    d = new Dimension(100,d.height);
+    c.setMaximumSize(d);
+    c.setPreferredSize(d);
+    c.setMinimumSize(d);
+    c.setToolTipText("Goto Page");
+    _toolBar.add(c);
+    _toolBar.add(of);
+  }

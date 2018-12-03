@@ -1,0 +1,3 @@
+  protected final Register getEBP() {
+    return getIR().regpool.getPhysicalRegisterSet().getEBP();
+  }

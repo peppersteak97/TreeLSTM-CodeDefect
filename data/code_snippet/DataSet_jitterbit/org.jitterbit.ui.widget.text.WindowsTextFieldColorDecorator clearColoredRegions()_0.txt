@@ -1,0 +1,3 @@
+    public void clearColoredRegions() {
+        m_coloredTextUi.clearColoredRegions();
+    }

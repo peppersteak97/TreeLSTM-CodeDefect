@@ -1,0 +1,4 @@
+    public void clear() {
+        m_permissions.clear();
+        m_isDirty = true;
+    }

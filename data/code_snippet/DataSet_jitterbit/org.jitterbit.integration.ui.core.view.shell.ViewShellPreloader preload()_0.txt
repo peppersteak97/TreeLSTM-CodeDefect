@@ -1,0 +1,14 @@
+    public void preload() throws ViewLoadingException {
+        try {
+            m_ui.waitUntilAppWinInitialized();
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+            return;
+        }
+        for (ViewShell shell : m_shells) {
+            shell.preloadShell(m_ui);
+            addMenuExtensionsFromShell(shell);
+        }
+        populateMenus();
+    }

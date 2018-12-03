@@ -1,0 +1,3 @@
+  public void boot() {
+    barrier.boot(RVMThread.numProcessors);
+  }

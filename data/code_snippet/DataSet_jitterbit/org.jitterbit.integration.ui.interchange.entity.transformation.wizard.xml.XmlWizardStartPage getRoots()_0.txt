@@ -1,0 +1,4 @@
+    private String[] getRoots() {
+        XmlStructureFile file = getSelectedFile();
+        return m_rootElementManager.getRoots(file);
+    }

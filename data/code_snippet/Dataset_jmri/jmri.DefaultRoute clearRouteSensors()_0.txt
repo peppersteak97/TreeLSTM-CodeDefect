@@ -1,0 +1,3 @@
+    public void clearRouteSensors() {
+        mNumSensors = 0;
+    }

@@ -1,0 +1,11 @@
+    boolean exitRequested() {
+        for (Iterator<String> it = m_visibleViews.iterator(); it.hasNext();) {
+            String id = it.next();
+            IView view = m_viewMap.get(id);
+            if (!processExitRequest(view)) {
+                return false;
+            }
+            it.remove();
+        }
+        return true;
+    }

@@ -1,0 +1,9 @@
+    private void layoutComponents() {
+        setLayout(new GridBagLayout());
+        if (getSourceTarget() == SourceTarget.Source) {
+            layoutForSource();
+        }
+        else {
+            layoutForTarget();
+        }
+    }

@@ -1,0 +1,3 @@
+    public String getCompositeElementTerminator() {
+        return m_compositeElementTerminator;
+    }

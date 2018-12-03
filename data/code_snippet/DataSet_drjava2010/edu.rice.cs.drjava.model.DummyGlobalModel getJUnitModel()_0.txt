@@ -1,0 +1,3 @@
+  public JUnitModel getJUnitModel() {
+    throw new UnsupportedOperationException("Tried to call getJUnitModel on a Dummy");
+  }

@@ -1,0 +1,3 @@
+  public List<OpenDefinitionsDocument> getNonProjectDocuments() {
+    throw new UnsupportedOperationException("Tried to call getNonProjectDocuments on a Dummy");
+  }

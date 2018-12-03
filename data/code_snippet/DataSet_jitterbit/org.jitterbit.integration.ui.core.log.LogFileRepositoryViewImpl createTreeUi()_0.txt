@@ -1,0 +1,6 @@
+    private void createTreeUi() {
+        m_treeUi = new LogFileRepositoryTree(m_repository, 
+                        getLeftTreeActions(), getRightTreeActions());
+        m_treeUi.setController(TreeControllerFactory.newController(m_openFileAction));
+        m_treeUi.addTreeListener(new TreeSelectionHandler());
+    }

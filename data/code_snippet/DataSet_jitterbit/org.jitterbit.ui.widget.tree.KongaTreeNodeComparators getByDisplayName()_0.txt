@@ -1,0 +1,7 @@
+    public static <T extends IKongaTreeNode> Comparator<T> getByDisplayName() {
+        return new Comparator<T>() {
+            public int compare(T o1, T o2) {
+                return KongaStringUtils.compare(o1.toString().toLowerCase(), o2.toString().toLowerCase());
+            }
+        };
+    }

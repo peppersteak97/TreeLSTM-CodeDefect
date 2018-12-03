@@ -1,0 +1,8 @@
+    private Container getDocumentTypePanel() {
+        Box box = Box.createVerticalBox();
+        box.setBorder(IntegrationUiStyleSheet.getDefaultTitleBorder(resources.getString("Title.DocumentType")));
+        box.add(flatOption);
+        box.add(Box.createVerticalStrut(10));
+        box.add(complexOption);
+        return box;
+    }

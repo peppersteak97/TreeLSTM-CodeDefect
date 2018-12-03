@@ -1,0 +1,3 @@
+    boolean isInputValid() {
+        return m_defaultCheck.isSelected() || m_portNumberField.isFieldValid();
+    }

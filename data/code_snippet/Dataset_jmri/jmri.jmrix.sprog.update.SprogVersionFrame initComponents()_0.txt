@@ -1,0 +1,14 @@
+    public void initComponents() throws Exception {
+        setTitle(title());
+
+        super.init();
+        
+        msg = new SprogMessage(1);
+        msg.setOpCode( (int) ' ');
+        tc.sendSprogMessage(msg, this);
+        bootState = CRSENT;
+        startShortTimer();
+
+        addHelpMenu("package.jmri.jmrix.sprog.update.SprogVersionFrame", true);
+
+    }

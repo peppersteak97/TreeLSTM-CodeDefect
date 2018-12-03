@@ -1,0 +1,3 @@
+            public IWebPage getHomePage() {
+                return (HOMEPAGE_URL == null) ? null : new DefaultWebPage(HOMEPAGE_URL);
+            }

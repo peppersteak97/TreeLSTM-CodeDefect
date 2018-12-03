@@ -1,0 +1,9 @@
+    public boolean cancel() {
+        synchronized (m_lock) {
+            if (m_canBeCancelled) {
+                m_isCancelled = true;
+                return true;
+            }
+            return false;
+        }
+    }

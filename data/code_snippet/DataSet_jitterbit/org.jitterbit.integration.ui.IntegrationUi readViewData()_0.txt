@@ -1,0 +1,3 @@
+    public void readViewData() throws ViewManagerException {
+        m_viewManager.initialize();
+    }

@@ -1,0 +1,28 @@
+    protected List<JMenuItem> getMenuItems() {
+        List<JMenuItem> items = new ArrayList<JMenuItem>();
+
+        addExtensionItems(items, MenuExtensionPoint.EXTENSION_POINT_1);
+        items.add(null);
+
+        for (WindowActionFactory factory : getActions()) {
+            if (factory == null) {
+                items.add(null);
+            }
+            else {
+                IApplicationAction a = factory.get(getWindow());
+                items.add(MenuItemFactory.createMenuItem(a, 
+                                WindowActionDictionary.DICTIONARY));
+            }
+        }
+
+        addExtensionItems(items, MenuExtensionPoint.EXTENSION_POINT_2);
+        items.add(null);
+
+        addExtensionItems(items, MenuExtensionPoint.EXTENSION_POINT_3);
+        items.add(null);
+
+        IApplicationAction exit = WindowActionFactory.EXIT.get(getWindow());
+        items.add(MenuItemFactory.createMenuItem(exit, 
+                        WindowActionDictionary.DICTIONARY));
+        return items;
+    }

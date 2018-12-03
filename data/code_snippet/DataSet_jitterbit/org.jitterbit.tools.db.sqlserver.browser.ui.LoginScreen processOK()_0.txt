@@ -1,0 +1,12 @@
+    private void processOK() {
+        m_sServer = (String)m_comboServers.getSelectedItem();
+        if( m_liServers.contains(m_sServer) ) {
+            m_liServers.remove(m_sServer);
+        }
+        m_liServers.addFirst(m_sServer);
+        
+        m_sUser = m_textUser.getText();
+        m_sPassword = new String( m_pwdField.getPassword() );
+        m_frame.dispose();
+        m_listener.processLogin( new LoginEvent(this, LoginEvent.Status.OK) );
+    }

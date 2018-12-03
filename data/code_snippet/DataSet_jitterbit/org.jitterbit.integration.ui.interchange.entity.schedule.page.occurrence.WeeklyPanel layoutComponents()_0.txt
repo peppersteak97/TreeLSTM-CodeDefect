@@ -1,0 +1,12 @@
+    private void layoutComponents() {
+        setLayout(new BoxLayout(getUi(), BoxLayout.PAGE_AXIS));
+        add(Box.createVerticalGlue());
+        JPanel weeklyTop = new JPanel();
+        weeklyTop.setOpaque(false);
+        weeklyTop.setLayout(new BoxLayout(weeklyTop, BoxLayout.LINE_AXIS));
+        weeklyTop.add(m_everyX.getUi());
+        weeklyTop.add(Box.createHorizontalGlue());
+        add(weeklyTop);
+        add(m_days);
+        add(Box.createVerticalGlue());
+    }

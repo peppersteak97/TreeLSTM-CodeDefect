@@ -1,0 +1,7 @@
+  public void resetCompleteWordDialogPosition() {
+    initCompleteWordDialog();
+    _completeWordDialog.setFrameState("default");
+    if (DrJava.getConfig().getSetting(DIALOG_COMPLETE_WORD_STORE_POSITION).booleanValue()) {
+      DrJava.getConfig().setSetting(DIALOG_COMPLETE_WORD_STATE, "default");
+    }
+  }

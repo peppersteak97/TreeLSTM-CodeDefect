@@ -1,0 +1,19 @@
+    public void dispose() {
+        InstanceManager.configureManagerInstance().deregister(this);
+		jmri.jmrit.display.PanelMenu.instance().deletePanel((Object)self);
+		setVisible(false);
+		frame.setVisible(false);		
+        contents.clear();
+        target = null;
+        frame = null;
+		if (locoRosterFrame != null) {
+			locoRosterFrame.setVisible(false);
+			locoRosterFrame = null;
+		}
+		if (locoFrame != null) {
+			locoFrame.setVisible(false);
+			locoFrame = null;
+		}
+        this.removeAll();
+        super.dispose();
+    }

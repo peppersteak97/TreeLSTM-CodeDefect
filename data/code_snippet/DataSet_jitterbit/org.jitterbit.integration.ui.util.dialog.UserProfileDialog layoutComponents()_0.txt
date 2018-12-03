@@ -1,0 +1,6 @@
+    private void layoutComponents() {
+        JPanel cp = IntegrationUiStyleSheet.getDialogContentPane();
+        layoutDisplayArea(cp);
+        layoutButtons(cp);
+        setContentPane(cp);
+    }

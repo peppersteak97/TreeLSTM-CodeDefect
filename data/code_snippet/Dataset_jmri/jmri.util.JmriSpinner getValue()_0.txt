@@ -1,0 +1,14 @@
+	public int getValue() {
+		if (spinner==null) {
+			try {
+				value = Integer.parseInt(textfield.getText());
+			} catch (Exception ex) {
+				value = defaultValue;
+			}
+			if (value<minimum) { value = minimum; }
+			else if (value>maximum) { value = maximum; }
+		} else {
+			value = ((Integer)spinner.getValue()).intValue();
+		}
+		return value;
+	}

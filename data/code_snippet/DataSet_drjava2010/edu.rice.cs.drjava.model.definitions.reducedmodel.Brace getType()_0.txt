@@ -1,0 +1,1 @@
+  public String getType() { return (_type == BRACES_LENGTH) ? "!" : braces[_type]; }

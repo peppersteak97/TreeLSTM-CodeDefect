@@ -1,0 +1,8 @@
+  public ArrayList<ItemT> getDocuments() { 
+    synchronized(_model) {
+      @SuppressWarnings("unchecked") Enumeration<ItemT> items = (Enumeration<ItemT>) _model.elements();
+      ArrayList<ItemT> result = new ArrayList<ItemT>(_model.size());
+      while (items.hasMoreElements()) result.add(items.nextElement());
+      return result;                               
+    }
+  }

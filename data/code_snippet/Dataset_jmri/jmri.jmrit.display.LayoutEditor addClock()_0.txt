@@ -1,0 +1,9 @@
+    public void addClock() {
+        AnalogClock2Display l = new AnalogClock2Display(this);
+        l.setOpaque(false);
+        l.update();
+        l.setDisplayLevel(new Integer(10));
+        setNextLocation(l);
+		setDirty(true);
+        putClock(l);
+    }

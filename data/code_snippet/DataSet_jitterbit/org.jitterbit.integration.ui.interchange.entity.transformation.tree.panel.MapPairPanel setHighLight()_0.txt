@@ -1,0 +1,32 @@
+	public void setHighLight(){
+		m_isHighLighted=true;
+		m_targetLabel.setBackground(m_clrMapPairHighl);
+		setBackground(m_clrMapPairHighl);
+		m_TreeMapper.m_targetTreeComponent.showNode(m_targetDE,true);
+		if(m_TreeMapper.m_sourceTreeComponent.m_selectedNodes.size()>0)
+		{
+			TreeComponent.Node source0=
+				m_TreeMapper.m_sourceTreeComponent.m_selectedNodes.elementAt(0);
+			m_TreeMapper.m_sourceTreeComponent.showNode(source0,false);
+		}
+		else
+		{
+			m_TreeMapper.m_sourceTreeComponent.
+				repaint(0,m_TreeMapper.m_sourceTreeComponent.m_ymin,
+						m_TreeMapper.m_sourceTreeComponent.m_xmax,
+						m_TreeMapper.m_sourceTreeComponent.m_ymax);
+		}
+		if(!m_isLabel)
+		{
+			if(m_sourceText!=null){
+				remove(m_sourceLabel);
+				add(m_sourceText);
+			}
+			m_sourceText.setCaretPosition(0);
+			m_sourceText.requestFocus();
+		}
+		else{
+			m_sourceLabel.setBackground(m_clrMapPairHighl);
+		}
+		m_buttonDel.repaint();
+	}

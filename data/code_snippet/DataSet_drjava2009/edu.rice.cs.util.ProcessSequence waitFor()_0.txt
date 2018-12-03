@@ -1,0 +1,16 @@
+  public int waitFor() throws InterruptedException {
+    if (_aborted) { return -1; }
+    int exitCode = 0;
+    for(int i = 0; i < _processes.length; ++i) {
+      while((!_aborted) && (_processes[i] == null)) {
+        try {
+          Thread.sleep(100);
+        }
+        catch(InterruptedException e) { /* interruptions are ok, just ignore */ }
+      }
+      if (_aborted) { return -1; }
+      exitCode = _processes[i].waitFor();
+    }
+    stopAllRedirectors();
+    return exitCode;
+  }

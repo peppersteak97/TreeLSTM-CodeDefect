@@ -1,0 +1,3 @@
+    public static OperationQueueTableModel emptyModel() {
+        return new OperationQueueTableModel(null);
+    }

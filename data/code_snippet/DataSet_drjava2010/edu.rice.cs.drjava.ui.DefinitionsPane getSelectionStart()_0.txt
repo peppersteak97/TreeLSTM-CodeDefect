@@ -1,0 +1,4 @@
+  public int getSelectionStart() {
+    if (getDocument() == NULL_DOCUMENT) return _selStart;
+    else return super.getSelectionStart();
+  }

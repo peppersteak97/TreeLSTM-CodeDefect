@@ -1,0 +1,4 @@
+  public void invalidate() {
+    _invalidate();
+    invalidateOthers(new HashSet<DrJavaProperty>());
+  }

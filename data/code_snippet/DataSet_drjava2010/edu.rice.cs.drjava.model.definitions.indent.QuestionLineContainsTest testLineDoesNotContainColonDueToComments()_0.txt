@@ -1,0 +1,14 @@
+  public void testLineDoesNotContainColonDueToComments() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionLineContains(':', null, null);
+
+    _doc.setCurrentLocation(0);
+    assertTrue("entire line with colon in comment (no colon, single line comment)",
+        !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+    _doc.setCurrentLocation(10);
+    assertTrue("part of line with colon in comment (no colon, single line comment)",
+        !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _setDocText("foo();\nreturn test; /*? x : y*/\n}\n");
+    _doc.setCurrentLocation(7);
+    assertTrue("no colon, colon in multi-line comment", !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+  }

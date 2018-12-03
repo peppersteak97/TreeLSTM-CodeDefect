@@ -1,0 +1,11 @@
+    void checkSensorBox() {
+        if (currentNode == null) return;
+        if (sensorBox.isSelected()) {
+            currentNode.setAttachedSensor(sensorName.getText());
+            sensorName.setEditable(false);
+        } else {
+            currentNode.setAttachedSensor("");
+            sensorName.setEditable(true);
+        }
+            
+    }

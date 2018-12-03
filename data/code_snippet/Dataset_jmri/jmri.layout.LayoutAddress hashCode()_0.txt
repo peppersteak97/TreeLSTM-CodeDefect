@@ -1,0 +1,7 @@
+    public int hashCode()
+    {
+        if( hash == 0 )
+            hash = mLayoutName.hashCode() ^ mType ^ mOffset ;
+
+        return hash ;
+    }

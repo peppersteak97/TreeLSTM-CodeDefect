@@ -1,0 +1,3 @@
+    EnumSet<DataLocationType> getSupportedSourceTypes() {
+        return EnumSet.copyOf(m_sourceTypes);
+    }

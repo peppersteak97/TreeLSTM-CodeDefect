@@ -1,0 +1,10 @@
+  public String toString() {
+    final StringBuilder sb = new StringBuilder();
+    sb.append("Could not parse configuration option.\nOption: ");
+    sb.append(key);
+    sb.append("\nGiven value: \"");
+    sb.append(value);
+    sb.append("\"\n");
+    sb.append(message);
+    return sb.toString();
+  }

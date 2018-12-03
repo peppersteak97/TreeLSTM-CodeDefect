@@ -1,0 +1,4 @@
+  private void addListener() {
+    _textField.getDocument().addDocumentListener(_listener);
+    _textField.addCaretListener(_listener);
+  }

@@ -1,0 +1,8 @@
+    public boolean isToWrite() {
+        Iterator i = variables.iterator();
+        while (i.hasNext()) {
+            VariableValue v = (VariableValue) i.next();
+            if (v.isToWrite()) return true;
+        }
+        return false;
+    }

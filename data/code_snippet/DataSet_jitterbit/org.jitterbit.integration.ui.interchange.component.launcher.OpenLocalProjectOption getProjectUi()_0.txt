@@ -1,0 +1,11 @@
+    public InterchangeProjectUi getProjectUi() {
+        ProjectLocation projectLoc = getSelectedExistingProject();
+        IExceptionHandler<Exception> errorHandler = new IExceptionHandler<Exception>() {
+
+            public void caught(Exception ex) {
+                handleLoadingException(ex);
+            }
+        };
+        ProjectLoader loader = new ProjectLoader(projectLoc, errorHandler);
+        return loader.loadSynchronously();
+    }

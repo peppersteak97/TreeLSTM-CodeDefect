@@ -1,0 +1,3 @@
+  public final BranchOperand makeJumpTarget() {
+    return new BranchOperand(firstInstruction());
+  }

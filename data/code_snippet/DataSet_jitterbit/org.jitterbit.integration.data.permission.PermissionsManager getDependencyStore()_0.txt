@@ -1,0 +1,3 @@
+    IDependencyStore getDependencyStore() {
+        return m_dependenyStore;
+    }

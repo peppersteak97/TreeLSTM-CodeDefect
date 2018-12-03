@@ -1,0 +1,18 @@
+    private void alarmDisplayUpdateHandler(){
+        if (pollingInterval < MIN_POLLING_INTERVAL || pollingInterval > MAX_POLLING_INTERVAL) {
+            log.error(rb.getString("LogAlarmTimeIntervalError") + pollingInterval);
+            pollingInterval = DEFAULT_POLLING_INTERVAL;
+        }
+        if (timerDisplayUpdate == null){
+            timerDisplayUpdate = new javax.swing.Timer((int)(pollingInterval * 1000.0), new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        alarmDisplayUpdateHandler();
+                    }
+                });
+        }
+        timerDisplayUpdate.setInitialDelay((int)(1 * 1000));
+        timerDisplayUpdate.start();
+    	alarmDisplayStateCounter = 1;
+    	alarmDisplayStates();
+        updateInternalClockDisplay();
+    }

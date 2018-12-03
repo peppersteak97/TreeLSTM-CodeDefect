@@ -1,0 +1,12 @@
+    synchronized void updateNameList() {
+        if (sysNameList != null) {
+            for (int i = 0; i< sysNameList.size(); i++) {
+                NamedBean b = getBySystemName((String)sysNameList.get(i));
+                if (b!=null)
+                    b.removePropertyChangeListener(this);
+            }
+        }
+        sysNameList = getManager().getSystemNameList();
+        for (int i = 0; i< sysNameList.size(); i++)
+            getBySystemName((String)sysNameList.get(i)).addPropertyChangeListener(this);
+    }

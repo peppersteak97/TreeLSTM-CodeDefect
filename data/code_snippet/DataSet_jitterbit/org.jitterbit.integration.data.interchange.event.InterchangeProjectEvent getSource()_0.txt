@@ -1,0 +1,3 @@
+    public InterchangeProject getSource() {
+        return (InterchangeProject) super.getSource();
+    }

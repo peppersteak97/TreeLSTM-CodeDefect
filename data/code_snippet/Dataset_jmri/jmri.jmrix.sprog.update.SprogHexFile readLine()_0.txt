@@ -1,0 +1,40 @@
+  public int[] readLine() {
+    int record[] = new int[MAX_LEN];
+    int checksum = 0;
+    try {
+      while (((charIn = buffIn.read()) == 0xd)
+             || (charIn == 0xa)) ;
+      if (charIn != ':') {
+        if (log.isDebugEnabled()) log.debug("HexFile.readLine no colon at start of line " + lineNo);
+        return new int[] {-1};
+      }
+    }
+    catch (IOException e) {
+      JOptionPane.showMessageDialog(this, "I/O Error reading hex file!", 
+                                        "Hex File", JOptionPane.ERROR_MESSAGE);
+      if (log.isDebugEnabled()) log.debug("I/O Error reading hex file!" + e.toString());
+    }
+    record[LEN] = rdHexByte();
+    checksum += record[LEN];
+    record[ADDRH] = rdHexByte();
+    checksum += record[ADDRH];
+    record[ADDRL] = rdHexByte();
+    checksum += record[ADDRL];
+    record[TYPE] = rdHexByte();
+    checksum += record[TYPE];
+    address = (address & 0xffff0000) + record[ADDRH] * 256 + record[ADDRL];
+    type = record[TYPE];
+    if (type != END) {
+      len = record[LEN];
+      for (int i = 1; i <= len; i++) {
+        record[TYPE + i] = rdHexByte();
+        checksum += record[TYPE + i];
+      }
+    }
+    int fileCheck = rdHexByte();
+    if (((checksum + fileCheck) & 0xff) != 0) {
+      log.error("HexFile.readLine bad checksum at line " + lineNo);
+    }
+    lineNo++;
+    return record;
+  }

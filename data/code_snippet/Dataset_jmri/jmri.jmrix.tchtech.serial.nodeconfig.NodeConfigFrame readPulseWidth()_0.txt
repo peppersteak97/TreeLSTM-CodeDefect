@@ -1,0 +1,34 @@
+    protected boolean readPulseWidth() {
+        try 
+        {
+            pulseWidth = Integer.parseInt(pulseWidthField.getText());
+        }
+        catch (Exception e)
+        {
+            statusText1.setText(rb.getString("Error18"));
+            statusText1.setVisible(true);
+            pulseWidth = 500;
+            errorInStatus1 = true;
+            resetNotes2();
+            return (false);
+        }
+        if (pulseWidth < 100) {
+            statusText1.setText(rb.getString("Error16"));
+            statusText1.setVisible(true);
+            pulseWidth = 100;
+			pulseWidthField.setText(Integer.toString(pulseWidth));
+            errorInStatus1 = true;
+            resetNotes2();
+            return (false);
+        }
+        if (pulseWidth > 10000) {
+            statusText1.setText(rb.getString("Error17"));
+            statusText1.setVisible(true);
+            pulseWidth = 500;
+			pulseWidthField.setText(Integer.toString(pulseWidth));
+            errorInStatus1 = true;
+            resetNotes2();
+            return (false);
+        }
+        return true;
+    }

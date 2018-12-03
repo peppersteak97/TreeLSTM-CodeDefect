@@ -1,0 +1,10 @@
+    protected void generateScript() {
+        checkColumns();
+        writeHeader();
+        writeBeginDbNamespace();
+        writeRowClass();
+        writeMainClass();
+        writeEndDbNamespace();
+        addLine();
+        addLine("#endif");
+    }

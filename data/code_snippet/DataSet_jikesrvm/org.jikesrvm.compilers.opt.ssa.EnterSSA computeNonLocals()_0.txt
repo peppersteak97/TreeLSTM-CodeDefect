@@ -1,0 +1,28 @@
+  private void computeNonLocals() {
+    nonLocalRegisters = new HashSet<Register>(20);
+    BasicBlockEnumeration blocks = ir.getBasicBlocks();
+    while (blocks.hasMoreElements()) {
+      HashSet<Register> killed = new HashSet<Register>(5);
+      BasicBlock block = blocks.next();
+      InstructionEnumeration instrs = block.forwardRealInstrEnumerator();
+      while (instrs.hasMoreElements()) {
+        Instruction instr = instrs.next();
+        OperandEnumeration uses = instr.getUses();
+        while (uses.hasMoreElements()) {
+          Operand op = uses.next();
+          if (op instanceof RegisterOperand) {
+            if (!killed.contains(op.asRegister().getRegister())) {
+              nonLocalRegisters.add(op.asRegister().getRegister());
+            }
+          }
+        }
+        OperandEnumeration defs = instr.getDefs();
+        while (defs.hasMoreElements()) {
+          Operand op = defs.next();
+          if (op instanceof RegisterOperand) {
+            killed.add(op.asRegister().getRegister());
+          }
+        }
+      }
+    }
+  }

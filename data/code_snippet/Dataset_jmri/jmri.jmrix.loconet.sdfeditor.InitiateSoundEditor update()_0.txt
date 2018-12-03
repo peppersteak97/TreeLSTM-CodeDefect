@@ -1,0 +1,15 @@
+    public void update() {
+        InitiateSound instruction = (InitiateSound)inst;
+        int trig = instruction.getTrigger();
+        for (int i=0; i<SdfConstants.triggerCodes.length; i++)
+            if (SdfConstants.triggerCodes[i]==trig) {
+                box.setSelectedIndex(i);
+                break;
+            }
+        int prempt = instruction.getPrempt();
+        zap.setSelected((prempt&SdfConstants.ZAP)!=0);
+        run.setSelected((prempt&SdfConstants.RUN_WHILE_TRIG)!=0);
+        noprempt.setSelected((prempt&SdfConstants.NO_PREEMPT_TRIG)!=0);
+        nottrig.setSelected((prempt&SdfConstants.NOT_TRIG)!=0);
+        
+    }        

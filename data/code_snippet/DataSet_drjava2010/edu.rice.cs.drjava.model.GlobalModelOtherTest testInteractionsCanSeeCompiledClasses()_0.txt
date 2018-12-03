@@ -1,0 +1,34 @@
+  public void testInteractionsCanSeeCompiledClasses() throws BadLocationException, EditDocumentException,
+    IOException, InterruptedException {
+    debug.logStart();
+    
+    OpenDefinitionsDocument doc1 = setupDocument(FOO_TEXT);
+    File dir1 = makeCanonical(new File(_tempDir, "dir1"));
+    dir1.mkdir();
+    File file1 = makeCanonical(new File(dir1, "TestFile1.java"));
+    doCompile(doc1, file1);
+    
+    assertEquals("interactions result", "\"DrJavaTestFoo\"", interpret("new DrJavaTestFoo().getClass().getName()"));
+    
+    Vector<File> cp = new Vector<File>();
+    cp.add(dir1);
+    DrJava.getConfig().setSetting(EXTRA_CLASSPATH, cp);
+    
+    Utilities.clearEventQueue();
+    _model.closeFile(doc1);
+    
+    OpenDefinitionsDocument doc2 = setupDocument(BAZ_TEXT);
+    File dir2 = makeCanonical(new File(_tempDir, "dir2"));
+    dir2.mkdir();
+    File file2 = makeCanonical(new File(dir2, "TestFile1.java"));
+    doCompile(doc2, file2);
+    
+    assertEquals("interactions result", "\"DrJavaTestBaz\"", interpret("new DrJavaTestBaz().getClass().getName()"));
+    
+    assertEquals("result of static field", "3", interpret("DrJavaTestBaz.x"));
+    
+    assertEquals("interactions result", "\"DrJavaTestFoo\"", interpret("new DrJavaTestFoo().getClass().getName()"));
+    
+    _log.log("testInteractionsCanSeeCompletedClasses() completed");
+    debug.logEnd();
+  }

@@ -1,0 +1,34 @@
+  public void testNodesStarMiddleDelegate() throws Exception {
+    XMLConfig xcParent = 
+      new XMLConfig(new StringReader("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><foo a=\"foo.a\">" +
+                                     "<fum>\n" 
+                                       + "  <bar fee=\"xxx\" fuz=\"aaa\">abc</bar>\n"
+                                       + "  <bar fee=\"yyy\" fuz=\"bbb\">ghi</bar>\n"
+                                       + "  <fum fee=\"zzz\" fuz=\"ccc\">def</fum>\n"
+                                       + "</fum></foo>"));
+    XMLConfig xc = new XMLConfig(xcParent, xcParent.getNodes("foo").get(0));
+    List<String> r = xc.getMultiple("fum/*.fee");
+    assertEquals(3, r.size());
+    assertEquals("xxx", r.get(0));
+    assertEquals("yyy", r.get(1));
+    assertEquals("zzz", r.get(2));
+    
+    r = xc.getMultiple("fum/*.*");
+    assertEquals(6, r.size());
+    assertEquals("xxx", r.get(0));
+    assertEquals("aaa", r.get(1));
+    assertEquals("yyy", r.get(2));
+    assertEquals("bbb", r.get(3));
+    assertEquals("zzz", r.get(4));
+    assertEquals("ccc", r.get(5));
+    
+    xcParent = 
+      new XMLConfig(new StringReader("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><foo><flub>\n"
+                                       + "  <foo/>\n"
+                                       + "  <fee/>\n"
+                                       + "  <fum foz=\"abc\"/>"
+                                       + "</flub></foo>"));
+    xc = new XMLConfig(xcParent, xcParent.getNodes("foo").get(0));
+    r = xc.getMultiple("flub/*");
+    assertEquals(3, r.size());
+  }

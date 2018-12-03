@@ -1,0 +1,11 @@
+    private static void createAndShowDialog() {
+        final JDialog dlg = new DialogImpl();
+        Runnable display = new Runnable() {
+            
+            public void run() {
+                dlg.setLocationRelativeTo(null);
+                dlg.setVisible(true);
+            }
+        };
+        UiUtils.runOnEventThread(display);
+    }

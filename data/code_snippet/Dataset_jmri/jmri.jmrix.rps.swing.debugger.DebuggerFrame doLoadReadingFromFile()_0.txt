@@ -1,0 +1,13 @@
+    void doLoadReadingFromFile() throws java.io.IOException {
+        if (readingInput == null) {
+            setupReadingFile();
+        }
+        
+        if (!readingInput.readRecord()) {
+            setupReadingFile();
+            if (!readingInput.readRecord()) throw new java.io.IOException("no valid file");
+        }
+        for (int i = 0; i< Math.min(NUMSENSORS, readingInput.getColumnCount()+1); i++) {
+            times[i].setText(readingInput.get(i+1));
+        }
+    }

@@ -1,0 +1,18 @@
+    public void apply() throws IntegrationDataPanelException {
+        InterchangeProjectLock.lock();
+        try {
+            IManagedProject mp = InterchangeProjectManager.getManager().getProject(m_project);
+            mp.renameProject(m_nameField.getValue());
+        }
+        catch (IllegalNameException ex) {
+            throw new IntegrationDataPanelException(ex);
+        }
+        catch (InterchangeSavingException ex) {
+            throw new IntegrationDataPanelException(ex);
+        }
+        finally {
+            InterchangeProjectLock.unlock();
+        }
+        m_project.setDescription(m_descriptionField.getValue());
+        m_project.setJitterPackComment(m_jitterPackCommentField.getValue());
+    }

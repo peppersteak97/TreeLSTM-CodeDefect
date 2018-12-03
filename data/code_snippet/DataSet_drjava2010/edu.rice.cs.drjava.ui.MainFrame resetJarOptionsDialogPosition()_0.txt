@@ -1,0 +1,6 @@
+  public void resetJarOptionsDialogPosition() {
+    _jarOptionsDialog.setFrameState("default");
+    if (DrJava.getConfig().getSetting(DIALOG_JAROPTIONS_STORE_POSITION).booleanValue()) {
+      DrJava.getConfig().setSetting(DIALOG_JAROPTIONS_STATE, "default");
+    }
+  }

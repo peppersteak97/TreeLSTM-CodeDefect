@@ -1,0 +1,9 @@
+    private void populateSourceListImpl() {
+        if (m_objectContainers != null) {
+            ObjectListPopulator populator = new ObjectListPopulator(
+                            m_dbLocation, 
+                            m_objectContainers, 
+                            shouldSchemaNameBeIncluded());
+            populator.populate(m_objectSelector.getSourceList().getJList());
+        }
+    }

@@ -1,0 +1,26 @@
+        void handleOneIncomingReply() throws java.io.IOException {
+
+          QsiReply msg = new QsiReply();
+          int i;
+          for (i = 0; i < QsiReply.maxSize; i++) {
+            byte char1 = istream.readByte();
+            if (log.isDebugEnabled()) log.debug("   Rcv char: "+jmri.util.StringUtil.twoHexFromInt(char1));
+            msg.setElement(i, char1);
+            if (endReply(msg)) break;
+          }
+
+          if (log.isDebugEnabled()) log.debug("dispatch reply of length "+i);
+          {
+            final QsiReply thisMsg = msg;
+            final QsiTrafficController thisTC = this;
+            Runnable r = new Runnable() {
+              QsiReply msgForLater = thisMsg;
+              QsiTrafficController myTC = thisTC;
+              public void run() {
+                log.debug("Delayed notify starts");
+                myTC.notifyReply(msgForLater);
+              }
+            };
+            javax.swing.SwingUtilities.invokeLater(r);
+          }
+        }

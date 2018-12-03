@@ -1,0 +1,199 @@
+    public void initComponents() throws Exception {
+        setTitle(rb.getString("TitleNceClockMonitor"));
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JPanel pane2 = new JPanel();
+        GridBagLayout gLayout = new GridBagLayout();
+        GridBagConstraints gConstraints = new GridBagConstraints();
+        
+        javax.swing.border.Border pane2Border = BorderFactory.createEtchedBorder();
+        javax.swing.border.Border pane2Titled = BorderFactory.createTitledBorder(pane2Border,
+                                                                                 rb.getString("InternalClockStatusBorderText"));
+        pane2.setBorder(pane2Titled);
+        pane2.add(internalDisplayStatus);
+        internalDisplayStatus.setEditable(false);
+        internalDisplayStatus.setBorder(BorderFactory.createEmptyBorder());
+        getContentPane().add(pane2);
+        
+        pane2 = new JPanel();
+        pane2Border = BorderFactory.createEtchedBorder();
+        pane2Titled = BorderFactory.createTitledBorder(pane2Border,
+                                                       rb.getString("NceClockStatusBorderText"));
+        pane2.setBorder(pane2Titled);
+        pane2.add(nceDisplayStatus);
+        nceDisplayStatus.setEditable(false);
+        nceDisplayStatus.setBorder(BorderFactory.createEmptyBorder());
+        getContentPane().add(pane2);
+        
+        pane2 = new JPanel();
+        pane2Border = BorderFactory.createEtchedBorder();
+        pane2Titled = BorderFactory.createTitledBorder(pane2Border,
+                                                       rb.getString("SetClockValuesBorderText"));
+        pane2.setBorder(pane2Titled);
+        pane2.add(new JLabel(rb.getString("LabelTime")));
+        pane2.add(hours);
+        pane2.add(new JLabel(rb.getString("LabelTimeSep")));
+        pane2.add(minutes);
+        pane2.add(new JLabel(rb.getString("LabelTimeSep")));
+        pane2.add(seconds);
+        seconds.setEditable(false);
+        pane2.add(new JLabel(" "));
+        pane2.add(amPm);
+        amPm.setEditable(false);
+        pane2.add(new JLabel(" "));
+        pane2.add(setClockButton);
+        getContentPane().add(pane2);
+        
+        pane2 = new JPanel();
+        pane2Border = BorderFactory.createEtchedBorder();
+        pane2Titled = BorderFactory.createTitledBorder(pane2Border,
+                                                       rb.getString("SetClockRatioBorderText"));
+        pane2.setBorder(pane2Titled);
+        pane2.add(new JLabel(rb.getString("LabelRatio")));
+        pane2.add(rateNce);
+        pane2.add(new JLabel(rb.getString("LabelToOne")));
+        pane2.add(setRatioButton);
+        getContentPane().add(pane2);
+        
+        pane2 = new JPanel();
+        pane2Border = BorderFactory.createEtchedBorder();
+        pane2Titled = BorderFactory.createTitledBorder(pane2Border,
+                                                       rb.getString("SetClock12/24ModeBorderText"));
+        pane2.setBorder(pane2Titled);
+        pane2.add(twentyFour);
+        pane2.add(new JLabel(" "));
+        pane2.add(set1224Button);
+        getContentPane().add(pane2);
+        
+        
+        pane2 = new JPanel();
+        pane2Border = BorderFactory.createEtchedBorder();
+        pane2Titled = BorderFactory.createTitledBorder(pane2Border,
+                                                       rb.getString("InterfaceCommandBorderText"));
+        pane2.setBorder(pane2Titled);
+        pane2.setLayout(gLayout);
+        gConstraints.gridx = 0;
+        gConstraints.gridy = 0;
+        gConstraints.gridwidth = 1;
+        gConstraints.gridheight = 1;
+        gConstraints.ipadx = 10;
+        gConstraints.ipady = 1;
+        gConstraints.insets = new Insets(1, 1, 1, 1);
+        pane2.add(setStartNceButton, gConstraints);
+        gConstraints.gridx++;
+        pane2.add(setStopNceButton, gConstraints);
+        gConstraints.gridx++;
+        pane2.add(readButton, gConstraints);
+        
+        
+        getContentPane().add(pane2);
+        
+        pane2 = new JPanel();
+        pane2Border = BorderFactory.createEtchedBorder();
+        pane2Titled = BorderFactory.createTitledBorder(pane2Border,
+                                                       rb.getString("InterfaceUpdRateBorderText"));
+        pane2.setBorder(pane2Titled);
+        pane2.add(new JLabel(rb.getString("InterfaceUpdRate")));
+        pane2.add(new JLabel(" "));
+        pane2.add(pollingSpeed);
+        pollingSpeed.setText("" + pollingInterval);
+        pane2.add(new JLabel(" "));
+        pane2.add(new JLabel(rb.getString("InterfaceUpdRateSufix")));
+        pane2.add(new JLabel(" "));
+        pane2.add(setPollingSpeedButton);
+        getContentPane().add(pane2);
+        
+        
+        readButton.addActionListener( new ActionListener() {
+                public void actionPerformed(ActionEvent a) {
+                    issueReadAllRequest();
+                }
+            }
+                                      );
+        setClockButton.addActionListener( new ActionListener() {
+                public void actionPerformed(ActionEvent a) {
+                    issueClockSet(Integer.parseInt(hours.getText().trim()),
+                                  Integer.parseInt(minutes.getText().trim()),
+                                  Integer.parseInt(seconds.getText().trim())
+                                  );
+                }
+            }
+                                          );
+        setStopNceButton.addActionListener( new ActionListener() {
+                public void actionPerformed(ActionEvent a) {
+                    issueClockStop();
+                }
+            }
+                                            );
+        setStartNceButton.addActionListener( new ActionListener() {
+                public void actionPerformed(ActionEvent a) {
+                    issueClockStart();
+                }
+            }
+                                             );
+        setRatioButton.addActionListener( new ActionListener() {
+                public void actionPerformed(ActionEvent a) {
+                    changeNceClockRatio();
+                }
+            }
+                                          );
+        set1224Button.addActionListener( new ActionListener() {
+                public void actionPerformed(ActionEvent a) {
+                    issueClock1224(twentyFour.isSelected());
+                }
+            }
+                                         );
+        setSyncButton.addActionListener( new ActionListener() {
+                public void actionPerformed(ActionEvent a) {
+                    changeSyncMode();
+                }
+            }
+                                         );
+        
+        setPollingSpeedButton.addActionListener( new ActionListener() {
+                public void actionPerformed(ActionEvent a) {
+                    changePollingSpeed(Double.parseDouble(pollingSpeed.getText().trim())
+                                       );
+                }
+            }
+                                                 );
+        setPidButton.addActionListener( new ActionListener() {
+                public void actionPerformed(ActionEvent a) {
+                    changePidValues();
+                }
+            }
+                                        );
+        
+        if (clockMode == SYNCMODE_OFF) {
+            setSyncModeOff.setSelected(true);
+        }
+        if (clockMode == SYNCMODE_INTERNAL_MASTER) {
+            setSyncModeInternalMaster.setSelected(true);
+        }
+        if (clockMode == SYNCMODE_NCE_MASTER) {
+            setSyncModeNceMaster.setSelected(true);
+        }
+        this.setSize(400, 300);
+        
+        internalClock = InstanceManager.timebaseInstance();
+        if (internalClock == null){
+            log.error("No Timebase Instance");
+        }
+        minuteChangeListener = new java.beans.PropertyChangeListener() {
+                public void propertyChange(java.beans.PropertyChangeEvent e) {
+                    newInternalMinute();
+                }
+            } ;
+        if (minuteChangeListener == null){
+            log.error("No minuteChangeListener");
+        }
+        internalClock.addMinuteChangeListener(minuteChangeListener);
+        
+        addHelpMenu("package.jmri.jmrix.nce.clockmon.ClockMonFrame", true);
+        
+        pack();
+        
+        alarmDisplayUpdateHandler();
+    }

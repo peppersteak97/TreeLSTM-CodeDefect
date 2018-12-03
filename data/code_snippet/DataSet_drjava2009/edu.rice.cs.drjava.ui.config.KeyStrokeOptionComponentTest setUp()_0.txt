@@ -1,0 +1,6 @@
+  protected void setUp() throws Exception {
+    super.setUp();
+    _option = new KeyStrokeOptionComponent(OptionConstants.KEY_FOR_UNIT_TESTS_ONLY, "Normal KeyStroke", new DefaultSwingFrame());
+    DrJava.getConfig().resetToDefaults();
+    Utilities.clearEventQueue();
+  }

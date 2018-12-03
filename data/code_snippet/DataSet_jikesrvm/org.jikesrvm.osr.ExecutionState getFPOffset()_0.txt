@@ -1,0 +1,3 @@
+  public Offset getFPOffset() {
+    return this.fpOffset;
+  }

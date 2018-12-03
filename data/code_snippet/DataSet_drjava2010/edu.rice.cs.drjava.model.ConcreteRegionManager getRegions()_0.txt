@@ -1,0 +1,5 @@
+  public ArrayList<R> getRegions() {
+    ArrayList<R> regions = new ArrayList<R>();
+    for (OpenDefinitionsDocument odd: _documents) regions.addAll(_regions.get(odd));
+    return regions;
+  }

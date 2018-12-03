@@ -1,0 +1,9 @@
+  protected final void emit_dconst_0() {
+    if (VM.BuildFor32Addr) {
+      asm.emitPUSH_Imm(0x00000000);
+      asm.emitPUSH_Imm(0x00000000);
+    } else {
+      adjustStack(-WORDSIZE, true);
+      asm.emitPUSH_Imm(0x00000000);
+    }
+  }

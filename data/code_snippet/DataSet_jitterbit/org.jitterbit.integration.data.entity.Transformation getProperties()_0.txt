@@ -1,0 +1,14 @@
+    public StringKeyValuePairs getProperties() {
+
+        StringKeyValuePairs keyValues = getInputStructure()
+                        .getPropertiesForSourceOrTarget(false);
+        keyValues.putAll(getOutputStructure().getPropertiesForSourceOrTarget(true));
+
+        keyValues.putAll(super.getProperties());
+        keyValues.put(TRANSFORMATION_ID, getID().toString());
+        keyValues.put(TRANSFORMATION_NAME, getName());
+        keyValues.put(SOURCE_TYPE_ID, Integer.toString(getSourceType().getId()));
+        keyValues.put(TARGET_TYPE_ID, Integer.toString(getTargetType().getId()));
+
+        return keyValues;
+    }

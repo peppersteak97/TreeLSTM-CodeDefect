@@ -1,0 +1,11 @@
+  private Offset getJtocOffset()  {
+    Integer offAsInt;
+    synchronized (jtocOffsets) {
+      offAsInt = jtocOffsets.get(this);
+    }
+    if (offAsInt == null) {
+      return Offset.zero();
+    } else {
+      return Offset.fromIntSignExtend(offAsInt.intValue());
+    }
+  }

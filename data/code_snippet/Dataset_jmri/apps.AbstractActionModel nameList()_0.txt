@@ -1,0 +1,4 @@
+    static public String[] nameList() {
+        if (names==null) loadArrays();
+        return names;
+    }

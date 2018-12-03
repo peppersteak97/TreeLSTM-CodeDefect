@@ -1,0 +1,4 @@
+  private void isBackwardLinked() {
+    VM._assert(prev.next == this, "is_backward_linked: failure (1)");
+    VM._assert(next == null || next.prev == this, "is_backward_linked: failure (2)");
+  }

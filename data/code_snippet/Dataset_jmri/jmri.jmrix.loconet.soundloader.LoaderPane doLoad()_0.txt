@@ -1,0 +1,20 @@
+    void doLoad() {
+        status.setText(res.getString("StatusDownloading"));
+        readButton.setEnabled(false);
+        readButton.setToolTipText(res.getString("TipDisabledDownload"));
+        loadButton.setEnabled(false);
+        loadButton.setToolTipText(res.getString("TipDisabledDownload"));
+
+        if (engine == null) engine = new LoaderEngine(){
+            public void notify(String s) {
+                javax.swing.SwingUtilities.invokeLater(new Notifier(s));
+            }
+        };
+        
+        new Thread() {
+            public void run() {
+                engine.runDownload(file);
+            }
+        }.start();
+        
+    }

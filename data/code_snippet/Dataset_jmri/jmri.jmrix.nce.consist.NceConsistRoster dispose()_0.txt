@@ -1,0 +1,4 @@
+    public void dispose() {
+        if (log.isDebugEnabled()) log.debug("dispose");
+        if (dirty) log.error("Dispose invoked on dirty ConsistRoster");
+    }

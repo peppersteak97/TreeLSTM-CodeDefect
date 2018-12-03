@@ -1,0 +1,3 @@
+    public JButton configureButton() {
+        return new JButton(AbstractTableAction.rbean.getString("BeanStateInconsistent"));
+    }

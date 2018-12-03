@@ -1,0 +1,4 @@
+    private void createRoot() {
+        m_xmlBuilder.addElement(ROOT);
+        m_xmlBuilder.addAttribute(DATE, new Date().toString());
+    }

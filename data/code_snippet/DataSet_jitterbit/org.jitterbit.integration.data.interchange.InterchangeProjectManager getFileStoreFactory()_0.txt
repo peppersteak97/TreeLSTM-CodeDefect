@@ -1,0 +1,3 @@
+    FileStoreFactory getFileStoreFactory() {
+        return m_fileStoreFactory;
+    }

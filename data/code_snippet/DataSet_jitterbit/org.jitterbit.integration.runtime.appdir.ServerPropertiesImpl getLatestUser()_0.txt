@@ -1,0 +1,4 @@
+    public String getLatestUser() {
+        String name = (String) m_properties.get(Property.LATEST_USER);
+        return (name == null) ? "" : name;
+    }

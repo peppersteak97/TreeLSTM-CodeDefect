@@ -1,0 +1,6 @@
+    private void createTreePanel() {
+        m_treePanel = new DeployTreePanel(m_view, m_initiallySelected);
+        if (m_treePanelHolder == null) {
+            m_treePanelHolder = new TreePanelHolder();
+        }
+    }

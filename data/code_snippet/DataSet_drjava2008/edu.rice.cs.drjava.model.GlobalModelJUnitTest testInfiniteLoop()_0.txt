@@ -1,0 +1,39 @@
+  public void testInfiniteLoop() throws Exception {
+    if (printMessages) System.out.println("----testInfiniteLoop-----");
+    
+    final OpenDefinitionsDocument doc = setupDocument(MONKEYTEST_INFINITE_TEXT);
+    final File file = new File(_tempDir, "MonkeyTestInfinite.java");
+    saveFile(doc, new FileSelector(file));
+    
+    JUnitTestListener listener = new JUnitTestListener(false) {
+      public void junitSuiteStarted(int numTests) {
+        assertEquals("should run 1 test", 1, numTests);
+        synchronized(this) { junitSuiteStartedCount++; }
+        _model.resetInteractions(new File(System.getProperty("user.dir")));
+      }
+    };
+    
+    _model.addListener(listener);
+    listener.compile(doc);
+    
+    
+    if (_model.getCompilerModel().getNumErrors() > 0) {
+      fail("compile failed: " + getCompilerErrorString());
+    }
+    listener.checkCompileOccurred();
+    
+    
+    listener.logJUnitStart();
+    try {
+      doc.startJUnit();
+      listener.waitJUnitDone();
+    }
+    catch (Exception e) { fail("Aborting unit testing runs recovery code in testing thread; no exception is thrown"); }
+    
+        
+    
+    if (printMessages) System.out.println("after test");
+    listener.assertJUnitStartCount(1);
+    _model.removeListener(listener);
+    _log.log("testInfiniteLoop completed");
+  }

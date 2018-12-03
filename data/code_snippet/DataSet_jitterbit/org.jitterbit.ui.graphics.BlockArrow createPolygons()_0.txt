@@ -1,0 +1,32 @@
+    private void createPolygons() {
+        Point[] transformedPoints = new Point[7];
+        for (int i = 0; i < 7; ++i) {
+            transformedPoints[i] = new Point();
+        }
+        
+        getArrowToComponentTransformation().transform(m_pts, 0, transformedPoints, 0, 7);
+        
+        int[] xPoints = new int[8];
+        for( int i = 0; i < 7; ++i ) {
+            xPoints[i] = transformedPoints[i].x;
+        }
+        xPoints[7] = xPoints[0];
+        int[] yPoints = new int[8];
+        for( int i = 0; i < 7; ++i ) {
+            yPoints[i] = transformedPoints[i].y;
+        }
+        yPoints[7] = yPoints[0];
+        m_componentPolygon = new Polygon(xPoints, yPoints, 8);
+        
+        xPoints = new int[8];
+        for( int i = 0; i < 7; ++i ) {
+            xPoints[i] = m_pts[i].x;
+        }
+        xPoints[7] = xPoints[0];
+        yPoints = new int[8];
+        for( int i = 0; i < 7; ++i ) {
+            yPoints[i] = m_pts[i].y;
+        }
+        yPoints[7] = yPoints[0];
+        m_internalPolygon = new Polygon(xPoints, yPoints, 8);
+    }

@@ -1,0 +1,3 @@
+        public IOperationLogEntry getLogEntry() {
+            return null;
+        }

@@ -1,0 +1,11 @@
+    public boolean isOuterJoin() {
+        switch (this) {
+        case ZERO_TO_N:
+        case ZERO_OR_ONE:
+            return true;
+        case ONE_TO_N:
+        case ONE_TO_ONE:
+            return false;
+        }
+        return false;
+    }

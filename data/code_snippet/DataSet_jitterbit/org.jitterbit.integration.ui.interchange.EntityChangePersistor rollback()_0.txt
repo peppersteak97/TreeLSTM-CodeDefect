@@ -1,0 +1,11 @@
+    public void rollback() {
+        try {
+            if (entityHasChanged()) {
+                rollbackData();
+                updatePageOnRollback();
+            }
+        }
+        finally {
+            dispose();
+        }
+    }

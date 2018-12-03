@@ -1,0 +1,8 @@
+    public void removeAllCallbacks() {
+        synchronized (m_lock) {
+            if (m_callbacks != null) {
+                m_callbacks.clear();
+                m_callbacks = null;
+            }
+        }
+    }

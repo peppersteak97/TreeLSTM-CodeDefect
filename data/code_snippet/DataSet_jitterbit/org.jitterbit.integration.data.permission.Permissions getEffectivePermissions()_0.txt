@@ -1,0 +1,11 @@
+    public EnumSet<Permission> getEffectivePermissions() {
+        if (m_allowed == null) {
+            return EnumSet.noneOf(Permission.class);
+        }
+        EnumSet<Permission> eff = m_allowed.contains(Permission.OWNER) ? 
+                        EnumSet.allOf(Permission.class) : EnumSet.copyOf(m_allowed);
+        if (m_denied != null) {
+            eff.removeAll(m_denied);
+        }
+        return eff;
+    }

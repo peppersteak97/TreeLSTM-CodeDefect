@@ -1,0 +1,3 @@
+    public Transformation getDependantObject() {
+        return (Transformation) super.getDependantObject();
+    }

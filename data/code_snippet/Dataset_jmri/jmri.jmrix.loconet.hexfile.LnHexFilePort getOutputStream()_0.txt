@@ -1,0 +1,4 @@
+    public DataOutputStream getOutputStream(){
+        if (pout == null) log.error("getOutputStream: called before load(), stream not available");
+        return pout;
+    }

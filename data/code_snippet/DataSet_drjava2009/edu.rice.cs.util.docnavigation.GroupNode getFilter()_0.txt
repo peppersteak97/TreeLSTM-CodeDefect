@@ -1,0 +1,1 @@
+  public INavigatorItemFilter<? super ItemT> getFilter(){ return _filter; }

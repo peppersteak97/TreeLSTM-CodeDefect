@@ -1,0 +1,4 @@
+    public Iterator<ITimedBlock> getBlocks() {
+        List<ITimedBlock> blocks = new ArrayList<ITimedBlock>(m_blockSequence);
+        return Collections.unmodifiableList(blocks).iterator();
+    }

@@ -1,0 +1,16 @@
+    public void addEndBumper() {
+		numEndBumpers ++;
+		String name = "";
+		boolean duplicate = true;
+		while (duplicate) {
+			name = "EB"+numEndBumpers;
+			if (findPositionablePointByName(name)==null) duplicate = false;
+			if (duplicate) numEndBumpers ++;
+		}
+		PositionablePoint o = new PositionablePoint(name, 
+							PositionablePoint.END_BUMPER, currentPoint, this);
+		if (o!=null) {
+			pointList.add(o);
+			setDirty(true);
+		}
+	}

@@ -1,0 +1,12 @@
+    if (!_alreadyReading()) {
+      
+      _ensureNotAlreadyRunning();
+      
+      if (_numWaitingWriters > 0 || _numActiveWriters > 0) {
+        _numWaitingReaders++;
+        Reader r = new Reader();
+        r.startWaiting();
+        
+        _numWaitingReaders--;
+      }
+    }

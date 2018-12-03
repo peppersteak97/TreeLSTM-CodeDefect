@@ -1,0 +1,118 @@
+	public void run() {
+
+		JFileChooser fc = new JFileChooser(jmri.jmrit.XmlFile.userFileLocationDefault());
+		fc.addChoosableFileFilter(new textFilter());
+		int retVal = fc.showOpenDialog(null);
+		if (retVal != JFileChooser.APPROVE_OPTION)
+		if (fc.getSelectedFile() == null)
+		File f = fc.getSelectedFile();
+		BufferedReader in;
+		try {
+			in = new BufferedReader(new FileReader(f));
+		} catch (FileNotFoundException e) {
+			return;
+		}
+		
+	   	JPanel ps = new JPanel();
+	   	jmri.util.JmriJFrame fstatus = new jmri.util.JmriJFrame("Macro Restore");
+	   	fstatus.setLocationRelativeTo(null);
+	   	fstatus.setSize (200,100);
+	   	fstatus.getContentPane().add (ps);
+	   	
+	   	ps.add (textMacro);
+	   	ps.add(macroNumber);
+	   	
+		textMacro.setText("Macro number:");
+        textMacro.setVisible(true);
+        macroNumber.setVisible(true);
+
+		waiting = 0;
+		String line = " ";
+
+		while (line != null) {
+			try {
+				line = in.readLine();
+			} catch (IOException e) {
+				break;
+			}
+			
+			macroNumber.setText(Integer.toString(macroNum++));
+			
+			if (line == null){				
+				log.error("NCE macro file terminator :0000 not found");
+				break;
+			}
+			if (log.isDebugEnabled()) {
+				log.debug("macro " + line);
+			}
+			String macroAddr = ":" + Integer.toHexString(curMacro);
+			String[] macroLine = line.split(" ");
+
+			if (macroLine[0].equalsIgnoreCase(":0000")) {
+				break;
+			}
+
+			if (!macroAddr.equalsIgnoreCase(macroLine[0])) {
+				log.error("Restore file selected is not a vaild backup file");
+				log.error("Macro addr in restore file should be " + macroAddr
+						+ " Macro addr read " + macroLine[0]);
+				break;
+			}
+
+			if (curMacro == CS_MACRO_MEM) {
+				if (JOptionPane
+						.showConfirmDialog(
+								null,
+								"Restore file found!  Restore can take over a minute, continue?",
+								"NCE Macro Restore", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
+					break;
+				}
+			}
+			
+			fstatus.setVisible (true);
+
+			for (int i = 0; i < 10; i++) {
+
+				byte b[] = StringUtil.bytesFromHexString(macroLine[i + 1]);
+
+				macroAccy[j] = b[0];
+				macroAccy[j + 1] = b[1];
+			}
+
+			NceMessage m = writeNceMacroMemory(curMacro, macroAccy, false);
+			NceTrafficController.instance().sendNceMessage(m, this);
+			m = writeNceMacroMemory(curMacro, macroAccy, true);
+			NceTrafficController.instance().sendNceMessage(m, this);
+
+			curMacro += MACRO_LNTH;
+
+			if (waiting > 0) {
+				synchronized (this) {
+					try {
+						wait(20000);
+					} catch (InterruptedException e) {
+					}
+				}
+			}
+			if (waiting > 0){
+				log.error("timeout waiting for reply");
+				break;
+			}
+		}
+		try {
+			in.close();
+		} catch (IOException e) {
+		}
+
+		fstatus.setVisible (false);
+
+		if (fileValid) {
+			JOptionPane.showMessageDialog(null, "Successful Restore!",
+					"NCE Macro", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null,
+					"Restore failed. Check console for error messages. \r\n" +
+					"If operating at 19,200 baud, try 9600 baud.",
+					"NCE Macro", JOptionPane.ERROR_MESSAGE);
+		}
+	}

@@ -1,0 +1,19 @@
+  private boolean _save() {
+    updateStatusField("Saving File");
+    try {
+      List<OpenDefinitionsDocument> l = _model.getDocumentNavigator().getSelectedDocuments();
+      boolean success = false;
+      for(OpenDefinitionsDocument doc: l) {
+        if (doc.saveFile(_saveSelector)) {
+          getDefPaneGivenODD(doc).hasWarnedAboutModified(false);
+          success = true;
+        }
+      }
+      _model.setActiveDocument(_model.getActiveDocument());
+      return success;
+    }
+    catch (IOException ioe) { 
+      _showIOError(ioe);
+      return false;
+    }
+  }

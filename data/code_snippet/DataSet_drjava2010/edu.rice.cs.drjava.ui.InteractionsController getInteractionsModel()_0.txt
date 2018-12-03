@@ -1,0 +1,1 @@
+  public InteractionsModel getInteractionsModel() {  return _model; }

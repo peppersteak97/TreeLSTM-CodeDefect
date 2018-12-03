@@ -1,0 +1,3 @@
+    public LogEntryNavigationControl getNavigationControl() {
+        return (LogEntryNavigationControl) super.getNavigationControl();
+    }

@@ -1,0 +1,7 @@
+  public static boolean maySubmitSurvey() {
+    int days = DrJava.getConfig().getSetting(OptionConstants.DRJAVA_SURVEY_DAYS);
+    Date nextCheck = 
+      new Date(DrJava.getConfig().getSetting(OptionConstants.LAST_DRJAVA_SURVEY) +
+    return (new Date().after(nextCheck)) ||
+      (!DrJava.getConfig().getSetting(OptionConstants.LAST_DRJAVA_SURVEY_RESULT).equals(getSurveyURL()));
+  }

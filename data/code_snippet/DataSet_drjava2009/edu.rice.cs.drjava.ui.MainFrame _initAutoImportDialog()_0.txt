@@ -1,0 +1,38 @@
+  private void _initAutoImportDialog() {
+    if (_autoImportDialog == null) {
+      _autoImportPackageCheckbox = new JCheckBox("Import Package");
+      _autoImportPackageCheckbox.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) { _autoImportDialog.resetFocus(); }
+      });
+      PlatformFactory.ONLY.setMnemonic(_autoImportPackageCheckbox,'p');
+      PredictiveInputFrame.InfoSupplier<JavaAPIListEntry> info = 
+        new PredictiveInputFrame.InfoSupplier<JavaAPIListEntry>() {
+          return entry.getFullString();
+        }
+      };
+      PredictiveInputFrame.CloseAction<JavaAPIListEntry> okAction = 
+        new PredictiveInputFrame.CloseAction<JavaAPIListEntry>() {
+        public String getName() { return "OK"; }
+        public KeyStroke getKeyStroke() { return KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0); }
+        public String getToolTipText() { return null; }
+        public Object value(PredictiveInputFrame<JavaAPIListEntry> p) {
+          String text;
+            text = p.getItem().getFullString();
+          }
+            text = p.getText();
+          }
+          if (_autoImportPackageCheckbox.isSelected()) {
+            int lastDot = text.lastIndexOf('.');
+            if (lastDot > 0) text = text.substring(0, lastDot + 1) + "*";
+          }
+          final InteractionsModel im = _model.getInteractionsModel();
+          String lastLine = im.removeLastFromHistory();
+          final String code = importLine + ((lastLine != null)  ?  ("\n" + lastLine)  : "");
+          EventQueue.invokeLater(new Runnable() { 
+              try {
+                im.append(code, InteractionsDocument.DEFAULT_STYLE);
+                im.interpretCurrentInteraction();
+              }
+              finally { hourglassOff(); }
+            }
+          });

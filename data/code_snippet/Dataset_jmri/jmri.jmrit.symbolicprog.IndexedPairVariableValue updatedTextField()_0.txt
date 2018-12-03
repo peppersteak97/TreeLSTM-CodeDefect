@@ -1,0 +1,20 @@
+    void updatedTextField() {
+        if (log.isDebugEnabled()) log.debug("enter updatedTextField");
+        CvValue cvLow = (CvValue)_cvVector.elementAt(_row);
+        CvValue cvHigh = (CvValue)_cvVector.elementAt(_secondCVrow);
+
+        try { newEntry = Integer.valueOf(_value.getText()).intValue(); }
+        catch (java.lang.NumberFormatException ex) { newEntry = 0; }
+
+        int newHigh = (newEntry-_Offset)/_Factor;
+        int newLow  = newEntry - (newHigh * _Factor);
+
+        if (log.isDebugEnabled()) log.debug("new value "+newEntry+" gives first="+newLow+" second="+newHigh);
+
+        if (cvLow.getValue() != newLow || cvHigh.getValue() != newHigh) {
+            cvLow.setValue(newLow);
+            cvHigh.setValue(newHigh);
+        }
+
+        if (log.isDebugEnabled()) log.debug("exit updatedTextField");
+    }

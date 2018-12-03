@@ -1,0 +1,6 @@
+    public void activate() {
+        if (!m_isActive) {
+            m_isActive = true;
+            fireActiveObjectChange();
+        }
+    }

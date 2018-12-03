@@ -1,0 +1,3 @@
+    void setInitialFocus() {
+        m_textPane.requestFocusInWindow();
+    }

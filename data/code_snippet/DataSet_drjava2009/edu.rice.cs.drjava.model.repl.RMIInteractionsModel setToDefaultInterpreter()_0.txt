@@ -1,0 +1,6 @@
+  public void setToDefaultInterpreter() {
+    Option<Pair<Boolean, Boolean>> result = _jvm.setToDefaultInterpreter();
+      boolean inProgress = result.unwrap().second();
+      _updateDocument(InteractionsDocument.DEFAULT_PROMPT, inProgress);
+      _notifyInterpreterChanged(inProgress);
+    }

@@ -1,0 +1,3 @@
+  public Register getFP() {
+    throw new OptimizingCompilerException("Framepointer is not a register on IA32");
+  }

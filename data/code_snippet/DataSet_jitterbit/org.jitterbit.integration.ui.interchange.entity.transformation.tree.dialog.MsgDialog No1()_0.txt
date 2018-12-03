@@ -1,0 +1,13 @@
+	void No1(){
+  		if(m_obj instanceof TreeMapper){
+			TreeMapper ap=(TreeMapper)m_obj;
+			ap.setDirty(false);
+		}
+		else if(m_obj instanceof TreeComponent.Node){
+			dispose();
+			TreeComponent.Node node=(TreeComponent.Node)m_obj;
+			MsgDialog dlg=new MsgDialog("Add condition",node.getTreeMapper().getFrame(),
+					"Do you want to add a CONDITION \nto this element?",
+					"",MsgDialog.f_Yes|MsgDialog.f_No,m_obj);
+		}
+	}

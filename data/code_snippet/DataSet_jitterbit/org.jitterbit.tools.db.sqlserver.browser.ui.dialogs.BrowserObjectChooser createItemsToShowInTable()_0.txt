@@ -1,0 +1,38 @@
+    private void createItemsToShowInTable() {
+        new Thread() {
+            
+            @Override
+            public void run() {
+                if( m_liTables != null ) {
+                    m_liTableItems = new ArrayList<TableItem>();
+                    for( Table t : m_liTables )
+                        m_liTableItems.add( new TableItem(t, true) );
+                }
+                m_tableLock.setValue(true);
+            }
+        }.start();
+        new Thread() {
+            
+            @Override
+            public void run() {
+                if( m_liViews != null ) {
+                    m_liViewItems = new ArrayList<TableItem>();
+                    for( View v : m_liViews )
+                        m_liViewItems.add( new TableItem(v, true) );
+                }
+                m_viewLock.setValue(true);
+            }
+        }.start();
+        new Thread() {
+            
+            @Override
+            public void run() {
+                if( m_liSPs != null ) {
+                    m_liSPItems = new ArrayList<TableItem>();
+                    for( StoredProcedure sp : m_liSPs )
+                        m_liSPItems.add( new TableItem(sp, true) );
+                }
+                m_spLock.setValue(true);
+            }
+        }.start();
+    }

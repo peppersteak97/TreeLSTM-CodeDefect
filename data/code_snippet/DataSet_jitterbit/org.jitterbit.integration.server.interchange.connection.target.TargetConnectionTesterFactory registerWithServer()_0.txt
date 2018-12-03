@@ -1,0 +1,11 @@
+    private static void registerWithServer() {
+        IntegrationServer server = IntegrationServer.getInstance();
+        IServerCallFactory<ITargetConnectionTester> callFactory =
+            new IServerCallFactory<ITargetConnectionTester>() {
+
+                public ITargetConnectionTester get() {
+                    return new ConnectionTesterWsImpl();
+                }
+        };
+        server.registerCallFactory(ITargetConnectionTester.class, callFactory);
+    }

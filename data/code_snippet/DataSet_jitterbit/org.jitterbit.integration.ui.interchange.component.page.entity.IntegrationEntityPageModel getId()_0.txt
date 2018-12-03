@@ -1,0 +1,3 @@
+    public final String getId() {
+        return m_uiDelegate.getDataObject().getID().toString();
+    }

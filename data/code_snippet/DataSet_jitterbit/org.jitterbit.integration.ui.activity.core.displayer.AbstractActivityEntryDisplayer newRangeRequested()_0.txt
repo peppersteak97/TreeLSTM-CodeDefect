@@ -1,0 +1,4 @@
+    public final void newRangeRequested() {
+        createDisplayedEntriesList();
+        updateTable(false);
+    }

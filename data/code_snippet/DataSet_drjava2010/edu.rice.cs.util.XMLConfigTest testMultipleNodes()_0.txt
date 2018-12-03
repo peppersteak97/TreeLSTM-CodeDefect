@@ -1,0 +1,13 @@
+  public void testMultipleNodes() throws Exception {
+    XMLConfig xc = 
+      new XMLConfig(new StringReader(
+                                     "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><foo a=\"foo.a\">\n"
+                                       + "  <bar>abc</bar>\n"
+                                       + "  <bar>ghi</bar>\n"
+                                       + "  <fum fee=\"xyz\">def</fum>\n"
+                                       + "</foo>"));
+    List<String> r = xc.getMultiple("foo/bar");
+    assertEquals(2, r.size());
+    assertEquals("abc", r.get(0));
+    assertEquals("ghi", r.get(1));
+  }

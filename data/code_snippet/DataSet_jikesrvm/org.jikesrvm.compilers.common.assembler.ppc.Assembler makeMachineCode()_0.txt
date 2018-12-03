@@ -1,0 +1,22 @@
+  public ArchitectureSpecific.MachineCode makeMachineCode() {
+    mc.finish();
+    if (shouldPrint) {
+      VM.sysWriteln();
+      ArchitectureSpecific.CodeArray instructions = mc.getInstructions();
+      boolean saved = BaselineCompiler.options.PRINT_MACHINECODE;
+      try {
+        BaselineCompiler.options.PRINT_MACHINECODE = false;
+        for (int i = 0; i < instructions.length(); i++) {
+          VM.sysWrite(Services.getHexString(i << LG_INSTRUCTION_WIDTH, true));
+          VM.sysWrite(" : ");
+          VM.sysWrite(Services.getHexString(instructions.get(i), false));
+          VM.sysWrite("  ");
+          VM.sysWrite(Disassembler.disasm(instructions.get(i), i << LG_INSTRUCTION_WIDTH));
+          VM.sysWrite("\n");
+        }
+      } finally {
+        BaselineCompiler.options.PRINT_MACHINECODE = saved;
+      }
+    }
+    return (ArchitectureSpecific.MachineCode) mc;
+  }

@@ -1,0 +1,22 @@
+  private void step1() {
+    vertex = new BasicBlock[cfg.numberOfNodes() + 1];
+    DFSCounter = 0;
+    if (DEBUG) { System.out.println("Initializing blocks:"); }
+
+    for (Enumeration<BasicBlock> bbEnum = cfg.basicBlocks(); bbEnum.hasMoreElements();) {
+      BasicBlock block = bbEnum.nextElement();
+      if (!forward || !block.isExit()) {
+        block.scratchObject = new LTDominatorInfo(block);
+        if (DEBUG) {
+          printNextNodes(block);
+        }
+      }
+    }
+
+    DFS();
+
+    if (DEBUG) {
+      System.out.println("DFSCounter: " + DFSCounter + ", CFG Nodes: " + cfg.numberOfNodes());
+      printDFSNumbers();
+    }
+  }

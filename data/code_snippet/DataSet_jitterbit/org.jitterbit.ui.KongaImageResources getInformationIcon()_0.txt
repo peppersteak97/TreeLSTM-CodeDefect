@@ -1,0 +1,3 @@
+	public static Icon getInformationIcon() {
+		return INFORMATION_ICON;
+	}

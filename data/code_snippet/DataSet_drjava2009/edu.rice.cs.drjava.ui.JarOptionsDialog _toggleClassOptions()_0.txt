@@ -1,0 +1,4 @@
+  private void _toggleClassOptions() {
+    _setEnableExecutable(_jarClasses.isSelected() || _jarAll.isSelected());
+    _setEnableCustomManifest(_jarClasses.isSelected() || _jarAll.isSelected());
+  }

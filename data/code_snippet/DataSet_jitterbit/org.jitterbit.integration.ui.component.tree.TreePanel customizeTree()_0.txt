@@ -1,0 +1,6 @@
+    private void customizeTree() {
+        m_tree.setOpaque(false);
+        m_tree.setRootVisible(false);
+        m_tree.setShowsRootHandles(true);
+        m_tree.addKongaTreeListener(new TreeSelectionListener());
+    }

@@ -1,0 +1,1 @@
+  public final void setDfsVisitedOnStack() { info |= (DFS_VISITED | ON_STACK); }

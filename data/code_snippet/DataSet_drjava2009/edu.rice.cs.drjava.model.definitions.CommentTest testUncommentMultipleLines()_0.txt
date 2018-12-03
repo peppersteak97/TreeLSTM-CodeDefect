@@ -1,0 +1,13 @@
+  public void testUncommentMultipleLines() throws BadLocationException {
+    String text =
+
+    String uncommented =
+      " /* along with a little bit of code, just to spice\n" +
+      "  * things up.\n" +
+      "  */ \n" +
+
+    doc.insertString(0, text, null);
+    _assertContents("Sample text is inserted improperly.", text, doc);
+    doc.uncommentLines(0, doc.getLength());
+    _assertContents("These lines should have at most one level of commenting!", uncommented, doc);
+  }

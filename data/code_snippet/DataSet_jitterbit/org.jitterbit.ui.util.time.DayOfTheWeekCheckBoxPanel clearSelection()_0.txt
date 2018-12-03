@@ -1,0 +1,11 @@
+    public void clearSelection() {
+        if (m_nSelected == 0) {
+            return;
+        }
+        for (JCheckBox box : m_boxes) {
+            box.setSelected(false);
+        }
+        m_nSelected = 0;
+        fireSelectionChanged();
+        m_bBlockEvents = false;
+    }

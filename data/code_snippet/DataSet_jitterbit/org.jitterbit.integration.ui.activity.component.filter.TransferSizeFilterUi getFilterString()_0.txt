@@ -1,0 +1,9 @@
+    public String getFilterString() {
+        if( m_comparisonOp == null || m_sizeUnit == null || m_value < 0 ) {
+        }
+        return PackageResources.TransferSizeFilter.getFilterString(
+                        m_label, 
+                        m_comparisonOp.toString(), 
+                        m_value, 
+                        m_sizeUnit.toString());
+    }

@@ -1,0 +1,3 @@
+  public String getSharedMaskExtension() {
+    return _strategy.getSharedMaskExtension(_matchingItems, this);
+  }

@@ -1,0 +1,3 @@
+	protected void disableMinimization() {
+		m_bMinimizable = false;
+	}

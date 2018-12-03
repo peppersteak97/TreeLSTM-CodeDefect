@@ -1,0 +1,10 @@
+    private void createTable() {
+        m_tableModel = SourceHistoryTableModel.emptyModel();
+        m_table = new SourceHistoryTable(m_tableModel);
+        new FilterPopupInvoker(this, m_table);
+
+        int rowHeight = m_table.getRowHeight();
+        Dimension dim = m_table.getPreferredScrollableViewportSize();
+        dim.height = rowHeight * 10;
+        m_table.setPreferredScrollableViewportSize(dim);
+    }

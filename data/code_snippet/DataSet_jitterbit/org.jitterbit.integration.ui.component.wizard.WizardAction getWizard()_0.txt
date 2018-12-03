@@ -1,0 +1,3 @@
+    protected final Wizard getWizard() {
+        return m_wizard;
+    }

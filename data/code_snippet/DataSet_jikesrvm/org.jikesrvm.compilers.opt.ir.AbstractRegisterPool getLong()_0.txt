@@ -1,0 +1,6 @@
+  public Register getLong() {
+    Register reg;
+    reg = makeNewReg();
+    reg.setLong();
+    return reg;
+  }

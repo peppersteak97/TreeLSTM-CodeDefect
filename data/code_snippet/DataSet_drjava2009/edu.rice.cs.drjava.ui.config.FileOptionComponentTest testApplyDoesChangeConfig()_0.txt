@@ -1,0 +1,11 @@
+  public void testApplyDoesChangeConfig() {
+    File testFile = FileOps.NULL_FILE;
+
+    _option.setValue(testFile);
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+    assertEquals("Apply (updateConfig) should write change to file",
+                 testFile,
+                 DrJava.getConfig().getSetting(OptionConstants.JAVAC_LOCATION));
+  }

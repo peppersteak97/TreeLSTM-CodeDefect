@@ -1,0 +1,3 @@
+    protected IEntryRetriever createRetriever() {
+        return new OperationQueueRetriever(this);
+    }

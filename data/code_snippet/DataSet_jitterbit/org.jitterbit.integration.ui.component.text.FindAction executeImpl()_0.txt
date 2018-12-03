@@ -1,0 +1,3 @@
+    private void executeImpl() {
+        TextFinderManager.getInstance().search(m_text);
+    }

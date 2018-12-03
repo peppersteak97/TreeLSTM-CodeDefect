@@ -1,0 +1,3 @@
+    public void validateInput() throws InputPanelException {
+        m_locationBrowser.validateInput();
+    }

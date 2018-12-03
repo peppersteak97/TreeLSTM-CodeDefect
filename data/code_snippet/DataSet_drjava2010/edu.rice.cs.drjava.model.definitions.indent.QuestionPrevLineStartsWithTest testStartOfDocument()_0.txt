@@ -1,0 +1,7 @@
+  public void testStartOfDocument() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionPrevLineStartsWith("{", null, null);
+    
+    _setDocText("\nfoo();");
+    assertTrue("first line", !rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("second line", !rule.testApplyRule(_doc, 2, Indenter.IndentReason.OTHER));
+  }

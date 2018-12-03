@@ -1,0 +1,16 @@
+    void addSignalHead() {
+        SignalHeadIcon l = new SignalHeadIcon();
+        l.setRedIcon(signalIconEditor.getIcon(0));
+        l.setFlashRedIcon(signalIconEditor.getIcon(1));
+        l.setYellowIcon(signalIconEditor.getIcon(2));
+        l.setFlashYellowIcon(signalIconEditor.getIcon(3));
+        l.setGreenIcon(signalIconEditor.getIcon(4));
+        l.setFlashGreenIcon(signalIconEditor.getIcon(5));
+        l.setDarkIcon(signalIconEditor.getIcon(6));
+        l.setHeldIcon(signalIconEditor.getIcon(7));
+        l.setSignalHead(nextSignalHead.getText());
+        setNextLocation(l);
+        putSignal(l);
+        l.setPositionable(true);
+        moveToFront(l);
+    }

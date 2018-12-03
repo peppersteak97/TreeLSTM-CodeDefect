@@ -1,0 +1,3 @@
+    XmlStructureFile getSelectedFile() {
+        return m_selectedStructureFile;
+    }

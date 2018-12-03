@@ -1,0 +1,3 @@
+    private void layoutButtons() {
+        m_uiRepresentation.add(getButtonBox(), BorderLayout.CENTER);
+    }

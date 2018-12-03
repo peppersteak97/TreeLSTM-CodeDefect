@@ -1,0 +1,4 @@
+    private void backgroundPrepare() {
+        m_backgroundPreparer = new BackgroundPreparer(s_logger);
+        m_backgroundPreparer.start();
+    }

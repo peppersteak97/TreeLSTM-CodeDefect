@@ -1,0 +1,7 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus(PackageResources.UploadJob.STARTED);
+        runJobs();
+    }

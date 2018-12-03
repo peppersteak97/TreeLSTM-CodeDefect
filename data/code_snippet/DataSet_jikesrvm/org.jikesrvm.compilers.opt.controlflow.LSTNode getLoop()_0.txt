@@ -1,0 +1,3 @@
+  public BitVector getLoop() {
+    return loop;
+  }

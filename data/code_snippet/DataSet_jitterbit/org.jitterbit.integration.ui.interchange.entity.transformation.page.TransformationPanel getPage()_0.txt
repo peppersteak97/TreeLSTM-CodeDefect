@@ -1,0 +1,3 @@
+    public TransformationPage getPage() {
+        return m_page;
+    }

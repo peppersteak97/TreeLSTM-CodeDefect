@@ -1,0 +1,10 @@
+    private void createTable() {
+        m_tableModel = OperationQueueTableModel.emptyModel();
+        m_queueTable = new OperationQueueTable(m_tableModel);
+        new FilterPopupInvoker(this, m_queueTable);
+
+        int rowHeight = m_queueTable.getRowHeight();
+        Dimension dim = m_queueTable.getPreferredScrollableViewportSize();
+        dim.height = rowHeight * 10;
+        m_queueTable.setPreferredScrollableViewportSize(dim);
+    }

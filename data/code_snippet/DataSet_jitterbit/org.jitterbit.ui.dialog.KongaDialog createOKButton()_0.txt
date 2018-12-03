@@ -1,0 +1,12 @@
+    protected JButton createOKButton() {
+        Action action = new AbstractAction(UiResourceBundle.getString("OK")) {  
+
+            public void actionPerformed(ActionEvent e) {
+                onOk();
+            }
+        };
+        JButton btn = m_fixedButtonSize ? getButton(action, m_buttonSize) : 
+            new JButton(action);
+        m_btnOK = btn;
+        return btn;
+    }

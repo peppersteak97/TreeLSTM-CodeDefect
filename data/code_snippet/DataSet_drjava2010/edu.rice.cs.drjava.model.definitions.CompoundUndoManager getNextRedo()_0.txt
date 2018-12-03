@@ -1,0 +1,1 @@
+  public UndoableEdit getNextRedo() { return editToBeRedone(); }

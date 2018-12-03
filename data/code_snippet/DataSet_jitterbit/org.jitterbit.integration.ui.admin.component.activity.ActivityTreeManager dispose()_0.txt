@@ -1,0 +1,3 @@
+    public void dispose() {
+        ServerManager.getManager().removeServerConnectionListener(m_connectionListener);
+    }

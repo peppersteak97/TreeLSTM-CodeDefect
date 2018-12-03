@@ -1,0 +1,3 @@
+  public boolean hasInvoke() {
+    return (summaryFlags & HAS_INVOKE) != 0;
+  }

@@ -1,0 +1,7 @@
+    private void savePreferences() {
+        KongaPreferences prefs = KongaPreferences.getPreferences(getClass());
+        prefs.putString( PREF_FACTORY_NAME, m_textFactoryName.getText() );
+        prefs.putString( PREF_LIBRARY_NAME, m_textLibraryName.getText() );
+        prefs.putString( PREF_NAMESPACE, m_textNamespace.getText() );
+        prefs.putString( PREF_DIR, m_textDirectory.getText() );
+    }

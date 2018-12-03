@@ -1,0 +1,6 @@
+    private void addInputComponents() {
+        addInputField(m_url, m_url, m_url);
+        addInputField(m_login);
+        addInputField(m_certificate);
+        addInputPanel(m_verbSelectionPanel);
+    }

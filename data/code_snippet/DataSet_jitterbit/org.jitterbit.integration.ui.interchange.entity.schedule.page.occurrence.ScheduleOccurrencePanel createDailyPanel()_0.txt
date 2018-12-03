@@ -1,0 +1,4 @@
+    private void createDailyPanel() {
+        m_dailyPanel = new InputPanel();
+        m_dailyPanel.setOpaque(false);
+    }

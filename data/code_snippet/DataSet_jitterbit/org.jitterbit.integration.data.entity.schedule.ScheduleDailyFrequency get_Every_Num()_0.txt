@@ -1,0 +1,3 @@
+    public int get_Every_Num() {
+        return m_Frequency_Every_Num;
+    }

@@ -1,0 +1,12 @@
+    public void dispose() {
+        if (log.isDebugEnabled()) log.debug("dispose");
+        stopTimer();
+        LnTrafficController.instance().removeLocoNetListener(~0, this);
+
+        addr = null;
+        mode = null;
+        sv  = null;
+        v1  = null;
+        v2  = null;
+        lim = null;
+    }

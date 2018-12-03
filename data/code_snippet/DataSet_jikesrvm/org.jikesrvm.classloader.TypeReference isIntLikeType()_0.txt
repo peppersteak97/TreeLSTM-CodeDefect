@@ -1,0 +1,3 @@
+  public boolean isIntLikeType() {
+    return isBooleanType() || isByteType() || isCharType() || isShortType() || isIntType();
+  }

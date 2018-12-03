@@ -1,0 +1,3 @@
+  public final boolean hasNoEscapesAnnotation() {
+    return isAnnotationPresent(org.vmmagic.pragma.NoEscapes.class);
+  }

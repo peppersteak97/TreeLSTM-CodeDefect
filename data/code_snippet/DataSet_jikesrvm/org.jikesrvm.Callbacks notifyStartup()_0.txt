@@ -1,0 +1,16 @@
+  public static void notifyStartup() {
+    if (!startupEnabled) return;
+    startupEnabled = false;
+    if (TRACE_STARTUP) {
+      VM.sysWrite("invoking startup monitors\n");
+    }
+    for (CallbackList l = startupCallbacks; l != null; l = l.next) {
+      if (TRACE_STARTUP) {
+        VM.sysWrite("    ");
+        VM.sysWrite(getClass(l.callback));
+        VM.sysWrite("\n");
+      }
+      ((StartupMonitor) l.callback).notifyStartup();
+    }
+    startupEnabled = true;
+  }

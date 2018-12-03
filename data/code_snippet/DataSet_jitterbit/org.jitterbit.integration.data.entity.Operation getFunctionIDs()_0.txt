@@ -1,0 +1,3 @@
+    public List<IntegrationId> getFunctionIDs() {
+        return new ArrayList<IntegrationId>(m_functionIds);
+    }

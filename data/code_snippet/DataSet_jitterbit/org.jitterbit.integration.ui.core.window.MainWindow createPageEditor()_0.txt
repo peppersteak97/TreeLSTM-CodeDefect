@@ -1,0 +1,4 @@
+    private void createPageEditor() {
+        m_pageEditor = new DefaultPageEditor(this, true, false);
+        m_pageEditor.addPageEditorListener(this);
+    }

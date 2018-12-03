@@ -1,0 +1,13 @@
+    public boolean readAll() {
+        if (log.isDebugEnabled()) log.debug("readAll starts");
+        justChanges = false;
+        for (int i = 0; i < paneList.size(); i++) {
+            ((PaneProgPane)paneList.get(i)).setToRead(justChanges, true);
+        }
+        setBusy(true);
+        enableButtons(false);
+        readAllButton.setEnabled(true);
+        glassPane.setVisible(true);
+        paneListIndex = 0;
+        return doRead();
+    }

@@ -1,0 +1,3 @@
+    public WebServiceCall getDataObject() {
+        return (WebServiceCall)getKongaObject();
+    }

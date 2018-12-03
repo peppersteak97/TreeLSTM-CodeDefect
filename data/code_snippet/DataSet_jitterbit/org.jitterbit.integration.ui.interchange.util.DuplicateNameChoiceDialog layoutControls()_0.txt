@@ -1,0 +1,22 @@
+    private void layoutControls() {
+        m_inputPanel.setLayout(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        Insets ins1 = new Insets(10, 5, 10, 5);
+        Insets ins2 = new Insets(5, 5, 0, 5);
+        Insets ins3 = new Insets(5, 25, 5, 5);
+        gbc.insets = ins2;
+        gbc.gridx = 0;
+
+        m_inputPanel.add(m_renameOption, gbc);
+        JComponent capsule = InputFieldFactory.getCapsule(m_newNameField);
+        gbc.insets = ins3;
+        m_inputPanel.add(capsule, gbc);
+
+        gbc.insets = ins1;
+        if (REPLACE_OPTION_SUPPORTED) {
+            m_inputPanel.add(m_replaceOption, gbc);
+        }
+        m_inputPanel.add(m_doNotMoveOption, gbc);
+    }

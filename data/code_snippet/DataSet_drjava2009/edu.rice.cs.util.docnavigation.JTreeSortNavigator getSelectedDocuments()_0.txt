@@ -1,0 +1,13 @@
+  @SuppressWarnings("unchecked") public java.util.List<ItemT> getSelectedDocuments() {
+    assert (EventQueue.isDispatchThread() || Utilities.TEST_MODE);
+    ArrayList<ItemT> l = new ArrayList<ItemT>();
+    TreePath[] ps = getSelectionPaths();
+    if (ps == null) { return l; }
+    for(TreePath p: ps) {
+      TreeNode n = (TreeNode) p.getLastPathComponent();
+      if (n instanceof LeafNode) {
+        l.add((ItemT)((LeafNode)n).getData());
+      }
+    }
+    return l;
+  }

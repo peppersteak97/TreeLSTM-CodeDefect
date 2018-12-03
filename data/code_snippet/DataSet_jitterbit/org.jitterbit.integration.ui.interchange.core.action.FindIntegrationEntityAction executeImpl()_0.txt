@@ -1,0 +1,13 @@
+    private void executeImpl() {
+        try {
+            if (DISPLAY_IN_MAIN_WINDOW) {
+                displayInMainWindow();
+            }
+            else {
+            	displayInDialog();
+            }
+        }
+        finally {
+            succeeded(null);
+        }
+    }

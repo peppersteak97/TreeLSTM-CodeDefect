@@ -1,0 +1,13 @@
+    private ListSelectionListener createSelectionListener() {
+        return new ListSelectionListener() {
+
+            public void valueChanged(ListSelectionEvent e) {
+                if (e.getValueIsAdjusting()) {
+                    return;
+                }
+                int[] selectedRows = m_table.getSelectedRows();
+                m_moveUpAction.updateEnabledState(selectedRows);
+                m_moveDownAction.updateEnabledState(selectedRows);
+            }
+        };
+    }

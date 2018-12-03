@@ -1,0 +1,4 @@
+    public Object getSelectedEntity() {
+        Object o = super.getSelectedItem();
+        return (o == NONE_COMBO_ITEM) ? null : o;
+    }

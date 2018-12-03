@@ -1,0 +1,34 @@
+    void adjustForReservations() {
+
+        switch (onAXReservation) {
+        case STOPOPPOSITE:
+            if ( (newDirection&AX) == AX) {
+                newSpeedXA = 0;
+                log.debug("STOPOPPOSITE reservation set XA to zero");
+            }
+            break;
+        case STOPUNRESERVED:
+            if ( (newDirection&AX) != AX) {
+                newSpeedAX = 0;
+                log.debug("STOPUNRESERVED reservation set AX to zero");
+            }
+            break;
+        default:
+        }
+
+        switch (onXAReservation) {
+        case STOPOPPOSITE:
+            if ( (newDirection&XA) == XA) {
+                newSpeedAX = 0;
+                log.debug("STOPOPPOSITE reservation set AX to zero");
+            }
+            break;
+        case STOPUNRESERVED:
+            if ( (newDirection&XA) != XA) {
+                newSpeedXA = 0;
+                log.debug("STOPUNRESERVED reservation set XA to zero");
+            }
+            break;
+        default:
+        }
+    }

@@ -1,0 +1,7 @@
+	public double getRate() {
+		issueDeferredGetRate = true;
+		if (DEBUG_SHOW_PUBLIC_CALLS && log.isDebugEnabled()){
+			log.debug("getRate: " + nceLastRatio);
+		}
+		return((double)nceLastRatio);
+	}

@@ -1,0 +1,6 @@
+    protected final IPageController getController() {
+        if (m_controller == null) {
+            m_controller = createController();
+        }
+        return m_controller;
+    }

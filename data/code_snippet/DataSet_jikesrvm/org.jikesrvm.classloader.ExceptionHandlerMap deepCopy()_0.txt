@@ -1,0 +1,13 @@
+  ExceptionHandlerMap deepCopy() {
+    int n = startPCs.length;
+    int[] copyStartPCs = new int[n];
+    System.arraycopy(this.startPCs, 0, copyStartPCs, 0, n);
+    int[] copyEndPCs = new int[n];
+    System.arraycopy(this.endPCs, 0, copyEndPCs, 0, n);
+    int[] copyHandlerPCs = new int[n];
+    System.arraycopy(this.handlerPCs, 0, copyHandlerPCs, 0, n);
+    TypeReference[] copyExceptionTypes = new TypeReference[n];
+    System.arraycopy(this.exceptionTypes, 0, copyExceptionTypes, 0, n);
+
+    return new ExceptionHandlerMap(copyStartPCs, copyEndPCs, copyHandlerPCs, copyExceptionTypes);
+  }

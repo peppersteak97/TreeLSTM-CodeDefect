@@ -1,0 +1,16 @@
+    void setFrameTitle()
+    {
+    	String addr = "";
+    	if (throttle != null) {
+    		addr = throttle.getLocoAddress().toString();
+    	}
+    	if (titleTextType.compareTo("address") == 0) {
+    		this.setTitle(addr);
+    	} else if (titleTextType.compareTo("text") == 0) {
+    		this.setTitle(titleText);
+    	} else if (titleTextType.compareTo("addressText") == 0) {
+    		this.setTitle(addr + " " + titleText);
+    	} else if (titleTextType.compareTo("textAddress") == 0) {
+    		this.setTitle(titleText + " " + addr);
+    	}
+    }

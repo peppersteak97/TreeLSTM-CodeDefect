@@ -1,0 +1,16 @@
+  public void testStartsWithPrefixWithText() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionCurrLineStartsWith("}", null, null);
+        
+    _setDocText("foo();\n}bar();\n");
+    assertTrue("line before brace (no space)", !rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("just before brace (no space)", rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+    assertTrue("just after brace (no space)", rule.testApplyRule(_doc, 9, Indenter.IndentReason.OTHER));
+    assertTrue("line after brace (no space)", !rule.testApplyRule(_doc, 15, Indenter.IndentReason.OTHER));
+    
+    rule = new QuestionCurrLineStartsWith("*", null, null);
+    _setDocText("foo\n * comment\nbar");
+    assertTrue("line before star (with space)", !rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("just before star (with space)", rule.testApplyRule(_doc, 4, Indenter.IndentReason.OTHER));
+    assertTrue("just after star (with space)", rule.testApplyRule(_doc, 6, Indenter.IndentReason.OTHER));
+    assertTrue("line after star (with space)", !rule.testApplyRule(_doc, 15, Indenter.IndentReason.OTHER));
+  }

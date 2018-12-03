@@ -1,0 +1,12 @@
+    private void createGoToPageControl() {
+        m_numberOfPages = getNumberOfPages();
+        m_gotoPageCombo = createGoToPageCombo(m_numberOfPages);
+        m_gotoPageListener = new GotoPageComboListener();
+        m_gotoPageCombo.addActionListener(m_gotoPageListener);
+
+        JLabel lbl = IntegrationUiStyleSheet.DefaultTextSmall.makeJLabel(
+                        PackageResources.PageNavigationControl.Labels.GO_TO_PAGE);
+        JComponent control = InputFieldFactory.getLabeledComponent(m_gotoPageCombo, lbl,
+                        InputFieldFactory.HORIZONTAL_LABEL_LEFT);
+        addControl(control, 30);
+    }

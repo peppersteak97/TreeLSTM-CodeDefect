@@ -1,0 +1,21 @@
+    private void checkLastFunction() {
+        int nFncs = functions.size();
+        if (nFncs == 0) {
+            return;
+        }
+
+        targetLastFunctionMatch = functionTargetMatches();
+        if (targetLastFunctionMatch) {
+            targetIsValid = true;
+            lastFunctionIsValid = true;
+        }
+        else {
+            targetIsValid = (active == target);
+            if (nFncs == 1) {
+                lastFunctionIsValid = firstFunctionIsValid && (active != target);
+            }
+            else {
+                lastFunctionIsValid = (active != target);
+            }
+        }
+    }

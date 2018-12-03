@@ -1,0 +1,23 @@
+  private void processHeader() throws NonRegularLoopException {
+    BasicBlockEnumeration head_inEdges = header.getIn();
+    while (head_inEdges.hasMoreElements()) {
+      BasicBlock curEdgeBB = head_inEdges.next();
+      if (isInLoop(curEdgeBB)) {
+        if (exit != null) {
+          throw new NonRegularLoopException(
+              "Multiple back edges to the header block making exit block undistinguishable.");
+        }
+        exit = curEdgeBB;
+        processExit();
+      } else {
+        if (predecessor != null) {
+          throw new NonRegularLoopException(
+              "Multiple out of loop edges into the header making predecessor block undistinguishable.");
+        }
+        predecessor = curEdgeBB;
+      }
+    } 
+    if (header != exit) {
+      checkOutEdgesAreInLoop(header);
+    }
+  }

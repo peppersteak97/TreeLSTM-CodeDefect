@@ -1,0 +1,47 @@
+    private void initUi() {
+        KongaPreferences prefs = KongaPreferences.getPreferences(getClass());
+        
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout( new DialogLayout() );
+        mainPanel.setBorder( new EmptyBorder(10, 10, 10, 10) );
+        
+        JLabel lblFactoryName = new JLabel("Factory name:");
+        lblFactoryName.setDisplayedMnemonic('F');
+        m_textFactoryName = new JTextField(30);
+        m_textFactoryName.setText( prefs.getString(PREF_FACTORY_NAME, "") );
+        lblFactoryName.setLabelFor(m_textFactoryName);
+        mainPanel.add(lblFactoryName);
+        mainPanel.add(m_textFactoryName);
+        
+        JLabel lblLibraryName = new JLabel("Library name:");
+        lblLibraryName.setDisplayedMnemonic('L');
+        m_textLibraryName = new JTextField(30);
+        m_textLibraryName.setText( prefs.getString(PREF_LIBRARY_NAME, "") );
+        lblLibraryName.setLabelFor(m_textLibraryName);
+        mainPanel.add(lblLibraryName);
+        mainPanel.add(m_textLibraryName);
+        
+        JLabel lblNamespace = new JLabel("Namespace:");
+        lblNamespace.setDisplayedMnemonic('N');
+        m_textNamespace = new JTextField(30);
+        m_textNamespace.setText( prefs.getString(PREF_NAMESPACE, "") );
+        lblNamespace.setLabelFor(m_textNamespace);
+        mainPanel.add(lblNamespace);
+        mainPanel.add(m_textNamespace);
+        
+        JLabel lblDir = new JLabel("Create in folder:");
+        lblDir.setDisplayedMnemonic('C');
+        m_textDirectory = new JTextField(30);
+        m_textDirectory.setText( prefs.getString(PREF_DIR, "") );
+        lblDir.setLabelFor(m_textDirectory);
+        mainPanel.add(lblDir);
+        mainPanel.add(m_textDirectory);
+        
+        Container cp = getContentPane();
+        cp.setLayout( new BorderLayout(0, 10) );
+        cp.add( mainPanel, BorderLayout.CENTER );
+        cp.add( new ButtonPanel(), BorderLayout.SOUTH );
+        
+        pack();
+        WindowUtils.centerWindowOnScreen(this);
+    }

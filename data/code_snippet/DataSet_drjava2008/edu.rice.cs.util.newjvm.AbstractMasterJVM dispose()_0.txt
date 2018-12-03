@@ -1,0 +1,16 @@
+  public void dispose() throws RemoteException {
+    _log.log(this + ".dispose() called; slaveRemote is " + _slave);
+    if (_startupInProgress) _log.log(this + ".dispose() is KILLing startUp in process; dying slave reference does not yet exist");
+    SlaveRemote dyingSlave;
+    synchronized(_masterJVMLock) {
+      _masterStub = null;
+      if (_monitorThread != null) _monitorThread = null;
+      _slave = null;
+      
+      _log.log(this + ".dispose() UNEXPORTing " + this);
+      UnicastRemoteObject.unexportObject(this, true);
+    }
+    if (dyingSlave != null) { 
+      _log.log(this + ".dispose() QUITing " + dyingSlave);
+    }
+  }

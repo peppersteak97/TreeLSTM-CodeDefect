@@ -1,0 +1,40 @@
+  public /* synchronized */ boolean runTestSuite() {
+    
+    _log.log("runTestSuite() called");
+    
+    if (_testClassNames == null || _testClassNames.isEmpty()) return false;
+    
+    
+    try {
+      TestResult result = _testRunner.runSuite(_suite);
+      
+      JUnitError[] errors = new JUnitError[result.errorCount() + result.failureCount()];
+      
+      Enumeration<TestFailure> failures = result.failures();
+      Enumeration<TestFailure> errEnum = result.errors();
+      
+      int i = 0;
+      
+      while (errEnum.hasMoreElements()) {
+        TestFailure tErr = errEnum.nextElement();
+        errors[i] = _makeJUnitError(tErr, _testClassNames, true, _testFiles);
+        i++;
+      }
+      
+      while (failures.hasMoreElements()) {
+        TestFailure tFail = failures.nextElement();
+        errors[i] = _makeJUnitError(tFail, _testClassNames, false, _testFiles);
+        i++;
+      }
+      _reset();
+      _jmc.testSuiteEnded(errors);
+    }
+    catch(Exception e) { 
+      JUnitError[] errors = new JUnitError[1];      
+      errors[0] = new JUnitError(null, -1, -1, e.getMessage(), false, "", "", e.toString(), e.getStackTrace());
+      _reset();
+      _jmc.testSuiteEnded(errors);
+    }
+    _log.log("Exiting runTestSuite()");
+    return true;
+  }

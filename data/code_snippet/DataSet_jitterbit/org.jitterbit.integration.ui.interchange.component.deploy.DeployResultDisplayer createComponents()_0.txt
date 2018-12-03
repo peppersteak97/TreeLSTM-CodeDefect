@@ -1,0 +1,5 @@
+    private void createComponents() {
+        createGlobalWarningsArea();
+        createItemList();
+        createMessageArea();
+    }

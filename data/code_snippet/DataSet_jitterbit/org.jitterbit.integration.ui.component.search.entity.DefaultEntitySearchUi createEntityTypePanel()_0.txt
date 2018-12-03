@@ -1,0 +1,16 @@
+    private JComponent createEntityTypePanel() {
+        m_entityTypePanel = new EntityTypePanel();
+        EntityTypePanelListener lst = new EntityTypePanelListener();
+        m_entityTypePanel.addSelectionListener(lst);
+        m_entityTypePanel.addActionListener(lst);
+        if (USE_DROPDOWN_PANEL_FOR_TYPES) {
+            DropDownPanel ddp = new DropDownPanel(
+                            m_entityTypePanel.getDisplayer(), 
+                            PackageResources.TypeDropDown.TITLE,
+                            false);
+            ddp.setTitleFont(IntegrationUiStyleSheet.AdminHint.getFont());
+            JComponent displayer = ddp.getDisplayer();
+            return displayer;
+        }
+        return m_entityTypePanel.getDisplayer();
+    }

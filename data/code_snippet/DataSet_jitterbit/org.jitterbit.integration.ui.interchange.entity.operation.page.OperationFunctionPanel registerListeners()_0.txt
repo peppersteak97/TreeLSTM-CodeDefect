@@ -1,0 +1,4 @@
+    private void registerListeners() {
+        m_sourceBox.addActionListener(this);
+        m_targetBox.addActionListener(this);
+    }

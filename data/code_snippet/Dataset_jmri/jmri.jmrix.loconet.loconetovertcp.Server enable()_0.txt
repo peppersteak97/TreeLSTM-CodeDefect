@@ -1,0 +1,9 @@
+  public void enable(){
+    if( socketListener == null ){
+      socketListener = new Thread( new ClientListener() ) ;
+      socketListener.setDaemon(true);
+      socketListener.setName("LocoNetOverTcpServer");
+      socketListener.start();
+      updateServerStateListener();
+    }
+  }

@@ -1,0 +1,17 @@
+    private void init() {
+        m_delegate = new UndoRedoControllerBase();
+        m_delegate.addUndoRequestFilter(new IUndoRequestFilter() {
+
+            public boolean preUndo() {
+                UndoableEditTimer.getTimer().sendNow();
+                return true;
+            }
+        });
+        m_delegate.addRedoRequestFilter(new IRedoRequestFilter() {
+
+            public boolean preRedo() {
+                UndoableEditTimer.getTimer().sendNow();
+                return true;
+            }
+        });
+    }

@@ -1,0 +1,4 @@
+    static public final SlotManager instance() {
+        if (self == null) self = new SlotManager();
+        return self;
+    }

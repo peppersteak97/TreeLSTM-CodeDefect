@@ -1,0 +1,10 @@
+    private void createSearchOptionSelectors() {
+        ButtonGroup group = new ButtonGroup();
+        IRadioButtonFactory factory = ComponentFactories.radioButtonFactory();
+        m_containsRadio = factory.newRadioButton(
+                PackageResources.ObjectSelectionPage.Labels.CONTAINS, true, group);
+        m_startsWithRadio = factory.newRadioButton(
+                PackageResources.ObjectSelectionPage.Labels.STARTS_WITH, false, group);
+        m_endsWithRadio = factory.newRadioButton(
+                PackageResources.ObjectSelectionPage.Labels.ENDS_WITH, false, group);
+    }

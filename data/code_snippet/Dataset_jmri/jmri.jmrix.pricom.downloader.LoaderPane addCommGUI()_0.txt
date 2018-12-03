@@ -1,0 +1,43 @@
+    protected void addCommGUI() {
+        portBox.setToolTipText(res.getString("TipSelectPort"));
+        portBox.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        Vector v = getPortNames();
+        
+        for (int i=0; i<v.size(); i++)
+            portBox.addItem(v.elementAt(i));
+        
+        openPortButton.setText(res.getString("ButtonOpen"));
+        openPortButton.setToolTipText(res.getString("TipOpenPort"));
+        openPortButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    openPortButtonActionPerformed(evt);
+                } catch (jmri.jmrix.SerialConfigException ex) {
+                    log.error("Error while opening port.  Did you select the right one?\n"+ex);
+                }
+                catch (java.lang.UnsatisfiedLinkError ex) {
+                    log.error("Error while opening port.  Did you select the right one?\n"+ex);
+                    }
+                }
+            });
+            
+        JPanel p1 = new JPanel();
+        p1.setLayout(new FlowLayout());
+        p1.add(new JLabel(res.getString("LabelSerialPort")));
+        p1.add(portBox);
+        p1.add(openPortButton);
+        add(p1);
+
+        {
+            JPanel p = new JPanel();
+            p.setLayout(new FlowLayout());
+            JLabel l = new JLabel(res.getString("LabelTraffic"));
+            l.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+            p.add(l);
+            add(p);
+        }
+        
+        traffic.setEditable(false);
+        traffic.setEnabled(true);
+        add(traffic);
+    }

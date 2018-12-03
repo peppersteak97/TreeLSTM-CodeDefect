@@ -1,0 +1,8 @@
+  public String getText() {
+    if (_force) {
+      @SuppressWarnings("unchecked") 
+      T item = (T)_matchList.getSelectedValue();
+      return (item == null) ? "" : _currentStrategy.force(item,_textField.getText());
+    }
+    return _textField.getText();
+  }

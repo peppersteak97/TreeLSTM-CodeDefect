@@ -1,0 +1,3 @@
+    private void createOccursEveryPanel() {
+        m_occursEveryPanel = new OccursEveryPanel();
+    }

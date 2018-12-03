@@ -1,0 +1,6 @@
+    private void writeEditImpl() {
+        addLine("\tvoid Edit() {");
+        addLine("\t\t" + getQualifiedBaseClassName() + "::Edit();");
+        addLine("\t\tm_dtlRecSet.Edit();");
+        addLine("\t}");
+    }

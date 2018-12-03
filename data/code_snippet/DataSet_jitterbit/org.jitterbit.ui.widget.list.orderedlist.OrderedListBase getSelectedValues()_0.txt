@@ -1,0 +1,3 @@
+	protected Object[] getSelectedValues() {
+		return m_list.getSelectedValues();
+	}

@@ -1,0 +1,2 @@
+ * <dt>name()<dd>Just the name, in MPASM form.
+ * <dt>toString()<dd>A brief description, with a terminating newline

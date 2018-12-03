@@ -1,0 +1,11 @@
+    private void setupDoubleClickListener() {
+        addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    m_table.onDoubleClick(rowAtPoint(e.getPoint()));
+                }
+            }
+        });
+    }

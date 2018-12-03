@@ -1,0 +1,32 @@
+    void addPressed() {
+        log.debug("start with "+sensorList.size()+" lines");
+        RouteManager rm = InstanceManager.routeManagerInstance();
+        String group = name.toUpperCase();
+        
+        List l = rm.getSystemNameList();     
+        String prefix = (namePrefix+group+nameDivider).toUpperCase();
+        
+        for (int i = 0; i<l.size(); i++) {
+            String routeName = (String) l.get(i);
+            if (routeName.startsWith(prefix)) {
+                Route r = rm.getBySystemName((String)l.get(i));
+                r.deActivateRoute();
+                rm.deleteRoute(r);
+            }
+        }        
+
+        for (int i = 0; i<sensorList.size(); i++) {
+            String sensor = (String) sensorList.get(i);
+            String routeName = namePrefix+group+nameDivider+sensor;
+            Route r = new DefaultRoute(routeName);
+            r.addSensorToRoute(sensor, Route.ONACTIVE);
+            for (int j=0; j<sensorList.size(); j++) {
+                String outSensor = (String) sensorList.get(j);
+                int mode = Sensor.INACTIVE;
+                if (i==j) mode = Sensor.ACTIVE;
+                r.addOutputSensor(outSensor, mode);
+            }
+            r.activateRoute();
+            rm.register(r);
+        }
+    }

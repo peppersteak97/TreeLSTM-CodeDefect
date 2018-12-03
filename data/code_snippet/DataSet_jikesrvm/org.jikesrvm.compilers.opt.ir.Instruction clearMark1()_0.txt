@@ -1,0 +1,3 @@
+  void clearMark1() {
+    operatorInfo &= ~MARK1;
+  }

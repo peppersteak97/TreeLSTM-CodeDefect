@@ -1,0 +1,3 @@
+	public XmlTreeNode getRootNode() {
+	    return (m_tree == null) ? null : (XmlTreeNode)m_tree.getModel().getRoot();
+	}

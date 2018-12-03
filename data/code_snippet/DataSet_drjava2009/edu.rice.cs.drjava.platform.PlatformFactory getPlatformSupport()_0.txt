@@ -1,0 +1,8 @@
+  private static PlatformSupport getPlatformSupport() {
+    
+    String os = System.getProperty("os.name").toLowerCase();
+    
+    if (os.startsWith("mac os x")) return MacPlatform.ONLY;
+    else if (os.startsWith("windows")) return WindowsPlatform.ONLY;
+    else return DefaultPlatform.ONLY; 
+  }

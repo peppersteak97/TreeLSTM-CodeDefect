@@ -1,0 +1,5 @@
+    public List<Entry> getAllErrors() {
+        synchronized (m_lock) {
+            return new ArrayList<Entry>(m_entries);
+        }
+    }

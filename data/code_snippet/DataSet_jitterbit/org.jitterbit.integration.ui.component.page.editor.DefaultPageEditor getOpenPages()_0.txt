@@ -1,0 +1,3 @@
+    public Iterator<IPage> getOpenPages() {
+        return Collections.unmodifiableList(m_ui.getOpenPages()).iterator();
+    }

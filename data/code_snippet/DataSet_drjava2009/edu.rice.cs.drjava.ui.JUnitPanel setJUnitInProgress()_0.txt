@@ -1,0 +1,3 @@
+  public void setJUnitInProgress() {
+    _errorListPane.setJUnitInProgress();
+  }

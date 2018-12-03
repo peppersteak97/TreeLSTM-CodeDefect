@@ -1,0 +1,3 @@
+        if (getOccursType() == ScheduleDailyFrequency.OCCURS_ONCE_AT) {
+            freq.setOccursOnce(m_onceAtTime.getDate(tz));
+        }

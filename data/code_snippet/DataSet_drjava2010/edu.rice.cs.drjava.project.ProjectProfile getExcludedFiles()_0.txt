@@ -1,0 +1,1 @@
+  public DocFile[] getExcludedFiles() { return _excludedFiles.toArray(new DocFile[_excludedFiles.size()]); }

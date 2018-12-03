@@ -1,0 +1,12 @@
+    private void createTree() {
+        m_tree = new LogFileRepositoryTree(m_repository, 
+                        KongaListUtils.asList(m_openFileAction), null);
+        m_tree.setController(TreeControllerFactory.newController(m_openFileAction));
+        m_tree.addTreeListener(new KongaTreeAdapter() {
+
+            @Override
+            public void selectionChanged(KongaTreeEvent e) {
+                m_openFileAction.setEnabled(m_tree.getSelectedFiles().length == 1);
+            }
+        });
+    }

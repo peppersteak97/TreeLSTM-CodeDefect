@@ -1,0 +1,5 @@
+    private JFrame createFrame() {
+        JFrame frame = new JFrame(MAIN_TITLE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        return frame;
+    }

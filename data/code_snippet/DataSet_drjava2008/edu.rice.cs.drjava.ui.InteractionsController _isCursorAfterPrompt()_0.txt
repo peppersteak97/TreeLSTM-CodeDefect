@@ -1,0 +1,7 @@
+    if (_isCursorAfterPrompt() && end >= start) {
+      String text = "";
+      try { text = _interactionsDJDocument.getText(start, end - start); }
+      catch(BadLocationException ble) {
+      }
+      if (text.indexOf("\n") != -1) return false;
+    }

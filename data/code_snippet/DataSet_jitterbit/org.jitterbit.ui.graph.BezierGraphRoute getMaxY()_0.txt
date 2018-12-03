@@ -1,0 +1,8 @@
+	public int getMaxY() {
+		int yMax = 0;
+		for( int i = 0; i<3; ++i ) {
+			if ( getControlPoint(i).y > yMax )
+				yMax = getControlPoint(i).y;
+		}
+		return yMax;
+	}

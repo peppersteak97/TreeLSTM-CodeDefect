@@ -1,0 +1,3 @@
+  public Iterable<File> getClassPath() {
+    throw new UnsupportedOperationException("Tried to call getClassPath on a Dummy");
+  }

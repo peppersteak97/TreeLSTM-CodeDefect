@@ -1,0 +1,3 @@
+            if (checkNewProjectLocationValid()) {
+                super.onOk();
+            }

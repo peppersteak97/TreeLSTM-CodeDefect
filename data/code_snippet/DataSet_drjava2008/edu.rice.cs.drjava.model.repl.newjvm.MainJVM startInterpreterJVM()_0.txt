@@ -1,0 +1,24 @@
+  public void startInterpreterJVM() {
+    _log.log(this + ".startInterpreterJVM() called");
+    ArrayList<String> jvmArgs = new ArrayList<String>();
+    if (allowAssertions())  jvmArgs.add("-ea");
+    int debugPort = getDebugPort();
+    _log.log("Main JVM starting with debug port: " + debugPort);
+    if (debugPort > -1) {
+      jvmArgs.add("-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=" + debugPort);
+      jvmArgs.add("-Xdebug");
+      jvmArgs.add("-Xnoagent");
+      jvmArgs.add("-Djava.compiler=NONE");
+    }
+    jvmArgs.addAll(_optionArgs);
+    String[] jvmArgsArray = new String[jvmArgs.size()];
+    for (int i = 0; i < jvmArgs.size(); i++) { jvmArgsArray[i] = jvmArgs.get(i); }
+    
+    _numAttempts = 0;
+    try {
+      invokeSlave(jvmArgsArray, IOUtil.pathToString(_startupClassPath), _workDir);
+      _slaveJVMUsed = false;
+    }
+    catch (RemoteException re) { _threwException(re); }
+    catch (IOException ioe) { _threwException(ioe); }
+  }

@@ -1,0 +1,6 @@
+  public String toString() {
+    int number = getNumber();
+    if (isExit()) return "EXIT" + number;
+    if (number == 0) return "BB0 (ENTRY)";
+    return "BB" + number;
+  }

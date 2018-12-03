@@ -1,0 +1,6 @@
+  public static void postBoot() {
+    attribMap = new HashMap<CompilerAdviceAttribute, CompilerAdviceAttribute>();
+
+    defaultAttr = new CompilerAdviceAttribute(null, null, null, CompiledMethod.BASELINE);
+    tempAttr = new CompilerAdviceAttribute(null, null, null, CompiledMethod.BASELINE);
+  }

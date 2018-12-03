@@ -1,0 +1,9 @@
+    public StringKeyValuePairs getProperties() {
+		StringKeyValuePairs keyValues = m_location.getPropertiesForSource();
+        keyValues.put(SOURCE_ID, getID().toString());
+        keyValues.put(SOURCE_NAME, getName());
+        keyValues.put(SOURCE_TYPE_ID, Integer.toString(m_location.getDataLocationType()
+                        .getId()));
+
+        return keyValues;
+    }

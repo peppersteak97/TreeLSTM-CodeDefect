@@ -1,0 +1,3 @@
+            public IWebServiceTreeStructureCache createCache() {
+                return new FileBasedWebServiceTreeStructureCache(location);
+            }

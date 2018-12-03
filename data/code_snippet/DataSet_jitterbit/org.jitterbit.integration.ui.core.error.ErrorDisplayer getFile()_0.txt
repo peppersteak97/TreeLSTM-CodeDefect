@@ -1,0 +1,7 @@
+    private static File getFile() {
+        IApplicationWindow window = IntegrationUi.getUi().getAppWin();
+        return IntegrationFileChooser.getInstance(window).getFileToSave(
+                        IntegrationUiUtils.getActiveFrame(), 
+                        null, 
+                        LAST_SAVED_FILE);
+    }

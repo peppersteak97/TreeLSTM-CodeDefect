@@ -1,0 +1,11 @@
+  public void testUncommentSingleLine() throws BadLocationException {
+    String text =
+
+    String uncommented =
+
+    doc.insertString(0, text, null);
+    _assertContents("Sample text is inserted improperly.", text, doc);
+    doc.uncommentLines(doc.getLength()-1, doc.getLength());
+    _assertContents("The last line should have no commenting!",
+                    uncommented, doc);
+  }

@@ -1,0 +1,3 @@
+    private IManagedProject getManagedProject() {
+        return InterchangeViewUtils.getManagedProject(m_wizardPage.getWizard().getView());
+    }

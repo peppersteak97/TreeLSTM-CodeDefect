@@ -1,0 +1,1 @@
+	public boolean getSelected() { return m_curve.getDrawControlPoints(); }

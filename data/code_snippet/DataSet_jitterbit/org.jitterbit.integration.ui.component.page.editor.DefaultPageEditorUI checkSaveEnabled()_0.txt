@@ -1,0 +1,10 @@
+    private void checkSaveEnabled() {
+        IApplicationAction save = getSaveAction();
+        IPage p = getActivePage();
+        if (p == null) {
+            save.setEnabled(false);
+        }
+        else {
+            save.setEnabled(p.isDirty());
+        }
+    }

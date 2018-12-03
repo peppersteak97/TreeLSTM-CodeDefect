@@ -1,0 +1,18 @@
+    private JLabel getMessageLabel() {
+        if( m_liErrors.size() > 0 ) {
+            return new JLabel( "Failed to create the scripts.",
+                    SqlServerBrowserImageFactory.getErrorIcon(), JLabel.LEFT);
+        }
+        else if( m_liWarnings.size() > 0 ) {
+            String sText = "The scripts were generated with ";
+            sText += m_liWarnings.size() + " warning";
+            if( m_liWarnings.size() > 1 )
+                sText += "s";
+            sText += ":";
+            return new JLabel( sText, SqlServerBrowserImageFactory.getPartialSuccessIcon(), JLabel.LEFT);
+        }
+        else {
+            return new JLabel( "The scripts were generated successfully.", 
+                    SqlServerBrowserImageFactory.getSuccessIcon(), JLabel.LEFT);
+        }
+    }

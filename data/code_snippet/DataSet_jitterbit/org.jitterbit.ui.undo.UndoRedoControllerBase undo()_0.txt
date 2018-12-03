@@ -1,0 +1,11 @@
+    public void undo() {
+        for (IUndoRequestFilter filter : m_undoFilters) {
+            if (!filter.preUndo()) {
+                return;
+            }
+        }
+        if (m_manager.canUndo()) {
+            m_manager.undo();
+        }
+        updateActions();
+    }

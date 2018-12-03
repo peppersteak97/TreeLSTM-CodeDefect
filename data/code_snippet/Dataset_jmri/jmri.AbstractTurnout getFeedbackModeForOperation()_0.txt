@@ -1,0 +1,3 @@
+	protected int getFeedbackModeForOperation() {
+		return getFeedbackMode();
+	}

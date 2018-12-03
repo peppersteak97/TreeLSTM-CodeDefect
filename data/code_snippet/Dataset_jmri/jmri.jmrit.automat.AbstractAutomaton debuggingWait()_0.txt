@@ -1,0 +1,26 @@
+    private void debuggingWait() {
+        Runnable r = new Runnable() {
+            public void run() {
+                if (debugWaitFrame==null) {
+                    debugWaitFrame = new JFrame("Automaton paused");
+                    JButton b = new JButton("Continue");
+                    debugWaitFrame.getContentPane().add(b);
+                    b.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent e) {
+                            synchronized (self) {
+                            }
+                            debugWaitFrame.setVisible(false);
+                        }
+                    });
+                    debugWaitFrame.pack();
+                }
+                debugWaitFrame.setVisible(true);
+            }
+        };
+        javax.swing.SwingUtilities.invokeLater(r);
+        try {
+            super.wait();
+        }  catch (InterruptedException e) {
+            log.warn("Interrupted during debugging wait, not expected");
+        }
+    }

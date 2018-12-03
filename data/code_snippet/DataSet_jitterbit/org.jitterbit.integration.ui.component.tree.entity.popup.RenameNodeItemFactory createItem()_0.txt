@@ -1,0 +1,3 @@
+    protected IPopupMenuItem createItem() {
+        return new Item(m_tree);
+    }

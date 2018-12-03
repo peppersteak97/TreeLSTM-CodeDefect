@@ -1,0 +1,6 @@
+  protected final void emit_fsub() {
+    popFloat(F0);
+    popFloat(F1);
+    asm.emitFSUBS(F0, F1, F0);
+    pushFloat(F0);
+  }

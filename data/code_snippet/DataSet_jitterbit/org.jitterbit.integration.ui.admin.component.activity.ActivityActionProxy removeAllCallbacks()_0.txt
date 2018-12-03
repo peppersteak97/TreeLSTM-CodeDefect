@@ -1,0 +1,3 @@
+    public void removeAllCallbacks() {
+        m_wrapped.removeAllCallbacks();
+    }

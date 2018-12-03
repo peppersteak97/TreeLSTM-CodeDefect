@@ -1,0 +1,3 @@
+    protected final List<String> getColumnCppTypes() {
+        return new ArrayList<String>( m_liColumnCppTypes );
+    }

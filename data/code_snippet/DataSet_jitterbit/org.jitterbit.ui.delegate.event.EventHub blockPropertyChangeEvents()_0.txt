@@ -1,0 +1,3 @@
+	public void blockPropertyChangeEvents() {
+		m_propertyChangeEventsBlocked = true;
+	}

@@ -1,0 +1,3 @@
+    public DatabaseLocation getDbLocation() {
+        return (m_location == null) ? null : new DatabaseLocation(m_location);
+    }

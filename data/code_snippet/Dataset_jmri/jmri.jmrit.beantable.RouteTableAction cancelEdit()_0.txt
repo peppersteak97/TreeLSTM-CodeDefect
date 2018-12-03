@@ -1,0 +1,18 @@
+    void cancelEdit() {
+        if (editMode) {
+            status1.setText(createInst);
+            status2.setText(editInst);
+            status2.setVisible(true);
+            delete.setVisible(false);
+            cancel.setVisible(false);
+            update.setVisible(false);
+            edit.setVisible(true);
+            create.setVisible(true);
+            fixedSystemName.setVisible(false);
+            name.setVisible(true);
+            curRoute.activateRoute();
+            editMode = false;
+            curRoute = null;
+            cancelIncludedOnly();
+        }
+    }

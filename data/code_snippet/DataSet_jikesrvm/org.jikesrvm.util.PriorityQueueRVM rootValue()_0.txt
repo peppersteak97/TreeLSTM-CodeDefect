@@ -1,0 +1,5 @@
+  public final synchronized double rootValue() {
+    if (VM.VerifyAssertions) VM._assert(!isEmpty());
+
+    return queue[1].priority;
+  }

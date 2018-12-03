@@ -1,0 +1,17 @@
+  public void testGetLineStartPos() throws BadLocationException {
+    _setDocText("foo\nbar\nblah");
+    assertEquals("Returns position after the previous newline", 4, _getLineStartPos(6));
+    assertEquals("Returns position after previous newline when cursor is at the position after the previous newline",
+                 4,
+                 _getLineStartPos(4));
+    assertEquals("Returns 0 when there's no previous newline", 0, _getLineStartPos(2));
+    assertEquals("Returns 0 when the cursor is at 0", 0, _getLineStartPos(0));
+    
+    _setDocText("abcdefghijk");
+    _doc.setCurrentLocation(3);
+    int reducedModelPos = _doc.getReduced().absOffset();
+    _getLineStartPos(5);
+    assertEquals("Check that position in reduced model is unaffected after call to getLineStartPos",
+                 reducedModelPos,
+                 _doc.getReduced().absOffset());
+  }

@@ -1,0 +1,8 @@
+    private void registerListeners() {
+        Listener lst = new Listener();
+        for (IWsdlDefiner d : m_definers) {
+            d.addChangeListener(lst);
+            d.addActionListener(lst);
+        }
+        m_inputPanel.addSelectionListener(lst);
+    }    

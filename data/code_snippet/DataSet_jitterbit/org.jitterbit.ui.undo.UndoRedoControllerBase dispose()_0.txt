@@ -1,0 +1,19 @@
+    public void dispose() {
+         for (IUndoableEditSender m : m_managedComponents) {
+             m.removeUndoableEditListener(m_internalEditListener);
+             m.dispose();
+         }
+         if (m_inputMap != null) {
+             m_inputMap.remove(KeyUtils.UNDO);
+             m_inputMap.remove(KeyUtils.REDO);
+         }
+         if (m_actionMap != null) {
+             m_actionMap.remove(UNDO_ACTION_KEY);
+             m_actionMap.remove(REDO_ACTION_KEY);
+         }
+         if (m_keyBindingInstaller != null) {
+             m_keyBindingInstaller.remove();
+         }
+         m_undoFilters.clear();
+         m_redoFilters.clear();
+    }

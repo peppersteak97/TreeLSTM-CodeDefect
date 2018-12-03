@@ -1,0 +1,8 @@
+  public T nextElement() {
+    index--;
+    if (index >= 0) {
+      return vec.get(index);
+    } else {
+      throw new NoSuchElementException();
+    }
+  }

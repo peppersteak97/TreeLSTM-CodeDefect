@@ -1,0 +1,6 @@
+  public void resetAttributes() {
+    _attributes.clear();
+    _attributes.put("rel", "/");
+    _attributes.put("squote", null);
+    _attributes.put("dquote", null);
+  }

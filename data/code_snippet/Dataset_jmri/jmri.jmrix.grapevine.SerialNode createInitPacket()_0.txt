@@ -1,0 +1,25 @@
+    public AbstractMRMessage createInitPacket() {
+
+        javax.swing.Timer timer = new javax.swing.Timer(250, null);
+        java.awt.event.ActionListener l = new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                SerialMessage m2 = new SerialMessage(4);
+                int i = 0;
+
+                m2.setParity(i-4);
+                SerialTrafficController.instance().sendSerialMessage(m2, null);
+            }
+        };
+        timer.addActionListener(l);
+        timer.setRepeats(false);
+        timer.setInitialDelay(250);
+        timer.start();
+
+
+        SerialMessage m1 = new SerialMessage(4);
+        int i = 0;
+
+        m1.setParity(i-4);
+        
+        return m1;
+    }

@@ -1,0 +1,4 @@
+    protected void mainObjectDeleted() {
+        m_runWhenMessageDeleted.run();
+        super.mainObjectDeleted();
+    }

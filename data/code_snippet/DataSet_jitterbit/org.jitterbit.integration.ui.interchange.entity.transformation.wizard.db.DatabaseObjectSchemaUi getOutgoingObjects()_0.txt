@@ -1,0 +1,13 @@
+    DatabaseObject[] getOutgoingObjects() {
+        if (!m_switch.isSelected()) {
+            return m_dbObjects;
+        }
+        DatabaseObject[] objs = new DatabaseObject[m_dbObjects.length];
+        for (int n = 0; n < m_dbObjects.length; ++n) {
+            DatabaseObject original = m_dbObjects[n];
+            String name = getNameToUse(original);
+            DatabaseObject clone = original.createCopy(name);
+            objs[n] = clone;
+        }
+        return objs;
+    }

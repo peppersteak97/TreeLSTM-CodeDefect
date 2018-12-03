@@ -1,0 +1,5 @@
+    public ContactPerson getContactPerson() {
+        return new ContactPerson(getProperty(CONTACT_NAME), getProperty(CONTACT_TITLE),
+                        getProperty(EMAIL), getProperty(PHONE), getProperty(FAX),
+                        getProperty(NOTES));
+    }

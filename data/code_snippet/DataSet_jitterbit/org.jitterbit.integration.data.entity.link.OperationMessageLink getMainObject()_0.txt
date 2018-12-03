@@ -1,0 +1,3 @@
+    public Message getMainObject() {
+        return (Message) super.getMainObject();
+    }

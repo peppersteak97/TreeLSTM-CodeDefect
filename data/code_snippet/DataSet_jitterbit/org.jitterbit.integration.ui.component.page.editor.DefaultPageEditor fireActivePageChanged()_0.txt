@@ -1,0 +1,12 @@
+    protected final void fireActivePageChanged() {
+        final PageEditorEvent e = new PageEditorEvent(this, getActivePage());
+        m_editorListeners.visitAll(new ListenerVisitor<IPageEditorListener>() {
+
+            public void accept(IPageEditorListener listener) {
+                listener.activePageChanged(e);
+            }
+        });
+        if (m_isActive) {
+            fireActiveObjectChange();
+        }
+    }

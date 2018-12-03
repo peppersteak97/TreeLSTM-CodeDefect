@@ -1,0 +1,1 @@
+//  private boolean _isStartOfComment(int pos) { return _isStartOfComment(getText(), pos); }

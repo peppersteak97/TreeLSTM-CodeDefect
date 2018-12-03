@@ -1,0 +1,3 @@
+    private void waitForBackgroundPrepare() throws InterruptedException {
+        m_backgroundPrepareLatch.await();
+    }

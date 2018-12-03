@@ -1,0 +1,4 @@
+    private void createUserManager() {
+        m_userManager = new DefaultUserManager();
+        addServerConnectionListener(m_userManager);
+    }

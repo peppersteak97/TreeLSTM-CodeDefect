@@ -1,0 +1,13 @@
+    public int closeAllPages() {
+        int nOpenPages = getNumberOfPages();
+        if (nOpenPages == 0) {
+            return 0;
+        }
+        else if (nOpenPages == 1) {
+            closePage(getOpenPages().next());
+            return (getNumberOfPages() == 0) ? 1 : 0;
+        }
+        else {
+            return closePagesImpl(new ArrayList<IPage>(m_ui.getOpenPages()), null);
+        }
+    }

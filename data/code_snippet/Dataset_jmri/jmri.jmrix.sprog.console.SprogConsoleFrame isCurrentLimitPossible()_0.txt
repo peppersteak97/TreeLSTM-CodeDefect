@@ -1,0 +1,9 @@
+        if (isCurrentLimitPossible()) {
+            validateCurrent();
+            currentLimit = currentLimit*470/4880;
+            currentLimit += 256;
+            tmpString = String.valueOf(currentLimit);
+            msg = new SprogMessage("I "+tmpString);
+        } else {
+            msg = new SprogMessage(" "+tmpString);
+        }

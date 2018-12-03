@@ -1,0 +1,4 @@
+    static public LI100Adapter instance() {
+        if (mInstance == null) mInstance = new LI100Adapter();
+        return mInstance;
+    }

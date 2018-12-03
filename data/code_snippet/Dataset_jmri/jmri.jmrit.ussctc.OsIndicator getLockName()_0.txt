@@ -1,0 +1,3 @@
+    public String getLockName() {
+        return lock;
+    }

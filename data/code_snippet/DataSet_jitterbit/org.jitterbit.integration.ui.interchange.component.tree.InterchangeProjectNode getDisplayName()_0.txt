@@ -1,0 +1,3 @@
+    public String getDisplayName() {
+        return ROOT_NODE_PREFIX + super.getDisplayName();
+    }

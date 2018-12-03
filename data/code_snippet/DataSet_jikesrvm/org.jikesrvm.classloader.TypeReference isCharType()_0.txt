@@ -1,0 +1,3 @@
+  public boolean isCharType() {
+    return this == Char;
+  }

@@ -1,0 +1,17 @@
+  public void setUp() throws Exception {
+    _log.log("Setting up " + this);
+    _model = new TestGlobalModel();
+      new InteractionsController(_model.getInteractionsModel(), _model.getSwingInteractionsDocument());
+    _log.log("Global model created for " + this);
+    DrJava.getConfig().resetToDefaults();
+    String user = System.getProperty("user.name");
+    
+    _tempDir = /* IOUtil.createAndMarkTempDirectory */ FileOps.createTempDirectory("DrJava-test-" + user /*, ""*/);
+    
+    _log.log("Ensuring that interpreter is connected in " + this);
+    _model._jvm.ensureInterpreterConnected();
+    _log.log("Ensured that intepreter is connected in " + this);
+    _model.setResetAfterCompile(false);
+    _log.log("Completed (GlobalModelTestCase) set up of " + this);
+    
+  }

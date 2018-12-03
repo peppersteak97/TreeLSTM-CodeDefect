@@ -1,0 +1,1 @@
+  public DefinitionsDocument getDocument() { throw new UnsupportedOperationException("Dummy method"); }

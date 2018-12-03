@@ -1,0 +1,14 @@
+  public void testApplyThenResetDefault() {
+    File testFile = FileOps.NULL_FILE;
+
+    _option.setValue(testFile);
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+
+    assertEquals("Apply (updateConfig) should write change to file",
+                 OptionConstants.JAVAC_LOCATION.getDefault(),
+                 DrJava.getConfig().getSetting(OptionConstants.JAVAC_LOCATION));
+  }

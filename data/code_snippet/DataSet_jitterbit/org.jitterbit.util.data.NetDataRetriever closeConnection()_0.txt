@@ -1,0 +1,7 @@
+    public synchronized void closeConnection() throws IOException {
+        if ( m_reader != null ) {
+	        m_reader.close();
+	        m_reader = null;
+        }
+        m_conn = null;
+    }

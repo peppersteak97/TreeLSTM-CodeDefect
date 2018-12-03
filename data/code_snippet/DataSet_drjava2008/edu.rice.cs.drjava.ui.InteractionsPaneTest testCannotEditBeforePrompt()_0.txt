@@ -1,0 +1,5 @@
+  public void testCannotEditBeforePrompt() throws EditDocumentException {
+    int origLength = _doc.getLength();
+    _doc.insertText(1, "typed text", InteractionsDocument.DEFAULT_STYLE);
+    assertEquals("Document should not have changed.", origLength, _doc.getLength());
+  }

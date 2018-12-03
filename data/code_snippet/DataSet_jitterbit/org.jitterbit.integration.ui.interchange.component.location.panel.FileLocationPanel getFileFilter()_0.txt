@@ -1,0 +1,3 @@
+    public String getFileFilter() {
+        return m_fileFilter.getValue().trim();
+    }

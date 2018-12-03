@@ -1,0 +1,3 @@
+  public boolean isSpecializedInvoke() {
+    return (resolvedMember != null) && (resolvedMember.isSpecializedInvoke());
+  }

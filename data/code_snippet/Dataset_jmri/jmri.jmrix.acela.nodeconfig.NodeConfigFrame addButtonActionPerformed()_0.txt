@@ -1,0 +1,31 @@
+    public void addButtonActionPerformed() {
+        int nodeAddress = readNodeAddress();
+        if (nodeAddress < 0) return;
+        curNode = (AcelaNode) AcelaTrafficController.instance().getNodeFromAddress(nodeAddress);
+        if (curNode != null) {
+            statusText1.setText(rb.getString("Error1")+Integer.toString(nodeAddress)+
+                        rb.getString("Error2"));
+            statusText1.setVisible(true);
+            errorInStatus1 = true;
+            resetNotes2();
+            return;
+        }
+        nodeType = nodeTypeBox.getSelectedIndex();
+        
+        curNode = new AcelaNode(nodeAddress,nodeType);
+        if (curNode == null) {
+            statusText1.setText(rb.getString("Error3"));
+            statusText1.setVisible(true);
+            log.error("Error creating Acela Node, constructor returned null");
+            errorInStatus1 = true;
+            resetNotes2();
+            return;
+        }
+        setNodeParameters();
+        AcelaSensorManager.instance().registerSensorsForNode(curNode);
+        resetNotes();
+        changedNode = true;
+        statusText1.setText(rb.getString("FeedBackAdd")+" "+
+                                    Integer.toString(nodeAddress));
+        errorInStatus1 = true;
+    }

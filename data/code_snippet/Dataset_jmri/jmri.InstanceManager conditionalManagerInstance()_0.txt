@@ -1,0 +1,5 @@
+    static public ConditionalManager conditionalManagerInstance()  {
+        if (instance().conditionalManager != null) return instance().conditionalManager;
+        instance().conditionalManager = new DefaultConditionalManager();
+        return instance().conditionalManager;
+    }

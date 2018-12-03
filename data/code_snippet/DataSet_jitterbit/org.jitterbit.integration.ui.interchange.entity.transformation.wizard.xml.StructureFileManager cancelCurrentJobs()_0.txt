@@ -1,0 +1,14 @@
+    void cancelCurrentJobs() {
+        IUiJobManager jobMgr = IntegrationUi.getUi().getJobManager();
+        if (m_fileInfoDownloadJobId != null) {
+            jobMgr.cancelJob(m_fileInfoDownloadJobId);
+            m_fileInfoDownloadJobId = null;
+        }
+        if (m_fileContentsDownloadJobId != null) {
+            jobMgr.cancelJob(m_fileContentsDownloadJobId);
+            m_fileContentsDownloadJobId = null;
+        }
+        if (m_uploadManager != null) {
+            m_uploadManager.abort();
+        }
+    }

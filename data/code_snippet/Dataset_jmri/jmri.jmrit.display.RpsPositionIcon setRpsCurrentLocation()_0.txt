@@ -1,0 +1,9 @@
+    public void setRpsCurrentLocation() {
+        if (lastMeasurement == null) return;
+
+        if (sxOrigin == getX()) return;
+        if (syOrigin == getY()) return;
+        
+        sxScale = (getX()-sxOrigin)/lastMeasurement.getX();
+        syScale = (getY()-syOrigin)/lastMeasurement.getY();
+    }

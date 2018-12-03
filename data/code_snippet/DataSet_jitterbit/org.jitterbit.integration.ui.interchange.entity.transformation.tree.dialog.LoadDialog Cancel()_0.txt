@@ -1,0 +1,4 @@
+	void Cancel(){
+		m_flag=0;
+		dispose();
+	}

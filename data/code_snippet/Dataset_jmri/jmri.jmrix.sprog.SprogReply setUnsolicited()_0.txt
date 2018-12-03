@@ -1,0 +1,1 @@
+        public final void setUnsolicited() { unsolicited = true; }

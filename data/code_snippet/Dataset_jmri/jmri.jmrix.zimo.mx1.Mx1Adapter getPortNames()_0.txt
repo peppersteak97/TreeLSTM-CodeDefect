@@ -1,0 +1,9 @@
+	public Vector getPortNames() {
+		portNameVector = new Vector();
+		Enumeration portIDs = CommPortIdentifier.getPortIdentifiers();
+		while (portIDs.hasMoreElements()) {
+		  CommPortIdentifier id = (CommPortIdentifier) portIDs.nextElement();
+		  portNameVector.addElement(id.getName());
+		  }
+		return portNameVector;
+	}

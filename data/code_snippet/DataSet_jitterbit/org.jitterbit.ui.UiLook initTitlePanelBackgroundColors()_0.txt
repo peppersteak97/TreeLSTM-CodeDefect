@@ -1,0 +1,7 @@
+	private static void initTitlePanelBackgroundColors() {
+		COL_TITLE_PANEL_BACKGROUND = new Color[] {
+			COLORED_TITLE_PANELS ? 
+						new Color(200, 196, 179),
+			COLORED_TITLE_PANELS ?
+		};
+	}

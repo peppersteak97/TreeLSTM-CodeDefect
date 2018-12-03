@@ -1,0 +1,4 @@
+        if (!couldEdit()) {
+            Action delete = m_tableProvider.getTable().getDeleteAction();
+            delete.actionPerformed(e);
+        }

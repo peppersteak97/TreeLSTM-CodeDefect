@@ -1,0 +1,4 @@
+        while ( (m = nextTransfer()) != null) {
+            controller.sendLocoNetMessage(m);
+            throttleOutbound(m);
+        }

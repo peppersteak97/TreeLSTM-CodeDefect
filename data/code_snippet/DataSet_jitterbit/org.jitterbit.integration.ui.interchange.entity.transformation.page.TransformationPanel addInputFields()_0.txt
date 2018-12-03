@@ -1,0 +1,3 @@
+    private void addInputFields() {
+        addInputField(m_nameField, m_nameField, m_nameField);
+    }

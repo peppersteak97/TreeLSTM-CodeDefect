@@ -1,0 +1,3 @@
+    public IMenuDictionary getDictionary() {
+        return m_dictionary;
+    }

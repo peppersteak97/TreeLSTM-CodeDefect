@@ -1,0 +1,8 @@
+    public void setDirty() {
+        boolean old = isDirty();
+        super.setDirty(true);
+        if (!old) {
+            firePropertyChange(new PropertyChangeEvent(this, DIRTY_PROPERTY,
+                            Boolean.FALSE, Boolean.TRUE));
+        }
+    }

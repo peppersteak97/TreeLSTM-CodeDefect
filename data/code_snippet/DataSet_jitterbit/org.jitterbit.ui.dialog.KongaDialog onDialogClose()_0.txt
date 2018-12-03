@@ -1,0 +1,6 @@
+    protected void onDialogClose() {
+        if (m_manageLocation) {
+            DialogLocationManager.getManager().removeDialog(this);
+        }
+        dispose();
+    }

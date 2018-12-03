@@ -1,0 +1,9 @@
+    public void startLoading() {
+        for (UserMap m : m_userMaps.values()) {
+            m.clear();
+        }
+        for (GroupMap m : m_groupMaps.values()) {
+            m.clear();
+        }
+        m_dirtyEntities = new HashSet<IntegrationEntityId>();
+    }

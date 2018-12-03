@@ -1,0 +1,43 @@
+  public void testGetFirstNonWSCharPos() throws BadLocationException {
+
+    _setDocText("foo();\nbar()\tx();     y();\n  \t  \n\nz();\n ");
+    assertEquals("Current position is non-whitespace", 0, getFirstNonWSCharPos(0));
+    assertEquals("Current position is non-whitespace, end of line", 5, getFirstNonWSCharPos(5));
+    assertEquals("Next non-whitespace is 1 '\\n' ahead.", 7, getFirstNonWSCharPos(6));
+    assertEquals("Next non-whitespace is 2 '\\t' ahead.", 13, getFirstNonWSCharPos(12));
+    assertEquals("Next non-whitespace is 3 spaces ahead.", 22, getFirstNonWSCharPos(20));
+    assertEquals("Next non-whitespace is multiple whitespaces ('\\n', '\\t', ' ') ahead.", 
+                 34,
+                 getFirstNonWSCharPos(27));
+    assertEquals("Next non-whitespace is end of document", 
+                 -1,
+                 getFirstNonWSCharPos(39));
+    
+    assertEquals("Ignore single-line comments",
+                 18,
+                 getFirstNonWSCharPos(6));
+    
+    _setDocText("foo();\n /* bar\nblah */ boo\n");
+    assertEquals("Ignore multiline comments",
+                 23,
+                 getFirstNonWSCharPos(6));  
+    _setDocText("foo   /");
+    assertEquals("Slash at end of document",
+                 6,
+                 getFirstNonWSCharPos(4));
+                 -1,
+                 getFirstNonWSCharPos(4));
+    _setDocText("foo   /*");
+    assertEquals("/* at end",
+                 -1,
+                 getFirstNonWSCharPos(4));
+    
+    _setDocText("abcdefghijk");
+    _doc.setCurrentLocation(3);
+    int reducedModelPos = _doc.getReduced().absOffset();
+    _getLineFirstCharPos(5);
+    assertEquals("Check that position in reduced model is unaffected " +
+                 "after call to getLineFirstCharPos",
+                 reducedModelPos,
+                 _doc.getReduced().absOffset());
+  }

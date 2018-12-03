@@ -1,0 +1,3 @@
+    public int getSelectionCount() {
+        return m_serverTable.getSelectedRowCount();
+    }

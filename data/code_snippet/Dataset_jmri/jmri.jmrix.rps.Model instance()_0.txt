@@ -1,0 +1,7 @@
+    static public Model instance() {
+        if (_instance == null) {
+            _instance = new Model();
+            _instance.loadValues();
+        }
+        return _instance;
+    }

@@ -1,0 +1,3 @@
+  private static boolean _isNetware() {
+    return OS_NAME.indexOf("netware") != -1;
+  }

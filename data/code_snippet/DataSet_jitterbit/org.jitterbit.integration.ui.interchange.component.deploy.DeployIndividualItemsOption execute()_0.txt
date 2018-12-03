@@ -1,0 +1,25 @@
+    public void execute() {
+        try {
+            m_partialProject = m_deployTree.getDeployModel();
+            m_partialProject.markAsDeployDirty();
+            IDeployData data = new DeployData(
+                            m_managedProject, m_partialProject, true);
+            m_deployLauncher.startDeploy(data);
+        }
+        catch (DeployTreeException e) {
+            if (e.isEmptySelection()) {
+                MessageDisplayer.showErrorMessage(m_deployLauncher,
+                                null, e.getMessage(),
+                                PackageResources.ControlPanel.ERROR_TITLE_EMPTY_SELECTION);
+            }
+            else {
+                showInvalidItems(e.getInvalidItems());
+            }
+            m_partialProject = null;
+        }
+        catch (InconsistentProjectDataException e) {
+            ErrorLogger.getDefaultLogger().logAndShow(m_deployLauncher,
+                            PackageResources.ControlPanel.ERROR_INCONSISTENT_DATA, e);
+            m_partialProject = null;
+        }
+    }

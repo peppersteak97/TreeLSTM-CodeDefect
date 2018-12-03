@@ -1,0 +1,3 @@
+    void newDocumentCreated() {
+        m_availableUndos = 0;
+    }

@@ -1,0 +1,3 @@
+	public JCheckBox getCheckBox() {
+		return (JCheckBox)getComponentHolder();
+	}

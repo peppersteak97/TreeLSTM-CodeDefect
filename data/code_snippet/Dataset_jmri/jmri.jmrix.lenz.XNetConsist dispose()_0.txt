@@ -1,0 +1,7 @@
+	public void dispose() {
+		super.dispose();
+		XNetTrafficController.instance().removeXNetListener(
+						XNetInterface.COMMINFO|
+						XNetInterface.CONSIST, 
+						this);
+	}

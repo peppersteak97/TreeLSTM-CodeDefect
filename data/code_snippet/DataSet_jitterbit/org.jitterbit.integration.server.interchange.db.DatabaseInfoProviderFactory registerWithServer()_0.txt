@@ -1,0 +1,11 @@
+    private static void registerWithServer() {
+        IntegrationServer server = IntegrationServer.getInstance();
+        IServerCallFactory<IDatabaseInfoProvider> callFactory =
+            new IServerCallFactory<IDatabaseInfoProvider>() {
+
+                public IDatabaseInfoProvider get() {
+                    return new DatabaseInfoProviderWsImpl();
+                }
+        };
+        server.registerCallFactory(IDatabaseInfoProvider.class, callFactory);
+    }

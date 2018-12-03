@@ -1,0 +1,3 @@
+        if (getNumberOfPages() < 2) {
+            return 0;
+        }

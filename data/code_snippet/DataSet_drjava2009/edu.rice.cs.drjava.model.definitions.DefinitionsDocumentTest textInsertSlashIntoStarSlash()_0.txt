@@ -1,0 +1,14 @@
+  public void textInsertSlashIntoStarSlash() throws BadLocationException {
+    BraceReduction _reduced = _doc.getReduced();
+    _doc.insertString(0, "/**/", null);
+    _doc.insertString(3, "/", null);
+    _doc.move(-4);
+    assertEquals("1", "/*", _reduced.currentToken().getType());
+    assertEquals("2", ReducedToken.FREE, _reduced.currentToken().getState());
+    _reduced.move(2);
+    assertEquals("3", "*/", _reduced.currentToken().getType());
+    assertEquals("4", ReducedToken.FREE, _reduced.currentToken().getState());
+    _reduced.move(2);
+    assertEquals("5", "/", _reduced.currentToken().getType());
+    assertEquals("6", ReducedToken.FREE, _reduced.currentToken().getState());
+  }

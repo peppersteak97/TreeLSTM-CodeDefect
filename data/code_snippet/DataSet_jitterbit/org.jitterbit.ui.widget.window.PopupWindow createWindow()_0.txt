@@ -1,0 +1,14 @@
+    private JWindow createWindow() {
+        JWindow w = new JWindow(SwingUtilities.getWindowAncestor(m_owner));
+        w.setLocationByPlatform(m_locationOnScreen == null);
+        createContentPane(w);
+        setPreferredSize(w);
+        installWindowListener(w);
+        installWindowKeyBindings(w);
+        installResizer(w);
+        w.setFocusableWindowState(m_focusable);
+        w.pack();
+        checkMinimumSize(w);
+        checkMaximumSize(w);
+        return w;
+    }

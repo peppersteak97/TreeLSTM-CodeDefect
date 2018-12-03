@@ -1,0 +1,1 @@
+  public void setSeenUse() { flags |= SEEN_USE; }

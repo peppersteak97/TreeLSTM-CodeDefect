@@ -1,0 +1,5 @@
+    public int getState() {
+		try { return Integer.valueOf(getValue().toString()).intValue(); }
+		catch (java.lang.NumberFormatException ex1) { return -1; }
+		catch (java.lang.NullPointerException ex2) { return -1; }
+    }

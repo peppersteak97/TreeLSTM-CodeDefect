@@ -1,0 +1,3 @@
+  public DebugStackData getSelectedStackItem() {
+    return _stackFrames.get(_stackTable.getSelectedRow());
+  }

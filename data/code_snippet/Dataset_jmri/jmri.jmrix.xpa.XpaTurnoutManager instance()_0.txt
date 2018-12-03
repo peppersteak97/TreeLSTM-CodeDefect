@@ -1,0 +1,4 @@
+    static public XpaTurnoutManager instance() {
+        if (_instance == null) _instance = new XpaTurnoutManager();
+        return _instance;
+    }

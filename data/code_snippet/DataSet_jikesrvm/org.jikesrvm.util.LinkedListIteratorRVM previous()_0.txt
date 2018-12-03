@@ -1,0 +1,4 @@
+  public T previous() {
+    if (VM.VerifyAssertions) VM._assert(false);
+    return null;
+  }

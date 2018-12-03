@@ -1,0 +1,3 @@
+    public CallRestrictions getCopy() {
+        return new CallRestrictions(new StringKeyValuePairs(m_data));
+    }

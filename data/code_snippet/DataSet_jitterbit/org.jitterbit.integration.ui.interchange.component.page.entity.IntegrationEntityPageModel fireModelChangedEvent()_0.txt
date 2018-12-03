@@ -1,0 +1,9 @@
+    protected final void fireModelChangedEvent() {
+        final IntegrationEntityPageModelEvent e = new IntegrationEntityPageModelEvent(this);
+        m_modelListeners.visitAll(new ListenerVisitor<IIntegrationEntityPageModelListener>() {
+
+            public void accept(IIntegrationEntityPageModelListener listener) {
+                listener.modelChanged(e);
+            }
+        });
+    }

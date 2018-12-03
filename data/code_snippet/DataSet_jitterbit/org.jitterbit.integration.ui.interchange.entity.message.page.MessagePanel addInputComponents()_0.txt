@@ -1,0 +1,4 @@
+    private void addInputComponents() {
+        addInputPanel(m_topPanel);
+        addInputPanel(m_detailsPanel);
+    }

@@ -1,0 +1,180 @@
+	private boolean getTToTTurnoutInformation() {
+		LayoutTurnout t = null;
+		int type = 0;
+		Object connect = null;
+		String str = "";
+		turnout1 = null;
+		turnout2 = null;
+		layoutTurnout1 = null;
+		layoutTurnout2 = null;
+		str = turnout1NameField.getText().trim();
+		if ( (str==null) || (str.equals("")) ) {
+			str = turnout2NameField.getText().trim();
+			if ( (str==null) || (str.equals("")) ) {
+				JOptionPane.showMessageDialog(setSignalsAtTToTFrame,rb.getString("SignalsError1"),
+									rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+			turnout2 = jmri.InstanceManager.turnoutManagerInstance().getTurnout(str);
+			if (turnout2==null) {
+				JOptionPane.showMessageDialog(setSignalsAtTToTFrame,
+					java.text.MessageFormat.format(rb.getString("SignalsError2"),
+						new String[]{str}), rb.getString("Error"),
+							JOptionPane.ERROR_MESSAGE);
+				return false ;
+			}
+			if ( (turnout2.getUserName()==null) || (turnout2.getUserName()=="") ||
+									!turnout2.getUserName().equals(str) ) {
+				str = str.toUpperCase();
+				turnout2NameField.setText(str);
+			}
+			layoutTurnout2 = getLayoutTurnoutFromTurnout(turnout2,false,str,setSignalsAtTToTFrame);
+			if (layoutTurnout2==null)
+				return false;
+			connectorTrack = (TrackSegment)layoutTurnout2.getConnectA();
+			if (connectorTrack == null) {
+				JOptionPane.showMessageDialog(setSignalsAtTToTFrame,
+						rb.getString("SignalsError18"),
+							rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+			type = connectorTrack.getType1();
+			connect = connectorTrack.getConnect1();
+			if (connect == (Object)layoutTurnout2) {
+				type = connectorTrack.getType2();
+				connect = connectorTrack.getConnect2();
+			}
+			if ( (type != LayoutEditor.TURNOUT_A) || (connect==null) ) {
+				JOptionPane.showMessageDialog(setSignalsAtTToTFrame,
+						rb.getString("SignalsError18"),
+							rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+			layoutTurnout1 = (LayoutTurnout)connect;
+			turnout1 = layoutTurnout1.getTurnout();
+			if (turnout1==null) {
+				JOptionPane.showMessageDialog(setSignalsAtTToTFrame,
+						rb.getString("SignalsError18"),
+							rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+			turnout1NameField.setText(layoutTurnout1.getTurnoutName());
+		}
+		else {
+			turnout1 = jmri.InstanceManager.turnoutManagerInstance().getTurnout(str);
+			if (turnout1==null) {
+				JOptionPane.showMessageDialog(setSignalsAtTToTFrame,
+					java.text.MessageFormat.format(rb.getString("SignalsError2"),
+						new String[]{str}), rb.getString("Error"),
+							JOptionPane.ERROR_MESSAGE);
+				return false ;
+			}
+			if ( (turnout1.getUserName()==null) || (turnout1.getUserName()=="") ||
+									!turnout1.getUserName().equals(str) ) {
+				str = str.toUpperCase();
+				turnout1NameField.setText(str);
+			}
+			layoutTurnout1 = getLayoutTurnoutFromTurnout(turnout1,false,str,setSignalsAtTToTFrame);
+			if (layoutTurnout1 == null)
+				return false;
+			turnout1NameField.setText(str);
+			str = turnout2NameField.getText().trim();
+			if ( (str==null) || (str.equals("")) ) {
+				connectorTrack = (TrackSegment)layoutTurnout1.getConnectA();
+				if (connectorTrack == null) {
+					JOptionPane.showMessageDialog(setSignalsAtTToTFrame,
+							rb.getString("SignalsError18"),
+								rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+					return false;
+				}
+				type = connectorTrack.getType1();
+				connect = connectorTrack.getConnect1();
+				if (connect == (Object)layoutTurnout1) {
+					type = connectorTrack.getType2();
+					connect = connectorTrack.getConnect2();
+				}
+				if ( (type != LayoutEditor.TURNOUT_A) || (connect==null) ) {
+					JOptionPane.showMessageDialog(setSignalsAtTToTFrame,
+							rb.getString("SignalsError18"),
+								rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+					return false;
+				}
+				layoutTurnout2 = (LayoutTurnout)connect;
+				turnout2 = layoutTurnout2.getTurnout();
+				if (turnout2==null) {
+					JOptionPane.showMessageDialog(setSignalsAtTToTFrame,
+							rb.getString("SignalsError18"),
+								rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+					return false;
+				}
+				turnout2NameField.setText(layoutTurnout2.getTurnoutName());
+			}
+			else {
+				turnout2 = jmri.InstanceManager.turnoutManagerInstance().getTurnout(str);
+				if (turnout2==null) {
+					JOptionPane.showMessageDialog(setSignalsAtTToTFrame,
+						java.text.MessageFormat.format(rb.getString("SignalsError2"),
+								new String[]{str}), rb.getString("Error"),
+									JOptionPane.ERROR_MESSAGE);
+					return false ;
+				}
+				if ( (turnout2.getUserName()==null) || (turnout2.getUserName()=="") ||
+									!turnout2.getUserName().equals(str) ) {
+					str = str.toUpperCase();
+					turnout2NameField.setText(str);
+				}
+				layoutTurnout2 = getLayoutTurnoutFromTurnout(turnout2,false,str,setSignalsAtTToTFrame);
+				if (layoutTurnout2==null)
+					return false;
+				turnout2NameField.setText(str);
+				if (layoutTurnout1.getConnectA()!=layoutTurnout2.getConnectA()) {
+					JOptionPane.showMessageDialog(setSignalsAtTToTFrame,
+							rb.getString("SignalsError18"),
+								rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+					return false;
+				}
+				connectorTrack = (TrackSegment)layoutTurnout1.getConnectA();
+			}
+		}
+		layoutTurnout1Horizontal = false;
+		layoutTurnout1Vertical = false;
+		layoutTurnout2ThroatLeft = false;
+		layoutTurnout2Vertical = false;
+		layoutTurnout1ThroatLeft = false;
+		layoutTurnout1ThroatUp = false;
+		layoutTurnout2ThroatLeft = false;
+		layoutTurnout2ThroatUp = false;
+		layoutTurnout1BUp = false;
+		layoutTurnout1BLeft = false;
+		layoutTurnout2BUp = false;
+		layoutTurnout2BLeft = false;
+		double delX = layoutTurnout1.getCoordsA().getX() - layoutTurnout1.getCoordsB().getX();
+		double delY = layoutTurnout1.getCoordsA().getY() - layoutTurnout1.getCoordsB().getY();
+		if (java.lang.Math.abs(delX) > 2.0*java.lang.Math.abs(delY)) {
+			layoutTurnout1Horizontal = true;
+			if (delX < 0.0) layoutTurnout1ThroatLeft = true;
+			if (layoutTurnout1.getCoordsB().getY() < layoutTurnout1.getCoordsC().getY())
+				layoutTurnout1BUp = true;
+		}
+		else if (java.lang.Math.abs(delY) > 2.0*java.lang.Math.abs(delX)) { 
+			layoutTurnout1Vertical = true;
+			if (delY <0.0) layoutTurnout1ThroatUp = true;
+			if (layoutTurnout1.getCoordsB().getX() < layoutTurnout1.getCoordsC().getX())
+				layoutTurnout1BLeft = true;
+		}
+		delX = layoutTurnout2.getCoordsA().getX() - layoutTurnout2.getCoordsB().getX();
+		delY = layoutTurnout2.getCoordsA().getY() - layoutTurnout2.getCoordsB().getY();
+		if (java.lang.Math.abs(delX) > 2.0*java.lang.Math.abs(delY)) {
+			layoutTurnout2Horizontal = true;
+			if (delX < 0.0) layoutTurnout2ThroatLeft = true;
+			if (layoutTurnout2.getCoordsB().getY() < layoutTurnout2.getCoordsC().getY())
+				layoutTurnout2BUp = true;
+		}
+		else if (java.lang.Math.abs(delY) > 2.0*java.lang.Math.abs(delX)) { 
+			layoutTurnout2Vertical = true;
+			if (delY <0.0) layoutTurnout2ThroatUp = true;
+			if (layoutTurnout2.getCoordsB().getX() < layoutTurnout2.getCoordsC().getX())
+				layoutTurnout2BLeft = true;
+		}
+		return true;
+	}

@@ -1,0 +1,8 @@
+    public URL getValue() {
+        try {
+            return new URL(getText());
+        }
+        catch (MalformedURLException e) {
+            return null;
+        }
+    }

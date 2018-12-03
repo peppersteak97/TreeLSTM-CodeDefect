@@ -1,0 +1,6 @@
+    private void highlightSearchResultImpl() {
+        IIntegrationEntityUiDelegate uiDel = m_resultList.getSelectedEntity();
+        if (uiDel != null) {
+            highLightSearchResultImpl(uiDel);
+        }
+    }

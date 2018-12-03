@@ -1,0 +1,16 @@
+  public void testSaveAsExistsForOverwrite() throws BadLocationException, IOException {
+    
+    final OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    final File file1 = tempFile();
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() { 
+        try { 
+          doc.saveFileAs(new WarningFileSelector(file1));
+          fail("Did not warn of open file as expected");
+        }
+        catch (Exception e) { /* Good behavior for file saving ... */ }
+      }
+    });
+    
+    _log.log("testSaveAsExistsForOverwrite completed");
+  }

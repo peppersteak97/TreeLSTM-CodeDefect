@@ -1,0 +1,4 @@
+    public void reset() {
+        nameField.setValue(getDisplayedObject().getName());
+        nameField.getInputComponent().setCaretPosition(0);
+    }

@@ -1,0 +1,49 @@
+    private void layoutComponents() {
+        m_uiRepresentation = new JPanel(new BorderLayout());
+
+        EntityIconRepository icons = EntityTypeMetaData.getInstance().getIconRepository();
+        JLabel titleLabel = IntegrationUiStyleSheet.DropDownPanelTitle.makeJLabel(
+                        PackageResources.GroupPanel.TITLE);
+        titleLabel.setIcon(icons.getIcon(EntityType.Group,
+                        EntityIconRepository.Size.LARGE));
+        CaptionTitlePanel tp = new CaptionTitlePanel(titleLabel, 25);
+        ContainerDecor.decorate(tp, m_uiRepresentation, BorderLayout.NORTH);
+
+        JPanel p = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(5, 5, 2, 15);
+
+        StyleSheetTextClass ssc = IntegrationUiStyleSheet.DefaultBold;
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        p.add(ssc.makeJLabel(PackageResources.GroupPanel.Labels.GROUPS), gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        p.add(m_membersLabel, gbc);
+
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        p.add(m_detailsLabel, gbc);
+
+        gbc.insets = new Insets(0, 5, 15, 15);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        ComponentDecorFactory.gridBag(p, gbc, m_groupListPanel);
+
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        ComponentDecorFactory.gridBag(p, gbc, m_memberListPanel);
+
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.gridheight = 2;
+        ComponentDecorFactory.gridBag(p, gbc, m_detailsPanel);
+
+        p.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 5));
+
+        m_uiRepresentation.add(p, BorderLayout.SOUTH);
+    }

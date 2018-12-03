@@ -1,0 +1,4 @@
+    public void setThrottlePollMode() { 
+        bscPoll = false;
+        throttlePoll = true;
+    }

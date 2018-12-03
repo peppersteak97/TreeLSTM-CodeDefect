@@ -1,0 +1,4 @@
+    public void dispose() throws JmriException {
+        tc.removeSprogListener(this);
+        tc = null;
+    }

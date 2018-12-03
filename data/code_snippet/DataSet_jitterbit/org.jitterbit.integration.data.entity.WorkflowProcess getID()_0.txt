@@ -1,0 +1,3 @@
+    public WorkflowProcessId getID() {
+        return (WorkflowProcessId) super.getID();
+    }

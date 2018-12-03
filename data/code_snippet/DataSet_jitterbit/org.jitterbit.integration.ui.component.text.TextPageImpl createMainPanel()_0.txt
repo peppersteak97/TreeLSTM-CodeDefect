@@ -1,0 +1,6 @@
+    private JPanel createMainPanel() {
+        JPanel p = new JPanel(new BorderLayout());
+        p.setOpaque(false);
+        p.add(m_ui.getDisplayer(), BorderLayout.CENTER);
+        return p;
+    }

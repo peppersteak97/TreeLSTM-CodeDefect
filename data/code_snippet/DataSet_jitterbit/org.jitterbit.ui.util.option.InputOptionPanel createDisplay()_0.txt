@@ -1,0 +1,15 @@
+    private JComponent createDisplay() {
+        m_focusManager = new KongaFocusManager();
+        OneColumnPanel col = new OneColumnPanel();
+        col.setInsets(5, 0, 5, 0);
+        col.setFillOut();
+        Insets optionInsets = new Insets(0, 5, 5, 5);
+        Insets inputInsets = new Insets(5, 35, 5, 5);
+        int n = 0;
+        for (IUiProvider ui : m_options) {
+            addInputUi(col, ui, optionInsets, inputInsets, n);
+            ++n;
+        }
+        m_focusManager.register();
+        return ComponentDecorFactory.centerBorder(col).getUi();
+    }

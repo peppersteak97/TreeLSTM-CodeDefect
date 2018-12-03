@@ -1,0 +1,4 @@
+  public synchronized int read() throws IOException {
+    if (available() == 0) _readInputIntoBuffer();
+    return _buffer.remove(0).charValue();
+  }

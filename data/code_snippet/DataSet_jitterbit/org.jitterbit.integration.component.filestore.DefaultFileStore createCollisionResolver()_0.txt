@@ -1,0 +1,3 @@
+    protected IFileCollisionResolver createCollisionResolver() {
+        return new DefaultCollisionResolver();
+    }

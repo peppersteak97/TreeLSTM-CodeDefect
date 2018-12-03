@@ -1,0 +1,9 @@
+    void addLabel() {
+        LayoutPositionableLabel l = new LayoutPositionableLabel(
+											textLabel.getText().trim());
+        setNextLocation(l);
+        l.setSize(l.getPreferredSize().width, l.getPreferredSize().height);
+        l.setDisplayLevel(LABELS);
+		setDirty(true);
+        putLabel(l);
+    }

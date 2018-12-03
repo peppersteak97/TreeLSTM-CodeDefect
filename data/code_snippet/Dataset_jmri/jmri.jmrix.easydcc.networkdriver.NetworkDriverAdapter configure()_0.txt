@@ -1,0 +1,17 @@
+    public void configure() {
+        EasyDccTrafficController.instance().connectPort(this);
+
+        jmri.InstanceManager.setProgrammerManager(
+                new EasyDccProgrammerManager(
+                    new EasyDccProgrammer()));
+
+        jmri.InstanceManager.setPowerManager(new jmri.jmrix.easydcc.EasyDccPowerManager());
+
+        jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.easydcc.EasyDccTurnoutManager());
+
+        jmri.InstanceManager.setConsistManager(new jmri.jmrix.easydcc.EasyDccConsistManager());
+
+        jmri.InstanceManager.setCommandStation(new jmri.jmrix.easydcc.EasyDccCommandStation());
+
+        jmri.jmrix.easydcc.ActiveFlag.setActive();
+    }

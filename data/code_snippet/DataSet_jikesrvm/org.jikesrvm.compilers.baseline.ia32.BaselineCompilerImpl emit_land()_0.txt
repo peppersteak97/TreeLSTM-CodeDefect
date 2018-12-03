@@ -1,0 +1,8 @@
+  protected final void emit_land() {
+    if (VM.BuildFor32Addr) {
+      asm.emitAND_RegInd_Reg(SP, T0);
+      asm.emitAND_RegDisp_Reg(SP, ONE_SLOT, S0);
+    } else {
+      asm.emitAND_RegInd_Reg_Quad(SP, T0);
+    }
+  }

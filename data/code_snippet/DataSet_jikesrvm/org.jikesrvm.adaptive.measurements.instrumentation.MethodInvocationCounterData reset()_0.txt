@@ -1,0 +1,3 @@
+  public void reset() {
+    VM._assert(false, "TODO: implement reset for BasicBlockCounterDatabase");
+  }

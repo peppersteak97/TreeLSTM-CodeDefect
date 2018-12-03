@@ -1,0 +1,3 @@
+    JToggleButton addDecoderIdentButton() {
+        return null;
+    }

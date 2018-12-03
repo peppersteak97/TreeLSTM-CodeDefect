@@ -1,0 +1,5 @@
+    private void createSchedulePanel() {
+        m_schedulePanel = new SchedulePanel(m_page);
+        m_schedulePanel.setBorder(IntegrationUiStyleSheet.EntityPageSubPanelBorder);
+        UiUtils.setOpaqueRecursively(m_schedulePanel, false);
+    }

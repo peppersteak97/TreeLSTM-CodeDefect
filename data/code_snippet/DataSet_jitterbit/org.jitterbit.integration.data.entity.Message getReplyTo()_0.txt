@@ -1,0 +1,3 @@
+    public String getReplyTo() {
+        return getProperty(REPLY_TO_PROPERTY);
+    }

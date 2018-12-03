@@ -1,0 +1,1 @@
+  public final GraphNode from() { return _fromNode; }

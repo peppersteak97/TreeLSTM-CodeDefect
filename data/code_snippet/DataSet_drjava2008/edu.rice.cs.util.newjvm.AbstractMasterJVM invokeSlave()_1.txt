@@ -1,0 +1,3 @@
+  protected final void invokeSlave() throws IOException, RemoteException {
+    invokeSlave(new String[0], FileOps.NULL_FILE);
+  }

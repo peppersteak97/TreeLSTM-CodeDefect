@@ -1,0 +1,3 @@
+  public Iterator<DF_Equation> getUses() {
+    return uses.iterator();
+  }

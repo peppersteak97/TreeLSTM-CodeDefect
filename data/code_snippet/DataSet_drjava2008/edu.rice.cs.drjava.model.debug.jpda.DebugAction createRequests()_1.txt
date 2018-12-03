@@ -1,0 +1,8 @@
+  public boolean createRequests() throws DebugException {
+    _createRequests();
+    if (_requests.size() > 0) {
+      _prepareRequests(_requests);
+      return true;
+    }
+    else return false;
+  }

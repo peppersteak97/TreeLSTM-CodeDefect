@@ -1,0 +1,5 @@
+  public void testXMLConfigException() throws Exception{
+    XMLConfig.XMLConfigException e1 = new XMLConfig.XMLConfigException();
+    XMLConfig.XMLConfigException e2 = new XMLConfig.XMLConfigException("dummy message", null);
+    XMLConfig.XMLConfigException e3 = new XMLConfig.XMLConfigException((Throwable)null);
+  }

@@ -1,0 +1,57 @@
+//  private void _selectFoundItem() {
+  
+  /** Will select the identified text (from, to).  Note that positions are technically between characters, so there
+    * is no distinction between open and closed intervals.  Originally highlighted the text, but we ran into problems
+    * with the document remove method changing the view to where the cursor was located, resulting in 
+    * replace constantly jumping from the replaced text back to the cursor.  There was a 
+    * removePreviousHighlight method which was removed since selections are removed automatically upon
+    * a caret change.
+    */
+  private void _selectFoundOrReplacedItem(int from, int to) {
+    _defPane.centerViewOnOffset(from);
+    _defPane.select(from, to);
+    
+    EventQueue.invokeLater(new Runnable() { 
+      public void run() { _defPane.getCaret().setSelectionVisible(true); } 
+    });
+  }
+  
+  
+  
+  
+  /** We lost ownership of what we put in the clipboard. */
+  public void lostOwnership(Clipboard clipboard, Transferable contents) {
+  }
+  
+  /** Default cut action. */
+  Action cutAction = new DefaultEditorKit.CutAction() {
+    public void actionPerformed(ActionEvent e) {
+      if (e.getSource() instanceof JTextComponent) {
+        JTextComponent tc = (JTextComponent)e.getSource();
+        if (tc.getSelectedText() != null) {
+          super.actionPerformed(e);
+          String s = edu.rice.cs.util.swing.Utilities.getClipboardSelection(FindReplacePanel.this);
+          if (s != null && s.length() != 0){ ClipboardHistoryModel.singleton().put(s); }
+        }
+      }
+    }
+  };
+  
+  /** Default copy action. */
+  Action copyAction = new DefaultEditorKit.CopyAction() {
+    public void actionPerformed(ActionEvent e) {
+      if (e.getSource() instanceof JTextComponent) {
+        JTextComponent tc = (JTextComponent)e.getSource();
+        if (tc.getSelectedText() != null) {
+          super.actionPerformed(e);
+          String s = edu.rice.cs.util.swing.Utilities.getClipboardSelection(FindReplacePanel.this);
+          if (s != null && s.length() != 0) { ClipboardHistoryModel.singleton().put(s); }
+        }
+      }
+    }
+  };  
+  
+  /***************** METHODS FOR TESTING PURPOSES ONLY  ***********************/
+  public DefinitionsPane getDefPane() { return _defPane; }
+  public JButton getFindNextButton() {return _findNextButton; }
+}

@@ -1,0 +1,4 @@
+    private static Dialog createDialog() {
+        return new Dialog(IntegrationUi.getUi().getActiveFrame(),
+                        PackageResources.LauncherDialog.TITLE, true);
+    }

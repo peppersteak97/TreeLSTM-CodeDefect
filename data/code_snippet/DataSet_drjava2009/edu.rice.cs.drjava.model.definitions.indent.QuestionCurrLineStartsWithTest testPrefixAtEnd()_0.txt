@@ -1,0 +1,9 @@
+  public void testPrefixAtEnd() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionCurrLineStartsWith("}", null, null);
+    
+    _setDocText("void foo() {\n}");
+    assertTrue("first line", !rule.testApplyRule(_doc, 3, Indenter.IndentReason.OTHER));
+    assertTrue("end of first line", !rule.testApplyRule(_doc, 12, Indenter.IndentReason.OTHER));
+    assertTrue("beginning of second line", rule.testApplyRule(_doc, 13, Indenter.IndentReason.OTHER));
+    assertTrue("end of second line", rule.testApplyRule(_doc, 14, Indenter.IndentReason.OTHER));
+  }

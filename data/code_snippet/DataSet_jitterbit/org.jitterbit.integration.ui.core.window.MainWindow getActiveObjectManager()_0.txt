@@ -1,0 +1,3 @@
+    public IActiveObjectManager getActiveObjectManager() {
+        return m_activeObjectManager;
+    }

@@ -1,0 +1,16 @@
+    public void configure() {
+
+        XpaTrafficController.instance().connectPort(this);
+
+        jmri.InstanceManager.setPowerManager(new jmri.jmrix.xpa.XpaPowerManager());
+
+        jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.xpa.XpaTurnoutManager());
+
+        sinkThread = new Thread(XpaTrafficController.instance());
+        sinkThread.start();
+
+        jmri.InstanceManager.setThrottleManager(new jmri.jmrix.xpa.XpaThrottleManager());
+
+        jmri.jmrix.xpa.ActiveFlag.setActive();
+
+    }

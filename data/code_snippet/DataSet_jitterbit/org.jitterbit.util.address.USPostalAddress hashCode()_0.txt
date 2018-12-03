@@ -1,0 +1,9 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = hash*31 + m_sAddressLine_1.hashCode();
+        hash = hash*31 + m_sAddressLine_2.hashCode();
+        hash = hash*31 + m_sCity.hashCode();
+        hash = hash*31 + m_sZipCode.hashCode();
+        hash = hash*31 + m_state.ordinal();
+        return hash;
+    }

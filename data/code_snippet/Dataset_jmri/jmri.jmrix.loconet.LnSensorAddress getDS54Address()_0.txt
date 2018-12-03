@@ -1,0 +1,6 @@
+    public String getDS54Address() {
+        if (_as != 0 )
+            return "LS"+(_high*128+_low)+"A";
+        else
+            return "LS"+(_high*128+_low)+"S";
+    }

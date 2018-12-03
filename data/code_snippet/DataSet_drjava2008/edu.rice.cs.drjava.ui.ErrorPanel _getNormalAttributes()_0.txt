@@ -1,0 +1,4 @@
+  protected static final SimpleAttributeSet _getNormalAttributes() {
+    SimpleAttributeSet s = new SimpleAttributeSet();
+    return s;
+  }

@@ -1,0 +1,27 @@
+  protected void _createRequests() throws DebugException {
+    boolean stepJava = DrJava.getConfig().getSetting(DEBUG_STEP_JAVA).booleanValue();
+    boolean stepInterpreter = DrJava.getConfig().getSetting(DEBUG_STEP_INTERPRETER).booleanValue();
+    boolean stepDrJava = DrJava.getConfig().getSetting(DEBUG_STEP_DRJAVA).booleanValue();
+
+    StepRequest request = _manager.getEventRequestManager().
+      createStepRequest(_thread, _size, _depth);
+    if (!stepJava) {
+      for (int i = 0; i < _javaExcludes.length; i++) {
+        request.addClassExclusionFilter(_javaExcludes[i]);
+      }
+    }
+    if (!stepInterpreter) {
+      request.addClassExclusionFilter("koala.*");
+      request.addClassExclusionFilter("edu.rice.cs.dynamicjava.*");
+    }
+    if (!stepDrJava) {
+      request.addClassExclusionFilter("edu.rice.cs.drjava.*");
+      request.addClassExclusionFilter("edu.rice.cs.util.*");
+      request.addClassExclusionFilter("edu.rice.cs.plt.*");
+    }
+    for(String s: DrJava.getConfig().getSetting(DEBUG_STEP_EXCLUDE)) {
+      request.addClassExclusionFilter(s.trim());
+    }
+
+    _requests.add(request);
+  }

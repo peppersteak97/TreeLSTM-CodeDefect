@@ -1,0 +1,3 @@
+  protected CompilerErrorModel getErrorModel() {
+    return getModel().getJavadocModel().getJavadocErrorModel();
+  }

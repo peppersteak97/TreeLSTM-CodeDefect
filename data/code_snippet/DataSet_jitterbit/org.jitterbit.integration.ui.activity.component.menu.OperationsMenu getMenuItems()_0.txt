@@ -1,0 +1,9 @@
+    protected List<JMenuItem> getMenuItems() {
+        List<JMenuItem> items = new ArrayList<JMenuItem>();
+        for( ActivityActionFactory factory : ACTIONS ) {
+            IApplicationAction a = factory.get(m_window);
+            items.add(MenuItemFactory.createMenuItem(a, 
+                            ActivityActionDictionary.DICTIONARY));
+        }
+        return items;
+    }

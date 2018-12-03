@@ -1,0 +1,3 @@
+    public void readButtonActionPerformed() {
+        tc.sendLocoNetMessage(createReadPacket());
+    }

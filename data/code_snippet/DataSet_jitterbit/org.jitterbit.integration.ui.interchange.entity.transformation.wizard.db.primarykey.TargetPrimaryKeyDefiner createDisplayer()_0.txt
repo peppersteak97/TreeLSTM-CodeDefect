@@ -1,0 +1,7 @@
+    private JComponent createDisplayer() {
+        OneColumnPanel p = new OneColumnPanel();
+        addCaption(p);
+        addKeyDefiners(p);
+        p.setOpaque(false, true);
+        return ComponentDecorFactory.invisible(p).getUi();
+    }

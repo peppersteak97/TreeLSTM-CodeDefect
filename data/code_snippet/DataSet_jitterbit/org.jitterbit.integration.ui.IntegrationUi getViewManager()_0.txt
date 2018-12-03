@@ -1,0 +1,3 @@
+    public IViewManager getViewManager() {
+        return m_viewManager;
+    }

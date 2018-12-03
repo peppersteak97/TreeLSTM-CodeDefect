@@ -1,0 +1,21 @@
+    private void layoutComponents() {
+        TwoColumnPanel center = new TwoColumnPanel();
+        Insets ins = new Insets(10, 5, 10, 5);
+        center.setLeftInsets(ins);
+        center.setRightInsets(ins);
+        center.addRow(m_caption);
+        center.setLeftAnchor(TwoColumnPanel.WEST);
+        center.addRow(m_textField, m_browseButton);
+        
+        Border inside = BorderFactory.createCompoundBorder(
+                        BorderFactory.createEtchedBorder(),
+                        BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        center.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createEmptyBorder(10, 10, 10, 10),
+                        inside));
+        center.addToParent(getContentPane(), BorderLayout.CENTER);
+        
+        m_buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        getContentPane().add(m_buttonPanel, BorderLayout.SOUTH);
+        getRootPane().setDefaultButton(m_buttonPanel.getButton(KongaButtonPanel.OK));
+    }

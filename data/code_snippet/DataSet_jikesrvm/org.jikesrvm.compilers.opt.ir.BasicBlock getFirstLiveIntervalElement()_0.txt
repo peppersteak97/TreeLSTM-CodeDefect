@@ -1,0 +1,7 @@
+  public final LiveIntervalElement getFirstLiveIntervalElement() {
+    if (scratchObject != null) {
+      return (LiveIntervalElement) scratchObject;
+    } else {
+      return null;
+    }
+  }

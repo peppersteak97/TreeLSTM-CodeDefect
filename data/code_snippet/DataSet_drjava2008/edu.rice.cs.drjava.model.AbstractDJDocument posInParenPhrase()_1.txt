@@ -1,0 +1,3 @@
+        if (match(ch, delims) /* && ! isShadowed() && (! skipParenPhrases || ! posInParenPhrase())*/) {
+          break;
+        }

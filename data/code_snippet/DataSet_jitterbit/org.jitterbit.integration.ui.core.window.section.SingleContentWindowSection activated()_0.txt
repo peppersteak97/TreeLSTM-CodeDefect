@@ -1,0 +1,7 @@
+    void activated() {
+        if (m_content == null) {
+            return;
+        }
+        m_content.appendState(WindowElementState.ACTIVE);
+        fireActiveContentChanged(m_content);
+    }

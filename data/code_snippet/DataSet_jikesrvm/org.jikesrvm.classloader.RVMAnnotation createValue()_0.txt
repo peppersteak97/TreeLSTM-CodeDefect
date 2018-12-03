@@ -1,0 +1,11 @@
+  private Annotation createValue() {
+    final RVMClass annotationInterface = type.resolve().asClass();
+    annotationInterface.resolve();
+    Class<?> interfaceClass = annotationInterface.getClassForType();
+    ClassLoader classLoader = interfaceClass.getClassLoader();
+    if (classLoader == null) {
+      classLoader = BootstrapClassLoader.getBootstrapClassLoader();
+    }
+    return (Annotation) Proxy.newProxyInstance(classLoader, new Class[] { interfaceClass },
+        new AnnotationFactory());
+  }

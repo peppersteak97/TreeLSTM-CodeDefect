@@ -1,0 +1,12 @@
+    protected DocDefTableUi createTable() {
+        DocDefTableUi table = new DocDefTableUi(this) {
+
+            @Override
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+                Component c = super.prepareRenderer(renderer, row, column);
+                c.setEnabled(row != 0 || column < SegmentTableModel.PARENT.getIndex());
+                return c;
+            }
+        };
+        return table;
+    }

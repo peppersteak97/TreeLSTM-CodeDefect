@@ -1,0 +1,3 @@
+    public List<IPage> getPages() {
+        return m_pages;
+    }

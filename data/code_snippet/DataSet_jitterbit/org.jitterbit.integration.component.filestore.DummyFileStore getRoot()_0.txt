@@ -1,0 +1,3 @@
+    public IFile getRoot() {
+        return m_root;
+    }

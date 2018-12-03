@@ -1,0 +1,31 @@
+    private void writeMainClassPublicFieldMethods() {
+        for( Column c : getValidColumns() ) {
+            addLine("\t" + SqlToCppTypeConverter.getCppType(c) + 
+                    " Get" + c.getName() + "() {");
+            addLine("\t\tif( m_row." + CppUtils.getIsColumnNullMemberName(c) + " )");
+            addLine("\t\t\tthrow konga::DbNullException(\"" + c.getName() + "\");");
+            addLine("\t\treturn m_row." + CppUtils.getColumnMemberName(c) + ";");
+            addLine("\t}");
+            
+            addLine("\tvoid Set" + c.getName() + "(" +
+                    SqlToCppTypeConverter.getCppConstRefTypeAndArgument(c) + ") {");
+            addLine("\t\tm_row." + CppUtils.getColumnMemberName(c) + " = " +
+                    SqlToCppTypeConverter.getCppConstRefVariable(c) + ";");
+            addLine("\t\tm_row." + CppUtils.getIsColumnNullMemberName(c) + " = false;");
+            addLine("\t\tm_row." + CppUtils.getIsColumnDirtyMemberName(c) + " = true;");
+            addLine("\t}");
+            
+            addLine("\tbool " + CppUtils.getIsColumnNullMemberName(c) + "() const {");
+            addLine("\t\treturn m_row." + CppUtils.getIsColumnNullMemberName(c) + ";");
+            addLine("\t}");
+            
+            addLine("\tvoid " + CppUtils.getSetColumnToNullMethodName(c) + "() {");
+            if( SqlToCppTypeConverter.isStringType(c) ) {
+                addLine("\t\tm_row." + CppUtils.getColumnMemberName(c) + " = \"\";");
+            }
+            addLine("\t\tm_row." + CppUtils.getIsColumnNullMemberName(c) + " = true;");
+            addLine("\t\tm_row." + CppUtils.getIsColumnDirtyMemberName(c) + " = true;");
+            addLine("\t}");
+            addLine();
+        }
+    }

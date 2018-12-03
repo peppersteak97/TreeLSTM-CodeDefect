@@ -1,0 +1,4 @@
+  public final void emitNOP() {
+    mIP++;
+    mc.addInstruction(mi);
+  }

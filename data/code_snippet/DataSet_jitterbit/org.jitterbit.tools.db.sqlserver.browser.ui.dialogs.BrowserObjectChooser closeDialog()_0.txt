@@ -1,0 +1,8 @@
+    private void closeDialog() {
+        if( m_cppOptionsPanel != null )
+            m_cppOptionsPanel.savePreferences();
+        if( m_sqlOptionsPanel != null )
+            m_sqlOptionsPanel.savePreferences();
+        
+        dispose();
+    }

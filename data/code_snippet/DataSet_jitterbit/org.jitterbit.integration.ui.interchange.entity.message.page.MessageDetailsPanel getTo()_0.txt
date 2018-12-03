@@ -1,0 +1,3 @@
+    private String getTo() {
+        return m_sendTo.getValue().trim();
+    }

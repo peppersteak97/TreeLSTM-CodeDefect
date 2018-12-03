@@ -1,0 +1,1 @@
+  static int getNumOpt4() { return numOpt4; }

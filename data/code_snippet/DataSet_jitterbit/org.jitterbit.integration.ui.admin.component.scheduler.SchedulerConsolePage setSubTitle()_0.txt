@@ -1,0 +1,7 @@
+    private void setSubTitle() {
+        ServerManager mgr = ServerManager.getManager();
+        String s = (mgr.getConnectionStatus() == ConnectionStatus.CONNECTED) ? 
+                        mgr.getCurrentServerName() :
+                            PackageResources.Page.DISCONNECTED;
+        setSubTitle(s);
+    }

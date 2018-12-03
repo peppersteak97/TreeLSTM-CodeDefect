@@ -1,0 +1,24 @@
+  private void _init() {
+    
+    /** This visitor is invoked by the DocumentNavigator to update _activeDocument among other things */
+    final NodeDataVisitor<OpenDefinitionsDocument, Boolean>  _gainVisitor = 
+      new NodeDataVisitor<OpenDefinitionsDocument, Boolean>() {
+      public Boolean itemCase(OpenDefinitionsDocument doc, Object... p) {
+        
+        if (dir != null && ! dir.equals(oldDir)) {
+          /* If the file is in External or Auxiliary Files then then we do not want to change our project directory
+           * to something outside the project. ?? */
+          _activeDirectory = dir;
+          _notifier.currentDirectoryChanged(_activeDirectory);
+        }
+        return Boolean.valueOf(true);
+      }
+      public Boolean fileCase(File f, Object... p) {
+          File root = _state.getProjectFile().getParentFile().getAbsoluteFile();
+          f = new File(root, f.getPath());
+        }
+        _notifier.currentDirectoryChanged(f);
+        return Boolean.valueOf(true);
+      }
+      public Boolean stringCase(String s, Object... p) { return Boolean.valueOf(false); }
+    };

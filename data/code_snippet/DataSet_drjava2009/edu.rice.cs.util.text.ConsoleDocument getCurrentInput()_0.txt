@@ -1,0 +1,4 @@
+  public String getCurrentInput() {
+      try { return getDocText(_promptPos, _document.getLength() - _promptPos); }
+      catch (EditDocumentException e) { throw new UnexpectedException(e); }
+  }

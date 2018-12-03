@@ -1,0 +1,3 @@
+	public int getTopOffset() {
+		return 0;
+	}

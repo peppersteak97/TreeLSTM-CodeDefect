@@ -1,0 +1,8 @@
+    private static JPanel createPanel() {
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.LINE_AXIS));
+        p.setBorder(IntegrationUiStyleSheet.TreeTitleBorder);
+        p.setBackground(IntegrationUiStyleSheet.TreeTitleUnfocusedBackground);
+        FocusUtils.makeComponentMouseFocusable(p);
+        return p;
+    }

@@ -1,0 +1,4 @@
+    public void startup() {
+        m_windowMenuController = new WindowMenuController(this);
+        m_windowMenuController.startup();
+    }

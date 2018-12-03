@@ -1,0 +1,3 @@
+  public RegisterOperand makeTempInt() {
+    return new RegisterOperand(getInteger(), TypeReference.Int);
+  }

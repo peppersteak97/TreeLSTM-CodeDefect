@@ -1,0 +1,25 @@
+    private void createSections() {
+        m_sections = new HashMap<SectionPosition, IWindowSection>();
+        for (SectionPosition p : SectionPosition.values()) {
+            switch (p) {
+            case CENTER:
+                m_sections.put(p, new SingleContentWindowSection(this));
+                break;
+            case WEST:
+                m_sections.put(p, new MultiContentWindowSection(
+                                this,
+                                IntegrationUiUtils.USE_TABBED_PANE_CLOSE_BUTTON, 
+                                false,
+                                false));
+                break;
+            case EAST:
+            case SOUTH:
+                m_sections.put(p, new MultiContentWindowSection(
+                                this,
+                                IntegrationUiUtils.USE_TABBED_PANE_CLOSE_BUTTON, 
+                                true,
+                                false));
+                break;
+            }
+        }
+    }

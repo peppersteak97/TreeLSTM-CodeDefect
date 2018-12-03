@@ -1,0 +1,3 @@
+    public DayOfTheWeek getDay() {
+        return m_weekDayBox.getSelectedItem();
+    }

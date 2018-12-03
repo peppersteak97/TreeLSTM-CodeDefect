@@ -1,0 +1,1 @@
+  public boolean isWeaklyShadowed() { return isShadowed() || isOpenComment(); }

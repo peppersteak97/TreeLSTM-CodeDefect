@@ -1,0 +1,3 @@
+    public String getText() {
+        return getProperty(MESSAGE_TEXT_PROPERTY);
+    }

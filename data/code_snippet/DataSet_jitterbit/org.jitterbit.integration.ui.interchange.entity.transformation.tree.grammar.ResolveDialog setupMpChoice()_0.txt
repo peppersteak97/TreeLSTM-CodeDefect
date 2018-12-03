@@ -1,0 +1,8 @@
+	void setupMpChoice(){
+		int pos[]=new int[2];
+		m_mpChoice.removeAll();
+		for(MapPairPanel mp:m_mapList){
+			String text=mp.m_source;
+			if(findDEPos(m_deListSelected,text,pos))m_mpChoice.addItem(mp.m_targetDE);
+		}
+	}

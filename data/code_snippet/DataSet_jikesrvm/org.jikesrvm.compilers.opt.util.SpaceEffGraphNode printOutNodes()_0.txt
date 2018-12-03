@@ -1,0 +1,5 @@
+  public void printOutNodes() {
+    for (SpaceEffGraphEdge out = firstOutEdge(); out != null; out = out.getNextOut()) {
+      System.out.println(out.toNode());
+    }
+  }

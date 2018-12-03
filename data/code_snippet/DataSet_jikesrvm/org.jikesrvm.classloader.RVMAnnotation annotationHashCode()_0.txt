@@ -1,0 +1,40 @@
+  private int annotationHashCode() {
+    RVMClass annotationInterface = type.resolve().asClass();
+    RVMMethod[] annotationMethods = annotationInterface.getDeclaredMethods();
+    String typeString = type.toString();
+    int result = typeString.substring(1, typeString.length() - 1).hashCode();
+    try {
+      for (RVMMethod method : annotationMethods) {
+        String name = method.getName().toUnicodeString();
+        Object value = getElementValue(name, method.getReturnType().resolve().getClassForType());
+        int part_result = name.hashCode() * 127;
+        if (value.getClass().isArray()) {
+          if (value instanceof Object[]) {
+            part_result ^= Arrays.hashCode((Object[]) value);
+          } else if (value instanceof boolean[]) {
+            part_result ^= Arrays.hashCode((boolean[]) value);
+          } else if (value instanceof byte[]) {
+            part_result ^= Arrays.hashCode((byte[]) value);
+          } else if (value instanceof char[]) {
+              part_result ^= Arrays.hashCode((char[]) value);
+          } else if (value instanceof short[]) {
+            part_result ^= Arrays.hashCode((short[]) value);
+          } else if (value instanceof int[]) {
+            part_result ^= Arrays.hashCode((int[]) value);
+          } else if (value instanceof long[]) {
+            part_result ^= Arrays.hashCode((long[]) value);
+          } else if (value instanceof float[]) {
+            part_result ^= Arrays.hashCode((float[]) value);
+          } else if (value instanceof double[]) {
+            part_result ^= Arrays.hashCode((double[]) value);
+          }
+        } else {
+          part_result ^= value.hashCode();
+        }
+        result += part_result;
+      }
+    } catch (java.io.UTFDataFormatException e) {
+      throw new Error(e);
+    }
+    return result;
+  }

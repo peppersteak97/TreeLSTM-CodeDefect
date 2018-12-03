@@ -1,0 +1,17 @@
+  public /* synchronized */ ArrayList<DebugThreadData> getCurrentThreadData() throws DebugException {
+    assert EventQueue.isDispatchThread();
+    if (! isReady()) { return new ArrayList<DebugThreadData>(); }
+    Iterable<ThreadReference> listThreads;
+    try { listThreads = _vm.allThreads(); }
+    catch (VMDisconnectedException vmde) {
+      return new ArrayList<DebugThreadData>();
+    }
+    
+    ArrayList<DebugThreadData> threads = new ArrayList<DebugThreadData>();
+    for (ThreadReference ref : listThreads) {
+      try { threads.add(new JPDAThreadData(ref)); }
+      catch (ObjectCollectedException e) {
+      }
+    }
+    return threads;
+  }

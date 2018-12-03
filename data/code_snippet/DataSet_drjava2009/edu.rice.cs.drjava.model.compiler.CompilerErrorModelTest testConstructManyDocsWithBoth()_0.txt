@@ -1,0 +1,23 @@
+  public void testConstructManyDocsWithBoth() {
+    fullSetup();
+    
+    assertEquals("Should have 15 compiler errors.", 15, model.getNumErrors());
+    assertEquals("Should have 6 warnings" , 6, model.getNumWarnings());
+    assertEquals("Should have 9 compiler errors" , 9, model.getNumCompErrors());
+    assertEquals("Errors should be sorted.", errors[0], model.getError(0));
+    assertEquals("Errors should be sorted.", errors[14], model.getError(1));
+    assertEquals("Errors should be sorted.", errors[12], model.getError(2));
+    assertEquals("Errors should be sorted.", errors[7], model.getError(3));
+    assertEquals("Errors should be sorted.", errors[6], model.getError(4));
+    assertEquals("Errors should be sorted.", errors[8], model.getError(5));
+    assertEquals("Errors should be sorted.", errors[2], model.getError(6));
+    assertEquals("Errors should be sorted.", errors[13], model.getError(7));
+    assertEquals("Errors should be sorted.", errors[4], model.getError(8));
+    assertEquals("Errors should be sorted.", errors[9], model.getError(9));
+    assertEquals("Errors should be sorted.", errors[10], model.getError(10));
+    assertEquals("Errors should be sorted.", errors[11], model.getError(11));
+    assertEquals("Errors should be sorted.", errors[3], model.getError(12));
+    assertEquals("Errors should be sorted.", errors[5], model.getError(13));
+    assertEquals("Errors should be sorted.", errors[1], model.getError(14));
+    assertTrue("hasOnlyWarnings should return false.", !model.hasOnlyWarnings());
+  }

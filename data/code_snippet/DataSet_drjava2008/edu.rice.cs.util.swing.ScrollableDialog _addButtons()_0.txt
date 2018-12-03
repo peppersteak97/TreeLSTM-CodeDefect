@@ -1,0 +1,3 @@
+  protected void _addButtons() {
+    _buttonPanel.add(new JButton(_okAction));
+  }

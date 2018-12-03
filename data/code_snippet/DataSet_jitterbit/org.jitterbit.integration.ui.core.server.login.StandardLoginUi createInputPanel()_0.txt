@@ -1,0 +1,10 @@
+    protected JPanel createInputPanel() {
+        StyleSheetTextClass ssc = IntegrationUiStyleSheet.DefaultText;
+        JPanel p = new JPanel(new DialogLayout());
+        createAndAddServerCombo(p, ssc);
+        createAndAddUserNameInput(p, ssc);
+        createAndAddPasswordInput(p, ssc);
+        createAndAddAdvancedControls(p);
+        p.setBorder(BorderFactory.createEmptyBorder(20, 10, 5, 10));
+        return p;
+    }

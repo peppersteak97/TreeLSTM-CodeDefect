@@ -1,0 +1,13 @@
+    private void layoutComponents() {
+        setLayout(new BoxLayout(getUi(), BoxLayout.PAGE_AXIS));
+
+        add(getSubComponentPanel(m_topPanel));
+
+        add(Box.createVerticalStrut(10));
+
+        JComponent disp = ComponentDecorFactory.centerBorder(
+                        m_locationDisplayer).getUi();
+        add(getSubComponentPanel(disp));
+
+        add(Box.createVerticalGlue());
+    }

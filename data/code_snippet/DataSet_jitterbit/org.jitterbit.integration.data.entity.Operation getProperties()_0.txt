@@ -1,0 +1,9 @@
+    public StringKeyValuePairs getProperties() {
+        StringKeyValuePairs keyValues = super.getProperties();
+        keyValues.put(OPERATION_ID, getID().toString());
+        keyValues.put(OPERATION_NAME, getName());
+        keyValues.put(OPERATION_TYPE_ID, Integer.toString(getOperationType().getId()));
+        keyValues.put(DESCRIPTION, getDescription());
+        OperationOptions config = getOperationConfiguration();
+        return keyValues;
+    }

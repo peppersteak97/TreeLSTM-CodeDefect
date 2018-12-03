@@ -1,0 +1,7 @@
+  private void _junitProject() {
+    updateStatusField("Running JUnit Tests in Project");
+    _disableJUnitActions();
+    try { _model.getJUnitModel().junitProject(); } 
+    catch(UnexpectedException e) { _junitInterrupted(e); }
+    catch(Exception e) { _junitInterrupted(new UnexpectedException(e)); }
+  }

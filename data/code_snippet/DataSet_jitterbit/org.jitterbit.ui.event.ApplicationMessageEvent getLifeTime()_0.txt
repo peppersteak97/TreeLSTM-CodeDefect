@@ -1,0 +1,3 @@
+	public LifeTime getLifeTime() {
+		return m_messageLifeTime;
+	}

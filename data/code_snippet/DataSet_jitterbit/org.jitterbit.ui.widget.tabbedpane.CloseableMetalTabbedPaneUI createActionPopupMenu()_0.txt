@@ -1,0 +1,10 @@
+    protected JPopupMenu createActionPopupMenu() {
+        JPopupMenu pm = new JPopupMenu();
+        CloseableTabbedPane tp = (CloseableTabbedPane) tabPane;
+        pm.add(tp.getCloseCurrentAction());
+        if (tp.canCloseOthers()) {
+            pm.add(tp.getCloseOthersAction());
+            pm.add(tp.getCloseAllAction());
+        }
+        return pm;
+    }

@@ -1,0 +1,16 @@
+    private void createDetailsPanel() {
+        m_detailsPanel = new UserDetailsPanel(m_userManager);
+        m_detailsPanel.addChangeListener(m_inputSiteListener);
+        PropertyChangeListener loginLst = new PropertyChangeListener() {
+
+            public void propertyChange(PropertyChangeEvent e) {
+                m_page.repaintLists();
+            }
+        };
+        m_detailsPanel.addPropertyChangeListener(UserDetailsPanel.LOGIN_PROPERTY,
+                        loginLst);
+        m_detailsPanel.setEnabled(false);
+        m_detailsLabel = IntegrationUiStyleSheet.DefaultBold.makeJLabel(
+                        PackageResources.UserPanel.Labels.DETAILS);
+        m_detailsLabel.setEnabled(false);
+    }

@@ -1,0 +1,4 @@
+    void remove() {
+		deactivateTurnout();
+        active = false;
+    }

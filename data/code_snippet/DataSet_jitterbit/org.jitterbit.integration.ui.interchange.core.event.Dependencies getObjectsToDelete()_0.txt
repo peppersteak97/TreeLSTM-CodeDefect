@@ -1,0 +1,9 @@
+    List<? extends IntegrationData> getObjectsToDelete() {
+        List<IntegrationData> li = new ArrayList<IntegrationData>();
+        for (Dependency d : m_dependencies) {
+            if (d.willBeDeleted()) {
+                li.add(d.getObject());
+            }
+        }
+        return li;
+    }

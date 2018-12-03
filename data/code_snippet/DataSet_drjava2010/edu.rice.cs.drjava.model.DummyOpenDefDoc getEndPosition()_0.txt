@@ -1,0 +1,3 @@
+  public Position getEndPosition() { 
+    throw new UnsupportedOperationException("ConcreteOpenDefDoc does not support getEndPosition()"); 
+  }

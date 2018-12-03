@@ -1,0 +1,2 @@
+    if (_cursor.atStart())  val.append(PTR_CHAR).append(_cursor.getBlockOffset());
+    

@@ -1,0 +1,7 @@
+    public synchronized void stop() {
+        if (m_timer == null) {
+            return;
+        }
+        m_timer.stop();
+        m_timer = null;
+    }

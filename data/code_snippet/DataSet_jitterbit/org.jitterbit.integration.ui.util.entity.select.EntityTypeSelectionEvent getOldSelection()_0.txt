@@ -1,0 +1,3 @@
+    public EnumSet<EntityType> getOldSelection() {
+        return m_oldSelection;
+    }

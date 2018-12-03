@@ -1,0 +1,26 @@
+  public void testReopenFiles() throws Exception {
+    final File tempFile = writeToNewTempFile(BAR_TEXT);
+    final File tempFile2 = writeToNewTempFile(FOO_TEXT);
+    
+    _rfm.updateMax(2);
+    _rfm.updateOpenFiles(tempFile2);
+    _rfm.updateOpenFiles(tempFile);
+    Vector<File> vector = _rfm.getFileVector();
+    
+    assertEquals("tempFile should be at top", vector.get(0), tempFile);
+    
+    _rfm.updateOpenFiles(tempFile2);
+    vector = _rfm.getFileVector();
+    assertEquals("tempFile2 should be at top", vector.get(0), tempFile2);
+    
+    File parent = tempFile.getParentFile();
+    String dotSlash = "." + System.getProperty("file.separator");
+    parent = new File(parent, dotSlash);
+    File sameFile = new File(parent, tempFile.getName());
+    
+    _rfm.updateOpenFiles(sameFile);
+    vector = _rfm.getFileVector();
+    assertEquals("sameFile should be at top", vector.get(0), sameFile);
+    assertEquals("should only have two files", 2, vector.size());
+    assertTrue("should not contain tempFile", !(vector.contains(tempFile)));
+  }

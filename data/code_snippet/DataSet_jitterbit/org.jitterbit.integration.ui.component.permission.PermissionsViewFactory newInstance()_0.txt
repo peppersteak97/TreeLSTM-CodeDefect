@@ -1,0 +1,10 @@
+    public static PermissionsViewFactory newInstance() {
+        return new PermissionsViewFactory() {
+
+            @Override
+            public IPermissionsView create(IWindowSection section, 
+                                           IPermissionsSavingHandler saveHandler) {
+                return new PermissionsViewImpl(section, saveHandler);
+            }
+        };
+    }

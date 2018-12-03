@@ -1,0 +1,12 @@
+  public void testWordRange() throws IOException {
+    BalancingStreamTokenizer tok = make("Hello World");
+    tok.defaultThreeQuoteDollarCurlySetup();
+    tok.whitespaceRange(0,255);
+    tok.wordRange(97,122);
+    String s = tok.getNextToken();
+    assertEquals("ello", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("orld", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+  }

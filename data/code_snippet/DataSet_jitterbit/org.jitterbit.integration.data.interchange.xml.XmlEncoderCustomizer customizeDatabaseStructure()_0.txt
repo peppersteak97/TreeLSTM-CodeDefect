@@ -1,0 +1,40 @@
+    private static void customizeDatabaseStructure() throws IntrospectionException {
+        BeanInfo info = Introspector.getBeanInfo(DbTables.class);
+        BeanDescriptor desc = info.getBeanDescriptor();
+        desc.setValue("persistenceDelegate", new DefaultPersistenceDelegate(new String[] { 
+                        "id", "tables" })); 
+
+        info = Introspector.getBeanInfo(DbFields.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(DbFields.Entry.class);
+        desc = info.getBeanDescriptor();
+        desc.setValue("persistenceDelegate", new DefaultPersistenceDelegate(new String[] { 
+                        "id", "keyFields", "type" })); 
+
+        info = Introspector.getBeanInfo(DbTranRelations.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(DbTranRelations.Relation.class);
+        desc = info.getBeanDescriptor();
+                        new DbTranRelationsPersistenceDelegate.RelationDelegate());
+
+        info = Introspector.getBeanInfo(DbTranFilters.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(DbTranFilters.Entry.class);
+        desc = info.getBeanDescriptor();
+                        new DbTranFiltersPersistenceDelegate.EntryDelegate());
+
+        info = Introspector.getBeanInfo(DbTranFilters.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(DbTranFilters.Entry.class);
+        desc = info.getBeanDescriptor();
+                        new DbTranFiltersPersistenceDelegate.EntryDelegate());
+
+        info = Introspector.getBeanInfo(SqlScript.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(SqlScript.Entry.class);
+        desc = info.getBeanDescriptor();
+                        new SqlScriptPersistenceDelegate.EntryDelegate());
+
+        info = Introspector.getBeanInfo(DatabaseStructure.class);
+        desc = info.getBeanDescriptor();
+    }

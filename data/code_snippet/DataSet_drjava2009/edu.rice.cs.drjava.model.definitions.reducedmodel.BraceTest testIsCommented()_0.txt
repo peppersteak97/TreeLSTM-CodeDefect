@@ -1,0 +1,7 @@
+  public void testIsCommented() {
+    assertTrue("#0.0", !lparen.isCommented());
+    lparen.setState(INSIDE_BLOCK_COMMENT);
+    assertTrue("#0.1", lparen.isCommented());
+    lparen.setState(INSIDE_DOUBLE_QUOTE);
+    assertTrue("#0.2", !lparen.isCommented());
+  }

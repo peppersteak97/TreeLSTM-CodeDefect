@@ -1,0 +1,3 @@
+  public GlobalEventNotifier getNotifier() {
+    throw new UnsupportedOperationException("Tried to call getNotifier on a Dummy");
+  }

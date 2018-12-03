@@ -1,0 +1,8 @@
+	public synchronized List<Rectangle> getBoundingBoxes() {
+		List<Rectangle> liRects = super.getBoundingBoxes();
+		liRects.add( new Rectangle(getX(), getY() + getHeight(), getWidth(), SELECT_BOX_HEIGHT_OFFSET) );
+
+		if ( m_textRect != null )
+			liRects.add ( new Rectangle(m_textRect) );
+		return liRects;
+	}

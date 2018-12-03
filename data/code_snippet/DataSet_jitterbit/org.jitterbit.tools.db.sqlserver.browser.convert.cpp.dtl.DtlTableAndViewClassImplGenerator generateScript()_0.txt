@@ -1,0 +1,8 @@
+    protected void generateScript() {
+        checkColumns();
+        writeHeader();
+        startDtlNamespace();
+        createDefaultBCA();
+        createDefaultSelValidate();
+        endDtlNamespace();
+    }

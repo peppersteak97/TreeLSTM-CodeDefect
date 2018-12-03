@@ -1,0 +1,5 @@
+    private void unbindEscape() {
+        getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).remove(
+                        KeyUtils.ESCAPE);
+        getRootPane().getActionMap().remove(ESCAPE_ACTION);
+    }

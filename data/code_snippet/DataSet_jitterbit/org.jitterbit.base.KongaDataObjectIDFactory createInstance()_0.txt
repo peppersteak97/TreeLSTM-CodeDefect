@@ -1,0 +1,14 @@
+	private static IKongaIDFactory createInstance() {
+		try {
+			return (IKongaIDFactory)Class.forName(
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}

@@ -1,0 +1,4 @@
+    IApplicationAction getSaveAction() {
+        IApplicationWindow window = m_editor.getAppWin();
+        return WindowActionFactory.SAVE.get(window);
+    }

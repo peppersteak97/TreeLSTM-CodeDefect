@@ -1,0 +1,7 @@
+		if ( (nextHead==null) && (!reachedEndBumper()) ) {
+			JOptionPane.showMessageDialog(setSignalsFrame,
+				java.text.MessageFormat.format(rb.getString("InfoMessage5"),
+					new String[]{block.getUserName()}), 
+						null,JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}

@@ -1,0 +1,12 @@
+    private JPanel getFieldListHeader() {
+        JPanel listHeader = new JPanel();
+        listHeader.setLayout(new BoxLayout(listHeader, BoxLayout.LINE_AXIS));
+        JLabel lbl = IntegrationUiStyleSheet.InputLabelText.makeJLabel(
+                PackageResources.RelationshipDefinitionPage.Labels.FIELD_RELATIONSHIPS);
+        listHeader.add(lbl);
+        listHeader.add(Box.createHorizontalGlue());
+        listHeader.add(m_addRelationshipButton);
+        listHeader.add(Box.createHorizontalStrut(10));
+        listHeader.add(m_removeFieldsButton);
+        return listHeader;
+    }

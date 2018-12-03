@@ -1,0 +1,14 @@
+    public void closeAll() {
+        if( !m_bClosed ) {
+	        for( String s : m_connections.keySet() ) {
+	            if( DEBUG && s.length() > 0 )
+	                System.out.println("Closing the connection to " + s);
+	            try {
+	                m_connections.get(s).close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        m_bClosed = true;
+        }
+    }

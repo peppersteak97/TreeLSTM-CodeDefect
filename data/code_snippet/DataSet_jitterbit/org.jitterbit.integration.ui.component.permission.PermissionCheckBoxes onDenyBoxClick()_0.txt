@@ -1,0 +1,9 @@
+    private void onDenyBoxClick() {
+        if (m_denyBox.isSelected()) {
+            m_allowBox.setSelected(false);
+            m_allowAllBox.setSelected(false);
+        }
+        else {
+            m_denyAllBox.setSelected(false);
+        }
+    }

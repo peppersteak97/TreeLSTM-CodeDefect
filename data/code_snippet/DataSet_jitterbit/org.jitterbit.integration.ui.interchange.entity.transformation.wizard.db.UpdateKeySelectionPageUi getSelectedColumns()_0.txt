@@ -1,0 +1,9 @@
+    Set<DatabaseColumn> getSelectedColumns() {
+        Set<DatabaseColumn> cols = new HashSet<DatabaseColumn>();
+        for (Map.Entry<DatabaseColumn, JCheckBox> entry : m_valueFieldsMap.entrySet()) {
+            if (entry.getValue().isSelected()) {
+                cols.add(entry.getKey());
+            }
+        }
+        return cols;
+    }

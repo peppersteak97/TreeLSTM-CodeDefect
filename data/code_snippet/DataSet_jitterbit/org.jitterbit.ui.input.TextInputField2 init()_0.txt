@@ -1,0 +1,13 @@
+    private void init() {
+        Color valid = UiResources.getDefault().getColor(VALID_BACKGROUND_RESOURCE_KEY);
+        if (valid == null) {
+            valid = DEFAULT_VALID;
+        }
+        Color invalid = UiResources.getDefault()
+                        .getColor(INVALID_BACKGROUND_RESOURCE_KEY);
+        if (invalid == null) {
+            invalid = DEFAULT_INVALID;
+        }
+        m_validBackground = valid;
+        m_invalidBackground = invalid;
+    }

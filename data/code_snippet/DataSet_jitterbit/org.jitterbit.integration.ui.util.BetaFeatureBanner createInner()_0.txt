@@ -1,0 +1,5 @@
+    private JComponent createInner() {
+        JComponent inner = ComponentDecorFactory.invisible(createText()).getUi();
+        UiUtils.setOpaqueRecursively(inner, false);
+        return inner;
+    }

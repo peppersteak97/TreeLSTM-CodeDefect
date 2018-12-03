@@ -1,0 +1,10 @@
+    private List<IIntegrationEntityUiDelegate> getSelectedDestinations() {
+        List<IIntegrationEntityUiDelegate> destinations = 
+            new ArrayList<IIntegrationEntityUiDelegate>();
+        for (Object o : m_availableDestinations.getSelection().toArray()) {
+            if (o instanceof IIntegrationEntityUiDelegate) {
+                destinations.add((IIntegrationEntityUiDelegate) o);
+            }
+        }
+        return destinations;
+    }

@@ -1,0 +1,5 @@
+    protected final void fireChangeEvent() {
+        if (!m_blockEvents) {
+            fireChangeEvent(new ChangeEvent(this));
+        }
+    }

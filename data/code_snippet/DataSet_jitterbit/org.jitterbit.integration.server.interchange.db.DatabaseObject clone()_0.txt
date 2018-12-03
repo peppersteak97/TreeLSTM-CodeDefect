@@ -1,0 +1,14 @@
+    protected Object clone() throws CloneNotSupportedException {
+        DatabaseObject cl = (DatabaseObject) super.clone();
+        cl.m_columns = new ArrayList<DatabaseColumn>();
+        for (DatabaseColumn col : m_columns) {
+            DatabaseColumn clonedCol = new DatabaseColumn(cl, col.getName(), col
+                            .getDataTypeString(), col.getDefaultValueString(), col
+                            .isNullable());
+            if (col.isPrimaryKey()) {
+                clonedCol.setPrimaryKey();
+            }
+            cl.m_columns.add(clonedCol);
+        }
+        return cl;
+    }

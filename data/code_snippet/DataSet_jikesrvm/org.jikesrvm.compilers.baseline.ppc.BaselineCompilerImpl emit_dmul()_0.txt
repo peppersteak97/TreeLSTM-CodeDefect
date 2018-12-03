@@ -1,0 +1,6 @@
+  protected final void emit_dmul() {
+    popDouble(F0);
+    popDouble(F1);
+    asm.emitFMUL(F0, F1, F0);
+    pushDouble(F0);
+  }

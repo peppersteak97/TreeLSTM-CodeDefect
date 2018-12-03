@@ -1,0 +1,10 @@
+    public void close() {
+        try {
+            if( m_connections != null ) {
+                m_connections.closeAll();
+            }
+        } 
+        finally {
+            System.exit(0);
+        }
+    }

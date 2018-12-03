@@ -1,0 +1,5 @@
+  public SpaceEffGraphNodeList nextElement() {
+    SpaceEffGraphNodeList tmp = _next;
+    _next = _next._next;
+    return tmp;
+  }

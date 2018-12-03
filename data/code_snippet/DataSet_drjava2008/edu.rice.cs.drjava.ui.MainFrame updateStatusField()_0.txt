@@ -1,0 +1,18 @@
+  public void updateStatusField() {
+    OpenDefinitionsDocument doc = _model.getActiveDocument();
+    String fileName = doc.getCompletePath();
+    if (! fileName.equals(_fileTitle)) {
+      _fileTitle = fileName;
+      setTitle(fileName);
+      _model.getDocCollectionWidget().repaint();
+    }
+    String path = doc.getCompletePath();
+    
+    String text = "Editing " + path;
+    
+    
+    
+    if (! _statusField.getText().equals(text)) { 
+      _statusField.setText(text); 
+    }
+  }

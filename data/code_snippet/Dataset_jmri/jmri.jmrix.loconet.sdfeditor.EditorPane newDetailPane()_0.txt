@@ -1,0 +1,6 @@
+    JPanel newDetailPane() {
+        
+        detailed.setLayout(new FlowLayout());
+        
+        return detailed;
+    }

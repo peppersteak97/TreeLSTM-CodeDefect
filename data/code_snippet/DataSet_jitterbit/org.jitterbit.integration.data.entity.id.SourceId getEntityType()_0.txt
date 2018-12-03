@@ -1,0 +1,3 @@
+    public EntityType getEntityType() {
+        return EntityType.Source;
+    }

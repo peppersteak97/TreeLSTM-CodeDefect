@@ -1,0 +1,4 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    book = new DrJavaBook("import java.io.*;", "simple_file.java", new PageFormat());
+  }

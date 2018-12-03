@@ -1,0 +1,9 @@
+  protected void setUp() throws Exception {
+    Utilities.TEST_MODE = true;
+    final String newName = System.getProperty("drjava.test.config");
+    assert newName != null;
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+      }
+    });
+  }

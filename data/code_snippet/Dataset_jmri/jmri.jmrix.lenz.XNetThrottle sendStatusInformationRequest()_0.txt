@@ -1,0 +1,11 @@
+    synchronized protected void sendStatusInformationRequest()
+    {
+        /* Send the request for status */
+        XNetMessage msg=XNetMessage.getLocomotiveInfoRequestMsg(this.address);
+        msg.setRetries(1); // Since we repeat this ourselves, don't ask the 
+        // traffic controller to do this for us.
+        // now, we send the message to the command station
+        XNetTrafficController.instance().sendXNetMessage(msg,this);
+        requestState=THROTTLESTATSENT;     
+        return;
+    }

@@ -1,0 +1,3 @@
+    public void blockEventFiring() {
+        m_blockEventFiring = true;
+    }

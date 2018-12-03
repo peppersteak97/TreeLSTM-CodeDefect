@@ -1,0 +1,3 @@
+  public void printExtended() {
+    System.out.println(this);
+  }

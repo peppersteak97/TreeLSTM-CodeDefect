@@ -1,0 +1,5 @@
+    public ProjectType getProjectType() {
+        String type = getProperty(PROJECT_TYPE);
+        return (type == null || type.length() == 0) ? ProjectType.Standard : ProjectType
+                        .valueOf(type);
+    }

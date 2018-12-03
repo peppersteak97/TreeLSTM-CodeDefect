@@ -1,0 +1,5 @@
+    synchronized void persist() {
+        for (IntegrationEntitySettings s : settingsStore.values()) {
+            s.persist();
+        }
+    }

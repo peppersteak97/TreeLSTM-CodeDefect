@@ -1,0 +1,21 @@
+    private void registerHandlers() {
+        m_startElementHandlerFactories = new HashMap<String, IStartElementHandlerFactory>();
+
+        IStartElementHandlerFactory startFactory = new IStartElementHandlerFactory() {
+
+            public IStartElementHandler getHandler() {
+                return new OpenPagesHandler();
+            }
+        };
+        m_startElementHandlerFactories.put(XmlConstants.Elements.OPEN_PAGES, 
+                        startFactory);
+
+        startFactory = new IStartElementHandlerFactory() {
+
+            public IStartElementHandler getHandler() {
+                return new ExpandedNodesHandler();
+            }
+        };
+        m_startElementHandlerFactories.put(XmlConstants.Elements.EXPANDED_NODES,
+                        startFactory);
+    }

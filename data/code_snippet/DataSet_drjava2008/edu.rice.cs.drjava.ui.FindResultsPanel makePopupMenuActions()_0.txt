@@ -1,0 +1,8 @@
+  protected AbstractAction[] makePopupMenuActions() {
+    AbstractAction[] acts = new AbstractAction[] {
+      new AbstractAction("Go to") { public void actionPerformed(ActionEvent e) { goToRegion(); } },
+        new AbstractAction("Bookmark") { public void actionPerformed(ActionEvent e) { _bookmark(); } },
+          new AbstractAction("Remove") { public void actionPerformed(ActionEvent e) { _remove(); } }
+    };
+    return acts;
+  }

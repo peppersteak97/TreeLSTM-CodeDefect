@@ -1,0 +1,5 @@
+    private void initializeMainMenu() {
+        m_menuManager.addTopLevelExtensionsToWindow();
+        m_menuManager.addMenuLevelExtensionsToWindow();
+        addRecentProjectsToFileMenu();
+    }

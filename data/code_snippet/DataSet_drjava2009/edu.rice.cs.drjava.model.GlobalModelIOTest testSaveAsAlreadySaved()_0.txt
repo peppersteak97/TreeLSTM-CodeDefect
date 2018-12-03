@@ -1,0 +1,35 @@
+  public void testSaveAsAlreadySaved() throws BadLocationException, IOException {
+    OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    final File file1 = tempFile();
+    final File file2 = tempFile();
+    
+    saveFile(doc, new FileSelector(file1));
+    assertModified(false, doc);
+    assertContents(FOO_TEXT, doc);
+    assertEquals("contents of saved file", FOO_TEXT, IOUtil.toString(file1));
+    
+    TestListener listener = new TestListener() {
+      public void fileSaved(OpenDefinitionsDocument doc) {
+        File f = null;
+        try { f = doc.getFile(); }
+        catch (FileMovedException fme) { fail("file does not exist");   /* We know file should exist */ }
+        try {
+          assertEquals("saved file", file2.getCanonicalFile(), f.getCanonicalFile());
+          synchronized(this) { saveCount++; }
+        }
+        catch (IOException ioe) { fail("could not get canonical file"); }
+      }
+    };
+    
+    _model.addListener(listener);
+    
+    changeDocumentText(BAR_TEXT, doc);
+    
+    saveFileAs(doc, new FileSelector(file2));
+    
+    assertEquals("contents of saved file1", FOO_TEXT, IOUtil.toString(file1));
+    
+    assertEquals("contents of saved file2", BAR_TEXT, IOUtil.toString(file2));
+    
+    _log.log("testSaveAsAlreadySaved completed");
+  }

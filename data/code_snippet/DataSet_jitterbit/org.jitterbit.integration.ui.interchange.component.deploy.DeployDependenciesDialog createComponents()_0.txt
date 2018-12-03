@@ -1,0 +1,14 @@
+    private void createComponents() {
+        createMainCaptionLabel();
+        StyleSheetTextClass ssc = IntegrationUiStyleSheet.DefaultText;
+        if (m_requiredItemsExist) {
+            createRequiredItemsCaption(ssc);
+            createRequiredItemsList();
+        }
+        if (m_dirtyItemsExist) {
+            createDirtyItemsCaption(ssc);
+            createDirtyItemsTable();
+        }
+        createQuestionLabel(ssc);
+        createButtonPanel();
+    }

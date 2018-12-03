@@ -1,0 +1,13 @@
+  public void testGetMultipleExcludesComments() throws Exception{
+    XMLConfig xc = 
+      new XMLConfig(new StringReader(
+                                     "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><concutest>\n"
+                                       +" Some text to actually fetch.\n"
+                                       +" <!-- A comment to ignore -->\n"
+                                       +"</concutest>"));
+    
+    List<String> ret = xc.getMultiple("concutest");
+    
+    Assert.assertEquals("Only fetched one item", 1, ret.size());
+    Assert.assertEquals("Fetched correct text item", " Some text to actually fetch.\n".trim(), ret.get(0).trim());
+  }

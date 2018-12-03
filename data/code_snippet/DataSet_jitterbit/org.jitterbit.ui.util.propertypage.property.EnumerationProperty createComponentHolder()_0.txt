@@ -1,0 +1,5 @@
+	protected IPropertyComponentHolder createComponentHolder() {
+		IPropertyComponentHolder ph = isReadOnly() ? (IPropertyComponentHolder)new ReadOnlyDisplayer( getEnumerationValue() ) : 
+				new EditableDisplayer( getEnumerationValue() );
+		return ph;
+	}

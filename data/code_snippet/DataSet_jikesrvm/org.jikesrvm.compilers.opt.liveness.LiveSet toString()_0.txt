@@ -1,0 +1,13 @@
+  public String toString() {
+    StringBuilder buf = new StringBuilder("");
+    if (first == null) {
+      buf.append("empty");
+    } else {
+      LiveSetElement ptr = first;
+      while (ptr != null) {
+        buf.append(ptr.getRegisterOperand()).append("  ");
+        ptr = ptr.getNext();
+      }
+    }
+    return buf.toString();
+  }

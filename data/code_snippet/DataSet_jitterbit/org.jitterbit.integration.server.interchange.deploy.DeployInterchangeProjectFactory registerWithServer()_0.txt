@@ -1,0 +1,11 @@
+    private static void registerWithServer() {
+        IntegrationServer server = IntegrationServer.getInstance();
+        IServerCallFactory<IDeployInterchangeProject> callFactory =
+            new IServerCallFactory<IDeployInterchangeProject>() {
+
+                public IDeployInterchangeProject get() {
+                    return new DeployInterchangeModelWsImpl();
+                }
+        };
+        server.registerCallFactory(IDeployInterchangeProject.class, callFactory);
+    }

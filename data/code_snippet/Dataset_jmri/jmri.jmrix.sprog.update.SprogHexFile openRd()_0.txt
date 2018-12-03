@@ -1,0 +1,13 @@
+  public boolean openRd() {
+    read = true;
+    try {
+      in = new FileInputStream(file);
+      buffIn = new BufferedInputStream(in);
+      address = 999999;
+      line = new StringBuffer("");
+      return true;
+    }
+    catch (IOException e) {
+      return false;
+    }
+  }

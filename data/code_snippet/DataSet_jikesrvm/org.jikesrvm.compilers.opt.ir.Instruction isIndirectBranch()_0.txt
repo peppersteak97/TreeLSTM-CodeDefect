@@ -1,0 +1,3 @@
+  public boolean isIndirectBranch() {
+    return operator.isIndirectBranch();
+  }

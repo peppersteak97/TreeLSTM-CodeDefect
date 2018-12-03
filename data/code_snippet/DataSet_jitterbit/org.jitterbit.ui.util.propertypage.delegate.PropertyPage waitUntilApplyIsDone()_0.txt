@@ -1,0 +1,3 @@
+	public void waitUntilApplyIsDone() throws InterruptedException {
+		m_applyLock.waitUntilFalse();
+	}

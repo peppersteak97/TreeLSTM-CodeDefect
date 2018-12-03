@@ -1,0 +1,5 @@
+    private void validateNumberQualifier() {
+        String qual = m_document.getNumberQualifier();
+        if (qual != null && qual.length() > 0 && TextDocument.getQualifierFromString(qual) == 0) {
+        }
+    }

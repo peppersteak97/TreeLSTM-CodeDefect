@@ -1,0 +1,7 @@
+  public void testCommentedPrefixDontSearchComment() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionCurrLineStartsWith("{", null, null);
+    
+    assertTrue("just before brace", !rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+    assertTrue("just after brace", !rule.testApplyRule(_doc, 11, Indenter.IndentReason.OTHER));
+    assertTrue("line after brace", !rule.testApplyRule(_doc, 12, Indenter.IndentReason.OTHER));
+  }

@@ -1,0 +1,4 @@
+    private void onInvalidProject() {
+        m_reportPanel.onInvalidProject();
+        m_controlPanel.onInvalidProject();
+    }

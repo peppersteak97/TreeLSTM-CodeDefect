@@ -1,0 +1,3 @@
+  public final TIBConstantOperand asTIBConstant() {
+    return (TIBConstantOperand) this;
+  }

@@ -1,0 +1,6 @@
+        if (shouldInformationBeAppliedToTransformation()) {
+            String[] roots = getRoots();
+            if (roots.length == 1) {
+                applySelectedRoot(tf, roots[0]);
+            }
+        }

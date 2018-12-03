@@ -1,0 +1,8 @@
+    public List<?> getActiveObjects() {
+        List<Object> objects = new ArrayList<Object>();
+        IPage activePage = getActivePage();
+        if (activePage != null) {
+            objects.add(activePage.getObject());
+        }
+        return objects;
+    }

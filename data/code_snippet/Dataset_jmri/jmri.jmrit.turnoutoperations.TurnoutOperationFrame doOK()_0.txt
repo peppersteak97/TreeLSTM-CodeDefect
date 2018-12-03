@@ -1,0 +1,6 @@
+	private void doOK() {
+		if (currentOperation != null) {
+			currentConfig.endConfigure();
+		}
+    setVisible(false);
+	}

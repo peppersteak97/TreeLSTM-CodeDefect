@@ -1,0 +1,3 @@
+    public IVersion getVersion() {
+        return m_version;
+    }

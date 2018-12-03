@@ -1,0 +1,15 @@
+  public void close() {
+    try {
+      if (read) {
+        buffIn.close();
+        in.close();
+      } else {
+        buffOut.flush();
+        buffOut.close();
+        out.close();
+      }
+    }
+    catch (IOException e) {
+
+    }
+  }

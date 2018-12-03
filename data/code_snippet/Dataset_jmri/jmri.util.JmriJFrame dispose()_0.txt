@@ -1,0 +1,11 @@
+    public void dispose() {
+        log.debug("dispose "+getTitle());
+        if (task != null) {
+            jmri.InstanceManager.shutDownManagerInstance().deregister(task);
+            task = null;
+        }
+        synchronized (list) {
+            list.remove(this);
+        }
+        super.dispose();
+    }

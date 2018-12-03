@@ -1,0 +1,14 @@
+    String getNameString() {
+        String name = "";
+        if ((entries == null) || (entries.size() < 1)) 
+            name = "<Not connected>";
+        else {
+            name = ((Entry)entries.get(0)).sensor
+                    .getSystemName();
+            for (int i = 1; i<entries.size(); i++) {
+                name += ","+((Entry)entries.get(i)).sensor
+                    .getSystemName();
+            }
+        }
+        return name;
+    }

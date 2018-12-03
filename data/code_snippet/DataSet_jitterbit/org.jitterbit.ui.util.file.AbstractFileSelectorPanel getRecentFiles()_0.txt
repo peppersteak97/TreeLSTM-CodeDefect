@@ -1,0 +1,3 @@
+    protected final IRecentFileStore getRecentFiles() {
+        return m_recentFiles;
+    }

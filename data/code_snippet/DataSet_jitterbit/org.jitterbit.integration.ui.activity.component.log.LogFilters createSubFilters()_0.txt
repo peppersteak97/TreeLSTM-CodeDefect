@@ -1,0 +1,9 @@
+    private void createSubFilters() {
+        m_statusFilter = new LogStatusFilterUi();
+        m_timeWindowFilter = new TimeWindowFilterUi<IOperationLogEntry>();
+        m_messageFilter = new MessageFilterUi();
+        
+        addFilter(m_statusFilter);
+        addFilter(m_timeWindowFilter);
+        addFilter(m_messageFilter);
+    }

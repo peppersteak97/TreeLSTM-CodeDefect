@@ -1,0 +1,1 @@
+  public boolean isNatural() { return (flags & (INTEGER | LONG | ADDRESS)) != 0; }

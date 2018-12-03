@@ -1,0 +1,7 @@
+  protected final void emit_monitorexit() {
+    peekAddr(T0, 0);
+    asm.emitLAddrOffset(S0, JTOC, Entrypoints.unlockMethod.getOffset());
+    asm.emitMTCTR(S0);
+    asm.emitBCCTRL();
+    discardSlot();
+  }

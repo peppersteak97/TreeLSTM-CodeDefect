@@ -1,0 +1,10 @@
+  public void testInsertGapAfterGap() {
+    insertGap(model1, 3);
+    assertTrue("#0.0", model1.atEnd());
+    model1.move(-3);
+    assertTrue("#0.1", model1.currentToken().isGap());
+    assertEquals("#0.2", 3, model1.currentToken().getSize());
+    insertGap(model1, 4);
+    assertTrue("#1.1", model1.currentToken().isGap());
+    assertEquals("#1.2", 7, model1.currentToken().getSize());
+  }

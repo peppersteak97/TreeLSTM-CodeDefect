@@ -1,0 +1,10 @@
+  public void testStringClassRecognition() {
+    try {
+      ClassAndInterfaceFinder finder = new ClassAndInterfaceFinder(r);
+      String s = finder.getClassOrInterfaceName();
+      assertEquals("stringNameRecognition","Aa.12_34", s);
+    }
+    catch (Exception e) {
+      fail("stringClassRecognition threw " +e);
+    }
+  }

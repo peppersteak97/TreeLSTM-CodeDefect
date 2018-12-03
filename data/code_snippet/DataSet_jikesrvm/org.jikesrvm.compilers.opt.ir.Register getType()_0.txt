@@ -1,0 +1,1 @@
+  public int getType() { return (flags & TYPE_MASK) >>> TYPE_SHIFT; }

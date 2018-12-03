@@ -1,0 +1,3 @@
+    public final DbFields getDbFields() {
+        return m_dbFields.getCopy();
+    }

@@ -1,0 +1,8 @@
+  protected final void emit_lxor() {
+    if (VM.BuildFor32Addr) {
+      asm.emitXOR_RegInd_Reg(SP, T0);
+      asm.emitXOR_RegDisp_Reg(SP, ONE_SLOT, S0);
+    } else {
+      asm.emitXOR_RegInd_Reg_Quad(SP, T0);
+    }
+  }

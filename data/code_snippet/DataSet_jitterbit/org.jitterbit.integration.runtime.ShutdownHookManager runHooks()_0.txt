@@ -1,0 +1,21 @@
+    static void runHooks() {
+        List< IdentityWrapper<Thread> > hooks = null;
+        synchronized( m_lock ) {
+            if( m_hooks == null ) {
+                return;
+            }
+            hooks = new ArrayList< IdentityWrapper<Thread> >(m_hooks);
+        }
+        for( IdentityWrapper<Thread> w : hooks ) {
+            w.getObject().start();
+        }
+        for( IdentityWrapper<Thread> w : hooks ) {
+            try {
+                w.getObject().join();
+            } 
+            catch( InterruptedException e ) {
+                e.printStackTrace();
+                continue;
+            }
+        }
+    }

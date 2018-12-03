@@ -1,0 +1,3 @@
+    public TransformationWizard getWizard() {
+        return (TransformationWizard)super.getWizard();
+    }

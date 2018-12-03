@@ -1,0 +1,9 @@
+  public void testCommentedPrefixSearchComment() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionCurrLineStartsWith("*", null, null);
+    
+    _setDocText("/**\n* \ncomment\n");
+    assertTrue("line before star", !rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("just before star", rule.testApplyRule(_doc, 4, Indenter.IndentReason.OTHER));
+    assertTrue("just after star", rule.testApplyRule(_doc, 6, Indenter.IndentReason.OTHER));
+    assertTrue("line after star", !rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+  }

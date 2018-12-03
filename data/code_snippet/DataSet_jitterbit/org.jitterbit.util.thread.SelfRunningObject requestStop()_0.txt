@@ -1,0 +1,6 @@
+    public void requestStop() {
+        if (isAlive()) {
+            m_isStopRequested = true;
+            m_internalThread.interrupt();
+        }
+    }

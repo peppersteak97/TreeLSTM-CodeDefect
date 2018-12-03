@@ -1,0 +1,13 @@
+        if(mgrOK()) {
+	        try {
+            		if (p.getPower()==PowerManager.ON) onOffStatus.setText(res.getString("StatusOn"));
+            		else if (p.getPower()==PowerManager.OFF) onOffStatus.setText(res.getString("StatusOff"));
+            		else if (p.getPower()==PowerManager.UNKNOWN) onOffStatus.setText(res.getString("StatusUnknown"));
+            		else {
+                		onOffStatus.setText(res.getString("StatusUnknown"));
+                		log.error("Unexpected state value: +"+p.getPower());
+            		}
+        	} catch (JmriException ex) {
+            		onOffStatus.setText(res.getString("StatusUnknown"));
+        	}
+	}

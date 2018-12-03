@@ -1,0 +1,4 @@
+  public final boolean hasGoto() {
+    if (isEmpty()) return false;
+    return Goto.conforms(lastRealInstruction()) || MIR_Branch.conforms(lastRealInstruction());
+  }

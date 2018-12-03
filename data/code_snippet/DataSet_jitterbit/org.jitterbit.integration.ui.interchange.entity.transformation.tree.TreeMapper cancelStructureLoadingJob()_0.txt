@@ -1,0 +1,7 @@
+    private void cancelStructureLoadingJob() {
+        IUiJobManager jobMgr = IntegrationUi.getUi().getJobManager();
+        IUiJob job = jobMgr.getJob(m_loadStructuresJobID);
+        if (job != null && job.isRunning()) {
+            IntegrationUi.getUi().getJobManager().cancelJob(m_loadStructuresJobID);
+        }
+    }

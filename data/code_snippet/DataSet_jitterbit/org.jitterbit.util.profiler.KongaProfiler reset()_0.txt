@@ -1,0 +1,6 @@
+    public void reset() {
+        synchronized (LOCK) {
+            m_threads = new IdentityHashMap<Thread, IProfiledThread>();
+            m_timeSpentProfiling = new AtomicLong();
+        }
+    }

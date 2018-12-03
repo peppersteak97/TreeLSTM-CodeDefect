@@ -1,0 +1,8 @@
+    public synchronized boolean cancel() {
+        boolean b = super.cancel();
+        if (b) {
+            setStatus(PackageResources.UserProfile.Upload.CANCELLED);
+            m_callback.cancelled();
+        }
+        return b;
+    }

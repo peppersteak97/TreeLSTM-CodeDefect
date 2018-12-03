@@ -1,0 +1,8 @@
+    public String getMessage() {
+        StringBuilder sb = new StringBuilder();
+        for (String issue : m_problems) {
+            sb.append(issue);
+            sb.append(KongaIoUtils.LINE_BREAK);
+        }
+        return sb.toString();
+    }

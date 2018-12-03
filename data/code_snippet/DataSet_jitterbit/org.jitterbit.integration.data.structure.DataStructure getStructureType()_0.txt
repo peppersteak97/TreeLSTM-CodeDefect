@@ -1,0 +1,3 @@
+    public DataStructureType getStructureType() {
+        return m_dst;
+    }

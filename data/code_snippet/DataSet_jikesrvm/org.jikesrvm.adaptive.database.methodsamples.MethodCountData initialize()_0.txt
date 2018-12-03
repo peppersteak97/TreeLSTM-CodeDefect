@@ -1,0 +1,8 @@
+  private void initialize() {
+    int numCompiledMethods = CompiledMethods.numCompiledMethods();
+    map = new int[numCompiledMethods + (numCompiledMethods >>> 2)];
+    counts = new double[256];
+    cmids = new int[256];
+    nextIndex = 1;
+    totalCountsTaken = 0;
+  }

@@ -1,0 +1,6 @@
+    private static List<ILoginCallback> getExternalCallbacks() {
+        synchronized (LOCK) {
+            return (s_optionalCallbacks == null) ? null : 
+                new ArrayList<ILoginCallback>(s_optionalCallbacks);
+        }
+    }

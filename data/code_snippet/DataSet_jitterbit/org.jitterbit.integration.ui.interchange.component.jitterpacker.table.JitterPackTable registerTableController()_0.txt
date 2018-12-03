@@ -1,0 +1,16 @@
+    private void registerTableController() {
+        DefaultComponentController<JTable> controller = 
+            new DefaultComponentController<JTable>();
+        final Action tableAction = getTableAction();
+        controller.registerAction(KeyUtils.ENTER, tableAction);
+        controller.addMouseEventHandler(MouseEvent.MOUSE_CLICKED, new IMouseEventHandler() {
+
+            public boolean handle(MouseEvent evt) {
+                if (!PopupMenuUtils.isPopupTrigger(evt) && evt.getClickCount() == 2) {
+                    return true;
+                }
+                return false;
+            }
+        });
+        controller.install(m_table);
+    }

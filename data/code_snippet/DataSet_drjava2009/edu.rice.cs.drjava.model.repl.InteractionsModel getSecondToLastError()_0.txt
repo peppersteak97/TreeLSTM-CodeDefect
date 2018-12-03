@@ -1,0 +1,3 @@
+  public String getSecondToLastError() {
+    return _secondToLastError;
+  }

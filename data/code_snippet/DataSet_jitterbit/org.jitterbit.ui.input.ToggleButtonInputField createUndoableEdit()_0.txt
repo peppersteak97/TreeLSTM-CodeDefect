@@ -1,0 +1,3 @@
+    protected UndoableEdit createUndoableEdit() {
+        return new ToggleUndoableEdit(this, isSelected());
+    }

@@ -1,0 +1,3 @@
+    public Enumeration<IKongaTreeNode> preorderEnumeration() {
+        return new EnumImpl(super.preorderEnumeration());
+    }

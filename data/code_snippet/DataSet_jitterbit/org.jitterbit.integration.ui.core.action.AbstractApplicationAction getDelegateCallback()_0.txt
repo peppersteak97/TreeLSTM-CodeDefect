@@ -1,0 +1,16 @@
+    private ICallbackResult getDelegateCallback() {
+        return new ICallbackResult() {
+
+            public void cancelled(Object o) {
+                AbstractApplicationAction.this.cancelled(o);
+            }
+
+            public void failed(Object o) {
+                AbstractApplicationAction.this.failed(o);
+            }
+
+            public void succeeded(Object o) {
+                AbstractApplicationAction.this.succeeded(o);
+            }
+        };
+    }

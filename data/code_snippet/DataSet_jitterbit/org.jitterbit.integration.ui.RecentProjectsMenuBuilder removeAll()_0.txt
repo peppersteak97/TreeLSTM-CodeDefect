@@ -1,0 +1,4 @@
+    public void removeAll() {
+        IMenu fileMenu = getFileMenu();
+        fileMenu.removeExtension(FILE_MENU_EXTENSION_POINT, null);
+    }

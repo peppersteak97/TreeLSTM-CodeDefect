@@ -1,0 +1,4 @@
+    private XmlStructureFileFolder getSelectedFolder() {
+        Object o = m_foldersBox.getSelectedItem();
+        return (o instanceof FolderComboItem) ? ((FolderComboItem) o).Folder : null;
+    }

@@ -1,0 +1,4 @@
+	protected final Object readResolve() throws ObjectStreamException {
+		ClassSpecificInfo info = getClassInfo();
+		return info.getInstance(m_iIndex);
+	}

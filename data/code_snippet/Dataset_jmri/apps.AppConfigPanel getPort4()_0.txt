@@ -1,0 +1,5 @@
+    public static String getPort4() {
+        if (p2b == null) p2b = JmrixConfigPane.instance(4);
+        if (p2b == null) return none;
+        return p2b.getCurrentProtocolInfo();
+    }

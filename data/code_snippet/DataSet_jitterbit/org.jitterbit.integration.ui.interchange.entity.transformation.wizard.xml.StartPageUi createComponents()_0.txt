@@ -1,0 +1,6 @@
+    private void createComponents() {
+        ButtonGroup buttons = new ButtonGroup();
+        createExistingFileComponents(buttons);
+        createUploadComponents(buttons);
+        m_displayer = createDisplayer();
+    }

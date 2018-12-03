@@ -1,0 +1,19 @@
+	public void initializeLayoutBlockPaths() {
+		java.util.Iterator iter = getSystemNameList().iterator();
+		while (iter.hasNext()) {
+			String sName = (String)iter.next();
+			if (sName==null) log.error("System name null during initialization of LayoutBlocks");
+			log.debug("LayoutBlock initialization - system name = "+sName);
+			LayoutBlock b = getBySystemName(sName); 
+			b.updatePaths();
+		}
+		try {
+			new BlockValueFile().readBlockValues();
+		} 
+		catch (org.jdom.JDOMException jde) {
+			log.error("JDOM Exception when retreiving block values "+jde);
+		}				
+		catch (java.io.IOException ioe) {
+			log.error("I/O Exception when retreiving block values "+ioe);
+		}
+	}

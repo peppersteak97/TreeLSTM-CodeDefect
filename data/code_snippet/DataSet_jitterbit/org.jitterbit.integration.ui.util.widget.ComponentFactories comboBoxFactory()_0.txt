@@ -1,0 +1,3 @@
+    public static IComboBoxFactory comboBoxFactory() {
+        return COMBO_BOX_FACTORY;
+    }

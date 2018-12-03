@@ -1,0 +1,13 @@
+  public static void stop() {
+    if (!booted) return;
+
+    VM.sysWriteln("AOS: Killing all adaptive system threads");
+    for (Enumeration<Organizer> e = organizers.elements(); e.hasMoreElements();) {
+      Organizer organizer = e.nextElement();
+      organizer.stop(threadDeath);
+    }
+    compilationThread.stop(threadDeath);
+    controllerThread.stop(threadDeath);
+    RuntimeMeasurements.stop();
+    report();
+  }

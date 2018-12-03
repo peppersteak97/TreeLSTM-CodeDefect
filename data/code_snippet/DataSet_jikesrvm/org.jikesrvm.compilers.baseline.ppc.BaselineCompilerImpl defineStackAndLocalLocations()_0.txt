@@ -1,0 +1,109 @@
+  private void defineStackAndLocalLocations() {
+
+    short nextFixedLocalRegister = FIRST_FIXED_LOCAL_REGISTER;
+    short nextFloatLocalRegister = FIRST_FLOAT_LOCAL_REGISTER;
+
+    int nparam = method.getParameterWords();
+    TypeReference[] types = method.getParameterTypes();
+    int localIndex = 0;
+    if (!method.isStatic()) {
+      if (VM.VerifyAssertions) VM._assert(localTypes[0] == ADDRESS_TYPE);
+      if (!use_nonvolatile_registers || (nextFixedLocalRegister > LAST_FIXED_LOCAL_REGISTER)) {
+        localFixedLocations[localIndex] = offsetToLocation(localOffset(localIndex));
+      } else {
+        localFixedLocations[localIndex] = nextFixedLocalRegister++;
+      }
+      localIndex++;
+      nparam++;
+    }
+    for (int i = 0; i < types.length; i++, localIndex++) {
+      TypeReference t = types[i];
+      if (t.isLongType()) {
+        if (VM.BuildFor64Addr) {
+          if (!use_nonvolatile_registers || (nextFixedLocalRegister > LAST_FIXED_LOCAL_REGISTER)) {
+            localFixedLocations[localIndex] = offsetToLocation(localOffset(localIndex));
+          } else {
+            localFixedLocations[localIndex] = nextFixedLocalRegister++;
+          }
+        } else {
+          if (!use_nonvolatile_registers || (nextFixedLocalRegister >= LAST_FIXED_LOCAL_REGISTER)) {
+            localFixedLocations[localIndex] =
+          } else {
+            localFixedLocations[localIndex] = nextFixedLocalRegister++;
+            localFixedLocations[localIndex + 1] = nextFixedLocalRegister++;
+          }
+        }
+        localIndex++;
+      } else if (t.isFloatType()) {
+        if (!use_nonvolatile_registers || (nextFloatLocalRegister > LAST_FLOAT_LOCAL_REGISTER)) {
+          localFloatLocations[localIndex] = offsetToLocation(localOffset(localIndex));
+        } else {
+          localFloatLocations[localIndex] = nextFloatLocalRegister++;
+        }
+      } else if (t.isDoubleType()) {
+        if (!use_nonvolatile_registers || (nextFloatLocalRegister > LAST_FLOAT_LOCAL_REGISTER)) {
+          localFloatLocations[localIndex] = offsetToLocation(localOffset(localIndex));
+        } else {
+          localFloatLocations[localIndex] = nextFloatLocalRegister++;
+        }
+        localIndex++;
+      } else if (t.isIntLikeType()) {
+        if (!use_nonvolatile_registers || (nextFixedLocalRegister > LAST_FIXED_LOCAL_REGISTER)) {
+          localFixedLocations[localIndex] = offsetToLocation(localOffset(localIndex));
+        } else {
+          localFixedLocations[localIndex] = nextFixedLocalRegister++;
+        }
+      } else { 
+        if (!use_nonvolatile_registers || (nextFixedLocalRegister > LAST_FIXED_LOCAL_REGISTER)) {
+          localFixedLocations[localIndex] = offsetToLocation(localOffset(localIndex));
+        } else {
+          localFixedLocations[localIndex] = nextFixedLocalRegister++;
+        }
+      }
+    }
+
+    if (VM.VerifyAssertions) VM._assert(localIndex == nparam);
+    int nLocalWords = method.getLocalWords();
+    for (; localIndex < nLocalWords; localIndex++) {
+      byte currentLocal = localTypes[localIndex];
+
+      if (needsFloatRegister(currentLocal)) {
+        if (!use_nonvolatile_registers || (nextFloatLocalRegister > LAST_FLOAT_LOCAL_REGISTER)) {
+          localFloatLocations[localIndex] = offsetToLocation(localOffset(localIndex));
+        } else {
+          localFloatLocations[localIndex] = nextFloatLocalRegister++;
+        }
+      }
+
+      currentLocal = stripFloatRegisters(currentLocal);
+      if (currentLocal != VOID_TYPE) { 
+        if (VM.BuildFor32Addr && containsLongType(currentLocal)) { 
+          if (!use_nonvolatile_registers || (nextFixedLocalRegister >= LAST_FIXED_LOCAL_REGISTER)) {
+            localFixedLocations[localIndex] = offsetToLocation(localOffset(localIndex));
+            if (use_nonvolatile_registers &&
+                (nextFixedLocalRegister == LAST_FIXED_LOCAL_REGISTER) &&
+                containsLongType(localTypes[localIndex - 1])) {
+            }
+          } else {
+            localFixedLocations[localIndex] = nextFixedLocalRegister++;
+          }
+          localTypes[localIndex + 1] |=
+        } else if (!use_nonvolatile_registers || (nextFixedLocalRegister > LAST_FIXED_LOCAL_REGISTER)) {
+          localFixedLocations[localIndex] = offsetToLocation(localOffset(localIndex));
+        } else {
+          localFixedLocations[localIndex] = nextFixedLocalRegister++;
+        }
+      }
+    }
+
+    firstFixedStackRegister = (byte)nextFixedLocalRegister;
+    firstFloatStackRegister = (byte)nextFloatLocalRegister;
+
+    lastFixedStackRegister = (byte)(firstFixedStackRegister - 1);
+    lastFloatStackRegister = (byte)(firstFloatStackRegister - 1);
+
+    if (USE_NONVOLATILE_REGISTERS && method.hasBaselineSaveLSRegistersAnnotation()) {
+      lastFixedStackRegister = LAST_FIXED_STACK_REGISTER;
+      lastFloatStackRegister = LAST_FLOAT_STACK_REGISTER;
+    }
+  }

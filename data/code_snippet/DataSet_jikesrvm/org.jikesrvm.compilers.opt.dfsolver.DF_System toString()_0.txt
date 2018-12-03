@@ -1,0 +1,8 @@
+  public String toString() {
+    String result = "EQUATIONS:\n";
+    Enumeration<GraphNode> v = equations.enumerateNodes();
+    for (int i = 0; i < equations.numberOfNodes(); i++) {
+      result = result + i + " : " + v.nextElement() + "\n";
+    }
+    return result;
+  }

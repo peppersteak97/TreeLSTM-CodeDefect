@@ -1,0 +1,18 @@
+    private void retrieveOutputStructure() throws InterruptedException {
+        setStatus(PackageResources.LoadStructures.RETRIEVING_OUTPUT);
+        m_outputCallback = new Callback(false);
+        IUiWorker worker = IntegrationUi.getUi().getUiWorker();
+        Future<?> outputFuture = worker.submitForParallell(new Runnable() {
+
+            public void run() {
+                m_invoker.getTransformation().getOutputStructure().getMappingStructure(true, m_outputCallback);
+            }
+        });
+        try {
+            outputFuture.get();
+        }
+        catch (ExecutionException e) {
+            m_outputCallback.failed(e.getCause());
+        }
+        m_outputCallback.waitUntilDone();
+    }

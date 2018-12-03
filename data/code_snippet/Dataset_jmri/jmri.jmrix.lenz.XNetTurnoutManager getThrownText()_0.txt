@@ -1,0 +1,1 @@
+     public String getThrownText() { return rbt.getString("TurnoutStateThrown"); };

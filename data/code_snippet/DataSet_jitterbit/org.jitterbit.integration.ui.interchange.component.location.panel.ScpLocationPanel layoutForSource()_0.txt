@@ -1,0 +1,12 @@
+    private void layoutForSource() {
+        GridBagConstraints gbc = IntegrationUiStyleSheet.getLeftConstraints();
+
+        add(InputFieldFactory.getCapsule(m_host), gbc);
+        add(InputFieldFactory.getCapsule(m_hostPath), gbc);
+
+        m_fileLocationPanel.layoutComponents();
+
+        gbc.gridwidth = 2;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
+        add(m_fileLocationPanel, gbc);
+    }

@@ -1,0 +1,5 @@
+	private void createTimer() {
+		m_timerTask = new UpdateLabelTask();
+        m_updateLabelTimer = new Timer(100, m_timerTask);
+        m_updateLabelTimer.start();
+	}

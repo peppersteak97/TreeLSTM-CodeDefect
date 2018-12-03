@@ -1,0 +1,7 @@
+  public void unfactor() {
+    BasicBlockEnumeration e = getBasicBlocks();
+    while (e.hasMoreElements()) {
+      BasicBlock b = e.next();
+      b.unfactor(this);
+    }
+  }

@@ -1,0 +1,8 @@
+    public static void writeRosterFile() {
+        Roster.instance().makeBackupFile(defaultRosterFilename());
+        try {
+            Roster.instance().writeFile(defaultRosterFilename());
+        } catch (Exception e) {
+            log.error("Exception while writing the new roster file, may not be complete: "+e);
+        }
+    }

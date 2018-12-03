@@ -1,0 +1,4 @@
+    if (available() == 0) {
+      _readInputIntoBuffer();
+      if (available() == 0) return -1;
+    }

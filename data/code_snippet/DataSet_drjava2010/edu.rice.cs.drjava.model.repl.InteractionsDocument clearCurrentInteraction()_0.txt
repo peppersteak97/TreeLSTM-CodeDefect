@@ -1,0 +1,4 @@
+  public void clearCurrentInteraction() {
+    super.clearCurrentInput();
+    _history.moveEnd();
+  }  

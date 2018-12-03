@@ -1,0 +1,16 @@
+	private void automaticTargetMapping(){
+		boolean isMatched=false;
+		for(TreeComponent.Node oldNode:m_oldTargetTree.m_root.m_children){
+			for(TreeComponent.Node newNode:m_newTargetTree.m_root.m_children){
+				if(oldNode.m_deName.equalsIgnoreCase(newNode.m_deName)){
+					addTargetMapPair(oldNode,newNode,0);
+					isMatched=true;
+					break;
+				}
+			}
+		}
+		if(isMatched){
+			m_newTargetTree.repaint();
+			m_oldTargetTree.repaint();
+		}
+	}

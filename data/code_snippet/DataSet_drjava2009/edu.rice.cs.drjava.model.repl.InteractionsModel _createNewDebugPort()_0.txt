@@ -1,0 +1,12 @@
+  protected void _createNewDebugPort() throws IOException {
+    try {
+      ServerSocket socket = new ServerSocket(0);
+      _debugPort = socket.getLocalPort();
+      socket.close();
+    }
+    catch (java.net.SocketException se) {
+      _debugPort = -1;
+    }
+    _debugPortSet = true;
+    System.setProperty("drjava.debug.port", String.valueOf(_debugPort));
+  }

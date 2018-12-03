@@ -1,0 +1,4 @@
+  private void prevRecentDoc() {
+    if (_recentDocFrame.isVisible()) _recentDocFrame.prev();
+    else _recentDocFrame.setVisible(true);
+  }

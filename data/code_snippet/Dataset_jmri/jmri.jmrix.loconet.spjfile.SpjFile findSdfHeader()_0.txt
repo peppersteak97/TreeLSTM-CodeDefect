@@ -1,0 +1,6 @@
+    public Header findSdfHeader() {
+        int n = numHeaders();
+        for (int i = 1; i< n; i++) 
+            if (headers[i].isSDF()) return headers[i];
+        return null;
+    }

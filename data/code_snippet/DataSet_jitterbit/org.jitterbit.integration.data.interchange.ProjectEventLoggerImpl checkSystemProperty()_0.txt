@@ -1,0 +1,5 @@
+    private void checkSystemProperty() {
+        if (Boolean.getBoolean(SYSTEM_PROPERTY)) {
+            switchOn();
+        }
+    }

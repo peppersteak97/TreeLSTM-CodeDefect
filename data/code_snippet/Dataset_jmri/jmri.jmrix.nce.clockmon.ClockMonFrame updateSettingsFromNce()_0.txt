@@ -1,0 +1,38 @@
+    private void updateSettingsFromNce() {
+        if (updateTimeFromRead == true) {
+            hours.setText("" + (nceLastHour / 10) + (nceLastHour - ((nceLastHour / 10) * 10)));
+            minutes.setText("" + (nceLastMinute / 10) + (nceLastMinute - ((nceLastMinute / 10) * 10)));
+            seconds.setText("" + (nceLastSecond / 10) + (nceLastSecond - ((nceLastSecond / 10) * 10)));
+            if (nceLast1224) {
+                twentyFour.setSelected(true);
+                amPm.setText(" ");
+            } else {
+                twentyFour.setSelected(false);
+                if (nceLastAmPm) {
+                    amPm.setText(rb.getString("TagAm"));
+                } else {
+                    amPm.setText(rb.getString("TagPm"));
+                }
+            }
+            updateTimeFromRead = false;
+        }
+        if (updateRatioFromRead == true) {
+            rateNce.setText("" + nceLastRatio);
+            updateRatioFromRead = false;
+        }
+        if (updateFormatFromRead == true) {
+            if (nceLast1224) {
+                twentyFour.setSelected(true);
+            } else {
+                twentyFour.setSelected(false);
+            }
+            updateFormatFromRead = false;
+        }
+        if (updateStatusFromRead == true) {
+            if (nceLastRunning) {
+                status.setText(rb.getString("TagRunning"));
+            } else {
+                status.setText(rb.getString("TagStopped"));
+            }
+        }
+    }

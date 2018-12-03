@@ -1,0 +1,4 @@
+	public void dispose() throws JmriException {
+		tc.removeXNetListener(XNetInterface.CS_INFO, this);
+		tc = null;
+	}

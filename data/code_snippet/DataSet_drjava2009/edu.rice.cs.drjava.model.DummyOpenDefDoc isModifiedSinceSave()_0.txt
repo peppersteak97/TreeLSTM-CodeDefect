@@ -1,0 +1,1 @@
+  public boolean isModifiedSinceSave() { throw new UnsupportedOperationException("Dummy method"); }

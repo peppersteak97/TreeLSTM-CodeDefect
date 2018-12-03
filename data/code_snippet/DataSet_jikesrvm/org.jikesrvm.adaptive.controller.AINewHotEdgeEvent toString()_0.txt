@@ -1,0 +1,3 @@
+  public String toString() {
+    return "NewHotEdgeEvent: " + super.toString() + ", boost factor = " + getBoostFactor();
+  }

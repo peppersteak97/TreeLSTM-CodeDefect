@@ -1,0 +1,1 @@
+    SdfMacro getMacro() { return inst; }

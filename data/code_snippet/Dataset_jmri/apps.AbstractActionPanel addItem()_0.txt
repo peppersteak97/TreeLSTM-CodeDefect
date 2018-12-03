@@ -1,0 +1,7 @@
+    protected void addItem() {
+        synchronized(self) {
+            add(new Item());
+            validate();
+            if (getTopLevelAncestor()!=null) ((JFrame)getTopLevelAncestor()).pack();
+        }
+    }

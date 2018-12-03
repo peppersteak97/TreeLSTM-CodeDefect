@@ -1,0 +1,3 @@
+	public String toString(){
+		return sLocation[m_bIsForTarget?t_target_target:t_source_source];
+	}

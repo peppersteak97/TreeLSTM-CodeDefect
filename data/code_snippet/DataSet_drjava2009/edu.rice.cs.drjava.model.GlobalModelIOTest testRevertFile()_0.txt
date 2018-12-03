@@ -1,0 +1,28 @@
+  public void testRevertFile() throws BadLocationException, IOException, OperationCanceledException,
+    AlreadyOpenException {
+    
+    final File tempFile1 = writeToNewTempFile(FOO_TEXT);
+    
+    TestListener listener = new TestIOListener();
+    
+    _model.addListener(listener);
+    OpenDefinitionsDocument doc = _model.openFile(new FileSelector(tempFile1));
+    listener.assertOpenCount(1);
+    assertModified(false, doc);
+    assertContents(FOO_TEXT, doc);
+    
+    assertEquals("original doc unmodified",doc.isModifiedSinceSave(), false);
+    changeDocumentText(BAR_TEXT, doc);
+    assertEquals("doc now modified",doc.isModifiedSinceSave(), true);
+    tempFile1.delete();
+    try {
+      doc.revertFile();
+      fail("File should not be on disk.");
+    }
+    catch (FileMovedException fme) {
+    }
+    assertEquals("doc NOT reverted",doc.isModifiedSinceSave(), true);
+    assertContents(BAR_TEXT, doc);
+    
+    _log.log("testRevertFile completed");
+  }

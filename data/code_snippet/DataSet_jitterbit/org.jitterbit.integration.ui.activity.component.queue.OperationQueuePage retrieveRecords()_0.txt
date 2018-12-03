@@ -1,0 +1,3 @@
+    public void retrieveRecords() {
+        m_queueDisplayer.retrieveEntries();
+    }

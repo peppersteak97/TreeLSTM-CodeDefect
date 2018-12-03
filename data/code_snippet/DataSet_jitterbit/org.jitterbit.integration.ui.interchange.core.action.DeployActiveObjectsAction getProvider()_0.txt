@@ -1,0 +1,3 @@
+    protected InterchangeView getProvider() {
+        return (InterchangeView) super.getProvider();
+    }

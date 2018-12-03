@@ -1,0 +1,4 @@
+    private void addInputFields() {
+        addInputField(m_checkLogWarnings);
+        addInputField(m_checkHistory);
+    }

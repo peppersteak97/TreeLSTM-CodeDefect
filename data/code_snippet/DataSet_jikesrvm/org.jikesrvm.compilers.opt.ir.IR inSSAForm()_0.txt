@@ -1,0 +1,3 @@
+  public boolean inSSAForm() {
+    return (actualSSAOptions != null) && actualSSAOptions.getScalarValid();
+  }

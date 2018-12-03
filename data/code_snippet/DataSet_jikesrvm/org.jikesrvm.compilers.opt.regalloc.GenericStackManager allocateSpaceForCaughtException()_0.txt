@@ -1,0 +1,6 @@
+  public int allocateSpaceForCaughtException() {
+    if (caughtExceptionOffset == 0) {
+      caughtExceptionOffset = allocateOnStackFrame(BYTES_IN_ADDRESS);
+    }
+    return caughtExceptionOffset;
+  }

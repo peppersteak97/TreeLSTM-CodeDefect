@@ -1,0 +1,6 @@
+  public void testDirectoryFilterDescription() {
+    DirectoryFilter f = new DirectoryFilter();
+    assertEquals("Should have the correct description.", "Directories", f.getDescription());
+    f = new DirectoryFilter("Other directories");
+    assertEquals("Should have allowed an alternate description.", "Other directories", f.getDescription());
+  }

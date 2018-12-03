@@ -1,0 +1,1 @@
+  public Set<String> getCategories() { return _props.keySet(); }

@@ -1,0 +1,17 @@
+    private void backgroundPrepare() {
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                configureInterchangeProjectManager();
+                try {
+                }
+                catch (ViewLoadingException e) {
+                    e.printStackTrace();
+                }
+                m_backgroundPrepareLatch.countDown();
+            }
+        };
+        t.setPriority(2);
+        t.start();
+    }

@@ -1,0 +1,10 @@
+  private void requestBoot() {
+    if (log.isDebugEnabled()) {
+      log.debug("Request bootloader version");
+    }
+    tc.setSprogState(tc.SIIBOOTMODE);
+    bootState = VERREQSENT;
+    msg = SprogMessage.getReadBootVersion();
+    tc.sendSprogMessage(msg, this);
+    startLongTimer();
+  }

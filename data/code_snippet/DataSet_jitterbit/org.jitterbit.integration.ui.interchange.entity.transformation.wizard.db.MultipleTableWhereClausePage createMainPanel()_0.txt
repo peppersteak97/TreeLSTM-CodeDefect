@@ -1,0 +1,7 @@
+    private void createMainPanel() {
+        JComponent decor = ComponentDecorFactory.invisible(m_ui).getUi();
+        setMainPanel(TransformationWizard.getUtils().createPageMainPanel(
+                getMainCaption(),
+                getSubCaption(),
+                decor) );
+    }

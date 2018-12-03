@@ -1,0 +1,3 @@
+  public final RegisterOperand asRegister() {
+    return (RegisterOperand) this;
+  }

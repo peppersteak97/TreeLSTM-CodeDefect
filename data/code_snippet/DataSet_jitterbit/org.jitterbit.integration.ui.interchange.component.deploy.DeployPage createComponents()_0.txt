@@ -1,0 +1,6 @@
+    private void createComponents() {
+        createTreePanel();
+        createControlPanel();
+        createTitlePanel();
+        m_reportPanel = new ReportPanel();
+    }

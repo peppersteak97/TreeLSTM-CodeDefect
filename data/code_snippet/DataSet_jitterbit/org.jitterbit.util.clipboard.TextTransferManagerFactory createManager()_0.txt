@@ -1,0 +1,3 @@
+    public static ITextTransferManager createManager() {
+        return new DefaultTextTransferManager();
+    }

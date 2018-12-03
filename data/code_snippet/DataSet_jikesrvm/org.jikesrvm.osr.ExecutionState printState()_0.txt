@@ -1,0 +1,11 @@
+  public void printState() {
+    VM.sysWriteln("Execution state of " + meth);
+    VM.sysWriteln("    thread index : ", thread.getThreadSlot());
+    VM.sysWriteln("       FP offset : ", fpOffset);
+    VM.sysWriteln("            cmid : ", cmid);
+    VM.sysWriteln("         bcIndex : ", bcIndex);
+
+    for (VariableElement var : varElms) {
+      VM.sysWrite("  " + var + "\n");
+    }
+  }

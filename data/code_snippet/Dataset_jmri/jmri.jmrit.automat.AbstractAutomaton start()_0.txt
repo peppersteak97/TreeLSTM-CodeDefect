@@ -1,0 +1,7 @@
+    public void start() {
+        if (currentThread != null) log.error("Start with currentThread not null!");
+        currentThread = new Thread(this);
+        currentThread.start();
+    	summary.register(this);
+    	count = 0;
+    }

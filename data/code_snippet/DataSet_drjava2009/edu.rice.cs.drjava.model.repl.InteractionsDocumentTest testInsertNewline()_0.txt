@@ -1,0 +1,8 @@
+  public void testInsertNewline() throws EditDocumentException {
+    int origLength = _doc.getLength();
+    _doc.insertText(origLength, "command", InteractionsDocument.DEFAULT_STYLE);
+    assertEquals("current interaction before newline", "command", _doc.getCurrentInteraction());
+    _doc.insertNewline(origLength + 2);
+    assertEquals("current interaction after newline", "co" + "\n" /* formerly StringOps.EOL */ + "mmand",
+                 _doc.getCurrentInteraction());
+  }

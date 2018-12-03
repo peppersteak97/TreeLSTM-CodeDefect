@@ -1,0 +1,46 @@
+  public void testBracket() throws BadLocationException
+  {
+    int i;
+    
+    /* (1) */
+    
+    _text =
+      "boolean method(int[\n" +
+      "                   ELTS]\n" +
+      "               a, String b)";
+    
+    _setDocText(_text);
+    
+    for (i = 0; i < 20; i++)
+      assertTrue("START has no brace.", !_rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+    
+    
+    for (i = 20; i < 29; i++)
+      assertTrue("START's brace is an open bracket.", _rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+    
+    for (i = 29; i < _text.length(); i++)
+      assertTrue("START's brace is an open paren.", _rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+    
+    /* (2) */
+    
+    _text = "array1[i]\n" +
+      "       [j]";
+    
+    _setDocText(_text);
+    
+    for (i = 0; i < _text.length(); i++)
+      assertTrue("START has no brace.", !_rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+    
+    /* (3) */
+    
+    _text =
+      "array1[\n" +
+      "           i][\n" +
+      "              j]";
+    
+    _setDocText(_text);
+    
+    assertTrue("START's paren is an open bracket.", _rule.testApplyRule(_doc, 8, Indenter.IndentReason.OTHER));
+    assertTrue("START's paren is an open bracket.", _rule.testApplyRule(_doc, 22, Indenter.IndentReason.OTHER));
+    assertTrue("START's paren is an open bracket.", _rule.testApplyRule(_doc, 23, Indenter.IndentReason.OTHER));
+  }

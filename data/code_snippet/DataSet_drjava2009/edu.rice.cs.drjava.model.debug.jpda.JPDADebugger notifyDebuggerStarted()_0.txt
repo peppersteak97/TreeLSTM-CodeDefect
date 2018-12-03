@@ -1,0 +1,3 @@
+  void notifyDebuggerStarted() {
+    EventQueue.invokeLater(new Runnable() { public void run() { _notifier.debuggerStarted(); } });
+  }

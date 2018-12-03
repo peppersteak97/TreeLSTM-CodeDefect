@@ -1,0 +1,3 @@
+    protected IPageController createController() {
+        return new PageControllerAdapter() { /**/ };
+    }

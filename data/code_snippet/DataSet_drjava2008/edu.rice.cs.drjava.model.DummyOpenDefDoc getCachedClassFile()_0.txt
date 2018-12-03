@@ -1,0 +1,1 @@
+  public File getCachedClassFile() { throw new UnsupportedOperationException("Dummy method"); }

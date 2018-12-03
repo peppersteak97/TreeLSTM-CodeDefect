@@ -1,0 +1,3 @@
+  boolean isRefType() {
+    return (this.tcode == REF);
+  }

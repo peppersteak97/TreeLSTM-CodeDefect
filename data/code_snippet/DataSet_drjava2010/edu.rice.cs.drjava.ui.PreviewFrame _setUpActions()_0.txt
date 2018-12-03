@@ -1,0 +1,7 @@
+  private void _setUpActions() {
+    _closeAction.putValue(Action.SHORT_DESCRIPTION, "Close");
+    _nextPageAction.putValue(Action.SMALL_ICON, _getIcon("Forward16.gif"));
+    _nextPageAction.putValue(Action.SHORT_DESCRIPTION, "Next Page");
+    _prevPageAction.putValue(Action.SMALL_ICON, _getIcon("Back16.gif"));
+    _prevPageAction.putValue(Action.SHORT_DESCRIPTION, "Previous Page");
+  }

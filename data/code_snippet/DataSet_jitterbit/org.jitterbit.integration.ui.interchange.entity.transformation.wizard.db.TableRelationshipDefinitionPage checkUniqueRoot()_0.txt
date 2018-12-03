@@ -1,0 +1,24 @@
+    private void checkUniqueRoot() throws RelationshipException {
+        int nRoots = 0;
+        for (DatabaseObject possibleRoot : m_relationships.keySet()) {
+            boolean couldBeRoot = true;
+            for (DatabaseObject o : m_relationships.keySet()) {
+                if (o == possibleRoot) {
+                    continue;
+                }
+                for (TableRelationship rel : m_relationships.get(o)) {
+                    if (rel.getChildObject() == possibleRoot) {
+                        couldBeRoot = false;
+                        break;
+                    }
+                }
+            }
+            if (couldBeRoot) {
+                ++nRoots;
+                if (nRoots == 2) {
+                    throw new RelationshipException(
+                        PackageResources.RelationshipDefinitionPage.Errors.MULTIPLE_ROOTS);
+                }
+            }
+        }
+    }

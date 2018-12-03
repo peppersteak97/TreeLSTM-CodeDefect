@@ -1,0 +1,20 @@
+    public synchronized void loadIcon() {
+        if (m_iconHasBeenLoaded) {
+            return;
+        }
+        try {
+            if (XmlTreeMetaDataLoader.ICON_FILE.equals(m_locationType)) {
+                loadIconFromFile();
+            }
+            else if (XmlTreeMetaDataLoader.ICON_CLASS.equals(m_locationType)) {
+                loadIconFromClass();
+            }
+            else {
+                throw new XmlTreeMetaDataRuntimeException(
+                                "Invalid XML. Unknown location type: " + m_locationType);
+            }
+        }
+        finally {
+            m_iconHasBeenLoaded = true;
+        }
+    }

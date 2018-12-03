@@ -1,0 +1,8 @@
+    public boolean isSelected() {
+        IApplicationAction delegate = getDelegate();
+        if (delegate instanceof IToggleAction) {
+            return ((IToggleAction) delegate).isSelected();
+        }
+        Object o = getValue(ON_OFF);
+        return (o instanceof Boolean) ? ((Boolean) o).booleanValue() : false;
+    }

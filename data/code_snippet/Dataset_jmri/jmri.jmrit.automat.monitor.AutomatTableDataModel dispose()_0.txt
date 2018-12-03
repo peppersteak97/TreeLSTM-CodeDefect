@@ -1,0 +1,3 @@
+    synchronized public void dispose() {
+		AutomatSummary.instance().removePropertyChangeListener(this);
+    }

@@ -1,0 +1,4 @@
+    private void finishEdit()
+    {
+        this.setVisible(false);
+    }

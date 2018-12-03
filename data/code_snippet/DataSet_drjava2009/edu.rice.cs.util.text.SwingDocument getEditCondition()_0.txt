@@ -1,0 +1,1 @@
+  public DocumentEditCondition getEditCondition() { return _condition; }

@@ -1,0 +1,10 @@
+    private void layoutForTarget() {
+        TwoColumnPanel p = new TwoColumnPanel();
+        p.addRow(InputFieldFactory.getCapsule(m_host), null);
+        p.addRow(InputFieldFactory.getCapsule(m_hostPath),
+                        InputFieldFactory.getCapsule(m_fileLocationPanel.getFileFilterField()));
+        p.setLeftGridHeight(2);
+        p.addRow(InputFieldFactory.getCapsule(m_fileLocationPanel.getLoginField()),
+                        m_fileLocationPanel.getPasswordButton());
+        wrap(p);
+    }

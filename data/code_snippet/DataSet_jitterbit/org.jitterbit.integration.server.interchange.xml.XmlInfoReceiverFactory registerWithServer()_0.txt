@@ -1,0 +1,11 @@
+    private static void registerWithServer() {
+        IntegrationServer server = IntegrationServer.getInstance();
+        IServerCallFactory<IXmlInfoReceiver> callFactory = 
+            new IServerCallFactory<IXmlInfoReceiver>() {
+
+                public IXmlInfoReceiver get() {
+                    return new XmlInfoProviderWsImpl();
+                }
+        };
+        server.registerCallFactory(IXmlInfoReceiver.class, callFactory);
+    }

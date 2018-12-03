@@ -1,0 +1,3 @@
+  public int getIconHeight(){
+    return _h;
+  }

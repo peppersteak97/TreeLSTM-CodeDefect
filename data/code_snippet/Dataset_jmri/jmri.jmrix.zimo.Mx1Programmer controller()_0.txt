@@ -1,0 +1,6 @@
+	protected Mx1TrafficController controller() {
+		if (_controller == null) {
+			_controller = Mx1TrafficController.instance();
+		}
+		return _controller;
+	}

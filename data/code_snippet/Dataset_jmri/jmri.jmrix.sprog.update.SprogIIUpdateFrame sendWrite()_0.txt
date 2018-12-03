@@ -1,0 +1,49 @@
+  private void sendWrite() {
+    if (hexFile.getAddressU() >= 0xF0) {
+      if (log.isDebugEnabled()) {
+        log.debug("Send write EE " + hexFile.getAddress());
+      }
+      msg = new SprogMessage(SprogMessage.MAXSIZE).getWriteEE(hexFile.
+          getAddress(),
+          hexFile.getData());
+    }
+    else if (hexFile.getAddressU() >= 0x30) {
+      if (log.isDebugEnabled()) {
+        log.debug("null write " + hexFile.getAddress());
+      }
+      msg = null;
+    }
+    else if (hexFile.getAddressU() >= 0x20) {
+      if (log.isDebugEnabled()) {
+        log.debug("null write " + hexFile.getAddress());
+      }
+      msg = null;
+    }
+    else if (hexFile.getAddress() >= 0x200) {
+      if (log.isDebugEnabled()) {
+        log.debug("Send write Flash " + hexFile.getAddress());
+      }
+      msg = new SprogMessage(SprogMessage.MAXSIZE
+                             ).getWriteFlash(hexFile.getAddress(),
+                                             hexFile.getData());
+    }
+    else {
+      if (log.isDebugEnabled()) {
+        log.debug("null write " + hexFile.getAddress());
+      }
+      msg = null;
+    }
+    if (msg != null) {
+      bootState = WRITESENT;
+      statusBar.setText("Write " + hexFile.getAddress());
+      tc.sendSprogMessage(msg, this);
+      if (log.isDebugEnabled()) {
+        log.debug("Sent write command to address " + hexFile.getAddress());
+      }
+      startLongTimer();
+    }
+    else {
+      bootState = NULLWRITE;
+      startVShortTimer();
+    }
+  }

@@ -1,0 +1,3 @@
+    public JRadioButton newRadioButton() {
+        return newRadioButton((ButtonGroup) null);
+    }

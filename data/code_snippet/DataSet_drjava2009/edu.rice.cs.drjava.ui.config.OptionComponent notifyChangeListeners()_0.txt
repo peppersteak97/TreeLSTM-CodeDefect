@@ -1,0 +1,5 @@
+  protected void notifyChangeListeners() {
+    assert _parent.duringInit() || Utilities.TEST_MODE || EventQueue.isDispatchThread();
+      ChangeListener[] listeners = _changeListeners.toArray(new ChangeListener[_changeListeners.size()]);
+    for (ChangeListener l: listeners)  l.value(OptionComponent.this); 
+  }

@@ -1,0 +1,107 @@
+  public byte[] generatePrologue() {
+
+    int size = varElms.size();
+
+    this.objs = new Object[size];
+    this.objnum = 0;
+    this.rid = ObjectHolder.handinRefs(this.objs);
+
+    PseudoBytecode head = new Nop();
+    PseudoBytecode tail = head;
+
+    int elmcount = 0;
+    if (!this.meth.isStatic()) {
+      VariableElement var = varElms.get(elmcount);
+      tail = processElement(var, tail, elmcount);
+      elmcount++;
+
+      if (VM.VerifyAssertions) {
+        VM._assert(var.isLocal() && (var.getNumber() == 0));
+      }
+    }
+    int paranum = this.meth.getParameterTypes().length;
+    for (int i = 0; i < paranum; i++) {
+      VariableElement var = varElms.get(elmcount);
+      tail = processElement(var, tail, elmcount);
+      elmcount++;
+      if (VM.VerifyAssertions) {
+        VM._assert(var.isLocal());
+      }
+    }
+    tail.next = new ParamInitEnd();
+    tail = tail.next;
+
+    for (; elmcount < size; elmcount++) {
+      VariableElement var = varElms.get(elmcount);
+      tail = processElement(var, tail, elmcount);
+    }
+
+    if (this.objnum != 0) {
+      tail.next = new LoadIntConst(this.rid);
+      tail = tail.next;
+
+      tail.next = new InvokeStatic(CLEANREFS);
+      tail = tail.next;
+    } else {
+      ObjectHolder.cleanRefs(this.rid);
+    }
+
+    int branchTarget = this.bcIndex;
+
+    /* when this method must start with a call of callee,
+     * we are using invokeCompiledMethod,
+     */
+    if (callee_cmid != -1) {
+      tail.next = new InvokeCompiledMethod(callee_cmid, this.bcIndex);
+      tail = tail.next;
+
+      BytecodeStream bcodes = this.meth.getBytecodes();
+      bcodes.reset(this.bcIndex);
+
+      int code = bcodes.nextInstruction();
+
+      switch (code) {
+        case JBC_invokeinterface: {
+          branchTarget = this.bcIndex + 5;
+          break;
+        }
+        case JBC_invokespecial:
+        case JBC_invokestatic:
+        case JBC_invokevirtual: {
+          branchTarget = this.bcIndex + 3;
+          break;
+        }
+        default: {
+          if (VM.VerifyAssertions) {
+            VM._assert(VM.NOT_REACHED,
+                       "ExecutionState: unknown bytecode " + code + " at " + this.bcIndex + "@" + this.meth);
+          }
+          break;
+        }
+      }
+    }
+
+    int pops = computeStackHeight(head);
+    {
+      Goto togo = new Goto(branchTarget);
+      int osize = togo.getSize();
+      togo.patch(branchTarget + osize);
+      int nsize = togo.getSize();
+      if (nsize != osize) {
+        togo.patch(branchTarget + nsize);
+      }
+
+      tail.next = togo;
+      tail = tail.next;
+    }
+
+    tail = adjustStackHeight(tail, pops);
+
+    int bsize = paddingBytecode(head);
+    byte[] prologue = generateBinaries(head, bsize);
+
+    this.objs = null;
+    this.objnum = 0;
+
+    return prologue;
+  }

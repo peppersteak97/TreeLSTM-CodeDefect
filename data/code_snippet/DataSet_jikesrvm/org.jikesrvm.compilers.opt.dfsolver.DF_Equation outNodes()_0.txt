@@ -1,0 +1,19 @@
+  public GraphNodeEnumeration outNodes() {
+    return new GraphNodeEnumeration() {
+      private GraphNode elt = getLHS();
+
+      public boolean hasMoreElements() {
+        return elt != null;
+      }
+
+      public GraphNode next() {
+        GraphNode x = elt;
+        elt = null;
+        return x;
+      }
+
+      public GraphNode nextElement() {
+        return next();
+      }
+    };
+  }

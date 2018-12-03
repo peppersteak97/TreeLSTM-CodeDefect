@@ -1,0 +1,4 @@
+    public String[] getPropertyKeys() {
+        throw new NotImplementedYetException(
+                        "getPropertyKeys() has not been implemented yet for UserGroup.");
+    }

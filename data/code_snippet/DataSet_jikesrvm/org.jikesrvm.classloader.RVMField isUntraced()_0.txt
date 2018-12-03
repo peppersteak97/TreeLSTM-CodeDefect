@@ -1,0 +1,3 @@
+    if (VM.runningVM && isUntraced()) {
+      VM.sysFail("Untraced field " + toString() + " created at runtime!");
+    }

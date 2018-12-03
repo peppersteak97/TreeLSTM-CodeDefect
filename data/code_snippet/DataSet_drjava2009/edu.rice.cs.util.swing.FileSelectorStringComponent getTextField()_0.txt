@@ -1,0 +1,1 @@
+  public JTextField getTextField() { return _textField; }

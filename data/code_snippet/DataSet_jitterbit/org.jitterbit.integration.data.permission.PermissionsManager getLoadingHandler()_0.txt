@@ -1,0 +1,3 @@
+    public IPermissionsLoadingHandler getLoadingHandler() {
+        return m_permissions;
+    }

@@ -1,0 +1,26 @@
+    static public javax.swing.JTextArea getOutputArea() {
+        if (outputlog == null) {
+            
+            try {
+                outputlog = new javax.swing.JTextArea();
+
+                PipedWriter pw = new PipedWriter();
+
+                java.lang.reflect.Method method
+                    = interp.getClass().getMethod("setErr", new Class[]{Writer.class});
+                method.invoke(interp, new Object[]{pw});
+                method
+                    = interp.getClass().getMethod("setOut", new Class[]{Writer.class});
+                method.invoke(interp, new Object[]{pw});
+
+                PipedReader pr = new PipedReader(pw);
+                PipeListener pl = new PipeListener(pr, outputlog);
+                pl.start();
+            } catch (Exception e) {
+                log.error("Exception creating jython output area: "+e);
+                e.printStackTrace();
+                return null;
+            }
+        }
+        return outputlog;
+    }

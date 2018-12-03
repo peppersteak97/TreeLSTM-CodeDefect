@@ -1,0 +1,22 @@
+	boolean checkDone(){
+		int n=m_conflictSourcePathList.length;
+		boolean done=true;
+		for(int i=0;i<n;i++){
+			String tmp=m_conflictSourcePathList[i];
+			if(collectDE(tmp)>0){
+				done=false;
+				break;
+			}
+			tmp=m_checkMapping.getNextSourceLoopPath(tmp);
+			while(m_generator.startsWith(tmp)==false){
+				if(collectDE(tmp)>0){
+					done=false;
+					break;
+				}
+				tmp=m_checkMapping.getNextSourceLoopPath(tmp);
+			}
+			if(done==false)break;
+		}
+		m_TreeMapper.setDirty(true);
+		return done;
+	}

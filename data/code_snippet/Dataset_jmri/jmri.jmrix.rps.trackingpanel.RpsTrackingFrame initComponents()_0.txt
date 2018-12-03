@@ -1,0 +1,74 @@
+    public void initComponents() {
+        
+        addHelpMenu("package.jmri.jmrix.rps.trackingpanel.RpsTrackingFrame", true);
+        
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        
+        panel = new RpsTrackingPanel();
+
+        JPanel controls = new JPanel();
+        controls.setLayout(new BoxLayout(controls, BoxLayout.Y_AXIS));
+        JPanel line = new JPanel();
+        line.setLayout(new FlowLayout());
+        
+        clearButton = new JButton("Clear");
+        clearButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent event) {
+                    clearButtonChanged();
+                }
+            });
+        line.add(clearButton);
+        
+        showErrButton = new JCheckBox("Show error points");
+        showErrButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent event) {
+                    showErrButtonChanged();
+                }
+            });
+        line.add(showErrButton);
+
+        showRecButton = new JCheckBox("Show receivers");
+        showRecButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent event) {
+                    showRecButtonChanged();
+                }
+            });
+        showRecButton.setSelected(true);
+        showRecButtonChanged();
+        line.add(showRecButton);
+
+        showRegButton = new JCheckBox("Show regions");
+        showRegButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent event) {
+                    showRegButtonChanged();
+                }
+            });
+        showRegButton.setSelected(true);
+        showRegButtonChanged();
+        line.add(showRegButton);
+
+        controls.add(line);
+        
+        RpsTrackingControlPane scale = new RpsTrackingControlPane(panel);
+        controls.add(scale);
+        controls.add(new JSeparator());
+        
+        panel.setSize(440,240);
+        panel.setPreferredSize(new Dimension(440,240));
+        
+        scale.update();
+        
+        getContentPane().add(panel);
+        getContentPane().add(new JSeparator());
+        getContentPane().add(controls);
+        
+        
+        panel.repaint();
+        pack();
+
+        Dimension d = controls.getSize();
+        controls.setMinimumSize(d);
+        controls.setPreferredSize(d);
+        controls.setMaximumSize(d);
+          
+    }

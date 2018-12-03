@@ -1,0 +1,3 @@
+    public String getMappingErrors() {
+        return getProperty(MAPPING_ERRORS);
+    }

@@ -1,0 +1,3 @@
+  public void quit() {
+    throw new UnsupportedOperationException("Tried to call quit on a Dummy");
+  }

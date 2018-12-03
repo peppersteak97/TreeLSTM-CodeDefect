@@ -1,0 +1,3 @@
+    protected List<JButton> getAdditionalToolBarButtons() {
+        return null;
+    }

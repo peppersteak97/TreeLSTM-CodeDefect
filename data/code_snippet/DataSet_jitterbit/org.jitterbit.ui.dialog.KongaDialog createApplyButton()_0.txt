@@ -1,0 +1,10 @@
+	protected JButton createApplyButton() {
+        Action action = new AbstractAction(UiResourceBundle.getString("Apply")) {   
+            public void actionPerformed(ActionEvent e) {
+                onApply();
+            }
+        };
+        JButton btn = getButton(action, m_buttonSize);
+		m_btnApply = btn;
+		return btn;
+	}

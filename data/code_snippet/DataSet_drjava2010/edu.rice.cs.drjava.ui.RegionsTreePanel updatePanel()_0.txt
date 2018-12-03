@@ -1,0 +1,314 @@
+//  private void _updatePanel() {
+  
+  
+  /** Forces this panel to be completely updated. */
+  protected void updatePanel() {
+    _regTreeModel.reload();
+    expandTree();
+    repaint();
+  }
+  
+  /** Forces the panel to be updated and requests focus in this panel. */
+  protected boolean _requestFocusInWindow() {
+    updatePanel();
+    updateButtons();
+    return super.requestFocusInWindow();
+  }
+  
+  /** Creates the region tree. */
+  private void _setupRegionTree() {
+    _rootNode = new DefaultMutableTreeNode(_title);
+    _regTreeModel = new DefaultTreeModel(_rootNode);
+    _regTree = new RegionTree(_regTreeModel);
+    _regTree.setEditable(false);
+    _regTree.getSelectionModel().setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
+    _regTree.setShowsRootHandles(true);
+    _regTree.setRootVisible(false);
+    _regTree.putClientProperty("JTree.lineStyle", "Angled");
+    _regTree.setScrollsOnExpand(true);
+    _regTree.addTreeSelectionListener(new TreeSelectionListener() {
+      public void valueChanged(TreeSelectionEvent e) { updateButtons(); }
+    });
+    _regTree.addKeyListener(new KeyAdapter() {
+      public void keyPressed(KeyEvent e) { if (e.getKeyCode() == KeyEvent.VK_ENTER) { performDefaultAction(); } } 
+    });
+    
+    dtcr = new RegionRenderer();
+    dtcr.setOpaque(false);
+    _regTree.setCellRenderer(dtcr);
+    
+    _leftPane.add(new JScrollPane(_regTree));
+    
+    _initPopup();
+    
+    ToolTipManager.sharedInstance().registerComponent(_regTree);
+  }
+  
+  /** Update button state and text. _updateButtons should be overridden if additional buttons are added besides "Go To",
+    * "Remove" and "Remove All". 
+    */
+  protected void updateButtons() { _updateButtons(); }
+  
+  protected void _updateButtons() { }
+  
+  /** Expand all tree nodes. */
+  public void expandAll() {
+    TreeNode root = (TreeNode)_regTree.getModel().getRoot();
+    
+    expandRecursive(_regTree, new TreePath(root), true);
+  }
+
+  /** Collapse all tree nodes. */
+  public void collapseAll() {
+    TreeNode root = (TreeNode)_regTree.getModel().getRoot();
+    
+    expandRecursive(_regTree, new TreePath(root), false);
+  }
+  
+  /** Remove the selected regions. */
+  protected void _remove() {   
+    int[] rows = _regTree.getSelectionRows();
+    int len = rows.length;
+    int row = (len > 0) ? rows[0] : 0;
+    _frame.removeCurrentLocationHighlight();
+    for (R r: getSelectedRegions()) {
+    }
+    int rowCount = _regTree.getRowCount();
+    
+    _requestFocusInWindow();
+    _regTree.scrollRowToVisible(row);
+    
+    _regTree.setSelectionRow(row);
+    if (_regTree.getLeadSelectionPath().getPathCount() < 2) _regTree.setSelectionRow(row + 1);
+  }
+  
+  private void expandRecursive(JTree tree, TreePath parent, boolean expand) {
+    TreeNode node = (TreeNode)parent.getLastPathComponent();
+    if (node.getChildCount() >= 0) {
+      for (Enumeration<?> e=node.children(); e.hasMoreElements(); ) {
+        TreeNode n = (TreeNode)e.nextElement();
+        TreePath path = parent.pathByAddingChild(n);
+        expandRecursive(tree, path, expand);
+      }
+    }
+    
+    if (expand) {
+      tree.expandPath(parent);
+    } else {
+      tree.collapsePath(parent);
+    }
+  }
+  
+  /** Adds config color support to DefaultTreeCellEditor. */
+  class RegionRenderer extends DefaultTreeCellRenderer {
+    
+    /* The following methods were commented out to minimize changes to the DefaultCellRenderer to help support
+     * "reverse video highlighting" of selected nodes in the Plastic L&F family.
+     */
+    
+    /** Overrides the default renderer component to use proper coloring. */
+    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean isSelected, boolean isExpanded, 
+                                                  boolean leaf, int row, boolean hasFocus) {
+      /*Component renderer = */ super.getTreeCellRendererComponent(tree, value, isSelected, isExpanded, leaf, row, hasFocus);
+
+      
+      
+      Thunk<String> tooltip = null;
+      if (DrJava.getConfig().getSetting(OptionConstants.SHOW_CODE_PREVIEW_POPUPS).booleanValue()) {
+        if (leaf) {
+          DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
+          final Object o = node.getUserObject();
+          
+          if (o instanceof RegionTreeUserObj) {
+            tooltip = new Thunk<String>() {
+              public String value() {
+                @SuppressWarnings("unchecked")
+                RegionTreeUserObj<R> userObject = (RegionTreeUserObj<R>) o;
+                R r = userObject.region();
+            
+                OpenDefinitionsDocument doc = r.getDocument();
+                try {
+                  int lnr = doc.getLineOfOffset(r.getStartOffset()) + 1;
+                  int startOffset = doc._getOffset(lnr - 3);
+                  if (startOffset < 0) { startOffset = 0; }
+                  int endOffset = doc._getOffset(lnr + 3);
+                  if (endOffset < 0) { endOffset = doc.getLength() - 1; }
+                  
+                  String s = doc.getText(startOffset, endOffset - startOffset);
+                  
+                  int rStart = r.getStartOffset() - startOffset;
+                  if (rStart < 0) { rStart = 0; }
+                  int rEnd = r.getEndOffset() - startOffset;
+                  if (rEnd > s.length()) { rEnd = s.length(); }
+                  if ((rStart <= s.length()) && (rEnd >= rStart)) {
+                    String t1 = StringOps.encodeHTML(s.substring(0, rStart));
+                    String t2 = StringOps.encodeHTML(s.substring(rStart,rEnd));
+                    String t3 = StringOps.encodeHTML(s.substring(rEnd));
+                    s = t1 + "<font color=#ff0000>" + t2 + "</font>" + t3;
+                  }
+                  else {
+                    s = StringOps.encodeHTML(s);
+                  }
+                  return "<html><pre>"+s+"</pre></html>";
+                }
+                catch(javax.swing.text.BadLocationException ble) { return ""; /* just display an empty tool tip*/ }
+              }
+            };
+            setText(node.getUserObject().toString());
+            setIcon(null);
+          }
+        }
+      }
+      setToolTipText(tooltip);
+      return /* renderer */ this;
+    }
+    
+    /** Alternative version of setToolTipText that accepts a thunk. */
+    public void setToolTipText(Thunk<String> text) {
+      Object oldText = getClientProperty(TOOL_TIP_TEXT_KEY);
+      putClientProperty(TOOL_TIP_TEXT_KEY, text);
+      ToolTipManager toolTipManager = ToolTipManager.sharedInstance();
+      if (text != null) {
+        if (oldText == null) {
+          toolTipManager.registerComponent(this);
+        }
+      } else {
+        toolTipManager.unregisterComponent(this);
+      }
+    }
+    
+    /** Overridden version of getToolTipText that evaluates a thunk if necessary. */
+    @SuppressWarnings("unchecked")
+    public String getToolTipText() {
+      Object o = getClientProperty(TOOL_TIP_TEXT_KEY);
+      if (o instanceof Thunk) {
+        String s = ((Thunk<String>)o).value();
+        putClientProperty(TOOL_TIP_TEXT_KEY, s);
+        return s;
+      }
+      return (String)o;
+    }
+  }
+  
+  /** Action performed when the Enter key is pressed. Should be overridden. */
+  protected void performDefaultAction() { }
+  
+  /** Creates the buttons for controlling the regions. Should be overridden. */
+  protected JComponent[] makeButtons() {  return new JComponent[0];  }
+  
+  /** Creates the buttons for controlling the regions. */
+  private void _setupButtonPanel() {
+    JPanel mainButtons = new JPanel();
+    JPanel emptyPanel = new JPanel();
+    JPanel closeButtonPanel = new JPanel(new BorderLayout());
+    GridBagLayout gbLayout = new GridBagLayout();
+    GridBagConstraints c = new GridBagConstraints();
+    mainButtons.setLayout(gbLayout);
+    
+    JComponent[] buts = makeButtons();
+    
+    closeButtonPanel.add(_closeButton, BorderLayout.NORTH);    
+    for (JComponent b: buts) { mainButtons.add(b); }
+    mainButtons.add(emptyPanel);
+    
+    c.fill = GridBagConstraints.HORIZONTAL;
+    c.anchor = GridBagConstraints.NORTH;
+    c.gridwidth = GridBagConstraints.REMAINDER;
+    c.weightx = 1.0;
+    
+    for (JComponent b: buts) { gbLayout.setConstraints(b, c); }
+    
+    c.fill = GridBagConstraints.BOTH;
+    c.anchor = GridBagConstraints.SOUTH;
+    c.gridheight = GridBagConstraints.REMAINDER;
+    c.weighty = 1.0;
+    
+    gbLayout.setConstraints(emptyPanel, c);
+    
+    _buttonPanel.add(mainButtons, BorderLayout.CENTER);
+    _buttonPanel.add(closeButtonPanel, BorderLayout.EAST);
+  }
+  
+  /** Makes the popup menu actions. Should be overridden. */
+  protected AbstractAction[] makePopupMenuActions() { return null; }
+  
+  /** Initializes the pop-up menu. */
+  private void _initPopup() {
+    _regionPopupMenu = new JPopupMenu(_title);
+    AbstractAction[] acts = makePopupMenuActions();
+    if (acts != null) {
+      for (AbstractAction a: acts) {
+        _regionPopupMenu.add(a);
+      }
+      _regTree.addMouseListener(new RegionMouseAdapter());
+    }
+  }
+  
+  /** Gets the tree node for the given document. */
+  DefaultMutableTreeNode getNode(OpenDefinitionsDocument doc) { return _docToTreeNode.get(doc); }
+  
+    /** Gets the tree node for the given region. */
+  DefaultMutableTreeNode getNode(R region) { return _regionToTreeNode.get(region); }
+  
+  /** Gets the currently selected regions in the region tree, or an empty array if no regions are selected.
+    * @return list of selected regions in the tree
+    * TODO: change this code to use getMinSelectionRow and getMaxSelectionRow
+    */
+  protected ArrayList<R> getSelectedRegions() {
+    ArrayList<R> regs = new ArrayList<R>();
+    if (paths != null) {
+      for (TreePath path: paths) {
+        if (path != null && path.getPathCount() == 3) {
+          DefaultMutableTreeNode lineNode = (DefaultMutableTreeNode)path.getLastPathComponent();
+          @SuppressWarnings("unchecked") 
+          R r = ((RegionTreeUserObj<R>) lineNode.getUserObject()).region();
+          regs.add(r);
+        }
+      }
+    }
+    return regs;
+  }
+  
+  /** Go to region. */
+  protected void goToRegion() {
+    ArrayList<R> r = getSelectedRegions();
+    if (r.size() == 1) _frame.scrollToDocumentAndOffset(r.get(0).getDocument(), r.get(0).getStartOffset(), false);
+  }
+  
+  /** Add a region to the tree. Must be executed in event thread.
+    * @param r the region
+    */
+  public void addRegion(final R r) {
+    try {
+    DefaultMutableTreeNode docNode;
+    OpenDefinitionsDocument doc = r.getDocument();
+    
+      docNode = _docToTreeNode.get(doc);
+      if (docNode == null) {
+        docNode = new DefaultMutableTreeNode(doc.getRawFile());
+        _regTreeModel.insertNodeInto(docNode, _rootNode, _rootNode.getChildCount());
+        _docToTreeNode.put(doc, docNode);
+      }
+    
+      @SuppressWarnings("unchecked")
+      Enumeration<DefaultMutableTreeNode> regionNodes = docNode.children();
+      
+      int startOffset = r.getStartOffset();
+        
+          insertNewRegionNode(r, docNode, index);
+          break;
+        }
+        DefaultMutableTreeNode node = regionNodes.nextElement();
+        
+        @SuppressWarnings("unchecked")
+        RegionTreeUserObj<R> userObject = (RegionTreeUserObj<R>) node.getUserObject();
+        R nodeRegion = userObject.region();
+        int nodeOffset = nodeRegion.getStartOffset();
+        
+        if (nodeOffset >= startOffset) {
+          insertNewRegionNode(r, docNode, index);
+          break;
+        }
+      }
+    _changeState.updateButtons();
+  }

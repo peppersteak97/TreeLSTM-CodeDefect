@@ -1,0 +1,9 @@
+    public void startWait() {
+        Runnable job = new Runnable() {
+
+            public void run() {
+                m_pagePanel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            }
+        };
+        UiUtils.runOnEventThread(job);
+    }

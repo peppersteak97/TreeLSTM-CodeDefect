@@ -1,0 +1,11 @@
+	public Field findIdentField(){
+        if (m_fieldList == null) {
+            return null;
+        }
+		Enumeration<Field> en=m_fieldList.elements();	
+		while(en.hasMoreElements()){
+			Field f=en.nextElement();
+			if(f.m_dataType.equals(TextStructureConstants.IDENTIFIER))return f;
+		}
+		return null;
+	}

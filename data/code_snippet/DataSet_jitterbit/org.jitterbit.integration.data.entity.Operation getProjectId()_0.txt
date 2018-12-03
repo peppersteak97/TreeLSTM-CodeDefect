@@ -1,0 +1,12 @@
+    public ProjectId getProjectId() {
+        String sId = getProperty(AccountProject.PROJECT_ID);
+        if (sId == null) {
+            return null;
+        }
+        try {
+            return new ProjectId(sId);
+        }
+        catch (IllegalArgumentException e) {
+            return null;
+        }
+    }

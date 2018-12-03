@@ -1,0 +1,3 @@
+  public boolean isNullPtr() {
+    return trapCode == RuntimeEntrypoints.TRAP_NULL_POINTER;
+  }

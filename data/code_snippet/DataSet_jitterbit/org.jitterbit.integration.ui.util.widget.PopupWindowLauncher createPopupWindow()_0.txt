@@ -1,0 +1,5 @@
+    protected PopupWindow createPopupWindow() {
+        PopupWindow w = new PopupWindow(m_owner, m_center, m_west, m_east, m_south);
+        w.setDisposeOnFocusLost(m_disposeOnFocusLost);
+        return w;
+    }

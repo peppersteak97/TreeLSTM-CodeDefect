@@ -1,0 +1,8 @@
+    protected final String getQualifiedName() {
+        String s = getName();
+        IntegrationEntity parent = getParent();
+        while (parent != null && !(parent instanceof RootFolder)) {
+            parent = parent.getParent();
+        }
+        return s;
+    }

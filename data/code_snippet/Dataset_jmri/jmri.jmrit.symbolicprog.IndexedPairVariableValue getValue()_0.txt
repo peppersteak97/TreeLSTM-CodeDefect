@@ -1,0 +1,4 @@
+        if (cvLow.getValue() != newLow || cvHigh.getValue() != newHigh) {
+            cvLow.setValue(newLow);
+            cvHigh.setValue(newHigh);
+        }

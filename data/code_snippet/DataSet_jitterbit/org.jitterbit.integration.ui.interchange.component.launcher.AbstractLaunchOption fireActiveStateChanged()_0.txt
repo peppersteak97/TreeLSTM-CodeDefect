@@ -1,0 +1,9 @@
+    private void fireActiveStateChanged() {
+        final LaunchOptionEvent evt = new LaunchOptionEvent(this);
+        m_listeners.visitAll(new ListenerVisitor<ILaunchOptionListener>() {
+
+            public void accept(ILaunchOptionListener listener) {
+                listener.activeStateChanged(evt);
+            }
+        });
+    }

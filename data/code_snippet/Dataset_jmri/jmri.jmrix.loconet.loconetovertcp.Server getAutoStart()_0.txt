@@ -1,0 +1,4 @@
+  public boolean getAutoStart(){
+    loadSettings();
+    return autoStart;
+  }

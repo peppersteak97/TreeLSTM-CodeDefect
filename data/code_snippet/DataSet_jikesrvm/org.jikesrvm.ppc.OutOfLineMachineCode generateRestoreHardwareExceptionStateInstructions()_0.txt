@@ -1,0 +1,35 @@
+  private static ArchitectureSpecific.CodeArray generateRestoreHardwareExceptionStateInstructions() {
+    Assembler asm = new ArchitectureSpecific.Assembler(0);
+
+    asm.emitLAddrOffset(REGISTER_ZERO, T0, ArchEntrypoints.registersLRField.getOffset());
+    asm.emitMTLR(REGISTER_ZERO);
+
+    asm.emitLAddrOffset(REGISTER_ZERO, T0, ArchEntrypoints.registersIPField.getOffset());
+    asm.emitMTCTR(REGISTER_ZERO);
+
+    for (int i = 0; i < NUM_FPRS; ++i) {
+      asm.emitLFD(i, i << LOG_BYTES_IN_DOUBLE, T1);
+    }
+
+
+    for (int i = FIRST_NONVOLATILE_GPR; i <= LAST_NONVOLATILE_GPR; ++i) {
+      asm.emitLAddr(i, i << LOG_BYTES_IN_ADDRESS, T1);
+    }
+
+    for (int i = FIRST_SCRATCH_GPR; i <= LAST_SCRATCH_GPR; ++i) {
+      asm.emitLAddr(i, i << LOG_BYTES_IN_ADDRESS, T1);
+    }
+
+    for (int i = FIRST_VOLATILE_GPR; i <= LAST_VOLATILE_GPR; ++i) {
+      if (i != T1) asm.emitLAddr(i, i << LOG_BYTES_IN_ADDRESS, T1);
+    }
+
+    asm.emitLAddr(REGISTER_ZERO, REGISTER_ZERO << LOG_BYTES_IN_ADDRESS, T1);
+    asm.emitLAddr(FP, FP << LOG_BYTES_IN_ADDRESS, T1);
+
+    asm.emitLAddr(T1, T1 << LOG_BYTES_IN_ADDRESS, T1);
+
+    asm.emitBCCTR();
+
+    return asm.makeMachineCode().getInstructions();
+  }

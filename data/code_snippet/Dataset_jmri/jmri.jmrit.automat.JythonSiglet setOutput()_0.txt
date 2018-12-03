@@ -1,0 +1,12 @@
+    public void setOutput() {
+        if (interp == null) {
+            log.error("No interpreter, so cannot handle automat");
+            return;
+        }
+        try {
+            exec.invoke(interp, new Object[]{"setOutput()"});
+        } catch (Exception e) {
+            log.error("Exception invoking jython command: "+e);
+            e.printStackTrace();
+        }
+    }

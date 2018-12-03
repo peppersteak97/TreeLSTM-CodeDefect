@@ -1,0 +1,7 @@
+    void install() {
+        KeyStroke ks = IntegrationUi.getUi().requestGlobalKeyStroke(
+                        KeyUtils.getCtrlShiftDown(KeyEvent.VK_F2), getClass());
+        if (ks != null) {
+            m_window.addGlobalKeyDispatcher(ks, new Launcher());
+        }
+    }

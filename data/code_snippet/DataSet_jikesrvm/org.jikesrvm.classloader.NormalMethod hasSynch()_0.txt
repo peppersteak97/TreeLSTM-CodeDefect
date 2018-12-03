@@ -1,0 +1,3 @@
+  public boolean hasSynch() {
+    return (summaryFlags & HAS_SYNCH) != 0;
+  }

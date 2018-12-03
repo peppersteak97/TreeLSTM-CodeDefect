@@ -1,0 +1,36 @@
+	public void destroy()
+	{
+		if (throttle != null)
+		{
+			throttle.setF0(false);
+			throttle.setF1(false);
+			throttle.setF2(false);
+			throttle.setF3(false);
+			throttle.setF4(false);
+			throttle.setF5(false);
+			throttle.setF6(false);
+			throttle.setF7(false);
+			throttle.setF8(false);
+			throttle.setF9(false);
+			throttle.setF10(false);
+			throttle.setF11(false);
+			throttle.setF12(false);
+			throttle.setF13(false);
+			throttle.setF14(false);
+			throttle.setF15(false);
+			throttle.setF16(false);
+			throttle.setF17(false);
+			throttle.setF18(false);
+			throttle.setF19(false);
+			throttle.setF20(false);
+			throttle.setF21(false);
+			throttle.setF22(false);
+			throttle.setF23(false);
+			throttle.setF24(false);
+			throttle.setF25(false);
+			throttle.setF25(false);
+			throttle.setF26(false);
+			throttle.setF27(false);
+			throttle.setF28(false);
+		}
+	}

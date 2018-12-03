@@ -1,0 +1,4 @@
+    protected IPopupMenuItem createItem() {
+        Action action = InterchangeActionFactory.CREATE_ENTITY_COPY.get(m_view);
+        return new Item(action);
+    }

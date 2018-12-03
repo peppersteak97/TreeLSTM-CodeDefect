@@ -1,0 +1,5 @@
+  public void cancel() {
+    reset();
+    _applyButton.setEnabled(false);
+    ProjectPropertiesFrame.this.setVisible(false);
+  }

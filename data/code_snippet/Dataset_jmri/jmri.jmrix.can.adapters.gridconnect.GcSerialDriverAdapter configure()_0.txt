@@ -1,0 +1,22 @@
+    public void configure() {
+
+        for (int i = 0; i<validForOption1.length; i++ ) {
+            if (validForOption1[i].equals(mOpt1)) {
+                p = validOption1Values[i];
+            }
+        }
+        CanMessage.setProtocol(p);
+
+        GcTrafficController.instance();
+        
+        GcTrafficController.instance().connectPort(this);
+
+
+
+
+
+
+        
+        setActive();
+
+    }

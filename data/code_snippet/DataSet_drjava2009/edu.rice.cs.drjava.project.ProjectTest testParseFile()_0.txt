@@ -1,0 +1,6 @@
+  public void testParseFile() throws SExpParseException {
+    SEList c = SExpParser.parse("(file (name \"file-name\") (select 1 2))").get(0);
+    DocFile df = ProjectFileParser.ONLY.parseFile(c,null);
+    Pair<Integer,Integer> p = df.getSelection();
+    assertEquals("Name should have been file-name", "file-name", df.getPath());
+  }

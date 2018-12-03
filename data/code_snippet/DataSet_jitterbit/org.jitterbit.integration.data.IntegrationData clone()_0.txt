@@ -1,0 +1,7 @@
+    public IntegrationData clone() throws CloneNotSupportedException {
+        IntegrationData clone = (IntegrationData) super.clone();
+
+        clone.m_data = new StringKeyValuePairs(m_data);
+
+        return clone;
+    }

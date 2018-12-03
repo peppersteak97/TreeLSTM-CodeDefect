@@ -1,0 +1,1 @@
+  public Collection<INavigationListener<? super ItemT>> getNavigatorListeners() { return navListeners; }

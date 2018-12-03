@@ -1,0 +1,3 @@
+    public IExportableProperty[] getExportableProperties() {
+        return new IExportableProperty[0];
+    }

@@ -1,0 +1,8 @@
+    protected void startRefresh() {
+        mRefreshTimer = new javax.swing.Timer(50000, new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                timeout();
+            }
+        });
+        mRefreshTimer.start();
+    }

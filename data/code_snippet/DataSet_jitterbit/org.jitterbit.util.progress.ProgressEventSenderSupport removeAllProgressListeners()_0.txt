@@ -1,0 +1,6 @@
+	public synchronized void removeAllProgressListeners() {
+		if( m_liProgressListeners != null ) {
+			m_liProgressListeners.clear();
+			m_liProgressListeners = null;
+		}
+	}

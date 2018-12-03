@@ -1,0 +1,3 @@
+    public String getMD5() {
+        return m_MD5;
+    }

@@ -1,0 +1,8 @@
+    private void updateNavigationActions() {
+        int openTabs = m_tabPane.getTabCount();
+        IApplicationWindow window = m_editor.getAppWin();
+        IApplicationAction a = WindowActionFactory.MOVE_TO_NEXT_PAGE.get(window);
+        a.setEnabled(openTabs > 1);
+        a = WindowActionFactory.MOVE_TO_PREVIOUS_PAGE.get(window);
+        a.setEnabled(openTabs > 1);
+    }

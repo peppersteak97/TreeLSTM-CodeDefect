@@ -1,0 +1,3 @@
+    public String oneInstructionString() {
+        return name()+' '+handleVal()+','+brkVal()+','+wavebrkFlagsVal()+'\n';
+    }

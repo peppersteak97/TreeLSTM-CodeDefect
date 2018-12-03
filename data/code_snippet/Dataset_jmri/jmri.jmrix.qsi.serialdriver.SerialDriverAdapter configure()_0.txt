@@ -1,0 +1,14 @@
+    public void configure() {
+        QsiTrafficController.instance().connectPort(this);
+
+
+
+
+
+        sinkThread = new Thread(QsiTrafficController.instance());
+        sinkThread.start();
+
+
+        jmri.jmrix.qsi.ActiveFlag.setActive();
+
+    }

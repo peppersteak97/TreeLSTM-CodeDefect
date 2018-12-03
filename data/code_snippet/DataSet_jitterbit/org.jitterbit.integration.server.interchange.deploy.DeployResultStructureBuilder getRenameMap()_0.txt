@@ -1,0 +1,3 @@
+    public Map<IntegrationEntityId, DeployRename> getRenameMap() {
+        return Collections.unmodifiableMap(m_itemRenames);
+    }

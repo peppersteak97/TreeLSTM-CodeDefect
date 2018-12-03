@@ -1,0 +1,5 @@
+  public void textGetColumn2() throws BadLocationException {
+    final String s = "1234567890\n1234\n12345";
+    _doc.insertString(0, s, null);
+    assertEquals("#0.0", 5, _doc.getCurrentCol() );
+  }

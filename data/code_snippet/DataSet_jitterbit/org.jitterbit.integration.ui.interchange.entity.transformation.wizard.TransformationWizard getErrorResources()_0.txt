@@ -1,0 +1,7 @@
+    public static synchronized ResourceBundle getErrorResources() {
+        if (s_errorResources == null) {
+            s_errorResources = ResourceBundle.getBundle(
+                            "org.jitterbit.integration.ui.interchange.entity.transformation.wizard.resources.Errors");
+        }
+        return s_errorResources;
+    }

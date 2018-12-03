@@ -1,0 +1,1 @@
+  public static int getErrorCount() { return _errors.size(); }

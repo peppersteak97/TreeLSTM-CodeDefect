@@ -1,0 +1,17 @@
+    public void run() {
+        String server = m_message.getSmtpServers();
+        if (isEmpty(server)) {
+        }
+        String sendTo = m_message.getSendTo();
+        if (isEmpty(sendTo)) {
+        }
+        String from = m_message.getSentFrom();
+        if (isEmpty(from)) {
+        }
+        String subj = m_message.getSubject();
+        if (isEmpty(subj)) {
+        }
+        String text = m_message.getText();
+        if (isEmpty(text)) {
+        }
+    }

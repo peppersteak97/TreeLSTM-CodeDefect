@@ -1,0 +1,15 @@
+	public void loadOperationTypes() {
+		String[] validTypes = InstanceManager.turnoutManagerInstance().getValidOperationTypes();
+		for (int i=0; i<validTypes.length; ++i) {
+			String thisClassName = "jmri."+validTypes[i]+"TurnoutOperation";
+			if (validTypes[i] == null) {
+				log.warn("null operation name in loadOperationTypes");
+			} else if (getOperation(validTypes[i]) == null) {
+				try {
+					Class thisClass = Class.forName(thisClassName);
+					TurnoutOperation to = (TurnoutOperation)thisClass.newInstance();
+					if (log.isDebugEnabled()) { log.debug("loaded TurnoutOperation class "+thisClassName); };
+				} catch (Exception e) { }
+			}
+		}
+	}

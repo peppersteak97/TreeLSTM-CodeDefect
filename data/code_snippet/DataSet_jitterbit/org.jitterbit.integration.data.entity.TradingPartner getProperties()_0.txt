@@ -1,0 +1,7 @@
+    public StringKeyValuePairs getProperties() {
+        StringKeyValuePairs keyValues = super.getProperties();
+
+        keyValues.put(COMPANY, getName());
+        keyValues.put(DESCRIPTION, getDescription());
+        return keyValues;
+    }

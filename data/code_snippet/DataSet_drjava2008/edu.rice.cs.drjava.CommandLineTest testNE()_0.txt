@@ -1,0 +1,10 @@
+  public void testNE() {
+    String[] list = new String[1];
+    list[0] = nof1_name;
+    DrJavaRoot.openCommandLineFiles(_mf, list, false);
+    List<OpenDefinitionsDocument> docs = _mf.getModel().getOpenDefinitionsDocuments();
+    assertEquals("Exactly one document?", 1, docs.size());
+    OpenDefinitionsDocument doc = docs.get(0);
+    assertTrue("Is document untitled?", doc.isUntitled());
+    _log.log("testNE completed");
+  }

@@ -1,0 +1,10 @@
+    public String getName() {
+        for (int i =0; i< nameList().length; i++)
+            try {
+            if (classList()[i].getName().equals(className))
+                return nameList()[i];
+            } catch(java.lang.NullPointerException npe){
+		        log.error("Caught Null Pointer Exception while searching for " +className+" with index "+i);
+            }
+        return null;
+    }

@@ -1,0 +1,3 @@
+  final boolean getExcludeGuards() {
+    return excludeGuards;
+  }

@@ -1,0 +1,34 @@
+    public void dispose() {
+        if (log.isDebugEnabled()) log.debug("dispose");
+
+        for (int i = 0; i<_writeButtons.size(); i++) {
+            ((JButton)_writeButtons.elementAt(i)).removeActionListener(this);
+        }
+        for (int i = 0; i<_readButtons.size(); i++) {
+            ((JButton)_readButtons.elementAt(i)).removeActionListener(this);
+        }
+        for (int i = 0; i<_compareButtons.size(); i++) {
+            ((JButton)_compareButtons.elementAt(i)).removeActionListener(this);
+        }
+
+        for (int i = 0; i<_cvDisplayVector.size(); i++) {
+            ((CvValue)_cvDisplayVector.elementAt(i)).removePropertyChangeListener(this);
+        }
+
+        _cvDisplayVector.removeAllElements();
+        _cvDisplayVector = null;
+
+        _cvAllVector.removeAllElements();
+        _cvAllVector = null;
+
+        _writeButtons.removeAllElements();
+        _writeButtons = null;
+
+        _readButtons.removeAllElements();
+        _readButtons = null;
+        
+        _compareButtons.removeAllElements();
+        _compareButtons = null;
+
+        _status = null;
+    }

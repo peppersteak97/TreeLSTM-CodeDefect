@@ -1,0 +1,3 @@
+        if (byteNumber > (numOutputCards()*(bitsPerCard/8)) ) {
+            warn("C/MRI - Output bit out-of-range for defined node");
+        }

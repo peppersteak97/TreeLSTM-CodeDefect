@@ -1,0 +1,7 @@
+  public void testPrevItem() {
+    ModelList<Integer>.ModelIterator itFull = fFull.getIterator();
+    itFull.insert(Integer.valueOf(0));
+    itFull.insert(Integer.valueOf(1));
+    itFull.next();
+    assertEquals("#0.0", Integer.valueOf(1), itFull.prevItem());
+  }

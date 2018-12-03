@@ -1,0 +1,1 @@
+  private void _clean() { _model.cleanBuildDirectory(); }  // The model performs this as an AsyncTask

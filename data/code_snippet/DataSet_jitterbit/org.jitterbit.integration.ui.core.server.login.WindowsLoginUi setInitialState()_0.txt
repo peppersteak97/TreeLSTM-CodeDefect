@@ -1,0 +1,4 @@
+	protected void setInitialState() {
+		super.setInitialState();
+		setInitialCapsLockStatus();
+	}

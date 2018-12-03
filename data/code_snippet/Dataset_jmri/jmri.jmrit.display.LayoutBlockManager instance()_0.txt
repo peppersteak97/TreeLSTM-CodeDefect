@@ -1,0 +1,6 @@
+    static public LayoutBlockManager instance() {
+        if (_instance == null) {
+            _instance = new LayoutBlockManager();
+        }
+        return (_instance);
+    }

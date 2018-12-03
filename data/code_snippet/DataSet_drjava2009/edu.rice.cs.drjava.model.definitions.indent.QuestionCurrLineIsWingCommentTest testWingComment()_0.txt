@@ -1,0 +1,5 @@
+  public void testWingComment() throws javax.swing.text.BadLocationException {
+    assertTrue("A valid wing comment 1", _rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("A valid wing comment 2", _rule.testApplyRule(_doc, 4, Indenter.IndentReason.OTHER));
+    assertTrue("A valid wing comment 3", _rule.testApplyRule(_doc, 10, Indenter.IndentReason.OTHER));
+  }

@@ -1,0 +1,34 @@
+  public void safeJUnitAllWithErrors() throws Exception {
+    
+    if (printMessages) System.out.println("-----testJUnitAllWithErrors-----");
+    
+    OpenDefinitionsDocument doc = setupDocument(MONKEYTEST_ERROR_TEXT);
+    OpenDefinitionsDocument doc2 = setupDocument(MONKEYTEST_FAIL_TEXT);
+    File file = new File(_tempDir, "MonkeyTestError.java");
+    File file2 = new File(_tempDir, "MonkeyTestFail.java");
+    saveFile(doc, new FileSelector(file));
+    saveFile(doc2, new FileSelector(file2));
+    JUnitNonTestListener listener = new JUnitNonTestListener(true);
+    _model.addListener(listener);
+    listener.compile(doc);
+    listener.checkCompileOccurred();
+    listener.resetCompileCounts();
+    listener.compile(doc2);
+    listener.checkCompileOccurred();
+    
+    listener.runJUnit(_model.getJUnitModel());
+    
+    listener.assertNonTestCaseCount(0);
+    listener.assertJUnitSuiteStartedCount(1);
+    listener.assertJUnitTestStartedCount(2);
+    listener.assertJUnitTestEndedCount(2);
+    _model.removeListener(listener);
+    
+    JUnitErrorModel jem = _model.getJUnitModel().getJUnitErrorModel();
+    assertEquals("test case has one error reported", 2, jem.getNumErrors());
+    
+    assertTrue("first error should be an error", jem.getError(0).isWarning());
+    assertFalse("second error should be a failure", jem.getError(1).isWarning());
+    
+    _log.log("testJUnitAllWithErrors completed");
+  } 

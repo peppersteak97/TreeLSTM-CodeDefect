@@ -1,0 +1,5 @@
+  protected final void emit_dreturn() {
+    if (method.isSynchronized()) genSynchronizedMethodEpilogue();
+    peekDouble(F0, 0);
+    genEpilogue();
+  }

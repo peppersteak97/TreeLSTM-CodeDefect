@@ -1,0 +1,35 @@
+  public void XXXtestWatchLocalVarsFromInnerClass() throws Exception {
+    debug.logStart();
+    _log.log("----testWatchLocalVarsFromInnerClass----");
+    StepTestListener debugListener = new StepTestListener();
+    _debugger.addListener(debugListener);
+
+    OpenDefinitionsDocument doc = _startupDebugger("InnerClassWithLocalVariables.java", INNER_CLASS_WITH_LOCAL_VARS);
+
+    int index = INNER_CLASS_WITH_LOCAL_VARS.indexOf("numArgs:");
+    _debugger.toggleBreakpoint(doc, index, 7, true);
+    
+    Utilities.clearEventQueue();
+    debugListener.assertRegionAddedCount(1);
+
+    synchronized(_notifierLock) {
+      interpretIgnoreResult("java InnerClassWithLocalVariables arg");
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    _debugger.addWatch("numArgs");
+    _debugger.addWatch("args");
+    _debugger.addWatch("inlined");
+    Utilities.clearEventQueue();
+    debugListener.assertWatchSetCount(3);
+
+    ArrayList<DebugWatchData> watches = _debugger.getWatches();
+    assertEquals("numArgs watch value incorrect", "1", watches.get(0).getValue());
+    String argsWatch = watches.get(1).getValue();
+    assertTrue("args watch value incorrect", argsWatch.indexOf("java.lang.String") != -1);
+
+    assertEquals("watch value incorrect", DebugWatchData.NO_VALUE, watches.get(2).getValue());
+
+    _shutdownAndWaitForInteractionEnded();
+    _debugger.removeListener(debugListener);
+    debug.logEnd();
+  }

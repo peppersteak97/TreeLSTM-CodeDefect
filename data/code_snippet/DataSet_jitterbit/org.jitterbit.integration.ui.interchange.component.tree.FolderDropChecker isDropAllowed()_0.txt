@@ -1,0 +1,19 @@
+    public boolean isDropAllowed() {
+        if (m_targetNode instanceof IFolderUi) {
+            IFolderUi targetFolder = (IFolderUi) m_targetNode;
+            if (isDescendant(targetFolder, m_draggedNodes)) {
+                return false;
+            }
+
+            if (targetFolder.getDataObject().getItemType() == m_firstDragged
+                            .getDataObject().getItemType()) {
+                for (IKongaTreeNode node : m_draggedNodes) {
+                    if (((IKongaUiDelegate) node).representsTheSameObject(targetFolder)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }

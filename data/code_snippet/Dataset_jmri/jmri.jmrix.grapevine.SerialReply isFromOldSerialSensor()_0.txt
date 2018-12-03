@@ -1,0 +1,5 @@
+    public boolean isFromOldSerialSensor() {
+        if ( (getElement(3) & 0x70) != 0x50) return false;
+        if ( (getElement(1) & 0x20) != 0x20) return false;
+        return true;
+    }

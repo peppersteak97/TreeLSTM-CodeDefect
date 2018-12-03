@@ -1,0 +1,4 @@
+  public ExceptionDeliverer getExceptionDeliverer() {
+    if (VM.VerifyAssertions) VM._assert(VM.NOT_REACHED);
+    return null;
+  }

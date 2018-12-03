@@ -1,0 +1,14 @@
+    void startNewDataEntry() {
+        String typeName = getCurrentElementValue();
+        if (typeName == null || typeName.length() == 0) {
+        }
+        EntityType entityType = null;
+        try {
+            entityType = EntityType.valueOf(typeName);
+        }
+        catch (IllegalArgumentException e) {
+            throw new EntityTypeMetaDataXmlRuntimeException(
+        }
+        m_currentEntry = new EntityTypeMetaDataEntry(entityType);
+        m_endElementHandlers.push(new EntityElementHandler(m_currentEntry));
+    }

@@ -1,0 +1,4 @@
+        private void sendCommand(){
+            byte pkt[]=jmri.NmraPacket.accDecoderPkt(address,myTurnout.getCommandedState()==Turnout.CLOSED);
+            jmri.InstanceManager.commandStationInstance().sendPacket(pkt,1);
+        }

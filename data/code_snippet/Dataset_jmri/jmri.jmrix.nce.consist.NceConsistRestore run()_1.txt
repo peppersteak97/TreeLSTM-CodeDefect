@@ -1,0 +1,116 @@
+	public void run() {
+
+		JFileChooser fc = new JFileChooser(jmri.jmrit.XmlFile.userFileLocationDefault());
+		fc.addChoosableFileFilter(new textFilter());
+		int retVal = fc.showOpenDialog(null);
+		if (retVal != JFileChooser.APPROVE_OPTION)
+		if (fc.getSelectedFile() == null)
+		File f = fc.getSelectedFile();
+		BufferedReader in;
+		try {
+			in = new BufferedReader(new FileReader(f));
+		} catch (FileNotFoundException e) {
+			return;
+		}
+		
+	   	JPanel ps = new JPanel();
+	   	jmri.util.JmriJFrame fstatus = new jmri.util.JmriJFrame("Consist Restore");
+	   	fstatus.setLocationRelativeTo(null);
+	   	fstatus.setSize (200,100);
+	   	fstatus.getContentPane().add (ps);
+	   	
+	   	ps.add (textConsist);
+	   	ps.add(consistNumber);
+	   	
+		textConsist.setText("Consist line number:");
+        textConsist.setVisible(true);
+        consistNumber.setVisible(true);
+
+		waiting = 0;
+		String line = " ";
+
+		while (line != null) {
+			try {
+				line = in.readLine();
+			} catch (IOException e) {
+				break;
+			}
+			
+			consistNumber.setText(Integer.toString(consistNum++));
+			
+			if (line == null){				
+				log.error("NCE consist file terminator :0000 not found");
+				break;
+			}
+			if (log.isDebugEnabled()) {
+				log.debug("consist " + line);
+			}
+			String consistAddr = ":" + Integer.toHexString(curConsist);
+			String[] consistLine = line.split(" ");
+
+			if (consistLine[0].equalsIgnoreCase(":0000")) {
+				break;
+			}
+
+			if (!consistAddr.equalsIgnoreCase(consistLine[0])) {
+				log.error("Restore file selected is not a vaild backup file");
+				log.error("Consist memory address in restore file should be " + consistAddr
+						+ " Consist address read " + consistLine[0]);
+				break;
+			}
+
+			if (curConsist == CS_CONSIST_MEM) {
+				if (JOptionPane
+						.showConfirmDialog(
+								null,
+								"Restore file found!  Restore can take over a minute, continue?",
+								"NCE Consist Restore", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
+					break;
+				}
+			}
+			
+			fstatus.setVisible (true);
+
+			for (int i = 0; i < 8; i++) {
+
+				byte b[] = StringUtil.bytesFromHexString(consistLine[i + 1]);
+
+				consistData[j] = b[0];
+				consistData[j + 1] = b[1];
+			}
+
+			NceMessage m = writeNceConsistMemory(curConsist, consistData);
+			NceTrafficController.instance().sendNceMessage(m, this);
+
+			curConsist += CONSIST_LNTH;
+
+			if (waiting > 0) {
+				synchronized (this) {
+					try {
+						wait(20000);
+					} catch (InterruptedException e) {
+					}
+				}
+			}
+			if (waiting > 0){
+				log.error("timeout waiting for reply");
+				break;
+			}
+		}
+		try {
+			in.close();
+		} catch (IOException e) {
+		}
+
+		fstatus.setVisible (false);
+
+		if (fileValid) {
+			JOptionPane.showMessageDialog(null, "Successful Restore!",
+					"NCE Consist", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null,
+					"Restore failed. Check console for error messages. \r\n" +
+					"If operating at 19,200 baud, try 9600 baud.",
+					"NCE Consist", JOptionPane.ERROR_MESSAGE);
+		}
+	}

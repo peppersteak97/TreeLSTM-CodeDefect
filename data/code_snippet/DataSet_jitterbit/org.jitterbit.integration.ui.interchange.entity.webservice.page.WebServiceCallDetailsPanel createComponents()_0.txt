@@ -1,0 +1,10 @@
+    private void createComponents() {
+        String url = PackageResources.Labels.URL;
+        m_webServiceUrl = InputFieldFactory.getNonEmptyTextInputField(url, url, 30);
+        m_wsdlUrl = getNonEditableField(30);
+        m_soapAction = new FixedSizeTextField(30);
+        m_service = getNonEditableField(20);
+        m_port = getNonEditableField(20);
+        m_binding = getNonEditableField(20);
+        m_operation = getNonEditableField(20);
+    }

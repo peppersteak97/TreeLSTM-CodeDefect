@@ -1,0 +1,8 @@
+    private void setInitialFocus() {
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run(){
+                getDetailsPanel().setInitialFocus();
+            }
+        });
+    }

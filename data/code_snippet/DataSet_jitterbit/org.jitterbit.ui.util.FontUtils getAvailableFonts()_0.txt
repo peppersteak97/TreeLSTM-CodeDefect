@@ -1,0 +1,9 @@
+    public static synchronized Font[] getAvailableFonts() {
+        if (s_availableFonts == null) {
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            s_availableFonts = ge.getAllFonts();
+            if (s_availableFonts == null)
+                s_availableFonts = new Font[0];
+        }
+        return s_availableFonts;
+    }

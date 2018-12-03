@@ -1,0 +1,3 @@
+    public IScheduleUi getObject() {
+        return (IScheduleUi) super.getObject();
+    }

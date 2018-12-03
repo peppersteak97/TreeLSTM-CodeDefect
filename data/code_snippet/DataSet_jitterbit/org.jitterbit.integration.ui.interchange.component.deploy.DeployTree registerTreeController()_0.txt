@@ -1,0 +1,7 @@
+    private void registerTreeController() {
+        DefaultComponentController<KongaTree> controller =
+            new DefaultComponentController<KongaTree>();
+        controller.addMouseEventHandler(MouseEvent.MOUSE_CLICKED, 
+                        new DoubleClickHandler());
+        controller.install(m_tree);
+    }

@@ -1,0 +1,14 @@
+  public void testCancelDoesNotChangeConfig() {
+
+    Color testColor = Color.decode("#ABCDEF");
+
+    _option.setValue(testColor);
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+
+    assertEquals("Cancel (resetToCurrent) should not change the config",
+                 OptionConstants.DEFINITIONS_NORMAL_COLOR.getDefault(),
+                 DrJava.getConfig().getSetting(OptionConstants.DEFINITIONS_NORMAL_COLOR));
+
+  }

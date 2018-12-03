@@ -1,0 +1,12 @@
+    protected List<JButton> createToolBarButtons() {
+        List<JButton> buttons = new ArrayList<JButton>();
+        buttons.add(createDownloadButton());
+        buttons.add(null);
+        buttons.add(createUploadButton());
+        List<JButton> genericButtons = super.createToolBarButtons();
+        if (!genericButtons.isEmpty()) {
+            buttons.add(null);
+            buttons.addAll(genericButtons);
+        }
+        return buttons;
+    }

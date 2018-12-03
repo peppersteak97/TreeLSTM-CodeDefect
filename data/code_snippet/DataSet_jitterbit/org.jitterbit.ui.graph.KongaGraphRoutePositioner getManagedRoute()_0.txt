@@ -1,0 +1,3 @@
+	public KongaGraphRoute getManagedRoute() {
+		return m_route;
+	}

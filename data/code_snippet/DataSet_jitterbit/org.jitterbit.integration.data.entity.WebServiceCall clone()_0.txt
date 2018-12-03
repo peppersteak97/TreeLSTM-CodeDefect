@@ -1,0 +1,14 @@
+    public WebServiceCall clone() throws CloneNotSupportedException {
+        WebServiceCall clone = (WebServiceCall) super.clone();
+
+        if (m_callRestriction != null) {
+            clone.m_callRestriction = m_callRestriction.getCopy();
+        }
+
+        if (m_wsdlFile != null) {
+            clone.m_wsdlFile = m_wsdlFile.getCopy();
+        }
+
+
+        return clone;
+    }

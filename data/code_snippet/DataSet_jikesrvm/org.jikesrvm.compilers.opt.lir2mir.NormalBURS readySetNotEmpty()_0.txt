@@ -1,0 +1,9 @@
+    while (readySetNotEmpty()) {
+      BURS_TreeNode k = readySetRemove();
+      if (DEBUG) {
+        VM.sysWrite("PROCESSING TREE ROOTED AT " + k.dg_node + "\n");
+        BURS_STATE.dumpTree(k);
+      }
+      numTreeRoots--;
+      generateTree(k, burs);
+    }

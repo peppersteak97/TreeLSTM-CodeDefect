@@ -1,0 +1,6 @@
+	public void finalizeBlockBossLogic() {
+		if (logic==null) return;
+		logic.retain();
+		logic.start();
+		logic = null;
+	}

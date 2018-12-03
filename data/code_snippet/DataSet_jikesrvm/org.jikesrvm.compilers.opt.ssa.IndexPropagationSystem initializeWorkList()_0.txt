@@ -1,0 +1,18 @@
+  protected void initializeWorkList() {
+    for (Enumeration<DF_Equation> e = getEquations(); e.hasMoreElements();) {
+      DF_Equation eq = e.nextElement();
+      for (DF_LatticeCell operand : eq.getOperands()) {
+        if (operand instanceof ObjectCell) {
+          if (!((ObjectCell) operand).isTOP()) {
+            addToWorkList(eq);
+            break;
+          }
+        } else {
+          if (!((ArrayCell) operand).isTOP()) {
+            addToWorkList(eq);
+            break;
+          }
+        }
+      }
+    }
+  }

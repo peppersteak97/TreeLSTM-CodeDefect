@@ -1,0 +1,9 @@
+    public static JitterPackLocatorFactory newInstance() {
+        return new JitterPackLocatorFactory() {
+
+            @Override
+            public IJitterPackLocator create() {
+                return new DefaultJitterPackLocator();
+            }
+        };
+    }

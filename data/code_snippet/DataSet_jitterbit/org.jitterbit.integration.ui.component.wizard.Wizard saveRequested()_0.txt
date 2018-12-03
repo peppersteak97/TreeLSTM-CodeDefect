@@ -1,0 +1,26 @@
+    public void saveRequested() {
+
+        if (m_currentPage == null || m_applicablePages.isEmpty()) {
+            throw new IllegalStateException("Can't invoke save on an empty wizard.");
+        }
+
+        final Runnable saveJob = new Runnable() {
+
+            public void run() {
+                m_currentPage = null;
+                onWizardDone();
+            }
+        };
+
+        Runnable task = new Runnable() {
+
+            public void run() {
+                if (m_currentPage.prepareForForwardNavigation()) {
+                    EventQueue.invokeLater(saveJob);
+                }
+            }
+        };
+
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallell(IUiWorker.GUARD.protect(task));
+    }

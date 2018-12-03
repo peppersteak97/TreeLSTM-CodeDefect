@@ -1,0 +1,3 @@
+    protected Action getDoubleClickAction() {
+        return m_doubleClickAction;
+    }

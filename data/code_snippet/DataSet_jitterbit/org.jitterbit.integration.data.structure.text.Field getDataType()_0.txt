@@ -1,0 +1,6 @@
+    public FieldDataType getDataType() {
+        if( m_dataType != null && m_dataType.length() > 0 ) {
+            return FieldDataType.valueOf(m_dataType);
+        }
+        return null;
+    }

@@ -1,0 +1,3 @@
+    public boolean isDebug() {
+        return m_isDebug;
+    }

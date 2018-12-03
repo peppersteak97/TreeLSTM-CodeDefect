@@ -1,0 +1,3 @@
+    public static InterchangeLauncher getLatestInstance() {
+        return s_instance;
+    }

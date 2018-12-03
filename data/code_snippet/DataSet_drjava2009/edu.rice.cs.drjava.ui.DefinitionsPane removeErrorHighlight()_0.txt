@@ -1,0 +1,6 @@
+  public void removeErrorHighlight() {
+    if (_errorHighlightTag != null) {
+      _errorHighlightTag.remove();
+      _errorHighlightTag = null;
+    }
+  }

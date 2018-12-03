@@ -1,0 +1,3 @@
+    public boolean getF16() {
+        return f16;
+    }

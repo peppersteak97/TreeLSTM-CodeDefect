@@ -1,0 +1,11 @@
+  public void flash() {
+    setVisible(true);
+    repaint();
+    Timer cleanup = new Timer(PAUSE_TIME, new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        dispose();
+      }
+    });
+    cleanup.setRepeats(false);
+    cleanup.start();
+  }

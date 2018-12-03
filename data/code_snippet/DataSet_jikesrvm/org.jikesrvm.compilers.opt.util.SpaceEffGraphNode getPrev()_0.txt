@@ -1,0 +1,3 @@
+  public final SpaceEffGraphNode getPrev() {
+    return prev;
+  }

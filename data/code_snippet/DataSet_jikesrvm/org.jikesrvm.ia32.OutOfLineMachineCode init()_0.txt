@@ -1,0 +1,7 @@
+  public static void init() {
+    generatePcThunkInstructions();
+    reflectiveMethodInvokerInstructions = generateReflectiveMethodInvokerInstructions();
+    saveThreadStateInstructions = generateSaveThreadStateInstructions();
+    threadSwitchInstructions = generateThreadSwitchInstructions();
+    restoreHardwareExceptionStateInstructions = generateRestoreHardwareExceptionStateInstructions();
+  }

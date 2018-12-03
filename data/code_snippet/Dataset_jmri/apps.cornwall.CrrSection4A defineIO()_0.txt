@@ -1,0 +1,4 @@
+    void defineIO() {
+        sig  = InstanceManager.signalHeadManagerInstance().getByUserName("Signal 4A");
+        inputs = new NamedBean[]{ tu[4], tu[5], tu[10], bo[6], bo[7], bo[8], si[33], si[36] };
+    }

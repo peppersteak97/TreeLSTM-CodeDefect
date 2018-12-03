@@ -1,0 +1,11 @@
+	public void removeAllPropertyChangeListeners() {
+		if (m_propChangeSupport == null) {
+            return;
+        }
+        PropertyChangeListener[] listeners = m_propChangeSupport
+                        .getPropertyChangeListeners();
+        for (int i = 0; i < listeners.length; ++i) {
+            m_propChangeSupport.removePropertyChangeListener(listeners[i]);
+        }
+        m_propChangeSupport = null;
+	}

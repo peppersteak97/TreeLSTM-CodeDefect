@@ -1,0 +1,11 @@
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(_exception);
+    
+    for(StackTraceElement s: _stackTrace) {
+      sb.append('\n');
+      sb.append("\tat ");
+      sb.append(s);
+    }
+    return sb.toString();
+  }

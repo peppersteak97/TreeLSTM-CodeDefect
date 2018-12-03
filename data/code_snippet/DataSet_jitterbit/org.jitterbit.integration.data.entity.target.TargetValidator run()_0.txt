@@ -1,0 +1,8 @@
+    public void run() {
+        DataLocation location = m_target.getLocation();
+        if (location == null) {
+        }
+        else {
+            validateLocation(location);
+        }
+    }

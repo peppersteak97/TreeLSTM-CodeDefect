@@ -1,0 +1,6 @@
+  public void compileStarted() {
+    _lock.startRead();
+    try { for (GlobalModelListener l : _listeners) { l.compileStarted(); }
+    }
+    finally { _lock.endRead(); }
+  }

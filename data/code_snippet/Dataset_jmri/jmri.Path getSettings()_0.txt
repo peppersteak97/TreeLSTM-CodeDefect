@@ -1,0 +1,3 @@
+    public List getSettings() {
+		return _beans;
+    }

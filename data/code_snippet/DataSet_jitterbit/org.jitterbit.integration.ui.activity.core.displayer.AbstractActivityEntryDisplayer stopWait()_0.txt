@@ -1,0 +1,10 @@
+    public void stopWait() {
+        Runnable job = new Runnable() {
+
+            public void run() {
+                getNavigationControl().setEnabled(true);
+                getDisplayer().setCursor(Cursor.getDefaultCursor());
+            }
+        };
+        UiUtils.runOnEventThread(job);
+    }

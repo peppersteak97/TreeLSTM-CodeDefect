@@ -1,0 +1,118 @@
+  public void testDancingUIFileOpened() throws IOException {
+    /** Maybe this sequence of calls should be incorporated into one function createTestDir(), which would get 
+      * the username and create the temporary directory. Only sticky part is deciding where to put it, in FileOps 
+      * maybe?
+      */
+    
+    _log.log("Starting testingDancingUIFileOpened");
+    
+    final GlobalModel _model = _frame.getModel();
+    
+    String user = System.getProperty("user.name");
+    _tempDir = IOUtil.createAndMarkTempDirectory("DrJava-test-" + user, "");
+    
+    File forceOpenClass1_file = new File(_tempDir, "ForceOpenClass1.java");
+    String forceOpenClass1_string =
+      "public class ForceOpenClass1 {\n" +
+      "  ForceOpenClass2 class2;\n" +
+      "  ForceOpenClass3 class3;\n\n" +
+      "  public ForceOpenClass1() {\n" +
+      "    class2 = new ForceOpenClass2();\n" +
+      "    class3 = new ForceOpenClass3();\n" +
+      "  }\n" +
+      "}";
+    
+    File forceOpenClass2_file = new File(_tempDir, "ForceOpenClass2.java");
+    String forceOpenClass2_string =
+      "public class ForceOpenClass2 {\n" +
+      "  inx x = 4;\n" +
+      "}";
+    
+    File forceOpenClass3_file = new File(_tempDir, "ForceOpenClass3.java");
+    String forceOpenClass3_string =
+      "public class ForceOpenClass3 {\n" +
+      "  String s = \"asf\";\n" +
+      "}";
+    
+    IOUtil.writeStringToFile(forceOpenClass1_file, forceOpenClass1_string);
+    IOUtil.writeStringToFile(forceOpenClass2_file, forceOpenClass2_string);
+    IOUtil.writeStringToFile(forceOpenClass3_file, forceOpenClass3_string);
+    forceOpenClass1_file.deleteOnExit();
+    forceOpenClass2_file.deleteOnExit();
+    forceOpenClass3_file.deleteOnExit();
+    
+    _log.log("DancingUIFileOpened Set Up");
+    
+    
+    
+    final ComponentAdapter listener = new ComponentAdapter() {
+      public void componentResized(ComponentEvent event) {
+        _testFailed = true;
+        fail("testDancingUI: Open Documents List danced!");
+      }
+    };
+    final SingleDisplayModelFileOpenedListener openListener = new SingleDisplayModelFileOpenedListener();
+    final SingleDisplayModelCompileListener compileListener = new SingleDisplayModelCompileListener();
+    
+    _openDone = false;
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() {
+        _frame.pack();
+        _frame.addComponentListenerToOpenDocumentsList(listener);
+      }
+    });
+    Utilities.clearEventQueue();
+    
+    _model.addListener(openListener);
+    
+    _log.log("opening file");
+    
+    Utilities.invokeLater(new Runnable() {
+      public void run() {
+        _frame.open(new FileOpenSelector() {
+          public File[] getFiles() {
+            File[] return_me = new File[1];
+            return_me[0] = new File(_tempDir, "ForceOpenClass1.java");
+            return return_me;
+          }
+        });
+      }
+    });
+    Utilities.clearEventQueue();
+    
+    /* wait until file has been open and active document changed. */
+    synchronized(_openLock) {
+      try { while (! _openDone) _openLock.wait(); }
+      catch(InterruptedException e) { fail(e.toString()); }
+    }
+    
+    _model.removeListener(openListener);
+    
+    _log.log("File opened");
+    
+    _compileDone = false;
+    _model.addListener(compileListener);
+    
+    
+    Utilities.invokeLater(new Runnable() { 
+      public void run() { 
+        _log.log("saving all files");
+        _frame._saveAll();
+        _log.log("invoking compileAll action");
+        _frame.getCompileAllButton().doClick();
+      }
+    });
+    Utilities.clearEventQueue();
+    
+    synchronized(_compileLock) {
+      try { while (! _compileDone) _compileLock.wait(); }
+      catch(InterruptedException e) { fail(e.toString()); }
+    }
+    _log.log("File saved and compiled");
+    
+    if (! IOUtil.deleteRecursively(_tempDir))
+      System.out.println("Couldn't fully delete directory " + _tempDir.getAbsolutePath() + "\nDo it by hand.\n");
+    
+    _log.log("testDancingUIFileOpened completed");
+  }

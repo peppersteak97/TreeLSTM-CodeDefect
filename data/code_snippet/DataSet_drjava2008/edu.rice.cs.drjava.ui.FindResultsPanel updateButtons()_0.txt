@@ -1,0 +1,9 @@
+  protected void _updateButtons() {
+    ArrayList<MovingDocumentRegion> regs = getSelectedRegions();
+    OpenDefinitionsDocument odd = null;
+    if (_doc != null) { odd = _doc.get(); }
+    _findAgainButton.setEnabled(odd != null || _searchAll);
+    _goToButton.setEnabled(regs.size() == 1);
+    _bookmarkButton.setEnabled(regs.size() > 0);
+    _removeButton.setEnabled(regs.size() > 0);
+  }

@@ -1,0 +1,8 @@
+    public void validateInput() throws InputPanelException {
+        try {
+            m_fieldModel.validateModel();
+        }
+        catch (TextDocumentDefinitionException e) {
+            throw new InputPanelException(e.getMessage());
+        }
+    }

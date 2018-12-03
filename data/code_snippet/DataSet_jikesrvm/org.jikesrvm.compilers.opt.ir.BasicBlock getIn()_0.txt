@@ -1,0 +1,3 @@
+  public final BasicBlockEnumeration getIn() {
+    return new InEdgeEnum(this);
+  }

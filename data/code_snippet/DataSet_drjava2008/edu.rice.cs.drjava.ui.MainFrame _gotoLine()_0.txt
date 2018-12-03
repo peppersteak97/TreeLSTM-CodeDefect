@@ -1,0 +1,14 @@
+  private int _gotoLine() {
+    final String msg = "What line would you like to go to?";
+    final String title = "Go to Line";
+    String lineStr = JOptionPane.showInputDialog(this, msg, title, JOptionPane.QUESTION_MESSAGE);
+    try {
+      if (lineStr != null) {
+        int lineNum = Integer.parseInt(lineStr);
+        return _jumpToLine(lineNum);      }
+    }
+    catch (NumberFormatException nfe) {
+      Toolkit.getDefaultToolkit().beep();
+    }
+    return -1;
+  }

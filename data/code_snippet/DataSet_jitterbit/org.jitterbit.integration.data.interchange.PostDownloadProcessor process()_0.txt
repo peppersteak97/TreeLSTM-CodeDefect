@@ -1,0 +1,15 @@
+    private ManagedProjectImpl process() throws InterchangeSavingException {
+        m_project.projectWasLoaded();
+        m_project.setServerInfo(m_serverInfo);
+        m_project.setLocationOnDisk(m_projectFolder);
+        
+        markAsDownloaded(m_project, m_serverInfo.getGuid());
+        InterchangeProjectFile projectFile = createProjectFile();
+        ManagedProjectImpl mp = createManagedProject(projectFile);
+        
+        m_manager.addProjectForManagement(m_project.getName(), mp);
+        
+        ProjectUtils.prepareRootDirectory(m_projectFolder);
+        mp.saveToDisk();
+        return mp;
+    }

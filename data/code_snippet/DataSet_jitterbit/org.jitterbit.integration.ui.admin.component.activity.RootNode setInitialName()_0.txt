@@ -1,0 +1,6 @@
+    private void setInitialName() {
+        m_name = ServerManager.getManager().getCurrentServerName();
+        if (m_name == null || m_name.length() == 0) {
+            m_name = PackageResources.RootNode.DISCONNECTED_NAME;
+        }
+    }

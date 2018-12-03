@@ -1,0 +1,15 @@
+    public void lastItem() {
+        _defaultColor = _value.getBackground();
+        super.setState(READ);
+        
+        findValue();
+                
+        Iterator i = variables.iterator();
+        while (i.hasNext()) {
+            VariableValue v = (VariableValue) i.next();
+            if (v==null) log.error("Variable found as null in last item");
+            v.addPropertyChangeListener(this);
+        }
+
+        _value.addActionListener(this);
+    }

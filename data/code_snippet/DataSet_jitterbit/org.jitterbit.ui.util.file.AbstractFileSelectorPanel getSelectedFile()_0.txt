@@ -1,0 +1,3 @@
+    public File getSelectedFile() {
+        return getSelectedFile(true);
+    }

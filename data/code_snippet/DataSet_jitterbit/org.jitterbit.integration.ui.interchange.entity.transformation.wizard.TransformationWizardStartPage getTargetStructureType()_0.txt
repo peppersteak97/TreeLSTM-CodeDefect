@@ -1,0 +1,3 @@
+    public DataStructureType getTargetStructureType() {
+        return m_ui.getTargetStructureType();
+    }

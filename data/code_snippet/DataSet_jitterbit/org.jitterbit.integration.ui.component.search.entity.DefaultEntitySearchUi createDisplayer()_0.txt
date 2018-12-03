@@ -1,0 +1,21 @@
+    private JComponent createDisplayer() {
+        OneColumnPanel col = new OneColumnPanel();
+        col.setInsets(5, 5, 10, 5);
+        col.add(createSearchFieldPanel());
+        if (m_context.allowsTypeSelection()) {
+            col.add(createEntityTypePanel());
+        }
+        col.setFillOut();
+        col.add(createResultPanel());
+        col.setFillNone();
+        if (m_displayOptions.length > 1) {
+            col.add(createOptionPanel());
+        }
+        col.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        col.setOpaque(false, true);
+        col.setFocusCycleRoot(true);
+        
+        JPanel capsule = new JPanel(new BorderLayout());
+        col.addToParent(capsule, BorderLayout.CENTER);
+        return capsule;
+    }

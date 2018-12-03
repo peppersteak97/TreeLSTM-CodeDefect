@@ -1,0 +1,3 @@
+  protected void startLongTimer() {
+      restartTimer(LONG_TIMEOUT);
+  }

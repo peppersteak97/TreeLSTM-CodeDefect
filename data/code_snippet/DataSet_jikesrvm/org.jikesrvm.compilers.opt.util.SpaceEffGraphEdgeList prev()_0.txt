@@ -1,0 +1,3 @@
+  public SpaceEffGraphEdgeList prev() {
+    return _prev;
+  }

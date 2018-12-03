@@ -1,0 +1,8 @@
+	protected void snapRoute() {
+		for( KongaGraphRoutePositioner rpos : m_liInRoutes ) {
+			rpos.snapMiddle();
+		}
+		for( KongaGraphRoutePositioner rpos : m_liOutRoutes ) {
+			rpos.snapMiddle();
+		}
+	}

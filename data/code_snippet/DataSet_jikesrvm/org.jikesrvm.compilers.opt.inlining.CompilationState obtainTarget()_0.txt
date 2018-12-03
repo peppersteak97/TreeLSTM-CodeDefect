@@ -1,0 +1,3 @@
+  public RVMMethod obtainTarget() {
+    return Call.getMethod(call).getTarget();
+  }

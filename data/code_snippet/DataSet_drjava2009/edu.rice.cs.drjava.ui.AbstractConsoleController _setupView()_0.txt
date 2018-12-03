@@ -1,0 +1,40 @@
+  protected void _setupView() {
+    _pane.addActionForKeyStroke(DrJava.getConfig().getSetting(OptionConstants.KEY_BEGIN_LINE), gotoPromptPosAction);
+    _pane.addActionForKeyStroke(DrJava.getConfig().getSetting(OptionConstants.KEY_BEGIN_LINE_SELECT), selectToPromptPosAction);
+    _pane.addActionForKeyStroke(DrJava.getConfig().getSetting(OptionConstants.KEY_END_LINE), gotoEndAction);
+    _pane.addActionForKeyStroke(DrJava.getConfig().getSetting(OptionConstants.KEY_END_LINE_SELECT), selectToEndAction);
+
+    DrJava.getConfig().addOptionListener(OptionConstants.KEY_BEGIN_LINE, new OptionListener<Vector<KeyStroke>>() {
+      public void optionChanged(OptionEvent<Vector<KeyStroke>> oe) {
+        _pane.addActionForKeyStroke(oe.value, gotoPromptPosAction);
+      }
+    });
+    DrJava.getConfig().addOptionListener(OptionConstants.KEY_BEGIN_LINE_SELECT, new OptionListener<Vector<KeyStroke>>() {
+      public void optionChanged(OptionEvent<Vector<KeyStroke>> oe) {
+        _pane.addActionForKeyStroke(oe.value, selectToPromptPosAction);
+     }
+    });
+    DrJava.getConfig().addOptionListener(OptionConstants.KEY_END_LINE, new OptionListener<Vector<KeyStroke>>() {
+      public void optionChanged(OptionEvent<Vector<KeyStroke>> oe) {
+        _pane.addActionForKeyStroke(oe.value, gotoEndAction);
+     }
+    });
+    DrJava.getConfig().addOptionListener(OptionConstants.KEY_END_LINE_SELECT, new OptionListener<Vector<KeyStroke>>() {
+      public void optionChanged(OptionEvent<Vector<KeyStroke>> oe) {
+        _pane.addActionForKeyStroke(oe.value, selectToEndAction);
+     }
+    });
+    
+    _pane.addActionForKeyStroke(DrJava.getConfig().getSetting(OptionConstants.KEY_CUT), cutAction);
+    _pane.addActionForKeyStroke(DrJava.getConfig().getSetting(OptionConstants.KEY_COPY), copyAction);
+    DrJava.getConfig().addOptionListener(OptionConstants.KEY_CUT, new OptionListener<Vector<KeyStroke>>() {
+      public void optionChanged(OptionEvent<Vector<KeyStroke>> oe) {
+        _pane.addActionForKeyStroke(DrJava.getConfig().getSetting(OptionConstants.KEY_CUT), cutAction);
+     }
+    });
+    DrJava.getConfig().addOptionListener(OptionConstants.KEY_COPY, new OptionListener<Vector<KeyStroke>>() {
+      public void optionChanged(OptionEvent<Vector<KeyStroke>> oe) {
+        _pane.addActionForKeyStroke(DrJava.getConfig().getSetting(OptionConstants.KEY_COPY), copyAction);
+     }
+    });
+  }

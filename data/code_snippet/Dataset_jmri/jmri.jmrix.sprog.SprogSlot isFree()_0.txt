@@ -1,0 +1,1 @@
+     public boolean isFree() { return (status == SprogConstants.SLOT_FREE); }

@@ -1,0 +1,38 @@
+  protected JComponent[] makeButtons() {    
+    Action goToAction = new AbstractAction("Go to") {
+      public void actionPerformed(ActionEvent ae) {
+        goToRegion();
+      }
+    };
+    _goToButton = new JButton(goToAction);
+    
+    Action enableDisableAction = new AbstractAction("Disable") {
+      public void actionPerformed(ActionEvent ae) {
+        enableDisableBreakpoint();
+      }
+    };
+    _enableDisableButton = new JButton(enableDisableAction);
+    
+    Action removeAction = new AbstractAction("Remove") {
+      public void actionPerformed(ActionEvent ae) {
+        for (Breakpoint bp: getSelectedRegions()) _regionManager.removeRegion(bp);
+      }
+    };
+    _removeButton = new JButton(removeAction);
+    
+    Action removeAllAction = new AbstractAction("Remove All") {
+      public void actionPerformed(ActionEvent ae) {
+        _regionManager.clearRegions();
+      }
+    };
+    _removeAllButton = new JButton(removeAllAction);
+    
+    JComponent[] buts = new JComponent[] { 
+      _enableDisableButton,
+        _goToButton, 
+        _removeButton,
+        _removeAllButton
+    };
+    
+    return buts;
+  }

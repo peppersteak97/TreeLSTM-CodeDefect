@@ -1,0 +1,58 @@
+	public void initComponents() throws Exception {
+
+		getNamesButton.setText("Get port names");
+		getNamesButton.setToolTipText("Updates the list of available port names");
+		getNamesButton.setVisible(true);
+
+		portBox.setVisible(true);
+		portBox.setToolTipText("Select the port to use");
+		portBox.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+		Vector v = adapter.getPortNames();
+		for (int i=0; i<v.size(); i++)
+			portBox.addItem(v.elementAt(i));
+
+		String[] baudList = adapter.validBaudRates();
+		for (int i=0; i<baudList.length; i++) baudBox.addItem(baudList[i]);
+		String[] opt1List = adapter.validOption1();
+		for (int i=0; i<opt1List.length; i++) opt1Box.addItem(opt1List[i]);
+		String[] opt2List = adapter.validOption2();
+		for (int i=0; i<opt2List.length; i++) opt2Box.addItem(opt2List[i]);
+
+		openPortButton.setText("Open port");
+		openPortButton.setToolTipText("Configure program to use selected port");
+		openPortButton.setVisible(true);
+
+		setLocation(new java.awt.Point(5, 40));
+		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+		getContentPane().add(getNamesButton);
+		getContentPane().add(portBox);
+		getContentPane().add(baudBox);
+		getContentPane().add(opt1Box);
+		getContentPane().add(opt2Box);
+		getContentPane().add(openPortButton);
+
+		pack();
+
+		getNamesButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				getNamesButtonActionPerformed(e);
+			}
+		});
+		openPortButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				try {
+	 				openPortButtonActionPerformed(evt);
+				} catch (jmri.jmrix.SerialConfigException ex) {
+					log.error("Error while opening port.  Did you select the right one?\n"+ex);
+				}
+			  	catch (java.lang.UnsatisfiedLinkError ex) {
+					log.error("Error while opening port.  Did you select the right one?\n"+ex);
+				}
+			}
+		});
+		addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				thisWindowClosing(e);
+			}
+		});
+	}

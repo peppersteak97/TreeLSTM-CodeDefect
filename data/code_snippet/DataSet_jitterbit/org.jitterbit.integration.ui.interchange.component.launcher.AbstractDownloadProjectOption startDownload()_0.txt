@@ -1,0 +1,4 @@
+    protected void startDownload() {
+        IProjectDownloader downloader = createDownloader();
+        downloader.start();
+    }

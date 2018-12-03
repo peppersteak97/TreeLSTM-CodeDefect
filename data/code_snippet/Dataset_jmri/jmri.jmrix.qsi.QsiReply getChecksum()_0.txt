@@ -1,0 +1,8 @@
+    public boolean getChecksum() {
+        int checksum = 0;
+        for (int i = 0; i < _nDataChars; i++) {
+            checksum += (int)(_dataChars[i] & 0xff);
+        }
+        _nDataChars--;
+        return ((checksum & 0xff) == 0);
+    }

@@ -1,0 +1,3 @@
+    public IKongaTreeModel getModel() {
+        return (IKongaTreeModel) super.getModel();
+    }

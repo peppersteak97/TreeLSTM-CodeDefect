@@ -1,0 +1,7 @@
+  public void testNoParenDelims() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionNewParenPhrase(null, null);
+    
+    _setDocText("foo\nbar.\ny");
+    assertTrue("second line", !rule.testApplyRule(_doc, 4, Indenter.IndentReason.OTHER));
+    assertTrue("third line", !rule.testApplyRule(_doc, 9, Indenter.IndentReason.OTHER));
+  }

@@ -1,0 +1,7 @@
+    public void destroy()
+    {
+        if (throttle != null)
+            {
+                throttle.setSpeedSetting(0);
+            }
+    }

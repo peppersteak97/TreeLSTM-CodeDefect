@@ -1,0 +1,22 @@
+  public void testGetIndentOfCurrStmtDelimiters() throws BadLocationException {
+
+    _setDocText("foo();\n");
+    assertEquals("prev delimiter 0, no indent", 0, _getIndentOfCurrStmt(3));
+    _setDocText("  foo();\n");
+    assertEquals("prev delimiter 0, indent two spaces", 2, _getIndentOfCurrStmt(7));
+    
+    _setDocText("bar();\nfoo();\n");
+    assertEquals("prev delimiter ';', no indent", 0, _getIndentOfCurrStmt(7));
+    _setDocText("  bar();\n  foo();\n");
+    assertEquals("prev delimiter ';', indent two spaces", 2, _getIndentOfCurrStmt(9));
+    
+    _setDocText("void bar()\n{\nfoo();\n");
+    assertEquals("prev delimiter '{', no indent", 0, _getIndentOfCurrStmt(13));
+    _setDocText("void bar()\n{\n  foo();\n");
+    assertEquals("prev delimiter '{', indent two spaces", 2, _getIndentOfCurrStmt(13));
+    
+    _setDocText("}\nfoo();\n");
+    assertEquals("prev delimiter '}', no indent", 0, _getIndentOfCurrStmt(2));
+    _setDocText("}\n  foo();\n");
+    assertEquals("prev delimiter '}', indent two spaces", 2, _getIndentOfCurrStmt(2));
+  }

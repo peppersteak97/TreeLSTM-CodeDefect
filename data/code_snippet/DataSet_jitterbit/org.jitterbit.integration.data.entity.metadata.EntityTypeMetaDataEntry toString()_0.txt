@@ -1,0 +1,11 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder(m_type.toString());
+        sb.append(m_implementingClass.getName());
+        if( m_rootFolderData != null ) {
+            sb.append(m_rootFolderData.toString());
+        }
+        if( m_folderData != null ) {
+            sb.append(m_folderData.toString());
+        }
+        return sb.toString();
+    }

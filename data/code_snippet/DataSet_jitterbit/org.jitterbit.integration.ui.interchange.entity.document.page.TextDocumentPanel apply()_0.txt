@@ -1,0 +1,6 @@
+    public void apply() throws IntegrationDataPanelException {
+        stopEditing();
+        validateEnteredData();
+        applyName();
+        applyStructure();
+    }

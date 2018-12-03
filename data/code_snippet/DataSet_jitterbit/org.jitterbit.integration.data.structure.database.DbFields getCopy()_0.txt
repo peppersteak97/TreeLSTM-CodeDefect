@@ -1,0 +1,7 @@
+    public DbFields getCopy() {
+        DbFields copy = new DbFields();
+        for (int n = 0; n < m_entries.length; ++n) {
+            copy.m_entries[n] = (m_entries[n] == null) ? null : m_entries[n].getCopy();
+        }
+        return copy;
+    }

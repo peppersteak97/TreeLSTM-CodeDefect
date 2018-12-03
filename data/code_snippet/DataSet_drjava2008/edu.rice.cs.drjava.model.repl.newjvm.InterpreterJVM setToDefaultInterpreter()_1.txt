@@ -1,0 +1,4 @@
+  public synchronized boolean setToDefaultInterpreter() {
+    _activeInterpreter = Pair.make("", _defaultInterpreter);
+    return _busyInterpreters.contains(_defaultInterpreter);
+  }

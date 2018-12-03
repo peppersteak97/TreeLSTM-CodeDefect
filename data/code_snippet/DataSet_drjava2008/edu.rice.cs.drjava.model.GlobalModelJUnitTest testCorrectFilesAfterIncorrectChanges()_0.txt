@@ -1,0 +1,48 @@
+  public void testCorrectFilesAfterIncorrectChanges() throws Exception {
+    
+    OpenDefinitionsDocument doc = setupDocument(NON_TESTCASE_TEXT);
+    JUnitNonTestListener listener = new JUnitNonTestListener(true);
+    File file = new File(_tempDir, "NonTestCase.java");
+    saveFile(doc, new FileSelector(file));
+    _model.addListener(listener);
+   
+    listener.compile(doc);
+    listener.checkCompileOccurred();
+    _model.removeListener(listener);
+    
+    doc = setupDocument(MULTI_CLASSES_IN_FILE_TEXT);
+    file = new File(_tempDir, "Test.java");
+    saveFile(doc, new FileSelector(file));
+    
+    listener = new JUnitNonTestListener(true);
+    _model.addListener(listener);
+    listener.compile(doc);
+    
+    listener.runJUnit(_model.getJUnitModel());
+    
+    listener.assertNonTestCaseCount(0);
+    listener.assertJUnitSuiteStartedCount(1);
+    listener.assertJUnitTestStartedCount(1);
+    listener.assertJUnitTestEndedCount(1);
+    _model.removeListener(listener);
+    
+    doc.remove(87,4);
+    
+    JUnitTestListener listener2 = new JUnitCompileBeforeTestListener();
+    
+    _model.addListener(listener2);
+    
+    
+    listener2.runJUnit(doc);
+    
+    if (printMessages) System.out.println("after test");
+    listener2.assertCompileBeforeJUnitCount(1);
+    listener2.assertNonTestCaseCount(1);
+    listener2.assertJUnitStartCount(0);
+    listener2.assertJUnitEndCount(0);
+    listener2.assertJUnitSuiteStartedCount(0);
+    listener2.assertJUnitTestStartedCount(0);
+    listener2.assertJUnitTestEndedCount(0);
+    _model.removeListener(listener2);
+    _log.log("testCorrectFilesAfterIncorrectChanges completed");
+  }

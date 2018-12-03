@@ -1,0 +1,3 @@
+    private boolean shouldSchemaNameBeIncluded() {
+        return SCHEMAS_SUPPORTED && m_schemaSwitch.isSelected();
+    }

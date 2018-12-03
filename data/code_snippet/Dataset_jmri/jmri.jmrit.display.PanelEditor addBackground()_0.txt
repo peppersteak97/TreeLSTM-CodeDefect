@@ -1,0 +1,40 @@
+    void addBackground() {
+        if (inputFileChooser == null) {
+            inputFileChooser = new JFileChooser(System.getProperty("user.dir")+java.io.File.separator+"resources");
+            jmri.util.FileChooserFilter filt = new jmri.util.FileChooserFilter("Graphics Files");
+            filt.addExtension("gif");
+            filt.addExtension("jpg");
+            inputFileChooser.setFileFilter(filt);
+        }
+        inputFileChooser.rescanCurrentDirectory();
+        
+        int retVal = inputFileChooser.showOpenDialog(this);
+ 
+        String name = inputFileChooser.getSelectedFile().getPath();
+        String defaultPrefDir = jmri.jmrit.XmlFile.userFileLocationDefault()+"resources"+java.io.File.separator;
+        String defaultProgDir = System.getProperty("user.dir")+java.io.File.separator;
+        int len = name.length();
+        if (name.startsWith(defaultPrefDir))
+            name = "file:"+name.substring(defaultPrefDir.length(),len);
+        
+        if (name.startsWith(defaultProgDir))
+            name = name.substring(defaultProgDir.length(),len);
+            
+        if (log.isDebugEnabled()) {
+            log.debug("getPath: "+inputFileChooser.getSelectedFile().getPath());
+            log.debug("prgPath: "+defaultProgDir);
+            log.debug("prfPath: "+defaultPrefDir);
+            log.debug("   name: "+name);
+        }
+        
+        NamedIcon icon = jmri.jmrit.catalog.CatalogPane.getIconByName(name);
+        PositionableLabel l = new PositionableLabel(icon);
+        l.setFixed(true);
+        l.setShowTooltip(false);
+        l.setSize(icon.getIconWidth(), icon.getIconHeight());
+        l.setDisplayLevel(BKG);
+        
+        setNextLocation(l);
+        putLabel(l);
+        moveToFront(l);
+    }

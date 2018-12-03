@@ -1,0 +1,9 @@
+    private void collectRequiredObjects() {
+        if (m_requiredObjects != null) {
+            for (IntegrationEntity e : m_requiredObjects.keySet()) {
+                e.removePropertyChangeListener(m_listener);
+            }
+        }
+        m_requiredObjects = new IdentityHashMap<IntegrationEntity, Boolean>();
+        collectRequiredObjectsImpl(m_entity);
+    }

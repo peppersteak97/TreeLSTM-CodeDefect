@@ -1,0 +1,3 @@
+    public boolean hasRootFolder() {
+        return m_rootFolderData != null;
+    }

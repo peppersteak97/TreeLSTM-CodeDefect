@@ -1,0 +1,4 @@
+    public void dispose() {
+        getInputComponent().removePropertyChangeListener(
+                        DayOfTheWeekCheckBoxPanel.SELECTION_CHANGED, this);
+    }

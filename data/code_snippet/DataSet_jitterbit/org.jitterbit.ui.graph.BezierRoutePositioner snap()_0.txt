@@ -1,0 +1,4 @@
+	void snap() {
+		Point p = getMidPont(getSnapPosition());
+		getManagedRoute().setControlPoint( (isOutgoing()) ? 0 : 3, p.x, p.y);
+	}

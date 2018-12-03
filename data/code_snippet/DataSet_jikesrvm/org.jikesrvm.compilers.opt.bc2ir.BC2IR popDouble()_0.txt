@@ -1,0 +1,6 @@
+  Operand popDouble() {
+    Operand r = pop();
+    if (VM.VerifyAssertions) VM._assert(r.isDouble());
+    popDummy();
+    return r;
+  }

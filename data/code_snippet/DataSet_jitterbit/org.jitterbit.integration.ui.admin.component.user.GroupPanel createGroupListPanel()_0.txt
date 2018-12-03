@@ -1,0 +1,4 @@
+    private void createGroupListPanel() {
+        m_groupListPanel = new GroupListPanel(m_page, this);
+        m_groupListPanel.addChangeListener(m_inputSiteListener);
+    }

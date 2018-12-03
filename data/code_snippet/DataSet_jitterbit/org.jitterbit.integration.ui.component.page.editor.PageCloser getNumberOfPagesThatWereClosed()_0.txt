@@ -1,0 +1,3 @@
+    int getNumberOfPagesThatWereClosed() {
+        return m_pagesThatWereClosed;
+    }

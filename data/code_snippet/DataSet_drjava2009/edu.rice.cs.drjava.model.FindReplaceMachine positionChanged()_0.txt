@@ -1,0 +1,4 @@
+  public void positionChanged() {
+    _lastFindWord = null;
+    _skipText = false;
+  }

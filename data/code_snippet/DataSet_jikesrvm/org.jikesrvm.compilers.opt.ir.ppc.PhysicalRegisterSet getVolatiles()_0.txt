@@ -1,0 +1,3 @@
+  public BitSet getVolatiles() {
+    return volatileSet;
+  }

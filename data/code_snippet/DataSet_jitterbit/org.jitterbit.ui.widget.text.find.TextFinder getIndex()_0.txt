@@ -1,0 +1,11 @@
+    private int getIndex() {
+        try {
+            int currentPos = getCurrentPosition();
+            Document doc = m_text.getDocument();
+            String text = doc.getText(0, doc.getLength());
+            return getStartPosition(text, currentPos);
+        }
+        catch (BadLocationException e) {
+            return -1;
+        }
+    }

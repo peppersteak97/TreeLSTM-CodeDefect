@@ -1,0 +1,5 @@
+    private void setNoEndDate() {
+        m_endDateActivator.setSelected(false);
+        m_endDate.setDate(null);
+        setEndDateActive(false);
+    }

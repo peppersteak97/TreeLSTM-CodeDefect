@@ -1,0 +1,5 @@
+    public void cancelCellEditing() {
+        if (log.isDebugEnabled()) log.debug("cancelCellEditing");
+        removeFocusListener();
+        fireEditingCanceled();
+    }

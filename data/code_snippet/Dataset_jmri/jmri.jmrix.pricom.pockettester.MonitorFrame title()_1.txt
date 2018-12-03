@@ -1,0 +1,6 @@
+    protected String title() {
+        String title = filter;
+        if (filter == null) title = "";
+        return java.text.MessageFormat.format(rb.getString("TitleMonitor"),
+                                                              new String[] {title});
+    }

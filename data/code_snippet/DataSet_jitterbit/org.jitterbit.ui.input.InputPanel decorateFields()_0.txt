@@ -1,0 +1,15 @@
+    public void decorateFields() {
+        for (IInputPanelSite pnl : m_inputPanels) {
+            pnl.decorateFields();
+        }
+        for (int n = 0; n < m_inputFields.size(); ++n) {
+            IInputFieldValidator validator = m_fieldValidators.get(n);
+            if (validator != null) {
+                IInputFieldDecorator decorator = m_fieldDecorators.get(n);
+                if (decorator != null) {
+                    InputField field = m_inputFields.get(n);
+                    decorator.decorateField(field, validator.isFieldValid(field));
+                }
+            }
+        }
+    }

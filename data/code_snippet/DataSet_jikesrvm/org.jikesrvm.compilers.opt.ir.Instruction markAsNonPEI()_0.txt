@@ -1,0 +1,4 @@
+  public void markAsNonPEI() {
+    operatorInfo &= ~OI_PEI;
+    operatorInfo |= OI_PEI_VALID;
+  }

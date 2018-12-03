@@ -1,0 +1,16 @@
+    private void createDisplayPanel() {
+        JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+        split.setDividerSize(4);
+        
+        IComponentDecor topDecor = 
+            ComponentDecorFactory.centerBorder(m_operationHistoryDisplayer);
+        split.setTopComponent(topDecor.getUi());
+        
+        IComponentDecor bottomDecor = 
+            ComponentDecorFactory.centerBorder(m_sourceHistoryDisplayer);
+        split.setBottomComponent(bottomDecor.getUi());
+        
+        JPanel p = new JPanel(new BorderLayout());
+        p.add(split, BorderLayout.CENTER);
+        setDisplayPanel(p);
+    }

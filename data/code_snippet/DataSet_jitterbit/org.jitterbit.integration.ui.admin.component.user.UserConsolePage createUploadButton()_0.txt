@@ -1,0 +1,4 @@
+    private JButton createUploadButton() {
+        m_uploadAction = new UploadAction(this, m_userManager);
+        return newToolBarButton(m_uploadAction);
+    }

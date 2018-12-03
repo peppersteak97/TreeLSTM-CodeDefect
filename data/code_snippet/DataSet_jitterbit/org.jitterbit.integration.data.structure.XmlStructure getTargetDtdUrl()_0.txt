@@ -1,0 +1,3 @@
+    public String getTargetDtdUrl() {
+        return m_targetDtdUrl;
+    }

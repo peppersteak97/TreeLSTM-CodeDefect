@@ -1,0 +1,4 @@
+  public Register getSecondReturnGPR() {
+    if (VM.VerifyAssertions) VM._assert(NUM_RETURN_GPRS > 1);
+    return getEDX();
+  }

@@ -1,0 +1,23 @@
+  public synchronized void report() {
+    RVMThread.dumpLock.lockNoHandshake();
+    VM.sysWrite("Method counts: A total of " + totalCountsTaken + " samples\n");
+    for (int i = 1; i < nextIndex; i++) {
+      double percent = 100 * countsToHotness(counts[i]);
+      CompiledMethod cm = CompiledMethods.getCompiledMethod(cmids[i]);
+      VM.sysWrite(counts[i] + " (" + percent + "%) ");
+      if (cm == null) {
+      } else {
+        if (cm.getCompilerType() == CompiledMethod.TRAP) {
+          VM.sysWriteln("<Hardware Trap Frame>");
+        } else {
+          RVMMethod m = cm.getMethod();
+          VM.sysWrite(m);
+          if (m.getDeclaringClass().isInBootImage()) {
+            VM.sysWrite("\tBOOT");
+          }
+        }
+        VM.sysWriteln();
+      }
+    }
+    RVMThread.dumpLock.unlock();
+  }

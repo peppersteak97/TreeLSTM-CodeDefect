@@ -1,0 +1,3 @@
+            if (!m_parent.getAllChildren().contains(this)) {
+                m_parent.addChild(this);
+            }

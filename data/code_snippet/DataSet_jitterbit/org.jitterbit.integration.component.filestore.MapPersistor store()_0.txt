@@ -1,0 +1,4 @@
+    public void store() {
+        Properties props = createProperties();
+        write(props);
+    }

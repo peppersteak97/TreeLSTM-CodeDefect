@@ -1,0 +1,12 @@
+    private void setSubPanelState() {
+        if (isActive()) {
+            if (m_btn_type_A.isSelected()) {
+                m_panelA.setActive(true);
+                m_panelB.setActive(false);
+            }
+            else {
+                m_panelA.setActive(false);
+                m_panelB.setActive(true);
+            }
+        }
+    }

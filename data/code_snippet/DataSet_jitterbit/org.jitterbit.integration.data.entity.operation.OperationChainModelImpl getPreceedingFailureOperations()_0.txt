@@ -1,0 +1,3 @@
+    public Iterable<Operation> getPreceedingFailureOperations() {
+        return preceedingFailure;
+    }

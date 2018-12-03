@@ -1,0 +1,19 @@
+  public synchronized int getStringLiteralOffset() throws java.io.UTFDataFormatException {
+    if (unicodeStringOrJTOCoffset == null) {
+      String s = UTF8Convert.fromUTF8(val);
+      if (VM.runningVM) {
+        s = InternedStrings.internUnfoundString(s);
+      } else {
+        s = s.intern();
+      }
+      int offset = Statics.findOrCreateObjectLiteral(s);
+      unicodeStringOrJTOCoffset = offset;
+      return offset;
+    } else if (unicodeStringOrJTOCoffset instanceof String) {
+      int offset = Statics.findOrCreateObjectLiteral(unicodeStringOrJTOCoffset);
+      unicodeStringOrJTOCoffset = offset;
+      return offset;
+    } else {
+      return (Integer)unicodeStringOrJTOCoffset;
+    }
+  }

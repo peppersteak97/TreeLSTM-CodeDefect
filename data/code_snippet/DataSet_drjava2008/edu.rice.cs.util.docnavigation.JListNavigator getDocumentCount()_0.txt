@@ -1,0 +1,1 @@
+  public int getDocumentCount() { return _model.size(); }

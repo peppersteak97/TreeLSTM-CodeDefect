@@ -1,0 +1,4 @@
+  private void _open() {
+    updateStatusField("Opening File");
+    open(_openSelector); 
+  }

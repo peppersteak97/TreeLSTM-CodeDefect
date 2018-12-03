@@ -1,0 +1,4 @@
+    public DecryptionParameters getDecryptionParameters() {
+        return new DecryptionParameters(m_decryption.isSelected(), m_passPhrase
+                        .getValue());
+    }

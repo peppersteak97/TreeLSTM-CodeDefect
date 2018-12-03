@@ -1,0 +1,3 @@
+  public final FieldReference asFieldReference() {
+    return (FieldReference) this;
+  }

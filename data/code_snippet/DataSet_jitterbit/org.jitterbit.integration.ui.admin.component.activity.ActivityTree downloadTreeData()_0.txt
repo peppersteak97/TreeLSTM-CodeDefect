@@ -1,0 +1,16 @@
+    public void downloadTreeData() {
+        if (isRetrievingInfo()) {
+            return;
+        }
+        IKongaTreeModel model = getModel();
+        List<IKongaTreeNode> nodes = new ArrayList<IKongaTreeNode>();
+        for (Enumeration<IKongaTreeNode> en = m_root.children(); en.hasMoreElements(); ) {
+            nodes.add(en.nextElement());
+        }
+        for (IKongaTreeNode node : nodes) {
+            model.removeNode(node);
+        }
+        createWaitNode(getModel());
+        expandPath(getPath(m_root));
+        retrieveTreeData();
+    }

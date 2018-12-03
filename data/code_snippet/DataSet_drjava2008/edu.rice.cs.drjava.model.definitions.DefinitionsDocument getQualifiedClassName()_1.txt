@@ -1,0 +1,3 @@
+  public String getQualifiedClassName() throws ClassNameNotFoundException {
+    return getPackageQualifier() + getMainClassName();
+  }

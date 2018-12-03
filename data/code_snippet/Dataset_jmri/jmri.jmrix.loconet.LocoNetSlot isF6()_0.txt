@@ -1,0 +1,1 @@
+    public boolean isF6()	{ return 0!=(snd&LnConstants.SND_F6); }

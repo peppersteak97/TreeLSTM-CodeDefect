@@ -1,0 +1,3 @@
+    public List<MouseOverButton> getButtons() {
+        return new ArrayList<MouseOverButton>(m_buttons);
+    }

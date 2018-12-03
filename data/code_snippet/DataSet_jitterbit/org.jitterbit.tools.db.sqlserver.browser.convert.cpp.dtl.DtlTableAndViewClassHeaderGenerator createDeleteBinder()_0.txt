@@ -1,0 +1,27 @@
+    private void createDeleteBinder() {
+        addLine("class " + getDeleteBinderClassName() + " : public CustomBinder<" + getQualifiedRowClassName() + ">");
+        addLine("{");
+        addLine("public:");
+        addLine("\tvoid Bind()");
+        addLine("\t{");
+        addLine("\t\tdtl::BoundIOs& cols = *m_pBoundIOs;");
+        addLine("\t\t" + getQualifiedRowClassName() + "& rowbuf = *m_pRow;");
+        
+        boolean bPKsExist = false;
+        for( Column c : getValidColumns() ) {
+            if( c.isPrimaryKey() ) {
+                addLine("\t\t" + getColumnBindingRow(c, INPUT_OUTPUT_BINDING) );
+                bPKsExist = true;
+            }
+        }
+        
+        if( !bPKsExist ) {
+	        for( Column c : getValidColumns() ) {
+	            addLine("\t\t" + getColumnBindingRow(c, INPUT_OUTPUT_BINDING) );
+	        }
+        }
+        
+        addLine("\t}");
+        addLine("};");
+        addLine();
+    }

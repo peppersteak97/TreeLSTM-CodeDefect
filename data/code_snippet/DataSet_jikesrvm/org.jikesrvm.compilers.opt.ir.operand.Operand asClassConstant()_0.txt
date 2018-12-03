@@ -1,0 +1,3 @@
+  public final ClassConstantOperand asClassConstant() {
+    return (ClassConstantOperand) this;
+  }

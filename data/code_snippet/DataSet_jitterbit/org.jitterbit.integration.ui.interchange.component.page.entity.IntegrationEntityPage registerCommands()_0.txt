@@ -1,0 +1,4 @@
+    protected void registerCommands() {
+        addCommand(IPageCommand.SAVE, new PageSaver(this));
+        addCommand(IPageCommand.RESET, new PageResetter(this));
+    }

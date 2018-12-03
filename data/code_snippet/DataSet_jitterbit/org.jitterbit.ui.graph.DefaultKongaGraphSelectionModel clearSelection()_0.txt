@@ -1,0 +1,10 @@
+	public void clearSelection() {
+		if( m_setSelectedComponents.isEmpty() )
+			return;
+		List<KongaGraphComponent> liOldSelection = (m_listeners == null) ? 
+		        null : new ArrayList<KongaGraphComponent>(m_setSelectedComponents);
+		m_setSelectedComponents.clear();
+		KongaGraphSelectionEvent e = getSelectionEventOnDeselect(liOldSelection);
+		if( e != null )
+			fireSelectionChanged(e);
+	}

@@ -1,0 +1,1 @@
+  public boolean isDisplayed() { return _displayed; }

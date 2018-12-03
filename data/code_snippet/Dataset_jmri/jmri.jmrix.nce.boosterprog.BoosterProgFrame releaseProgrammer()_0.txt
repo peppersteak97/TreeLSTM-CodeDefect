@@ -1,0 +1,6 @@
+    static void releaseProgrammer() {
+        if (p!=null)
+            InstanceManager.programmerManagerInstance().
+                            releaseOpsModeProgrammer(p);
+        p = null;
+    }

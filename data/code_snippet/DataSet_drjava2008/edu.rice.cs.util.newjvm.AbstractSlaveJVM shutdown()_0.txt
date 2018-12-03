@@ -1,0 +1,4 @@
+  private void shutdown() {
+    _log.log(AbstractSlaveJVM.this + ".shutdown() calling System.exit(0)");
+    System.exit(0);
+  }

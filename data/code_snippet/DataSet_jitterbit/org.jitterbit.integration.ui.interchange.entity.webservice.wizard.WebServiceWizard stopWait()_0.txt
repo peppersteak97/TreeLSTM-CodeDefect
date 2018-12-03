@@ -1,0 +1,6 @@
+    public void stopWait() {
+        super.stopWait();
+        if (m_displayPage != null) {
+            m_displayPage.stopWait();
+        }
+    }

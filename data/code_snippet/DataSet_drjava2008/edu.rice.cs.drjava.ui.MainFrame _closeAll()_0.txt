@@ -1,0 +1,4 @@
+  private void _closeAll() {
+    updateStatusField("Closing All Files");
+    if (!_model.isProjectActive() || _model.isProjectActive() && _closeProject())  _model.closeAllFiles();
+  }

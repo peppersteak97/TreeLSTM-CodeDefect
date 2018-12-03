@@ -1,0 +1,6 @@
+    private AffineTransform getArrowToComponentTransformation() {
+        AffineTransform rotate = AffineTransform.getRotateInstance(m_dAngle);
+        AffineTransform translate = AffineTransform.getTranslateInstance(m_ptOnComponent.x, m_ptOnComponent.y);
+        translate.concatenate(rotate);
+        return translate;
+    }

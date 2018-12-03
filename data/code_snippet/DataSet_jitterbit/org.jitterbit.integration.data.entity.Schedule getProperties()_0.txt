@@ -1,0 +1,8 @@
+    public StringKeyValuePairs getProperties() {
+        StringKeyValuePairs superKeyValues = super.getProperties();
+        StringKeyValuePairs keyValues = new StringKeyValuePairs();
+        keyValues.putAll(superKeyValues);
+        keyValues.put(SCHEDULE_ID, getID().toString());
+        keyValues.put(SCHEDULE_NAME, getName());
+        return keyValues;
+    }

@@ -1,0 +1,5 @@
+  public byte[] getBytes() {
+    byte[] codes = initBytes(bsize, PSEUDO_InvokeStatic);
+    int2bytes(codes, 2, tid);
+    return codes;
+  }

@@ -1,0 +1,11 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder(m_data.size() * 10);
+        for (String key : getKeys()) {
+            sb.append(key);
+            sb.append(getString(key));
+        }
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        return sb.toString();
+    }

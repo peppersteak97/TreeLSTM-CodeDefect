@@ -1,0 +1,12 @@
+    private void collectServerInformation() {
+        m_tableModel = new KnownServersTableModel();
+        if (m_serversToDisplay == null) {
+            ServerManager serverMgr = ServerManager.getManager();
+            List<IServerProperties> props = serverMgr.getRegisteredServers();
+            Collections.sort(props, TableComparators.getLatestLoginComparator());
+            m_tableModel.addRows(props);
+        }
+        else {
+            m_tableModel.addRows(m_serversToDisplay);
+        }
+    }

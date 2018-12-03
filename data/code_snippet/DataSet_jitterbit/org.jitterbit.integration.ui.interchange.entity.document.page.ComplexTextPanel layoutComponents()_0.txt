@@ -1,0 +1,18 @@
+    private void layoutComponents() {
+        OneColumnPanel panel = new OneColumnPanel();
+        panel.setFill(OneColumnPanel.NONE);
+        panel.setInsets(IntegrationUiStyleSheet.DEFAULT_GBC_INSETS_LEFT);
+
+
+        JComponent typeCapsule = InputFieldFactory.getLabeledComponent(m_docTypeLabel,
+                        RESOURCES.getString("Label.DocumentType"),
+                        InputFieldFactory.HORIZONTAL_LABEL_LEFT);
+        panel.add(typeCapsule);
+        if (m_delimQualifierPanel != null) {
+            panel.add(m_delimQualifierPanel.getUi());
+        }
+        panel.add(InfoTextHeader.makeJLabel(RESOURCES.getString("Title.FieldTable")));
+        panel.add(m_segmentTable.getDisplayer());
+        panel.setOpaque(false, false);
+        wrap(panel);
+    }

@@ -1,0 +1,3 @@
+    public boolean canUndo() {
+        return m_manager.canUndo();
+    }

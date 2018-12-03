@@ -1,0 +1,38 @@
+    public String toString() {
+        if (m_type == DAILY) {
+        }
+        else if (m_type == WEEKLY) {
+            sb.append(m_Every_X_Weeks);
+            for (int n = 0; n < 7; ++n) {
+                if (m_Weekly_On_This_Day[n]) {
+                    sb.append(DayOfTheWeek.values()[n].toString());
+                }
+            }
+            return sb.toString();
+        }
+        else if (m_type == MONTHLY) {
+            if (m_monthlyType == 0) {
+                sb.append(m_Monthly_A_Day);
+                sb.append(m_Monthly_A_of_Every_X_Month);
+                return sb.toString();
+            }
+            else if (m_monthlyType == 1) {
+                switch (m_Monthly_B_Num) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                default:
+                }
+                sb.append(m_Monthly_B_Day_Of_The_Week != null ? 
+                sb.append(m_Monthly_B_of_Every_X_Month);
+                return sb.toString();
+            }
+        }
+    }

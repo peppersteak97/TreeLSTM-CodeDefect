@@ -1,0 +1,5 @@
+    protected AbstractMRMessage newMessage() { 
+        log.debug("New Message created");
+        Message msg = new Message();
+        return msg;
+    }

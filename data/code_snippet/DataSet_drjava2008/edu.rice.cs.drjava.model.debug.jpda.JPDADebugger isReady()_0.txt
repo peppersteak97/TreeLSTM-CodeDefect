@@ -1,0 +1,1 @@
+  public boolean isReady() { return _vm != null; }

@@ -1,0 +1,22 @@
+  public void testBackspace() {
+   
+    Utilities.invokeAndWait(new Runnable() { 
+      
+      public void run() { 
+        final DefinitionsPane defPane = _frame.getCurrentDefPane();
+        final OpenDefinitionsDocument doc = defPane.getOpenDefDocument();
+        _assertDocumentEmpty(doc, "before testing");
+        doc.append("test", null);
+        defPane.setCaretPosition(4);
+        final int VK_BKSP = KeyEvent.VK_BACK_SPACE;
+        defPane.processKeyEvent(new KeyEvent(defPane, PRESSED, (new Date()).getTime(), 0, VK_BKSP, UNDEFINED));
+        defPane.processKeyEvent(new KeyEvent(defPane, RELEASED, (new Date()).getTime(), 0, VK_BKSP, UNDEFINED));
+        defPane.processKeyEvent(new KeyEvent(defPane, TYPED, (new Date()).getTime(), 0, VK_UNDEF, '\b'));
+        _frame.validate();
+        _assertDocumentContents(doc, "tes", "Deleting with Backspace went wrong");
+        _log.log("testBackSpace completed");
+      }
+    });
+    
+  
+  }

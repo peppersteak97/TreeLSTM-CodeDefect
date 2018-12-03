@@ -1,0 +1,4 @@
+    private void createHostField() {
+        String label = PackageResources.Scp.HOST;
+        m_host = InputFieldFactory.getNonEmptyTextInputField(label, label, 30, true);
+    }

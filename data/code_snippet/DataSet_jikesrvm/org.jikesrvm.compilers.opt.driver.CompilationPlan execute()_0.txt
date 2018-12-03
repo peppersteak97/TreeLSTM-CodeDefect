@@ -1,0 +1,15 @@
+  public IR execute() {
+    IR ir = new IR(method, this);
+
+    if (instrumentationPlan != null) {
+      instrumentationPlan.initInstrumentation(method);
+    }
+    for (OptimizationPlanElement element : optimizationPlan) {
+      element.perform(ir);
+    }
+    if (instrumentationPlan != null) {
+      instrumentationPlan.finalizeInstrumentation(method);
+    }
+
+    return ir;
+  }

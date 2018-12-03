@@ -1,0 +1,6 @@
+  public void close(){
+    try {
+      clientSocket.close();
+    }
+    catch (IOException ex1) {}
+  }

@@ -1,0 +1,3 @@
+  public boolean isGREATER() {
+    return value == GREATER;
+  }

@@ -1,0 +1,15 @@
+    void setStartPushed() {
+        getProgrammer();
+        status.setText(res.getString("StatusProgramming"));
+        int val = Integer.parseInt(start.getText());
+        
+        try {
+           p.writeCV(255, val, new ProgListener() {
+                public void programmingOpReply(int value, int retval) {
+                    status.setText(res.getString("StatusOK"));
+                }
+            });
+        } catch (ProgrammerException e) {
+            status.setText(res.getString("StatusError")+e);
+        } finally { releaseProgrammer(); }
+    }

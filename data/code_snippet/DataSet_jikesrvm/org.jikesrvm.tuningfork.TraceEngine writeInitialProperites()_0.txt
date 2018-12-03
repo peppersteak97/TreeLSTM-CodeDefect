@@ -1,0 +1,5 @@
+  private void writeInitialProperites() {
+    addProperty("rvm version", Configuration.RVM_VERSION_STRING);
+    addProperty("rvm config", Configuration.RVM_CONFIGURATION);
+    addProperty("Tick Frequency", "1000000000"); /* a tick is one nanosecond */
+  }

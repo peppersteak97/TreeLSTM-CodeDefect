@@ -1,0 +1,16 @@
+    protected void onOk() {
+        try {
+            m_profilePanel.updateUser();
+            UploadUserProfileJob job = 
+                new UploadUserProfileJob(this, m_profilePanel.getUser());
+            createAndShowJobProgressDisplayer(job);
+            m_currentProcessID = 
+                IntegrationUi.getUi().getJobManager().submitForParallellProcessing(
+                            job, KongaListUtils.asList(m_uploadDisplayer));
+            getOKButton().setEnabled(false);
+        }
+        catch (IllegalNameException e) {
+            ErrorLogger.getDefaultLogger().logAndShow(this, 
+                            PackageResources.UserProfile.Messages.INVALID_PROFILE, e);
+        }
+    }

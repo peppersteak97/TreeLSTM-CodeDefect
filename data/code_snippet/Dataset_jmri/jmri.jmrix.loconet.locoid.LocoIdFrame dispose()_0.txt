@@ -1,0 +1,4 @@
+    public void dispose() {
+        tc.removeLocoNetListener(~0, this);
+        super.dispose();
+    }

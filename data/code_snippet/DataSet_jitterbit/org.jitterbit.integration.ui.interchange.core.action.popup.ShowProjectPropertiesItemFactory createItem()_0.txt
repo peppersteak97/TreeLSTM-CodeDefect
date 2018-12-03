@@ -1,0 +1,4 @@
+    protected IPopupMenuItem createItem() {
+        Action a = InterchangeActionFactory.PROJECT_PROPERTIES.get(m_view);
+        return new Item(a);
+    }

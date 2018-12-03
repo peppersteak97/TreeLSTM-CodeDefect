@@ -1,0 +1,4 @@
+    private void startDtlNamespace() {
+        addLine("namespace dtl {");
+        addLine();
+    }

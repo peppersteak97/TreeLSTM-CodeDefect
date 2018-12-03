@@ -1,0 +1,8 @@
+    public JComboBox getSelector() { 
+        if (boxUsed) {
+            log.error("getSelector invoked after text already requested");
+            return null;
+        }
+        boxUsed = true;
+        return box;
+    }     

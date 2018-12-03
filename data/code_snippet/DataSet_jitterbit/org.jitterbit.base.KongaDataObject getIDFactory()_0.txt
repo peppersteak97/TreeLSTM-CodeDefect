@@ -1,0 +1,3 @@
+	public static final IKongaIDFactory getIDFactory() {
+		return ID_FACTORY;
+	}

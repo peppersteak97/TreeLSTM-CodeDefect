@@ -1,0 +1,1 @@
+  protected void _invalidate() { _isCurrent = false; }

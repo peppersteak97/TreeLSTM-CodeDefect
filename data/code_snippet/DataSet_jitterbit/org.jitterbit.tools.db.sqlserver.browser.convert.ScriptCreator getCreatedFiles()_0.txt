@@ -1,0 +1,3 @@
+	public List<File> getCreatedFiles() {
+	    return new ArrayList<File>( m_liCreatedFiles );
+	}

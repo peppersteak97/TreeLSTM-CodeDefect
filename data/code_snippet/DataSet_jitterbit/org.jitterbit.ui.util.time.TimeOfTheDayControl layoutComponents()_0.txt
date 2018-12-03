@@ -1,0 +1,18 @@
+    private void layoutComponents() {
+        setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+        add(Box.createHorizontalGlue());
+        add(m_hourBox);
+        add(Box.createHorizontalStrut(2));
+        add(Box.createHorizontalStrut(2));
+        add(m_minuteBox);
+        if (m_showSeconds) {
+            add(Box.createHorizontalStrut(2));
+            add(Box.createHorizontalStrut(2));
+            add(m_secondBox);
+        }
+        if (m_mode == TWELVE_HOUR_MODE) {
+            add(Box.createHorizontalStrut(5));
+            add(m_amPmBox);
+        }
+        add(Box.createHorizontalGlue());
+    }

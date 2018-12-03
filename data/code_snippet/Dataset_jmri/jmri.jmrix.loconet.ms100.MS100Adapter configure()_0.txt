@@ -1,0 +1,12 @@
+    public void configure() {
+        LnPacketizer packets = new LnPacketizer();
+        packets.connectPort(this);
+
+        configureCommandStation(mCanRead, mProgPowersOff, commandStationName);
+        configureManagers();
+
+        packets.startThreads();
+
+        jmri.jmrix.loconet.ActiveFlag.setActive();
+
+    }

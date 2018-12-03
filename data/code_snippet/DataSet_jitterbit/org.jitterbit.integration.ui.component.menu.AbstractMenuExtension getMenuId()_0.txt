@@ -1,0 +1,3 @@
+    protected final String getMenuId() {
+        return m_menuId;
+    }

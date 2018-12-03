@@ -1,0 +1,9 @@
+	public void redo() {
+		if (!redoIsEnabled())
+			return;
+	
+		m_iCurrentVersion++;
+		m_current = m_current.getNext();
+		restore(m_current.getChange());
+		updateActions();
+	}

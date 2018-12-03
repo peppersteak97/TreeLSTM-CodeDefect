@@ -1,0 +1,3 @@
+  public void testLineEndsComment() throws javax.swing.text.BadLocationException {
+    assertEquals(true, _rule.testApplyRule(_doc, 9, Indenter.IndentReason.OTHER));
+  }

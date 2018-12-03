@@ -1,0 +1,3 @@
+    if (!hasMoreElements() && hasMoreMethodId()) {
+      moveToNextMethodId();
+    }

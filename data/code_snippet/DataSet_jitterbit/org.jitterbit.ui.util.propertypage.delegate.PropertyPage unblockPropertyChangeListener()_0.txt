@@ -1,0 +1,3 @@
+	void unblockPropertyChangeListener() {
+		m_buttonPanel.unblockPropertyChangeListening();
+	}

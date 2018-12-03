@@ -1,0 +1,6 @@
+	public int getLeftOffset() {
+		int x1 = getX();
+		int x2 = getTextRect().x;
+		return ( x2<x1 ) ? 
+                    0;
+	}

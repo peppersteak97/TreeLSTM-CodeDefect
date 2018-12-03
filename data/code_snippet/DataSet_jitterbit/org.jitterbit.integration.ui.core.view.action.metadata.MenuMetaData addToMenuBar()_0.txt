@@ -1,0 +1,3 @@
+    public boolean addToMenuBar() {
+        return m_addToMenuBar;
+    }

@@ -1,0 +1,3 @@
+    public TimeZone getTimeZone() {
+        return (tzID.length() == 0) ? TimeZone.getDefault() : TimeZone.getTimeZone(tzID);
+    }

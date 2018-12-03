@@ -1,0 +1,9 @@
+    private void createManualConnectionStringField() {
+        String manualLabel = PackageResources.Database.Labels.MANUAL_CONNECT_STRING;
+        m_manualConnectionStringChoice = InputFieldFactory.getCheckBoxInputField(
+                        manualLabel, manualLabel);
+        m_manualConnectionStringChoice.getInputComponent().addItemListener(
+                        new ManualSelectionListener());
+        m_manualConnectionStringField = InputFieldFactory.getNonEmptyTextInputField(
+                        "", "", 50, true);
+    }

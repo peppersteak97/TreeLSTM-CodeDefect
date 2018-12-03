@@ -1,0 +1,4 @@
+    public StructureNature getNatureOfSource() {
+        DataStructure struct = getInputStructure();
+        return (struct == null) ? null : struct.getStructureNature();
+    }

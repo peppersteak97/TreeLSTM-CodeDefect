@@ -1,0 +1,3 @@
+  public File getSourceRoot() throws InvalidPackageException {
+    throw new UnsupportedOperationException("Dummy method");
+  }

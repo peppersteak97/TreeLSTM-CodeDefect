@@ -1,0 +1,4 @@
+  public void resetAttributes() {
+    _attributes.clear();
+    _attributes.put(_op1Name, _op1Default);
+  }

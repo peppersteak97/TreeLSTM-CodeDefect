@@ -1,0 +1,22 @@
+    private void writeHeader() {
+        String macro = getDefinedMacro();
+        addCopyrightNotice();
+        addLine("#ifndef " + macro);
+        addLine("#define " + macro);
+        addLine();
+        addLine("#include <konga/Db/DbUtils/DbConnection.h>");
+        addLine();
+        try {
+            for( Table t : getTables() ) {
+                addLine("#include \"" + t.getName() + ".h\"");
+            }
+            for( View v : getViews() ) {
+                addLine("#include \"" + v.getName() + ".h\"");
+            }
+        } catch (SqlServerBrowserException e) {
+            e.printStackTrace();
+            logError( getObject(), null, e.toString() );
+            return;
+        }
+        addLine();
+    }

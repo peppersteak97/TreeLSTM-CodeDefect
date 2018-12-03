@@ -1,0 +1,19 @@
+	private void displayTree() {
+		new Thread() {
+            
+            @Override
+			public void run() {
+				if( m_tree == null ) {
+					m_tree = XmlViewerTree.createTree(m_file);
+				}
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						m_treeController.setTree(m_tree);
+						m_panel.removeAll();
+						m_panel.add( m_treeController.getScrollPane(), BorderLayout.CENTER );
+						revalidate();
+					}
+				});
+			}
+		}.start();
+	}

@@ -1,0 +1,8 @@
+    private void setProgressBarStateImpl() {
+        if (m_fPercentageCompleted == ProgressEvent.UNKNOWN_COMPLETION) {
+            m_progressBar.setIndeterminate(true);
+        }
+        else {
+            m_progressBar.setValue((int) (PROGRESSBAR_MAX * m_fPercentageCompleted));
+        }
+    }

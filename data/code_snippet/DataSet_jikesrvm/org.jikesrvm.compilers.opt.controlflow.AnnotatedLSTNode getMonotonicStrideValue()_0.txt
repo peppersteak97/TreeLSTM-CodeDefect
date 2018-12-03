@@ -1,0 +1,9 @@
+  public int getMonotonicStrideValue() {
+    if (iteratorInstr.operator.opcode == INT_SUB_opcode) {
+      return -((IntConstantOperand) strideValue).value;
+    } else if (iteratorInstr.operator.opcode == INT_ADD_opcode) {
+      return ((IntConstantOperand) strideValue).value;
+    } else {
+      throw new Error("Error reading stride value");
+    }
+  }

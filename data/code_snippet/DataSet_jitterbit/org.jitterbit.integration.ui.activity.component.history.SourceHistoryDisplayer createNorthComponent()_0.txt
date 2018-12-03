@@ -1,0 +1,5 @@
+    private JComponent createNorthComponent() {
+        JComponent navDisplayer = getNavigationControl().getDisplayer();
+        FocusUtils.makeComponentMouseFocusable(navDisplayer);
+        return navDisplayer;
+    }

@@ -1,0 +1,2 @@
+     * Expect that the subclass setInstance() will fill the adapter member.
+     */

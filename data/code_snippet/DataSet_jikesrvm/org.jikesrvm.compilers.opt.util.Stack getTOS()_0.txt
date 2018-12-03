@@ -1,0 +1,3 @@
+  public final T getTOS() {
+    return stack.get(stack.size() - 1);
+  }

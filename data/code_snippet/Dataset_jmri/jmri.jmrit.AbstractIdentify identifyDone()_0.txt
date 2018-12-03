@@ -1,0 +1,5 @@
+    protected void identifyDone() {
+        if (log.isDebugEnabled()) log.debug("identifyDone ends in state "+state);
+        statusUpdate("Done");
+        state = 0;
+    }

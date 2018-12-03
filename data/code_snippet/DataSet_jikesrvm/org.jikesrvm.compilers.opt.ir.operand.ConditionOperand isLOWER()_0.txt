@@ -1,0 +1,3 @@
+  public boolean isLOWER() {
+    return value == LOWER;
+  }

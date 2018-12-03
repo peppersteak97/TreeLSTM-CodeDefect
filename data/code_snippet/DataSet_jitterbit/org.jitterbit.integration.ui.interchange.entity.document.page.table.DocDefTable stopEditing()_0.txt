@@ -1,0 +1,5 @@
+    public void stopEditing() {
+        if (m_ui.isEditing()) {
+            m_ui.getCellEditor().stopCellEditing();
+        }
+    }

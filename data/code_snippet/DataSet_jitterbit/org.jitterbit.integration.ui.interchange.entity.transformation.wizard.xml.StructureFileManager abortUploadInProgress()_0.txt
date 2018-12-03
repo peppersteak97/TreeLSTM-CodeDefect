@@ -1,0 +1,5 @@
+    private void abortUploadInProgress() {
+        if (m_uploadManager != null) {
+            m_uploadManager.abort();
+        }
+    }

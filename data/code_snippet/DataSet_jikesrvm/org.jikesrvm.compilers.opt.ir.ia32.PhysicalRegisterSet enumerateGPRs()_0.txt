@@ -1,0 +1,3 @@
+  public Enumeration<Register> enumerateGPRs() {
+    return new RangeEnumeration(FIRST_INT, FIRST_DOUBLE - 1);
+  }

@@ -1,0 +1,3 @@
+    private void registerPostLoginJobs() {
+        m_postLoginJobMgr.addPostLoginJob(new UpdateUsersAndGroupsJob(m_userManager));
+    }

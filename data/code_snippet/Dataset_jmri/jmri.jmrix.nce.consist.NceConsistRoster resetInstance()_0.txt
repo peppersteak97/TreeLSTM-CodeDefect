@@ -1,0 +1,1 @@
+    public synchronized static void resetInstance() { _instance = null; }

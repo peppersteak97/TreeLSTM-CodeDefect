@@ -1,0 +1,2 @@
+            return getOpCode() == KILL_MAIN_CMD;
+        else

@@ -1,0 +1,1 @@
+ * and {@link #remove()} before removing it from display. This is to ensure that

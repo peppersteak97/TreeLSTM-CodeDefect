@@ -1,0 +1,3 @@
+    protected final Action getActionListenedTo() {
+        return m_actionListenedTo;
+    }

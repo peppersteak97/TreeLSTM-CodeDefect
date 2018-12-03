@@ -1,0 +1,8 @@
+    private void writeMainClass() {
+        addLine("class " + getMainClassName() + " : public konga::DbRecordSet {");
+        writeMainClassPublic();
+        writeMainClassProtected();
+        writeMainClassPrivate();
+        addLine("};");
+        addLine();
+    }

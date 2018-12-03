@@ -1,0 +1,17 @@
+    static public void configureManagersMS100() {
+        
+        jmri.InstanceManager.setPowerManager(new jmri.jmrix.loconet.LnPowerManager());
+
+        jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.loconet.LnTurnoutManager());
+
+        jmri.InstanceManager.setLightManager(new jmri.jmrix.loconet.LnLightManager());
+
+        jmri.InstanceManager.setSensorManager(new jmri.jmrix.loconet.LnSensorManager());
+
+        jmri.InstanceManager.setThrottleManager(new jmri.jmrix.loconet.LnThrottleManager());
+
+        jmri.InstanceManager.setReporterManager(new jmri.jmrix.loconet.LnReporterManager());
+
+        jmri.InstanceManager.addClockControl(new jmri.jmrix.loconet.LnClockControl());
+
+    }

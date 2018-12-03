@@ -1,0 +1,11 @@
+  private boolean _saveAs() {
+    updateStatusField("Saving File Under New Name");
+    try {
+      boolean toReturn = _model.getActiveDocument().saveFileAs(_saveAsSelector);
+      return toReturn;
+    }
+    catch (IOException ioe) {
+      _showIOError(ioe);
+      return false;
+    }
+  }

@@ -1,0 +1,3 @@
+    public int getPatchLevel() {
+        return getPatchLevelImpl(m_versionNumber);
+    }

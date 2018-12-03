@@ -1,0 +1,6 @@
+  protected final void emit_ddiv() {
+    popDouble(F0);
+    popDouble(F1);
+    asm.emitFDIV(F0, F1, F0);
+    pushDouble(F0);
+  }

@@ -1,0 +1,9 @@
+    if (counterNumber >= getNumCounters()) {
+      if (automaticallyGrowCounters) {
+        while (counterNumber >= getNumCounters()) {
+          resizeCounters(getNumCounters() * 2);
+        }
+      } else {
+        VM._assert(false);
+      }
+    }

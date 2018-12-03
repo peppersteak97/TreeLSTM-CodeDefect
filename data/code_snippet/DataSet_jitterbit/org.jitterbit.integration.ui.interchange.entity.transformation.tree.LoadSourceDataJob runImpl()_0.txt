@@ -1,0 +1,30 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus(PackageResources.LoadSource.STARTING_NON_DB);
+        String sourceData = null;
+        try {
+            sourceData = readSourceFile();
+        }
+        catch (IOException ex) {
+            caught(ex);
+            return;
+        }
+        if (isCancelled()) {
+            return;
+        }
+        m_treeMapper.setInputDataString(sourceData);
+        setStatus(PackageResources.LoadSource.SEND_DATA_TO_SERVER);
+        final String sourceData0 = sourceData;
+        Runnable task = new Runnable() {
+
+            public void run() {
+                IntegrationServer server = IntegrationServer.getInstance();
+                ITreeMapperInfoProvider call = server.getServerCall(ITreeMapperInfoProvider.class);
+                call.loadSourceDataTree(sourceData0, m_transformation.getID(), LoadSourceDataJob.this);
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallellAndWait(task, this);
+    }

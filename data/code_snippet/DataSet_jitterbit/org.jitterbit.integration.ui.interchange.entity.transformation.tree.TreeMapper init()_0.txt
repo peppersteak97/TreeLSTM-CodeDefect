@@ -1,0 +1,97 @@
+	public void init(){
+		g_ctrlDown=false;
+		m_FormulaBuilder=null;
+		setFont(m_font11Plain);
+		setLayout(null);
+		m_dragImage=new JPanel();
+		m_dragImage.setVisible(false);
+		add(m_dragImage);
+		
+		m_treePanel=new TreePanel();
+		m_buttonPanel=new ButtonPanel(this);
+		m_buttonPanel.setLayout(null);
+		
+		m_btnDualMap = new CRButton(m_imgMap,m_imgMap_d,this,"Select Target data element or folder");
+		m_btnDualMap.setEnabled1(false);
+		m_buttonFormula=new CRButton(m_imgFormula,m_imgFormula_d,this,"Select Target data element to create formula");
+		m_buttonFormula.setEnabled1(false);
+		m_btnMapMode = new CRButton(m_imgMapMode,m_imgMapMode,this,"Create mappings, formulas and multiple folders");
+		m_btnMapMode.setHighlighted(true);
+		m_btnResolveMode = new CRButton(m_imgResolveMode,m_imgResolveMode,this,"View mappings and resolve map conflicts");
+		m_expCompSourceButton = new CRButton(m_imgExpand,m_imgExpand,this,"Expand/Collapse Source tree");
+		m_expCompTargetButton = new CRButton(m_imgExpand,m_imgExpand,this,"Expand/Collapse Target tree");
+		m_btnZoomin = new CRButton(m_imgZoomIn,m_imgZoomIn,this,"Increase font size");
+		m_btnZoomout = new CRButton(m_imgZoomOut,m_imgZoomOut,this,"Decrease font size");
+		m_sourceSearchBtn = new CRButton(m_imgSearch,m_imgSearch,this,"Search Source tree");
+		m_targetSearchBtn = new CRButton(m_imgSearch,m_imgSearch,this,"Search Target tree");
+		m_buttonPanel.add(m_btnDualMap);
+		m_buttonPanel.add(m_buttonFormula);
+		m_buttonPanel.add(m_btnMapMode);
+		m_buttonPanel.add(m_btnResolveMode);
+		m_buttonPanel.add(m_expCompSourceButton);
+		m_buttonPanel.add(m_expCompTargetButton);
+		m_buttonPanel.add(m_btnZoomin);
+		m_buttonPanel.add(m_btnZoomout);
+		m_buttonPanel.add(m_sourceSearchBtn);
+		m_buttonPanel.add(m_targetSearchBtn);
+		
+		m_listPanel=new JPanel();
+		m_listPanel.setLayout(null);			
+			
+		m_listScrollPane=new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		m_listScrollPane.getVerticalScrollBar().setUnitIncrement(10);
+		m_sourceTitle = TransformationUtils.getInputStructureTitle(m_Transformation);
+		if(m_sourceTitle==null)
+			m_sourceTitle = "SOURCE: ";
+		else
+			m_sourceTitle = "SOURCE: "+m_sourceTitle;
+			
+		m_targetTitle = TransformationUtils.getOuputStructureTitle(m_Transformation);
+		if(m_targetTitle==null)
+			m_targetTitle = "TARGET: ";
+		else
+			m_targetTitle = "TARGET: " + m_targetTitle;
+		
+		m_TransformationId=m_Transformation.getID().toString();
+		m_transname=m_Transformation.getName();
+		setDirty(false);
+	
+	
+		m_sourceTreeComponent = new TreeComponent(this,TreeComponent.c_TreeMapperSource,m_clrAttributeText,m_clrFolderText,m_clrBgdTree);
+		m_targetTreeComponent = new TreeComponent(this,TreeComponent.c_TreeMapperTarget,m_clrAttributeText,m_clrFolderText,m_clrBgdTree);
+		m_sourceScroll=new TreeComponentScrollPane(m_sourceTreeComponent);
+		m_targetScroll=new TreeComponentScrollPane(m_targetTreeComponent);
+
+		m_sourceTreeComponent.m_scroll=m_sourceScroll;
+		m_targetTreeComponent.m_scroll=m_targetScroll;
+		
+		m_sourceTreeComponent.init();
+		m_targetTreeComponent.init();
+
+		m_checkMapping=new CheckMapping(this);
+		m_MapListPanel=new MapListPanel(this);
+		m_ConflictListPanel=new ConflictListPanel(this);
+
+		m_labSource=new JLabel("Source Expr  ", JLabel.CENTER);
+		m_labTarget=new JLabel("  Target", JLabel.CENTER);
+		m_labTargetLoopNode=new JLabel("Target Loop Node", JLabel.CENTER);
+
+		m_horisontalLine=new JPanel();
+		m_horisontalLine.setBackground(Color.gray);
+		m_horisontalLine.setVisible(false);
+		add(m_horisontalLine);
+		m_verticalLine=new JPanel();
+		m_verticalLine.setBackground(Color.gray);
+		m_verticalLine.setVisible(false);
+		add(m_verticalLine);
+		if(m_sourceTreeComponent.m_flat){
+			TreeComponent.Node countNode=m_fcnTreeComponent.findNode("Count(");
+			if(countNode!=null){
+				TreeComponent.Node instanceNode=countNode.m_parent;
+				if(instanceNode!=null)instanceNode.m_parent.m_children.removeElement(instanceNode);
+			}
+		}
+		start();
+        
+        loadStructures(true);
+	}

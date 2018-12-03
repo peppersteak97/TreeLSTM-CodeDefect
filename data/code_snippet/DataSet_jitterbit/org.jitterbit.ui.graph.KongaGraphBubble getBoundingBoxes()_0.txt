@@ -1,0 +1,5 @@
+	public List<Rectangle> getBoundingBoxes() {
+		List<Rectangle> retVal = new ArrayList<Rectangle>();
+		retVal.add( new Rectangle(getX(), getY(), getWidth(), getHeight()) );
+		return retVal;
+	}

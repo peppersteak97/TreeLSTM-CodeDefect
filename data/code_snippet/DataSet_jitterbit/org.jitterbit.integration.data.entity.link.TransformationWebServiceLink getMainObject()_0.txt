@@ -1,0 +1,3 @@
+    public WebServiceCall getMainObject() {
+        return (WebServiceCall) super.getMainObject();
+    }

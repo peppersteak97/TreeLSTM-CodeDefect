@@ -1,0 +1,1 @@
+    public NamedIcon getInconsistentIcon() { return inconsistent; }

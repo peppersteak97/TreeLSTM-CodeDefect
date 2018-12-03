@@ -1,0 +1,12 @@
+    protected void setShutDownTask() {
+        if (jmri.InstanceManager.shutDownManagerInstance()!=null) {
+            task = 
+                    new jmri.implementation.AbstractShutDownTask(getTitle()){
+                        public boolean execute() {
+                            handleModified();
+                            return true;
+                        }
+            };
+            jmri.InstanceManager.shutDownManagerInstance().register(task);
+        }
+    }

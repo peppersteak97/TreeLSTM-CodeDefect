@@ -1,0 +1,10 @@
+    public void enteredMethod() {
+        long start = System.currentTimeMillis();
+        try {
+            ITimedBlockIdentifier id = new TimedBlockIdentifier(getStackTraceElement());
+            enteredBlockImpl(id);
+        }
+        finally {
+            addProfilingTime(start);
+        }
+    }

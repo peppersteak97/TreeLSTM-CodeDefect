@@ -1,0 +1,24 @@
+  public void testBalanceForward() {
+    assertEquals("#0.0", -1, model0.balanceForward());
+    model0 = setUpExample();
+    assertEquals("#1.0", -1, model0.balanceForward());
+    model0.move(-1);
+    assertEquals("#2.0", -1, model0.balanceForward());
+    model0.move(-34);
+    assertEquals("#3.0", 35, model0.balanceForward());
+    model0.move(1);
+    assertEquals("#4.0", -1, model0.balanceForward());
+    model0.move(5);
+    assertEquals("#5.0", 3, model0.balanceForward());
+    model0.move(27);
+    assertEquals("#6.0", -1, model0.balanceForward());
+    model0.move(-20);
+    assertEquals("#7.0", -1, model0.balanceForward());
+    model1.insertChar('(');
+    model1.move(-1);
+    assertEquals("#8.0", -1, model1.balanceForward());
+    model1.move(1);
+    model1.insertChar('}');
+    model1.move(-1);
+    assertEquals("#9.0", -1, model1.balanceForward());
+  }

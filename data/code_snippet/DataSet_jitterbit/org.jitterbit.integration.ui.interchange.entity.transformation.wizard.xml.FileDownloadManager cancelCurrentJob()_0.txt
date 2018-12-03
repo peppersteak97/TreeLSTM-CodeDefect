@@ -1,0 +1,7 @@
+    private void cancelCurrentJob() {
+        if (m_currentJobID != null) {
+            IUiJobManager jobMgr = IntegrationUi.getUi().getJobManager();
+            jobMgr.cancelJob(m_currentJobID);
+            m_currentJobID = null;
+        }
+    }

@@ -1,0 +1,1 @@
+  protected void resetWalkerLocationToCursor() { _parent.resetLocation(); }

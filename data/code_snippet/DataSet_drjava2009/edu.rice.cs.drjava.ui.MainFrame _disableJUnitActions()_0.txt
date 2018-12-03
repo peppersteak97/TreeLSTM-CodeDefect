@@ -1,0 +1,18 @@
+  private void _disableJUnitActions() {
+    
+    
+    _compileProjectAction = _junit_compileProjectDecoratedAction = new DecoratedAction(_compileProjectAction, false);
+    _compileAllAction = _junit_compileAllDecoratedAction = new DecoratedAction(_compileAllAction, false);
+    _compileFolderAction = _junit_compileFolderDecoratedAction = new DecoratedAction(_compileFolderAction, false);
+    _junitFolderAction = _junit_junitFolderDecoratedAction = new DecoratedAction(_junitFolderAction, false);
+    _junitAllAction = _junit_junitAllDecoratedAction = new DecoratedAction(_junitAllAction, false);
+    _junitAction = _junit_junitDecoratedAction = new DecoratedAction(_junitAction, false);
+    _junitProjectAction = _junit_junitOpenProjectFilesDecoratedAction = new DecoratedAction(_junitProjectAction, false);  
+    _cleanAction = _junit_cleanDecoratedAction = new DecoratedAction(_cleanAction, false);
+    _autoRefreshAction = _junit_autoRefreshDecoratedAction = new DecoratedAction(_autoRefreshAction, false);
+    _projectPropertiesAction = _junit_projectPropertiesDecoratedAction = 
+      new DecoratedAction(_projectPropertiesAction, false);
+    _runProjectAction = _junit_runProjectDecoratedAction = new DecoratedAction(_runProjectAction, false);
+    _runAction = _junit_runDecoratedAction = new DecoratedAction(_runAction, false);
+    _runAppletAction = _junit_runAppletDecoratedAction = new DecoratedAction(_runAppletAction, false);
+  }

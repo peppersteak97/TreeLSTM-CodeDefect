@@ -1,0 +1,14 @@
+    public String[] validOption2() { 
+        if (mOpt2 == null) {
+            switch (SystemType.getType()) {
+                case SystemType.MACCLASSIC:
+                case SystemType.MACOSX:
+                    mOpt2="no";
+                    break;
+                default:
+                    mOpt2="yes";
+                    break;                
+            }
+        }
+        return validOption2;
+    }

@@ -1,0 +1,5 @@
+  private JUnitTestRunner makeRunner() {
+    ClassLoader current = JUnitTestManager.class.getClassLoader();
+    ClassLoader parent = ShadowingClassLoader.whiteList(current, "junit", "org.junit");
+    return new JUnitTestRunner(_jmc, _loaderFactory.value(parent));
+  }

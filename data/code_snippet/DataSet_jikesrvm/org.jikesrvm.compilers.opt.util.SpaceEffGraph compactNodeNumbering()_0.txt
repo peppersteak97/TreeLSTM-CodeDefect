@@ -1,0 +1,7 @@
+  public void compactNodeNumbering() {
+    int number = 0;
+    for (SpaceEffGraphNode n = _firstNode; n != null; n = n.getNext()) {
+      n.setNumber(number++);
+    }
+    numberOfNodes = number;
+  }

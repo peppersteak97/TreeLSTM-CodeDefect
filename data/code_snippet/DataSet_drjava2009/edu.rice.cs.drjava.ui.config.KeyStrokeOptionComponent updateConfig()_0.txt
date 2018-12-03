@@ -1,0 +1,7 @@
+  public boolean updateConfig() {
+    if (!_key.equals(getConfigKeyStroke())) {
+      DrJava.getConfig().setSetting(_option, _key);
+      setValue(_key);
+    }
+    return true;
+  }

@@ -1,0 +1,3 @@
+  public BasicBlock getLabel() {
+    return label;
+  }

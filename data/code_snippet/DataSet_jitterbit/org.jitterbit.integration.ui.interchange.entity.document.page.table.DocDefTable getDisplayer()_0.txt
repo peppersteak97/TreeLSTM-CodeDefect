@@ -1,0 +1,10 @@
+    public JComponent getDisplayer() {
+        OneColumnPanel displayer = new OneColumnPanel();
+        displayer.setAnchor(OneColumnPanel.WEST);
+        displayer.setInsets(0, 0, 5, 0);
+        displayer.setOpaque(false, false);
+        displayer.add(getButtonPanel());
+        displayer.setFillOut();
+        displayer.add(ComponentFactories.scrollFactory().newScrollPane(m_ui));
+        return ComponentDecorFactory.centerBorder(displayer).getUi();
+    }

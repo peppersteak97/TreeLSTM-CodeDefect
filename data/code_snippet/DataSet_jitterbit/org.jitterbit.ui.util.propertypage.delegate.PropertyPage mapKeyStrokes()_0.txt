@@ -1,0 +1,10 @@
+	private void mapKeyStrokes() {
+		InputMap inputMap = getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		inputMap.put( KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), keyApply);
+		getActionMap().put( keyApply, new AbstractAction() {
+			public void actionPerformed(ActionEvent e) {
+				if( isApplyEnabled() )
+					onApply();
+			}
+		});
+	}

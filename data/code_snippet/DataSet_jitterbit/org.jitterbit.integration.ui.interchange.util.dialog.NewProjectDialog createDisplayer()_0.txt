@@ -1,0 +1,17 @@
+    private void createDisplayer() {
+        m_newProjectLocationDisplayer = ProjectLocationBrowser.getNewProjectBrowser(
+                        m_currentProjectName, m_currentProjectLocation);
+        m_newProjectLocationDisplayer.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                onOk();
+            }
+        });
+        m_newProjectLocationDisplayer.addProjectNameListener(new ChangeListener() {
+    
+                public void stateChanged(ChangeEvent e) {
+                    String name = m_newProjectLocationDisplayer.getProjectName();
+                    getOKButton().setEnabled(name.length() > 0);
+                }
+        });
+    }

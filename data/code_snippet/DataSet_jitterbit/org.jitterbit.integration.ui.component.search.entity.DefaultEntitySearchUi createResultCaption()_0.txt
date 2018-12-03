@@ -1,0 +1,6 @@
+    private JLabel createResultCaption() {
+        JLabel results = IntegrationUiStyleSheet.DefaultListText.makeJLabel(
+                        PackageResources.RESULTS);
+        results.setAlignmentX(Component.LEFT_ALIGNMENT);
+        return results;
+    }

@@ -1,0 +1,6 @@
+			for(Segment segment:getSegmentList()){
+				if(!segment.m_segmentName.equals(ComplexTextStructure.c_rootName)){
+					for(Field field:segment.getFieldList())
+						if(field.m_dataType.equals(TextStructureConstants.IDENTIFIER))return field;
+				}
+			}

@@ -1,0 +1,3 @@
+	public List<KongaGraphBubble> getBubbles() {
+		return new ArrayList<KongaGraphBubble>(m_liBubbles);
+	}

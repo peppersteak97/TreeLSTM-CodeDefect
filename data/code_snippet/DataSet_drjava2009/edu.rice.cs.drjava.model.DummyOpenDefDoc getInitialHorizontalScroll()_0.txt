@@ -1,0 +1,1 @@
+  public int getInitialHorizontalScroll() { throw new UnsupportedOperationException("Dummy method"); }

@@ -1,0 +1,7 @@
+  public String toString() {
+    if (value > 0xffff || value < -0xffff) {
+      return "0x" + Integer.toHexString(value);
+    } else {
+      return Integer.toString(value);
+    }
+  }

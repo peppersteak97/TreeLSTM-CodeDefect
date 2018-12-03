@@ -1,0 +1,6 @@
+  public final String toString() {
+    StringBuffer sb = new StringBuffer();
+
+    sb = DFS(sb, root, 0);
+    return sb.toString();
+  }

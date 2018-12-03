@@ -1,0 +1,3 @@
+    public int getSortValue() {
+        return m_value;
+    }

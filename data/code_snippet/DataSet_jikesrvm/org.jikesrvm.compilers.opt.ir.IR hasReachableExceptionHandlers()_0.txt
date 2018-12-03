@@ -1,0 +1,6 @@
+    if (hasReachableExceptionHandlers()) {
+      for (Enumeration<BasicBlock> e = getBasicBlocks(); e.hasMoreElements();) {
+        BasicBlock bb = e.nextElement();
+        bb.pruneExceptionalOut(this);
+      }
+    }

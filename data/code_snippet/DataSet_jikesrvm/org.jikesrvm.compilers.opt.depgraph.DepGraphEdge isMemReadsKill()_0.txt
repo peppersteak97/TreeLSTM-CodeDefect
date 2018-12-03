@@ -1,0 +1,1 @@
+  public boolean isMemReadsKill() { return (scratch & MEM_READS_KILL) != 0; }

@@ -1,0 +1,8 @@
+  public void textTopLevelInterfaceNameMisleading() throws BadLocationException, ClassNameNotFoundException {
+    String weird = "package edu . rice\n./*comment!*/cs.drjava; \n" + " {interface X} " + " \"class Foo\"" +
+      " class MyClass {";
+    String result = "MyClass";
+    _doc.insertString(0, weird, null);
+    
+    assertEquals("class name for user interface: '" + weird + "'", result, _doc.getFirstTopLevelClassName());
+  }

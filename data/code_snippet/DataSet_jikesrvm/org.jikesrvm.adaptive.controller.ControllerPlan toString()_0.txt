@@ -1,0 +1,11 @@
+  public String toString() {
+    StringBuilder buf = new StringBuilder();
+
+    buf.append("Method: ").append(getCompPlan().method).append("\n\tCompiled Method ID: ").append(CMID).append(
+        "\n\tPrevious Compiled Method ID: ").append(prevCMID).append("\n\tCreated at ").append(timeCreated).append(
+        "\n\tInitiated at ").append(timeInitiated).append("\n\tCompleted at ").append(timeCompleted).append(
+        "\n\tExpected Speedup: ").append(expectedSpeedup).append("\n\tExpected Compilation Time: ").append(
+        expectedCompilationTime).append("\n\tPriority: ").append(priority).append("\n\tStatus: ").append(getStatusString()).append(
+        "\n\tComp. Plan Level: ").append(compPlan.options.getOptLevel()).append("\n");
+    return buf.toString();
+  }

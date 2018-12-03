@@ -1,0 +1,1 @@
+	public double getXOverShort() {return xOverShort;}

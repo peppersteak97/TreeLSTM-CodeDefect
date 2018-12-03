@@ -1,0 +1,3 @@
+    public static IntegrationUi getUi() {
+        return s_instance;
+    }

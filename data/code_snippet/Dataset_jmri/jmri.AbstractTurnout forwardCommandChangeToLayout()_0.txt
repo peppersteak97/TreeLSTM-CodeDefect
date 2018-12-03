@@ -1,0 +1,3 @@
+	protected void forwardCommandChangeToLayout() {
+		forwardCommandChangeToLayout(_commandedState);
+	}

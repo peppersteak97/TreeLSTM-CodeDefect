@@ -1,0 +1,3 @@
+    protected int getTypeColumnIndex() {
+        return DelimitedFieldTableModel.TYPE.getIndex();
+    }

@@ -1,0 +1,1 @@
+    public int getNSample() { return values.length; }

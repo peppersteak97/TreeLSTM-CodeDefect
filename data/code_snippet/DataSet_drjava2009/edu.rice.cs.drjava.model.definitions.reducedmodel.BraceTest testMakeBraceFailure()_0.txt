@@ -1,0 +1,7 @@
+  public void testMakeBraceFailure() {
+    try {
+      Brace.MakeBrace("k", FREE);
+    } catch (BraceException e) {
+      assertEquals("Invalid brace type \"k\"", e.getMessage());
+    }
+  }

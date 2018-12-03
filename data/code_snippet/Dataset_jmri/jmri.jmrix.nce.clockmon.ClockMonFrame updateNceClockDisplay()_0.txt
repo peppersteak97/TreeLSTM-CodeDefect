@@ -1,0 +1,33 @@
+    private void updateNceClockDisplay() {
+        String txt = "";
+        if (nceLastRunning) {
+            txt = rb.getString("TagRunning");
+        } else {
+            txt = rb.getString("TagStopped");
+        }
+        txt = txt + " " + 
+            (nceLastHour / 10) + (nceLastHour - ((nceLastHour / 10) * 10)) + rb.getString("LabelTimeSep") +
+            (nceLastMinute / 10) + (nceLastMinute - ((nceLastMinute / 10) * 10)) + rb.getString("LabelTimeSep") +
+            (nceLastSecond / 10) + (nceLastSecond - ((nceLastSecond / 10) * 10));
+        if (!nceLast1224) {
+            if (nceLastAmPm) {
+                txt = txt + " " + rb.getString("TagAm");
+            } else {
+                txt = txt + " " + rb.getString("TagPm");
+            }
+        }
+        txt = txt + " " + rb.getString("LabelRatio") + " " + 
+            nceLastRatio + rb.getString("LabelToOne");
+        if (clockMode == SYNCMODE_NCE_MASTER) {
+            txt = txt + " " + rb.getString("TagIsNceMaster");
+            double intTime = getIntTime();
+            double nceTime = getNceTime();
+            double diffTime = nceTime - intTime;
+            txt = txt + " " + rb.getString("ClockError");
+            txt = txt + " " + threeDigits.format(diffTime);
+            if (log.isDebugEnabled() && false){
+                log.debug("intTime: " + intTime + " nceTime: " + nceTime + " diffTime: " + diffTime);
+            }
+        }
+        nceDisplayStatus.setText(txt);
+    }

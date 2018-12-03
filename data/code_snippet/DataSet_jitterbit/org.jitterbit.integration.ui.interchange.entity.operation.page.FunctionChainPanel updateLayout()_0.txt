@@ -1,0 +1,56 @@
+    private void updateLayout() {
+        m_entryPanel.removeAll();
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.0;
+        Insets ins1 = new Insets(2, 5, 2, 5);
+        Insets ins2 = new Insets(10, 5, 2, 5);
+        gbc.insets = ins1;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+
+        if (m_entries.isEmpty()) {
+            m_entryPanel.add(m_addPanel, gbc);
+        }
+        else {
+            for (int n = 0; n < m_entries.size(); ++n) {
+                gbc.gridx = 0;
+                if (n > 0) {
+                    gbc.insets = ins2;
+                    gbc.anchor = GridBagConstraints.CENTER;
+                    m_entryPanel.add(m_joinLabels.get(n - 1), gbc);
+                    ++gbc.gridy;
+                    gbc.insets = ins1;
+                }
+                gbc.anchor = GridBagConstraints.WEST;
+                FunctionEntry entry = m_entries.get(n);
+                m_entryPanel.add(entry.getComboCapsule(), gbc);
+                ++gbc.gridx;
+                gbc.anchor = GridBagConstraints.SOUTHWEST;
+                m_entryPanel.add(entry.getAddButton(), gbc);
+                ++gbc.gridx;
+                m_entryPanel.add(entry.getRemoveButton(), gbc);
+                ++gbc.gridy;
+            }
+        }
+
+        /*
+        JComponent ui = getUi();
+        Container parent = ui.getParent();
+        while (!(parent instanceof OperationPanel)) {
+            if (parent == null) {
+                break;
+            }
+            parent = parent.getParent();
+        }
+        if (parent != null) {
+            ((JPanel) parent).invalidate();
+            ((JPanel) parent).validate();
+        }
+        else {
+            ui.invalidate();
+            ui.validate();
+        }
+        ui.repaint();
+        */
+    }

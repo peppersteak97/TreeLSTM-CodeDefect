@@ -1,0 +1,6 @@
+     public XNetMessage getCSVersionRequestMessage() {
+	XNetMessage msg=new XNetMessage(3);   
+        msg.setElement(0,XNetConstants.CS_REQUEST);
+        msg.setElement(1,XNetConstants.CS_VERSION);
+        return msg;
+     } 

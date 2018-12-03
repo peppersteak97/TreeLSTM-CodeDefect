@@ -1,0 +1,3 @@
+  public RegisterOperand makeTocOp() {
+    return new RegisterOperand(getJTOC(), TypeReference.JavaLangObject);
+  }

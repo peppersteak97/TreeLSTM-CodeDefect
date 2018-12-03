@@ -1,0 +1,8 @@
+    private JComponent createSouthComponent() {
+        final Box south = Box.createHorizontalBox();
+        m_statusPanel.setOpaque(true);
+        m_statusPanel.setBackground(IntegrationUiStyleSheet.NEUTRAL_BACKGROUND);
+        south.add(m_statusPanel);
+        south.add(Box.createHorizontalGlue());
+        return south;
+    }

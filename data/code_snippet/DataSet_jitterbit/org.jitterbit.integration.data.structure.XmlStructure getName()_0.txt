@@ -1,0 +1,6 @@
+    public String getName() {
+        if (m_dtdFilePath != null) {
+            return new File(m_dtdFilePath).getName();
+        }
+        return super.getName();
+    }

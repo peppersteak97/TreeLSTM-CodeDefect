@@ -1,0 +1,11 @@
+    public void configure() {
+        SerialTrafficController.instance().connectPort(this);
+
+        jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.secsi.SerialTurnoutManager());
+        jmri.InstanceManager.setLightManager(new jmri.jmrix.secsi.SerialLightManager());
+
+        SerialSensorManager s;
+        jmri.InstanceManager.setSensorManager(s = new jmri.jmrix.secsi.SerialSensorManager());
+        SerialTrafficController.instance().setSensorManager(s);
+        jmri.jmrix.secsi.ActiveFlag.setActive();
+    }

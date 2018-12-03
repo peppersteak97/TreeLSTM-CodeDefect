@@ -1,0 +1,3 @@
+    public void redo() throws CannotRedoException {
+        m_wrappee.redo();
+    }

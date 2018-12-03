@@ -1,0 +1,3 @@
+    public Color getBackground() {
+        return m_background;
+    }

@@ -1,0 +1,15 @@
+    int fastestColor2() {
+        int result = SignalHead.RED;
+        if (watchedSignal2==null && watchedSignal2Alt==null ) 
+            result = SignalHead.GREEN;
+        
+        int val = result;
+        if (watchedSignal2!=null) val = watchedSignal2.getAppearance();
+        if (watchedSignal2!=null && watchedSignal2.getHeld()) val =  SignalHead.RED;
+        
+        int valAlt = result;
+        if (watchedSignal2Alt!=null) valAlt = watchedSignal2Alt.getAppearance();
+        if (watchedSignal2Alt!=null && watchedSignal2Alt.getHeld()) valAlt =  SignalHead.RED;
+        
+        return fasterOf(val, valAlt);
+    }

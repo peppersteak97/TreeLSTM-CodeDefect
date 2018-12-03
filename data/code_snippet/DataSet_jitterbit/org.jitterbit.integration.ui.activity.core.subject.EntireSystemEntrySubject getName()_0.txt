@@ -1,0 +1,5 @@
+    public String getName() {
+        synchronized (m_nameLock) {
+            return m_name;
+        }
+    }

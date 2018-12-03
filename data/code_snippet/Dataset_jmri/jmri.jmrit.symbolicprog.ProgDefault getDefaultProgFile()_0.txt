@@ -1,0 +1,4 @@
+    synchronized static public String getDefaultProgFile() {
+    	if (log.isDebugEnabled()) log.debug("get programmer: "+defaultProgFile);
+    	return defaultProgFile;
+    }

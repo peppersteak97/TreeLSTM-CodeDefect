@@ -1,0 +1,27 @@
+  public void testNotifyCollapse() {
+    ModelList<Integer>.ModelIterator itFull = fFull.getIterator();
+    ModelList<Integer>.ModelIterator itFull2 = fFull.getIterator();
+    ModelList<Integer>.ModelIterator itFull3 = fFull.getIterator();
+
+    itFull2.insert(Integer.valueOf(0));
+    itFull2.insert(Integer.valueOf(1));
+    itFull2.insert(Integer.valueOf(2));
+    itFull2.insert(Integer.valueOf(3));
+    itFull2.insert(Integer.valueOf(4));
+
+    assertTrue("#0.0.0",itFull.atStart());
+
+    for (int i = 0; i < 3; i++) {
+      itFull.next();
+    }
+    for (int j = 0; j < 5; j++) {
+      itFull3.next();
+    }
+    assertEquals("#0.0", Integer.valueOf(2), itFull.current());
+    assertEquals("#0.1", Integer.valueOf(0), itFull3.current());
+    itFull2.collapse(itFull3);
+
+    assertEquals("#1.0", Integer.valueOf(4), itFull2.current());
+    assertEquals("#1.1", Integer.valueOf(0), itFull3.current());
+    assertEquals("#1.2", Integer.valueOf(0), itFull.current());
+  }

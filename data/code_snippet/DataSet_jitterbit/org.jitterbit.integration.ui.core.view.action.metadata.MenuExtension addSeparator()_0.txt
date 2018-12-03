@@ -1,0 +1,3 @@
+    public void addSeparator() {
+        m_itemData.add(null);
+    }

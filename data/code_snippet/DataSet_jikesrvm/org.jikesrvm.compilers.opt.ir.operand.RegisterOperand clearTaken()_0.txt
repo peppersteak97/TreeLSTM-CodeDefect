@@ -1,0 +1,1 @@
+  public void clearTaken() { flags2 &= ~TAKEN; }

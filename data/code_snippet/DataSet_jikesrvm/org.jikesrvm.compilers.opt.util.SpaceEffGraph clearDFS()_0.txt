@@ -1,0 +1,5 @@
+  public final void clearDFS() {
+    for (SpaceEffGraphNode n = firstNode(); n != null; n = n.getNext()) {
+      n.clearDfsVisited();
+    }
+  }

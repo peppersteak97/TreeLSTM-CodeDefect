@@ -1,0 +1,25 @@
+    private void registerHandlerFactories() {
+        IEndElementHandlerFactory factory = new IEndElementHandlerFactory() {
+            
+            public IEndElementHandler getHandler() {
+                return new DefaultEntityFactoryElementHandler();
+            }
+        };
+        addEndElementHandlerFactory(DEFAULT_ENTITY_FACTORY, factory);
+
+        factory = new IEndElementHandlerFactory() {
+
+            public IEndElementHandler getHandler() {
+                return new PageElementHandler();
+            }
+        };
+        addEndElementHandlerFactory(PAGE, factory);
+
+        factory = new IEndElementHandlerFactory() {
+
+            public IEndElementHandler getHandler() {
+                return new RootFolderElementHandler();
+            }
+        };
+        addEndElementHandlerFactory(ROOT_FOLDER, factory);
+    }

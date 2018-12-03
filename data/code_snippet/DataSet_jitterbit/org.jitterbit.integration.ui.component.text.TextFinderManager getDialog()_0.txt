@@ -1,0 +1,11 @@
+    private SimpleFindDialog getDialog() {
+        if (m_dialog == null) {
+            m_dialog = new SimpleFindDialog(IntegrationUiUtils.getActiveFrame());
+            m_dialog.addFindListener(getFindListener());
+            m_dialog.decorateText(JLabel.class,
+                            IntegrationUiStyleSheet.DefaultText.asTextDecorator());
+            m_dialog.decorateText(JToggleButton.class,
+                            IntegrationUiStyleSheet.DefaultText.asTextDecorator());
+        }
+        return m_dialog;
+    }

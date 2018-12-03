@@ -1,0 +1,1 @@
+  public int available() { return _buffer.size(); }

@@ -1,0 +1,3 @@
+    private synchronized String getCurrentDisplayString() {
+        return m_format.format(new Date());
+    }

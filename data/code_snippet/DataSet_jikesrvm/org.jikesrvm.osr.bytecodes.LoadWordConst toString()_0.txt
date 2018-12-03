@@ -1,0 +1,3 @@
+  public String toString() {
+    return "LoadWord 0x" + Long.toHexString(wbits.toLong());
+  }

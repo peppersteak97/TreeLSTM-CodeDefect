@@ -1,0 +1,41 @@
+    void createModel() {
+        m = new BeanTableDataModel() {
+            public String getValue(String name) {
+            	Object m = InstanceManager.memoryManagerInstance().getBySystemName(name).getValue();
+            	if (m!=null)
+                	return m.toString();
+                else
+                	return "";
+            }
+            public Manager getManager() { return InstanceManager.memoryManagerInstance(); }
+            public NamedBean getBySystemName(String name) { return InstanceManager.memoryManagerInstance().getBySystemName(name);}
+            public NamedBean getByUserName(String name) { return InstanceManager.memoryManagerInstance().getByUserName(name);}
+
+            public void clickOn(NamedBean t) {
+            }
+    		public void setValueAt(Object value, int row, int col) {
+        		if (col==VALUECOL) {
+            		Memory t = (Memory)getBySystemName((String)sysNameList.get(row));
+					t.setValue(value);
+            		fireTableRowsUpdated(row,row);
+        		} else super.setValueAt(value, row, col);
+    		}
+	   		public String getColumnName(int col) {
+        		if (col==VALUECOL) return "Value";
+        		return super.getColumnName(col);
+        	}
+    		public Class getColumnClass(int col) {
+    			if (col==VALUECOL) return String.class;
+    			else return super.getColumnClass(col);
+		    }
+    		public void configValueColumn(JTable table) {
+		    }
+			boolean matchPropertyName(java.beans.PropertyChangeEvent e) {
+			    return true;
+			}
+			public JButton configureButton() {
+				super.log.error("configureButton should not have been called");
+				return null;
+			}
+        };
+    }

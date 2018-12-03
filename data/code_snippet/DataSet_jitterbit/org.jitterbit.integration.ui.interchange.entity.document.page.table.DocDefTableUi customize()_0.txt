@@ -1,0 +1,13 @@
+    protected void customize() {
+        setupSelectionModel();
+        customizeHeaders();
+        setupEditors();
+        customizeColumnRenderers();
+        setupKeyBindings();
+        setupDoubleClickListener();
+        
+        putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+        setFont(IntegrationUiStyleSheet.InfoText.getFont());
+        
+        m_table.registerKeyBindings(this);
+    }

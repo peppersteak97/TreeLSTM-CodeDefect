@@ -1,0 +1,1 @@
+  public boolean isOpen() { return (((_type % 2) == 0) && (_type < braces.length - 1)); }

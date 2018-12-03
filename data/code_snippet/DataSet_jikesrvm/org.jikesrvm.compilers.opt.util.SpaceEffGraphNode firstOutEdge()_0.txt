@@ -1,0 +1,3 @@
+  public final SpaceEffGraphEdge firstOutEdge() {
+    return _outEdgeStart;
+  }

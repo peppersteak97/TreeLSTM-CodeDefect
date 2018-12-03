@@ -1,0 +1,3 @@
+    protected void storeValues() {
+        log.error("default storeValues does nothing for "+getTitle());
+    }

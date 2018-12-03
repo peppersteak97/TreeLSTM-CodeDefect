@@ -1,0 +1,76 @@
+  private void initComponents() {
+    _dirChooser = new DirectoryChooser(this);
+    _dirChooser.setDialogTitle("Select Work Directory");
+    _dirChooser.setApproveButtonText("Select");
+    _fileChooser = new FileChooser(null);
+    _fileChooser.setDialogTitle("Select Enclosing .djapp File");
+    _fileChooser.setApproveButtonText("Select");
+    
+    super.getContentPane().setLayout(new GridLayout(1,1));
+    
+    if (_editMode) {
+      Action saveCommandAction = new AbstractAction("Save") {
+        public void actionPerformed(ActionEvent e) {
+          _saveCommand();
+        }
+      };
+      _saveCommandButton = new JButton(saveCommandAction);
+    }
+    else {
+      Action runCommandAction = new AbstractAction("Run Command Line") {
+        public void actionPerformed(ActionEvent e) {
+          _runCommand();
+        }
+      };
+      _runCommandButton = new JButton(runCommandAction);
+      _runCommandButton.addFocusListener(new FocusAdapter() {
+        public void focusGained(FocusEvent e) {
+          _insertCommandButton.setEnabled(false);
+        }
+        public void focusLost(FocusEvent e) {
+          if ((e.getOppositeComponent() == _commandLinePreview) || 
+              (e.getOppositeComponent() == _commandWorkDirLinePreview) ||
+              (e.getOppositeComponent() == _commandEnclosingFileLinePreview)) {
+            _runCommandButton.requestFocus();
+          }
+        }
+      });
+      
+      Action saveCommandAction = new AbstractAction("Save to Menu...") {
+        public void actionPerformed(ActionEvent e) {
+          _saveCommand();
+        }
+      };
+      _saveCommandButton = new JButton(saveCommandAction);
+    }
+    
+    _insertVarDialog = new InsertVariableDialog(_mainFrame, _insertVarDialogMonitor);
+    Action insertCommandAction = new AbstractAction("Insert Variable...") {
+      public void actionPerformed(ActionEvent e) {
+        _insertVariableCommand();
+      }
+    };
+    _insertCommandButton = new JButton(insertCommandAction);
+    _insertCommandButton.setEnabled(false);
+    
+    Action cancelAction = new AbstractAction("Cancel") {
+      public void actionPerformed(ActionEvent e) {
+        _cancel();
+      }
+    };
+    _cancelCommandButton = new JButton(cancelAction);
+    
+    
+    EventQueue.invokeLater(new Runnable() {
+      public void run() {
+        _commandPanel = makeCommandPane(); 
+        
+        getContentPane().add(_commandPanel);
+        setResizable(false);
+        
+        setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        Utilities.setPopupLoc(ExecuteExternalDialog.this, _mainFrame);
+        _commandLine.requestFocus();
+      }
+    });
+  }

@@ -1,0 +1,7 @@
+    public final void cancelled() {
+        setDone();
+        IServerCallback external = getExternalCallback();
+        if (external != null) {
+            external.cancelled();
+        }
+    }

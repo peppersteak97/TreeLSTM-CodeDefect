@@ -1,0 +1,16 @@
+    public void setToStartOfDay() {
+        int hours = m_hourBox.getItemCount();
+        if (hours == 12) {
+            m_hourBox.setSelectedIndex(11);
+        }
+        else {
+            m_hourBox.setSelectedIndex(0);
+        }
+        m_minuteBox.setSelectedIndex(0);
+        if (m_showSeconds) {
+            m_secondBox.setSelectedIndex(0);
+        }
+        if (m_amPmBox != null) {
+            m_amPmBox.setSelectedItem(AM_PM.AM);
+        }
+    }

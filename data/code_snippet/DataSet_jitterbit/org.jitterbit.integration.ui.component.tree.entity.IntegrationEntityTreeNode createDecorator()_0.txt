@@ -1,0 +1,3 @@
+    protected ITreeNodeDecorator<IIntegrationTreeNodeDecor> createDecorator() {
+        return new DefaultIntegrationTreeNodeDecorator(this);
+    }

@@ -1,0 +1,15 @@
+    private void save() throws InterchangeSavingException {
+        InterchangeProjectFile f = m_managedProject.getProjectFile();
+        try {
+            f.save();
+        }
+        catch (FileNotFoundException e) {
+            throw new InterchangeSavingException(e);
+        }
+        catch (IOException e) {
+            throw new InterchangeSavingException(e);
+        }
+        m_saver.saveInterchangeProjectRelations();
+        m_saver.saveDeletedItemsInformation();
+        m_managedProject.saveUiState();
+    }

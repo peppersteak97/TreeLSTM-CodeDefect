@@ -1,0 +1,3 @@
+	public IKongaDataUiDelegate getBaseUiDelegate() {
+		return m_baseUiDelegate;
+	}

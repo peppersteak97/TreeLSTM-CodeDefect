@@ -1,0 +1,5 @@
+    private ButtonGroup createButtonGroup() {
+        RadioButtonGroup group = new RadioButtonGroup();
+        addChangeSource(group);
+        return group;
+    }

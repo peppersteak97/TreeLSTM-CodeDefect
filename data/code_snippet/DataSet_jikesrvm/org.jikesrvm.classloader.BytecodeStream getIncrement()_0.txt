@@ -1,0 +1,4 @@
+  public final int getIncrement() {
+    if (VM.VerifyAssertions) VM._assert(opcode == JBC_iinc);
+    return readSignedByte();
+  }

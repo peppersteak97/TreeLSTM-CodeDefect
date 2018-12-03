@@ -1,0 +1,3 @@
+	protected void init() {
+		XpaTrafficController.instance().addXpaListener(this);
+	}

@@ -1,0 +1,10 @@
+    private void prepareForRemoval() {
+        if (m_savingService != null) {
+            m_savingService.shutdown();
+            m_savingService = null;
+        }
+        if (m_displayedEntity != null) {
+            m_displayedEntity.getDataObject().removePropertyChangeListener(
+                            IntegrationEntity.PROPERTY_NAME, m_nameListener);
+        }
+    }

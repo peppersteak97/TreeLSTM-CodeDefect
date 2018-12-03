@@ -1,0 +1,19 @@
+  private void genEpilogue() {
+    if (klass.hasDynamicBridgeAnnotation()) {
+      asm.emitTAddrWI(-1);
+    } else {
+      int offset = frameSize;
+      for (int i = lastFloatStackRegister; i >= FIRST_FLOAT_LOCAL_REGISTER; --i) {
+        asm.emitLFD(i, offset -= BYTES_IN_DOUBLE, FP);
+      }
+      for (int i = lastFixedStackRegister; i >= FIRST_FIXED_LOCAL_REGISTER; --i) {
+        asm.emitLAddr(i, offset -= BYTES_IN_ADDRESS, FP);
+      }
+
+      if (frameSize <= 0x8000) {
+      } else {
+      }
+      asm.emitLAddr(S0, STACKFRAME_NEXT_INSTRUCTION_OFFSET, FP);
+      asm.emitMTLR(S0);
+    }
+  }

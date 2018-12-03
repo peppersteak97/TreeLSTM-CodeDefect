@@ -1,0 +1,3 @@
+    public int getUnitAddress() {
+        return unitAddress & 0x07F;
+    }

@@ -1,0 +1,6 @@
+	public LayoutBlock getLayoutBlock() {
+		if ( (block==null) && (blockName!=null) && (blockName!="") ) {
+			block = layoutEditor.provideLayoutBlock(blockName);
+		}
+		return block;
+	}

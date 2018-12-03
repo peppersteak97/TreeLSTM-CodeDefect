@@ -1,0 +1,3 @@
+    public ScheduleId getID() {
+        return (ScheduleId) super.getID();
+    }

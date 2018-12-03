@@ -1,0 +1,6 @@
+    public String toString() {
+        String r = "Reading id="+getID()+" values=";
+        for (int i = 0; i<getNSample(); i++) 
+            r+=""+(int)getValue(i)+((i!=(getNSample()-1))?",":" ");
+        return r;
+    }

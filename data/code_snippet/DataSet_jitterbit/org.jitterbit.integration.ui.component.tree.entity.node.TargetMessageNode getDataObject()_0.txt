@@ -1,0 +1,3 @@
+    public TargetMessage getDataObject() {
+        return (TargetMessage) getKongaObject();
+    }

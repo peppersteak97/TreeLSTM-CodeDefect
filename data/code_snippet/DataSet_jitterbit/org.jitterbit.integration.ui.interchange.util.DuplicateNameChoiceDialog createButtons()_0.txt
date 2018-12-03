@@ -1,0 +1,5 @@
+    private JComponent createButtons() {
+        JPanel buttons = getButtonPanel(OK_CANCEL, 15);
+        buttons.setBorder(BorderFactory.createEmptyBorder(15, 10, 10, 10));
+        return buttons;
+    }

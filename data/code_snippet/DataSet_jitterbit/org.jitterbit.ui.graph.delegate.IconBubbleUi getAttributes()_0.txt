@@ -1,0 +1,9 @@
+	public Map<String, Object> getAttributes() {
+		Map<String, Object> map = super.getAttributes();
+		Rectangle r = getBounds();
+		map.put(ATTRIBUTE_X, new Integer(r.getLocation().x));
+		map.put(ATTRIBUTE_Y, new Integer(r.getLocation().y));
+		map.put(ATTRIBUTE_W, new Integer(r.getSize().width));
+		map.put(ATTRIBUTE_H, new Integer(r.getSize().height));
+		return map;
+	}

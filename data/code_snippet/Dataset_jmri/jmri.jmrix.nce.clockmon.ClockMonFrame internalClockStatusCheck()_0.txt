@@ -1,0 +1,19 @@
+    private void internalClockStatusCheck(){
+
+    	if (clockMode == SYNCMODE_INTERNAL_MASTER) {
+	    	if (internalLastRunning != internalClock.getRun()) {
+	    		if (internalClock.getRun()){
+	    			internalSyncInitStateCounter = 1;
+	    		} else {
+	    			internalSyncInitStateCounter = -3;
+	    		}
+	    		internalSyncInitStates();
+	    	}
+	    	if (internalLastRatio != internalClock.getRate()) {
+	    		internalSyncInitStateCounter = 1;
+	    		internalSyncInitStates();
+	    	}
+    	}
+    	internalLastRunning = internalClock.getRun();
+    	internalLastRatio = internalClock.getRate();
+    }

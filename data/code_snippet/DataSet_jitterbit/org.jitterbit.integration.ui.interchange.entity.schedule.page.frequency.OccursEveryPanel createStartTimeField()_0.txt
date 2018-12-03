@@ -1,0 +1,4 @@
+    private void createStartTimeField() {
+        m_startTime = new TimeOfTheDayControl();
+        resetStartTime();
+    }

@@ -1,0 +1,3 @@
+    public final IWizardPage getCurrentPage() {
+        return m_currentPage;
+    }

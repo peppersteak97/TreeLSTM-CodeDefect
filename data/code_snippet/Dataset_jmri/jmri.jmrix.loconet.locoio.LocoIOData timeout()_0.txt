@@ -1,0 +1,16 @@
+    synchronized protected void timeout() {
+        if (log.isDebugEnabled()) log.debug("timeout!");
+        setStatus("Timeout");
+        if (timeoutcounter++ == 5) {
+            for (int i=0; i<_numRows; i++) {
+                readState[i] = NONE;
+                writeState[i] = NONE;
+            }
+            setStatus("Aborted");
+            setLIOVersion("<unknown>");
+            timeoutcounter = 0;
+            stopTimer();
+        } else {
+            issueNextOperation();
+        }
+    }

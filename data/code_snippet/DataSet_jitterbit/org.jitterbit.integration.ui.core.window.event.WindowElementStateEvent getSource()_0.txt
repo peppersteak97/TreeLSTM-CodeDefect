@@ -1,0 +1,3 @@
+    public IWindowElement getSource() {
+        return (IWindowElement) super.getSource();
+    }

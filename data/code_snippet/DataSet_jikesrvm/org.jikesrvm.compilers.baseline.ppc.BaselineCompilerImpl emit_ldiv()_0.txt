@@ -1,0 +1,12 @@
+  protected final void emit_ldiv() {
+    popLong(T2, T3);
+    if (VM.BuildFor64Addr) {
+      popLong(T0, T1);
+      asm.emitTDEQ0(T3);
+      asm.emitDIVD(T1, T1, T3);
+    } else {
+      popLong(T0, T1);
+      generateSysCall(16, Entrypoints.sysLongDivideIPField);
+    }
+    pushLong(T0, T1);
+  }

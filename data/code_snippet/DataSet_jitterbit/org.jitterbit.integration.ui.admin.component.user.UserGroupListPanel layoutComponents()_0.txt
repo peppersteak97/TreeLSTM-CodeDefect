@@ -1,0 +1,14 @@
+    private void layoutComponents() {
+        JPanel p = new JPanel(new BorderLayout(0, 10));
+
+        p.add(ComponentFactories.scrollFactory().newScrollPane(m_groupList), 
+                        BorderLayout.CENTER);
+
+        Box buttons = Box.createHorizontalBox();
+        buttons.add(m_addToGroupButton);
+        buttons.add(Box.createHorizontalStrut(5));
+        buttons.add(m_removeGroupButton);
+        p.add(buttons, BorderLayout.SOUTH);
+
+        m_uiRepresentation = p;
+    }

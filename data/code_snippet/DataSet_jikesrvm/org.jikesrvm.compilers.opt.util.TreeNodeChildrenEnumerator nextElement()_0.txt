@@ -1,0 +1,11 @@
+  public TreeNode nextElement() {
+    TreeNode returnValue = currentChild;
+
+    if (currentChild != null) {
+      currentChild = currentChild.getRightSibling();
+    } else {
+      throw new NoSuchElementException("TreeNodeChildrenEnumerator");
+    }
+
+    return returnValue;
+  }

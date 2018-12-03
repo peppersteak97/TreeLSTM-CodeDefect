@@ -1,0 +1,3 @@
+    void enterField() {
+        oldContents = _value.getText();
+    }

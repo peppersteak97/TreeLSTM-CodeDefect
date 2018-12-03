@@ -1,0 +1,9 @@
+  public synchronized void await() {
+    while (!open) {
+      try {
+        wait();
+      } catch (InterruptedException e) {
+        throw new Error(e);
+      }
+    }
+  }

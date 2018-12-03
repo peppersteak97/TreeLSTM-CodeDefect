@@ -1,0 +1,11 @@
+    private static String[] getRadioButtonLabels() {
+        if (UPDATE_INSERT_SUPPORTED) {
+            return new String[] { PackageResources.TargetInsertUpdateModePage.Choices.INSERT_UPDATE,
+                            PackageResources.TargetInsertUpdateModePage.Choices.INSERT_ONLY,
+                            PackageResources.TargetInsertUpdateModePage.Choices.UPDATE_ONLY,
+                            PackageResources.TargetInsertUpdateModePage.Choices.UPDATE_INSERT, };
+        }
+        return new String[] { PackageResources.TargetInsertUpdateModePage.Choices.INSERT_UPDATE,
+                        PackageResources.TargetInsertUpdateModePage.Choices.INSERT_ONLY,
+                        PackageResources.TargetInsertUpdateModePage.Choices.UPDATE_ONLY, };
+    }

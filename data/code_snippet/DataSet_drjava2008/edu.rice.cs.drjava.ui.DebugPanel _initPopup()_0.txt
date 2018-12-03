@@ -1,0 +1,48 @@
+  private void _initPopup() {
+
+    Action selectAction = new AbstractAction("Select Thread") {
+      public void actionPerformed(ActionEvent e) { _selectCurrentThread(); }
+    };
+
+    _threadSuspendedPopupMenu = new JPopupMenu("Thread Selection");
+    _threadSuspendedPopupMenu.add(selectAction);
+    _threadSuspendedPopupMenu.add(new AbstractAction("Resume Thread") {
+      public void actionPerformed(ActionEvent e) {
+        try {
+          if (_threadInPopup.isSuspended()) _debugger.resume(_threadInPopup);
+        }
+        catch (DebugException dbe) { _frame._showDebugError(dbe); }
+      }
+    });
+
+    _stackPopupMenu = new JPopupMenu("Stack Selection");
+    _stackPopupMenu.add(new AbstractAction("Scroll to Source") {
+      public void actionPerformed(ActionEvent e) {
+        try {
+          _debugger.scrollToSource(getSelectedStackItem());
+        }
+        catch (DebugException de) { _frame._showDebugError(de); }
+      }
+    });
+
+    _watchPopupMenu = new JPopupMenu("Watches");
+    _watchPopupMenu.add(new AbstractAction("Remove Watch") {
+      public void actionPerformed(ActionEvent e) {
+        try {
+          _debugger.removeWatch(_watchTable.getSelectedRow());
+          _watchTable.revalidate();
+          _watchTable.repaint();
+        }
+        catch (DebugException de) { _frame._showDebugError(de); }
+      }
+    });
+    _watchTable.addMouseListener(new DebugTableMouseAdapter(_watchTable) {
+      protected void _showPopup(MouseEvent e) {
+        if (_watchTable.getSelectedRow() < _watchTable.getRowCount() - 1) {
+          _watchPopupMenu.show(e.getComponent(), e.getX(), e.getY());
+        }
+      }
+      protected void _action() {
+      }
+    });
+  }

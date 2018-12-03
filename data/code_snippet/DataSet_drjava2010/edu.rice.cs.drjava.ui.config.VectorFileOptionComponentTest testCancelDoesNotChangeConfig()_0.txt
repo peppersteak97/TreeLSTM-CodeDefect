@@ -1,0 +1,13 @@
+  public void testCancelDoesNotChangeConfig() {
+    Vector<File> testVector = new Vector<File>();
+    testVector.addElement(new File("test"));
+
+    _option.setValue(testVector);
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    
+    assertTrue("Cancel (resetToCurrent) should not change the config",
+               vectorEquals(OptionConstants.EXTRA_CLASSPATH.getDefault(),
+                            DrJava.getConfig().getSetting(OptionConstants.EXTRA_CLASSPATH)));
+  }

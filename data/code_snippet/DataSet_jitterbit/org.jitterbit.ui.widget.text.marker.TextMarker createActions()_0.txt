@@ -1,0 +1,8 @@
+    private void createActions() {
+        m_clearAction = new ClearMarkerAction(this);
+        m_clearAllAction = new ClearAllMarkersAction(this);
+        m_markActions = new ArrayList<Action>();
+        for (IMarkerColor col : m_colors) {
+            m_markActions.add(new MarkAction(this, col));
+        }
+    }

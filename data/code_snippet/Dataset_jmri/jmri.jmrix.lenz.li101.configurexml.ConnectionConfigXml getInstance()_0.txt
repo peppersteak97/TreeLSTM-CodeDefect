@@ -1,0 +1,3 @@
+    protected void getInstance() {
+        adapter = LI101Adapter.instance();
+    }

@@ -1,0 +1,8 @@
+  public void testIsMatch() {
+    Brace bracket = Brace.MakeBrace("]", FREE);
+    Brace dummy = Brace.MakeBrace("", FREE);
+    assertTrue(lparen.isMatch(rparen));
+    assertTrue(!lparen.isMatch(bracket));
+    assertTrue(!lparen.isMatch(dummy));
+    assertTrue(!dummy.isMatch(lparen));
+  }

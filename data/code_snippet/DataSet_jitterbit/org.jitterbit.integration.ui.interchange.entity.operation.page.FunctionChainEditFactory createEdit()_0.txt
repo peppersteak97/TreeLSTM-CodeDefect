@@ -1,0 +1,6 @@
+    UndoableEdit createEdit() {
+        State previous = m_previousState;
+        State newState = State.get(m_panel);
+        m_previousState = newState;
+        return new Edit(m_panel, previous, newState);
+    }

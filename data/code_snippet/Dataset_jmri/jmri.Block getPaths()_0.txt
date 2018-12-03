@@ -1,0 +1,3 @@
+    public List getPaths() {
+        return new ArrayList(paths);
+    }

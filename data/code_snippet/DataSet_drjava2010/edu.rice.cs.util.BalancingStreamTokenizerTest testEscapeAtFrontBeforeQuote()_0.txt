@@ -1,0 +1,13 @@
+  public void testEscapeAtFrontBeforeQuote() throws IOException {
+    BalancingStreamTokenizer tok = make("\\${foobar} abc", '\\');
+    tok.defaultThreeQuoteDollarCurlySetup();
+    String s = tok.getNextToken();
+    assertEquals("${foobar}", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("abc", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals(null, s);
+    assertEquals(BalancingStreamTokenizer.Token.END, tok.token());
+  }

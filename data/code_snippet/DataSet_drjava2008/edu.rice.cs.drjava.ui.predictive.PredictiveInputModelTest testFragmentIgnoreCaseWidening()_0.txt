@@ -1,0 +1,27 @@
+  public void testFragmentIgnoreCaseWidening() {
+    PredictiveInputModel<String> pim = new PredictiveInputModel<String>(true,
+                                                                        new PredictiveInputModel.FragmentStrategy<String>(),
+                                                                        "AboutDialog.java",
+                                                                        "FileOps.java",
+                                                                        "FileOpsTest.java",
+                                                                        "Utilities.java");
+    pim.setMask("FiLE oPS.");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("FiLE oPS.", pim.getMask());
+    assertEquals(1, pim.getMatchingItems().size());
+
+    pim.setMask("FiLE oPS");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("FiLE oPS", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+
+    pim.setMask("f I");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("f I", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+
+    pim.setMask("");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("", pim.getMask());
+    assertEquals(4, pim.getMatchingItems().size());
+  }

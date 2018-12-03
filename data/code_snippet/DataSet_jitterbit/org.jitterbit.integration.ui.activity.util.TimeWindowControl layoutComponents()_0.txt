@@ -1,0 +1,7 @@
+    private void layoutComponents() {
+        TwoColumnPanel p = new TwoColumnPanel();
+        p.setRightAnchor(TwoColumnPanel.SOUTHWEST);
+        p.addRow(InputFieldFactory.getCapsule(m_startField), m_startButton);
+        p.addRow(InputFieldFactory.getCapsule(m_endField), m_endButton);
+        m_inputPanel.wrap(p);
+    }

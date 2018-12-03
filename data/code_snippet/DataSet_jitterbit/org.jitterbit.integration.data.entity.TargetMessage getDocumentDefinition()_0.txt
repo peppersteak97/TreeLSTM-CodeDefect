@@ -1,0 +1,3 @@
+    public TextDocument getDocumentDefinition() {
+        return m_documentDefinition;
+    }

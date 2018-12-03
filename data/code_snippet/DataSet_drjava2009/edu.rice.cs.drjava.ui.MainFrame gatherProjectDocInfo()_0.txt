@@ -1,0 +1,9 @@
+  public HashMap<OpenDefinitionsDocument,DocumentInfoGetter> gatherProjectDocInfo() {
+    HashMap<OpenDefinitionsDocument,DocumentInfoGetter> map =
+      new HashMap<OpenDefinitionsDocument,DocumentInfoGetter>();
+    List<OpenDefinitionsDocument> docs = _model.getProjectDocuments();
+    for(OpenDefinitionsDocument doc: docs) {
+      map.put(doc, _makeInfoGetter(doc));
+    }
+    return map;
+  }

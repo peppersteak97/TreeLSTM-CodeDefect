@@ -1,0 +1,6 @@
+  public void updateFont() {
+    _fm = _pane.getFontMetrics(_pane.getFont());
+    _newFont = _getLineNumFont();
+    _nfm = getFontMetrics(_newFont);
+    SIZE = (int) _nfm.getStringBounds("99999", getGraphics()).getWidth() + 3;
+  }

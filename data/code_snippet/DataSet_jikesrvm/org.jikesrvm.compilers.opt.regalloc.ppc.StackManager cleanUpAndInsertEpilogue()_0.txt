@@ -1,0 +1,38 @@
+  public void cleanUpAndInsertEpilogue() {
+    Instruction inst = ir.firstInstructionInCodeOrder().nextInstructionInCodeOrder();
+    for (; inst != null; inst = inst.nextInstructionInCodeOrder()) {
+      switch (inst.getOpcode()) {
+        case PPC_MOVE_opcode:
+        case PPC_FMR_opcode:
+          if (MIR_Move.getResult(inst).register.number == MIR_Move.getValue(inst).register.number) {
+            inst = inst.remove();
+          }
+          break;
+        case PPC_BLR_opcode:
+          if (frameIsRequired()) {
+            insertEpilogue(inst);
+          }
+          break;
+        case PPC_LFS_opcode:
+        case PPC_LFD_opcode:
+        case PPC_LInt_opcode:
+        case PPC_LWZ_opcode:
+        case PPC_LAddr_opcode:
+          if (MIR_Load.getAddress(inst).register == ir.regpool.getPhysicalRegisterSet().getFP()) {
+            Operand one = MIR_Load.getOffset(inst);
+            if (one instanceof IntConstantOperand) {
+              int offset = ((IntConstantOperand) one).value;
+              if (offset <= -256) {
+                if (frameIsRequired()) {
+                  MIR_Load.setOffset(inst, IC(frameSize - offset - 256));
+                } else {
+                  MIR_Load.setOffset(inst, IC(-offset - 256));
+                }
+              }
+            }
+          }
+        default:
+          break;
+      }
+    }
+  }

@@ -1,0 +1,3 @@
+  public boolean isVarArgs() {
+    return (modifiers & VARARGS) != 0;
+  }

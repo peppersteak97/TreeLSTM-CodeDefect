@@ -1,0 +1,1 @@
+					new String[] { prefs.getConnection1(), prefs.getPort1() });

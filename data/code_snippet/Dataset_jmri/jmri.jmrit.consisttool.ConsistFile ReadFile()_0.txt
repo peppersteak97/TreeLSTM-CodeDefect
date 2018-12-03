@@ -1,0 +1,27 @@
+	public void ReadFile() throws org.jdom.JDOMException, java.io.IOException {
+           if(checkFile(defaultConsistFilename()))
+           {
+	      Element root=rootFromName(defaultConsistFilename());
+              Element roster = null;
+              if(root==null) {
+	  	   log.warn("consist file could not be read");
+                   return;
+              }
+              roster=root.getChild("roster");
+              if(roster==null) {
+	  	   if(log.isDebugEnabled()) log.debug("consist file does not contain a roster entry");
+                   return;
+              }
+              java.util.Iterator consistIterator=root.getDescendants(new org.jdom.filter.ElementFilter("consist"));
+              try {
+                 org.jdom.Element consist;
+                 do {
+                    consist=(org.jdom.Element)consistIterator.next();
+                    ConsistFromXML(consist);
+                 } while(consist!=null);
+              } catch(java.util.NoSuchElementException nde){
+                  if(log.isDebugEnabled()) log.debug("end of consist list");
+              }
+           } else log.info("Consist file does not exist.  One will be created if necessary.");
+           
+        }

@@ -1,0 +1,3 @@
+  public static TrapCodeOperand Regenerate() {
+    return new TrapCodeOperand((byte) RuntimeEntrypoints.TRAP_REGENERATE);
+  }

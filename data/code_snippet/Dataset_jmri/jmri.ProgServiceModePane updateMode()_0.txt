@@ -1,0 +1,10 @@
+    void updateMode() {
+        if (connected) {
+            int mode = InstanceManager.programmerManagerInstance().getServiceModeProgrammer().getMode();
+            if (log.isDebugEnabled()) log.debug("setting mode buttons: "+mode);
+            setButtonMode(mode);
+        }
+        else {
+            log.debug("Programmer doesn't exist, can't set default mode");
+        }
+    }

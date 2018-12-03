@@ -1,0 +1,3 @@
+    public Source getDataObject() {
+        return (Source)getKongaObject();
+    }

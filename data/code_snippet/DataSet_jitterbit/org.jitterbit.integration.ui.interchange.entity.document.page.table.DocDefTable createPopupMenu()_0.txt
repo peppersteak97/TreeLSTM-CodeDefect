@@ -1,0 +1,8 @@
+    protected JPopupMenu createPopupMenu() {
+        JPopupMenu popup = new JPopupMenu();
+        popup.add(m_moveUpAction);
+        popup.add(m_moveDownAction);
+        popup.addSeparator();
+        popup.add(m_deleteAction);
+        return popup;
+    }

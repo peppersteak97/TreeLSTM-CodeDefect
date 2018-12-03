@@ -1,0 +1,3 @@
+  public RegisterOperand makeTempDouble() {
+    return new RegisterOperand(getDouble(), TypeReference.Double);
+  }

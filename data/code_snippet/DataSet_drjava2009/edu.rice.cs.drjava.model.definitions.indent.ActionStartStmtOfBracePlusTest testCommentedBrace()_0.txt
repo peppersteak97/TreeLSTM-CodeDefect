@@ -1,0 +1,21 @@
+  public void testCommentedBrace() throws BadLocationException {
+    IndentRuleAction rule1 = new ActionStartStmtOfBracePlus(0);
+    
+    String text = "  void foo()\n" +
+                  "  {\n" +
+                  "foo();\n";
+    String aligned1 = "  void foo()\n" +
+                      "  {\n" +
+                      "  foo();\n";
+    String aligned2 = "  void foo()\n" +
+                      "  {\n" +
+                      "    foo();\n";
+    
+    _setDocText(text);
+    rule1.testIndentLine(_doc, 30, Indenter.IndentReason.OTHER);
+    assertEquals("commented brace, no suffix", aligned1, _doc.getText());
+    
+    _setDocText(text);
+    rule2.testIndentLine(_doc, 30, Indenter.IndentReason.OTHER);
+    assertEquals("commented brace, with suffix", aligned2, _doc.getText());
+  }

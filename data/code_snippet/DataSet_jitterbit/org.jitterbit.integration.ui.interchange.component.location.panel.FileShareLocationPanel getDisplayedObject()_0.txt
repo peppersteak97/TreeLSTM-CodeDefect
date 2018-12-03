@@ -1,0 +1,3 @@
+    public FileShareLocation getDisplayedObject() {
+        return (FileShareLocation) super.getDisplayedObject();
+    }

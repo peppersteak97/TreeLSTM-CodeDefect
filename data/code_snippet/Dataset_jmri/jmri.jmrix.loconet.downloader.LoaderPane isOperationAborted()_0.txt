@@ -1,0 +1,5 @@
+    boolean isOperationAborted() {
+      synchronized(this){
+        return abortOperation ;
+      }
+    }

@@ -1,0 +1,5 @@
+    public boolean allowsRemoval() {
+        CloseAllPagesCallback cb = new CloseAllPagesCallback();
+        m_pageManager.closeManagedPages(cb);
+        return cb.wasSuccesful();
+    }

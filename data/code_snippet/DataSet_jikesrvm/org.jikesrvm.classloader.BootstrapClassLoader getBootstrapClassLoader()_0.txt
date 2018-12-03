@@ -1,0 +1,3 @@
+  public static BootstrapClassLoader getBootstrapClassLoader() {
+    return bootstrapClassLoader;
+  }

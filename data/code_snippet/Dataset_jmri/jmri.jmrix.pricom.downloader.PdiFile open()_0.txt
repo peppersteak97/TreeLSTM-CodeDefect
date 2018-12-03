@@ -1,0 +1,4 @@
+    public void open() throws IOException {
+        InputStream stream = new BufferedInputStream(new FileInputStream(file));
+        open(stream);
+    }

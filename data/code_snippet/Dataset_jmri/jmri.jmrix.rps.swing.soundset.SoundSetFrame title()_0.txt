@@ -1,0 +1,1 @@
+    protected String title() { return "RPS Sound Speed Control"; }  // product name, not translated

@@ -1,0 +1,4 @@
+    public String getSensor3() {
+        if (watchSensor3 == null) return null;
+        return watchSensor3.getSystemName();
+    }

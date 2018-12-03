@@ -1,0 +1,3 @@
+  public RegionManager<Breakpoint> getBreakpointManager() {
+    throw new UnsupportedOperationException("Tried to call getBreakpointManager on a Dummy");
+  }

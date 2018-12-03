@@ -1,0 +1,73 @@
+  private void _openJavadocUnderCursor() {
+    generateJavaAPIList();
+    if (_javaAPIList == null) {
+      return;
+    }
+    PredictiveInputModel<JavaAPIListEntry> pim =
+      new PredictiveInputModel<JavaAPIListEntry>(true, new PrefixStrategy<JavaAPIListEntry>(), _javaAPIList);
+    OpenDefinitionsDocument odd = getCurrentDefPane().getOpenDefDocument();
+    String mask = "";
+    int loc = getCurrentDefPane().getCaretPosition();
+    String s = odd.getText();
+    int start = loc;
+    while(start>0) {
+      if (!Character.isJavaIdentifierPart(s.charAt(start-1))) { break; }
+      --start;
+    }
+    while((start<s.length()) && (!Character.isJavaIdentifierStart(s.charAt(start))) && (start<loc)) {
+      ++start;
+    }
+    int end = loc-1;
+    while(end<s.length()-1) {
+      if (!Character.isJavaIdentifierPart(s.charAt(end+1))) { break; }
+      ++end;
+    }
+    if ((start>=0) && (end<s.length())) {
+      mask = s.substring(start, end + 1);
+      pim.setMask(mask);
+    }
+    
+    
+    if (pim.getMatchingItems().size() == 1) {
+      if (pim.getCurrentItem() != null) {
+        PlatformFactory.ONLY.openURL(pim.getCurrentItem().getURL());
+      }
+    }
+    else {
+      pim.extendMask(".java");
+      if (pim.getMatchingItems().size() == 1) {
+        if (pim.getCurrentItem() != null) {
+          PlatformFactory.ONLY.openURL(pim.getCurrentItem().getURL());
+        }
+      }
+      else {
+        pim.setMask(mask);
+        JavaAPIListEntry foundItem = null;
+        int found = 0;
+        if (pim.getMatchingItems().size() == 0) {
+          mask = pim.getMask();
+          while(mask.length()>0) {
+            mask = mask.substring(0, mask.length() - 1);
+            pim.setMask(mask);
+            if (pim.getMatchingItems().size() > 0) { break; }
+          }
+        }
+        else {
+          for(JavaAPIListEntry e: pim.getMatchingItems()) {
+            if (e.toString().equalsIgnoreCase(mask)) {
+              ++found;
+              foundItem = e;
+            }
+          }
+        }
+        if (found==1) {
+          PlatformFactory.ONLY.openURL(pim.getCurrentItem().getURL());
+        }
+        else {
+          initOpenJavadocDialog();
+          hourglassOn();
+          _openJavadocDialog.setVisible(true);
+        }
+      }
+    }
+  }

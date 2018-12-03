@@ -1,0 +1,1 @@
+	TurnoutOperation getOperation() { return myOperation; };

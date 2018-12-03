@@ -1,0 +1,6 @@
+    static public final SprogProgrammer instance() {
+        if (self == null) self = new SprogProgrammer();
+        if (jmri.InstanceManager.programmerManagerInstance().isOpsModePossible())
+            _mode = Programmer.OPSBYTEMODE;
+        return self;
+    }

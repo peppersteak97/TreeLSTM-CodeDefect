@@ -1,0 +1,3 @@
+  public final Atom getDescriptor() {
+    return memRef.getDescriptor();
+  }

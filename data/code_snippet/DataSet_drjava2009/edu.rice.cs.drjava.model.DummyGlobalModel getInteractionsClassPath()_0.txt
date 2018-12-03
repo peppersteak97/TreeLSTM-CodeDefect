@@ -1,0 +1,3 @@
+  public Iterable<File> getInteractionsClassPath() {
+    throw new UnsupportedOperationException("Tried to call getInteractionsClasspath on a Dummy");
+  }

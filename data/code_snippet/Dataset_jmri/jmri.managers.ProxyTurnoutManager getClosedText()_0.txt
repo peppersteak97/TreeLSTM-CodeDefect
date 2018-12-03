@@ -1,0 +1,6 @@
+	public String getClosedText() { 
+		if (mgrs.size()>0)
+			return ( (TurnoutManager)mgrs.get(0)).getClosedText(); 
+		else 
+			return rbt.getString("TurnoutStateClosed");
+	}

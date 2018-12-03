@@ -1,0 +1,9 @@
+    private void createActions() {
+        m_closePagesAction = new CloseSelectedPagesAction();
+        m_closePagesAction.setEnabled(false);
+        m_closePagesAction.setSelectionSource(m_pageList);
+        
+        m_setActivePageAction = new SetActivePageAction();
+        m_setActivePageAction.setEnabled(false);
+        m_pageList.setDefaultAction(m_setActivePageAction);
+    }

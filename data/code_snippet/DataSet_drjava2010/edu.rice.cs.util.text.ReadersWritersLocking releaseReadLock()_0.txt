@@ -1,0 +1,2 @@
+  /** Swing-style releaseReadLock(). */
+  public void releaseReadLock();

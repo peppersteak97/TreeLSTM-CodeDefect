@@ -1,0 +1,20 @@
+    private void createMainPanel() {
+        JComponent displayer = ComponentDecorFactory.invisible(m_ui).getUi();
+        UiUtils.setOpaqueRecursivelySkipDefaults(displayer, false);
+        JPanel mainPanel = 
+            TransformationWizard.getUtils().createPageMainPanel(
+                    getMainCaption(),
+                    getSubCaption(),
+                    displayer);
+        
+        mainPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                KeyUtils.ENTER, "moveNext");
+        mainPanel.getActionMap().put("moveNext", new AbstractAction() {
+
+            public void actionPerformed(ActionEvent e) {
+                moveNext();
+            }
+        });
+        
+        setMainPanel(mainPanel);
+    }

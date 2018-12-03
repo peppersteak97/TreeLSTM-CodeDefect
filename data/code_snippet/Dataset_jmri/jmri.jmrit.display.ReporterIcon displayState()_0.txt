@@ -1,0 +1,12 @@
+    void displayState() {
+        if (reporter.getCurrentReport()!=null) {
+        	if (reporter.getCurrentReport().equals(""))
+        		setText("<blank>");
+        	else
+        	 	setText(reporter.getCurrentReport().toString());
+        } else {
+        	setText("<no report>");
+		}
+		updateSize();
+        return;
+    }

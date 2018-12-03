@@ -1,0 +1,3 @@
+	public int getDocType(){
+		return getIntProperty(FORMAT_TYPE_ID, c_unknown_doc);
+	}

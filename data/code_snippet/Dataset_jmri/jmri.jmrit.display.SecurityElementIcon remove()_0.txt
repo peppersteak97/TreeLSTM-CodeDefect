@@ -1,0 +1,7 @@
+    void remove() {
+        Container parent = this.getParent();
+        parent.remove(this);
+        parent.validate();
+
+        active = false;
+    }

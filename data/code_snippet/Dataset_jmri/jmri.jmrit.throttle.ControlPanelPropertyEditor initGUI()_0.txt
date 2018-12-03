@@ -1,0 +1,106 @@
+    private void initGUI()
+    {
+        this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+        this.setTitle(rb.getString("TitleEditSpeedControlPanel"));
+        JPanel mainPanel = new JPanel();
+        this.setContentPane(mainPanel);
+        mainPanel.setLayout(new BorderLayout());
+
+        JPanel propertyPanel = new JPanel();
+        propertyPanel.setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.WEST;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridheight = 1;
+        constraints.gridwidth = 1;
+        constraints.ipadx = 0;
+        constraints.ipady = 0;
+        Insets insets = new Insets(2, 2, 2, 2);
+        constraints.insets = insets;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+
+	ButtonGroup modeSelectionButtons = new ButtonGroup();
+
+    	displaySlider=new JRadioButton(rb.getString("ButtonDisplaySpeedSlider"));
+    	displaySteps=new JRadioButton(rb.getString("ButtonDisplaySpeedSteps"));
+
+	modeSelectionButtons.add(displaySlider);
+	modeSelectionButtons.add(displaySteps);
+
+	_displaySlider = control.getDisplaySlider();
+
+        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.gridy = 1;
+        propertyPanel.add(displaySlider, constraints);
+
+        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.gridy = 2;
+        propertyPanel.add(displaySteps, constraints);
+
+        
+        trackBox = new JCheckBox(rb.getString("CheckBoxTrackSliderInRealTime"));
+        constraints.gridy = 3;
+        propertyPanel.add(trackBox, constraints);
+	displaySlider.setSelected(_displaySlider==ControlPanel.SLIDERDISPLAY);
+	displaySteps.setSelected(_displaySlider==ControlPanel.STEPDISPLAY);
+
+	displaySlider.addActionListener(
+        	new ActionListener()
+                        {
+                                public void actionPerformed(ActionEvent e)
+                                {
+                                        displaySlider.setSelected(true);
+                                        displaySteps.setSelected(false);
+					_displaySlider=ControlPanel.SLIDERDISPLAY;
+                                }
+                        });
+                
+	displaySteps.addActionListener(
+        	new ActionListener()
+                        {
+                                public void actionPerformed(ActionEvent e)
+                                {
+                                        displaySlider.setSelected(false);
+                                        displaySteps.setSelected(true);
+					_displaySlider=ControlPanel.STEPDISPLAY;
+                                }
+                        });
+ 
+	// disable the speed controls if the control panel says they 
+	// aren't possible
+	displaySlider.setEnabled(control.
+				isSpeedControllerAvailable(ControlPanel.SLIDERDISPLAY));
+	displaySteps.setEnabled(control.
+				isSpeedControllerAvailable(ControlPanel.STEPDISPLAY));
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 2, 4, 4));
+
+        JButton saveButton = new JButton(rb.getString("ButtonOk"));
+        saveButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                saveProperties();
+            }
+        });
+
+        JButton cancelButton = new JButton(rb.getString("ButtonCancel"));
+        cancelButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                finishEdit();
+            }
+        });
+
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
+
+        mainPanel.add(propertyPanel, BorderLayout.CENTER);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+    }

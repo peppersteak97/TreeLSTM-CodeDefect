@@ -1,0 +1,13 @@
+  public void testGeneratePathString() {
+    TreePath tp = new TreePath(root.getPath());
+    assertEquals("Path String for Root", "./", tree.generatePathString(tp));
+    
+    tp = new TreePath(source.getPath());
+    assertEquals("Path String for source", "./[ Source Files ]/", tree.generatePathString(tp));
+    
+    tp = new TreePath(folder1.getPath());
+    assertEquals("Path String for folder1", "./[ Source Files ]/folder1/", tree.generatePathString(tp));
+    
+    tp = new TreePath(folder2.getPath());
+    assertEquals("Path String for folder2", "./[ Source Files ]/folder2/", tree.generatePathString(tp));
+  }

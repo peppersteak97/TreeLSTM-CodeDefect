@@ -1,0 +1,9 @@
+    private static IComponentCustomizer<JCheckBox> getCheckBoxCustomizer() {
+        return new IComponentCustomizer<JCheckBox>() {
+
+            public JCheckBox customize(JCheckBox component) {
+                LookAndFeelCustomizer.makeOver(component);
+                return component;
+            }
+        };
+    }

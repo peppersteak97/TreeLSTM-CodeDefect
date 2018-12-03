@@ -1,0 +1,6 @@
+    protected JComponent createValidTrigger() {
+        m_buttonMode = ButtonMode.VALID;
+        m_button = createButton();
+        decorateValidButton(m_button);
+        return m_button;
+    }

@@ -1,0 +1,9 @@
+    private void customizeRowHeight() {
+        int rowHeight = getRowHeight();
+        rowHeight += 3;
+        setRowHeight(rowHeight);
+        Dimension dim = getPreferredScrollableViewportSize();
+        int numberOfVisibleRows = Math.max(6, Math.min(11, getRowCount()));
+        dim.height = rowHeight * numberOfVisibleRows;
+        setPreferredScrollableViewportSize(dim);
+    }

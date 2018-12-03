@@ -1,0 +1,5 @@
+    private void getIconProperties() {
+        Icon closeIcon = ((CloseableTabbedPane) tabPane).getCloseIcon();
+        m_closeIconWidth = closeIcon.getIconWidth();
+        m_closeIconHeight = closeIcon.getIconHeight();
+    }

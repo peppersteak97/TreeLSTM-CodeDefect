@@ -1,0 +1,52 @@
+  public void XXXtestStaticWatches() throws Exception {
+    debug.logStart();
+    _log.log("----testStaticWatches----");
+    StepTestListener debugListener = new StepTestListener();
+    _debugger.addListener(debugListener);
+
+    OpenDefinitionsDocument doc = _startupDebugger("MonkeyStaticStuff.java", MONKEY_STATIC_STUFF);
+
+    int index = MONKEY_STATIC_STUFF.indexOf("System.out.println(MonkeyInner.MonkeyTwoDeep.twoDeepFoo);");
+    _debugger.toggleBreakpoint(doc, index, true);
+    
+    Utilities.clearEventQueue();
+    debugListener.assertRegionAddedCount(1);
+
+    synchronized(_notifierLock) {
+      interpretIgnoreResult("MonkeyStaticStuff.MonkeyInner.MonkeyTwoDeep.MonkeyThreeDeep.threeDeepMethod();");
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+
+    _debugger.addWatch("foo");
+    _debugger.addWatch("innerFoo");
+    _debugger.addWatch("twoDeepFoo");
+    _debugger.addWatch("threeDeepFoo");
+    _debugger.addWatch("asdf");
+    Utilities.clearEventQueue();
+    debugListener.assertWatchSetCount(5);
+    
+    ArrayList<DebugWatchData> watches = _debugger.getWatches();
+    assertEquals("watch name incorrect", "foo", watches.get(0).getName());
+    assertEquals("watch name incorrect", "innerFoo", watches.get(1).getName());
+    assertEquals("watch name incorrect", "twoDeepFoo", watches.get(2).getName());
+    assertEquals("watch name incorrect", "threeDeepFoo", watches.get(3).getName());
+    assertEquals("watch name incorrect", "asdf", watches.get(4).getName());
+    assertEquals("watch value incorrect", "6", watches.get(0).getValue());
+    assertEquals("watch value incorrect", "8", watches.get(1).getValue());
+    assertEquals("watch value incorrect", "13", watches.get(2).getValue());
+    assertEquals("watch value incorrect", "18", watches.get(3).getValue());
+    assertEquals("watch value incorrect", DebugWatchData.NO_VALUE, watches.get(4).getValue());
+
+    interpret("innerFoo = 0");
+    watches = _debugger.getWatches();
+    assertEquals("watch name incorrect", "innerFoo", watches.get(1).getName());
+    assertEquals("watch value incorrect", "0", watches.get(1).getValue());
+
+    interpret("innerFoo = 8");
+    assertEquals("watch name incorrect", "innerFoo", watches.get(1).getName());
+    assertEquals("watch value incorrect", "8", watches.get(1).getValue());
+
+    _shutdownAndWaitForInteractionEnded();
+    _debugger.removeListener(debugListener);
+    debug.logEnd();
+  }

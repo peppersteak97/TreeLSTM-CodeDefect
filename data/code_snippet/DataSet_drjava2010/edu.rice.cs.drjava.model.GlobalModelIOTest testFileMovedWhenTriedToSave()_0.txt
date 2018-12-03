@@ -1,0 +1,29 @@
+  public void testFileMovedWhenTriedToSave() throws BadLocationException, IOException {
+    
+    final OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    final File file = tempFile();
+    
+    saveFile(doc, new FileSelector(file));
+    
+    TestListener listener = new TestListener();
+    
+    _model.addListener(listener);
+    
+    file.delete();
+    changeDocumentText(BAR_TEXT, doc);
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() { 
+        try { 
+          doc.saveFile(new WarningFileSelector(file));
+          fail("Did not warn of open file as expected");
+        }
+        catch (Exception e) { /* Good behavior for file saving ... */ }
+      }
+    });
+
+    assertModified(true, doc);
+    assertContents(BAR_TEXT, doc);
+   
+    _log.log("testFileMovedWhenTriedToSave completed");
+  }

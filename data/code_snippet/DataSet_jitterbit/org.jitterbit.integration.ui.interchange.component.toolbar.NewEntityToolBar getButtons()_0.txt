@@ -1,0 +1,11 @@
+    protected List<JButton> getButtons() {
+        List<JButton> btns = new ArrayList<JButton>();
+        for (EntityType type : TYPES) {
+            InterchangeActionFactory f = InterchangeActionFactory.getNewEntityFactory(type);
+            IApplicationAction a = f.get(m_view);
+            if (a != null) {
+                btns.add(createButton(a));
+            }
+        }
+        return btns;
+    }

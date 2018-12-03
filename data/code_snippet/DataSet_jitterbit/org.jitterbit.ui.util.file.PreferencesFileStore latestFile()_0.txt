@@ -1,0 +1,8 @@
+    public IFileUi latestFile() {
+        IFileUi f = null;
+        if (!m_files.isEmpty()) {
+            Iterator<IFileUi> it = m_files.iterator();
+            f = it.next();
+        }
+        return f;
+    }

@@ -1,0 +1,84 @@
+  private void _setupButtonPanel() {
+    JPanel mainButtons = new JPanel();
+    JPanel emptyPanel = new JPanel();
+    JPanel closeButtonPanel = new JPanel(new BorderLayout());
+    GridBagLayout gbLayout = new GridBagLayout();
+    GridBagConstraints c = new GridBagConstraints();
+    mainButtons.setLayout(gbLayout);
+    
+    Action resumeAction = new AbstractAction("Resume") {
+      public void actionPerformed(ActionEvent ae) {
+        try { _frame.debuggerResume(); }
+        catch (DebugException de) { _frame._showDebugError(de); }
+      }
+    };
+    _resumeButton = new JButton(resumeAction);
+    
+    Action automaticTrace = new AbstractAction("Automatic Trace") {
+      public void actionPerformed(ActionEvent ae) {
+        _frame.debuggerAutomaticTrace();
+      }
+    };
+    
+    _automaticTraceButton = new JButton(automaticTrace);
+    
+    Action stepIntoAction = new AbstractAction("Step Into") {
+      public void actionPerformed(ActionEvent ae) {
+        _frame.debuggerStep(Debugger.StepType.STEP_INTO);
+      }
+    };
+    _stepIntoButton = new JButton(stepIntoAction);
+
+    Action stepOverAction = new AbstractAction("Step Over") {
+      public void actionPerformed(ActionEvent ae) {
+        _frame.debuggerStep(Debugger.StepType.STEP_OVER);
+      }
+    };
+    _stepOverButton = new JButton(stepOverAction);
+
+    Action stepOutAction = new AbstractAction( "Step Out" ) {
+      public void actionPerformed(ActionEvent ae) {
+        _frame.debuggerStep(Debugger.StepType.STEP_OUT);
+      }
+    };
+    _stepOutButton = new JButton(stepOutAction);
+    
+    ActionListener closeListener =
+      new ActionListener() {
+      public void actionPerformed(ActionEvent ae) {
+        _frame.debuggerToggle();
+      }
+    };
+
+    _closeButton = new CommonCloseButton(closeListener);
+
+    closeButtonPanel.add(_closeButton, BorderLayout.NORTH);
+    mainButtons.add(_resumeButton);
+    mainButtons.add(_automaticTraceButton);
+    mainButtons.add(_stepIntoButton);
+    mainButtons.add(_stepOverButton);
+    mainButtons.add(_stepOutButton);
+    mainButtons.add(emptyPanel);
+    
+    c.fill = GridBagConstraints.HORIZONTAL;
+    c.anchor = GridBagConstraints.NORTH;
+    c.gridwidth = GridBagConstraints.REMAINDER;
+    c.weightx = 1.0;
+    
+    gbLayout.setConstraints(_resumeButton, c);
+    gbLayout.setConstraints(_automaticTraceButton, c);
+    gbLayout.setConstraints(_stepIntoButton, c);
+    gbLayout.setConstraints(_stepOverButton, c);
+    gbLayout.setConstraints(_stepOutButton, c);
+    
+    c.fill = GridBagConstraints.BOTH;
+    c.anchor = GridBagConstraints.SOUTH;
+    c.gridheight = GridBagConstraints.REMAINDER;
+    c.weighty = 1.0;
+    
+    gbLayout.setConstraints(emptyPanel, c);
+    
+    disableButtons();
+    _buttonPanel.add(mainButtons, BorderLayout.CENTER);
+    _buttonPanel.add(closeButtonPanel, BorderLayout.EAST);
+  }

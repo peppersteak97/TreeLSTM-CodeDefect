@@ -1,0 +1,1 @@
+  public void setLastFindWord() { _lastFindWord = _findWord; }

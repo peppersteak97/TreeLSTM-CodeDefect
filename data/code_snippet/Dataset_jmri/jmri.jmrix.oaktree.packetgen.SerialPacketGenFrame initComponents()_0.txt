@@ -1,0 +1,51 @@
+    public void initComponents() throws Exception {
+
+        jLabel1.setText("Command:");
+        jLabel1.setVisible(true);
+
+        sendButton.setText("Send");
+        sendButton.setVisible(true);
+        sendButton.setToolTipText("Send packet");
+
+        packetTextField.setText("");
+        packetTextField.setToolTipText("Enter command as hexadecimal bytes separated by a space");
+        packetTextField.setMaximumSize(
+                                       new Dimension(packetTextField.getMaximumSize().width,
+                                                     packetTextField.getPreferredSize().height
+                                                     )
+                                       );
+
+        setTitle("Send Oak Tree serial command");
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        getContentPane().add(jLabel1);
+        getContentPane().add(packetTextField);
+        getContentPane().add(sendButton);
+
+
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    sendButtonActionPerformed(e);
+                }
+            });
+
+        getContentPane().add(new JSeparator(JSeparator.HORIZONTAL));
+
+        JPanel pane3 = new JPanel();
+        pane3.setLayout(new FlowLayout());
+        pane3.add(new JLabel("Address:"));
+        pane3.add(uaAddrField);
+        pane3.add(pollButton);
+        uaAddrField.setText("0");
+        uaAddrField.setToolTipText("Enter node address (decimal integer)");
+        getContentPane().add(pane3);
+
+        pollButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    pollButtonActionPerformed(e);
+                }
+            });
+        pollButton.setToolTipText("Send poll request");
+
+        pack();
+    }

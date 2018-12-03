@@ -1,0 +1,6 @@
+    static public DefaultRouteManager instance() {
+        if (_instance == null) {
+            _instance = new DefaultRouteManager();
+        }
+        return (_instance);
+    }

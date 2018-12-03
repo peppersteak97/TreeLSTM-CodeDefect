@@ -1,0 +1,4 @@
+    private HttpLocation getHttpLocation() {
+        DataLocation loc = m_httpTarget.getLocation();
+        return (loc instanceof HttpLocation) ? (HttpLocation) loc : null;
+    }

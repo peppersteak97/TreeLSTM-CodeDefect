@@ -1,0 +1,26 @@
+    protected void replyReceived() {
+        timeoutcounter = 0;
+        switch (readState[currentPin]) {
+        case READVALUE1:
+        case READINGVALUE1: readState[currentPin] = READVALUE2;  return;
+        case READVALUE2:
+        case READINGVALUE2: readState[currentPin] = READMODE;    return;
+        case READMODE:
+        case READINGMODE:   readState[currentPin] = NONE;        return;
+        default:
+            log.error("Pin "+currentPin+" unexpected read state, can't advance "+readState[currentPin]);
+                            readState[currentPin] = NONE;        return;
+        }
+        switch (writeState[currentPin]) {
+        case NONE:          return;
+        case WRITEVALUE1:
+        case WRITINGVALUE1: writeState[currentPin] = WRITEVALUE2;return;
+        case WRITEVALUE2:
+        case WRITINGVALUE2: writeState[currentPin] = WRITEMODE;  return;
+        case WRITEMODE:
+        case WRITINGMODE:   writeState[currentPin] = NONE;       return;
+        default:
+            log.error("Pin "+currentPin+" unexpected write state, can't advance "+writeState[currentPin]);
+                            writeState[currentPin] = NONE;       return;
+        }
+    }

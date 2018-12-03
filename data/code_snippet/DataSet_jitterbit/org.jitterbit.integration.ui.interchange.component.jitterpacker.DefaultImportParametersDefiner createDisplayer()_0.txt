@@ -1,0 +1,9 @@
+    private JComponent createDisplayer() {
+        JComponent c = Box.createHorizontalBox();
+        c.add(m_checkBox);
+        c.add(Box.createHorizontalStrut(10));
+        m_pwdField.addTo(c);
+        c.setBorder(IntegrationUiStyleSheet.getDefaultTitleBorder(
+                        PackageResources.SECURITY));
+        return c;
+    }

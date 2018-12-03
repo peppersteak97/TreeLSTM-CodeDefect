@@ -1,0 +1,22 @@
+        if (!e.getValueIsAdjusting() && !_model.isEmpty()) {
+          @SuppressWarnings("unchecked") final ItemT newItem = (ItemT) getSelectedValue();
+          if (_current != newItem) {                                
+            final ItemT oldItem = _current;                                
+            NodeData<ItemT> oldData = new NodeData<ItemT>() {
+              public <Ret> Ret execute(NodeDataVisitor<? super ItemT, Ret> v, Object... p) { 
+                return v.itemCase(oldItem, p); 
+              }
+            };
+            NodeData<ItemT> newData = new NodeData<ItemT>() {
+              public <Ret> Ret execute(NodeDataVisitor<? super ItemT, Ret> v, Object... p) { 
+                return v.itemCase(newItem, p); 
+              }
+            };
+            for(INavigationListener<? super ItemT> listener: navListeners) {
+              if (oldItem != null) listener.lostSelection(oldData, isNextChangeModelInitiated());
+              if (newItem != null) listener.gainedSelection(newData, isNextChangeModelInitiated());
+            }
+            setNextChangeModelInitiated(false);
+            _current = newItem;
+          }
+        }

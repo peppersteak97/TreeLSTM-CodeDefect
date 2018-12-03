@@ -1,0 +1,3 @@
+  public List<T> getMatchingItems() {
+    return new ArrayList<T>(_matchingItems);
+  }

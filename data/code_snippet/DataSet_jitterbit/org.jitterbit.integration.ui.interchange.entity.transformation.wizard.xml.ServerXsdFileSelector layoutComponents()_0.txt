@@ -1,0 +1,12 @@
+    private void layoutComponents() {
+        m_displayer = new OneColumnPanel();
+        m_displayer.setInsets(5, 5, 5, 5);
+        m_displayer.setFillNone();
+        m_displayer.add(ComponentFactories.buttonFactory().newButton(m_refreshAction));
+        m_displayer.setFillOut();
+        if (XmlWizardStartPage.XSD_FOLDERS_SUPPORTED) {
+            m_displayer.add(m_foldersBox);
+        }
+        m_displayer.add(ComponentFactories.scrollFactory().newScrollPane(
+                        m_existingFilesList));
+    }

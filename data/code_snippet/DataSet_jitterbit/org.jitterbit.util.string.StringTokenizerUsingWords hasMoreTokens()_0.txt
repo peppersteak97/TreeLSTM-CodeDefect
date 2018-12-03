@@ -1,0 +1,5 @@
+	public boolean hasMoreTokens() {
+		if( m_sNextToken == null )
+			m_sNextToken = getToken();
+		return m_sNextToken != null;		
+	}

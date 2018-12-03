@@ -1,0 +1,7 @@
+    private void writeRowClassPrivate() {
+        addLine("private:");
+        for( Column c : getValidColumns() ) {
+            addLine("\tbool " + CppUtils.getIsColumnPKMemberName(c) + ";");
+        }
+        addLine();
+    }

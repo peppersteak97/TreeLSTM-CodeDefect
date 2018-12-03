@@ -1,0 +1,3 @@
+  public RegisterOperand copyU2D() {
+    return copyRO();
+  }

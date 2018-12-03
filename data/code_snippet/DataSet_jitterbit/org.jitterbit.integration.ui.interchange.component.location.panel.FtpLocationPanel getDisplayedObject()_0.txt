@@ -1,0 +1,3 @@
+    public FtpLocation getDisplayedObject() {
+        return (FtpLocation) super.getDisplayedObject();
+    }

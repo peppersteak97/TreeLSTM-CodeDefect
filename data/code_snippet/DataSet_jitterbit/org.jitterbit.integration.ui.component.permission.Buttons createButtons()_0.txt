@@ -1,0 +1,15 @@
+    private void createButtons() {
+        IButtonFactory factory = ComponentFactories.buttonFactory();
+        m_applyButton = factory.newButton(PackageResources.Buttons.APPLY);
+        m_applyButton.addActionListener(this);
+        m_resetButton = factory.newButton(PackageResources.Buttons.RESET);
+        m_resetButton.addActionListener(this);
+        m_viewEffectiveButton = factory.newButton(PackageResources.Buttons.EFFECTIVE);
+        m_viewEffectiveButton.addActionListener(this);
+
+        ButtonSizeManager mgr = new ButtonSizeManager();
+        mgr.add(m_applyButton);
+        mgr.add(m_resetButton);
+        mgr.add(m_viewEffectiveButton);
+        mgr.apply();
+    }

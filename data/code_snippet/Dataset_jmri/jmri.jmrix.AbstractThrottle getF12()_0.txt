@@ -1,0 +1,3 @@
+    public boolean getF12() {
+        return f12;
+    }

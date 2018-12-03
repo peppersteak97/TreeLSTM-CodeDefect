@@ -1,0 +1,6 @@
+    protected final List<View> getViews() throws SqlServerBrowserException {
+        if( m_liViews == null ) {
+            m_liViews = getDatabase().getViews( (DatabaseConnections)UiResources.get(UiResources.DATABASE_CONNECTIONS) );
+        }
+        return m_liViews;
+    }

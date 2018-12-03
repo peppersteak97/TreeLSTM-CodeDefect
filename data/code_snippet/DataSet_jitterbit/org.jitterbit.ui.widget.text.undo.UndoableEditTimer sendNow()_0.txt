@@ -1,0 +1,6 @@
+    public synchronized void sendNow() {
+        if (m_timer != null) {
+            m_timerTask.sendEdit();
+            m_timer.stop();
+        }
+    }

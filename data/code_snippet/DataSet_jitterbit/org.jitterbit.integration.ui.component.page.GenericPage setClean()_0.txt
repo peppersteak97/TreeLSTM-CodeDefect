@@ -1,0 +1,12 @@
+    public void setClean() {
+        boolean old = isDirty();
+        super.setDirty(false);
+        if (old) {
+            firePropertyChange(new PropertyChangeEvent(this, DIRTY_PROPERTY,
+                            Boolean.TRUE, Boolean.FALSE));
+        }
+        if (m_currentSavePointDistance > 0) {
+            m_savePointDistances.add(m_currentSavePointDistance);
+            m_currentSavePointDistance = 0;
+        }
+    }

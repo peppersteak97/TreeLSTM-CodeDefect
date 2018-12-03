@@ -1,0 +1,14 @@
+	private void initLocoFields() {
+		initLocoRow(1, "Lead", textLoco1, locoTextField1, locoRosterBox1,
+				adrButton1, dirButton1, cmdButton1);
+		initLocoRow(2, "Rear", textLoco2, locoTextField2, locoRosterBox2,
+				adrButton2, dirButton2, cmdButton2);
+		initLocoRow(3, "Mid 1", textLoco3, locoTextField3, locoRosterBox3,
+				adrButton3, dirButton3, cmdButton3);
+		initLocoRow(4, "Mid 2", textLoco4, locoTextField4, locoRosterBox4,
+				adrButton4, dirButton4, cmdButton4);
+		initLocoRow(5, "Mid 3", textLoco5, locoTextField5, locoRosterBox5,
+				adrButton5, dirButton5, cmdButton5);
+		initLocoRow(6, "Mid 4", textLoco6, locoTextField6, locoRosterBox6,
+				adrButton6, dirButton6, cmdButton6);
+	}

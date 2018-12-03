@@ -1,0 +1,7 @@
+            if (canReceive()) {
+                msg.setElement(i, char1);
+                if (endOfMessage(msg))
+                    break;
+            } else {
+                log.error("unsolicited character received: "+ Integer.toHexString(char1));
+            }

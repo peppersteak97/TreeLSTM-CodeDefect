@@ -1,0 +1,8 @@
+    private void writeMainClassPrivateMethods() {
+        for( Column c : getValidColumns() ) {
+            addLine("\tbool " + CppUtils.getIsColumnDirtyMemberName(c) + "() const {");
+            addLine("\t\treturn m_row." + CppUtils.getIsColumnDirtyMemberName(c) + ";");
+            addLine("\t};");
+        }
+        addLine();
+    }

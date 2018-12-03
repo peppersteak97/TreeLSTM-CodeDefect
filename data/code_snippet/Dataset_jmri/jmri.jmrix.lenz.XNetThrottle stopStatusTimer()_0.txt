@@ -1,0 +1,3 @@
+    protected void stopStatusTimer() {
+        if(statTimer!=null) statTimer.stop();
+    }

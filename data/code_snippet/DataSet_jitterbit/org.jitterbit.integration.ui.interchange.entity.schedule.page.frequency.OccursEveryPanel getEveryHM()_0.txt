@@ -1,0 +1,3 @@
+    public int getEveryHM() {
+        return ((HM_Item) m_everyHMBox.getSelectedItem()).getValue();
+    }

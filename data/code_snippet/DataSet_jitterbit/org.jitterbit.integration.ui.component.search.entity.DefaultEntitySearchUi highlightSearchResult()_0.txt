@@ -1,0 +1,11 @@
+    public void highlightSearchResult() {
+        EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                highlightSearchResultImpl();
+            }
+        });
+        if (m_runWhenDone != null) {
+            m_runWhenDone.run();
+        }
+    }

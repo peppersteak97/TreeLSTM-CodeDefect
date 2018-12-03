@@ -1,0 +1,31 @@
+  public IA32ConditionOperand flipOperands() {
+    switch (value) {
+      case LLT:
+        value = LGT;
+        break;
+      case LGE:
+        value = LLE;
+        break;
+      case LLE:
+        value = LGE;
+        break;
+      case LGT:
+        value = LLT;
+        break;
+      case LT:
+        value = GT;
+        break;
+      case GE:
+        value = LE;
+        break;
+      case LE:
+        value = GE;
+        break;
+      case GT:
+        value = LT;
+        break;
+      default:
+        OptimizingCompilerException.TODO();
+    }
+    return this;
+  }

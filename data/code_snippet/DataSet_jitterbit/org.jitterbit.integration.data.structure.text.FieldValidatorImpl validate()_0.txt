@@ -1,0 +1,12 @@
+    public Collection<IValidationIssue> validate() {
+        Collection<IValidationIssue> issues = null;
+        if (m_fields.isEmpty()) {
+            IValidationIssue issue = IValidationIssue.FACTORY.createFatal(
+                            "No fields have been defined.");
+            issues = KongaListUtils.asList(issue);
+        }
+        else {
+            issues = validateFields();
+        }
+        return issues;
+    }

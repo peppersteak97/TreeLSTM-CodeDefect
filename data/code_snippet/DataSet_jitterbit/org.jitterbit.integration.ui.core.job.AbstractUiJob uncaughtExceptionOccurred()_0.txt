@@ -1,0 +1,3 @@
+    protected final boolean uncaughtExceptionOccurred() {
+        return m_uncaughtException != null;
+    }

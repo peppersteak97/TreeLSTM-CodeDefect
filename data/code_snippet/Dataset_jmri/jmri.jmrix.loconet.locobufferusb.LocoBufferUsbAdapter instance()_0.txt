@@ -1,0 +1,8 @@
+    static public LocoBufferAdapter instance() {
+        if (m2Instance == null) {
+        	m2Instance = new LocoBufferUsbAdapter();
+        	log.debug("new default instance in LocoBufferUsbAdapter");
+        }
+        log.debug("LocoBufferUsbAdapter.instance returns object of class "+m2Instance.getClass().getName());
+        return m2Instance;
+    }

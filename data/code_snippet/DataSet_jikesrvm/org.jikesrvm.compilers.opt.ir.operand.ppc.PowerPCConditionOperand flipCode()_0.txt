@@ -1,0 +1,37 @@
+  public PowerPCConditionOperand flipCode() {
+    switch (value) {
+      case EQUAL:
+        value = NOT_EQUAL;
+        break;
+      case NOT_EQUAL:
+        value = EQUAL;
+        break;
+      case LESS:
+        value = GREATER_EQUAL;
+        break;
+      case LESS_EQUAL:
+        value = GREATER;
+        break;
+      case GREATER:
+        value = LESS_EQUAL;
+        break;
+      case GREATER_EQUAL:
+        value = LESS;
+        break;
+      case OVERFLOW:
+        value = NOT_OVERFLOW;
+        break;
+      case NOT_OVERFLOW:
+        value = OVERFLOW;
+        break;
+      case CTRZ:
+        value = CTRNZ;
+        break;
+      case CTRNZ:
+        value = CTRZ;
+        break;
+      default:
+        throw new org.jikesrvm.compilers.opt.OptimizingCompilerException("Unhandled case in flipCode");
+    }
+    return this;
+  }

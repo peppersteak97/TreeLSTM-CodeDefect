@@ -1,0 +1,9 @@
+  public String toString() {
+    String result = "";
+    for (ArrayList<Interval> v : map.values()) {
+      for (Interval i : v) {
+        result += i + "\n";
+      }
+    }
+    return result;
+  }

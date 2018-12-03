@@ -1,0 +1,11 @@
+    private void customizeHeader() {
+        IntegrationUiStyleSheet.LogTableHeader.makeOver(this);
+
+        KongaTableSorter sorter = getTableSorter();
+        sorter.setHeaderHorizontalAlignment(OperationHistoryTableModel.OPERATION.getIndex(),
+                        SwingConstants.LEFT);
+        sorter.setHeaderHorizontalAlignment(OperationHistoryTableModel.START.getIndex(),
+                        SwingConstants.LEFT);
+        sorter.setHeaderHorizontalAlignment(OperationHistoryTableModel.END.getIndex(),
+                        SwingConstants.LEFT);
+    }

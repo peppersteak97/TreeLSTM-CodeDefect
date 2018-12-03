@@ -1,0 +1,7 @@
+  protected void goToRegion() {
+    ArrayList<MovingDocumentRegion> r = getSelectedRegions();
+    if (r.size() == 1) {
+      _frame.removeCurrentLocationHighlight();
+      _frame.goToRegionAndHighlight(r.get(0));
+    }
+  }

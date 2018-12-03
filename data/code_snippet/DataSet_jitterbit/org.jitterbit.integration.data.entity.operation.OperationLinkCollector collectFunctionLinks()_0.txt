@@ -1,0 +1,5 @@
+    private void collectFunctionLinks() {
+        for (IntegrationId funcId : m_functionIds) {
+            collectionFunctionLink(funcId);
+        }
+    }

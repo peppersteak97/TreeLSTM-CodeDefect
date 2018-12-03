@@ -1,0 +1,1 @@
+    public boolean isInq() { return getElement(1)==0x2D;}

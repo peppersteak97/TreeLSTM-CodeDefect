@@ -1,0 +1,28 @@
+    static void setType() {
+        if (isSet) return;
+        isSet = true;
+        
+        osName       = System.getProperty("os.name","<unknown>");
+        mrjVersion   = System.getProperty("mrj.version","<unknown>");
+
+        if ( !mrjVersion.equals("<unknown>")) {
+            if (osName.toLowerCase().equals("mac os x")) {
+                type = MACOSX;
+            } else {
+                if (!(mrjVersion.charAt(0)=='2'))
+                    log.error("Decided Mac Classic, but mrj.version is \""
+                              +mrjVersion+"\" os.name is \""
+                              +osName+"\"");
+                type = MACCLASSIC;
+            }
+        } else if (osName.equals("Linux")) {
+            type = LINUX;
+        } else if (osName.equals("OS/2")) {
+            type = OS2;
+        } else if (osName.startsWith("Windows")) {  
+            type = WINDOWS;
+        } else {
+            type = 0;
+            log.error("Could not determine system type from os.name=/"+osName+"/");
+        }
+    }

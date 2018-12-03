@@ -1,0 +1,12 @@
+    private void addInputFields() {
+        m_sourceValidator = new SourceTargetValidator(
+                        "The source is not consistent with the defined "
+                                        + "function(s) and/or target.");
+        m_targetValidator = new SourceTargetValidator(
+                        "The target is not consistent with the defined "
+                                        + "function(s) and/or source.");
+
+        addInputField(m_sourceInput, m_sourceValidator, s_fieldDecorator);
+        addInputField(m_targetInput, m_targetValidator, s_fieldDecorator);
+        addInputPanel(m_functionChainPanel);
+    }

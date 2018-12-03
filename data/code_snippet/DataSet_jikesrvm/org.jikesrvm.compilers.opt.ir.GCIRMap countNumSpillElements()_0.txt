@@ -1,0 +1,7 @@
+  public int countNumSpillElements() {
+    int count = 0;
+    for (GCIRMapElement elem : this) {
+      count += elem.countNumSpillElements();
+    }
+    return count;
+  }

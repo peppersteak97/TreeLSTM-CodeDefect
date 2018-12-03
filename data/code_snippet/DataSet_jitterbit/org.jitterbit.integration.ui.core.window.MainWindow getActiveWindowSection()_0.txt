@@ -1,0 +1,3 @@
+    public IWindowSection getActiveWindowSection() {
+        return null;
+    }

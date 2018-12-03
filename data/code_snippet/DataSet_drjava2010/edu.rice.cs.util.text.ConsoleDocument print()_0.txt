@@ -1,0 +1,7 @@
+  public void print() throws PrinterException {
+    preparePrintJob();
+    PrinterJob printJob = PrinterJob.getPrinterJob();
+    printJob.setPageable(_book);
+    if (printJob.printDialog()) printJob.print();
+    cleanUpPrintJob();
+  }

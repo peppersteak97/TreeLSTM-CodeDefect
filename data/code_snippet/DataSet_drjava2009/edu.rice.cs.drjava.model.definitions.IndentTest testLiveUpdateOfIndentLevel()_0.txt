@@ -1,0 +1,52 @@
+  public void testLiveUpdateOfIndentLevel() throws BadLocationException {
+    
+    String text =
+      "int[2][] a ={\n" +
+      "{\n"  +
+      "1,\n" +
+      "2,\n" +
+      "3},\n" +
+      "{\n" +
+      "4,\n" +
+      "5}\n" +
+      "};\n";
+    
+    String indentedBefore =
+      "int[2][] a ={\n" +
+      "  {\n"  +
+      "    1,\n" +
+      "    2,\n" +
+      "    3},\n" +
+      "  {\n" +
+      "    4,\n" +
+      "    5}\n" +
+      "};\n";
+    
+    String indentedAfter =
+      "int[2][] a ={\n" +
+      "        {\n" +
+      "                1,\n" +
+      "                2,\n" +
+      "                3},\n" +
+      "        {\n" +
+      "                4,\n" +
+      "                5}\n" +
+      "};\n";
+    
+    setDocText(_doc, text);
+    
+    _assertContents(text, _doc);
+    safeIndentLines(0, _doc.getLength());
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    _assertContents(indentedBefore, _doc);
+    setConfigSetting(OptionConstants.INDENT_LEVEL, 8);
+    
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    safeIndentLines(0, _doc.getLength());
+        
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    _assertContents(indentedAfter, _doc);
+  }

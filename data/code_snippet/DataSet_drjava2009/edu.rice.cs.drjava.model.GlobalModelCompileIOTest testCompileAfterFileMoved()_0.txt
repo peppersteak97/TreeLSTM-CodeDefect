@@ -1,0 +1,24 @@
+  public void testCompileAfterFileMoved() throws BadLocationException, IOException {
+    final OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    final File file = tempFile();
+    saveFile(doc, new FileSelector(file));
+    TestListener listener = new TestListener();
+    _model.addListener(listener);
+    file.delete();
+    Utilities.invokeLater(new Runnable() { 
+      public void run() {
+        try {
+          doc.startCompile();
+          fail("Compile should not have begun.");
+        }
+        catch(FileMovedException e) { /* The expected behavior! */ }
+        catch(Exception e) { throw new UnexpectedException(e); }
+      }
+    });
+
+    assertCompileErrorsPresent("compile should succeed", false);
+    
+    File compiled = classForJava(file, "DrJavaTestFoo");
+    assertTrue("Class file shouldn't exist after compile", !compiled.exists());
+    _model.removeListener(listener);
+  }

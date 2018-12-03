@@ -1,0 +1,7 @@
+	public boolean isMainlineD() {
+		if (connectD != null) 
+			return ((TrackSegment)connectD).getMainline();
+		else if (connectC != null) 
+			return ((TrackSegment)connectC).getMainline();
+		return false;
+	}

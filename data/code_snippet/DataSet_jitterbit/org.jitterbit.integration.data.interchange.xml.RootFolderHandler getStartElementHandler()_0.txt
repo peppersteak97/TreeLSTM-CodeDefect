@@ -1,0 +1,3 @@
+    public IStartElementHandler getStartElementHandler() {
+        return m_startElementHandler;
+    }

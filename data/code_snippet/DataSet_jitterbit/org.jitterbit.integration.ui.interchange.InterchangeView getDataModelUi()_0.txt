@@ -1,0 +1,3 @@
+    public InterchangeProjectUi getDataModelUi() {
+        return m_dataModelUi;
+    }

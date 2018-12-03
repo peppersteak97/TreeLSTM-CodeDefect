@@ -1,0 +1,5 @@
+    Collection<IBoundProperty> getBoundPropertyControls() {
+        IBoundProperty url = BoundPropertyControlFactory.newTextControl(
+                        WebServiceCall.WEB_SERVICE_URL, m_webServiceUrl.getInputComponent());
+        return KongaListUtils.asList(url);
+    }

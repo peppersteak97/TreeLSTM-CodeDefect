@@ -1,0 +1,6 @@
+    static void init() {
+        doInit = false;
+        if (System.getProperty("os.name").equals("Mac OS")) {
+            skip = true;
+        }
+    }

@@ -1,0 +1,24 @@
+  public int stackChanges() {
+    CompiledMethod cm = CompiledMethods.getCompiledMethod(cmid);
+    RVMMethod callee = cm.getMethod();
+
+    int psize = callee.getParameterWords();
+    int schanges = -psize;
+
+    if (!callee.isStatic()) {
+      schanges--;
+    }
+
+    TypeReference rtype = callee.getReturnType();
+    byte tcode = rtype.getName().parseForTypeCode();
+
+    if (tcode == VoidTypeCode) {
+    } else {
+      if ((tcode == LongTypeCode) || (tcode == DoubleTypeCode)) {
+        schanges++;
+      }
+      schanges++;
+    }
+
+    return schanges;
+  }

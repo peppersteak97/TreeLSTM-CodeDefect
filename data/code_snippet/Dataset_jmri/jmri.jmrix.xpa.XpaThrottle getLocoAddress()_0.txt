@@ -1,0 +1,3 @@
+    public LocoAddress getLocoAddress() {
+        return new DccLocoAddress(address, XpaThrottleManager.isLongAddress(address));
+    }

@@ -1,0 +1,3 @@
+    public JToggleButton getInputComponent() {
+        return (JToggleButton) super.getInputComponent();
+    }

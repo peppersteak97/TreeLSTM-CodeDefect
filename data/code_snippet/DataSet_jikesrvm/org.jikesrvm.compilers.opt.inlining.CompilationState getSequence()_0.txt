@@ -1,0 +1,3 @@
+  public InlineSequence getSequence() {
+    return call.position;
+  }

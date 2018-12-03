@@ -1,0 +1,10 @@
+    public Target clone() throws CloneNotSupportedException {
+        Target clone = (Target) super.clone();
+        if (m_location != null) {
+            clone.m_location = m_location.clone();
+            clone.m_location.removePropertyChangeListener(m_locationListener);
+            clone.m_locationListener = clone.createLocationListener();
+            clone.m_location.addPropertyChangeListener(clone.m_locationListener);
+        }
+        return clone;
+    }

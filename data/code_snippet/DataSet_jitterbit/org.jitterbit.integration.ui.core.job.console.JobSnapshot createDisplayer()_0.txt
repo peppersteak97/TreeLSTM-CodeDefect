@@ -1,0 +1,20 @@
+    private JComponent createDisplayer() {
+        JPanel north = new JPanel(new FlowLayout(FlowLayout.LEADING, 5, 0));
+        north.add(m_iconButton);
+        north.add(m_nameLabel);
+
+        JPanel center = new JPanel(new FlowLayout(FlowLayout.LEADING, 10, 0));
+        center.add(m_progressBar);
+        center.add(m_cancelButton);
+
+        JPanel south = new JPanel(new FlowLayout(FlowLayout.LEADING, 10, 0));
+        south.add(m_shortStatusLabel);
+
+        JPanel main = new JPanel(new BorderLayout());
+        main.add(north, BorderLayout.NORTH);
+        main.add(center, BorderLayout.CENTER);
+        main.add(south, BorderLayout.SOUTH);
+
+        UiUtils.setOpaqueRecursively(main, false);
+        return main;
+    }

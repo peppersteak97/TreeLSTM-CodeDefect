@@ -1,0 +1,4 @@
+    static Pattern getLightPattern() {
+        if (lightPattern == null) lightPattern = Pattern.compile(lightRegex);
+        return lightPattern;
+    }

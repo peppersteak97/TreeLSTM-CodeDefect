@@ -1,0 +1,67 @@
+  public void testCompileActiveSavedAnyUnsavedButSaveWhenAsked() throws BadLocationException, IOException, 
+    InterruptedException {
+    
+    final OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    final OpenDefinitionsDocument doc2 = setupDocument(BAR_TEXT);
+    final File file = tempFile();
+    final File file2 = tempFile(1);
+    
+    CompileShouldSucceedListener listener = new CompileShouldSucceedListener(false) {
+      public void saveBeforeCompile() {
+        assertModified(false, doc);
+        assertModified(true, doc2);
+        assertSaveCount(0);
+        assertCompileStartCount(0);
+        assertCompileEndCount(0);
+        assertInterpreterReadyCount(0);
+        assertConsoleResetCount(0);
+        
+        saveFile(doc2, new FileSelector(file2)); 
+        
+        synchronized(this) { saveBeforeCompileCount++; }
+        assertModified(false, doc);
+        assertModified(false, doc2);
+        assertTrue(!_model.hasModifiedDocuments());
+      }
+      
+      public void fileSaved(OpenDefinitionsDocument doc) {
+        assertModified(false, doc);
+        assertSaveBeforeCompileCount(0);
+        assertCompileStartCount(0);
+        assertCompileEndCount(0);
+        assertInterpreterReadyCount(0);
+        assertConsoleResetCount(0);
+        
+        File f = null;
+        try { f = doc.getFile(); }
+        catch (FileMovedException fme) {
+          fail("file does not exist");
+        }
+        assertEquals("file saved", file2, f);
+        synchronized(this) { saveCount++; }
+      }
+    };
+    
+    assertModified(true, doc);
+    saveFile(doc, new FileSelector(file));
+    assertModified(false, doc);
+    assertModified(true, doc2);
+    _model.addListener(listener);
+    testStartCompile(doc);
+    listener.waitCompileDone();
+    if (_model.getCompilerModel().getNumErrors() > 0) {
+      fail("compile failed: " + getCompilerErrorString());
+    }
+    assertTrue(!_model.hasModifiedDocuments());
+    
+    listener.assertCompileStartCount(1);
+    listener.assertSaveBeforeCompileCount(1);
+    listener.assertSaveCount(1);
+    assertCompileErrorsPresent("compile should succeed", false);
+    listener.checkCompileOccurred();
+    
+    File compiled = classForJava(file, "DrJavaTestFoo");
+    assertTrue("Class file doesn't exist after compile", compiled.exists());
+    _model.removeListener(listener);
+    _log.log("testCompileActiveSavedAnyUnsavedButSaveWhenAsked complete");
+  }

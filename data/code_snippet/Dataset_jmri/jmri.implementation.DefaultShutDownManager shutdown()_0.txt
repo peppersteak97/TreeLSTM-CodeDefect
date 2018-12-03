@@ -1,0 +1,16 @@
+    public void shutdown() {
+        for (int i = tasks.size()-1; i>=0; i--) {
+            try {
+                ShutDownTask t = (ShutDownTask)tasks.get(i);
+                boolean ok = t.execute();
+                if (!ok) {
+                    log.info("Program termination aborted by "+t.name());
+                }
+            } catch (Throwable e) {
+                log.error("Error during processing of ShutDownTask "+i+": "+e);
+            }
+        }
+        
+        log.info("Normal termination complete");
+        System.exit(0);
+    }

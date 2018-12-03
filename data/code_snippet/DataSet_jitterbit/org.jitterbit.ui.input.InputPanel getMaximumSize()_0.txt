@@ -1,0 +1,3 @@
+    public Dimension getMaximumSize() {
+        return m_ui.getMaximumSize();
+    }

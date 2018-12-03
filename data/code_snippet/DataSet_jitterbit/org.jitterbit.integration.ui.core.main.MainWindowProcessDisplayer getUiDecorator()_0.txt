@@ -1,0 +1,12 @@
+    public IUiProvider getUiDecorator() {
+        return new IUiProvider() {
+
+            public void decorate(IUiDecor decor) {
+                decor.display(m_displayer);
+            }
+
+            public void requestFocus() {
+                m_showConsoleButton.requestFocusInWindow();
+            }
+        };
+    }

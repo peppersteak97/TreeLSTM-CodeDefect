@@ -1,0 +1,3 @@
+    public IActivityEntryFilterUi<T> getFilters() {
+        return m_filters;
+    }

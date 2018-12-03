@@ -1,0 +1,4 @@
+    public String toString() {
+        sb.append(m_sSearchString);
+        return sb.toString();
+    }

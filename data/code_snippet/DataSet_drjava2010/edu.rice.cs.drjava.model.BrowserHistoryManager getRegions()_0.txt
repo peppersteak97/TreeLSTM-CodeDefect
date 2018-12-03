@@ -1,0 +1,5 @@
+  public SortedSet<BrowserDocumentRegion> getRegions() {
+    TreeSet<BrowserDocumentRegion> ts = new TreeSet<BrowserDocumentRegion>(_pastRegions);
+    ts.addAll(_futureRegions);
+    return ts;
+  }

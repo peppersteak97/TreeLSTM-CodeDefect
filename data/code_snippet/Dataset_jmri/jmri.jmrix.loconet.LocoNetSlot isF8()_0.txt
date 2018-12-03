@@ -1,0 +1,1 @@
+    public boolean isF8()	{ return 0!=(snd&LnConstants.SND_F8); }

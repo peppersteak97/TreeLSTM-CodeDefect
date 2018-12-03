@@ -1,0 +1,3 @@
+	public UnderlyingObject getUnderlyingObject() {
+		return m_underlyingObject;
+	}

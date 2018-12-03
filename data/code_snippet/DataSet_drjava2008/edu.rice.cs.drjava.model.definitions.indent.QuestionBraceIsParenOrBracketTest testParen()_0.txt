@@ -1,0 +1,65 @@
+  public void testParen() throws BadLocationException {
+    int i;
+    
+    /* (1) */
+    _text = "boolean method(int[] a, String b)";
+    _setDocText(_text);
+    
+    for (i = 0; i < _text.length(); i++)
+      assertTrue("START has no brace.", !_rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+    
+    /* (2) */
+    _text =
+      "boolean method\n" +
+      "    (int[] a, String b)";
+    
+    _setDocText(_text);
+    
+    for (i = 0; i < _text.length(); i++)
+      assertTrue("START has no brace.", !_rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+    
+    /* (3) */
+    _text =
+      "boolean method(\n" +
+      "    int[] a, String b)";
+    
+    _setDocText(_text);
+    
+    for (i = 0; i < 16; i++)
+      assertTrue("START has no brace.", !_rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+    
+    
+    for (i = 16; i < _text.length(); i++)
+      assertTrue("START's brace is an open paren.", _rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+    
+    /* (4) */
+    
+    _text =
+      "if (<cond>) {\n" +
+      "    if (\n" +
+      "        <cond>) { ... }}";
+    
+    _setDocText(_text);
+    
+    for (i = 0; i < 23; i++)
+      assertTrue("START has no brace.", !_rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+    
+    
+    for (i = 23; i < _text.length(); i++)
+      assertTrue("START's brace is an open paren.", _rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+    
+    /* (5) */
+    
+    _text =
+      "method(\n" +
+      "       array1, foo(array1[x]))\n" +
+      " <other stuff>";
+    
+    _setDocText(_text);
+    
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace", !_rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+    assertTrue("START's brace is an open paren.", _rule.testApplyRule(_doc, 8, Indenter.IndentReason.OTHER));
+    assertTrue("START's brace is an open paren.", _rule.testApplyRule(_doc, 30, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, _text.length() - 1, Indenter.IndentReason.OTHER));
+  }

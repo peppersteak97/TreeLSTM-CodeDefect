@@ -1,0 +1,88 @@
+	protected void editTrackSegment() {
+		if (editOpen) {
+			editTrackSegmentFrame.setVisible(true);
+			return;
+		}
+		if (editTrackSegmentFrame == null) {
+            editTrackSegmentFrame = new JmriJFrame( rb.getString("EditTrackSegment") );
+			editTrackSegmentFrame.addHelpMenu("package.jmri.jmrit.display.EditTrackSegment", true);
+            editTrackSegmentFrame.setLocation(50,30);
+            Container contentPane = editTrackSegmentFrame.getContentPane();        
+            contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+            JPanel panel31 = new JPanel(); 
+            panel31.setLayout(new FlowLayout());
+			dashedBox.removeAllItems();
+			dashedBox.addItem( rb.getString("Solid") );
+			solidIndex = 0;
+			dashedBox.addItem( rb.getString("Dashed") );
+			dashedIndex = 1;
+			dashedBox.setToolTipText(rb.getString("DashedToolTip"));
+			panel31.add (new JLabel(rb.getString("Style")+" : "));
+			panel31.add (dashedBox);
+            contentPane.add(panel31);			
+            JPanel panel32 = new JPanel(); 
+            panel32.setLayout(new FlowLayout());
+			mainlineBox.removeAllItems();
+			mainlineBox.addItem( rb.getString("Mainline") );
+			mainlineTrackIndex = 0;
+			mainlineBox.addItem( rb.getString("NotMainline") );
+			sideTrackIndex = 1;
+			mainlineBox.setToolTipText(rb.getString("MainlineToolTip"));
+			panel32.add (mainlineBox);
+            contentPane.add(panel32);			
+            JPanel panel33 = new JPanel(); 
+            panel33.setLayout(new FlowLayout());
+			hiddenBox.setToolTipText(rb.getString("HiddenToolTip"));
+			panel33.add (hiddenBox);
+            contentPane.add(panel33);			
+            JPanel panel2 = new JPanel(); 
+            panel2.setLayout(new FlowLayout());
+			JLabel blockNameLabel = new JLabel( rb.getString("BlockID"));
+            panel2.add(blockNameLabel);
+            panel2.add(blockNameField);
+            blockNameField.setToolTipText( rb.getString("EditBlockNameHint") );
+            contentPane.add(panel2);
+            JPanel panel5 = new JPanel();
+            panel5.setLayout(new FlowLayout());
+            panel5.add(segmentEditBlock = new JButton(rb.getString("EditBlock")));
+            segmentEditBlock.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    segmentEditBlockPressed(e);
+                }
+            });
+            segmentEditBlock.setToolTipText( rb.getString("EditBlockHint") );
+            panel5.add(segmentEditDone = new JButton(rb.getString("Done")));
+            segmentEditDone.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    segmentEditDonePressed(e);
+                }
+            });
+            segmentEditDone.setToolTipText( rb.getString("DoneHint") );
+            panel5.add(segmentEditCancel = new JButton(rb.getString("Cancel")));
+            segmentEditCancel.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    segmentEditCancelPressed(e);
+                }
+            });
+            segmentEditCancel.setToolTipText( rb.getString("CancelHint") );
+            contentPane.add(panel5);		
+		}
+		if (mainline) 
+			mainlineBox.setSelectedIndex(mainlineTrackIndex);
+		else
+			mainlineBox.setSelectedIndex(sideTrackIndex);
+		if (dashed)
+			dashedBox.setSelectedIndex(dashedIndex);
+		else
+			dashedBox.setSelectedIndex(solidIndex);
+		hiddenBox.setSelected(hidden);
+		blockNameField.setText(blockName);
+		editTrackSegmentFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+				public void windowClosing(java.awt.event.WindowEvent e) {
+					segmentEditCancelPressed(null);
+				}
+			});
+        editTrackSegmentFrame.pack();
+        editTrackSegmentFrame.setVisible(true);		
+		editOpen = true;
+	}	

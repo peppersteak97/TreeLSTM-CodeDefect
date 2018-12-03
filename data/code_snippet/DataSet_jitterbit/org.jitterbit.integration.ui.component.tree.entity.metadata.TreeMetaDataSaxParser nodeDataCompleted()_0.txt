@@ -1,0 +1,5 @@
+    void nodeDataCompleted() {
+        m_dataLoader.addNodeData(m_currentNodeData);
+        m_currentNodeData = null;
+        m_mapCurrentNodeIcons = null;
+    }

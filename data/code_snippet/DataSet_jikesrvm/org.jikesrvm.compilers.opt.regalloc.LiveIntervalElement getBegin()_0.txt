@@ -1,0 +1,1 @@
+  public Instruction getBegin() { return begin; }

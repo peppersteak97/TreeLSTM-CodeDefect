@@ -1,0 +1,17 @@
+    SerialMessage createOutPacket() {
+        int nDLE = 0;
+        for (int i=0; i<nOutBytes; i++) {
+            if ( (outBytes[i]==2) || (outBytes[i]==3) ||(outBytes[i]==16) ) 
+                nDLE ++;
+        }
+        SerialMessage m = new SerialMessage(nOutBytes + nDLE + 2);
+        int k = 2;
+        for (int i=0; i<nOutBytes; i++) {
+            if ( (outBytes[i]==2) || (outBytes[i]==3) ||(outBytes[i]==16) ) {
+                k ++;
+            }
+            m.setElement(k, outBytes[i]);
+            k ++;
+        }
+        return m;
+    }

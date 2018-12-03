@@ -1,0 +1,3 @@
+    public IntegrationData getDisplayedObject() {
+        return m_transformation;
+    }

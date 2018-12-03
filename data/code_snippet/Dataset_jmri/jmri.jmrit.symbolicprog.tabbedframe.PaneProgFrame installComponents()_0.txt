@@ -1,0 +1,164 @@
+    protected void installComponents() {
+
+        if (jmri.InstanceManager.shutDownManagerInstance()!=null) {
+            if (getModePane()!=null && decoderDirtyTask == null) decoderDirtyTask = 
+                                            new SwingShutDownTask("DecoderPro Decoder Window Check", 
+                                                                  rbt.getString("PromptQuitWindowNotWrittenDecoder"), 
+                                                                  (String)null, 
+                                                                  (java.awt.Component)this
+                                                                   ){
+                                                public boolean checkPromptNeeded() {
+                                                    return !checkDirtyDecoder();
+                                                }
+            };
+            jmri.InstanceManager.shutDownManagerInstance().register(decoderDirtyTask);
+            if (fileDirtyTask == null) fileDirtyTask = 
+                                            new SwingShutDownTask("DecoderPro Decoder Window Check", 
+                                                                  rbt.getString("PromptQuitWindowNotWrittenConfig"), 
+                                                                  rbt.getString("PromptSaveQuit"), 
+                                                                  (java.awt.Component)this
+                                                                   ){
+                                                public boolean checkPromptNeeded() {
+                                                    return !checkDirtyFile();
+                                                }
+                                                public boolean doPrompt() {
+                                                    return result;
+                                                }
+            };
+            jmri.InstanceManager.shutDownManagerInstance().register(fileDirtyTask);
+        }
+                
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+        JMenu fileMenu = new JMenu(rbt.getString("MenuFile"));
+        menuBar.add(fileMenu);
+
+        if (!_opsMode) {
+            resetMenu = new JMenu(rbt.getString("MenuReset"));
+            menuBar.add(resetMenu);
+            resetMenu.add(new FactoryResetAction(rbt.getString("MenuFactoryReset"), resetModel, this));
+            resetMenu.setEnabled(false);
+        }
+        fileMenu.add(new AbstractAction(rbt.getString("MenuSave")) {
+            public void actionPerformed(ActionEvent e) {
+                storeFile();
+            }
+        });
+
+        JMenu printSubMenu = new JMenu(rbt.getString("MenuPrint"));
+        printSubMenu.add(new PrintAction(rbt.getString("MenuPrintAll"), this, false));
+        printSubMenu.add(new PrintCvAction(rbt.getString("MenuPrintCVs"), cvModel, this, false));
+        fileMenu.add(printSubMenu);
+        
+        JMenu printPreviewSubMenu = new JMenu(rbt.getString("MenuPrintPreview"));
+        printPreviewSubMenu.add(new PrintAction(rbt.getString("MenuPrintPreviewAll"), this, true));
+        printPreviewSubMenu.add(new PrintCvAction(rbt.getString("MenuPrintPreviewCVs"), cvModel, this, true));
+        fileMenu.add(printPreviewSubMenu);
+
+        JMenu importSubMenu = new JMenu(rbt.getString("MenuImport"));
+        fileMenu.add(importSubMenu);
+        importSubMenu.add(new Pr1ImportAction(rbt.getString("MenuImportPr1"), cvModel, this));
+
+        JMenu exportSubMenu = new JMenu(rbt.getString("MenuExport"));
+        fileMenu.add(exportSubMenu);
+        exportSubMenu.add(new CsvExportAction(rbt.getString("MenuExportCSV"), cvModel, this));
+        exportSubMenu.add(new Pr1ExportAction(rbt.getString("MenuExportPr1DOS"), cvModel, this));
+        exportSubMenu.add(new Pr1WinExportAction(rbt.getString("MenuExportPr1WIN"), cvModel, this));
+
+        JPanel pane = new JPanel();
+
+        pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
+
+        
+        enableReadButtons();
+        
+        readChangesButton.addItemListener(l1 = new ItemListener() {
+            public void itemStateChanged (ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    prepGlassPane(readChangesButton);
+                    readChangesButton.setText(rbt.getString("ButtonStopReadChangesAll"));
+                    readChanges();
+                } else {
+                    if (_programmingPane != null) {
+                        _programmingPane.stopProgramming();
+                    }
+                    paneListIndex = paneList.size();
+                    readChangesButton.setText(rbt.getString("ButtonReadChangesAllSheets"));
+                }
+            }
+        });
+
+        readAllButton.addItemListener(l3 = new ItemListener() {
+            public void itemStateChanged (ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    prepGlassPane(readAllButton);
+                    readAllButton.setText(rbt.getString("ButtonStopReadAll"));
+                    readAll();
+                } else {
+                    if (_programmingPane != null) {
+                        _programmingPane.stopProgramming();
+                    }
+                    paneListIndex = paneList.size();
+                    readAllButton.setText(rbt.getString("ButtonReadAllSheets"));
+                }
+            }
+        });
+
+        writeChangesButton.setToolTipText(rbt.getString("TipWriteHighlightedValues"));
+        writeChangesButton.addItemListener(l2 = new ItemListener() {
+            public void itemStateChanged (ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    prepGlassPane(writeChangesButton);
+                    writeChangesButton.setText(rbt.getString("ButtonStopWriteChangesAll"));
+                    writeChanges();
+                } else {
+                    if (_programmingPane != null) {
+                        _programmingPane.stopProgramming();
+                    }
+                    paneListIndex = paneList.size();
+                    writeChangesButton.setText(rbt.getString("ButtonWriteChangesAllSheets"));
+                }
+            }
+        });
+
+        writeAllButton.setToolTipText(rbt.getString("TipWriteAllValues"));
+        writeAllButton.addItemListener(l4 = new ItemListener() {
+            public void itemStateChanged (ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    prepGlassPane(writeAllButton);
+                    writeAllButton.setText(rbt.getString("ButtonStopWriteAll"));
+                    writeAll();
+                } else {
+                    if (_programmingPane != null) {
+                        _programmingPane.stopProgramming();
+                    }
+                    paneListIndex = paneList.size();
+                    writeAllButton.setText(rbt.getString("ButtonWriteAllSheets"));
+                }
+            }
+        });
+
+        pane.add(tabPane);
+
+        modePane = getModePane();
+        if (modePane!=null) {
+            
+            JPanel bottom = new JPanel();
+            bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
+            bottom.add(readChangesButton);
+            bottom.add(writeChangesButton);
+            bottom.add(readAllButton);
+            bottom.add(writeAllButton);
+            pane.add(bottom);
+            
+            pane.add(new JSeparator(javax.swing.SwingConstants.HORIZONTAL));
+            pane.add(modePane);
+
+            pane.add(new JSeparator(javax.swing.SwingConstants.HORIZONTAL));
+            progStatus.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+            pane.add(progStatus);
+        }
+
+        getContentPane().add(pane);
+    }

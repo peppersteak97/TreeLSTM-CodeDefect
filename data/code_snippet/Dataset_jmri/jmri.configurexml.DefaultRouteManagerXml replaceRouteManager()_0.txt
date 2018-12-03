@@ -1,0 +1,12 @@
+    protected void replaceRouteManager() {
+        if (InstanceManager.routeManagerInstance().getClass().getName()
+                .equals(DefaultRouteManager.class.getName()))
+            return;
+        if (InstanceManager.routeManagerInstance() != null)
+            InstanceManager.configureManagerInstance().deregister(
+                InstanceManager.routeManagerInstance() );
+
+        DefaultRouteManager pManager = DefaultRouteManager.instance();
+        InstanceManager.setRouteManager(pManager);
+        InstanceManager.configureManagerInstance().registerConfig(pManager);
+    }

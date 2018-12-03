@@ -1,0 +1,26 @@
+  private synchronized void writeMetaChunks() {
+    try {
+      while (!unwrittenMetaChunks.isEmpty()) {
+        RawChunk c = unwrittenMetaChunks.dequeue();
+        c.write(outputStream);
+      }
+      if (activeEventTypeChunk != null && activeEventTypeChunk.hasData()) {
+        activeEventTypeChunk.close();
+        activeEventTypeChunk.write(outputStream);
+        activeEventTypeChunk.reset();
+      }
+      if (activeFeedletChunk != null && activeFeedletChunk.hasData()) {
+        activeFeedletChunk.close();
+        activeFeedletChunk.write(outputStream);
+        activeFeedletChunk.reset();
+      }
+      if (activePropertyTableChunk != null && activePropertyTableChunk.hasData()) {
+        activePropertyTableChunk.close();
+        activePropertyTableChunk.write(outputStream);
+        activePropertyTableChunk.reset();
+      }
+    } catch (IOException e) {
+      VM.sysWriteln("Exception while outputing trace TuningFork trace file");
+      e.printStackTrace();
+    }
+  }

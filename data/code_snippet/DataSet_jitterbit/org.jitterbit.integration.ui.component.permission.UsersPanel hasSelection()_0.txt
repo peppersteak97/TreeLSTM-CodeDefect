@@ -1,0 +1,3 @@
+    boolean hasSelection() {
+        return m_currentSelection != null;
+    }

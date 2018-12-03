@@ -1,0 +1,3 @@
+	protected void onStopDrag() {
+		m_tree.fireTreeSelectionChanged();
+	}	

@@ -1,0 +1,9 @@
+  private void computeHandlerLiveSet() {
+    if (ir.getHandlerLivenessComputed() && currentBlock.hasExceptionHandlers()) {
+      BasicBlockEnumeration e = currentBlock.getExceptionalOut();
+      while (e.hasMoreElements()) {
+        ExceptionHandlerBasicBlock handlerBlock = (ExceptionHandlerBasicBlock) e.next();
+        handlerLiveSet.add(handlerBlock.getLiveSet());
+      }
+    }
+  }

@@ -1,0 +1,3 @@
+    public IOperationUi getObject() {
+        return (IOperationUi) super.getObject();
+    }

@@ -1,0 +1,7 @@
+	public String toString() {
+		sb.append(m_x);
+		sb.append(m_y);
+		sb.append(m_w);
+		sb.append(m_h);
+		return sb.toString();
+	}

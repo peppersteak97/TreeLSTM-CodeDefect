@@ -1,0 +1,6 @@
+    public synchronized Object get() throws InterruptedException {
+        while (m_list.isEmpty()) {
+            wait();
+        }
+        return m_list.removeFirst();
+    }

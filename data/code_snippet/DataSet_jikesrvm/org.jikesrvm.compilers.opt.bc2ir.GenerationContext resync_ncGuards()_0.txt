@@ -1,0 +1,13 @@
+  private void resync_ncGuards() {
+    HashSet<Register> regPool = new HashSet<Register>();
+
+    for (Register r = temps.getFirstSymbolicRegister(); r != null; r = r.getNext()) {
+      regPool.add(r);
+    }
+
+    Iterator<Map.Entry<Register, RegisterOperand>> i = _ncGuards.entrySet().iterator();
+    while (i.hasNext()) {
+      Map.Entry<Register, RegisterOperand> entry = i.next();
+      if (!(regPool.contains(entry.getValue()))) i.remove();
+    }
+  }

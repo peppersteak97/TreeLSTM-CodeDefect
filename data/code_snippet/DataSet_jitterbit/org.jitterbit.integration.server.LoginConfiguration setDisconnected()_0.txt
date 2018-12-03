@@ -1,0 +1,3 @@
+    public static synchronized void setDisconnected() {
+        s_serverGuid = null;
+    }

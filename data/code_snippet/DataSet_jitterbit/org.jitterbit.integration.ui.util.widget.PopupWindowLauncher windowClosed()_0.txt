@@ -1,0 +1,6 @@
+    protected void windowClosed() {
+        IntegrationUiUtils.getActiveFrame().removeComponentListener(m_moveListener);
+        m_moveListener = null;
+        m_windowIsShowing = false;
+        m_popupWindow = null;
+    }

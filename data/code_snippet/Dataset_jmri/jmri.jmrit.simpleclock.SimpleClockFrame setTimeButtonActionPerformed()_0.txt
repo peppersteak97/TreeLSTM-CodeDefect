@@ -1,0 +1,42 @@
+    public void setTimeButtonActionPerformed() {
+        int hours = 0;
+        int minutes = 0;
+        try {
+            hours = Integer.parseInt(hoursField.getText());
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this,(rb.getString("HoursError")+"\n"+e),
+                    rb.getString("ErrorTitle"),JOptionPane.ERROR_MESSAGE);
+            log.error("Exception when parsing hours Field: "+e);
+            return;
+        }
+        if ( (hours<0) || (hours>23) ) {
+            JOptionPane.showMessageDialog(this,(rb.getString("HoursRangeError")),
+                    rb.getString("ErrorTitle"),JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            minutes = Integer.parseInt(minutesField.getText());
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this,(rb.getString("HoursError")+"\n"+e),
+                    rb.getString("ErrorTitle"),JOptionPane.ERROR_MESSAGE);
+            log.error("Exception when parsing hours Field: "+e);
+            return;
+        }
+        if ( (minutes<0) || (minutes>59) ) {
+            JOptionPane.showMessageDialog(this,(rb.getString("MinutesRangeError")),
+                    rb.getString("ErrorTitle"),JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        long mSecPerHour = 3600000;
+        long mSecPerMinute = 60000;
+        Date tem = clock.getTime();
+        int cHours = tem.getHours();
+        long cNumMSec = tem.getTime();
+        long nNumMSec = ((cNumMSec/mSecPerHour)*mSecPerHour) - (cHours*mSecPerHour) +
+                    (hours*mSecPerHour) + (minutes*mSecPerMinute);
+        clock.userSetTime(new Date(nNumMSec));
+        showTime = true;
+		updateTime();
+    }

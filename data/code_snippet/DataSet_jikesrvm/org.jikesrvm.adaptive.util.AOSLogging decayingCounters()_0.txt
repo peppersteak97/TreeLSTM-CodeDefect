@@ -1,0 +1,7 @@
+  public void decayingCounters() {
+    if (Controller.options.LOGGING_LEVEL >= 2) {
+      synchronized (log) {
+        log.println(getTime() + " Decaying clock and decayable objects");
+      }
+    }
+  }

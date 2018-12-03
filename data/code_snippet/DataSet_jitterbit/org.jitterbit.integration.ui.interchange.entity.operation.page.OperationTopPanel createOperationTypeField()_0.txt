@@ -1,0 +1,7 @@
+    private void createOperationTypeField() {
+        String label = PackageResources.Labels.TYPE;
+        m_operationTypeBox = new OperationTypeComboBox();
+        m_operationTypeBox.addActionListener(new OpTypeListener());
+        m_operationTypeBoxInput = InputFieldFactory.getComboBoxInputField(label,
+                        m_operationTypeBox, label);
+    }

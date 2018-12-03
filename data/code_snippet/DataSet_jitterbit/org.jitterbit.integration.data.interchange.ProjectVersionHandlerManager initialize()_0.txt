@@ -1,0 +1,4 @@
+    private void initialize() {
+        new Initializer().run();
+        m_isInitialized = true;
+    }

@@ -1,0 +1,3 @@
+  boolean isBornAtAllocation() {
+    return (label instanceof Instruction);
+  }

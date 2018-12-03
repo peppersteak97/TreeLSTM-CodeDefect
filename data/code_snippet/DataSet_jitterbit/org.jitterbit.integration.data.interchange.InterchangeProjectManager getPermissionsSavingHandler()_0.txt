@@ -1,0 +1,31 @@
+    public IPermissionsSavingHandler getPermissionsSavingHandler() {
+        return new IPermissionsSavingHandler() {
+
+            public void endSaving() throws PermissionsSavingException {
+                m_permissionFileMgr.endSaving();
+            }
+
+            public void saveGroupPermission(IntegrationEntityId entityId,
+                            GroupId groupId, int allowedBits, int deniedBits)
+                            throws PermissionsSavingException {
+                m_permissionFileMgr.saveGroupPermission(entityId, groupId, allowedBits,
+                                deniedBits);
+            }
+
+            public void saveUserPermission(IntegrationEntityId entityId, UserId userId,
+                            int allowedBits, int deniedBits)
+                            throws PermissionsSavingException {
+                m_permissionFileMgr.saveUserPermission(entityId, userId, allowedBits,
+                                deniedBits);
+            }
+
+            public void saveDirtyEntities(Collection<IntegrationEntityId> dirty)
+                            throws PermissionsSavingException {
+                m_permissionFileMgr.saveDirtyEntities(dirty);
+            }
+
+            public void startSaving() throws PermissionsSavingException {
+                m_permissionFileMgr.startSaving();
+            }
+        };
+    }

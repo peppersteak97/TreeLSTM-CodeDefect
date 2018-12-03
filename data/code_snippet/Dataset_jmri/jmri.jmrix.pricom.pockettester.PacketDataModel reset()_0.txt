@@ -1,0 +1,8 @@
+    public void reset() {
+        int count = keys.size();
+        keys = new Vector();
+        addresses = new Vector();
+        types = new Vector();
+        details = new Vector();
+        fireTableRowsDeleted(0, count-1);
+    }

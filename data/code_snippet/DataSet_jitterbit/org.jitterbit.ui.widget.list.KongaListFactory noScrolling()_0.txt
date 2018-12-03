@@ -1,0 +1,3 @@
+    public void noScrolling() {
+        m_useScrolling = false;
+    }

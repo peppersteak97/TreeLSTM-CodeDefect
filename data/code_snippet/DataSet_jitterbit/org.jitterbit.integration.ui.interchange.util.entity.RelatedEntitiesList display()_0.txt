@@ -1,0 +1,4 @@
+    public void display() {
+        m_renameListener = new RenameListener();
+        addRenameListener();
+    }

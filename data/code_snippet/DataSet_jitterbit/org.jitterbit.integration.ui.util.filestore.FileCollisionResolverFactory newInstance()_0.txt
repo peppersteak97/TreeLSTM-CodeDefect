@@ -1,0 +1,9 @@
+    public static FileCollisionResolverFactory newInstance() {
+        return new FileCollisionResolverFactory() {
+
+            @Override
+            public IFileCollisionResolver createResolver(IApplicationWindow window) {
+                return new DefaultCollisionResolverImpl(window);
+            }
+        };
+    }

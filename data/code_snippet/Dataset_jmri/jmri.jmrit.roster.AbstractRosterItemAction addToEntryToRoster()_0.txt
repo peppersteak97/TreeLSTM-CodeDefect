@@ -1,0 +1,4 @@
+    void addToEntryToRoster() {
+        Roster.instance().addEntry(mToEntry);
+        Roster.instance().writeRosterFile();
+    }

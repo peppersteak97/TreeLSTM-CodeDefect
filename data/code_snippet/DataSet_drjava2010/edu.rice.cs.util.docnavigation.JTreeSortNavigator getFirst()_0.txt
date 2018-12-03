@@ -1,0 +1,4 @@
+  public ItemT getFirst() {
+      DefaultMutableTreeNode root = (DefaultMutableTreeNode) _model.getRoot();
+      return getNodeUserObject(root.getFirstLeaf());
+    }

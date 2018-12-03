@@ -1,0 +1,95 @@
+  void initGotoFileDialog() {
+    if (_gotoFileDialog == null) {
+      PredictiveInputFrame.InfoSupplier<GoToFileListEntry> info = 
+        new PredictiveInputFrame.InfoSupplier<GoToFileListEntry>() {
+        public String value(GoToFileListEntry entry) {
+          final StringBuilder sb = new StringBuilder();
+          
+          if (entry.doc != null) {
+            try {
+              try { sb.append(FileOps.stringMakeRelativeTo(entry.doc.getRawFile(), entry.doc.getSourceRoot())); }
+              catch(IOException e) { sb.append(entry.doc.getFile()); }
+            }
+            catch(edu.rice.cs.drjava.model.FileMovedException e) { sb.append(entry + " was moved"); }
+            catch(java.lang.IllegalStateException e) { sb.append(entry); }
+            catch(InvalidPackageException e) { sb.append(entry); }
+          } 
+          else sb.append(entry);
+          return sb.toString();
+        }
+      };
+      PredictiveInputFrame.CloseAction<GoToFileListEntry> okAction = 
+        new PredictiveInputFrame.CloseAction<GoToFileListEntry>() {
+        public String getName() { return "OK"; }
+        public KeyStroke getKeyStroke() { return KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0); }
+        public String getToolTipText() { return null; }
+        public Object value(PredictiveInputFrame<GoToFileListEntry> p) {
+          if (p.getItem() != null) {
+            final OpenDefinitionsDocument newDoc = p.getItem().doc;
+            final boolean docChanged = ! newDoc.equals(_model.getActiveDocument());
+            final boolean docSwitch = _model.getActiveDocument() != newDoc;
+            if (docSwitch) _model.setActiveDocument(newDoc);
+            final int curLine = newDoc.getCurrentLine();
+            final String t = p.getText();
+            final int last = t.lastIndexOf(':');
+            if (last >= 0) {
+              try {
+                String end = t.substring(last + 1);
+                int val = Integer.parseInt(end);
+                
+                final int lineNum = Math.max(1, val);
+                Runnable command = new Runnable() {
+                  public void run() {
+                    catch (RuntimeException e) { _jumpToLine(curLine); }
+                  }
+                };
+                if (docSwitch) {
+                  EventQueue.invokeLater(command);
+                }
+                else command.run();
+              }
+              catch(RuntimeException e) { /* ignore */ }
+            }
+            else if (docChanged) {
+              addToBrowserHistory();
+            }
+          }
+          hourglassOff();
+          return null;
+        }
+      };
+      PredictiveInputFrame.CloseAction<GoToFileListEntry> cancelAction = 
+        new PredictiveInputFrame.CloseAction<GoToFileListEntry>() {
+        public String getName() { return "Cancel"; }
+        public KeyStroke getKeyStroke() { return KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0); }
+        public String getToolTipText() { return null; }
+        public Object value(PredictiveInputFrame<GoToFileListEntry> p) {
+          hourglassOff();
+          return null;
+        }
+      };
+      java.util.ArrayList<PredictiveInputModel.MatchingStrategy<GoToFileListEntry>> strategies =
+        new java.util.ArrayList<PredictiveInputModel.MatchingStrategy<GoToFileListEntry>>();
+      strategies.add(new PredictiveInputModel.FragmentLineNumStrategy<GoToFileListEntry>());
+      strategies.add(new PredictiveInputModel.PrefixLineNumStrategy<GoToFileListEntry>());
+      strategies.add(new PredictiveInputModel.RegExLineNumStrategy<GoToFileListEntry>());
+      List<PredictiveInputFrame.CloseAction<GoToFileListEntry>> actions
+        = new ArrayList<PredictiveInputFrame.CloseAction<GoToFileListEntry>>();
+      actions.add(okAction);
+      actions.add(cancelAction);
+      _gotoFileDialog = 
+        new PredictiveInputFrame<GoToFileListEntry>(MainFrame.this,
+                                                    "Go to File",
+                                                    info,
+                                                    strategies,
+                                                    new GoToFileListEntry(null, "dummyGoto")) {
+        public void setOwnerEnabled(boolean b) {
+          if (b) { hourglassOff(); } else { hourglassOn(); }
+        }
+      }; 
+      
+      if (DrJava.getConfig().getSetting(DIALOG_GOTOFILE_STORE_POSITION).booleanValue()) {
+        _gotoFileDialog.setFrameState(DrJava.getConfig().getSetting(DIALOG_GOTOFILE_STATE));
+      }      
+    }
+  }

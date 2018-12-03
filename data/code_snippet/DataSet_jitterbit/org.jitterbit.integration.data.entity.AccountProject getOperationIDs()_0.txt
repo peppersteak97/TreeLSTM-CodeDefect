@@ -1,0 +1,3 @@
+    public Collection<OperationId> getOperationIDs() {
+        return Collections.unmodifiableCollection(m_operations);
+    }

@@ -1,0 +1,46 @@
+    public void deactivateLight() {
+        if (mActive) {
+            switch (mControlType) {
+                case SENSOR_CONTROL:
+                    if (mSensorListener!=null) {
+                        mControlSensor.removePropertyChangeListener(mSensorListener);
+                        mSensorListener = null;
+                    }
+                    break;
+                case FAST_CLOCK_CONTROL:
+					if ( (mClock!=null) && (mTimebaseListener!=null) ){
+						mClock.removeMinuteChangeListener(mTimebaseListener);
+						mTimebaseListener = null;
+					}
+                    break;
+                case TURNOUT_STATUS_CONTROL:
+                    if (mTurnoutListener!=null) {
+                        mControlTurnout.removePropertyChangeListener(mTurnoutListener);
+                        mTurnoutListener = null;
+                    }
+                    break;
+                case TIMED_ON_CONTROL:
+                    if (mTimedSensorListener!=null) {
+                        mTimedControlSensor.removePropertyChangeListener(mTimedSensorListener);
+                        mTimedSensorListener = null;
+                    }
+					if (mLightOnTimerActive) {
+						mTimedControlTimer.stop();
+						mLightOnTimerActive = false;
+					}
+					if (mTimedControlTimer!=null) {
+						if (mTimedControlListener!=null) {
+							mTimedControlTimer.removeActionListener(mTimedControlListener);
+							mTimedControlListener = null;
+						}
+						mTimedControlTimer = null;
+					}
+                    break;
+                case NO_CONTROL:
+                    break;
+                default:
+                    log.warn("Unexpected control type when activating Light: "+getSystemName());
+            }
+            mActive = false;
+        }    
+    }

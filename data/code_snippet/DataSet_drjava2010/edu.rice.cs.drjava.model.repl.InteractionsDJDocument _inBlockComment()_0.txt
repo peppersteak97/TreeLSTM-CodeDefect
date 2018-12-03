@@ -1,0 +1,4 @@
+  public boolean _inBlockComment() {
+        boolean toReturn = _inBlockComment(getLength());
+        return toReturn;
+  }

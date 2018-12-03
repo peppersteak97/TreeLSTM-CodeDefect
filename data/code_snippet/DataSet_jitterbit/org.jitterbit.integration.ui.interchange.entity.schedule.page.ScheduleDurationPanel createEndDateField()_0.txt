@@ -1,0 +1,7 @@
+    private void createEndDateField() {
+        ResourceBundle res = SchedulePage.getResources();
+        JLabel label = InputLabelText.makeJLabel(res.getString("Label.EndingAt") + " ");
+        m_endDate = new EndDateInputField(res.getString("Label.EndDate"), DATE_FORMAT,
+                        InputFieldFactory.getTextField(8, true), label);
+        m_endDate.getInputComponent().setEditable(false);
+    }

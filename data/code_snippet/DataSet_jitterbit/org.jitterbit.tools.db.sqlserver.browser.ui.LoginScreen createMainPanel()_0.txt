@@ -1,0 +1,10 @@
+    private JPanel createMainPanel() {
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout( new BorderLayout(0, 10) );
+        mainPanel.add( createDataPanel(), BorderLayout.CENTER );
+        ButtonPanel buttonPanel = new ButtonPanel();
+        m_okButton = buttonPanel.getButton(KongaButtonPanel.OK);
+        mainPanel.add( buttonPanel, BorderLayout.SOUTH );
+        mainPanel.setBorder( new EmptyBorder(5, 5, 15, 5) );
+        return mainPanel;
+    }

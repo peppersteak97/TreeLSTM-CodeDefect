@@ -1,0 +1,3 @@
+    public OperationType getOperationType() {
+        return m_operationTypeBox.getSelectedOperationType();
+    }

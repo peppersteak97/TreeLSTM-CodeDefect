@@ -1,0 +1,4 @@
+  public void resetUndo() {
+    _undoAction.setDelegatee(_currentDefPane.getUndoAction());
+    _redoAction.setDelegatee(_currentDefPane.getRedoAction());
+  }

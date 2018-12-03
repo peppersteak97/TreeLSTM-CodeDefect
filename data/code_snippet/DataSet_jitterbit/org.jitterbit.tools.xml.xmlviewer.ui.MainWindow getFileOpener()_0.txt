@@ -1,0 +1,3 @@
+	public IFileOpener getFileOpener() {
+	    return m_fileManager;
+	}

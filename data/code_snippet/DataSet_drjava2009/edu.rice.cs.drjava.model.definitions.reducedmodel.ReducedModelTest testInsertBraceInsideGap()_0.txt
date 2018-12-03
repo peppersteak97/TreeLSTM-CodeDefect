@@ -1,0 +1,30 @@
+  public void testInsertBraceInsideGap() {
+    assertFalse(model1._rmb.openBraceImmediatelyLeft());
+    assertFalse(model1._rmb.closedBraceImmediatelyLeft());
+    insertGap(model1, 4);
+    assertFalse(model1._rmb.openBraceImmediatelyLeft());
+    assertFalse(model1._rmb.closedBraceImmediatelyLeft());
+    model1.move(-4);
+    assertFalse(model1._rmb.openBraceImmediatelyLeft());
+    assertFalse(model1._rmb.closedBraceImmediatelyLeft());
+    insertGap(model1, 3);
+    assertEquals("#0.0", 3, model1.absOffset());
+    assertEquals("#0.1", 7, model1.currentToken().getSize());
+    assertFalse(model1._rmb.openBraceImmediatelyLeft());
+    assertFalse(model1._rmb.closedBraceImmediatelyLeft());
+    model1.insertChar('{');
+    assertTrue(model1._rmb.openBraceImmediatelyLeft());
+    assertFalse(model1._rmb.closedBraceImmediatelyLeft());
+    assertEquals("#1.0", 4, model1.absOffset());
+    assertEquals("#1.1", 4, model1.currentToken().getSize());
+    assertTrue("#1.2", model1.currentToken().isGap());
+    model1.move(-1);
+    assertEquals("#2.0", 1, model1.currentToken().getSize());
+    assertEquals("#2.1", "{", model1.currentToken().getType());
+    model1.move(-3);
+    assertEquals("#3.0", 0, model1.absOffset());
+    assertEquals("#3.1", 3, model1.currentToken().getSize());
+    assertTrue("#3.2", model1.currentToken().isGap());
+    assertFalse(model1._rmb.openBraceImmediatelyLeft());
+    assertFalse(model1._rmb.closedBraceImmediatelyLeft());
+  }

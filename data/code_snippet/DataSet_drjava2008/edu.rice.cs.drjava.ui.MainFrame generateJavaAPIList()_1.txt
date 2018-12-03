@@ -1,0 +1,47 @@
+  public void generateJavaAPIList() {
+    if (_javaAPIList == null) {
+      String linkVersion = DrJava.getConfig().getSetting(JAVADOC_API_REF_VERSION);
+      
+      String base = "";
+      
+      String stripPrefix = "";
+      
+      String suffix = "";
+      if (linkVersion.equals(JAVADOC_AUTO_TEXT)) {
+        edu.rice.cs.plt.reflect.JavaVersion ver = _model.getCompilerModel().getActiveCompiler().version();
+        if (ver==edu.rice.cs.plt.reflect.JavaVersion.JAVA_1_4) {
+          linkVersion = JAVADOC_1_4_TEXT;
+        }
+        else if (ver==edu.rice.cs.plt.reflect.JavaVersion.JAVA_5) {
+          linkVersion = JAVADOC_1_5_TEXT;
+        }
+        else if (ver==edu.rice.cs.plt.reflect.JavaVersion.JAVA_6) {
+          linkVersion = JAVADOC_1_6_TEXT;
+        }
+        else {
+          linkVersion = JAVADOC_1_3_TEXT;
+        }
+      }
+      if (linkVersion.equals(JAVADOC_1_3_TEXT)) {
+        base = DrJava.getConfig().getSetting(JAVADOC_1_3_LINK) + "/";
+        suffix = "/allclasses-1.3.html";
+      }
+      else if (linkVersion.equals(JAVADOC_1_4_TEXT)) {
+        base = DrJava.getConfig().getSetting(JAVADOC_1_4_LINK) + "/";
+        suffix = "/allclasses-1.4.html";
+      }
+      else if (linkVersion.equals(JAVADOC_1_5_TEXT)) {
+        base = DrJava.getConfig().getSetting(JAVADOC_1_5_LINK) + "/";
+        suffix = "/allclasses-1.5.html";
+      }
+      else if (linkVersion.equals(JAVADOC_1_6_TEXT)) {
+        stripPrefix = JAVADOC_1_6_LINK.getDefaultString() + "/";
+        suffix = "/allclasses-1.6.html";
+      }
+      else {
+        return;
+      }
+      _javaAPIList = _generateJavaAPIList(base, stripPrefix, suffix);
+      if (_javaAPIList.size()==0) { _javaAPIList = null; }
+    }
+  }

@@ -1,0 +1,3 @@
+  Word getWord() {
+    return (VM.BuildFor32Addr) ? Word.fromIntSignExtend((int) value) : Word.fromLong(value);
+  }

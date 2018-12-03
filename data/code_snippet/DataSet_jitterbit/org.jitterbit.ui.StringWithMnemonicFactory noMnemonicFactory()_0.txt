@@ -1,0 +1,3 @@
+    public static StringWithMnemonicFactory noMnemonicFactory() {
+        return new NoMnemonicFactory();
+    }

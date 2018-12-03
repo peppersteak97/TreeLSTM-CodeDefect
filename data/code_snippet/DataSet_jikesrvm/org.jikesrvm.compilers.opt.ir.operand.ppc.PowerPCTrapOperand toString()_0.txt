@@ -1,0 +1,30 @@
+  public String toString() {
+    String result = "ppc trap ";
+    switch (value) {
+      case EQUAL:
+        return result + "==";
+      case NOT_EQUAL:
+        return result + "!=";
+      case LESS:
+        return result + "<";
+      case LESS_EQUAL:
+        return result + "<=";
+      case GREATER:
+        return result + ">";
+      case GREATER_EQUAL:
+        return result + ">=";
+      case HIGHER:
+        return result + ">U";
+      case LOWER:
+        return result + "<U";
+      case HIGHER_EQUAL:
+        return result + ">=U";
+      case LOWER_EQUAL:
+        return result + "<=U";
+      case NOT_SAME:
+        return result + "U!=";
+      case ALWAYS:
+        return result + "always";
+    }
+    return "UNKNOWN";
+  }

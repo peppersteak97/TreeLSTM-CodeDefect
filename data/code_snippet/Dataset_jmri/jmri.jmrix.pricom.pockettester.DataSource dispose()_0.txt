@@ -1,0 +1,11 @@
+    public void dispose() {
+        if (readerThread!=null) readerThread.stop();
+
+        if (activeSerialPort != null) activeSerialPort.close();
+        serialStream = null;
+        ostream = null;
+        activeSerialPort = null;
+        portNameVector = null;
+
+        super.dispose();
+    }

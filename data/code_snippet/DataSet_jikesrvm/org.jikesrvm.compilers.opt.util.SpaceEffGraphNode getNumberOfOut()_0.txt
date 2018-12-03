@@ -1,0 +1,7 @@
+  public final int getNumberOfOut() {
+    int count = 0;
+    for (SpaceEffGraphEdge e = _outEdgeStart; e != null; e = e.nextOut) {
+      count++;
+    }
+    return count;
+  }

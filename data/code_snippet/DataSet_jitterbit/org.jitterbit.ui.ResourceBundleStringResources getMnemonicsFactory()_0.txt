@@ -1,0 +1,3 @@
+    public StringWithMnemonicFactory getMnemonicsFactory() {
+        return m_mnemonicFactory;
+    }

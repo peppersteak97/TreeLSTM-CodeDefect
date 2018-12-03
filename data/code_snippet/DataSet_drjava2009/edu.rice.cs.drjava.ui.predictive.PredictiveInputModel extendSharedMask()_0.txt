@@ -1,0 +1,4 @@
+  public void extendSharedMask() {
+    _mask = _strategy.getExtendedSharedMask(_matchingItems, this);
+    updateMatchingStrings(_matchingItems);
+  }

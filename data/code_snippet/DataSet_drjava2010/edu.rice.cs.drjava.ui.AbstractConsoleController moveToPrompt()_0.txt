@@ -1,0 +1,5 @@
+  void moveToPrompt() { 
+    assert EventQueue.isDispatchThread();
+    int pos = getConsoleDoc().getPromptPos();
+    _pane.setCaretPosition(pos);
+  }

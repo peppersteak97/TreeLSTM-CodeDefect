@@ -1,0 +1,20 @@
+    private OneColumnPanel getDescriptorUi() {
+        IJitterPack jp = new IJitterPack() {
+
+            public IJitterPackDescriptor getDescriptor() {
+                return m_descriptor;
+            }
+
+            public File getFile() {
+                return m_file;
+            }
+        };
+        
+        OneColumnPanel p = new OneColumnPanel();
+        p.setOpaque(false, false);
+        p.setInsets(5, 5, 10, 5);
+        p.add(getTableUi(jp));
+        p.setFillOut();
+        p.add(getCommentUi(jp));
+        return p;
+    }

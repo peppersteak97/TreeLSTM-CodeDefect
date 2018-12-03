@@ -1,0 +1,3 @@
+    public void removeNode() throws BackingStoreException {
+        m_userPrefs.removeNode();
+    }

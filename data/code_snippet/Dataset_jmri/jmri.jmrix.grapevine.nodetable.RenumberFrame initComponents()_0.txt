@@ -1,0 +1,34 @@
+    public void initComponents() {
+        setTitle(rb.getString("WindowTitleRenumber"));
+			
+        Container contentPane = getContentPane();
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+	
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p,BoxLayout.X_AXIS));
+        contentPane.add(p);
+
+        p.add(new JLabel(rb.getString("LabelFrom")));
+        from = new JTextField(4);
+        p.add(from);
+        
+        p.add(new JLabel(rb.getString("LabelTo")));
+        to = new JTextField(4);
+        p.add(to);
+                
+        p = new JPanel();
+        p.setLayout(new BoxLayout(p,BoxLayout.X_AXIS));
+        contentPane.add(p);
+
+        JButton b = new JButton(rb.getString("ButtonExec"));
+        p.add(b);
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                execute();
+            }
+        });
+                        
+    	addHelpMenu("package.jmri.jmrix.grapevine.nodetable.RenumberFrame", true);
+
+        pack();
+    }

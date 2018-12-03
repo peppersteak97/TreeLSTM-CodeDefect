@@ -1,0 +1,48 @@
+    public void dispose() {
+        if (log.isDebugEnabled()) log.debug("dispose");
+
+        removeAll();
+
+        readChangesButton.removeItemListener(l1);
+        readAllButton.removeItemListener(l2);
+        writeChangesButton.removeItemListener(l3);
+        writeAllButton.removeItemListener(l4);
+        confirmChangesButton.removeItemListener(l5);
+        confirmAllButton.removeItemListener(l6);
+        l1 = l2 = l3 = l4 = l5 = l6 = null;
+
+        if (_programmingVar != null) _programmingVar.removePropertyChangeListener(this);
+        if (_programmingCV != null) _programmingCV.removePropertyChangeListener(this);
+        if (_programmingIndexedCV != null) _programmingIndexedCV.removePropertyChangeListener(this);
+
+        prop = null;
+        _programmingVar = null;
+        _programmingCV  = null;
+        _programmingIndexedCV = null;
+
+        varList.clear();
+        varList = null;
+        cvList.clear();
+        cvList = null;
+        indexedCvList.clear();
+        indexedCvList = null;
+
+        for (int i=0; i<panelList.size(); i++) {
+            ((JPanel)(panelList.get(i))).removeAll();
+        }
+        panelList.clear();
+        panelList = null;
+
+        for (int i=0; i<fnMapList.size(); i++) {
+            ((FnMapPanel)(fnMapList.get(i))).dispose();
+        }
+        fnMapList.clear();
+        fnMapList = null;
+
+        readChangesButton = null;
+        writeChangesButton = null;
+
+        _cvModel = null;
+        _indexedCvModel = null;
+        _varModel = null;
+    }

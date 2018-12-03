@@ -1,0 +1,8 @@
+    private IServerStatusFetcher asStatusFetcher() {
+        return new IServerStatusFetcher() {
+
+            public void getStatus(StatusDetail detail) {
+                SchedulerConsoleWorker.this.getStatus(detail, false);
+            }
+        };
+    }

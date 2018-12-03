@@ -1,0 +1,4 @@
+    static public SerialTurnoutManager instance() {
+        if (_instance == null) _instance = new SerialTurnoutManager();
+        return _instance;
+    }

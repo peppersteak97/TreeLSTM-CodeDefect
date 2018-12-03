@@ -1,0 +1,14 @@
+    public void show() {
+        if (m_mainWindow.isVisible()) {
+            return;
+        }
+        for (File file : m_xmlFiles) {
+            m_mainWindow.getFileOpener().openFile(file);
+        }
+        EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                m_mainWindow.setVisible(true);
+            }
+        });
+    }

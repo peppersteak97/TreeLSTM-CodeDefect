@@ -1,0 +1,25 @@
+  public void chooseFile() {
+    File selection = (File) _list.getSelectedValue();
+    if (selection != null) {
+      File parent = selection.getParentFile();
+      if (parent != null) {
+        _jfc.setCurrentDirectory(parent);
+      }
+    }
+    else {
+      if (_baseDir!=null) { _jfc.setCurrentDirectory(_baseDir); }
+    }
+
+    _jfc.setFileFilter(_fileFilter);
+
+    File[] c = null;
+    int returnValue = _jfc.showDialog(_parent, null);
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+      c = _jfc.getSelectedFiles();
+    }
+    if (c != null) {
+      for(int i = 0; i < c.length; i++) {
+        _listModel.addElement(c[i]);
+      }
+    }
+  }

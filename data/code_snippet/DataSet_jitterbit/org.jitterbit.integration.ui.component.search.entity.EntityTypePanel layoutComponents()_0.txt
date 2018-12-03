@@ -1,0 +1,9 @@
+    private void layoutComponents() {
+        OneColumnPanel col = new OneColumnPanel(OneColumnPanel.WEST,
+                        OneColumnPanel.HORIZONTAL);
+        col.setInsets(2, 5, 5, 5);
+        col.add(m_includeAll);
+        col.add(m_typeSelectionPanel.getPanel());
+        col.addToParent(m_displayer, null);
+        UiUtils.setOpaqueRecursivelySkipDefaults(m_displayer, false);
+    }

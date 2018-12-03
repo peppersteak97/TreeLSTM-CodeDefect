@@ -1,0 +1,15 @@
+  public void setUp() throws Exception {
+    super.setUp();
+
+    jtc = new JTextField();
+    jtc.setHighlighter(new ReverseHighlighter());
+    
+    p = new ReverseHighlighter.DrJavaHighlightPainter(Color.BLACK);
+    p1 = new ReverseHighlighter.DefaultFrameHighlightPainter(Color.RED, 2);
+    p2 = new ReverseHighlighter.DrJavaHighlightPainter(Color.BLACK);
+    
+    hm = new HighlightManager(jtc);
+    
+    hm.addHighlight(0,0,p);
+    hm.addHighlight(0,1,p);
+  }

@@ -1,0 +1,3 @@
+    public IUiProvider getUi() {
+        return m_ui;
+    }

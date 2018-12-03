@@ -1,0 +1,7 @@
+    public void dispose() {
+
+		if (minuteChangeListener != null) {
+			internalClock.removeMinuteChangeListener( minuteChangeListener );
+			minuteChangeListener = null ;
+		}
+    }

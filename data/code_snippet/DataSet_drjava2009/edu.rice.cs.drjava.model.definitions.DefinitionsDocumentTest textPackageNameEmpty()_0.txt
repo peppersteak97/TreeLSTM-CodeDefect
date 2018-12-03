@@ -1,0 +1,3 @@
+  public void textPackageNameEmpty() throws InvalidPackageException {
+    assertEquals("Package name for empty document", "", _doc.getPackageName());
+  }

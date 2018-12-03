@@ -1,0 +1,17 @@
+    private Container getButtonPanel() {
+        Box buttonPanel = Box.createHorizontalBox();
+        List<JButton> buttons = getButtons();
+        for (int n = 0; n < buttons.size(); ++n) {
+            JButton b = buttons.get(n);
+            if (b == null) {
+                buttonPanel.add(Box.createHorizontalGlue());
+            }
+            else {
+                if (n > 0) {
+                    buttonPanel.add(Box.createHorizontalStrut(5));
+                }
+                buttonPanel.add(b);
+            }
+        }
+        return buttonPanel;
+    }

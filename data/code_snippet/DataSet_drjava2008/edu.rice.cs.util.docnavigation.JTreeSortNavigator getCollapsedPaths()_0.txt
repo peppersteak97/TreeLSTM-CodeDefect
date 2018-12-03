@@ -1,0 +1,15 @@
+  public String[] getCollapsedPaths() {
+    assert (EventQueue.isDispatchThread() || Utilities.TEST_MODE);
+    
+    ArrayList<String> list = new ArrayList<String>();
+    DefaultMutableTreeNode rootNode = (DefaultMutableTreeNode)_model.getRoot();
+    Enumeration nodes = rootNode.depthFirstEnumeration(); /** This warning is expected **/
+    while (nodes.hasMoreElements()) {
+      DefaultMutableTreeNode tn = (DefaultMutableTreeNode)nodes.nextElement();
+      if (tn instanceof InnerNode && ((InnerNode<?, ?>)tn).isCollapsed()) {
+        TreePath tp = new TreePath(tn.getPath());
+        list.add(generatePathString(tp));
+      }
+    }
+    return list.toArray(new String[list.size()]);
+  }

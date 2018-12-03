@@ -1,0 +1,3 @@
+    protected final String getBaseClassName() {
+        return getObject().getName();
+    }

@@ -1,0 +1,11 @@
+  private int getNumberOfOperandsVarUsesOrDefs() {
+    int numOps = ops.length - 1;
+    int minOps;
+    if (operator().hasVarUses()) {
+      minOps = operator.getNumberOfDefs() + operator.getNumberOfPureFixedUses() - 1;
+    } else {
+      minOps = operator.getNumberOfFixedPureDefs() - 1;
+    }
+    while (numOps > minOps && ops[numOps] == null) numOps--;
+    return numOps + 1;
+  }

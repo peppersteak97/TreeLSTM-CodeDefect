@@ -1,0 +1,9 @@
+    private void addInputFields() {
+        addInputPanel(m_topPanel);
+        addInputPanel(m_occurrencePanel);
+        addInputPanel(m_dailyFrequencyPanel);
+        addInputPanel(m_durationPanel);
+        if (TIMEZONE_SUPPORT) {
+            addInputPanel(m_timeZoneSelector);
+        }
+    }

@@ -1,0 +1,17 @@
+  static void emitExitStatusCodes() {
+    pln("/* Automatically generated from the exitStatus declarations in ExitStatus.java */");
+    pln("const int EXIT_STATUS_EXECUTABLE_NOT_FOUND                 = " + VM.EXIT_STATUS_EXECUTABLE_NOT_FOUND + ";");
+    pln("const int EXIT_STATUS_COULD_NOT_EXECUTE                    = " + VM.EXIT_STATUS_COULD_NOT_EXECUTE + ";");
+    pln("const int EXIT_STATUS_MISC_TROUBLE                         = " + VM.EXIT_STATUS_MISC_TROUBLE + ";");
+    pln("const int EXIT_STATUS_IMPOSSIBLE_LIBRARY_FUNCTION_ERROR    = " +
+        VM.EXIT_STATUS_IMPOSSIBLE_LIBRARY_FUNCTION_ERROR + ";");
+    pln("const int EXIT_STATUS_SYSCALL_TROUBLE                      = " + VM.EXIT_STATUS_SYSCALL_TROUBLE + ";");
+    pln("const int EXIT_STATUS_TIMER_TROUBLE                        = " + VM.EXIT_STATUS_TIMER_TROUBLE + ";");
+    pln("const int EXIT_STATUS_UNSUPPORTED_INTERNAL_OP              = " + VM.EXIT_STATUS_UNSUPPORTED_INTERNAL_OP + ";");
+    pln("const int EXIT_STATUS_UNEXPECTED_CALL_TO_SYS               = " + VM.EXIT_STATUS_UNEXPECTED_CALL_TO_SYS + ";");
+    pln("const int EXIT_STATUS_DYING_WITH_UNCAUGHT_EXCEPTION        = " +
+        VM.EXIT_STATUS_DYING_WITH_UNCAUGHT_EXCEPTION + ";");
+    pln("const int EXIT_STATUS_BOGUS_COMMAND_LINE_ARG               = " + VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG + ";");
+    pln("const int EXIT_STATUS_JNI_TROUBLE                          = " + VM.EXIT_STATUS_JNI_TROUBLE + ";");
+    pln("const int EXIT_STATUS_BAD_WORKING_DIR                      = " + VM.EXIT_STATUS_BAD_WORKING_DIR + ";");
+  }

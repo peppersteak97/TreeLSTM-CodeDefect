@@ -1,0 +1,33 @@
+	public void initComponents() throws Exception {
+
+		jLabel1.setText("Command:");
+		jLabel1.setVisible(true);
+
+		sendButton.setText("Send");
+		sendButton.setVisible(true);
+		sendButton.setToolTipText("Send packet");
+
+		packetTextField.setText("");
+		packetTextField.setToolTipText("Enter command as ASCII string (hex not yet available)");
+		packetTextField.setMaximumSize(
+			new Dimension(packetTextField.getMaximumSize().width,
+						  packetTextField.getPreferredSize().height
+				)
+			);
+
+		setTitle("Send SRCP command");
+		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+		getContentPane().add(jLabel1);
+		getContentPane().add(packetTextField);
+		getContentPane().add(sendButton);
+
+
+		sendButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				sendButtonActionPerformed(e);
+			}
+		});
+
+		pack();
+	}

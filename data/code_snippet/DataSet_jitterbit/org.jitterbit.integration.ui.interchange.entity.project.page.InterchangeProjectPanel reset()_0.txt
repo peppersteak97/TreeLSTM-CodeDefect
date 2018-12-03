@@ -1,0 +1,6 @@
+    public void reset() {
+        m_nameField.setValue(m_project.getName());
+        m_nameField.getInputComponent().setCaretPosition(0);
+        m_descriptionField.setValue(m_project.getDescription());
+        m_descriptionField.getInputComponent().setCaretPosition(0);
+    }

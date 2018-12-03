@@ -1,0 +1,6 @@
+  public RegionManager<MovingDocumentRegion> createFindResultsManager() {
+    ConcreteRegionManager<MovingDocumentRegion> rm = new ConcreteRegionManager<MovingDocumentRegion>();
+    _findResultsManagers.add(rm);
+
+    return rm;
+  }

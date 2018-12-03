@@ -1,0 +1,16 @@
+    public void initComponents() {
+        setTitle(rb.getString("WindowTitle"));
+			
+        Container contentPane = getContentPane();
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+			
+
+        p = new NodeTablePane();
+        p.initComponents();
+        contentPane.add(p);
+        
+    	addHelpMenu("package.jmri.jmrix.grapevine.nodetable.NodeTableFrame", true);
+
+        SerialTrafficController.instance().addSerialListener(p);
+        pack();
+    }

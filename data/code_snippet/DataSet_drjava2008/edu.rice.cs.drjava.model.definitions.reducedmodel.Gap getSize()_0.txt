@@ -1,0 +1,1 @@
+  public int getSize() { return _size; }

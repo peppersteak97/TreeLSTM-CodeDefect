@@ -1,0 +1,19 @@
+    protected List<JButton> getButtons() {
+        List<JButton> btns = new ArrayList<JButton>();
+
+        ServerManager sm = ServerManager.getManager();
+        if (m_loginWrapper != null) {
+            sm.removeServerConnectionListener(m_loginWrapper);
+        }
+        IApplicationAction login = WindowActionFactory.LOGIN.get(getWindow());
+        m_loginWrapper = new LoginActionWrapper(login, WindowActionDictionary.DICTIONARY);
+        sm.addServerConnectionListener(m_loginWrapper);
+        btns.add(createButton(m_loginWrapper));
+        
+        IApplicationAction userProfile = WindowActionFactory.USER_PROFILE.get(getWindow());
+        btns.add(createButton(userProfile, WindowActionDictionary.DICTIONARY));
+
+        addExtensionsToButtonList(btns, ToolBarExtensionPoint.EXTENSION_POINT_1);
+
+        return btns;
+    }

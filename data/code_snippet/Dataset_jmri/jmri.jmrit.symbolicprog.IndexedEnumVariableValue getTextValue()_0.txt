@@ -1,0 +1,3 @@
+    public String getTextValue() {
+        return _value.getSelectedItem().toString();
+    }

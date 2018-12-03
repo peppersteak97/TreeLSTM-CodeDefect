@@ -1,0 +1,8 @@
+  private void addLists() {
+    _fontList = new NwList(GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames());
+    _styleList = new NwList(STYLES);
+    _sizeList = new NwList(SIZES);
+    getContentPane().add(_fontList);
+    getContentPane().add(_styleList);
+    getContentPane().add(_sizeList);
+  }

@@ -1,0 +1,21 @@
+    void sendSequence() {
+        int mfgval = Integer.valueOf(mfg.getText()).intValue();
+        int developerval = Integer.valueOf(developer.getText()).intValue();
+        int prodval = Integer.valueOf(product.getText()).intValue();
+        int hardval = Integer.valueOf(hardware.getText()).intValue();
+        int softval = Integer.valueOf(software.getText()).intValue();
+        int control = 0;
+
+        if (checksoftwareless.isSelected()) control |= 0x04;
+
+        if (checkhardwareexact.isSelected()) control |= 0x01;
+        else if (checkhardwaregreater.isSelected()) control |= 0x03;
+
+        sendOne(PXCT2SETUP, mfgval, prodval&0xff ,hardval,softval,
+                control,0,developerval,prodval/256);
+
+        delayval = Integer.valueOf(delay.getText()).intValue();
+        eestartval = Integer.valueOf(eestart.getText(),16).intValue();
+
+        new Thread(new Sender()).start();
+    }

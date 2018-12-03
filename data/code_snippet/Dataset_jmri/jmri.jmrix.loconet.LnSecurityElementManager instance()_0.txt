@@ -1,0 +1,4 @@
+    public static LnSecurityElementManager instance() {
+        if (mInstance == null) mInstance = new LnSecurityElementManager();
+        return mInstance;
+    }

@@ -1,0 +1,1 @@
+  public boolean useEntireColumn() { return _entireColumn; }

@@ -1,0 +1,6 @@
+    void removeWaitNode() {
+        m_waitNode.setUserObject(m_waitNodeText);
+        if (m_waitNode.getParent() == m_root) {
+            getModel().removeNode(m_waitNode);
+        }
+    }

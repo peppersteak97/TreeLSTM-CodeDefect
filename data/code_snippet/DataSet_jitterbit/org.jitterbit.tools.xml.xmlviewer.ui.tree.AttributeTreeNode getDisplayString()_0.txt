@@ -1,0 +1,8 @@
+	public String getDisplayString() {
+		StringBuffer sb = new StringBuffer("[A] ");
+		sb.append( getXmlAttribute().getName() );
+		sb.append(" = \"");
+		sb.append( getXmlAttribute().getNodeValue() );
+		sb.append("\"");
+		return sb.toString();
+	}

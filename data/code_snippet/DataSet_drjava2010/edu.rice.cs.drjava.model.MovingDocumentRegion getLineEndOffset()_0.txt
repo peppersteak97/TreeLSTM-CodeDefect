@@ -1,0 +1,1 @@
+  public int getLineEndOffset() { return _lineEndPos.getOffset(); }

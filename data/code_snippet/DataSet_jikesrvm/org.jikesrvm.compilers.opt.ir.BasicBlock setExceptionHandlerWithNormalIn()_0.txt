@@ -1,0 +1,3 @@
+  public final void setExceptionHandlerWithNormalIn() {
+    flags |= EXCEPTION_HANDLER_WITH_NORMAL_IN;
+  }

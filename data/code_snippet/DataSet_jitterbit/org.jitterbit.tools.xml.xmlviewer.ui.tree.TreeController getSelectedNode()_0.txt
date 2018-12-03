@@ -1,0 +1,11 @@
+	public XmlTreeNode getSelectedNode() {
+	    if( m_tree != null ) {
+	        TreePath[] paths = m_tree.getSelectionPaths();
+	        if( paths != null && paths.length > 0 ) {
+	            Object o = paths[0].getLastPathComponent();
+	            if( o instanceof XmlTreeNode )
+	                return (XmlTreeNode)o;
+	        }
+	    }
+	    return null;
+	}

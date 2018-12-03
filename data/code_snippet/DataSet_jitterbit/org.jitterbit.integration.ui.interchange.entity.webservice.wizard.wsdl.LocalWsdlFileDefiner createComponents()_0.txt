@@ -1,0 +1,19 @@
+    private void createComponents() {
+        FileSelectorPanelFactory factory = FileSelectorFactory.getFactory();
+        IFileChooser fc = new DefaultFileChooser();
+        IRecentFileStore recentFiles = getRecentFileStore();
+        m_fileSelector = factory.recentFilesPanel(
+                        fc, 
+                        IFileSelectorPanel.OPEN, 
+                        PackageResources.LocalWsdlFileDefiner.BROWSE_DIALOG_TITLE, 
+                        IntegrationUiUtils.getActiveFrame(),
+                        recentFiles);
+        m_fileSelector.setFileFilter(new SuffixFileChooserFilter(new String[] { "wsdl" }));
+        m_fileSelector.setUseTitleLabel(false);
+        m_fileSelector.addInputChangeListener(new IInputChangeListener() {
+
+            public void inputChanged(InputChangeEvent e) {
+                fireInputChanged();
+            }
+        });
+    }

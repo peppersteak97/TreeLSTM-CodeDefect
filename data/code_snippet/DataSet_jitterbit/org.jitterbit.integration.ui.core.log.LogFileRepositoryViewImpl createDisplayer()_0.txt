@@ -1,0 +1,4 @@
+    private void createDisplayer() {
+        m_displayer = new JPanel(new BorderLayout());
+        ContainerDecor.decorate(m_treeUi, m_displayer, BorderLayout.CENTER);
+    }

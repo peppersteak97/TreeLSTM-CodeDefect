@@ -1,0 +1,3 @@
+    protected String getPageTitle() {
+        return PackageResources.Wizard.PAGE_TITLE;
+    }

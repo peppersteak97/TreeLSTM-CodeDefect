@@ -1,0 +1,10 @@
+    static TreeNode getRootNode() {
+        Object o = new Object() {
+
+            @Override
+            public String toString() {
+                return ROOT_NODE;
+            }
+        };
+        return new TreeNode(null, o, true);
+    }

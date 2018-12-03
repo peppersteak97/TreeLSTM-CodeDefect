@@ -1,0 +1,7 @@
+  public void testNotEmptyOnStartup() throws BadLocationException {
+    assertNumOpenDocs(1);
+    OpenDefinitionsDocument doc = getSDModel().getActiveDocument();
+    assertModified(false, doc);
+    assertLength(0, doc);
+    _log.log("testNotEmptyOnStartup completed");
+  }

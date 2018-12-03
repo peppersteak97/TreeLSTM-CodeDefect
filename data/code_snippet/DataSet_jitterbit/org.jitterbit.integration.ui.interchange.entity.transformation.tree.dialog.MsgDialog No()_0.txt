@@ -1,0 +1,3 @@
+	void No(){
+		m_isCancelled=true;
+	}

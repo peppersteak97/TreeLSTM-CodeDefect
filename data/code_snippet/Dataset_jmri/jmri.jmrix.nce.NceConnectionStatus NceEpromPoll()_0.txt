@@ -1,0 +1,123 @@
+	public NceMessage NceEpromPoll() {
+		
+		if (NceMessage.getCommandOptions() <= NceMessage.OPTION_1999)
+			return null;
+		
+		if (epromState == CHECK_STATE) { 
+			if (NceTrafficController.hasTimeouts()) {
+				epromState = INIT_STATE;
+			} else {
+				return null;
+			}
+		}
+		
+		if (epromState == CHECK_OK) {
+			ConnectionStatus.instance().setConnectionState(
+					NceTrafficController.instance().getPortName(),
+					ConnectionStatus.CONNECTION_UP);
+			epromState = CHECK_STATE;
+			return null;
+		}
+
+		if (epromState != INIT_STATE)
+			ConnectionStatus.instance().setConnectionState(
+					NceTrafficController.instance().getPortName(),
+					ConnectionStatus.CONNECTION_DOWN);
+			
+		if (epromState == WAIT_STATE) {
+			log.warn("Incorrect or no response from NCE command station");
+
+			if (JOptPane_WARNING_MESSAGES_ENABLED)
+				JOptionPane.showMessageDialog(null,
+								"JMRI could not establish communication with NCE command station. \n"
+										+ "Check the \"Serial port:\" and \"Baud rate:\" in Edit -> Preferences. \n"
+										+ "Confirm cabling and that the NCE system is powered up.",
+								"Warning", JOptionPane.WARNING_MESSAGE);
+
+			epromState = WARN1_STATE;
+		}
+		
+		else if (epromState == WARN1_STATE){
+			log.warn("No response from NCE command station");
+		}
+		
+		if (epromState == ERROR1_STATE) {
+			if (JOptPane_ERROR_MESSAGES_ENABLED)
+				JOptionPane.showMessageDialog(null,
+								"Wrong revision of Command Station EPROM selected in Preferences \n"
+										+ "Change the Command Station EPROM selection to \"2004 or earlier\"",
+								"Error", JOptionPane.ERROR_MESSAGE);
+			epromState = CHECK_STATE;
+			return null;
+		}
+
+		if (epromState == ERROR2_STATE) {
+			if (JOptPane_ERROR_MESSAGES_ENABLED)
+				JOptionPane.showMessageDialog(null,
+								"Wrong revision of Command Station EPROM selected in Preferences \n"
+										+ "Change the Command Station EPROM selection to \"2006 or later\"",
+								"Error", JOptionPane.ERROR_MESSAGE);
+			epromState = CHECK_STATE;
+			return null;
+		}
+
+		if (epromState == WARN2_STATE) {
+			log.warn("Detected 2007 March EPROM which doesn't provide reliable MONITORING feedback for turnouts");
+			if (JOptPane_WARNING_MESSAGES_ENABLED)
+				JOptionPane.showMessageDialog(null, "The 2007 March EPROM doesn't provide reliable feedback," +
+						" contact NCE if you want to use MONITORING feedback ",
+						"Warning", JOptionPane.INFORMATION_MESSAGE);
+			ConnectionStatus.instance().setConnectionState(
+					NceTrafficController.instance().getPortName(),
+					ConnectionStatus.CONNECTION_UP);
+			epromState = CHECK_STATE;
+			return null;
+		}
+
+		if (epromState == ERROR4_STATE) {
+			if (JOptPane_ERROR_MESSAGES_ENABLED)
+				JOptionPane.showMessageDialog(null,
+								"Wrong NCE layout connection selected in Preferences. "
+										+ "Change the layout connection to \"NCE\" or \"NCE via network\".",
+								"Error", JOptionPane.ERROR_MESSAGE);
+			epromState = CHECK_STATE;
+			return null;
+		}
+
+		if (epromState == ERROR5_STATE) {
+			if (JOptPane_ERROR_MESSAGES_ENABLED)
+				JOptionPane.showMessageDialog(null,
+								"Wrong NCE layout connection selected in Preferences. "
+										+ "Change the layout connection to \"NCE USB\" and the system to \"Power Cab\".",
+								"Error", JOptionPane.ERROR_MESSAGE);
+			epromState = CHECK_STATE;
+			return null;
+		}
+
+		if (epromState == ERROR6_STATE) {
+			if (JOptPane_ERROR_MESSAGES_ENABLED)
+				JOptionPane.showMessageDialog(null,
+								"Wrong NCE layout connection selected in Preferences. "
+										+ "Change the layout connection to \"NCE USB\" and the system to \"Smart Booster SB3\".",
+								"Error", JOptionPane.ERROR_MESSAGE);
+			epromState = CHECK_STATE;
+			return null;
+		}
+
+		if (epromState == ERROR7_STATE) {
+			if (JOptPane_ERROR_MESSAGES_ENABLED)
+				JOptionPane.showMessageDialog(null,
+								"Wrong NCE layout connection selected in Preferences. "
+										+ "Change the layout connection to \"NCE USB\" and the system to \"Power Pro\".",
+								"Error", JOptionPane.ERROR_MESSAGE);
+			epromState = CHECK_STATE;
+			return null;
+		}
+
+			epromState = WAIT_STATE;
+
+		byte[] bl = NceBinaryCommand.getNceEpromRev();
+		NceMessage m = NceMessage.createBinaryMessage(bl, REPLY_LEN);
+		return m;
+
+	}

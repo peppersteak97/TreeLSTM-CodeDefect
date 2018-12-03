@@ -1,0 +1,3 @@
+	public Rectangle getDraggingArea() {
+		return m_pnlDraggedArea.getBounds();
+	}

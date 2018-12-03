@@ -1,0 +1,24 @@
+  public void testMultiLineInput() throws IOException {
+    InputStreamRedirector isr = new InputStreamRedirector() {
+      private boolean alreadyCalled = false;
+
+      protected String _getInput() {
+        if (alreadyCalled) {
+          throw new RuntimeException("_getInput() has already been called!");
+        }
+        alreadyCalled = true;
+        return "Line 1\nLine 2\n";
+      }
+    };
+    BufferedReader br = new BufferedReader(new InputStreamReader(isr));
+    assertEquals("First read calls _getInput()", "Line 1", br.readLine());
+    assertEquals("First read does not call _getInput()", "Line 2", br.readLine());
+    try {
+      br.readLine();
+      fail("_getInput() should be called again!");
+    }
+    catch(RuntimeException re) {
+      assertEquals("Should have thrown correct exception.",
+                   "_getInput() has already been called!", re.getMessage());
+    }
+  }

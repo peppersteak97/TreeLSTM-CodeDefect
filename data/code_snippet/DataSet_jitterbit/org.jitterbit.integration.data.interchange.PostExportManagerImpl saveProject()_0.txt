@@ -1,0 +1,12 @@
+    private void saveProject() {
+        InterchangeProjectLock.lock();
+        try {
+            m_project.saveToDisk();
+        }
+        catch (InterchangeSavingException ex) {
+            handleSaveError(ex);
+        }
+        finally {
+            InterchangeProjectLock.unlock();
+        }
+    }

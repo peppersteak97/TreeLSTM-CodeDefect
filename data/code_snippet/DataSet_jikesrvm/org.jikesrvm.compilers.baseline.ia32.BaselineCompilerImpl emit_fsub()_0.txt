@@ -1,0 +1,5 @@
+  protected final void emit_fsub() {
+    if (SSE2_BASE) {
+    } else {
+    }
+  }

@@ -1,0 +1,6 @@
+    private void layoutComponents() {
+        TwoColumnPanel p = new TwoColumnPanel();
+        p.addRow(m_btn_type_A, m_panelA.getUi());
+        p.addRow(m_btn_type_B, m_panelB.getUi());
+        wrap(p);
+    }

@@ -1,0 +1,3 @@
+    protected final InterchangeLauncher getLauncher() {
+        return m_launcher;
+    }

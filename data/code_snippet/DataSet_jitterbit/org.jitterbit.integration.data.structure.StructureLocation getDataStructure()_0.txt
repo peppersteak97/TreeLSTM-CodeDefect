@@ -1,0 +1,3 @@
+    public DataStructure getDataStructure() {
+        return m_structure;
+    }

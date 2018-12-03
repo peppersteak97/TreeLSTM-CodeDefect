@@ -1,0 +1,17 @@
+  public WeakHashMap<WrappedPosition, Integer> getWrappedPositionOffsets() {
+    LinkedList<WeakReference<WrappedPosition>> newList = new LinkedList<WeakReference<WrappedPosition>>();
+    synchronized(_wrappedPosListLock) {
+      if (_wrappedPosList == null) { _wrappedPosList = new LinkedList<WeakReference<WrappedPosition>>(); }
+      WeakHashMap<WrappedPosition, Integer> ret = new WeakHashMap<WrappedPosition, Integer>(_wrappedPosList.size());
+      
+      for (WeakReference<WrappedPosition> wr: _wrappedPosList) {
+        if (wr.get() != null)  {
+          newList.add(wr);
+          ret.put(wr.get(), wr.get().getOffset());
+        }
+      }
+      _wrappedPosList.clear();
+      _wrappedPosList = newList;  
+      return ret;
+    }
+  }

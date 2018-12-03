@@ -1,0 +1,31 @@
+    private void alarmDisplayStates() {
+		int priorState = 0;
+		do {
+			if (log.isDebugEnabled() && false){
+				log.debug("alarmDisplayStates: before: " + alarmDisplayStateCounter + " " + internalClock.getTime());
+			}
+			priorState = alarmDisplayStateCounter;
+	    	switch (alarmDisplayStateCounter) {
+	    	case 0:
+	    		break;
+	    	case 1:
+	    		internalClockStatusCheck();
+	            issueReadOnlyRequest();
+	    		alarmDisplayStateCounter++;
+	    		break;
+	    	case 2:
+	    		if (!waitingForCmdRead) {
+	    			alarmDisplayStateCounter++;
+	    		}
+	    		break;
+	    	case 3:
+	    		alarmDisplayStateCounter = 0;
+	            updateNceClockDisplay();
+	            updateInternalClockDisplay();
+	    		break;
+	    	}
+			if (log.isDebugEnabled() && false){
+				log.debug("alarmDisplayStates: after: " + alarmDisplayStateCounter + " " + internalClock.getTime());
+			}
+		} while (priorState != alarmDisplayStateCounter);
+    }

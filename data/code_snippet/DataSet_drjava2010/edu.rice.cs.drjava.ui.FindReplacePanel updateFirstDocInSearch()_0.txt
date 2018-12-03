@@ -1,0 +1,3 @@
+  public void updateFirstDocInSearch() {
+    _machine.setFirstDoc(_model.getActiveDocument());
+  }

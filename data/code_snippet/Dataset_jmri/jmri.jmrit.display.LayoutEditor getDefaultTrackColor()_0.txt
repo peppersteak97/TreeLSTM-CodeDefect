@@ -1,0 +1,1 @@
+	public String getDefaultTrackColor() {return colorToString(defaultTrackColor);}

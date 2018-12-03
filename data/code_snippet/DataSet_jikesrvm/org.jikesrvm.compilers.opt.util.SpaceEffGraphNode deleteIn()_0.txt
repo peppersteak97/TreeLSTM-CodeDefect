@@ -1,0 +1,6 @@
+  public final void deleteIn() {
+    for (SpaceEffGraphEdge e = _inEdgeStart; e != null; e = e.nextIn) {
+      e.fromNode().removeOut(e);
+    }
+    clearIn();
+  }

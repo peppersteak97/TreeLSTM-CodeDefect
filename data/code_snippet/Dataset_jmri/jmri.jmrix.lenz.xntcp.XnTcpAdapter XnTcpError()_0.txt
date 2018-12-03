@@ -1,0 +1,18 @@
+        synchronized protected void XnTcpError()
+        {
+			// If the error message was already posted to the SWING thread
+			// simply ignore this call
+			if(opened) {
+			// Post an error message routine to the SWING thread
+				javax.swing.SwingUtilities.invokeLater( new Runnable() {
+					public void run() {
+					ConnectionStatus.instance().setConnectionState(XnTcpAdapter.instance().getCurrentPortName(), ConnectionStatus.CONNECTION_DOWN);
+					ResourceBundle rb = ResourceBundle.getBundle("jmri.jmrix.lenz.xntcp.XnTcpBundle");
+					javax.swing.JOptionPane.showMessageDialog(null,rb.getString("Error1"), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+				}}) ;
+				// Clear open status, in order to avoid issuing the error message
+				// more than than once.
+				opened = false;
+				log.debug("XnTcpError: TCP/IP communication dropped");
+			}
+        }

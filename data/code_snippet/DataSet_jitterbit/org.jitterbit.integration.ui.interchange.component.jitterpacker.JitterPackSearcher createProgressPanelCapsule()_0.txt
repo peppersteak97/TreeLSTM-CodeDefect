@@ -1,0 +1,6 @@
+    private JComponent createProgressPanelCapsule() {
+        IComponentDecor decor = ComponentDecorFactory.invisible(m_progressPanel);
+        m_progressPanelCapsule = decor.getUi();
+        m_progressPanelCapsule.setVisible(false);
+        return m_progressPanelCapsule;
+    }

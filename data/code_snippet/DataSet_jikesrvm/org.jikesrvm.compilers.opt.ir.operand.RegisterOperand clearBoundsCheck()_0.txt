@@ -1,0 +1,1 @@
+  public void clearBoundsCheck() { flags2 &= ~BOUNDS_CHECK; }

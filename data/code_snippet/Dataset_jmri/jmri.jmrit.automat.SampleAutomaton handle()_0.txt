@@ -1,0 +1,11 @@
+    protected boolean handle() {
+        log.debug("Waiting for state change");
+
+        waitSensorChange(now, sensor);
+
+        now = sensor.getKnownState();
+        log.debug("Found new state: "+now);
+
+        setTurnout(now);
+
+    }

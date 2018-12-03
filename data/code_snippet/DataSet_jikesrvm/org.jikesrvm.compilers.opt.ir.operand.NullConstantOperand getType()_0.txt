@@ -1,0 +1,3 @@
+  public TypeReference getType() {
+    return TypeReference.NULL_TYPE;
+  }

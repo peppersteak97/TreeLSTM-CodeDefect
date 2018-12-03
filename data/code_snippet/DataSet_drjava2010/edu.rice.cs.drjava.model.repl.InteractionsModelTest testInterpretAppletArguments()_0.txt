@@ -1,0 +1,11 @@
+  public void testInterpretAppletArguments() {
+    _log.log("testInterpretAppletArguments started");
+    _assertAppletTransformation("applet Foo a b c", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"a\",\"b\",\"c\"), 400, 300);");
+    _assertAppletTransformation("applet Foo \"a b c\"", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"a b c\"), 400, 300);");
+    _assertAppletTransformation("applet Foo \"a b\"c d", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"a bc\",\"d\"), 400, 300);");
+    
+    _assertAppletTransformation("applet Foo c:\\\\file.txt", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"c:\\\\file.txt\"), 400, 300);");
+    
+    _assertAppletTransformation("applet Foo /home/user/file", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"/home/user/file\"), 400, 300);");
+    _log.log("testInterpretAppletArguments ended");
+  }

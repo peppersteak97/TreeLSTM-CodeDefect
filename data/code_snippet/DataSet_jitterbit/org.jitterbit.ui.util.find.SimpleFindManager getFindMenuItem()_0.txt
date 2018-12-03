@@ -1,0 +1,3 @@
+    public JMenuItem getFindMenuItem() {
+        return new JMenuItem(m_findAction);
+    }

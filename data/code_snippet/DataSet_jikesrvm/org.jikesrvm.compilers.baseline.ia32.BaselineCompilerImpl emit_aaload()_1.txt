@@ -1,0 +1,6 @@
+  protected final void emit_aaload() {
+    if (MemoryManagerConstants.NEEDS_READ_BARRIER) {
+      Barriers.compileArrayLoadBarrier(asm, true);
+    } else {
+    }
+  }

@@ -1,0 +1,3 @@
+    public boolean getF25() {
+        return f25;
+    }

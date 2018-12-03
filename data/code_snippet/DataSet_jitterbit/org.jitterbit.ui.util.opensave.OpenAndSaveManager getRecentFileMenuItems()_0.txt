@@ -1,0 +1,3 @@
+	public List<JMenuItem> getRecentFileMenuItems() {
+	    return new ArrayList<JMenuItem>(m_liRecentFiles);
+	}

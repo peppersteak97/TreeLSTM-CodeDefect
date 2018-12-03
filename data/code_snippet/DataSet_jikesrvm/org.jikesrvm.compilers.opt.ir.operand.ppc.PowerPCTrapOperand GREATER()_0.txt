@@ -1,0 +1,3 @@
+  public static PowerPCTrapOperand GREATER() {
+    return new PowerPCTrapOperand(GREATER);
+  }

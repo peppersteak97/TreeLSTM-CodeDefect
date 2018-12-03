@@ -1,0 +1,3 @@
+    public final TitledList getSourceList() {
+        return m_sourceList;
+    }

@@ -1,0 +1,3 @@
+  public boolean hasAllocation() {
+    return (summaryFlags & HAS_ALLOCATION) != 0;
+  }

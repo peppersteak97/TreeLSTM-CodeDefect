@@ -1,0 +1,6 @@
+  private void _toggleMainClass() {
+    _mainClassField.setEnabled(_makeExecutable.isSelected() && (_jarClasses.isSelected() || _jarAll.isSelected()));
+    _mainClassLabel.setEnabled(_makeExecutable.isSelected() && (_jarClasses.isSelected() || _jarAll.isSelected()));
+    
+    _customManifest.setEnabled(!_makeExecutable.isSelected() && (_jarClasses.isSelected() || _jarAll.isSelected()));
+  }

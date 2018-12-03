@@ -1,0 +1,6 @@
+    protected void deactivated() {
+        super.deactivated();
+        if (m_validator != null) {
+            m_validator.setEnabled(false);
+        }
+    }

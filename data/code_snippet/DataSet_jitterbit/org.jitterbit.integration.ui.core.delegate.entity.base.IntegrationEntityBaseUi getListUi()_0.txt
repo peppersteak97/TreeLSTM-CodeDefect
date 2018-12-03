@@ -1,0 +1,6 @@
+    public IListDecorator getListUi() {
+        if (m_listUi == null) {
+            m_listUi = new IntegrationEntityListDecorator(this);
+        }
+        return m_listUi;
+    }

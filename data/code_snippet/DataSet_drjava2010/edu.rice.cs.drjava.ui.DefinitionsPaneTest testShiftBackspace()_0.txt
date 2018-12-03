@@ -1,0 +1,38 @@
+  public void testShiftBackspace() throws BadLocationException {
+    final DefinitionsPane defPane = _frame.getCurrentDefPane();
+    final OpenDefinitionsDocument doc = defPane.getOpenDefDocument();
+  
+    _assertDocumentEmpty(doc, "before testing");
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        doc.append("test", null);
+        defPane.setCaretPosition(4);
+        
+        defPane.processKeyEvent(new KeyEvent(defPane, PRESSED, (new Date()).getTime(), SHIFT, DEL_PREV, UNDEFINED));
+        _log.log("first key event processed");
+        defPane.processKeyEvent(new KeyEvent(defPane, RELEASED, (new Date()).getTime(), SHIFT, DEL_PREV, UNDEFINED));
+        _frame.validate();
+      }
+    });
+    Utilities.clearEventQueue();
+    
+    _log.log("second key event processed");
+    _assertDocumentContents(doc, "tes", "Did not delete on shift+backspace");
+    _log.log("Halfway through testShiftBackspace");
+    
+     
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        
+        defPane.setCaretPosition(1);
+        defPane.processKeyEvent(new KeyEvent(defPane, PRESSED, (new Date()).getTime(), SHIFT, DEL_NEXT, UNDEFINED));
+        defPane.processKeyEvent(new KeyEvent(defPane, RELEASED, (new Date()).getTime(), SHIFT, DEL_NEXT, UNDEFINED));
+        _frame.validate();
+      }
+    });
+    Utilities.clearEventQueue();
+    _assertDocumentContents(doc, "ts", "Did not delete on shift+delete");
+    _log.log("testShiftBackSpace completed");
+   
+  }

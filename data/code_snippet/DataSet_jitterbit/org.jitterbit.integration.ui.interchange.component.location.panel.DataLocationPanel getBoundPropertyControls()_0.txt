@@ -1,0 +1,3 @@
+    public IBoundProperty[] getBoundPropertyControls() {
+        return m_boundPropertyControls;
+    }

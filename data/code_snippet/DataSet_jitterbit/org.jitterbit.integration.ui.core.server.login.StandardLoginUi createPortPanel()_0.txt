@@ -1,0 +1,9 @@
+    private void createPortPanel() {
+        m_portPanel = new PortPanel((JTextField) m_serverComboBox.getEditor().getEditorComponent());
+        m_portPanel.addChangeListener(new ChangeListener() {
+
+            public void stateChanged(ChangeEvent e) {
+                onStateChanged();
+            }
+        });
+    }

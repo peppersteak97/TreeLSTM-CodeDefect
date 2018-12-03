@@ -1,0 +1,7 @@
+    private void getAvailableProjects() {
+        AvailableProjectsRetriever job = new AvailableProjectsRetriever(m_projectDisplayer);
+        IUiJobProgressDisplayer displayer = 
+            UiJobProgressDialogDisplayer.createDisplayer(job);
+        IntegrationUi.getUi().getJobManager().submitForParallellProcessing(
+                        job, KongaListUtils.asList(displayer));
+    }

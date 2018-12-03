@@ -1,0 +1,64 @@
+  public void testMultilineCommentOrUncommentAfterScroll() throws BadLocationException {
+    
+    final DefinitionsPane pane = _frame.getCurrentDefPane();
+    final OpenDefinitionsDocument doc = pane.getOpenDefDocument();
+    final String text =
+      "public class stuff {\n" +
+      "  private int _int;\n" +
+      "  private Bar _bar;\n" +
+      "  public void foo() {\n" +
+      "    _bar.baz(_int);\n" +
+      "  }\n" +
+      "}\n";
+    
+    final String commented =
+    
+    
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        doc.append(text, null);
+        assertEquals("insertion", text, doc.getText());
+        pane.endCompoundEdit();
+        doc.commentLines(0, doc.getLength()); 
+
+        assertEquals("commenting", commented, doc.getText());
+        int newPos = doc.getCurrentLocation();
+
+        doc.getUndoManager().undo(); 
+        assertEquals("undo commenting", text, doc.getText());
+
+        assertEquals("undoing commenting restores cursor position", 0, doc.getCurrentLocation());
+        
+        doc.getUndoManager().redo();
+        assertEquals("redo commenting", commented, doc.getText());
+        assertEquals("redoing commenting restores cursor position", newPos, doc.getCurrentLocation());
+
+        pane.endCompoundEdit(); 
+        doc.uncommentLines(0, doc.getLength()); 
+        assertEquals("uncommenting", text, doc.getText());
+
+        _redoPos = doc.getCurrentLocation();  
+    
+        doc.getUndoManager().undo();
+        
+      } });
+    
+
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        
+    
+        assertEquals("undo uncommenting", commented, doc.getText());
+
+        assertEquals("undoing uncommenting restores cursor position", 0, doc.getCurrentLocation());
+    
+        doc.getUndoManager().redo();
+        assertEquals("redo uncommenting",text, doc.getText());
+        assertEquals("redoing uncommenting restores cursor position", _redoPos, doc.getCurrentLocation());
+                                                        
+      }
+    });
+    
+    _log.log("testMultiLineCommentOrUncommentAfterScroll completed");
+  }

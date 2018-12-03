@@ -1,0 +1,3 @@
+    public String getLogin() {
+        return m_loginField.getValue().trim();
+    }

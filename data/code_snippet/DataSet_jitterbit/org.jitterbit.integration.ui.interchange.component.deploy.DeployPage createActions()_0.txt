@@ -1,0 +1,4 @@
+    private void createActions() {
+        m_refreshAction = new RefreshAction();
+        m_deployTriggeringAction = new DeployAction();
+    }

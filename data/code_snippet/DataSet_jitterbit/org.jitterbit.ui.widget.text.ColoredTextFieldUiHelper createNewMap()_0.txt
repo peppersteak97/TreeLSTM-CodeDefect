@@ -1,0 +1,3 @@
+    private static Map<IInterval, Color> createNewMap() {
+        return new TreeMap<IInterval, Color>(new IntervalComparator());
+    }

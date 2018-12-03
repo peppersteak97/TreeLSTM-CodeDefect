@@ -1,0 +1,9 @@
+    public void dispose()
+    {
+        XNetTrafficController.instance().removeXNetListener(XNetInterface.COMMINFO |
+                                                            XNetInterface.CS_INFO |
+                                                            XNetInterface.THROTTLE, this);
+	stopStatusTimer();
+	    super.dispose();
+        //     super.dispose(); // GT 2007/11/6 - This statement results in a warning at run time
+    }

@@ -1,0 +1,3 @@
+	public StructureNature getStructureNature() {
+        return StructureNature.Flat;
+	}

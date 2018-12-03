@@ -1,0 +1,7 @@
+    public void dispose() {
+      slotModel.dispose();
+      slotModel = null;
+      slotTable = null;
+      slotScroll = null;
+      super.dispose();
+    }

@@ -1,0 +1,3 @@
+  public final BasicBlockOperand asBlock() {
+    return (BasicBlockOperand) this;
+  }

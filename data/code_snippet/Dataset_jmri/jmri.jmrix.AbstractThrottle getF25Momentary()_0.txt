@@ -1,0 +1,3 @@
+    public boolean getF25Momentary() {
+        return f25Momentary;
+    }

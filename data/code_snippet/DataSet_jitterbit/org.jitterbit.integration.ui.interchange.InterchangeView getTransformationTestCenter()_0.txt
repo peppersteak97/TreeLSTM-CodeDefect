@@ -1,0 +1,3 @@
+    public TransformationTestCenter getTransformationTestCenter() {
+        return m_transformationTestCenter;
+    }

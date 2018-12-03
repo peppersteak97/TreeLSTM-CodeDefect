@@ -1,0 +1,4 @@
+	public boolean isFixedFieldDoc(){
+		int docType = getDocType();
+		return (docType==c_flat_fix_doc) || (docType==c_complex_fix_doc);
+	}

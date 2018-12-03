@@ -1,0 +1,5 @@
+  public void reset() {
+    _numErrors = getModel().getCompilerModel().getNumErrors();
+    
+    _errorListPane.updateListPane(true);
+  }

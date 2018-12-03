@@ -1,0 +1,28 @@
+    boolean doTransfer() {
+
+
+        XmlFile.ensurePrefsPresent(XmlFile.prefsDir());
+        XmlFile.ensurePrefsPresent(LocoFile.getFileLocation());
+
+        File f = new File(mFullFromFilename);
+
+        Element lroot = null;
+        try {
+            lroot = (Element)lf.rootFromFile(mFromFile).clone();
+        } catch (Exception e) {
+            log.error("Exception while loading loco XML file: "+mFullFromFilename+" exception: "+e);
+            return false;
+        }
+
+        Element loco = lroot.getChild("locomotive");
+        mToEntry = new RosterEntry(loco);
+
+        mToEntry.setId(mToID);
+        mToEntry.ensureFilenameExists();
+
+        LocoFile newLocoFile = new LocoFile();
+        File fout = new File(LocoFile.getFileLocation()+mToEntry.getFileName());
+        newLocoFile.writeFile(fout, lroot, mToEntry);
+
+        return true;
+    }

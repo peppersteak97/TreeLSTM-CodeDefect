@@ -1,0 +1,6 @@
+    public void deactivated() {
+        if (m_active) {
+            m_active = false;
+            m_titlePanel.deactivated();
+        }
+    }

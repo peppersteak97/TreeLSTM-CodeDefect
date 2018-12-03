@@ -1,0 +1,6 @@
+    protected SRCPTrafficController controller() {
+        if (_controller == null) {
+            _controller = SRCPTrafficController.instance();
+        }
+        return _controller;
+    }

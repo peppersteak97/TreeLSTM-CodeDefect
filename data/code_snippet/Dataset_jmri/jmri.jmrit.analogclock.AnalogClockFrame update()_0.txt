@@ -1,0 +1,21 @@
+    void update() {
+        Date now = clock.getTime();
+        int hours = now.getHours();
+        int minutes = now.getMinutes();
+        minuteAngle = (double) minutes*6.;
+        hourAngle = (double) hours*30. + 30.*minuteAngle/360.;
+        if (hours < 12) {
+            amPm = "AM ";
+        }
+        else {
+            amPm = "PM ";
+        }
+        if (hours == 12 && minutes == 0) {
+            amPm = "Noon";
+        }
+        if (hours == 0 && minutes == 0) {
+            amPm = "Midnight";
+        }
+        amPm = amPm + " " + (int) clock.userGetRate() + ":1";
+        repaint();
+    }

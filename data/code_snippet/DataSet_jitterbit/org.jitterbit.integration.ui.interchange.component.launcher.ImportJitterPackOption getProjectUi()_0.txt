@@ -1,0 +1,3 @@
+    public InterchangeProjectUi getProjectUi() {
+        return m_projectUi;
+    }

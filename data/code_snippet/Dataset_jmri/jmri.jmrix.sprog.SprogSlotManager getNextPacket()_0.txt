@@ -1,0 +1,28 @@
+    private byte [] getNextPacket() {
+      boolean foundQ = true;
+      SprogSlot s;
+      byte [] p;
+      int rep;
+      oldQ = currentQ;
+      while (_Queue.slot(currentQ).slotStatus() == SprogConstants.SLOT_FREE) {
+        currentQ++;
+        currentQ = currentQ%SprogConstants.MAX_SLOTS;
+        if (currentQ == oldQ) {
+          return null;
+        }
+      }
+      s = _Queue.slot(currentQ);
+      p = s.getPayload();
+      rep = s.getRepeat();
+      if (rep < 1000) {
+        currentQ++;
+        currentQ = currentQ % SprogConstants.MAX_SLOTS;
+      }
+      if (s.getRepeat() != -1) {
+        if ((s.doRepeat()%1000) == 0) {
+          s.clear();
+          notify(s);
+        }
+      }
+      return p;
+    }

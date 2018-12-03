@@ -1,0 +1,22 @@
+    protected List<JMenuItem> getMenuItems() {
+        List<JMenuItem> items = new ArrayList<JMenuItem>();
+        for (EntityType t : TYPES) {
+            if (t == null) {
+                items.add(null);
+            }
+            else if (EntityTypeMetaData.getInstance().isEntityTypeSupported(t)) {
+                InterchangeActionFactory f = 
+                    InterchangeActionFactory.getNewEntityFactory(t);
+                IApplicationAction a = f.get(m_view);
+                items.add(MenuItemFactory.createMenuItem(
+                                a, InterchangeActionDictionary.DICTIONARY));
+            }
+        }
+
+        items.add(null);
+        IApplicationAction a = InterchangeActionFactory.NEW_PROJECT.get(m_view);
+        items.add(MenuItemFactory.createMenuItem(a, 
+                        InterchangeActionDictionary.DICTIONARY));
+
+        return items;
+    }

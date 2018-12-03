@@ -1,0 +1,4 @@
+    static public LnReporterManager instance() {
+        if (_instance == null) _instance = new LnReporterManager();
+        return _instance;
+    }

@@ -1,0 +1,9 @@
+    public Database getDatabase() {
+        List<?> li = getObjectsActedOn();
+        if( li != null && li.size() == 1 ) {
+            Object o = li.get(0);
+            if( o instanceof Database )
+                return (Database)o;
+        }
+        return null;
+    }

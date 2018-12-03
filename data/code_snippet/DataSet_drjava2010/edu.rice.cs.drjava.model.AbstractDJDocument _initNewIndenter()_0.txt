@@ -1,0 +1,18 @@
+  private void _initNewIndenter() {
+    
+    final Indenter indenter = _indenter;
+    _listener1 = new OptionListener<Integer>() {
+      public void optionChanged(OptionEvent<Integer> oce) {
+        indenter.buildTree(oce.value);
+      }
+    };
+    
+    _listener2 = new OptionListener<Boolean>() {
+      public void optionChanged(OptionEvent<Boolean> oce) {
+        indenter.buildTree(DrJava.getConfig().getSetting(INDENT_LEVEL));
+      }
+    };
+    
+    DrJava.getConfig().addOptionListener(INDENT_LEVEL, _listener1);
+    DrJava.getConfig().addOptionListener(AUTO_CLOSE_COMMENTS, _listener2);
+  }

@@ -1,0 +1,14 @@
+  public void setUp() throws Exception {
+    super.setUp();
+
+    list = new JListSortNavigator<DummyINavigatorItem>();
+    
+    i1 = new DummyINavigatorItem("item1");
+    i2 = new DummyINavigatorItem("item2");
+    i3 = new DummyINavigatorItem("item3");
+    i4 = new DummyINavigatorItem("item4");
+    list.addDocument(i1);
+    list.addDocument(i2);
+    list.addDocument(i3);
+    list.addDocument(i4);
+  }

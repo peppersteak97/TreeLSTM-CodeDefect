@@ -1,0 +1,7 @@
+    public IntegrationEntity getActiveEntityOnStartUp() {
+        if (m_activeOnStartUp == null) {
+            return null;
+        }
+        IntegrationData d = m_dataLookup.getInstance(m_activeOnStartUp.getID());
+        return (d instanceof IntegrationEntity) ? (IntegrationEntity) d : null;
+    }

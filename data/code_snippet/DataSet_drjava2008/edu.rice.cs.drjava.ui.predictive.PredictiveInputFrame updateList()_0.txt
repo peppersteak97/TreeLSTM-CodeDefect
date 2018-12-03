@@ -1,0 +1,11 @@
+  private void updateList() {
+    _matchList.setListData(_pim.getMatchingItems().toArray());
+    _matchList.setSelectedValue(_pim.getCurrentItem(), true);
+    updateExtensionLabel();
+    updateInfo();
+    if (_force) {
+      for(int i=0; i<_buttons.length-1; ++i) {
+        _buttons[i].setEnabled(_matchList.getModel().getSize()>0);
+      }
+    }
+  }

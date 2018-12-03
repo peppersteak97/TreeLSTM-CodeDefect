@@ -1,0 +1,3 @@
+  public void testDocStart() throws javax.swing.text.BadLocationException {      
+    assertEquals(false, _rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+  }

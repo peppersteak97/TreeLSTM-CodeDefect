@@ -1,0 +1,22 @@
+  public void testFormat() {
+    Vector<String> sv = new Vector<String>();
+    assertEquals("", _svo.format(sv));
+
+    sv.add("");
+    assertEquals("[]", _svo.format(sv));
+
+    sv.add("-33");
+    assertEquals("[,-33]", _svo.format(sv));
+
+    sv.add("2");
+    assertEquals("[,-33,2]", _svo.format(sv));
+
+    sv.add("");
+    assertEquals("[,-33,2,]", _svo.format(sv));
+
+    sv.add(",");
+    assertEquals("[,-33,2,,|,]", _svo.format(sv));
+
+    sv.add("0");
+    assertEquals("[,-33,2,,|,,0]", _svo.format(sv));
+  }

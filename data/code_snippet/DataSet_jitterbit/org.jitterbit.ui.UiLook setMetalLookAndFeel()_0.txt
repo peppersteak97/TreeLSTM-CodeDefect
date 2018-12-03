@@ -1,0 +1,3 @@
+	public static void setMetalLookAndFeel() throws UnsupportedLookAndFeelException {
+		UIManager.setLookAndFeel(new MetalLookAndFeel());
+	}

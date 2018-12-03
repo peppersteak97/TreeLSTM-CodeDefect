@@ -1,0 +1,3 @@
+    public void downloadWasCancelled() {
+        m_dialog.dispose();
+    }

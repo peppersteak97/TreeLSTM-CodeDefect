@@ -1,0 +1,3 @@
+    JTextField getTableEntry() {
+        return _tableEntry;
+    }

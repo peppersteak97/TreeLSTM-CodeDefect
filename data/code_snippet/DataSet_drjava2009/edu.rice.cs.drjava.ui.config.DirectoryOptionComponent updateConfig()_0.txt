@@ -1,0 +1,13 @@
+  public boolean updateConfig() {
+    File componentFile = _component.getFileFromField();
+    File currentFile = DrJava.getConfig().getSetting(_option);
+    
+    if (componentFile != null && !componentFile.equals(currentFile)) {
+      DrJava.getConfig().setSetting(_option, componentFile);
+    }
+    else if (componentFile == null) {
+      DrJava.getConfig().setSetting(_option, _option.getDefault());
+    }
+
+    return true;
+  }

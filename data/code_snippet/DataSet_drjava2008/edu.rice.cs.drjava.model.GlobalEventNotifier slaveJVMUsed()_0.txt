@@ -1,0 +1,5 @@
+  public void slaveJVMUsed() {
+    _lock.startRead();
+    try { for (GlobalModelListener l : _listeners) { l.slaveJVMUsed(); } }
+    finally { _lock.endRead(); }
+  }

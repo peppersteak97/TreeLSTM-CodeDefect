@@ -1,0 +1,5 @@
+    protected JToolBar createToolBar() {
+        JToolBar tb = createEmptyToolBar();
+        populateToolBar(tb);
+        return tb;
+    }

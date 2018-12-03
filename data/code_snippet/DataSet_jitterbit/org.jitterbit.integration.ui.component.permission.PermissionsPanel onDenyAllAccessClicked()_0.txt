@@ -1,0 +1,8 @@
+    private void onDenyAllAccessClicked() {
+        if (m_denyFullAccessCheck.isSelected()) {
+            m_allowFullAccessCheck.setSelected(false);
+            for (PermissionCheckBoxes cb : m_permissionChecks) {
+                cb.setState(null, FULL_CONTROL);
+            }
+        }
+    }

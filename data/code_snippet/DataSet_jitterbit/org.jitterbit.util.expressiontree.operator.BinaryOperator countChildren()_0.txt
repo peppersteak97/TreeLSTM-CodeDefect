@@ -1,0 +1,10 @@
+	public int countChildren() {
+		int n = 0;
+		if (leftOperand != null) {
+			n += 1 + leftOperand.countChildren();
+		}
+		if (rightOperand != null) {
+			n += 1 + rightOperand.countChildren();
+		}
+		return n;
+	}

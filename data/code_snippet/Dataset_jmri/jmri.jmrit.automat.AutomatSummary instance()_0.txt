@@ -1,0 +1,4 @@
+	static public AutomatSummary instance() {
+		if (self == null) self = new AutomatSummary();
+		return self;
+	}

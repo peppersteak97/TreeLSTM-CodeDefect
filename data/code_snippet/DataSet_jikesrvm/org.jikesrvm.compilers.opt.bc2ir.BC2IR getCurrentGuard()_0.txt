@@ -1,0 +1,6 @@
+  public Operand getCurrentGuard() {
+    if (currentGuard != null) {
+      return currentGuard.copy();
+    }
+    return null;
+  }

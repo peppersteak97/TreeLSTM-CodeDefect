@@ -1,0 +1,4 @@
+    public Field createNewObject() {
+        int rows = getRowCount();
+        return (rows == 0) ? createNewFirstField() : createNewLastField(rows);
+    }

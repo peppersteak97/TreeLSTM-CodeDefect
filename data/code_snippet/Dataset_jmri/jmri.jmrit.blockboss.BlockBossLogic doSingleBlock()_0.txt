@@ -1,0 +1,31 @@
+    void doSingleBlock() {
+        int appearance = SignalHead.GREEN;
+        int oldAppearance = ((SignalHead)outputs[0]).getAppearance();
+        if (protectWithFlashing && fastestColor1()==SignalHead.YELLOW)
+            appearance = SignalHead.FLASHYELLOW;
+        if (fastestColor1()==SignalHead.RED)
+            appearance = SignalHead.YELLOW;
+
+        if (distantSignal)
+            appearance = fastestColor1();
+            
+        if (limitSpeed1)
+            appearance = slowerOf(appearance, SignalHead.YELLOW);
+      
+        if (watchSensor1!=null && watchSensor1.getKnownState() != Sensor.INACTIVE)
+            appearance = SignalHead.RED;
+        if (watchSensor2!=null && watchSensor2.getKnownState() != Sensor.INACTIVE) 
+            appearance = SignalHead.RED;
+        if (watchSensor3!=null && watchSensor3.getKnownState() != Sensor.INACTIVE) 
+            appearance = SignalHead.RED;
+        if (watchSensor4!=null && watchSensor4.getKnownState() != Sensor.INACTIVE) 
+            appearance = SignalHead.RED;
+
+        if (((SignalHead)outputs[0]).getHeld())
+            appearance = SignalHead.RED;
+
+        doApproach();
+        
+        if (appearance != oldAppearance)
+            ((SignalHead)outputs[0]).setAppearance(appearance);
+    }

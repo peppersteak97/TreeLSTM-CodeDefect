@@ -1,0 +1,11 @@
+  public String toString() {
+    if (operands[0] == null) {
+      return ("NULL LHS");
+    }
+    String result = operands[0].toString();
+    result = result + " " + operator + " ";
+    for (int i = 1; i < operands.length; i++) {
+      result = result + operands[i] + "  ";
+    }
+    return result;
+  }

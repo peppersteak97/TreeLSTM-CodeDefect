@@ -1,0 +1,3 @@
+  public final boolean hasRuntimeFinalAnnotation() {
+    return isAnnotationPresent(org.vmmagic.pragma.RuntimeFinal.class);
+  }

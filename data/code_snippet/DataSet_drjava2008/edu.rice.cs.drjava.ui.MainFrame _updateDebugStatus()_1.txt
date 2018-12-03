@@ -1,0 +1,12 @@
+  private void _updateDebugStatus() {
+    if (! isDebuggerReady()) return;
+    
+    if (_model.getActiveDocument().isUntitled() || _model.getActiveDocument().getClassFileInSync()) {
+      if (_debugPanel.getStatusText().equals(DEBUGGER_OUT_OF_SYNC)) _debugPanel.setStatusText("");
+    } 
+    else {
+      if (_debugPanel.getStatusText().equals("")) {
+        _debugPanel.setStatusText(DEBUGGER_OUT_OF_SYNC);
+      }
+    }
+  }

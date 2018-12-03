@@ -1,0 +1,4 @@
+    protected void setButtonSpace() {
+        _buttonSpace = new JPanel();
+        _buttonSpace.setLayout(new FlowLayout());
+    }

@@ -1,0 +1,4 @@
+	public void unregister() {
+		KeyboardFocusManager.getCurrentKeyboardFocusManager().removePropertyChangeListener(
+				PROPERTY, this);
+	}

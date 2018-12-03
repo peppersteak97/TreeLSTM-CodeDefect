@@ -1,0 +1,10 @@
+    public String getTitle() {
+        String title = m_logDisplayer.getTitle();
+        IActivityEntrySubject o = getObject();
+        if (o != null) {
+        }
+        else {
+            title = PackageResources.Page.getEmptyPageTitle(title);
+        }
+        return title;
+    }

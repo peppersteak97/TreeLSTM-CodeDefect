@@ -1,0 +1,3 @@
+  protected File tempDirectory() throws IOException {
+    return IOUtil.createAndMarkTempDirectory("DrJava-test", "", _tempDir);
+  }

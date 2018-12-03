@@ -1,0 +1,5 @@
+      if (!getErrorModel().hasOnlyWarnings()) {
+        numErrMsg = new StringBuilder(numCompErrs + " " + failureName);   
+        if (numCompErrs > 1) numErrMsg.append("s");
+        if (numWarnings > 0) numErrMsg.append(" and " + numWarnings + " warning");          
+      }

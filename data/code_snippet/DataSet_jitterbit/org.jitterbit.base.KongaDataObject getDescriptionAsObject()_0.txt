@@ -1,0 +1,3 @@
+	public Description getDescriptionAsObject() {
+		return new Description(getDescription());
+	}

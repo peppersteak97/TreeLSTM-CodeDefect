@@ -1,0 +1,7 @@
+    private DatabaseStructure getDatabaseStructure() {
+        DatabaseStructure s = new DatabaseStructure(m_databaseLocation);
+        DbTables tables = new DbTables();
+        tables.setTables(getTablesString());
+        s.setDbTables(tables);
+        return s;
+    }

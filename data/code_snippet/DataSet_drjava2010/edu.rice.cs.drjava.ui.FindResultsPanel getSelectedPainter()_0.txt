@@ -1,0 +1,3 @@
+  public LayeredHighlighter.LayerPainter getSelectedPainter() {
+    return DefinitionsPane.FIND_RESULTS_PAINTERS[_lastIndex];
+  }

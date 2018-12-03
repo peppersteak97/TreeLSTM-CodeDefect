@@ -1,0 +1,6 @@
+    public void println() {
+        m_mainStream.println();
+        for (PrintStream ps : m_additionalStreams) {
+            ps.println();
+        }
+    }

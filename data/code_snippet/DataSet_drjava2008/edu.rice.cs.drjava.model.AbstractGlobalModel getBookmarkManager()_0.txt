@@ -1,0 +1,1 @@
+  public RegionManager<MovingDocumentRegion> getBookmarkManager() { return _bookmarkManager; }

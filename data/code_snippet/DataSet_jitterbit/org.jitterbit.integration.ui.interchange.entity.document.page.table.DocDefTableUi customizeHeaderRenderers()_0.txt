@@ -1,0 +1,6 @@
+    private void customizeHeaderRenderers() {
+        TableCellRenderer headerRenderer = new TableRenderers.HeaderRenderer();
+        for (int n = 0; n < getColumnCount(); ++n) {
+            getColumnModel().getColumn(n).setHeaderRenderer(headerRenderer);
+        }
+    }

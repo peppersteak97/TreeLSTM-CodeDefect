@@ -1,0 +1,3 @@
+    public SearchDirection getDirection() {
+        return m_direction;
+    }

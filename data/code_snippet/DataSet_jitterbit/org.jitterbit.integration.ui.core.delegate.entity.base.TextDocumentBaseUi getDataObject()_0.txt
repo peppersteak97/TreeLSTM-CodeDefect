@@ -1,0 +1,3 @@
+    public TextDocument getDataObject() {
+        return (TextDocument)getKongaObject();
+    }

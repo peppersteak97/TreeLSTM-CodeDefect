@@ -1,0 +1,30 @@
+	public void onApply() {
+		fireQueuePropertyChangeEvents();
+		fireStartGroup(sGroupDescription);
+		
+		m_applyLock.setValue(true);
+		if( m_timeConsumingTaskListener != null )
+			m_timeConsumingTaskListener.startWait(100);
+		
+		SwingWorker worker = new SwingWorker() {
+            
+            @Override
+			public Object construct() {
+				return new Boolean( m_pnlProperties.onApply() );
+			}
+			
+            @Override
+			public void finished() {
+				if( m_timeConsumingTaskListener != null )
+					m_timeConsumingTaskListener.stopWait();
+				 
+				if( !((Boolean)get()).booleanValue() )
+					return;
+				m_buttonPanel.setButtonsEnabled(false);
+				fireFlushPropertyChangeEvents();
+				fireEndGroup(sGroupDescription);
+				m_applyLock.setValue(false);
+			}
+		};
+		worker.start();
+	}

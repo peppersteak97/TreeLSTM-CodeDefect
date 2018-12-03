@@ -1,0 +1,7 @@
+    private void createDayNumBox() {
+        ResourceBundle res = SchedulePage.getResources();
+        Object[] dayNumItems = { res.getString("1st"), res.getString("2nd"),
+                        res.getString("3rd"), res.getString("4th"),
+                        res.getString("Last") };
+        m_dayNumBox = ComponentFactories.comboBoxFactory().newComboBox(dayNumItems);
+    }

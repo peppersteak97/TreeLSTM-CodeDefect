@@ -1,0 +1,3 @@
+  public final InstructionEnumeration reverseInstrEnumerator() {
+    return IREnumeration.reverseIntraBlockIE(lastInstruction(), firstInstruction());
+  }

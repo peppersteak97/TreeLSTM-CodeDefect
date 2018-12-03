@@ -1,0 +1,10 @@
+    public void lastItem() {
+        _value = new JComboBox(_itemArray);
+        _value.setActionCommand("");
+        _defaultColor = _value.getBackground();
+        _value.setBackground(COLOR_UNKNOWN);
+        _value.addActionListener(this);
+        CvValue cv = ((CvValue)_cvVector.elementAt(getCvNum()));
+        cv.addPropertyChangeListener(this);
+        cv.setState(CvValue.FROMFILE);
+    }

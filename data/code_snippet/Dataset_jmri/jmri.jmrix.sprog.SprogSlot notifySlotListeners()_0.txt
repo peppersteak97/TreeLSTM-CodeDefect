@@ -1,0 +1,14 @@
+    protected void notifySlotListeners() {
+        Vector v;
+        synchronized(this)
+            {
+                v = (Vector) slotListeners.clone();
+            }
+        if (log.isDebugEnabled()) log.debug("----->notify "+v.size()
+                                            +" SlotListeners");
+        int cnt = v.size();
+        for (int i=0; i < cnt; i++) {
+            SprogSlotListener client = (SprogSlotListener) v.elementAt(i);
+            client.notifyChangedSlot(this);
+        }
+    }

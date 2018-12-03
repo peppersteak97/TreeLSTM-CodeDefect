@@ -1,0 +1,16 @@
+    public IIntegrationLink getLink() {
+        HttpLocation loc = getHttpLocation();
+        if (loc == null) {
+            return null;
+        }
+        TargetId responseTargetId = loc.getTargetIdForResponse();
+        if (responseTargetId == null) {
+            return null;
+        }
+        Target responseTarget = (Target) m_dataLookup.getInstance(responseTargetId);
+        if (responseTarget != null) {
+            return new HttpTargetResponseLink(responseTarget, m_httpTarget);
+        }
+        logMissingLink(m_httpTarget, EntityType.Target, responseTargetId);
+        return null;
+    }

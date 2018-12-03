@@ -1,0 +1,7 @@
+  public final Iterable<V> values() {
+    return new Iterable<V>() {
+      public Iterator<V> iterator() {
+        return AbstractHashMapRVM.this.valueIterator();
+      }
+    };
+  }

@@ -1,0 +1,5 @@
+    static public AcelaMessage getAcelaConfigSensorMsg() {
+        AcelaMessage m = new AcelaMessage(4);
+        m.setBinary(true);
+        return m;
+    }

@@ -1,0 +1,8 @@
+	private void writeRosterFile() {
+		conRosterBox.removeActionListener(consistRosterListener);
+		NceConsistRoster.writeRosterFile();
+		NceConsistRoster.instance().updateComboBox(conRosterBox);
+		conRosterBox.insertItemAt(EMPTY, 0);
+		conRosterBox.setSelectedIndex(0);
+		conRosterBox.addActionListener(consistRosterListener);
+	}

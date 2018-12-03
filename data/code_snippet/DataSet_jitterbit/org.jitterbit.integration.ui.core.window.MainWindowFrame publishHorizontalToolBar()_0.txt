@@ -1,0 +1,8 @@
+    private void publishHorizontalToolBar() {
+        List<JToolBar> tbs = m_appWin.getHorizontalToolBarManager().getJToolBars();
+        m_horizontalToolBarPanel.setToolBars(tbs.toArray(new JToolBar[tbs.size()]));
+        m_topPanel.setToolBar(m_horizontalToolBarPanel);
+        if (!m_topPanelAdded) {
+            addTopPanel();
+        }
+    }

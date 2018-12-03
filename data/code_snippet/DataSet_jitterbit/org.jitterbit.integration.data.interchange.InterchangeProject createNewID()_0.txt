@@ -1,0 +1,3 @@
+    static InterchangeProjectId createNewID() {
+        return new InterchangeProjectId();
+    }

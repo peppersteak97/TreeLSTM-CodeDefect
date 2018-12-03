@@ -1,0 +1,1 @@
+    public Turnout getDark() {return mDark;}

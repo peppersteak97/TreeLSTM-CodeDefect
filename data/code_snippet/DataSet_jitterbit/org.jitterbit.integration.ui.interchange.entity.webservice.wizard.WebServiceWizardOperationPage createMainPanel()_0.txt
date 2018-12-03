@@ -1,0 +1,4 @@
+    private void createMainPanel() {
+        setMainPanel(WebServiceWizard.getUtils().createPageMainPanel(getMainCaption(),
+                        getSubCaption(), m_ui.getDisplayers()));
+    }

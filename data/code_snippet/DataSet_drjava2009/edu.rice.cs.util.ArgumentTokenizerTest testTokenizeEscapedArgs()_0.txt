@@ -1,0 +1,10 @@
+  public void testTokenizeEscapedArgs() {
+    _assertTokenized("\\j",
+                     new String[]{"j"});
+    _assertTokenized("\\\"",
+                     new String[]{"\""});
+    _assertTokenized("\\\\",
+                     new String[]{"\\"});
+    _assertTokenized("a\\ b",
+                     new String[]{"a b"});
+  }

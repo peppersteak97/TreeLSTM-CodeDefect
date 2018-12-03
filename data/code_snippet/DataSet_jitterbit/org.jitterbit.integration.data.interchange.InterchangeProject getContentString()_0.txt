@@ -1,0 +1,8 @@
+    public String getContentString() {
+        StringBuilder sb = new StringBuilder("Project: " + getName());
+        sb.append(LINE_BREAK);
+        for (RootFolder f : m_mapRootFolders.values()) {
+            appendContentString(f, sb, 0);
+        }
+        return sb.toString();
+    }

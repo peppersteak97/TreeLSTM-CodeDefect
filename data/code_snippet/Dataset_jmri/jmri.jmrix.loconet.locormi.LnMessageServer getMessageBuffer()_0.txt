@@ -1,0 +1,4 @@
+  public LnMessageBufferInterface getMessageBuffer() throws RemoteException
+  {
+    return new LnMessageBuffer() ;
+  }

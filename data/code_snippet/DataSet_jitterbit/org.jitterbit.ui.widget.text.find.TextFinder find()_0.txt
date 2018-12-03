@@ -1,0 +1,14 @@
+    public void find() {
+        int index = getIndex();
+        if (index == -1) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    getCannotFindMessage(m_event),
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        else {
+            m_text.setSelectionStart(index);
+            m_text.setSelectionEnd(index + m_event.getSearchString().length());
+            m_text.getCaret().setSelectionVisible(true);
+        }
+    }

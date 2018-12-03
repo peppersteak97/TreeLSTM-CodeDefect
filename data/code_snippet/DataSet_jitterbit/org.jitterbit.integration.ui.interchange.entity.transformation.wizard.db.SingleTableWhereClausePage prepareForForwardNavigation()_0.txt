@@ -1,0 +1,24 @@
+    public boolean prepareForForwardNavigation() {
+        
+        String whereClause = m_ui.getWhereClause();
+        boolean valid = true;
+        if (whereClause.length() > 0) {
+            IUiJobManager procMgr = IntegrationUi.getUi().getJobManager();
+            if (m_validationProcessID != null) {
+                procMgr.cancelJob(m_validationProcessID);
+            }
+
+            SingleTableWhereClauseValidator v = new SingleTableWhereClauseValidator(this,
+                            m_dbObject, whereClause);
+            m_validationProcessID = procMgr.submitForParallellProcessing(v);
+            try {
+                v.waitUntilDone();
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            valid = v.isValid();
+        }
+        return valid;
+    }

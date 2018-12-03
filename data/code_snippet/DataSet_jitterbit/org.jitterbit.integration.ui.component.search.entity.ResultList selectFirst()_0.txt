@@ -1,0 +1,8 @@
+    void selectFirst() {
+        if (m_list.getModel().getSize() > 0) {
+            m_list.setSelectedIndex(0);
+        }
+        else {
+            m_list.setSelection(null);
+        }
+    }

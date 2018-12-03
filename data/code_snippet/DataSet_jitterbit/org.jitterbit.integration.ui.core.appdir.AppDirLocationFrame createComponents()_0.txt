@@ -1,0 +1,10 @@
+    private void createComponents() {
+        m_caption = IntegrationUiStyleSheet.DefaultText.makeJLabel(
+                        PackageResources.LocationFrame.CAPTION);
+        File defaultLocation = new File(KongaSystemUtils.USER_HOME, 
+                        getJitterbitFolderName());
+        m_textField = ComponentFactories.textFactory().newTextField(
+                        defaultLocation.getAbsolutePath(), 35);
+        m_browseButton = ComponentFactories.buttonFactory().newButton(new BrowseAction());
+        m_buttonPanel = new Buttons();
+    }

@@ -1,0 +1,7 @@
+    public void dispose() {
+        modePane.dispose();
+        buttons = null;
+        labels = null;
+        status = null;
+        searchButton = null;
+    }

@@ -1,0 +1,27 @@
+    void load() {
+        try {
+            fci.rescanCurrentDirectory();
+            int retVal = fci.showOpenDialog(this);
+            if (retVal == JFileChooser.APPROVE_OPTION) {
+                File file = fci.getSelectedFile();
+                if (log.isInfoEnabled()) log.info("located file "+file+" for load");
+                PositionFile pf = new PositionFile();
+                pf.loadFile(file);
+                Point3d p;
+                Reading r;
+                for (int i = 0; i<NREADINGS; i++) {
+                    p = pf.getCalibrationPosition(i);
+                    if (p!=null) lines[i].setPoint(p);
+                    else lines[i].setPoint(new Point3d(0.f,0.f,0.f));
+                }
+                for (int i = 0; i<NREADINGS; i++) {
+                    r = pf.getCalibrationReading(i);
+                    lines[i].reset();
+                    if (r != null) lines[i].setReading(r);
+                }
+            }
+            else log.info("load cancelled in open dialog");
+        } catch (Exception e) {
+            log.error("exception during load: "+e);
+        }
+    }

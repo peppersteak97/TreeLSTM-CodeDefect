@@ -1,0 +1,12 @@
+    protected void onDialogOpened() {
+        super.onDialogOpened();
+        EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                m_propertySelector.requestFocus();
+                if (m_availableDestinations.getModel().getSize() > 0) {
+                    m_availableDestinations.setSelectedIndex(0);
+                }
+            }
+        });
+    }

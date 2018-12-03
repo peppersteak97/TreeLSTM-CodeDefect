@@ -1,0 +1,7 @@
+  private void _junitAll() {
+    updateStatusField("Running All Open Unit Tests");
+    _disableJUnitActions();
+    try { _model.getJUnitModel().junitAll(); } 
+    catch(UnexpectedException e) { _junitInterrupted(e); }
+    catch(Exception e) { _junitInterrupted(new UnexpectedException(e)); }
+  }

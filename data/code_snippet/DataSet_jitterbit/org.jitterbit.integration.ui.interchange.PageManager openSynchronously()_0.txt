@@ -1,0 +1,15 @@
+    private void openSynchronously() {
+        try {
+            IntegrationUi.getUi().startWait();
+            final EntityPagePairList pairs = new PageCreationJob().call();
+            if (pairs != null) {
+                new DisplayJob(null).display(pairs);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            IntegrationUi.getUi().stopWait();
+        }
+    }

@@ -1,0 +1,7 @@
+    public Window getDialogOwner() {
+        Window w = SwingUtilities.getWindowAncestor(m_component);
+        if ((w instanceof Frame) || (w instanceof Dialog)) {
+            return w;
+        }
+        return null;
+    }

@@ -1,0 +1,3 @@
+  public int getCreateJarFlags() {
+    throw new UnsupportedOperationException("Tried to call getCreateJarFlags on a Dummy");
+  }

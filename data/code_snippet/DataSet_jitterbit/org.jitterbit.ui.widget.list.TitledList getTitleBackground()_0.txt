@@ -1,0 +1,3 @@
+    public Color getTitleBackground() {
+        return m_titleBackground;
+    }

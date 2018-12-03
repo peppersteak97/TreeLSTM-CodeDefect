@@ -1,0 +1,7 @@
+  public void testLeaveBe() throws javax.swing.text.BadLocationException {
+    _setDocText("foo\nbar");
+    _doc.setCurrentLocation(4);
+    makeAction("").testIndentLine(_doc, Indenter.IndentReason.OTHER);
+    assertEquals(7, _doc.getLength());
+    assertEquals("foo\nbar", _doc.getText());
+  }

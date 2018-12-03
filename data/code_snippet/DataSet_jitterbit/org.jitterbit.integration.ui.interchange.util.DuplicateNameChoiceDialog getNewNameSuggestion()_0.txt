@@ -1,0 +1,7 @@
+    private String getNewNameSuggestion() {
+        int counter = 2;
+        while (!checkSuggestedName(name)) {
+            ++counter;
+        }
+        return name;
+    }

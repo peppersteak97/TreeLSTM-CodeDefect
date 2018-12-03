@@ -1,0 +1,10 @@
+    private void beginDownload() {
+        m_page.startWait();
+        try {
+            processJobQueue();
+        }
+        finally {
+            m_page.stopWait();
+        }
+        m_success = !isAborted();
+    }

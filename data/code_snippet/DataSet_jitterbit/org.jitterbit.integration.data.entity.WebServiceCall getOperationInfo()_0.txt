@@ -1,0 +1,3 @@
+    public WebServiceOperationInfo getOperationInfo() {
+        return new WebServiceOperationInfo(this);
+    }

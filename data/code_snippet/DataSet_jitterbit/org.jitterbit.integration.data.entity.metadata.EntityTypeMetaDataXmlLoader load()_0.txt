@@ -1,0 +1,10 @@
+    public void load() throws EntityTypeMetaDataXmlException {
+        InputStream is = null;
+        try {
+            is = getClass().getClassLoader().getResourceAsStream(
+            new EntityTypeSaxParser(this).loadData(is);
+        }
+        finally {
+            KongaIoUtils.close(is);
+        }
+    }

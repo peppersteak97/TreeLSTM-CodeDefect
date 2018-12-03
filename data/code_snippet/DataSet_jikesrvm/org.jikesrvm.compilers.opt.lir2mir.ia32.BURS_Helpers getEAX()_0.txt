@@ -1,0 +1,3 @@
+  protected final Register getEAX() {
+    return getIR().regpool.getPhysicalRegisterSet().getEAX();
+  }

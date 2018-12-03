@@ -1,0 +1,9 @@
+	public void updateActions() {
+		if( m_undoAction != null ) {
+			m_undoAction.setEnabled( undoIsEnabled() );
+		}
+		if( m_redoAction != null ) {
+			m_redoAction.setEnabled( redoIsEnabled() );
+		}
+		updateToolTips();
+	}

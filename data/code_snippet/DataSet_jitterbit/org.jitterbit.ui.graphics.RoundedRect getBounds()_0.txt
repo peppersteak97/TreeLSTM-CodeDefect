@@ -1,0 +1,1 @@
+	public Rectangle getBounds() { return new Rectangle(m_ix, m_iy, m_iWidth, m_iHeight); }

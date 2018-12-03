@@ -1,0 +1,7 @@
+    public String[] getValidOperationTypes() {
+        if (jmri.InstanceManager.commandStationInstance()!=null) {
+            return new String[]{"Sensor", "Raw", "NoFeedback"};
+       } else {
+       	    return new String[]{"Sensor", "NoFeedback"};
+       }
+    }

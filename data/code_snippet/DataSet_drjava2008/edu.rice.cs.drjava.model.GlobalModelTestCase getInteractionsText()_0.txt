@@ -1,0 +1,4 @@
+  protected String getInteractionsText() throws EditDocumentException {
+    InteractionsDocument doc = _model.getInteractionsDocument();
+    return doc.getText();
+  }

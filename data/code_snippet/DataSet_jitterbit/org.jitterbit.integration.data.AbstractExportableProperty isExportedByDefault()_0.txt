@@ -1,0 +1,3 @@
+    public boolean isExportedByDefault() {
+        return m_exportedByDefault;
+    }

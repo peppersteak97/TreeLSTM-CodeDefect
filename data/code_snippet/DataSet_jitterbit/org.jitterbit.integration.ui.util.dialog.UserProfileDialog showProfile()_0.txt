@@ -1,0 +1,9 @@
+    public static void showProfile() {
+        final UserProfileDialog dlg = new UserProfileDialog(IntegrationUiUtils.getActiveFrame());
+        EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                dlg.setVisible(true);
+            }
+        });
+    }

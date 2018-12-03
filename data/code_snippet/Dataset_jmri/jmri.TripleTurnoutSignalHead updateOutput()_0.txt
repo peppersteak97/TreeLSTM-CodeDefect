@@ -1,0 +1,45 @@
+	protected void updateOutput() {
+		if (mLit == false) {
+            mRed.setCommandedState(Turnout.CLOSED);
+            mYellow.setCommandedState(Turnout.CLOSED);
+            mGreen.setCommandedState(Turnout.CLOSED);
+			return;
+        } else if ( !mFlashOn &&
+            ( (mAppearance == FLASHGREEN) ||
+            (mAppearance == FLASHYELLOW) ||
+            (mAppearance == FLASHRED) ) ) {
+                mRed.setCommandedState(Turnout.CLOSED);
+                mYellow.setCommandedState(Turnout.CLOSED);
+                mGreen.setCommandedState(Turnout.CLOSED);
+			    return;
+
+		} else {
+        	switch (mAppearance) {
+        		case RED:
+        		case FLASHRED:
+            		mRed.setCommandedState(Turnout.THROWN);
+            		mYellow.setCommandedState(Turnout.CLOSED);
+            		mGreen.setCommandedState(Turnout.CLOSED);
+            		break;
+        		case YELLOW:
+        		case FLASHYELLOW:
+            		mRed.setCommandedState(Turnout.CLOSED);
+            		mYellow.setCommandedState(Turnout.THROWN);
+            		mGreen.setCommandedState(Turnout.CLOSED);
+            		break;
+        		case GREEN:
+        		case FLASHGREEN:
+            		mRed.setCommandedState(Turnout.CLOSED);
+            		mYellow.setCommandedState(Turnout.CLOSED);
+            		mGreen.setCommandedState(Turnout.THROWN);
+            		break;
+        		default:
+            		log.warn("Unexpected new appearance: "+mAppearance);
+        		case DARK:
+            		mRed.setCommandedState(Turnout.CLOSED);
+            		mYellow.setCommandedState(Turnout.CLOSED);
+            		mGreen.setCommandedState(Turnout.CLOSED);
+            		break;
+            }
+        }
+	}

@@ -1,0 +1,3 @@
+  protected final Register getEDI() {
+    return getIR().regpool.getPhysicalRegisterSet().getEDI();
+  }

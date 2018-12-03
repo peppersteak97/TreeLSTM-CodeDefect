@@ -1,0 +1,7 @@
+    static public Timebase timebaseInstance()  {
+        if (instance().timebase != null) return instance().timebase;
+        instance().timebase = new jmri.jmrit.simpleclock.SimpleTimebase();
+        if (InstanceManager.configureManagerInstance() != null)
+            InstanceManager.configureManagerInstance().registerConfig(instance().timebase);        
+        return instance().timebase;
+    }

@@ -1,0 +1,4 @@
+  protected void goToRegion() {
+    ArrayList<R> r = getSelectedRegions();
+    if (r.size() == 1) _frame.scrollToDocumentAndOffset(r.get(0).getDocument(), r.get(0).getStartOffset(), false);
+  }

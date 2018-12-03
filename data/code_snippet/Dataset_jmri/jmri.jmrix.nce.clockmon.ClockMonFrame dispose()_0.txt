@@ -1,0 +1,10 @@
+    public void dispose() {
+        if (timerDisplayUpdate!=null) {
+            timerDisplayUpdate.stop();
+            timerDisplayUpdate = null;
+        }
+        InstanceManager.timebaseInstance().removeMinuteChangeListener( minuteChangeListener );
+        minuteChangeListener = null ;
+        
+        super.dispose();
+    }

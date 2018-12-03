@@ -1,0 +1,3 @@
+    public long getTimeSpentProfiling() {
+        return m_timeSpentProfiling.get();
+    }

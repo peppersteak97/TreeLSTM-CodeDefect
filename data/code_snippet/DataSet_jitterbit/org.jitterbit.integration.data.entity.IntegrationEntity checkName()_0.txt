@@ -1,0 +1,9 @@
+    private void checkName() throws IllegalNameException {
+        String name = getName().toString();
+        if (!EntityUtils.isNameUnique(this, name)) {
+        }
+        INameValidator v = NameValidatorStore.getInstance().get(this);
+        if (v != null) {
+            v.validateName(name);
+        }
+    }

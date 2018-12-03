@@ -1,0 +1,3 @@
+  public OperandEnumeration getMemoryOperands() {
+    return new MOE(this, 0, getNumberOfOperands() - 1);
+  }

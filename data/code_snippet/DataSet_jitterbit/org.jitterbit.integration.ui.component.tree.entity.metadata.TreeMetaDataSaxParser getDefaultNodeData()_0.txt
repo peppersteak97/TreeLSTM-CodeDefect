@@ -1,0 +1,3 @@
+    NodeData getDefaultNodeData() {
+        return m_defaultNodeData;
+    }

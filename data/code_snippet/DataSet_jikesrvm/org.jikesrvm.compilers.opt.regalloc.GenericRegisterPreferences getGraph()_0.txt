@@ -1,0 +1,3 @@
+  public CoalesceGraph getGraph() {
+    return graph;
+  }

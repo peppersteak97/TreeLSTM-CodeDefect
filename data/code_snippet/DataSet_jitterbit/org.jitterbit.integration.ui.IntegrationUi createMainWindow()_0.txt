@@ -1,0 +1,13 @@
+    private void createMainWindow() {
+        if (m_mainWindowFrame != null) {
+            return;
+        }
+        Logger log = ApplicationLog.getMainLogger();
+        DebugTimer.logMessage("startup", "#createMainWindowComponents", log);
+        createMainWindowComponents(log);
+        createAppWin(log);
+        m_appWinInitializationLatch.countDown();
+        m_viewManager.preloadShells();
+        m_mainWindowFrame = new MainWindowFrame(m_appWin, m_statusPanel);
+        DebugTimer.logMessage("startup", "#MainWindow created", log);
+    }

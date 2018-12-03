@@ -1,0 +1,3 @@
+  public boolean isTouched() {
+    return (flags & TOUCHED) != 0;
+  }

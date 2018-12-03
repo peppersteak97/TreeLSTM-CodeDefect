@@ -1,0 +1,3 @@
+    public IIntegrationEntityUiDelegate getObject() {
+        return m_displayedEntity;
+    }

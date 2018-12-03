@@ -1,0 +1,7 @@
+  public void testNotInDocument() throws BadLocationException {
+    _doc.insertString(0, EVIL_TEXT, null);
+    _initFrm(5);
+    _assertOffsets(_frm, 5, 5);
+    _frm.setFindWord("monkey");
+    _testFindNextFails(_frm, 5, 5);
+  }

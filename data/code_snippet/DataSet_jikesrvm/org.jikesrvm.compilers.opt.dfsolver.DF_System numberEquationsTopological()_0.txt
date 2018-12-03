@@ -1,0 +1,13 @@
+  private void numberEquationsTopological() {
+    GraphNodeEnumeration topOrder = GraphUtilities.
+        enumerateTopSort(equations);
+    Enumeration<GraphNode> rev = new ReverseDFSenumerateByFinish(equations, topOrder);
+    int number = 0;
+    while (rev.hasMoreElements()) {
+      GraphNode elt = rev.nextElement();
+      if (elt instanceof DF_Equation) {
+        DF_Equation eq = (DF_Equation) elt;
+        eq.setTopologicalNumber(number++);
+      }
+    }
+  }

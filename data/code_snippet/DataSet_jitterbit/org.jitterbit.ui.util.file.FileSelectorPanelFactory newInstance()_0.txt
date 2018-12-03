@@ -1,0 +1,24 @@
+    public static FileSelectorPanelFactory newInstance() {
+        return new FileSelectorPanelFactory() {
+
+            @Override
+            public IFileSelectorPanel singleFilePanel(IFileChooser fc, 
+                                                      Mode mode, 
+                                                      String title, 
+                                                      Component parent,
+                                                      IRecentFileStore recentFiles) {
+                return new DefaultFileSelectorPanel(fc, mode, title, parent, recentFiles);
+            }
+
+            @Override
+            public IFileSelectorPanel recentFilesPanel(IFileChooser fc, 
+                                                       Mode mode, 
+                                                       String title, 
+                                                       Component parent, 
+                                                       IRecentFileStore recentFiles) {
+                if (recentFiles == null) {
+                }
+                return new RecentFileSelectorPanel(fc, mode, title, parent, recentFiles);
+            }
+        };
+    }

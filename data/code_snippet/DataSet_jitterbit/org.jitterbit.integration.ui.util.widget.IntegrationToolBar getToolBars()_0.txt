@@ -1,0 +1,3 @@
+    public final List<JToolBar> getToolBars() {
+        return new ArrayList<JToolBar>(m_liToolBars);
+    }

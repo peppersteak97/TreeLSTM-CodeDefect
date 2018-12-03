@@ -1,0 +1,1 @@
+    public int getAtIndex() { return buffer[index]&0xFF; }

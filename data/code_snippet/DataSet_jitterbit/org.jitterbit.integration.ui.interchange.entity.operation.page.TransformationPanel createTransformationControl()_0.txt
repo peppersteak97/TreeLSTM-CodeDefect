@@ -1,0 +1,7 @@
+    private void createTransformationControl() {
+        m_transformationControl = new EntitySelectionControl(
+                        m_page, 
+                        EntityType.Transformation,
+                        null,
+                        EntityType.Transformation.getDisplayName());
+    }

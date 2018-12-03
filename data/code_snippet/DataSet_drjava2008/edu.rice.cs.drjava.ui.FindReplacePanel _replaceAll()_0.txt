@@ -1,0 +1,12 @@
+  private void _replaceAll() {
+    _frame.updateStatusField("Replacing All");
+    _machine.setFindWord(_findField.getText());
+    _machine.setReplaceWord(_replaceField.getText());
+    _frame.clearStatusMessage();
+    int count = _machine.replaceAll();
+    Toolkit.getDefaultToolkit().beep();
+    _frame.setStatusMessage("Replaced " + count + " occurrence" + ((count == 1) ? "" : "s") + ".");
+    _replaceAction.setEnabled(false);
+    _replaceFindNextAction.setEnabled(false);
+    _replaceFindPreviousAction.setEnabled(false);
+  }

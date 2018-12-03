@@ -1,0 +1,19 @@
+    private void initialize() {
+        int nFncs = functions.size();
+        sourceIsValid = (active == null) || (nFncs == 0);
+        targetIsValid = (nFncs == 0);
+        functionJoinIsValid = new boolean[Math.max(0, nFncs - 1)];
+        for (int n = 0; n < (nFncs - 1); ++n) {
+            functionJoinIsValid[n] = false;
+        }
+        sourceFirstFunctionMatch = false;
+        targetLastFunctionMatch = false;
+        if (nFncs == 0) {
+            firstFunctionIsValid = false;
+            lastFunctionIsValid = false;
+        }
+        else {
+            firstFunctionIsValid = (active == functions.get(0));
+            lastFunctionIsValid = (active == functions.get(nFncs - 1));
+        }
+    }

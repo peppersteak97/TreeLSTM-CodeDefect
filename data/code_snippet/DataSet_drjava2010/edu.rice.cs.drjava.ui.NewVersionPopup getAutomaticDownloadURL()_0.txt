@@ -1,0 +1,6 @@
+  protected String getAutomaticDownloadURL() {
+    if (_newestVersionString.indexOf("weekly") > 0) {
+    }
+    else {
+    }
+  }

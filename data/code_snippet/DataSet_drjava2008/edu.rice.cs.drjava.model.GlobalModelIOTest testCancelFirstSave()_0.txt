@@ -1,0 +1,11 @@
+  public void testCancelFirstSave() throws BadLocationException, IOException {
+    OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    
+    _model.addListener(new TestListener());
+    
+      saveFile(doc, new CancelingSelector());
+    assertModified(true, doc);
+    assertContents(FOO_TEXT, doc);
+    
+    _log.log("testForceFileOpen completed");
+  }

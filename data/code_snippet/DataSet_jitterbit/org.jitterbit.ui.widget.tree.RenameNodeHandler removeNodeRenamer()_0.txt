@@ -1,0 +1,10 @@
+    private void removeNodeRenamer() {
+        if (m_nodeRenamer == null) {
+            return;
+        }
+        m_tree.remove(m_nodeRenamer);
+        m_nodeRenamer.setVisible(false);
+        m_nodeRenamer = null;
+        m_tree.requestFocusInWindow();
+        m_tree.repaint();
+    }

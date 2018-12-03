@@ -1,0 +1,13 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    
+    /* The following use of invokeAndWait has been motivated by occasional test failures in set up (particularly in
+     * MainFrame creation and packing) among different test methods in this test class. */
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        DrJava.getConfig().resetToDefaults();
+        _frame = new MainFrame();
+        _frame.pack(); 
+      }
+    });
+  }

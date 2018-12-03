@@ -1,0 +1,14 @@
+    private JToolBar getToolBar() {
+        JToolBar tb = new JToolBar();
+        tb.setFloatable(false);
+        tb.setRollover(true);
+        tb.setOpaque(false);
+        
+        tb.add(createHelpButton());
+
+        if (!IntegrationUiUtils.USE_TABBED_PANE_CLOSE_BUTTON) {
+            tb.add(createCloseButton());
+        }
+
+        return tb;
+    }

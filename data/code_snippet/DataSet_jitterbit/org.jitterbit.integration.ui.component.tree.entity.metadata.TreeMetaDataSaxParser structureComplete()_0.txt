@@ -1,0 +1,6 @@
+    void structureComplete() {
+        if (m_structureNodes.empty()) {
+            throw new XmlTreeMetaDataRuntimeException("Invalid XML.");
+        }
+        m_dataLoader.setRootStructureNode(m_structureNodes.pop());
+    }

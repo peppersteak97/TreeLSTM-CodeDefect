@@ -1,0 +1,7 @@
+  private static int getThread() {
+    if (VM.runningVM) {
+      return RVMThread.getCurrentThread().getThreadSlot();
+    } else {
+      return System.identityHashCode(Thread.currentThread());
+    }
+  }

@@ -1,0 +1,4 @@
+	public IKongaTreeNode getSourceNode() {
+		return (m_sourceNodes != null && !m_sourceNodes.isEmpty()) ? 
+				m_sourceNodes.get(0) : null;
+	}

@@ -1,0 +1,17 @@
+  public void finalizeOsrSpecialization() {
+    if (VM.VerifyAssertions) {
+      synchronized (synthesizedBytecodes) {
+        VM._assert(synthesizedBytecodes.get(this) != null);
+      }
+    }
+    synchronized(osrPrologues) {
+      osrPrologues.remove(this);
+    }
+    synchronized(synthesizedBytecodes) {
+      synthesizedBytecodes.remove(this);
+    }
+    synchronized(savedOperandWords) {
+      this.operandWords = (short)(savedOperandWords.get(this).intValue());
+      savedOperandWords.remove(this);
+    }
+  }

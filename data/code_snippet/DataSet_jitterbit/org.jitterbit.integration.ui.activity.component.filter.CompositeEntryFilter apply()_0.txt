@@ -1,0 +1,5 @@
+    public void apply() {
+        for (IActivityEntryFilterUi<T> f : m_filters) {
+            f.apply();
+        }
+    }

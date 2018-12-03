@@ -1,0 +1,8 @@
+  private int getToken() {
+    try {
+      int tokenType = nextToken();
+      return tokenType;
+    } catch(IOException e) {
+      throw new LexingException("Unable to read the data from the given input");
+    }
+  }

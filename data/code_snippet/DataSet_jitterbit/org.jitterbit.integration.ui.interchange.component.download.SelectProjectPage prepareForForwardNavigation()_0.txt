@@ -1,0 +1,11 @@
+    public boolean prepareForForwardNavigation() {
+        if (m_projectDisplayer.getSelectedProject() == null) {
+            MessageDisplayer.showMessage(
+                            this, 
+                            getMainPanel(), 
+                            PackageResources.SelectPage.NothingSelected.MESSAGE, 
+                            PackageResources.SelectPage.NothingSelected.TITLE);
+            return false;
+        }
+        return true;
+    }

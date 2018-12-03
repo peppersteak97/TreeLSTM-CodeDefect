@@ -1,0 +1,11 @@
+    public void done() {
+        IMenu menu = getFileMenu();
+        if (m_fileMenuItems != null) {
+            menu.addExtension(FILE_MENU_EXTENSION_POINT, m_fileMenuItems);
+        }
+        JMenu jmenu = getFileJMenu();
+        if (jmenu != null) {
+            menu.populate(jmenu);
+        }
+        m_fileMenuItems = null;
+    }

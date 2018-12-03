@@ -1,0 +1,18 @@
+    void rename() throws IllegalNameException, InterchangeSavingException {
+        InterchangeProject project = m_managedProject.getProject();
+        String oldName = project.getName();
+        if (oldName.equals(m_newName)) {
+            return;
+        }
+
+        InterchangeProjectFile projectFile = m_managedProject.getProjectFile();
+
+        deleteOldFiles(projectFile);
+
+        project.setName(m_newName);
+        projectFile.setNewName(m_newName);
+
+        save();
+        IRecentProjectManager mgr = IntegrationUi.getUi().getRecentProjectManager();
+        mgr.projectWasRenamed(oldName, projectFile.getParentFolder(), m_newName);
+    }

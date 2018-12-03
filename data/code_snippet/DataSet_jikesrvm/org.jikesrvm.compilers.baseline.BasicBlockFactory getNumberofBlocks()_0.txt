@@ -1,0 +1,3 @@
+  public int getNumberofBlocks() {
+    return (nextBlockNumber - 1);
+  }

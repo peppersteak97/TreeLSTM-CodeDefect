@@ -1,0 +1,15 @@
+  public String toString() {
+    String exmsg = " (catches ";
+    for (int i = 0; i < exceptionTypes.length - 1; i++) {
+      exmsg = exmsg + exceptionTypes[i].toString() + ", ";
+    }
+    exmsg = exmsg + exceptionTypes[exceptionTypes.length - 1].toString();
+    exmsg = exmsg + " for";
+    BasicBlockEnumeration in = getIn();
+    while (in.hasMoreElements()) {
+      exmsg = exmsg + " " + in.next().toString();
+    }
+    exmsg = exmsg + ")";
+
+    return super.toString() + exmsg;
+  }

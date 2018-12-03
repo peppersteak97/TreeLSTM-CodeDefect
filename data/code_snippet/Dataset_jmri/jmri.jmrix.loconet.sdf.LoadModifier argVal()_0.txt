@@ -1,0 +1,6 @@
+    String argVal() {
+        String arg1Val = ""+arg1;
+        String arg2Val = ""+arg2;
+        String arg3Val = ""+arg3;
+        return arg1Val+","+arg2Val+","+arg3Val;
+    }

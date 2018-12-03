@@ -1,0 +1,5 @@
+    static public SprogMessage getProgMode() {
+        SprogMessage m = new SprogMessage(1);
+        m.setOpCode('P');
+        return m;
+    }

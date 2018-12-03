@@ -1,0 +1,4 @@
+    private void createHttpsBox() {
+        m_httpsBox = ComponentFactories.checkBoxFactory().newCheckBox(
+                        PackageResources.Labels.HTTPS);
+    }

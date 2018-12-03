@@ -1,0 +1,16 @@
+	public List<IKongaRelational> getAll() {
+		int nKeys = m_mapDependantsByID.size();
+		List<IKongaRelational>[] lists = new List[nKeys];
+		int n = 0;
+		int nTotalElements = 0;
+		for( Class<?> cls : m_mapDependantsByID.keySet() ) {
+			List<IKongaRelational> list = getAll(cls);
+			nTotalElements += list.size();
+			lists[n++] = list;
+		}
+		
+		List<IKongaRelational> retList = new ArrayList<IKongaRelational>(nTotalElements);
+		for (int i = 0; i < nKeys; ++i)
+			retList.addAll(lists[i]);
+		return retList;
+	}

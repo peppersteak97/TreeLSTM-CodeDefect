@@ -1,0 +1,31 @@
+	public void RESIZE(){
+		Dimension d=getContentPane().getSize();
+		int panel_width=m_panel.getPreferredSize().width;
+		int width=d.width, height=d.height;
+		
+		float r=(float)width/(float)panel_width;
+		
+		int x=0, widths[]=new int[7];
+		
+		for(int i = iComponentStart; i < iComponentEnd; i++){
+			widths[i] = (int)(m_Components[i].getWidth()*r);
+			if(widths[i] < m_min_widths[i])widths[i] = m_min_widths[i];
+			x+=widths[i]+2;
+		}
+		x-=2;
+		if(x<width)widths[3]+=width-x;
+
+		x=0;
+		int dh=m_scroll_bar_height;
+
+		for(int i = iComponentStart; i < iComponentEnd; i++){
+			m_Components[i].setBounds(x, 0, widths[i], height-dh);
+			x += widths[i]+2;
+			if(m_Components[i] instanceof TreeScrollPane){
+				((TreeScrollPane)m_Components[i]).refresh();
+			}
+		}
+					
+		m_scroll.setSize(width, height);
+		validate();
+	}

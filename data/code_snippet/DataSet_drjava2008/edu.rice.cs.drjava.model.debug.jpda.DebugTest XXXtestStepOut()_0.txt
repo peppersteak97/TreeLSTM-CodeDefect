@@ -1,0 +1,47 @@
+  public synchronized void XXXtestStepOut() throws Exception {
+    _log.log("----testStepOut----");
+    StepTestListener debugListener = new StepTestListener();
+    _debugger.addListener(debugListener);
+    
+    OpenDefinitionsDocument doc = _startupDebugger("DrJavaDebugClass.java",
+                                                   DEBUG_CLASS);
+    
+    _debugger.toggleBreakpoint(doc,DEBUG_CLASS.indexOf("bar();"),4,true);
+    
+    Utilities.clearEventQueue();
+    debugListener.assertRegionAddedCount(1);
+    
+    synchronized(_notifierLock) {
+      interpretIgnoreResult("new DrJavaDebugClass().foo()");
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    
+    _log.log("----After breakpoint:\n" + getInteractionsText());
+    
+    debugListener.assertCurrThreadResumedCount(0);
+    debugListener.assertCurrThreadDiedCount(0);
+    assertInteractionsContains("Foo Line 1");
+    assertInteractionsDoesNotContain("Bar Line 1");
+    
+    synchronized(_notifierLock) {
+      _asyncStep(Debugger.StepType.STEP_INTO);
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    debugListener.assertBreakpointReachedCount(1);
+    debugListener.assertCurrThreadDiedCount(0);
+    assertInteractionsDoesNotContain("Bar Line 1");
+    
+    synchronized(_notifierLock) {
+      _asyncStep(Debugger.StepType.STEP_OUT);
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    
+    _log.log("****"+getInteractionsText());
+    debugListener.assertCurrThreadDiedCount(0);
+    debugListener.assertBreakpointReachedCount(1);
+    assertInteractionsContains("Bar Line 2");
+    assertInteractionsDoesNotContain("Foo Line 3");
+    
+    _shutdownAndWaitForInteractionEnded();
+    _debugger.removeListener(debugListener);
+  }

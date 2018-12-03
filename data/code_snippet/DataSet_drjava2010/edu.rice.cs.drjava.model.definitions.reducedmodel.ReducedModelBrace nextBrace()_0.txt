@@ -1,0 +1,29 @@
+  public int nextBrace() {
+    int relDistance = 0;
+    int dist = 0;
+    TokenList.Iterator copyCursor = _cursor.copy();
+    
+    resetWalkerLocationToCursor();
+    
+    if (copyCursor.atStart()) copyCursor.next();
+    int offset = getBlockOffset();
+    if (offset > 0) {
+      dist = copyCursor.current().getSize() - offset;
+      relDistance = dist;
+      copyCursor.next();
+    }
+    while (! copyCursor.atEnd()) {
+      if (! copyCursor.current().isGap()) {
+        if (moveWalkerGetState(relDistance) == FREE) {
+          copyCursor.dispose();
+          return dist;
+        }
+        relDistance = 0;
+      }
+      relDistance += copyCursor.current().getSize();
+      dist += copyCursor.current().getSize();
+      copyCursor.next();
+    }
+    copyCursor.dispose();
+    return -1;
+  }

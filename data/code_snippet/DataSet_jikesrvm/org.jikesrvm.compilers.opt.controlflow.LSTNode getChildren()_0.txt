@@ -1,0 +1,13 @@
+  public Enumeration<LSTNode> getChildren() {
+    return new Enumeration<LSTNode>() {
+      private SpaceEffGraphEdge _edge = _outEdgeStart;
+
+      public boolean hasMoreElements() { return _edge != null; }
+
+      public LSTNode nextElement() {
+        SpaceEffGraphEdge e = _edge;
+        _edge = e.getNextOut();
+        return (LSTNode) e.toNode();
+      }
+    };
+  }

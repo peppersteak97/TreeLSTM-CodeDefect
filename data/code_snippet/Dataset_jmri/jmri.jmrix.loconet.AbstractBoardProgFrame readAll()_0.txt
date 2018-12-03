@@ -1,0 +1,14 @@
+    void readAll() {
+        try {
+            setAddress(256);
+        } catch (Exception e) {
+            log.debug("readAll aborted due to invalid address");
+            readAllButton.setSelected(false);
+            writeAllButton.setSelected(false);
+            status.setText("");
+            return;
+        }
+        read = true;
+        state = 1;
+        nextRequest();
+    }

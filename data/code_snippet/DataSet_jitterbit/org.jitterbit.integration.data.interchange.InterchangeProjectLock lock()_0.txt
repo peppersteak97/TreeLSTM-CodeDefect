@@ -1,0 +1,5 @@
+    public static void lock() {
+        Debug.println("Acquiring lock...");
+        s_lock.lock();
+        Debug.println("Lock acquired");
+    }

@@ -1,0 +1,3 @@
+	protected final PropertyChangeManager getPropertyChangeManager() {
+		return m_propChangeManager;
+	}

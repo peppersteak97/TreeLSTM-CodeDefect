@@ -1,0 +1,3 @@
+  public boolean getValue() {
+    return _bool;
+  }

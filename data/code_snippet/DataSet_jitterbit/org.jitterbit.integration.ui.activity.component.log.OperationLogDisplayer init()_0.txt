@@ -1,0 +1,4 @@
+    private void init() {
+        createTable();
+        createDetailsPane();
+    }

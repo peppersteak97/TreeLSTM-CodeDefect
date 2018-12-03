@@ -1,0 +1,5 @@
+  private boolean _inParenPhrase() {
+    
+    BraceInfo info = _reduced._getEnclosingBrace(); 
+    return info.braceType().equals(BraceInfo.OPEN_PAREN);
+  }

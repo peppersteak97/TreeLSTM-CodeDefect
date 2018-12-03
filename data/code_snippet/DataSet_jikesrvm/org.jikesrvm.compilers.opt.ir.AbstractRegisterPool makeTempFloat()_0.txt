@@ -1,0 +1,3 @@
+  public RegisterOperand makeTempFloat() {
+    return new RegisterOperand(getFloat(), TypeReference.Float);
+  }

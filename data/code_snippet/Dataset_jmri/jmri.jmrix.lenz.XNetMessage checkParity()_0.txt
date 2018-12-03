@@ -1,0 +1,10 @@
+	public boolean checkParity() {
+		int len = getNumDataElements();
+		int chksum = 0x00;  /* the seed */
+   		int loop;
+
+    	for(loop = 0; loop < len-1; loop++) {  
+        	chksum ^= getElement(loop);
+        }
+		return ((chksum&0xFF) == getElement(len-1));
+	}

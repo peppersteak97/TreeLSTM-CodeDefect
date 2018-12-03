@@ -1,0 +1,5 @@
+  public void interactionEnded() {
+    _lock.startRead();
+    try { for (GlobalModelListener l : _listeners) { l.interactionEnded(); } }
+    finally { _lock.endRead(); }
+  }

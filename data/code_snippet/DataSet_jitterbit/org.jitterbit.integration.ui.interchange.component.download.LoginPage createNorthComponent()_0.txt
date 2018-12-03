@@ -1,0 +1,7 @@
+    private JComponent createNorthComponent() {
+        JLabel caption = IntegrationUiStyleSheet.AdminHint.makeJLabel(PackageResources.LoginPage.CAPTION);
+        JPanel north = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        north.setOpaque(false);
+        north.add(caption);
+        return north;
+    }

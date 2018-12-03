@@ -1,0 +1,3 @@
+    public ITreeMapperNode getSourceRoot() {
+        return m_sourceTreeComponent.asTreeMapperNode();
+    }

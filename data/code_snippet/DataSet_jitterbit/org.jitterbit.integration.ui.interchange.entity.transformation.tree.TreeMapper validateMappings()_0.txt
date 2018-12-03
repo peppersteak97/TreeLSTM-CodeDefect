@@ -1,0 +1,15 @@
+    public boolean validateMappings() throws CheckingException {
+    	if(m_targetTreeComponent.m_root.missingRequiredMappings())
+    		throw new CheckingException("Missing some required mappings");
+		if(!m_checkMapping.DoChecks()){
+			throw new CheckingException(m_checkMapping.m_err);
+		}
+		Vector<ConflictPanel> targetLoopNodeList=new Vector<ConflictPanel>();
+		m_targetTreeComponent.m_root.collectSourcePathConflict(targetLoopNodeList);
+		for(ConflictPanel cp:targetLoopNodeList){
+			if(cp.m_status==ConflictPanel.c_conflictPath){
+				throw new CheckingException("Conflict mapping on the target loop node: "+cp.m_targetDE);
+			}
+		}
+		return true;
+    }

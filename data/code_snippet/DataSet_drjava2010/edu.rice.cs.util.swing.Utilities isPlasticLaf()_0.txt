@@ -1,0 +1,4 @@
+  public static boolean isPlasticLaf() {
+    LookAndFeel laf = UIManager.getLookAndFeel();
+    return laf != null && laf.getClass().getName().startsWith(JGOODIES_PACKAGE);
+  }

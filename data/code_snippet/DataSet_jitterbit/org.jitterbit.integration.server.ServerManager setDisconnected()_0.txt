@@ -1,0 +1,12 @@
+    synchronized void setDisconnected() {
+        if (m_connectionStatus == ConnectionStatus.DISCONNECTED) {
+            return;
+        }
+        m_connectionStatus = ConnectionStatus.DISCONNECTED;
+        m_serverGuid = null;
+        m_serverName = null;
+        m_serverVersion = null;
+        m_userId = null;
+        m_userName = null;
+        fireConnectionChanged();
+    }

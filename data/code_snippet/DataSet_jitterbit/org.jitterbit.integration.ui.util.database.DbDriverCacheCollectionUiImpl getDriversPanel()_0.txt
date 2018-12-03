@@ -1,0 +1,9 @@
+    private JComponent getDriversPanel() {
+        IComponentDecor decor = ComponentDecorFactory.centerBorder(
+                        m_availableDriversList);
+        JPanel refreshPanel = InvisiblePanel.newPanel();
+        refreshPanel.add(ComponentFactories.buttonFactory().newButton(m_refreshAction));
+        refreshPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+        decor.getUi().add(refreshPanel, BorderLayout.SOUTH);
+        return decor.getUi();
+    }

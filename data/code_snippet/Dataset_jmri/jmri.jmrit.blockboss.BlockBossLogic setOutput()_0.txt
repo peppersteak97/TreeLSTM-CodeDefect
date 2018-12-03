@@ -1,0 +1,25 @@
+    public void setOutput() {
+        if ( (outputs == null) || (outputs[0]==null) ) return;
+        
+        if (getHold()) {
+            ((SignalHead)outputs[0]).setAppearance(SignalHead.RED);
+            return;
+        }
+        
+        switch (mode) {
+        case SINGLEBLOCK:
+            doSingleBlock();
+            break;
+        case TRAILINGMAIN:
+            doTrailingMain();
+            break;
+        case TRAILINGDIVERGING:
+            doTrailingDiverging();
+            break;
+        case FACING:
+            doFacing();
+            break;
+        default:
+            log.error("Unexpected mode: "+mode);
+        }
+    }

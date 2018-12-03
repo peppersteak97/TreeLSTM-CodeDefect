@@ -1,0 +1,6 @@
+    public void newInternalMinute()
+    {
+        if (DEBUG_SHOW_SYNC_CALLS && log.isDebugEnabled()) {
+        	log.debug("newInternalMinute clockMode: " + clockMode + " nceInit: " + nceSyncInitStateCounter + " nceRun: " + nceSyncRunStateCounter);
+        }
+    }

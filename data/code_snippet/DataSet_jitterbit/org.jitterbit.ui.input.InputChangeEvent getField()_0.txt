@@ -1,0 +1,3 @@
+    public Object getField() {
+        return m_field;
+    }

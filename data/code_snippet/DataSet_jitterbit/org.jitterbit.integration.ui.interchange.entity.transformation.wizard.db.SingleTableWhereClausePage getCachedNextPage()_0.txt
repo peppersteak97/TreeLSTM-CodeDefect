@@ -1,0 +1,7 @@
+    private IWizardPage getCachedNextPage() {
+        if (m_nextPageCache == null) {
+            m_nextPageCache = new HashMap<DatabaseObject, IWizardPage>();
+            return null;
+        }
+        return m_nextPageCache.get(m_dbObject);
+    }

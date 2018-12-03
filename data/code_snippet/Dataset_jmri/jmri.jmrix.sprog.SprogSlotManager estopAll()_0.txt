@@ -1,0 +1,10 @@
+    public void estopAll() {
+    for (int slotNum=0; slotNum<SprogConstants.MAX_SLOTS; slotNum++) {
+        SprogSlot s = slot(slotNum);
+        if ((s.getRepeat() == -1)
+            && s.slotStatus() != SprogConstants.SLOT_FREE
+            && s.speed() != 1) {
+          estopSlot(slotNum);
+        }
+      }
+    }

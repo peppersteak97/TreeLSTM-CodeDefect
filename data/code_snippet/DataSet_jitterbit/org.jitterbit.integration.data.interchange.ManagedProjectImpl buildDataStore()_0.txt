@@ -1,0 +1,14 @@
+    void buildDataStore() {
+        m_dataStore = new DefaultIntegrationDataLookup();
+        m_links = new Dependencies();
+        m_uiState = new ProjectUiStateImpl(m_dataStore);
+
+        m_dataStore.addInstance(m_project);
+        for (RootFolder rf : m_project.getAllRootFolders()) {
+            m_dataStore.addInstance(rf);
+        }
+        for (IntegrationEntity e : m_project.getAllEntities()) {
+            m_dataStore.addInstance(e);
+            entityWasSavedImpl(e, false);
+        }
+    }

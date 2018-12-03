@@ -1,0 +1,7 @@
+        for (int n = 0; n < getModel().getSize(); ++n) {
+            ComboItem item = (ComboItem) getModel().getElementAt(n);
+            if (item.getDriver() == driver) {
+                m_comboBox.setSelectedItem(item);
+                return;
+            }
+        }

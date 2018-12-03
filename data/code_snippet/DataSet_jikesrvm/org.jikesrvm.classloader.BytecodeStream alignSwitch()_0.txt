@@ -1,0 +1,6 @@
+  public final void alignSwitch() {
+    if (VM.VerifyAssertions) {
+      VM._assert(opcode == JBC_tableswitch || opcode == JBC_lookupswitch);
+    }
+    int align = bcIndex & 3;
+  }

@@ -1,0 +1,19 @@
+  public RVMMethod resolveInterfaceMethod() throws IncompatibleClassChangeError, NoSuchMethodError {
+    if (resolvedMember != null) return resolvedMember;
+
+    RVMClass declaringClass = (RVMClass) type.resolve();
+    if (!declaringClass.isResolved()) {
+      declaringClass.resolve();
+    }
+
+    /* Interface method may be either in interface, or a miranda.
+    */
+    if (!declaringClass.isInterface() && !isMiranda()) {
+      throw new IncompatibleClassChangeError();
+    }
+    RVMMethod ans = resolveInterfaceMethodInternal(declaringClass);
+    if (ans == null) {
+      throw new NoSuchMethodError(this.toString());
+    }
+    return ans;
+  }

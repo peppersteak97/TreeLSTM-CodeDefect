@@ -1,0 +1,71 @@
+  public void testFindPrevDelimiter() throws BadLocationException {
+    char[] delimiters1 = {';', ':', '?'};
+
+    char[] delimiters2 = {'%'};
+
+    char[] delimiters3 = {'f'};
+
+    char[] delimiters4 = {'/', '*'};
+    
+    _setDocText("/*bar;\nfoo();\nx;*/\nreturn foo;\n");
+    assertEquals("Check that delimiters in multi-line comments are ignored",
+                 -1,
+                 findPrevDelimiter(23, delimiters1));
+    
+    assertEquals("Check that delimiters in single-line comments are ignored",
+                 5,
+                 findPrevDelimiter(16, delimiters1));
+    
+    _setDocText("x=';'\n");
+    assertEquals("Check that delimiters in single-quotes are ignored",
+                 -1,
+                 findPrevDelimiter(5, delimiters1));
+    
+    _setDocText("x=\";\"\n");
+    assertEquals("Check that delimiters in double-quotes are ignored",
+                 -1,
+                 findPrevDelimiter(5, delimiters1));
+    
+    _setDocText("foo();\nfor(;;)\n");
+    assertEquals("Check that delimiters in paren phrases are usually ignored",
+                 5,
+                 findPrevDelimiter(14, delimiters1));
+    
+    
+    _setDocText("foo();\n test ? x : y;\n\t    return blah();\n");
+    assertEquals("Check that ERROR_INDEX (-1) is returned if no matching character is found", 
+                 -1, 
+                 findPrevDelimiter(20, delimiters2)); 
+    assertEquals("Check that delimiter is found if it is right after 0",
+                 0,
+                 findPrevDelimiter(20, delimiters3));
+    assertEquals("Check that delimiter is not found if it is at cursor's position",
+                 -1,
+                 findPrevDelimiter(5, delimiters1));
+    assertEquals("Check that the first delimiter in the list is found",
+                 17,
+                 findPrevDelimiter(19, delimiters1));
+    assertEquals("Check that the second delimiter in the list is found",
+                 13,
+                 findPrevDelimiter(17, delimiters1));
+    assertEquals("Check that the last delimiter in the list is found",
+                 5,
+                 findPrevDelimiter(13, delimiters1));
+    
+    assertEquals("Check that findprevDelimiter ignores comments even when delimiters include * and / (1)",
+                 4,
+                 findPrevDelimiter(17, delimiters4));
+    _setDocText("foo /\n" + "/* comment */\n" + "bar\n");
+    assertEquals("Check that findprevDelimiter ignores comments even when delimiters include * and / (2)",
+                 4,
+                 findPrevDelimiter(17, delimiters4));
+
+    _setDocText("abcdefghijk");
+    _doc.setCurrentLocation(3);
+    int reducedModelPos = _doc.getReduced().absOffset();
+    findPrevDelimiter(8, delimiters2);
+    assertEquals("Check that position in reduced model is unaffected after call to findPrevDelimiter",
+                 reducedModelPos,
+                 _doc.getReduced().absOffset());
+    
+  }

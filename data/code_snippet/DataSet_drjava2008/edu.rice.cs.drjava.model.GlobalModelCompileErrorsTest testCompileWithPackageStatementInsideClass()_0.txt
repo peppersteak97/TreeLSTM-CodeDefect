@@ -1,0 +1,28 @@
+  public void testCompileWithPackageStatementInsideClass() throws BadLocationException, IOException, 
+    InterruptedException {
+    
+    File baseTempDir = tempDirectory();
+    File subdir = new File(baseTempDir, "a");
+    File fooFile = new File(subdir, "DrJavaTestFoo.java");
+    File compiled = classForJava(fooFile, "DrJavaTestFoo");
+    
+    subdir.mkdir();
+    
+    OpenDefinitionsDocument doc = setupDocument(FOO_PACKAGE_INSIDE_CLASS);
+    saveFileAs(doc, new FileSelector(fooFile));
+    
+    CompileShouldFailListener listener = new CompileShouldFailListener();
+    _model.addListener(listener);
+    
+    testStartCompile(doc);
+    listener.waitCompileDone();
+    
+    listener.checkCompileOccurred();
+    assertCompileErrorsPresent(_name(), true);
+    assertTrue(_name() + "Class file exists after failed compile", !compiled.exists());
+    
+    _model.getCompilerModel().resetCompilerErrors();
+    CompilerErrorModel cem = _model.getCompilerModel().getCompilerErrorModel();
+    assertEquals("CompilerErrorModel has errors after reset", 0, cem.getNumErrors());
+    _model.removeListener(listener);
+  }

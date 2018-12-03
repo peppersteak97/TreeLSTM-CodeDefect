@@ -1,0 +1,2 @@
+  public void testNoEquals() throws BadLocationException
+    _text =

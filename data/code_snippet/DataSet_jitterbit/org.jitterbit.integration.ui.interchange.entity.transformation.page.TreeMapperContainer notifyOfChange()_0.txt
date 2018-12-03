@@ -1,0 +1,4 @@
+    public void notifyOfChange() {
+        m_panel.undoableEditHappened();
+        m_panel.inputChanged();
+    }

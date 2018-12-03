@@ -1,0 +1,6 @@
+  protected void _initializeRequests() throws DebugException {
+    createRequests();
+    if (_requests.size() == 0) {
+      throw new DebugException("Could not create EventRequests for this action!");
+    }
+  }

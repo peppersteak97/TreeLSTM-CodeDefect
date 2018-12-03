@@ -1,0 +1,8 @@
+    private void setItems() {
+        OperationType[] supportedTypes = OperationType.getSupportedTypes();
+        ComboItem[] items = new ComboItem[supportedTypes.length];
+        for (int n = 0; n < supportedTypes.length; ++n) {
+            items[n] = new ComboItem(supportedTypes[n]);
+        }
+        setModel(new DefaultComboBoxModel(items));
+    }

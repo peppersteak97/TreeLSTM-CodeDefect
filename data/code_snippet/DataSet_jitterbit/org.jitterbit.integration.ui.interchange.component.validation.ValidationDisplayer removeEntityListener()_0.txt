@@ -1,0 +1,6 @@
+    private void removeEntityListener() {
+        InterchangeProject project = m_context.getProject();
+        for (RootFolder rf : project.getAllRootFolders()) {
+            removeEntityListenerImpl(rf);
+        }
+    }

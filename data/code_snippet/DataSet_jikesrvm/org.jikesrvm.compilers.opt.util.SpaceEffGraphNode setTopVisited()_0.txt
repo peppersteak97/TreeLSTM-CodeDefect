@@ -1,0 +1,1 @@
+  public final void setTopVisited() { info |= TOP_VISITED; }

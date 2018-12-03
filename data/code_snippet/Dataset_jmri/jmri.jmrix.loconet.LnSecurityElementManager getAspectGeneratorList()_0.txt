@@ -1,0 +1,7 @@
+    public List getAspectGeneratorList() {
+        List out = new ArrayList();
+        Enumeration en = mHashAG.elements();
+        while (en.hasMoreElements()) {
+        }
+         return out;
+    }

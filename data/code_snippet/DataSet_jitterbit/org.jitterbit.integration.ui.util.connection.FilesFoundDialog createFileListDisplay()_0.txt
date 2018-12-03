@@ -1,0 +1,7 @@
+    private JComponent createFileListDisplay() {
+        createTextPane();
+        JPanel p = new JPanel(new BorderLayout(0, 2));
+        p.add(createCaption(), BorderLayout.NORTH);
+        p.add(createScrollPane(), BorderLayout.CENTER);
+        return p;
+    }

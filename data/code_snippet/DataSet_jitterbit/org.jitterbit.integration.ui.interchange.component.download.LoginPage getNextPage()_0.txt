@@ -1,0 +1,3 @@
+    public IWizardPage getNextPage() {
+        return new SelectProjectPage((DownloadProjectWizard) getWizard(), WizardNavigationOption.PREVIOUS_AND_NEXT);
+    }

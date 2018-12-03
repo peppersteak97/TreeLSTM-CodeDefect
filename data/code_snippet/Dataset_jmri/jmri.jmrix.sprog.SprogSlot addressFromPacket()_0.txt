@@ -1,0 +1,5 @@
+    private int addressFromPacket() {
+      if (isFree()) { return -1; }
+      if (payload[0] >= 0xC0) { return (payload[0]<<8 | payload[1]); }
+      return payload[0];
+    }

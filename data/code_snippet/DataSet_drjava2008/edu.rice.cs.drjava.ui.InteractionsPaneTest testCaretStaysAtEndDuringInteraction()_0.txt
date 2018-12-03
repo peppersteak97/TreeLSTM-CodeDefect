@@ -1,0 +1,7 @@
+  public void testCaretStaysAtEndDuringInteraction() throws EditDocumentException {
+    _doc.setInProgress(true);
+    _model.replSystemOutPrint("simulated output");
+    Utilities.clearEventQueue();
+    _doc.setInProgress(false);
+    assertEquals("Caret is at the end after output while in progress.", _doc.getLength(), _pane.getCaretPosition());
+  }

@@ -1,0 +1,6 @@
+  public final int getWideBranchOffset() {
+    if (VM.VerifyAssertions) {
+      VM._assert(opcode == JBC_goto_w || opcode == JBC_jsr_w);
+    }
+    return readSignedInt();
+  }

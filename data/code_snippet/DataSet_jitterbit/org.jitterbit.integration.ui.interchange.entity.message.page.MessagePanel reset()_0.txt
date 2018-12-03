@@ -1,0 +1,3 @@
+    public void reset() {
+        setMessage(m_message, true);
+    }

@@ -1,0 +1,6 @@
+    private Border createBorder() {
+        Border b1 = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+        Border b2 = BorderFactory.createEtchedBorder();
+        Border b3 = BorderFactory.createCompoundBorder(b1, b2);
+        return BorderFactory.createCompoundBorder(b3, b1);
+    }

@@ -1,0 +1,7 @@
+    protected void openButton() {
+
+        RosterEntry re = Roster.instance().entryFromTitle((String)locoBox.getSelectedItem());
+        if (re == null) log.error("RosterEntry is null during open; that shouldnt be possible");
+
+        startProgrammer(null, re, (String)programmerBox.getSelectedItem());
+    }

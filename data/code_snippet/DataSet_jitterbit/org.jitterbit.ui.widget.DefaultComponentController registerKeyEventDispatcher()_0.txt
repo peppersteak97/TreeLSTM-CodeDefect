@@ -1,0 +1,5 @@
+    private void registerKeyEventDispatcher() {
+        m_keyEventDispatcher = new KeyEventDispatcherImpl();
+        KeyboardFocusManager mgr = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        mgr.addKeyEventDispatcher(m_keyEventDispatcher);
+    }

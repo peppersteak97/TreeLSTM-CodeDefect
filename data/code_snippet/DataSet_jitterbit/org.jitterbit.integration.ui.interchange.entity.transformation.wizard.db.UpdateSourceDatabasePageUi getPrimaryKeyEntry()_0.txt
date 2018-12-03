@@ -1,0 +1,6 @@
+    private JComponent getPrimaryKeyEntry() {
+        JLabel lbl = IntegrationUiStyleSheet.ComponentTableEntryText.makeJLabel(
+                        PackageResources.UpdateSourcePage.Labels.PRIMARY_KEY);
+        lbl.setHorizontalTextPosition(JLabel.CENTER);
+        return lbl;
+    }

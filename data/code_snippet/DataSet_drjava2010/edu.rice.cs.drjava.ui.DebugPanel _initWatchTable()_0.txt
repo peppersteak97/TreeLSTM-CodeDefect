@@ -1,0 +1,7 @@
+  private void _initWatchTable() {
+    _watchTable = new JTable( new WatchTableModel());
+    _watchTable.setDefaultEditor(_watchTable.getColumnClass(0), new WatchEditor());
+    _watchTable.setDefaultRenderer(_watchTable.getColumnClass(0), new WatchRenderer());
+
+    _leftPane.addTab("Watches", new JScrollPane(_watchTable));
+  }

@@ -1,0 +1,12 @@
+    public String toString() {
+        sb.append(m_objects.size());
+        sb.append(LINE_BREAK);
+        for (IntegrationId id : m_objects.keySet()) {
+            IntegrationEntity e = (IntegrationEntity) m_objects.get(id);
+            sb.append(e.getEntityType());
+            sb.append(id);
+            sb.append(e.getName());
+            sb.append(LINE_BREAK);
+        }
+        return sb.toString();
+    }

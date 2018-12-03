@@ -1,0 +1,10 @@
+    private void setPositionOnScreen() {
+        Point pt = UI_PREFERENCES.getPoint(LOCATION_PREF_KEY, null);
+        if (pt != null) {
+            m_frame.setLocation(pt);
+            if (WindowUtils.isWindowCompletelyVisibleOnScreen(m_frame)) {
+                return;
+            }
+        }
+        m_frame.setLocationRelativeTo(null);
+    }

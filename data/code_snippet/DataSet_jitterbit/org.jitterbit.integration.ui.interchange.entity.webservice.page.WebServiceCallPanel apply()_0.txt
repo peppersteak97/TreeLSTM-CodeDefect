@@ -1,0 +1,11 @@
+    public void apply() throws IntegrationDataPanelException {
+        try {
+            m_wsCall.setName(m_nameField.getValue());
+        }
+        catch (IllegalNameException e) {
+            throw new IntegrationDataPanelException(e);
+        }
+        m_detailsPanel.applyValuesTo(m_wsCall);
+        m_securityPanel.applyValuesTo(m_wsCall);
+        m_wsCall.setCallRestrictions(m_restrictionsPanel.getCallRestrictions(m_wsCall));
+    }

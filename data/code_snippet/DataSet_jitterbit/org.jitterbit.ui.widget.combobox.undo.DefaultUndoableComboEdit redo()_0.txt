@@ -1,0 +1,4 @@
+    public void redo() throws CannotRedoException {
+        super.redo();
+        undoOrRedo(m_newValue);
+    }

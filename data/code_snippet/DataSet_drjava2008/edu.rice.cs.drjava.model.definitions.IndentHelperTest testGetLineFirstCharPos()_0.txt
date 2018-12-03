@@ -1,0 +1,39 @@
+  public void testGetLineFirstCharPos() throws BadLocationException {
+    _setDocText("   ");
+    assertEquals("Returns the end of the document if the line " +
+                 "is the last line in the document and has no " +
+                 "non-whitespace characters",
+                 3,
+                 _getLineFirstCharPos(1));
+    
+    _setDocText("   \nfoo();\n");
+    assertEquals("Returns the next newline if there are " +
+                 "no non-whitespace characters on the line",
+                 3,
+                 _getLineFirstCharPos(1));
+    
+    _setDocText("foo();\n   \t  bar();\nbiz()\n");
+    assertEquals("Returns first non-whitespace character on the line " +
+                 "when position is at the start of the line",
+                 13,
+                 _getLineFirstCharPos(7));
+    assertEquals("Returns first non-whitespace character on the line " +
+                 "when the position is after the first non-ws character " +
+                 "on the line",
+                 13,
+                 _getLineFirstCharPos(16));
+    assertEquals("Returns first non-whitespace character on the line " +
+                 "when the position is at the newline",
+                 13,
+                 _getLineFirstCharPos(19));
+    
+    
+    _setDocText("abcdefghijk");
+    _doc.setCurrentLocation(3);
+    int reducedModelPos = _doc.getReduced().absOffset();
+    _getLineFirstCharPos(5);
+    assertEquals("Check that position in reduced model is unaffected " +
+                 "after call to getLineFirstCharPos",
+                 reducedModelPos,
+                 _doc.getReduced().absOffset());
+  }

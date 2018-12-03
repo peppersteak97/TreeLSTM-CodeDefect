@@ -1,0 +1,5 @@
+  public void replReturnedVoid() {
+    _secondToLastError = _lastError;
+    _lastError = null;
+    _interactionIsOver();
+  }

@@ -1,0 +1,33 @@
+    public void activateLogix() {
+		if (mBusy) return;
+		if (mNumConditionals> 0) {
+			Conditional c = null;
+			for (int i = 0;i<mNumConditionals;i++) {
+				c = InstanceManager.conditionalManagerInstance().
+											getBySystemName(mConditionalSystemNames[i]);
+				if (c!=null) {
+					c.setState(Conditional.UNKNOWN);
+				}
+			}
+		}		
+		assembleListenerList();
+		if (mNumListeners>0) {
+			for (int i = 0;i<mNumListeners;i++) {
+				createStartListener(i);
+			}
+		}
+		if (mNumMinuteListenerTimes>0) {
+			mFastClock = InstanceManager.timebaseInstance();
+			Date currentTime = mFastClock.getTime();
+			mCurrentMinutes = (currentTime.getHours()*60) + currentTime.getMinutes();
+			mFastClockListener =  new java.beans.PropertyChangeListener() {
+				public void propertyChange(java.beans.PropertyChangeEvent e) {
+					if (mBusy) 
+						checkFastClock();
+				}
+			};
+			mFastClock.addMinuteChangeListener(mFastClockListener);
+		}
+		mBusy = true;
+		calculateConditionals();
+	}

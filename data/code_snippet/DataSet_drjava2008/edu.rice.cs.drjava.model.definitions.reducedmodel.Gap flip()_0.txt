@@ -1,0 +1,1 @@
+  public void flip() { throw  new RuntimeException("Can't flip a Gap!"); }

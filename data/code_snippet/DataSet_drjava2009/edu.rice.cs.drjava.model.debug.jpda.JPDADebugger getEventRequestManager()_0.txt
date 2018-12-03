@@ -1,0 +1,1 @@
+  EventRequestManager getEventRequestManager() { return _eventManager; }

@@ -1,0 +1,3 @@
+    protected IntegrationToolBar getToolBar() {
+        return (m_titlePanel == null) ? null : m_titlePanel.getToolBar();
+    }

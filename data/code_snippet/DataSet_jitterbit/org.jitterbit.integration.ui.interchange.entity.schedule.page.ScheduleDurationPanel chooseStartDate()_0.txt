@@ -1,0 +1,13 @@
+    private void chooseStartDate() {
+        final Date start = m_dateChooser.chooseDate(getUi());
+        if (start != null) {
+            m_startDate.getInputComponent().requestFocusInWindow();
+            EventQueue.invokeLater(new Runnable() {
+                
+                public void run() {
+                    m_startDate.setDate(start);
+                    m_endDate.decorateField();
+                }
+            });
+        }
+    }

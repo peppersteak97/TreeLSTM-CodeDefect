@@ -1,0 +1,10 @@
+  protected void scrollToCaret() {
+    Utilities.invokeLater(new Runnable() {
+      public void run() {
+        final InteractionsPane pane = _pane; 
+        int pos = pane.getCaretPosition();
+        try { pane.scrollRectToVisible(pane.modelToView(pos)); }
+        catch(BadLocationException e) { throw new UnexpectedException(e); }
+      }
+    });
+  }

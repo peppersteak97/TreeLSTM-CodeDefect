@@ -1,0 +1,9 @@
+    public List<Folder> getAllSubFolders() {
+        List<Folder> subFolders = new ArrayList<Folder>();
+        for (IntegrationEntity r : getAllChildren()) {
+            if (r instanceof Folder) {
+                subFolders.add((Folder) r);
+            }
+        }
+        return subFolders;
+    }

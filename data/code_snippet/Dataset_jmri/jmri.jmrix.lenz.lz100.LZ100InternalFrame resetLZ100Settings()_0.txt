@@ -1,0 +1,4 @@
+    synchronized void resetLZ100Settings() {
+	voltBox.setSelectedIndex(10);
+	eLineBox.setSelectedIndex(0);
+    }

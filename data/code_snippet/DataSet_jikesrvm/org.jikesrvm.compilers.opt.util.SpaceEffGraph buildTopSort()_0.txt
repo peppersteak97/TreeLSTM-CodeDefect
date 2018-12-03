@@ -1,0 +1,5 @@
+  public void buildTopSort() {
+    if (!forwardTopSorted) {
+      TopSort.buildTopological(this, true);
+    }
+  }

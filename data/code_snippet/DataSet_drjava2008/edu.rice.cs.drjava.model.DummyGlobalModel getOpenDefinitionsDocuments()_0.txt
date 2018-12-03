@@ -1,0 +1,3 @@
+  public List<OpenDefinitionsDocument> getOpenDefinitionsDocuments() {
+    throw new UnsupportedOperationException("Tried to getOpenDefinitionsDocuments on a Dummy!");
+  }

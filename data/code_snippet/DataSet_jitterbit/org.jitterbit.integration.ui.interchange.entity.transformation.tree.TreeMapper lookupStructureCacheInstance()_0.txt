@@ -1,0 +1,4 @@
+    private ITransformationTreeStructureCache lookupStructureCacheInstance() {
+        IManagedProject project = InterchangeProjectManager.getManager().getProject(m_Transformation);
+        return project.getTransformationMappingStructureCache();
+    }

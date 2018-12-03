@@ -1,0 +1,10 @@
+    void checkMemoryBox() {
+        if (currentNode == null) return;
+        if (memoryBox.isSelected()) {
+            currentNode.setAttachedMemory(memoryName.getText());          
+            memoryName.setEditable(false);
+        } else {
+            currentNode.setAttachedMemory("");          
+            memoryName.setEditable(true);
+        }
+    }

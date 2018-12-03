@@ -1,0 +1,8 @@
+	public ThrottleFramePropertyEditor getThrottleFrameEditor()
+	{
+		if (throttleFramePropertyEditor == null)
+		{
+			throttleFramePropertyEditor = new ThrottleFramePropertyEditor();
+		}
+		return throttleFramePropertyEditor;
+	}

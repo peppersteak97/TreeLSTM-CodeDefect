@@ -1,0 +1,6 @@
+    private JComponent createSouthComponent() {
+        JPanel p = new JPanel(new BorderLayout());
+        p.add(createButtonBox(), BorderLayout.CENTER);
+        getFilterDescriptionPanel().addToContainer(p, BorderLayout.SOUTH);
+        return p;
+    }

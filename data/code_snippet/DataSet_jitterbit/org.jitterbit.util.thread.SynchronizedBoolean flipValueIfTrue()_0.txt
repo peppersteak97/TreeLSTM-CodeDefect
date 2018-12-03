@@ -1,0 +1,7 @@
+    public synchronized boolean flipValueIfTrue() {
+        if ( m_bValue ) {
+            m_bValue = false;
+            return true;
+        }
+        return false;
+    }

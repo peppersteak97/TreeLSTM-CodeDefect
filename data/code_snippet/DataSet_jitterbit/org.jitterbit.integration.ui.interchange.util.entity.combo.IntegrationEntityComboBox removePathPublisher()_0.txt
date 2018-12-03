@@ -1,0 +1,9 @@
+   private void removePathPublisher() {
+        BasicComboBoxUI comboBoxUi = (BasicComboBoxUI) getUI();
+        Accessible a = comboBoxUi.getAccessibleChild(this, 0);
+        if (a instanceof ComboPopup) {
+            JList jlist = ((ComboPopup) a).getList();
+            jlist.removeListSelectionListener(m_pathPublisher);
+        }
+        m_pathPublisher = null;
+   }

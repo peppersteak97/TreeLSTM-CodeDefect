@@ -1,0 +1,3 @@
+    if (isGCPoint()) {
+      result.setCharAt(1, 'G');
+    }

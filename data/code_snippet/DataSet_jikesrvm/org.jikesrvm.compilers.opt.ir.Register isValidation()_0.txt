@@ -1,0 +1,1 @@
+  public boolean isValidation() { return (flags & VALIDATION) != 0; }

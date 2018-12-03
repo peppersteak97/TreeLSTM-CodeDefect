@@ -1,0 +1,3 @@
+  public String toString() {
+    return "time=" + time + "; alt=" + alt + "; eTime=" + etime + "; cp=" + cp;
+  }

@@ -1,0 +1,4 @@
+    void uninstall() {
+        KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        kfm.removeKeyEventDispatcher(this);
+    }

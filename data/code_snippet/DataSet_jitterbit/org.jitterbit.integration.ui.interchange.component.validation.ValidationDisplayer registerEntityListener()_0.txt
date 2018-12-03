@@ -1,0 +1,8 @@
+    private void registerEntityListener() {
+        m_entityListener = new EntityListener();
+
+        InterchangeProject project = m_context.getProject();
+        for (RootFolder rf : project.getAllRootFolders()) {
+            registerEntityListenerImpl(rf);
+        }
+    }

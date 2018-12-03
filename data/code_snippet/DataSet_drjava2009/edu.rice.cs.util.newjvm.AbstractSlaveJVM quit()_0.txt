@@ -1,0 +1,11 @@
+  public final synchronized void quit() {
+    beforeQuit();
+    new Thread(_quitSlaveThreadName) {
+      public void run() {
+        synchronized (AbstractSlaveJVM.this) {
+          try { System.exit(0); }
+          catch (RuntimeException e) { error.log("Can't invoke System.exit", e); }
+        }
+      }
+    }.start();
+  }

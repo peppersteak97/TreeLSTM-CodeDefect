@@ -1,0 +1,12 @@
+  public void testNoMatch() {
+    String entry1 = "some text";
+    String entry2 = "blah";
+
+    _history.add(entry1);
+    _history.add(entry2);
+
+    _history.reverseSearch("a");
+
+    Utilities.clearEventQueue();
+    assertEquals("Did not reset cursor correctly.", "a", _history.getCurrent());
+  }

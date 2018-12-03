@@ -1,0 +1,7 @@
+    private void createPriorityField() {
+        ResourceBundle res = SchedulePage.getResources();
+        String name = res.getString("Label.Priority");
+        JComboBox cb = ComponentFactories.comboBoxFactory().newComboBox(
+                        SchedulePriority.values());
+        m_priority = new ComboBoxInputField(name, cb, InputLabelText.makeJLabel(name));
+    }

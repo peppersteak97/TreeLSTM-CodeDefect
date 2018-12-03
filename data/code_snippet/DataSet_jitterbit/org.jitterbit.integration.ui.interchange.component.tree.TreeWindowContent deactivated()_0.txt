@@ -1,0 +1,4 @@
+    public void deactivated() {
+        super.deactivated();
+        m_view.setActive(false);
+    }

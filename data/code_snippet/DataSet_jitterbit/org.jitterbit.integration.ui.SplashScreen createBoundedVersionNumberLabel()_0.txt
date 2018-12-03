@@ -1,0 +1,8 @@
+    private JLabel createBoundedVersionNumberLabel() {
+        JLabel label = createVersionNumberLabel();
+        Dimension prefSize = label.getPreferredSize();
+        int labelW = prefSize.width;
+        int labelH = prefSize.height + 10;
+        label.setBounds(ICON_TEXT_RIGHT_EDGE - labelW, ICON_TEXT_LOWER_EDGE, labelW, labelH);
+        return label;
+    }

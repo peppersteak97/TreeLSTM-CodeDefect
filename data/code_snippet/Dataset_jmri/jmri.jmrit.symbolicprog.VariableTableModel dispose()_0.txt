@@ -1,0 +1,32 @@
+    public void dispose() {
+        if (log.isDebugEnabled()) log.debug("dispose");
+
+        for (int i = 0; i<_writeButtons.size(); i++) {
+            ((JButton)_writeButtons.elementAt(i)).removeActionListener(this);
+        }
+        for (int i = 0; i<_readButtons.size(); i++) {
+            ((JButton)_readButtons.elementAt(i)).removeActionListener(this);
+        }
+
+        for (int i = 0; i<rowVector.size(); i++) {
+            VariableValue v = (VariableValue)rowVector.elementAt(i);
+            v.removePropertyChangeListener(this);
+            v.dispose();
+        }
+
+        headers = null;
+
+        rowVector.removeAllElements();
+        rowVector = null;
+
+        _cvModel = null;
+        _indxCvModel = null;
+
+        _writeButtons.removeAllElements();
+        _writeButtons = null;
+
+        _readButtons.removeAllElements();
+        _readButtons = null;
+
+        _status = null;
+    }

@@ -1,0 +1,4 @@
+  public final boolean hasOneIn() {
+    SpaceEffGraphEdge first = _inEdgeStart;
+    return (first != null) && (first.nextIn == null);
+  }

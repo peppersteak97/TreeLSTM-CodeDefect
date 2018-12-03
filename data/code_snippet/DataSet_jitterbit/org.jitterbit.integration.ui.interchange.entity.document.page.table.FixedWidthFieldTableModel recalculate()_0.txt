@@ -1,0 +1,7 @@
+    public void recalculate() {
+        int start = 1;
+        for (int row = 0; row < getRowCount(); ++row) {
+            setValueAt(start, row, BEGIN.getIndex());
+            start += getField(row).getLength();
+        }
+    }

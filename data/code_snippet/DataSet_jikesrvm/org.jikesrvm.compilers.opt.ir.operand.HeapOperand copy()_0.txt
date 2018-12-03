@@ -1,0 +1,3 @@
+  public HeapOperand<T> copy() {
+    return new HeapOperand<T>(value);
+  }

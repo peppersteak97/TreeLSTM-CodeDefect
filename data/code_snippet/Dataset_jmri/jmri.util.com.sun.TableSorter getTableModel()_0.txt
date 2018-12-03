@@ -1,0 +1,3 @@
+    public TableModel getTableModel() {
+        return tableModel;
+    }

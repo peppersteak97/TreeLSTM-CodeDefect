@@ -1,0 +1,6 @@
+    private DataStructure getDataStructure() {
+        DatabaseStructure s = new DatabaseStructure(m_dbLocation);
+        s.setDbTables(m_incomingStructure.getDbTables());
+        s.setSqlScript(m_incomingStructure.getSqlScript());
+        return s;
+    }

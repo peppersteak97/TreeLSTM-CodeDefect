@@ -1,0 +1,12 @@
+    private void registerListeners() {
+        JTextField tc = (JTextField) nameField.getInputComponent();
+        tc.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (createManuallyAction != null && createManuallyAction.isEnabled()) {
+                    createManuallyAction.actionPerformed(e);
+                }
+            }
+        });
+        registerKeyBindings();
+    }

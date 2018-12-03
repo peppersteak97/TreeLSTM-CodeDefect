@@ -1,0 +1,9 @@
+	private static final LayoutManager getLayoutManager() {
+		switch( LAYOUT ) {
+			case LABEL_TO_THE_LEFT_LAYOUT:
+				return new LabelToTheLeftLayout(10, 6);
+			case LABEL_ON_TOP_LAYOUT:
+				return new LabelOnTopLayout();
+			default:
+		}
+	}

@@ -1,0 +1,11 @@
+  public void testPrefixOnCurrLine() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionPrevLineStartsWith("}", null, null);
+    
+    _setDocText("} foo();");
+    assertTrue("before brace", !rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("after brace", !rule.testApplyRule(_doc, 2, Indenter.IndentReason.OTHER));
+    
+    _setDocText("foo();\n bar(); } foo();");
+    assertTrue("before brace", !rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+    assertTrue("after brace", !rule.testApplyRule(_doc, 18, Indenter.IndentReason.OTHER));
+  }

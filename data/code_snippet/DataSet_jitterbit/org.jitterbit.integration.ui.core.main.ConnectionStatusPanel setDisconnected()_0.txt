@@ -1,0 +1,4 @@
+    void setDisconnected() {
+        setConnected(PackageResources.ConnectionStatus.NOT_CONNECTED, 
+                PackageResources.ConnectionStatus.NONE);
+    }

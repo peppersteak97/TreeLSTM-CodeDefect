@@ -1,0 +1,11 @@
+    public TargetId getTargetId() {
+        String sId = this.getProperty(TARGET_ID);
+        if (sId != null && sId.length() > 0) {
+            try {
+                return new TargetId(sId);
+            }
+            catch (IllegalArgumentException e) {
+            }
+        }
+        return null;
+    }

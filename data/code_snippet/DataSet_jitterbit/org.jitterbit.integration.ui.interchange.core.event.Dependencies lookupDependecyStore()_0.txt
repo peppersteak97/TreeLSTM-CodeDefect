@@ -1,0 +1,4 @@
+    private IDependencyStore lookupDependecyStore() {
+        IManagedProject p = InterchangeProjectManager.getManager().getCurrentProject();
+        return p.getDependencyStore();
+    }

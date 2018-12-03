@@ -1,0 +1,3 @@
+    private String getDeleteBinderClassName() {
+        return "Dtl" + getColumnOwner().getName() + "DeleteBinder";
+    }

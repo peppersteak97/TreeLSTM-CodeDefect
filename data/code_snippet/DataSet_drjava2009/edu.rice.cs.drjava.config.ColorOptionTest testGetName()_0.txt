@@ -1,0 +1,7 @@
+  public void testGetName() {
+    ColorOption io1 = new ColorOption("indent_size",null);
+    ColorOption io2 = new ColorOption("max_files",null);
+    
+    assertEquals("indent_size", io1.getName());
+    assertEquals("max_files",   io2.getName());
+  }

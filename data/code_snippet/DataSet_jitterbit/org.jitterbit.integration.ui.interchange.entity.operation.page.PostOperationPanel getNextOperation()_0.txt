@@ -1,0 +1,6 @@
+    public Operation getNextOperation() {
+        if (OPERATIONS_SUPPORTED) {
+            return (Operation) m_operationControl.getSelectedEntity();
+        }
+        return null;
+    }

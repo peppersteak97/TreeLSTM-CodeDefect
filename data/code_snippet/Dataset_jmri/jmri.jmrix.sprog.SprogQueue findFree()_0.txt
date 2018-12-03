@@ -1,0 +1,9 @@
+    private int findFree() {
+      int i, j;
+      for (i=0; i<length; i++) {
+        if (q[i].isFree()) {
+          return i;
+        }
+      }
+      return (-1);
+    }

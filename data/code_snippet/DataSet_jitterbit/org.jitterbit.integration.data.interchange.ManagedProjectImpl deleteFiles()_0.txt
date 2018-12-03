@@ -1,0 +1,7 @@
+    private void deleteFiles() {
+        if (m_filesToDeleteOnExit != null) {
+            for (File file : m_filesToDeleteOnExit) {
+                file.delete();
+            }
+        }
+    }

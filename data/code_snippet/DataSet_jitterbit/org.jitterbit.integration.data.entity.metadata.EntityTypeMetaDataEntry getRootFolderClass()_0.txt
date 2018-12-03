@@ -1,0 +1,3 @@
+    public Class<? extends RootFolder> getRootFolderClass() {
+        return (m_rootFolderData != null) ? m_rootFolderData.ImplementingClass : null;
+    }

@@ -1,0 +1,9 @@
+  static void createOptimizationPlan() {
+    _options = new OptOptions();
+
+    int optLevel = Controller.options.INVOCATION_COUNT_OPT_LEVEL;
+    String[] optCompilerOptions = Controller.getOptCompilerOptions();
+    _options.setOptLevel(optLevel);
+    RecompilationStrategy.processCommandLineOptions(_options, optLevel, optLevel, optCompilerOptions);
+    _optPlan = OptimizationPlanner.createOptimizationPlan(_options);
+  }

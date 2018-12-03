@@ -1,0 +1,8 @@
+    public IJitterPack getSelectedJitterPack() {
+        int row = m_table.getSelectedRow();
+        if (row >= 0) {
+            int modelRow = m_table.getTableSorter().getModelIndex(row);
+            return m_tableModel.getJitterPackAtRow(modelRow);
+        }
+        return null;
+    }

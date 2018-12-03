@@ -1,0 +1,9 @@
+  protected final void emit_i2l() {
+    if (VM.BuildFor32Addr) {
+    } else {
+      asm.emitPOP_Reg(EAX);
+      asm.emitCDQE();
+      adjustStack(-WORDSIZE, true);
+      asm.emitPUSH_Reg(EAX);
+    }
+  }

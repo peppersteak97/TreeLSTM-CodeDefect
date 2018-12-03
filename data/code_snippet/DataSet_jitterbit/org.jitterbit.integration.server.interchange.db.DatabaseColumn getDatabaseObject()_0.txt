@@ -1,0 +1,3 @@
+    public DatabaseObject getDatabaseObject() {
+        return m_dbObject;
+    }

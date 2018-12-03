@@ -1,0 +1,7 @@
+  private File _getWorkDir() {
+    assert workDir != null;
+    if (workDir.isDirectory()) return workDir;
+    
+    if (workDir.getParent() != null) workDir = workDir.getParentFile();
+    return workDir;
+  }

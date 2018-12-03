@@ -1,0 +1,11 @@
+  public void tearDown() throws Exception {
+    Utilities.invokeLater(new Runnable() {
+      public void run() {
+        _frame.dispose();
+        _log.log("Main Frame disposed");
+        _frame = null;
+      }
+    });
+    Utilities.clearEventQueue();
+    super.tearDown();
+  }

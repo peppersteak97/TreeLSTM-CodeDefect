@@ -1,0 +1,3 @@
+  public boolean hasFieldRead() {
+    return (summaryFlags & HAS_FIELD_READ) != 0;
+  }

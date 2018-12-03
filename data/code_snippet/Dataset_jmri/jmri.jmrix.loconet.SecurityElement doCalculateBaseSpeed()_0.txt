@@ -1,0 +1,19 @@
+    void doCalculateBaseSpeed() {
+        if (newTurnoutStateHere==Turnout.CLOSED || turnout == 0 ) {
+            newSpeedXA = Math.min(maxSpeedBA, newSpeedLimitFromA+maxBrakingBA);
+        } else {
+            newSpeedXA = Math.min(maxSpeedCA, newSpeedLimitFromA+maxBrakingCA);
+        }
+
+        if (newTurnoutStateHere==Turnout.CLOSED || turnout == 0) {
+            newSpeedAX = Math.min(maxSpeedAB, newSpeedLimitFromB+maxBrakingAB);
+        } else {
+            newSpeedAX = Math.min(maxSpeedAC, newSpeedLimitFromC+maxBrakingAC);
+        }
+        if (newDsStateHere==Sensor.ACTIVE) {
+            log.debug("Sensor active sets speeds to zero");
+            newSpeedAX = 0;
+            newSpeedXA = 0;
+        }
+        if (log.isDebugEnabled()) log.debug("Newly calculated speeds are "+newSpeedAX+","+newSpeedXA);
+    }

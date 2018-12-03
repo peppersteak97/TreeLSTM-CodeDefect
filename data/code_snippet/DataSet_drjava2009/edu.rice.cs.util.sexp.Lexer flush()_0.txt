@@ -1,0 +1,4 @@
+  public void flush() throws IOException {
+    eolIsSignificant(true);
+    eolIsSignificant(false);
+  }

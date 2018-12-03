@@ -1,0 +1,18 @@
+    JMenu makeFontColorMenu() {
+        JMenu colorMenu = new JMenu(rb.getString("FontColor"));
+        colorButtonGroup = new ButtonGroup();
+        addColorMenuEntry(colorMenu, rb.getString("Black"), Color.black);
+        addColorMenuEntry(colorMenu, rb.getString("DarkGray"),Color.darkGray);
+        addColorMenuEntry(colorMenu, rb.getString("Gray"),Color.gray);
+        addColorMenuEntry(colorMenu, rb.getString("LightGray"),Color.lightGray);
+        addColorMenuEntry(colorMenu, rb.getString("White"),Color.white);
+        addColorMenuEntry(colorMenu, rb.getString("Red"),Color.red);
+        addColorMenuEntry(colorMenu, rb.getString("Pink"),Color.pink);
+        addColorMenuEntry(colorMenu, rb.getString("Orange"),Color.orange);
+        addColorMenuEntry(colorMenu, rb.getString("Yellow"),Color.yellow);
+        addColorMenuEntry(colorMenu, rb.getString("Green"),Color.green);
+        addColorMenuEntry(colorMenu, rb.getString("Blue"),Color.blue);
+        addColorMenuEntry(colorMenu, rb.getString("Magenta"),Color.magenta);
+        addColorMenuEntry(colorMenu, rb.getString("Cyan"),Color.cyan);
+        return colorMenu;
+    }

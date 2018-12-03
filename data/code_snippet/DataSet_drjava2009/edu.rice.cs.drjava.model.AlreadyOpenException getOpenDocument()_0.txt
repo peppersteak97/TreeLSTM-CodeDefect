@@ -1,0 +1,1 @@
+  public OpenDefinitionsDocument getOpenDocument() { return _openDocs[0]; }

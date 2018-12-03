@@ -1,0 +1,12 @@
+  protected ArrayList<R> getSelectedRegions() {
+    ArrayList<R> regs = new ArrayList<R>();
+    int[] indices = _list.getSelectedIndices();
+    if (indices != null) {
+      for (int index: indices) {
+        @SuppressWarnings("unchecked") RegionListUserObj<R> userObj = ((RegionListUserObj<R>)_listModel.elementAt(index));
+        R r = userObj.region();
+        regs.add(r);
+      }
+    }
+    return regs;
+  }

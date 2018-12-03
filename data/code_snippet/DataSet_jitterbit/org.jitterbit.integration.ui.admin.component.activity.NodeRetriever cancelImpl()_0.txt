@@ -1,0 +1,4 @@
+    private void cancelImpl() {
+        m_tree.stopNodeUpdater();
+        resetTree();
+    }

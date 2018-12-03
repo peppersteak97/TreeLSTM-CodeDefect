@@ -1,0 +1,7 @@
+    public boolean isTransitioning() {
+    	if (mTransitionTargetIntensity != mCurrentIntensity) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }

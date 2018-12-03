@@ -1,0 +1,12 @@
+    protected void initializeLight() {
+        int tBit = SerialAddress.getBitFromSystemName(getSystemName());
+        housecode = ((tBit-1)/16)+1;
+        devicecode = ((tBit-1)%16)+1;
+        
+        setControlType( NO_CONTROL );
+        setControlSensor( null );
+        setControlSensorSense(Sensor.ACTIVE);
+        setFastClockControlSchedule( 0,0,0,0 );
+        setControlTurnout( null );
+        setControlTurnoutState( Turnout.CLOSED );
+    }

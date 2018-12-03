@@ -1,0 +1,7 @@
+    private void createItemList() {
+        m_entityList = ComponentFactories.listFactory().newList(getAffectedItems());
+        m_entityList.setCellRenderer(new DefaultListDecorRenderer());
+        m_entityList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        m_entityList.setVisibleRowCount(8);
+        m_entityList.addListSelectionListener(new ListSelectionHandler());
+    }

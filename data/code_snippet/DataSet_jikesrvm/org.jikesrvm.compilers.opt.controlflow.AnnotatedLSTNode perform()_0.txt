@@ -1,0 +1,26 @@
+  private void perform() throws OptimizingCompilerException {
+    if (loop == null) {
+      return;
+    }
+    try {
+      processHeader();
+      BasicBlockEnumeration loopBlocks = getBasicBlocks();
+
+      while (loopBlocks.hasMoreElements()) {
+        BasicBlock curLoopBB = loopBlocks.next();
+
+        if (curLoopBB == header) {
+        } else {
+          processLoopBlock(curLoopBB);
+        }
+      }
+    } catch (NonRegularLoopException e) {
+      if (DEBUG) {
+        VM.sysWrite(e.summary() + "\n");
+      }
+      initialIteratorValue = null;
+    }
+    if (DEBUG && (!isNonRegularLoop())) {
+      dump();
+    }
+  }

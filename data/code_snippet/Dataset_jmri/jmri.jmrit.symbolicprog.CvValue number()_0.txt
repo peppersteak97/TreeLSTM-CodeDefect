@@ -1,0 +1,1 @@
+    public int number() { return _num; }

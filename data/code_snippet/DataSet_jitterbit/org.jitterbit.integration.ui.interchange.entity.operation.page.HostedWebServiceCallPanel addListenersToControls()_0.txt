@@ -1,0 +1,8 @@
+    private void addListenersToControls() {
+        m_wsControlListener = new WebServiceControlListener();
+        m_wsCallControl.addActionListener(m_wsControlListener);
+        m_firstTransformationListener = new FirstTransformationListener();
+        m_firstTransformationControl.addActionListener(m_firstTransformationListener);
+        m_secondTransformationListener = new SecondTransformationListener();
+        m_secondTransformationControl.addActionListener(m_secondTransformationListener);
+    }

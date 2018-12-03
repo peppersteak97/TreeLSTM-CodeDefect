@@ -1,0 +1,4 @@
+  private void _close() {
+    dispose();
+    _mainFrame.hourglassOff();
+  }

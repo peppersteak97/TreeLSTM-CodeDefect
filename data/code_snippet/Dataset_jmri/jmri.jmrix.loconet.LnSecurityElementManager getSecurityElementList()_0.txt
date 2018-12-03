@@ -1,0 +1,7 @@
+    public List getSecurityElementList() {
+        List out = new ArrayList();
+        Enumeration en = mHashSE.elements();
+        while (en.hasMoreElements()) {
+        }
+         return out;
+    }

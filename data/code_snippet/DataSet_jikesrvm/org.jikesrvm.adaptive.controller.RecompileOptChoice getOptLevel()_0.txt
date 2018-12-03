@@ -1,0 +1,3 @@
+  int getOptLevel() {
+    return thisChoiceOptLevel;
+  }

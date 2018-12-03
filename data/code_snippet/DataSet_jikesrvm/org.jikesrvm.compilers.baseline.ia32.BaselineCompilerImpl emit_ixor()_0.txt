@@ -1,0 +1,4 @@
+  protected final void emit_ixor() {
+    asm.emitPOP_Reg(T0);
+    asm.emitXOR_RegInd_Reg(SP, T0);
+  }

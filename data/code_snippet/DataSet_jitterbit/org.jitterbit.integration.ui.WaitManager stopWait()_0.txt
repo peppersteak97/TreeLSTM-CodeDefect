@@ -1,0 +1,12 @@
+    public void stopWait() {
+        if (!m_waitRequests.isEmpty()) {
+            m_waitRequests.pop().cancel();
+        }
+        if (m_numberOfWaitRequests == 0) {
+            return;
+        }
+        --m_numberOfWaitRequests;
+        if (m_numberOfWaitRequests == 0) {
+            runJob(m_stopWaitJob);
+        }
+    }

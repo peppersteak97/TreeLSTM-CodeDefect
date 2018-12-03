@@ -1,0 +1,3 @@
+  public int getInlineDepth() {
+    return call.position.getInlineDepth();
+  }

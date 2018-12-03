@@ -1,0 +1,3 @@
+    public IntegrationData getKongaObject() {
+        return m_location;
+    }

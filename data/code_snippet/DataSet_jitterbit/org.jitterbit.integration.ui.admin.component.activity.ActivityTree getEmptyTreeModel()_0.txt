@@ -1,0 +1,4 @@
+    private static IKongaTreeModel getEmptyTreeModel() {
+        IKongaTreeNode root = RootNode.create();
+        return new DefaultKongaTreeModel(root);
+    }

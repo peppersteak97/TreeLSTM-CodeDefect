@@ -1,0 +1,14 @@
+    void setScriptPressed() {
+        if (scriptChooser == null) {
+            scriptChooser = jmri.jmrit.XmlFile.userFileChooser("Python script files", "py");
+        }
+        scriptChooser.rescanCurrentDirectory();
+        int retVal = scriptChooser.showOpenDialog(null);
+        if (retVal == JFileChooser.APPROVE_OPTION) {
+            try {
+                scriptFile.setText(scriptChooser.getSelectedFile().getCanonicalPath());
+            } catch (java.io.IOException e) {
+                log.error("exception setting script file: "+e);
+            }
+        }
+    }

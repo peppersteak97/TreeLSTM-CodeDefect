@@ -1,0 +1,3 @@
+	public int getNumberOfItemsToRemember() {
+		return m_nItemsToRemember;
+	}

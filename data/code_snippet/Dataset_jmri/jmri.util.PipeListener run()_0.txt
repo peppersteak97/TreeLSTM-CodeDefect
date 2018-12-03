@@ -1,0 +1,23 @@
+    public void run() {
+        try {
+            char[] c = new char[1];
+            while (true) {
+                try {
+                    c[0] = (char)pr.read();
+                } catch (IOException ex) {
+                    if (ex.getMessage().equals("Write end dead") || ex.getMessage().equals("Pipe broken")) {
+                        synchronized(this) {
+                            try {
+                                wait(500);
+                            } catch (InterruptedException exi) {
+                            }
+                        }
+                    } else {
+                        throw ex;
+                    }
+                }
+            }
+        } catch (IOException ex) {
+            ta.append("PipeListener Exiting on IOException:"+ex);
+        }
+    }

@@ -1,0 +1,17 @@
+    protected void handleModified() {
+        if (getModifiedFlag()) {
+            if (rb == null) rb = java.util.ResourceBundle.getBundle("jmri.util.UtilBundle");
+            this.setVisible(true);
+            int result = javax.swing.JOptionPane.showOptionDialog(this,
+                rb.getString("WarnChangedMsg"),
+                rb.getString("WarnChangedTitle"),
+                javax.swing.JOptionPane.YES_NO_OPTION,
+                javax.swing.JOptionPane.WARNING_MESSAGE,
+                new String[]{rb.getString("WarnYesSave"),rb.getString("WarnNoClose")},
+                rb.getString("WarnYesSave")
+            );
+            if (result == javax.swing.JOptionPane.YES_OPTION) {
+                storeValues();
+            }
+        }
+    }

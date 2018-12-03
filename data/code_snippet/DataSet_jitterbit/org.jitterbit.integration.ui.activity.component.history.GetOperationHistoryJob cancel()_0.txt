@@ -1,0 +1,8 @@
+    public boolean cancel() {
+        boolean b = super.cancel();
+        if (b) {
+            setStatus(PackageResources.OperationJob.CANCELLED);
+            m_callback.cancelled();
+        }
+        return b;
+    }

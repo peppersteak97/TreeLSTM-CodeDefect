@@ -1,0 +1,27 @@
+  public /* synchronized */ ArrayList<DebugStackData> getCurrentStackFrameData() throws DebugException {
+    assert EventQueue.isDispatchThread();
+    if (! isReady()) return new ArrayList<DebugStackData>();
+    
+    if (_runningThread != null || _suspendedThreads.size() <= 0) {
+      throw new DebugException("No suspended thread to obtain stack frames.");
+    }
+    
+    try {
+      ThreadReference thread = _suspendedThreads.peek();
+      ArrayList<DebugStackData> frames = new ArrayList<DebugStackData>();
+      for (StackFrame f : thread.frames()) { frames.add(new JPDAStackData(f)); }
+      return frames;
+    }
+    catch (IncompatibleThreadStateException itse) {
+      error.log("Unable to obtain stack frame.", itse);
+      return new ArrayList<DebugStackData>();
+    }
+    catch (VMDisconnectedException vmde) {
+      error.log("VMDisconnected when getting the current stack frame data.", vmde);
+      return new ArrayList<DebugStackData>();
+    }
+    catch (InvalidStackFrameException isfe) {
+      error.log("The stack frame requested is invalid.", isfe);
+      return new ArrayList<DebugStackData>();
+    }
+  }

@@ -1,0 +1,9 @@
+    private void layoutComponents() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setInsets(0, 0, 10, 0);
+        p.setFillOut();
+        p.add(getDocumentTypePanel());
+        p.add(getFormatPanel());
+        setLayout(new BorderLayout());
+        p.addToParent(getUi(), BorderLayout.CENTER);
+    }

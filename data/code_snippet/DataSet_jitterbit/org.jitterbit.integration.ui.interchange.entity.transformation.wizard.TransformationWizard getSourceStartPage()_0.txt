@@ -1,0 +1,20 @@
+    private IWizardPage getSourceStartPage() throws WizardConfigurationException {
+        DataStructureType sourceType = m_startPage.getSourceStructureType();
+
+        if (isHostedWebService(sourceType)) {
+            IWizardPage page = new HostedWebServicePage(this);
+            m_sourceStartPage = page;
+            return page;
+        }
+
+        IWizardPage page = m_mapSourceStartPages.get(sourceType);
+        if (page != null) {
+            m_sourceStartPage = page;
+            return page;
+        }
+
+        page = createNewSourceStartPage(sourceType);
+        m_mapSourceStartPages.put(sourceType, page);
+        m_sourceStartPage = page;
+        return page;
+    }

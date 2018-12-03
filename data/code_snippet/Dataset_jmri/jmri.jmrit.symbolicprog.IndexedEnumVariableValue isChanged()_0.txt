@@ -1,0 +1,4 @@
+    public boolean isChanged() {
+        CvValue cv = ((CvValue)_cvVector.elementAt(_row));
+        return considerChanged(cv);
+    }

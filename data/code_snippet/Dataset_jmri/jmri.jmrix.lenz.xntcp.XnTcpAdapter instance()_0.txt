@@ -1,0 +1,4 @@
+	static public XnTcpAdapter instance() {
+		if (mInstance == null) mInstance = new XnTcpAdapter();
+		return mInstance;
+	}

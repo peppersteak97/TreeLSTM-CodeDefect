@@ -1,0 +1,13 @@
+  public void testStartsWithPrefixNoText() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionPrevLineStartsWith("*", null, null);
+    
+    _setDocText("foo();\n*\nbar();\n}");
+    assertTrue("line of star (no space)", !rule.testApplyRule(_doc, 8, Indenter.IndentReason.OTHER));
+    assertTrue("line after star (no space)", rule.testApplyRule(_doc, 10, Indenter.IndentReason.OTHER));
+    assertTrue("two lines after star (no space)", !rule.testApplyRule(_doc, 16, Indenter.IndentReason.OTHER));
+    
+    _setDocText("foo();\n   * \nbar();\n{");
+    assertTrue("line of star (with space)", !rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+    assertTrue("just after star (with space)", !rule.testApplyRule(_doc, 11, Indenter.IndentReason.OTHER));
+    assertTrue("line after star (with space)", rule.testApplyRule(_doc, 13, Indenter.IndentReason.OTHER));
+  }

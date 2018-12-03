@@ -1,0 +1,9 @@
+    private void executeImpl() {
+        try {
+            displayImportPage();
+        }
+        finally {
+            IntegrationUi.getUi().stopWait();
+            succeeded(null);
+        }
+    }

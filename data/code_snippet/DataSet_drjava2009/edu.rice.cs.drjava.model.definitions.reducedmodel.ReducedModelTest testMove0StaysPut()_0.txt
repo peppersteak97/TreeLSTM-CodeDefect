@@ -1,0 +1,14 @@
+  public void testMove0StaysPut() {
+    model0.insertChar('/');
+    assertEquals("#1", 1, model0.absOffset());
+    model0.move(0);
+    assertEquals("#2", 1, model0.absOffset());
+    model0.insertChar('/');
+    assertEquals("#3", 2, model0.absOffset());
+    model0.move(0);
+    assertEquals("#4", 2, model0.absOffset());
+    model0.move(-1);
+    assertEquals("#5", 1, model0.absOffset());
+    model0.move(0);
+    assertEquals("#6", 1, model0.absOffset());
+  }

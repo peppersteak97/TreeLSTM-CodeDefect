@@ -1,0 +1,29 @@
+    private JComponent createDisplayer() {
+        JPanel p = new JPanel(new GridBagLayout()) {
+
+            @Override
+            public Dimension getMaximumSize() {
+                return getPreferredSize();
+            }
+        };
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(5, 10, 5, 20);
+        gbc.gridy = 0;
+
+        gbc.fill = GridBagConstraints.VERTICAL;
+        ComponentDecorFactory.gridBag(p, gbc, m_usersPanel);
+        gbc.fill = GridBagConstraints.NONE;
+        ComponentDecorFactory.gridBag(p, gbc, m_permissionsPanel);
+        ComponentDecorFactory.gridBag(p, gbc, m_buttons);
+
+        p.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        UiUtils.setOpaqueRecursivelySkipDefaults(p, false);
+
+        JPanel p2 = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        new DropTarget(p2, DnDConstants.ACTION_COPY, new DropHandler());
+        p2.setBackground(IntegrationUiStyleSheet.NEUTRAL_BACKGROUND);
+        p2.add(p);
+        return p2;
+    }

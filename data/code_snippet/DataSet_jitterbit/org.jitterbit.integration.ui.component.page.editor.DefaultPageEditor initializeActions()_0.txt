@@ -1,0 +1,4 @@
+    public void initializeActions() {
+        m_ui.initializeActions();
+        m_navigationManager = new NavigationManager(this);
+    }

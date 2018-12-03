@@ -1,0 +1,7 @@
+  public boolean isMarkedAsPEI() {
+    if ((operatorInfo & OI_PEI_VALID) != 0) {
+      return (operatorInfo & OI_PEI) != 0;
+    } else {
+      return false;
+    }
+  }

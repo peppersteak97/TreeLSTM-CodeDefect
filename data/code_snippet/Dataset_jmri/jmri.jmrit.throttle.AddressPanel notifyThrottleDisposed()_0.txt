@@ -1,0 +1,9 @@
+	public void notifyThrottleDisposed() {
+		dispatchButton.setEnabled(false);
+		releaseButton.setEnabled(false);
+		setButton.setEnabled(true);
+		addrSelector.setEnabled(true);
+		rosterBox.setEnabled(true);
+		conRosterBox.setEnabled(true);
+		throttle = null;
+	}

@@ -1,0 +1,1 @@
+  public void clearNullCheck() { flags2 &= ~NULL_CHECK; }

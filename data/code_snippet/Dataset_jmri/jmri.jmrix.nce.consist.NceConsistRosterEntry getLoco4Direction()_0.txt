@@ -1,0 +1,1 @@
+    public String getLoco4Direction() { return _loco4Direction; }

@@ -1,0 +1,12 @@
+    private void createSearchField() {
+        m_searchField = new FixedSizeTextField(15);
+
+        m_searchAction = new SearchAction();
+        m_searchButton = createSearchButton();
+        m_searchField.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                m_searchAction.actionPerformed(e);
+            }
+        });
+    }

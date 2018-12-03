@@ -1,0 +1,3 @@
+    public static EnumSet<Permission> getAllNonOwnerPermissions() {
+        return EnumSet.copyOf(FULL_ACCESS);
+    }

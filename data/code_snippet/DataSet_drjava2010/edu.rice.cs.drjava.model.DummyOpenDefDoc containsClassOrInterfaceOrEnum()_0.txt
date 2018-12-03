@@ -1,0 +1,1 @@
+  public boolean containsClassOrInterfaceOrEnum() throws BadLocationException { throw new UnsupportedOperationException("Dummy method"); }

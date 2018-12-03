@@ -1,0 +1,29 @@
+  private void _fixToolbarHeights() {
+    Component[] buttons = _toolBar.getComponents();
+    
+    int max = 0;
+    for (int i = 0; i < buttons.length; i++) {
+      if (buttons[i] instanceof JButton) {
+        JButton b = (JButton) buttons[i];
+        
+        b.setPreferredSize(null);
+        
+        Dimension d = b.getPreferredSize();
+        int cur = (int) d.getHeight();
+        if (cur > max) {
+          max = cur;
+        }
+      }
+    }
+    
+    for (int i = 0; i < buttons.length; i++) {
+      if (buttons[i] instanceof JButton) {
+        JButton b = (JButton) buttons[i];
+        Dimension d = new Dimension((int) b.getPreferredSize().getWidth(), max);
+        
+        b.setPreferredSize(d);
+        b.setMaximumSize(d);
+      }
+    }
+    
+  }

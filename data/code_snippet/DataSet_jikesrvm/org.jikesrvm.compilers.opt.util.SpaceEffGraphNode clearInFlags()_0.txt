@@ -1,0 +1,10 @@
+  public final void clearInFlags() {
+    clearFlags();
+    for (SpaceEffGraphEdge e = firstInEdge(); e != null; e = e.getNextIn()) {
+      SpaceEffGraphNode succ = e.fromNode();
+      e.clearVisited();
+      if (succ.flagsOn()) {
+        succ.clearInFlags();
+      }
+    }
+  }

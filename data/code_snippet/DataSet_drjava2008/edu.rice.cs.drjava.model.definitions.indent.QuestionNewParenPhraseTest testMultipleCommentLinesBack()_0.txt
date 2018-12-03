@@ -1,0 +1,8 @@
+  public void testMultipleCommentLinesBack() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionNewParenPhrase(null, null);
+    
+    assertTrue("line after open paren", rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+    assertTrue("two lines after open paren", rule.testApplyRule(_doc, 18, Indenter.IndentReason.OTHER));
+    assertTrue("line after semicolon", rule.testApplyRule(_doc, 25, Indenter.IndentReason.OTHER));
+    assertTrue("two lines after semicolon", rule.testApplyRule(_doc, 28, Indenter.IndentReason.OTHER));
+  }

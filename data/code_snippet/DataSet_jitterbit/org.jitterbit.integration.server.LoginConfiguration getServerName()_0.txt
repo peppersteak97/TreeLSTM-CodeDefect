@@ -1,0 +1,3 @@
+    public static synchronized String getServerName() { 
+        return s_serverName; 
+    }

@@ -1,0 +1,3 @@
+    public int getPri() {
+        return getHexDigit(2);
+    }

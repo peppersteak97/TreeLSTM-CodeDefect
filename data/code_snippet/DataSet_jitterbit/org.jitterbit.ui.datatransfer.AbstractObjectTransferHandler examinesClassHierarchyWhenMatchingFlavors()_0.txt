@@ -1,0 +1,3 @@
+	public final boolean examinesClassHierarchyWhenMatchingFlavors() {
+		return m_bExamineClassHierarchyWhenMatching;
+	}

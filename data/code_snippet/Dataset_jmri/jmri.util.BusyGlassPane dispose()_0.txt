@@ -1,0 +1,4 @@
+    public void dispose() {
+        this.removeMouseListener(listener);
+        this.removeMouseMotionListener(listener);
+    }

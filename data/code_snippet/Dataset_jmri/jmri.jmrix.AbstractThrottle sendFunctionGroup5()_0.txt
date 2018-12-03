@@ -1,0 +1,13 @@
+    protected void sendFunctionGroup5() {
+        DccLocoAddress a = (DccLocoAddress) getLocoAddress();
+        byte[] result = jmri.NmraPacket.function21Through28Packet(
+                a.getNumber(), a.isLongAddress(), 
+                getF21(), getF22(), getF23(), getF24(),
+                getF25(), getF26(), getF27(), getF28());
+        CommandStation c = InstanceManager.commandStationInstance();
+        if (c != null) 
+            c.sendPacket(result,3);
+        else
+            log.error("Can't send F21-F28 since no command station defined");
+        return;
+    }

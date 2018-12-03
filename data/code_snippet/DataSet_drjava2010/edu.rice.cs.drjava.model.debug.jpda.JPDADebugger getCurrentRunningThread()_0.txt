@@ -1,0 +1,1 @@
+  ThreadReference getCurrentRunningThread() { return _runningThread; }

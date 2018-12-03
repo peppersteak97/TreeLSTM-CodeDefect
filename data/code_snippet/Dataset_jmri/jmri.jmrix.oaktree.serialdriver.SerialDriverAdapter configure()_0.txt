@@ -1,0 +1,11 @@
+    public void configure() {
+        SerialTrafficController.instance().connectPort(this);
+
+        jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.oaktree.SerialTurnoutManager());
+        jmri.InstanceManager.setLightManager(new jmri.jmrix.oaktree.SerialLightManager());
+
+        SerialSensorManager s;
+        jmri.InstanceManager.setSensorManager(s = new jmri.jmrix.oaktree.SerialSensorManager());
+        SerialTrafficController.instance().setSensorManager(s);
+        jmri.jmrix.oaktree.ActiveFlag.setActive();
+    }

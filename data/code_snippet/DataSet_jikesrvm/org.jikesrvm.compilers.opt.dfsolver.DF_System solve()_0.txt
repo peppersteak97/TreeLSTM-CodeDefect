@@ -1,0 +1,16 @@
+  public void solve() {
+    numberEquationsTopological();
+    initializeLatticeCells();
+    initializeWorkList();
+    while (!workList.isEmpty()) {
+      DF_Equation eq = workList.first();
+      workList.remove(eq);
+      boolean change = eq.evaluate();
+      if (DEBUG) {
+        System.out.println("After evaluation " + eq);
+      }
+      if (change) {
+        updateWorkList(eq);
+      }
+    }
+  }

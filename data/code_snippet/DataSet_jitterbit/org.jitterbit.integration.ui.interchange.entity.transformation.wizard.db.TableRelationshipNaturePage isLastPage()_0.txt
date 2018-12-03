@@ -1,0 +1,4 @@
+        if (isLastPage()) {
+            tf.setOutputStructure(getDatabaseStructure());
+            tf.setDbInsertMode(DbInsertMode.INSERT_ONLY);
+        }

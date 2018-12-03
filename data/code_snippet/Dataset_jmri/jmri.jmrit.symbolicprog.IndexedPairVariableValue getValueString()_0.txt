@@ -1,0 +1,4 @@
+    public String getValueString() {
+        int newVal = ((Integer.valueOf(_value.getText()).intValue())-_Offset)/_Factor;
+        return String.valueOf(newVal);
+    }

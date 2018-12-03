@@ -1,0 +1,3 @@
+	public Sensor getOccupancySensor() {
+		return (occupancySensor);
+	}

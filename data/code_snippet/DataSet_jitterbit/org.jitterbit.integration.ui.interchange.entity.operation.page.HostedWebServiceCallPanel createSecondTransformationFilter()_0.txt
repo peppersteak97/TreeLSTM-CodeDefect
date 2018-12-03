@@ -1,0 +1,4 @@
+    private IIntegrationEntityFilter createSecondTransformationFilter() {
+        return (m_selectedWsCall == null) ? null : 
+            new SecondTransformationFilter(m_selectedWsCall);
+    }

@@ -1,0 +1,10 @@
+    IBoundProperty[] getBoundPropertyControls() {
+        List<IBoundProperty> props = new ArrayList<IBoundProperty>();
+        for (IBoundProperty p : m_topPanel.getBoundPropertyControls()) {
+            props.add(p);
+        }
+        for (IBoundProperty p : m_detailsPanel.getBoundPropertyControls()) {
+            props.add(p);
+        }
+        return props.toArray(new IBoundProperty[props.size()]);
+    }

@@ -1,0 +1,27 @@
+  public void testFragmentIgnoreCaseSetNotInList() {
+    PredictiveInputModel<String> pim = new PredictiveInputModel<String>(true,
+                                                                        new PredictiveInputModel.FragmentStrategy<String>(),
+                                                                        "AboutDialog.java",
+                                                                        "FileOps.java",
+                                                                        "FileOpsTest.java",
+                                                                        "Utilities.java");
+    pim.setMask("F");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+
+    pim.setCurrentItem("BBBB");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+
+    pim.setCurrentItem("FileOps.XXX");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+
+    pim.setCurrentItem("XXX");
+    assertEquals("FileOpsTest.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+  }

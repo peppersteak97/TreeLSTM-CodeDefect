@@ -1,0 +1,3 @@
+    protected void updateSize(){
+        setSize(maxWidth(), maxHeight());
+    }

@@ -1,0 +1,4 @@
+	public void dispose() {
+		SRCPTrafficController.instance().removeSRCPListener(this);
+		super.dispose();
+	}

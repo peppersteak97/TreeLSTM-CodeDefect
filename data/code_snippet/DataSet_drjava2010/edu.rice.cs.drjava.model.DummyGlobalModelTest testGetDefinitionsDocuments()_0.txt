@@ -1,0 +1,9 @@
+  public void testGetDefinitionsDocuments() {
+    DummyGlobalModel dummy = new DummyGlobalModel();
+    try { dummy.getOpenDefinitionsDocuments(); }
+    catch (UnsupportedOperationException e) {
+      assertTrue("This message should never be seen", true);
+      return;
+    }
+    fail("expected that UnsupportedOperationException is thrown");
+  }

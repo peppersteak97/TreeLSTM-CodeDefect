@@ -1,0 +1,16 @@
+  private void _bookmark() {  // TODO: consolidate with _toggleBookmark in MainFrame/AbstractGlobalModel?
+    updateButtons();
+    RegionManager<MovingDocumentRegion> bm = _model.getBookmarkManager();
+    for (MovingDocumentRegion r: getSelectedRegions()) {
+      OpenDefinitionsDocument doc = r.getDocument();
+      int start = r.getStartOffset();
+      int end = r.getEndOffset();
+      Collection<MovingDocumentRegion> conflictingRegions = bm.getRegionsOverlapping(doc, start, end);
+      for (MovingDocumentRegion cr: conflictingRegions) bm.removeRegion(cr);
+
+      int lineStart = r.getLineStartOffset();
+      int lineEnd = r.getLineEndOffset();
+      bm.addRegion(new MovingDocumentRegion(doc, start, end, lineStart, lineEnd));
+    }
+    _frame.createBookmarks();
+  }

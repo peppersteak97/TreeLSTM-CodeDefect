@@ -1,0 +1,26 @@
+  protected final void emit_lmul() {
+    if (VM.BuildFor64Addr) {
+      asm.emitIMUL2_Reg_RegInd_Quad(T0, SP);
+      asm.emitMOV_RegInd_Reg_Quad(SP, T0);
+    } else {
+      if (VM.VerifyAssertions) VM._assert(S0 != EAX);
+      if (VM.VerifyAssertions) VM._assert(S0 != EDX);
+      asm.emitPOP_Reg(EAX);
+      asm.emitPOP_Reg(EDX);
+      asm.emitMOV_Reg_RegDisp(S0, SP, ONE_SLOT);
+      asm.emitOR_Reg_Reg(EDX, S0);
+      asm.emitMOV_Reg_RegInd(EDX, SP);
+      ForwardReference fr1 = asm.forwardJcc(Assembler.NE);
+      asm.emitMUL_Reg_Reg(EAX, EDX);
+      ForwardReference fr2 = asm.forwardJMP();
+      fr1.resolve(asm);
+      asm.emitIMUL2_Reg_RegDisp(EDX, SP, MINUS_ONE_SLOT);
+      asm.emitIMUL2_Reg_Reg(S0, EAX);
+      asm.emitADD_Reg_Reg(S0, EDX);
+      asm.emitMUL_Reg_RegInd(EAX, SP);
+      asm.emitADD_Reg_Reg(EDX, S0);
+      fr2.resolve(asm);
+      asm.emitMOV_RegDisp_Reg(SP, ONE_SLOT, EDX);
+      asm.emitMOV_RegInd_Reg(SP, EAX);
+    }
+  }

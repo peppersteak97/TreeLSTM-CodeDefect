@@ -1,0 +1,14 @@
+  public static String getSurveyURL() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(DRJAVA_SURVEY_PAGE);
+    sb.append("rev=");
+    sb.append(Version.getRevisionNumber());
+    for(String k: DRJAVA_SURVEY_KEYS) {
+      sb.append('&');
+      sb.append(k);
+      sb.append('=');
+      sb.append(System.getProperty(k));
+    }
+    LOG.log(sb.toString());
+    return sb.toString().replaceAll(" ","%20");
+  }

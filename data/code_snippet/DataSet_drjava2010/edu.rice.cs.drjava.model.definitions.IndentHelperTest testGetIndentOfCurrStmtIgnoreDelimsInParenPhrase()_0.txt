@@ -1,0 +1,7 @@
+  public void testGetIndentOfCurrStmtIgnoreDelimsInParenPhrase() throws BadLocationException {
+    
+    String text = "  bar.\n (;)\nfoo();";
+    
+    _setDocText(text);
+    assertEquals("ignores delimiter in paren phrase", 2, _getIndentOfCurrStmt(12));
+  }

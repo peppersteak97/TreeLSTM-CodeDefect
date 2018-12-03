@@ -1,0 +1,42 @@
+  public void testIndentingCorrectLine() throws BadLocationException {
+    String test1 = 
+      "class A {\n" +
+      "  int a = 5;\n" +
+      "     }";
+    
+    String test1Correct =
+      "class A {\n" +
+      "  int a = 5;\n" +
+      "}";
+    
+    String test2 = 
+      "     {\n" +
+      "  int a = 5;\n" +
+      "  }\n";
+    
+    String test2Correct =
+      "{\n" +
+      "  int a = 5;\n" +
+      "  }\n";
+    
+    _doc.insertString(0, test1, null);
+    _assertContents(test1, _doc);
+    _doc.setCurrentLocation(20);
+    safeIndentLines(20,20);
+    _assertContents(test1, _doc);
+    
+    _doc = new DefinitionsDocument(_notifier);
+    
+    _doc.insertString(0, test1, null);
+    _assertContents(test1, _doc);
+    safeIndentLines(28,28);
+    _assertContents(test1Correct, _doc);
+    
+    _doc = new DefinitionsDocument(_notifier);
+    
+    _doc.insertString(0, test2, null);
+    _assertContents(test2, _doc);
+    _doc.setCurrentLocation(5);
+    safeIndentLines(5,5);
+    _assertContents(test2Correct, _doc);
+  }

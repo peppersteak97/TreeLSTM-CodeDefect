@@ -1,0 +1,3 @@
+    protected SortedKongaTable getTable() {
+        return m_entryTable;
+    }

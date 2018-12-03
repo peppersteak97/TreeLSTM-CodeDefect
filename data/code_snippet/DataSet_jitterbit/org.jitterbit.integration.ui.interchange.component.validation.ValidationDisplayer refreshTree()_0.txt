@@ -1,0 +1,5 @@
+    private void refreshTree() {
+        assert (m_problems != null);
+        m_treeModel = new ValidationTreeModel(m_problems);
+        m_tree.refresh(m_treeModel);
+    }

@@ -1,0 +1,4 @@
+  public void printDepthFirst() {
+    markNumber = getNewMark();
+    print(new DepthFirstEnumerator(_firstNode, markNumber));
+  }

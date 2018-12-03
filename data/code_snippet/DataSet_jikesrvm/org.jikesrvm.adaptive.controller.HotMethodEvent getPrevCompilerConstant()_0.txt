@@ -1,0 +1,7 @@
+  public final int getPrevCompilerConstant() {
+    if (isOptCompiled()) {
+      return CompilerDNA.getCompilerConstant(getOptCompiledLevel());
+    } else {
+      return CompilerDNA.BASELINE;
+    }
+  }

@@ -1,0 +1,19 @@
+  private void _openProjectUpdate() {
+    if (_model.isProjectActive()) {
+      _closeProjectAction.setEnabled(true);
+      _saveProjectAction.setEnabled(true);
+      _saveProjectAsAction.setEnabled(true);
+      _exportProjectInOldFormatAction.setEnabled(true);
+      _projectPropertiesAction.setEnabled(true);
+      _junitProjectAction.setEnabled(true);
+      _compileProjectAction.setEnabled(true);
+      _jarProjectAction.setEnabled(true);
+      if (_model.getBuildDirectory() != null) _cleanAction.setEnabled(true);
+      _autoRefreshAction.setEnabled(true);
+      _model.getDocumentNavigator().asContainer().addKeyListener(_historyListener);
+      _model.getDocumentNavigator().asContainer().addFocusListener(_focusListenerForRecentDocs);
+      _model.getDocumentNavigator().asContainer().addMouseListener(_resetFindReplaceListener);
+      _resetNavigatorPane();
+      _model.refreshActiveDocument();
+    }
+  }

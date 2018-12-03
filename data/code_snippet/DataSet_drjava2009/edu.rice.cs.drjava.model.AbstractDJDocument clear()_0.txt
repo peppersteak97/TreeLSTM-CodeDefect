@@ -1,0 +1,4 @@
+  public void clear() {
+    try { remove(0, getLength()); }
+    catch(BadLocationException e) { throw new UnexpectedException(e); }
+  }

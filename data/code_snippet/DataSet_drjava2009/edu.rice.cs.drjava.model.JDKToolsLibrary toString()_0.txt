@@ -1,0 +1,1 @@
+  public String toString() { return "JDK library " + _version.versionString(); }

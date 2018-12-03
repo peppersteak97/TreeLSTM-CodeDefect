@@ -1,0 +1,11 @@
+    void selectSaveFile() {
+        if (chooser == null) chooser = new JFileChooser(System.getProperty("user.dir"));
+        int retVal = chooser.showSaveDialog(this);
+        
+        try {
+            saveFile(chooser.getSelectedFile().getPath());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error during save: "+e, 
+                                    "Save failed!", JOptionPane.WARNING_MESSAGE);
+        }
+    }

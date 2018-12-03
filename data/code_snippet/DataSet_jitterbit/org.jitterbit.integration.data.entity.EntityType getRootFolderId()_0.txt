@@ -1,0 +1,43 @@
+    public RootFolderId getRootFolderId() {
+        switch (this) {
+        case None:
+            return null;
+        case Folder:
+            return new RootFolderId("28bdab5d-e30d-4139-8db8-012b48af6f87");
+        case RootFolder:
+            return new RootFolderId("66cfdd47-f3dc-4d23-a730-09ed10929b75");
+        case Source:
+        case SystemSource:
+            return new RootFolderId("444fe1fb-b55e-4d78-98a5-a8c8630b9e18");
+        case Target:
+        case SystemTarget:
+            return new RootFolderId("da28e350-23b1-4d9b-9c47-3b1235d24d9d");
+        case Transformation:
+            return new RootFolderId("a4e5b9a6-b5c9-45d8-a6f0-28c7052c2948");
+        case Schedule:
+            return new RootFolderId("c09602fa-c4d3-4ff7-af66-b4711cb8a950");
+        case Operation:
+            return new RootFolderId("c61a6640-30cd-4a33-88cc-7c7445af79a7");
+        case Process:
+            return new RootFolderId("ce72c4ba-c57c-44fc-b439-b5ea7bbc8632");
+        case AccountProject:
+            return new RootFolderId("ec3e6d14-6a27-45d4-87b7-fca1e3a41e29");
+        case WebServiceCall:
+            return new RootFolderId("287dbe69-a787-4cbe-8f0c-23654242ac33");
+        case Group:
+            return new RootFolderId("5c31278e-6189-47de-b834-47dc2a1b5299");
+        case User:
+            return new RootFolderId("01cf61ab-41c6-4a5f-a470-c550f2fa4bc2");
+        case ProcessMessage:
+            return new RootFolderId("fab8d59a-1f7b-4530-814c-84296e6b9ff1");
+        case TargetMessage:
+            return new RootFolderId("33e3107e-3170-4e02-8655-68e2f22ccbc1");
+        case EmailMessage:
+            return new RootFolderId("67490cfc-bf4b-4afc-a039-44dc8a82b7a3");
+        case Document:
+            return new RootFolderId("569879b1-abcf-4a3f-b677-58d09a800346");
+        case Partner:
+            return new RootFolderId("ede783be-5503-4a04-a22b-f4ef95837cf4");
+        }
+        return null;
+    }

@@ -1,0 +1,4 @@
+    protected final int getCapsuleOrientation() {
+        return (m_orientation == Orientation.VERTICAL) ? InputFieldFactory.VERTICAL
+                        : InputFieldFactory.HORIZONTAL_LABEL_LEFT;
+    }

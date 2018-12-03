@@ -1,0 +1,6 @@
+  private void _resetJUnit() {
+    _junitAction.setEnabled(true);
+    _junitAllAction.setEnabled(true);
+    _junitProjectAction.setEnabled(_model.isProjectActive());
+    _junitErrorPanel.reset();
+  }

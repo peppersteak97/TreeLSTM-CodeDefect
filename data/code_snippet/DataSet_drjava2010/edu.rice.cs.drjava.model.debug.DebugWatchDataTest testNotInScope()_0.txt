@@ -1,0 +1,11 @@
+  public void testNotInScope() {
+    DebugWatchData data = new DebugWatchData("bar");
+    data.setNoValue();
+    data.setNoType();
+    
+    assertEquals("should not be in scope",
+                 DebugWatchData.NO_VALUE, data.getValue());
+    assertEquals("should not have a type",
+                 DebugWatchData.NO_TYPE, data.getType());
+    assertTrue("should not appear changed", !data.isChanged());
+  } 

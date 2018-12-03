@@ -1,0 +1,6 @@
+    public void writeAll() {
+        for (int row=0; row<_numRows; row++) {
+            writeState[row] = WRITE;
+        }
+        issueNextOperation();
+    }

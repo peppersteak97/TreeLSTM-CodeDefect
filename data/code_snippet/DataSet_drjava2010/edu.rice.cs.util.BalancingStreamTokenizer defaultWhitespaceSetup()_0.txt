@@ -1,0 +1,4 @@
+  public void defaultWhitespaceSetup() {
+    wordRange(0,255);
+    whitespaceRange(0,32);
+  }

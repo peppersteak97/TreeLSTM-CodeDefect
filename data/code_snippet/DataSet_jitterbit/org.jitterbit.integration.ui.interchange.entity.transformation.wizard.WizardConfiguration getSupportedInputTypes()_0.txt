@@ -1,0 +1,4 @@
+    public DataStructureType[] getSupportedInputTypes() {
+        return m_supportedInputTypes.toArray(
+                        new DataStructureType[m_supportedInputTypes.size()]);
+    }

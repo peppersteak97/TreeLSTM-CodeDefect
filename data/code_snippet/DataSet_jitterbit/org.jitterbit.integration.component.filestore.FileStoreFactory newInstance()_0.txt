@@ -1,0 +1,10 @@
+    public static FileStoreFactory newInstance() throws FileStoreFactoryError {
+        return new FileStoreFactory() {
+
+            @Override
+            public IFileStore createFileStore(File root) throws FileStoreException {
+                return PROJECT_FILESTORE_SUPPORTED ? 
+                                new DefaultFileStore(root) : new DummyFileStore(root);
+            }
+        };
+    }

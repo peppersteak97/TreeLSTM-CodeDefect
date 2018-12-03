@@ -1,0 +1,3 @@
+  public String getHistoryAsStringWithSemicolons() {
+    return _history.getHistoryAsStringWithSemicolons(); 
+  }

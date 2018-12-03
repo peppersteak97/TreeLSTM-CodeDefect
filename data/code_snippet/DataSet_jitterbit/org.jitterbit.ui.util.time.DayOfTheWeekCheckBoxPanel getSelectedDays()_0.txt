@@ -1,0 +1,11 @@
+    public DayOfTheWeek[] getSelectedDays() {
+        DayOfTheWeek[] days = new DayOfTheWeek[m_nSelected];
+        if (m_nSelected > 0) {
+            int index = 0;
+            for (DayOfTheWeek day : DayOfTheWeek.values()) {
+                if (m_boxes[day.ordinal()].isSelected())
+                    days[index++] = day;
+            }
+        }
+        return days;
+    }

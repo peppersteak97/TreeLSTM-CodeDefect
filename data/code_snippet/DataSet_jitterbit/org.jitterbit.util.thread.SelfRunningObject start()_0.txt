@@ -1,0 +1,11 @@
+    public final void start() {
+        if (!isAlive()) {
+            m_isStopRequested = false;
+            m_internalThread = new Thread(this);
+            m_internalThread.setDaemon(m_isDeamon);
+            if (m_threadName != null) {
+                m_internalThread.setName(m_threadName);
+            }
+            m_internalThread.start();
+        }
+    }

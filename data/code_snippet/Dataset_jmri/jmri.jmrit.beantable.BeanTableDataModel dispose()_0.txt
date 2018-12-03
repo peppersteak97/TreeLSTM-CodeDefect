@@ -1,0 +1,9 @@
+    synchronized public void dispose() {
+        getManager().removePropertyChangeListener(this);
+        if (sysNameList != null) {
+            for (int i = 0; i< sysNameList.size(); i++) {
+                NamedBean b = getBySystemName((String)sysNameList.get(i));
+                if (b!=null) b.removePropertyChangeListener(this);
+            }
+        }
+    }

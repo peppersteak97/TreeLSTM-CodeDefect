@@ -1,0 +1,3 @@
+    public String getRenameFileTo() {
+        return getProperty(PROPERTY_RENAME_FILE);
+    }

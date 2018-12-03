@@ -1,0 +1,10 @@
+    private void createObjectTypeSelectors() {
+        ActionListener checkHandler = new CheckHandler();
+        ICheckBoxFactory factory = ComponentFactories.checkBoxFactory();
+        m_tableCheck = factory.newCheckBox(PackageResources.TABLE, true);
+        m_tableCheck.addActionListener(checkHandler);
+        m_viewCheck = factory.newCheckBox(PackageResources.VIEW);
+        m_viewCheck.addActionListener(checkHandler);
+        m_synonymCheck = factory.newCheckBox(PackageResources.SYNONYM);
+        m_synonymCheck.addActionListener(checkHandler);
+    }

@@ -1,0 +1,5 @@
+  private /* synchronized */ void endCompoundEdit() {
+    if (_compoundEditInProgress()) {
+      for (int key: keys) endCompoundEdit(key);
+    }
+  }

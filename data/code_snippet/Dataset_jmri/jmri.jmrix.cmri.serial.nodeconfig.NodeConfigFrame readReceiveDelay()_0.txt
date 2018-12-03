@@ -1,0 +1,32 @@
+    protected boolean readReceiveDelay() {
+        try 
+        {
+            receiveDelay = Integer.parseInt(receiveDelayField.getText());
+        }
+        catch (Exception e)
+        {
+            statusText1.setText(rb.getString("Error7"));
+            statusText1.setVisible(true);
+            receiveDelay = 0;
+            errorInStatus1 = true;
+            resetNotes2();
+            return (false);
+        }
+        if (receiveDelay < 0) {
+            statusText1.setText(rb.getString("Error8"));
+            statusText1.setVisible(true);
+            receiveDelay = 0;
+            errorInStatus1 = true;
+            resetNotes2();
+            return (false);
+        }
+        if (receiveDelay > 65535) {
+            statusText1.setText(rb.getString("Error9"));
+            statusText1.setVisible(true);
+            receiveDelay = 0;
+            errorInStatus1 = true;
+            resetNotes2();
+            return (false);
+        }
+        return true;
+    }

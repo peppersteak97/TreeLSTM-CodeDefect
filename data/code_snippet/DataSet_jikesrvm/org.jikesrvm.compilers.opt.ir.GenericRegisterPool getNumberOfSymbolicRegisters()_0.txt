@@ -1,0 +1,4 @@
+  public int getNumberOfSymbolicRegisters() {
+    int start = PhysicalRegisterSet.getSize();
+    return currentNum - start;
+  }

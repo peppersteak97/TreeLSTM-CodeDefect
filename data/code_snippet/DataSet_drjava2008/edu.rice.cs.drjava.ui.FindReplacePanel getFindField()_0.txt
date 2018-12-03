@@ -1,0 +1,1 @@
+  JTextPane getFindField() { return _findField; }

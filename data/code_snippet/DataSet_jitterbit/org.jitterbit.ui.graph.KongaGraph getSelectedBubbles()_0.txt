@@ -1,0 +1,26 @@
+		    for( KongaGraphBubble bubble : getSelectedBubbles() ) {
+				if ( bubble.getMouseDown(1) ) {
+					bRepaint = true;
+					boolean bDragged = bubble.getDragged();
+					bubble.mousePressed(null, 0);
+					if ( bDragged ) {
+						fireBubbleMoved(bubble);
+						if( getModel().getNumberOfBubbles() == 1 )
+							onFirstBubbleMoved(bubble);
+					}
+					else {
+						if ( bubble.contains(p) == false ) {
+							deselectBubble(bubble);
+						}
+					}
+				}
+				else if ( bubble.getMouseDown(3) ) {
+					bubble.mousePressed(null, 0);
+					if ( bubble.contains(p) ) {
+						setPopupX(p.x);
+						setPopupY(p.y);
+						showPopupMenu(bubble, p.x, p.y);
+					}
+					bRepaint = true;
+				}				
+			}

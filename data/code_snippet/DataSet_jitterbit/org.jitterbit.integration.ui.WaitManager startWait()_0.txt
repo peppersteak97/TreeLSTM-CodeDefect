@@ -1,0 +1,4 @@
+    public synchronized void startWait() {
+        ++m_numberOfWaitRequests;
+        m_waitRequests.push(new WaitRequest(0L, m_startWaitJob));
+    }

@@ -1,0 +1,10 @@
+	protected JButton createYesButton() {
+        Action action = new AbstractAction(UiResourceBundle.getString("Yes")) { 
+            public void actionPerformed(ActionEvent e) {
+                onYes();
+            }
+        };
+        JButton btn = getButton(action, m_buttonSize);
+		m_btnYes = btn;		
+		return btn;
+	}

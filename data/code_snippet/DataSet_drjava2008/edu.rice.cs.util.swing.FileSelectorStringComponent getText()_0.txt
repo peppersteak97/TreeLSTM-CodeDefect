@@ -1,0 +1,2 @@
+    _textField.setCaretPosition(_textField.getText().length());
+  }

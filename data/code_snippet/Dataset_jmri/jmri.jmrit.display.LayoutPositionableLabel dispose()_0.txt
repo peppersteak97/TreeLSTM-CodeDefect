@@ -1,0 +1,9 @@
+    void dispose() {
+        if (popup != null) popup.removeAll();
+        fontButtonGroup = null;
+        colorButtonGroup = null;
+        popup = null;
+        italic = null;
+        bold = null;
+        ours = null;
+    }

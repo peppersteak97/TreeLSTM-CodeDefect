@@ -1,0 +1,3 @@
+  public boolean isNonRegularLoop() {
+    return !isAffineLoop();
+  }

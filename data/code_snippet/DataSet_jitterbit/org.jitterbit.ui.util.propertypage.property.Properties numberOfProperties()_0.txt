@@ -1,0 +1,3 @@
+	public int numberOfProperties() {
+		return m_mapProperties.size();
+	}

@@ -1,0 +1,4 @@
+    public Dimension getPreferredSize() {
+        Dimension original = super.getPreferredSize();
+        return (m_painter != null) ? m_painter.getPreferredSize(original) : original;
+    }

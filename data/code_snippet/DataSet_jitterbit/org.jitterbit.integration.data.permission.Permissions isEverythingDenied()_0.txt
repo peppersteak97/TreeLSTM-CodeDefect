@@ -1,0 +1,3 @@
+    public boolean isEverythingDenied() {
+        return (m_denied != null) && Permission.isFullAccess(m_denied);
+    }

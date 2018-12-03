@@ -1,0 +1,10 @@
+    void saveInterchangeProjectStructure() throws InterchangeSavingException {
+        try {
+            ISaveJob job = new StructureSaver();
+            runSaveJob(job);
+        }
+        catch (InterchangeSavingException e) {
+            ErrorLogger.getDefaultLogger().logAndShow(this, 
+                            PackageResources.SaveWorker.SAVE_FAILED, e);
+        }
+    }

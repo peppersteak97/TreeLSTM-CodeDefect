@@ -1,0 +1,4 @@
+    void inputLoco(){
+    	String name = locoId.getText();
+    	addLocoIcon(name);
+     }

@@ -1,0 +1,6 @@
+  public void testSetTypeFalse() {
+    try{
+     lparen.setType("a");
+     fail("Expected BraceException");
+    }catch(BraceException b){};
+  }

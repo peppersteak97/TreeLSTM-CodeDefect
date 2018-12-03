@@ -1,0 +1,9 @@
+    private OneColumnPanel createDisplayer() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setWeightX(1.0);
+        p.setInsets(2, 5, 3, 5);
+        createAndAddCaption(p);
+        addSelectionArea(p);
+        p.setOpaque(false, true);
+        return p;
+    }

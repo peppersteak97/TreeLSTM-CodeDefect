@@ -1,0 +1,4 @@
+    public void activated() {
+        super.activated();
+        m_view.setActive(true);
+    }

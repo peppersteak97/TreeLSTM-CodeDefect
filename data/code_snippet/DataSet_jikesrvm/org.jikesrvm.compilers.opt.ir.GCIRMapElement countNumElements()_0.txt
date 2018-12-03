@@ -1,0 +1,3 @@
+  public int countNumElements() {
+    return regSpillList.size();
+  }

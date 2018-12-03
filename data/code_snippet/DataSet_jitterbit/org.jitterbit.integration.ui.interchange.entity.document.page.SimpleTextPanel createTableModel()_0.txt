@@ -1,0 +1,9 @@
+    private void createTableModel() {
+        m_fieldModel = m_isFixedWidth ? new FixedWidthFieldTableModel()
+                        : new DelimitedFieldTableModel();
+        if (m_textStructure != null) {
+            for (Field f : m_textStructure.getFieldList()) {
+                m_fieldModel.addRow(f);
+            }
+        }
+    }

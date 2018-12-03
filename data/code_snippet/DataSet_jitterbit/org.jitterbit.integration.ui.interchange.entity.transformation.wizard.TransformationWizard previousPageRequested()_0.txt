@@ -1,0 +1,10 @@
+    public void previousPageRequested() {
+        IWizardPage currentPage = getCurrentPage();
+        if (currentPage == m_targetStartPage) {
+            m_targetStartPage = null;
+        }
+        else if (currentPage == m_sourceStartPage) {
+            m_sourceStartPage = null;
+        }
+        super.previousPageRequested();
+    }

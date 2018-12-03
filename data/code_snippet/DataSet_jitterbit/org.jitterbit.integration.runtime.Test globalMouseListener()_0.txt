@@ -1,0 +1,11 @@
+    static void globalMouseListener() {
+        AWTEventListener globalMouseListener = new AWTEventListener() {
+            public void eventDispatched(AWTEvent event) {
+                MouseEvent me = (MouseEvent)event;
+                if( me.getID() == MouseEvent.MOUSE_RELEASED ) {
+                }
+            }
+        };
+        Toolkit.getDefaultToolkit().addAWTEventListener(
+                globalMouseListener, AWTEvent.MOUSE_EVENT_MASK);
+    }

@@ -1,0 +1,16 @@
+    public List<String[]> getMapListValues() {
+        List<String> mappings = getMapList();
+        List<String[]> mapList = new ArrayList<String[]>();
+        String tranId = getID().toString();
+        for (String mapping : mappings) {
+            String[] map = KongaStringUtils.splitWithFirstTab(mapping);
+            if (map.length != 2)
+            String[] value = new String[3];
+            value[0] = tranId;
+            value[1] = map[0];
+            value[2] = map[1];
+            mapList.add(value);
+        }
+
+        return mapList;
+    }

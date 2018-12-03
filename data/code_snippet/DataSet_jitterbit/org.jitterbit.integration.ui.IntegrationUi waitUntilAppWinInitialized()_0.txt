@@ -1,0 +1,3 @@
+    public void waitUntilAppWinInitialized() throws InterruptedException {
+        m_appWinInitializationLatch.await();
+    }

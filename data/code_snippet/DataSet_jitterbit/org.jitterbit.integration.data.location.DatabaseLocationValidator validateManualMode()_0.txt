@@ -1,0 +1,5 @@
+    private void validateManualMode() {
+        String connect = m_location.getManualConnectionString();
+        if (connect == null || connect.length() == 0) {
+        }
+    }

@@ -1,0 +1,6 @@
+    public void run() {
+        validateDelimiter();
+        validateNumberQualifier();
+        validateStringQualifier();
+        validateStructure();
+    }

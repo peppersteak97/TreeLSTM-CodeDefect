@@ -1,0 +1,7 @@
+    private void collect() {
+        DataLocation loc = m_target.getLocation();
+        if (loc != null) {
+            IDataLocationVisitor v = new VisitorImpl();
+            loc.accept(v);
+        }
+    }

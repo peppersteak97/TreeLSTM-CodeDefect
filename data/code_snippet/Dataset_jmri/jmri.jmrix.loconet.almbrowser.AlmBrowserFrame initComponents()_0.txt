@@ -1,0 +1,70 @@
+    public void initComponents() {
+
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        {
+            JPanel pane = new JPanel();
+            pane.setLayout(new FlowLayout());
+            pane.add(readButton);
+            pane.add(writeButton);
+
+            getContentPane().add(pane);
+        }
+
+        {
+            JPanel pane = new JPanel();
+            pane.setLayout(new FlowLayout());
+            pane.add(new JLabel("ALM:"));
+            pane.add(almNumber);
+            pane.add(new JLabel("Address:"));
+            pane.add(itemNumber);
+            pane.add(new JLabel("*"));
+            pane.add(itemSize);
+            pane.add(new JLabel("+"));
+            pane.add(elementNumber);
+            itemNumber.setToolTipText("Index of this item, starting with 0");
+            itemSize.setToolTipText("Number of entries per item");
+            elementNumber.setToolTipText("Index of entry in item, starting with zero");
+
+            getContentPane().add(pane);
+        }
+
+        {
+            JPanel pane = new JPanel();
+            pane.setLayout(new FlowLayout());
+            pane.add(new JLabel("BLKL:"));
+            pane.add(blkl);
+            pane.add(new JLabel("BLKH:"));
+            pane.add(blkh);
+
+            getContentPane().add(pane);
+        }
+
+        {
+            JPanel pane = new JPanel();
+            pane.setLayout(new FlowLayout());
+            values[0] = new JTextField(4);
+            pane.add(values[0]);
+            values[1] = new JTextField(4);
+            pane.add(values[1]);
+            values[2] = new JTextField(4);
+            pane.add(values[2]);
+            values[3] = new JTextField(4);
+            pane.add(values[3]);
+
+            getContentPane().add(pane);
+        }
+
+        readButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                readButtonActionPerformed(e);
+            }
+        });
+        writeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                writeButtonActionPerformed(e);
+            }
+        });
+
+        pack();
+    }

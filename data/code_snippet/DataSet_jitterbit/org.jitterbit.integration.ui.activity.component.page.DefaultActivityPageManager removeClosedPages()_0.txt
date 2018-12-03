@@ -1,0 +1,8 @@
+    private void removeClosedPages() {
+        Set<IActivityPage> keys = new HashSet<IActivityPage>(m_ownedPages.keySet());
+        for (IActivityPage key : keys) {
+            if (!m_ownedPages.get(key)) {
+                m_ownedPages.remove(key);
+            }
+        }
+    }

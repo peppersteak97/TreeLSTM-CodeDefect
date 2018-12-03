@@ -1,0 +1,3 @@
+  public boolean hasArrayRead() {
+    return (summaryFlags & HAS_ARRAY_READ) != 0;
+  }

@@ -1,0 +1,7 @@
+  public void testGetName() {
+    NonNegativeIntegerOption io1 = new NonNegativeIntegerOption("indent_size",null);
+    NonNegativeIntegerOption io2 = new NonNegativeIntegerOption("max_files",null);
+    
+    assertEquals("indent_size", io1.getName());
+    assertEquals("max_files",   io2.getName());
+  }

@@ -1,0 +1,3 @@
+    public long getMinimumCallDelayInMilliSecs() {
+        return m_data.getLong(MIN_CALL_DELAY, 0L);
+    }

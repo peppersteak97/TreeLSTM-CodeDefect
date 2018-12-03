@@ -1,0 +1,3 @@
+    Group getSelectedGroup() {
+        return (m_currentSelection instanceof Group) ? (Group) m_currentSelection : null;
+    }

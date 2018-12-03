@@ -1,0 +1,4 @@
+  public boolean isArrayDescriptor() {
+    if (VM.VerifyAssertions) VM._assert(val.length > 0);
+    return val[0] == '[';
+  }

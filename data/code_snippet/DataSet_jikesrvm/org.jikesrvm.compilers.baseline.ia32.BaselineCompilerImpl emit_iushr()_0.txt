@@ -1,0 +1,4 @@
+  protected final void emit_iushr() {
+    asm.emitPOP_Reg(ECX);
+    asm.emitSHR_RegInd_Reg(SP, ECX);
+  }

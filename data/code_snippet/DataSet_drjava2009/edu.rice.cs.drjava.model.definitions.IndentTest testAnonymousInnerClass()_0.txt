@@ -1,0 +1,33 @@
+  public void testAnonymousInnerClass() throws BadLocationException {
+    String text =
+      "addWindowListener(new WindowAdapter() {\n" +
+      "public void windowClosing(WindowEvent e) {\n" +
+      "dispose();\n" +
+      "}\n" +
+      "void x() {\n" +
+      "\n" +
+      "}\n" +
+      "\n" +
+      "}\n" +
+      ");\n" +
+      "foo.bar();\n";
+    String indented =
+      "addWindowListener(new WindowAdapter() {\n" +
+      "  public void windowClosing(WindowEvent e) {\n" +
+      "    dispose();\n" +
+      "  }\n" +
+      "  void x() {\n" +
+      "    \n" +
+      "  }\n" +
+      "  \n" +
+      "}\n" +
+      ");\n" +
+      "foo.bar();\n";
+    
+    
+    _doc.insertString(0, text, null);
+    _assertContents(text, _doc);
+    
+    safeIndentLines(0, _doc.getLength());
+    _assertContents(indented, _doc);
+  }

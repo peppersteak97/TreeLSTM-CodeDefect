@@ -1,0 +1,12 @@
+  public final boolean isInterruptible() {
+    if (isClassInitializer() || isObjectInitializer()) return true;
+    if (isObjectInitializerHelper()) return true;
+    if (hasInterruptibleAnnotation()) return true;
+    if (hasPreemptibleAnnotation()) return true;
+    if (hasUninterruptibleNoWarnAnnotation()) return false;
+    if (hasUninterruptibleAnnotation()) return false;
+    if (hasUnpreemptibleAnnotation()) return false;
+    if (hasUnpreemptibleNoWarnAnnotation()) return false;
+    if (getDeclaringClass().hasUnpreemptibleAnnotation()) return false;
+    return !getDeclaringClass().hasUninterruptibleAnnotation();
+  }

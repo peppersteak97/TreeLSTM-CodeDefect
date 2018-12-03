@@ -1,0 +1,3 @@
+    public TimeWindowFilter getFilter() {
+        return m_filter;
+    }

@@ -1,0 +1,3 @@
+  public Iterable<AbsRelFile> getExtraClassPath() {
+    throw new UnsupportedOperationException("Tried to call getExtraClasspath on a Dummy");
+  }

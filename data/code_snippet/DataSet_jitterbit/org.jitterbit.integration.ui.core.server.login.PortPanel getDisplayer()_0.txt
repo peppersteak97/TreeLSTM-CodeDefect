@@ -1,0 +1,4 @@
+    JComponent getDisplayer() {
+        JComponent c = createDisplayer();
+        return c;
+    }

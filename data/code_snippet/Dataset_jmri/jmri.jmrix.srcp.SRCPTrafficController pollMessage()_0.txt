@@ -1,0 +1,3 @@
+    protected AbstractMRMessage pollMessage() {
+		return null;
+    }

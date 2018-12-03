@@ -1,0 +1,16 @@
+    public void load() {
+        if (m_mapFile.exists()) {
+            Properties props = loadProperties();
+            for (Map.Entry<Object, Object> entry : props.entrySet()) {
+                addEntry(entry);
+            }
+        }
+        else {
+            try {
+                m_mapFile.createNewFile();
+            } 
+            catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }

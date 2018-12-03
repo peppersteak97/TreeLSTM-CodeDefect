@@ -1,0 +1,68 @@
+  static void fetchCommandLineArguments() {
+    if (args != null) {
+      return;
+    }
+    ArgReader argRdr = new ArgReader();
+
+    int numArgs = argRdr.numArgs();
+    args = new String[numArgs];
+    arg_types = new PrefixType[numArgs];
+
+    for (int i = 0; i < numArgs; ++i) {
+      String arg = argRdr.getArg(i);
+
+      if (app_prefix.count > 0) {
+        /* We're already into the application arguments.  Here's another
+         * one. */
+        args[i] = arg;
+        arg_types[i] = PrefixType.APPLICATION_ARG;
+        app_prefix.count++;
+        continue;
+      }
+
+      for (Prefix p : prefixes) {
+        String v = p.value;
+        if (!matches(arg, v)) {
+          continue;
+        }
+        args[i] = arg.substring(length(v));
+        if (DEBUG) {
+          VM.sysWrite("length(v) = ");
+          VM.sysWrite(length(v));
+
+          VM.sysWrite("; v = \"");
+          VM.sysWrite(v);
+          VM.sysWriteln("\"");
+          VM.sysWrite("args[");
+          VM.sysWrite(i);
+          VM.sysWrite("] = \"");
+          VM.sysWrite(args[i]);
+          VM.sysWrite("\"; arg = \"");
+          VM.sysWrite(arg);
+          VM.sysWriteln("\"");
+        }
+
+        arg_types[i] = p.type;
+        if (v.endsWith(" ")) {
+          if (++i >= numArgs) {
+            VM.sysWriteln("vm: ", v, "needs an argument");
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          args[i - 1] += argRdr.getArg(i);
+          args[i] = null;
+        }
+        if (p == app_prefix) {
+          app_name_pos = i;
+        }
+        break;
+      }
+    } 
+    /*
+     * If no application is specified, set app_name_pos to numArgs (that is,
+     * to one past the last item in the array of arguments) to ensure all
+     * command-line arguments are processed.
+     */
+    if (app_name_pos == -1) {
+      app_name_pos = numArgs;
+    }
+  }

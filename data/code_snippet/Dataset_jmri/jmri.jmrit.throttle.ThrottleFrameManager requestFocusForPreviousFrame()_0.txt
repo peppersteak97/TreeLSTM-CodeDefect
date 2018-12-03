@@ -1,0 +1,10 @@
+	private void requestFocusForPreviousFrame()
+	{
+		activeFrame--;
+		if (activeFrame < 0)
+		{
+			activeFrame = throttleFrames.size() - 1;
+		}
+		ThrottleFrame tf = (ThrottleFrame) throttleFrames.get(activeFrame);
+		tf.requestFocus();
+	}

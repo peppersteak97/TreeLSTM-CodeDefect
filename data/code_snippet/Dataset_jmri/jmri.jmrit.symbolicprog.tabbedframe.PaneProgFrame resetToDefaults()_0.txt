@@ -1,0 +1,16 @@
+    protected void resetToDefaults() {
+        int n = defaultCvValues.length;
+        for (int i=0; i<n; i++) {
+            CvValue cv = cvModel.getCvByNumber(defaultCvNumbers[i]);
+            if (cv == null) log.warn("Trying to set default in CV "+defaultCvNumbers[i]
+                                     +" but didn't find the CV object");
+            else cv.setValue(defaultCvValues[i]);
+        }
+        n = defaultIndexedCvValues.length;
+        for (int i=0; i<n; i++) {
+            CvValue cv = iCvModel.getCvByRow(i);
+            if (cv == null) log.warn("Trying to set default in indexed CV from row "+i
+                                     +" but didn't find the CV object");
+            else cv.setValue(defaultIndexedCvValues[i]);
+        }
+    }

@@ -1,0 +1,24 @@
+    public void configure() {
+        SprogTrafficController.instance().connectPort(this);
+
+        jmri.InstanceManager.setProgrammerManager(new SprogProgrammerManager(new SprogProgrammer(), SprogProgrammerManager.OPS));
+
+        jmri.InstanceManager.setPowerManager(new jmri.jmrix.sprog.SprogPowerManager());
+
+        jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.sprog.SprogTurnoutManager());
+
+        jmri.InstanceManager.setSensorManager(new jmri.managers.InternalSensorManager());
+
+        log.debug("start command station queuing thread");
+        slotThread = new Thread(jmri.jmrix.sprog.SprogSlotManager.instance());
+        slotThread.start();
+        jmri.InstanceManager.setCommandStation(SprogSlotManager.instance());
+
+        sinkThread = new Thread(SprogTrafficController.instance());
+        sinkThread.start();
+
+        jmri.InstanceManager.setThrottleManager(new jmri.jmrix.sprog.SprogCSThrottleManager());
+
+        jmri.jmrix.sprog.ActiveFlagCS.setActive();
+
+    }

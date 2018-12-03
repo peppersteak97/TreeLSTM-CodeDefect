@@ -1,0 +1,5 @@
+    private void createMainPanel() {
+        UiUtils.setOpaqueRecursivelySkipDefaults(m_inputPanel, false);
+        setMainPanel(WebServiceWizard.getUtils().createPageMainPanel(getMainCaption(),
+                        getSubCaption(), m_inputPanel));
+    }

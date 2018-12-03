@@ -1,0 +1,12 @@
+    public boolean validate() {
+        boolean v = checkValid();
+        if (v) {
+            statusIndicator.setIcon(EMPTY_ICON);
+            statusIndicator.setToolTipText(null);
+        }
+        else {
+            statusIndicator.setIcon(ERROR_ICON);
+            statusIndicator.setToolTipText(lastError);
+        }
+        return v;
+    }

@@ -1,0 +1,10 @@
+    private JComponent createDriverCapsule() {
+        Box driverCapsule = Box.createHorizontalBox();
+        JComponent driverField = InputFieldFactory.getCapsule(m_driverField);
+        driverField.setAlignmentY(JComponent.BOTTOM_ALIGNMENT);
+        driverCapsule.add(driverField);
+        driverCapsule.add(Box.createHorizontalStrut(5));
+        m_setDriverButton.setAlignmentY(JComponent.BOTTOM_ALIGNMENT);
+        driverCapsule.add(m_setDriverButton);
+        return driverCapsule;
+    }

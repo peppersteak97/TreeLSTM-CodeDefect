@@ -1,0 +1,3 @@
+    public int get_Monthly_B_Every_X_Month() {
+        return m_Monthly_B_of_Every_X_Month;
+    }

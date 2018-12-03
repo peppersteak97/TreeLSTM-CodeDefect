@@ -1,0 +1,5 @@
+    private void writeUpdateImpl() {
+        addLine("\tint Update() {");
+        addLine("\t\treturn m_dtlRecSet.Update(m_row);");
+        addLine("\t}");
+    }

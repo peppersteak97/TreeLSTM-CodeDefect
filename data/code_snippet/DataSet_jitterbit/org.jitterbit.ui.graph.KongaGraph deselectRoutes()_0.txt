@@ -1,0 +1,3 @@
+	private boolean deselectRoutes() {
+		return m_selectionModel.deselectRoutes();
+	}

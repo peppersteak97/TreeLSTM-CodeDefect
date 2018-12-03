@@ -1,0 +1,12 @@
+    private JComponent createTopPanel() {
+        JLabel lbl = IntegrationUiStyleSheet.DefaultText.makeJLabel(
+                        PackageResources.FoundFilesDialog.LABEL);
+        JPanel p = new JPanel() {
+
+            @Override
+            public Dimension getMaximumSize() {
+                return getPreferredSize();
+            }
+        };
+        return InvisiblePanel.convertAndAdd(p, lbl);
+    }

@@ -1,0 +1,2 @@
+    // the subclass also needs a dispose() method to close any specific communications; call super.dispose()
+    public void dispose() { super.dispose();}

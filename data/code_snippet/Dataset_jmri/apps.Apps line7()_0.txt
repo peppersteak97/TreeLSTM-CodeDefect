@@ -1,0 +1,5 @@
+    protected String line7() {
+        return MessageFormat.format(rb.getString("JavaVersionCredit"),
+                                new String[]{System.getProperty("java.version","<unknown>"),
+                                            Locale.getDefault().toString()});
+    }

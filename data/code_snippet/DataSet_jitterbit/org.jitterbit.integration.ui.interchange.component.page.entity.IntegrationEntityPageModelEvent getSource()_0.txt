@@ -1,0 +1,3 @@
+    public IntegrationEntityPageModel getSource() {
+        return (IntegrationEntityPageModel) super.getSource();
+    }

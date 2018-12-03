@@ -1,0 +1,20 @@
+  public InterpreterJVMRemoteI ensureInterpreterConnected() {
+    try {
+      synchronized(_interpreterLock) {
+        /* Now we silently fail if interpreter is disabled instead of throwing an exception. This situation
+         * occurs only in test cases and when DrJava is about to quit. 
+         */
+        if (! _restart) { throw new IllegalStateException("Interpreter is disabled"); }
+        InterpreterJVMRemoteI slave = _interpreterJVM();
+        while (slave == null) {
+          debug.log("Interpreter is null, waiting for it to register");
+          _interpreterLock.wait();
+          slave = _interpreterJVM();
+        }
+        debug.log("Interpreter registered");
+        
+        return slave;
+      }
+    }
+    catch (InterruptedException ie) { throw new UnexpectedException(ie); }
+  }

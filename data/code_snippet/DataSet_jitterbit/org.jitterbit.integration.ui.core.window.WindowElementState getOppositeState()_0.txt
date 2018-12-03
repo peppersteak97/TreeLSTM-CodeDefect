@@ -1,0 +1,17 @@
+    public WindowElementState getOppositeState() {
+        switch (this) {
+        case OPEN:
+            return CLOSED;
+        case CLOSED:
+            return OPEN;
+        case ACTIVE:
+            return INACTIVE;
+        case INACTIVE:
+            return ACTIVE;
+        case ATTACHED:
+            return DETACHED;
+        case DETACHED:
+            return ATTACHED;
+        }
+        return null;
+    }

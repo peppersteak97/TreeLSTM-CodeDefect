@@ -1,0 +1,31 @@
+    public void showFormula(){
+        String strTransEndTag = FormulaBuilderConstants.END_TRANS;
+        String strFieldExpression = m_textAreaExpression.getText();
+        
+        updateDatabaseBinding();
+        strFieldExpression=TranslateToPath(strFieldExpression);       
+        m_textAreaExpression.setText(strFieldExpression);    
+        
+        if(strFieldExpression.endsWith(strTransEndTag))
+            m_textAreaExpression.m_textAreaExpression_start_pos = strFieldExpression.length() - strTransEndTag.length();
+        else
+            m_textAreaExpression.m_textAreaExpression_start_pos = strFieldExpression.length();
+        m_textAreaExpression.m_textAreaExpression_end_pos = m_textAreaExpression.m_textAreaExpression_start_pos;
+        m_textAreaExpression.setCaretPosition(m_textAreaExpression.m_textAreaExpression_start_pos);
+        if(m_TreeMapper.m_sourceTreeComponent.m_highLightedNode != null)
+        {
+            m_TreeMapper.m_expressionTreeComponent.showNode(m_TreeMapper.m_sourceTreeComponent.m_highLightedNode.m_deName, true);
+            m_TreeMapper.m_expressionTreeComponent.requestFocus();
+            m_TreeMapper.m_expressionTreeComponent.paintFocus();
+        } else {
+            if(m_textAreaExpression.getText().equals("")){
+                m_textAreaExpression.requestFocus();
+            }
+        }
+        if(!m_expressionTreeComponent.m_gotFocus)
+            m_buttonEnter2.setEnabled1(false);
+        if(!m_fcnTreeComponent.m_gotFocus)
+            m_buttonEnter1.setEnabled1(false);
+                
+        setVisible(true);
+    }

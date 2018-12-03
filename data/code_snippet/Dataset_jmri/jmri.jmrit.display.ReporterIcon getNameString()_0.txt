@@ -1,0 +1,9 @@
+    String getNameString() {
+        String name;
+        if (reporter == null) name = "<Not connected>";
+        else if (reporter.getUserName()!=null)
+            name = reporter.getUserName()+" ("+reporter.getSystemName()+")";
+        else
+            name = reporter.getSystemName();
+        return name;
+    }

@@ -1,0 +1,4 @@
+  public void updateClinetStateListener(){
+    if( stateListner != null )
+      stateListner.notifyClientStateChanged(this);
+  }

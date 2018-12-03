@@ -1,0 +1,7 @@
+	private void initKeyMappings() {
+        KeyBindingInstaller installer = new KeyBindingInstaller(this);
+                        new DeleteSelectedBubblesAction());
+                        new RenameSingleBubbleAction());
+                        new SelectAllAction());
+        installer.install();
+	}	

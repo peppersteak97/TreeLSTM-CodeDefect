@@ -1,0 +1,3 @@
+    public DataLocation getDisplayedObject() {
+        return m_location;
+    }

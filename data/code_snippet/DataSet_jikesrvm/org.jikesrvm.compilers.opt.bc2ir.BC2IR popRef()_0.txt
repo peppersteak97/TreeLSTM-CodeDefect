@@ -1,0 +1,5 @@
+  public Operand popRef() {
+    Operand r = pop();
+    if (VM.VerifyAssertions) VM._assert(r.isRef() || r.isAddress());
+    return r;
+  }

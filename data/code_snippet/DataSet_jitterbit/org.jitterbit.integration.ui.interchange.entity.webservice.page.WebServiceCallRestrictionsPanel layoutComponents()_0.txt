@@ -1,0 +1,28 @@
+    private void layoutComponents() {
+        JPanel pnl = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(0, 5, 10, 5);
+        gbc.gridx = 0;
+
+        String caption = PackageResources.Captions.RESTRICTIONS;
+        if (caption != null && caption.length() > 0) {
+            gbc.gridwidth = 2;
+            pnl.add(IntegrationUiStyleSheet.AdminHint.makeJLabel(caption), gbc);
+        }
+
+        gbc.gridwidth = 1;
+        pnl.add(InputFieldFactory.getCapsule(m_delayField), gbc);
+
+        gbc.gridwidth = 2;
+        Box capsule = Box.createHorizontalBox();
+        capsule.add(m_dataLimitField.getInputComponent());
+        capsule.add(Box.createHorizontalStrut(10));
+        capsule.add(m_sizeUnitCombo);
+        JComponent sizeComponent = InputFieldFactory.getLabeledComponent(capsule,
+                        m_dataLimitField.getLabel(), InputFieldFactory.VERTICAL);
+        pnl.add(sizeComponent, gbc);
+
+        setLayout(new FlowLayout(FlowLayout.LEFT));
+        add(pnl);
+    }

@@ -1,0 +1,3 @@
+    public SourceHistoryFilters getFilters() {
+        return (SourceHistoryFilters)super.getFilters();
+    }

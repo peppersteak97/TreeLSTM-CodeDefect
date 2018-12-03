@@ -1,0 +1,17 @@
+    protected List<JMenuItem> getMenuItems() {
+        List<JMenuItem> items = new ArrayList<JMenuItem>();
+        add(InterchangeActionFactory.LOAD_SOURCE, items);
+        add(InterchangeActionFactory.VIEW_TRANSFORMATION_SOURCE_FILE, items);
+        addTestSubMenu(items);
+        add(InterchangeActionFactory.MIGRATE_TRANSFORMATION, items);
+        items.add(null);
+        add(InterchangeActionFactory.IMPORT_MAPPINGS, items);
+        add(InterchangeActionFactory.EXPORT_MAPPINGS, items);
+        items.add(null);
+        add(InterchangeActionFactory.EDIT_TRANSFORMATION_WHERE_CLAUSE, items);
+        add(InterchangeActionFactory.EDIT_TARGET_UPDATE_KEYS, items);
+        add(InterchangeActionFactory.LAUNCH_TREEMAPPER_TO_TEXTSTRUCTURE_WIZARD, items);
+        items.add(null);
+        addExpansionModeSubMenu(items);
+        return items;
+    }

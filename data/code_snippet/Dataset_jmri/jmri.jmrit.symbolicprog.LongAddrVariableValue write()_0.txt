@@ -1,0 +1,2 @@
+        if (log.isDebugEnabled()) log.debug("write() invoked");
+        if (getReadOnly()) log.error("unexpected write operation when readOnly is set");

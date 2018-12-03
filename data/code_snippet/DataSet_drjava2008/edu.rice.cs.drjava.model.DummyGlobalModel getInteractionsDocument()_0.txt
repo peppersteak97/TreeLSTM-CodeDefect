@@ -1,0 +1,3 @@
+  public InteractionsDocument getInteractionsDocument() {
+    throw new UnsupportedOperationException("Tried to call getInteractionsDocument on a Dummy");
+  }

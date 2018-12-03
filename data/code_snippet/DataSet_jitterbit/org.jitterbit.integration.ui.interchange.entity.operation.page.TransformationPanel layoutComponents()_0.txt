@@ -1,0 +1,8 @@
+    private void layoutComponents() {
+        InputField tfLayout = m_transformationControl.asInputFieldForLayout();
+        InputField[] fields = { 
+                        m_sourceAndTargetCombos.getSourceFieldForLayout(),
+                        tfLayout,
+                        m_sourceAndTargetCombos.getTargetFieldForLayout()};
+        InputFieldLayoutUtils.layoutOneColumn(this, fields, true, false);
+    }

@@ -1,0 +1,12 @@
+    private void createNodeMap() {
+        m_nodeMap = new HashMap<IntegrationEntity, ICheckBoxNode>();
+        IKongaTreeNode root = m_tree.getRootNode();
+        for (Enumeration<IKongaTreeNode> en = root.depthFirstEnumeration(); en
+                        .hasMoreElements();) {
+            IKongaTreeNode node = en.nextElement();
+            Object o = node.getUserObject();
+            if (o instanceof IntegrationEntity) {
+                m_nodeMap.put((IntegrationEntity) o, (ICheckBoxNode) node);
+            }
+        }
+    }

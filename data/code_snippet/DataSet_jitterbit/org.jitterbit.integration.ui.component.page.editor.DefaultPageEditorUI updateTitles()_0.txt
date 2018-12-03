@@ -1,0 +1,10 @@
+    void updateTitles() {
+        int index = 0;
+        for (IPage page : m_pagesInTabPane) {
+            m_tabPane.setTitleAt(index, page.getTitle());
+            ++index;
+        }
+        for (DetachedPageUi detachedPage : m_detachedPages.values()) {
+            detachedPage.updateTitle();
+        }
+    }

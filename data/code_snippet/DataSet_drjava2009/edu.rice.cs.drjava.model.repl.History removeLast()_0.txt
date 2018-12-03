@@ -1,0 +1,6 @@
+  public String removeLast() {
+    if (_vector.size() == 0) { return null; }
+    String last = _vector.remove(_vector.size()-1);
+    if (_cursor > _vector.size()) { _cursor = _vector.size()-1; }
+    return last;
+  }

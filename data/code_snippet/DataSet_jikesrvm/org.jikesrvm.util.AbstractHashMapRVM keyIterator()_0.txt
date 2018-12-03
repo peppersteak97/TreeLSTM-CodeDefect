@@ -1,0 +1,3 @@
+  public final Iterator<K> keyIterator() {
+    return new KeyIterator();
+  }

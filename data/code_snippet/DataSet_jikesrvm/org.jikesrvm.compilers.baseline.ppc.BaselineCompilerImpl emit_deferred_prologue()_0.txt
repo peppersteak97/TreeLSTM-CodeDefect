@@ -1,0 +1,8 @@
+  protected final void emit_deferred_prologue() {
+    if (VM.VerifyAssertions) VM._assert(method.isForOsrSpecialization());
+    genThreadSwitchTest(RVMThread.PROLOGUE);
+
+    /* donot generate sync for synced method because we are reenter
+     * the method in the middle.
+     */
+  }

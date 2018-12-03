@@ -1,0 +1,3 @@
+    public IWizardPage getNextPage() {
+        return (m_outgoingObjects.length == 1) ? getNextPageFlat() : getNextPageTree();
+    }

@@ -1,0 +1,3 @@
+    public boolean isSendingUndoEvents() {
+        return m_inputPanel.isSendingUndoEvents();
+    }

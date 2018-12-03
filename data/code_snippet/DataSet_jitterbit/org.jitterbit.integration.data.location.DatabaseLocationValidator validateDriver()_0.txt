@@ -1,0 +1,9 @@
+    private void validateDriver() {
+        if (m_location.getDriver() == null) {
+            String driverName = m_location.getDriverName();
+            if (driverName == null || driverName.trim().length() == 0) {
+            }
+            else {
+            }
+        }
+    }

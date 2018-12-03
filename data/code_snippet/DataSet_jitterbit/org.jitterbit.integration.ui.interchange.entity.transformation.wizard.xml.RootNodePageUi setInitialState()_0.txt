@@ -1,0 +1,10 @@
+    private void setInitialState() {
+        EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                if (m_availableRoots.getNumberOfNames() == 0) {
+                    m_page.setNextPageEnabled(false);
+                }
+            }
+        });
+    }

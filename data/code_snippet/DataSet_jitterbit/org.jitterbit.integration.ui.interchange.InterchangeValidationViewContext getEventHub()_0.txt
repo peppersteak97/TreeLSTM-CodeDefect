@@ -1,0 +1,3 @@
+    public EventHub getEventHub() {
+        return m_view.getEventHub();
+    }

@@ -1,0 +1,3 @@
+    public IActiveObjectProvider getSource() {
+        return (IActiveObjectProvider) super.getSource();
+    }

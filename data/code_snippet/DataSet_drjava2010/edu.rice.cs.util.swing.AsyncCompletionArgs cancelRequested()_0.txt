@@ -1,0 +1,3 @@
+  public boolean cancelRequested() {
+    return _cancelRequested;
+  }

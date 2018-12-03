@@ -1,0 +1,7 @@
+  public String toString() {
+    String tab = "";
+    for (int i = 0; i < depth; i++) {
+      tab += "\t";
+    }
+    return tab + header + " " + loop + " " + loopExits + "\n";
+  }

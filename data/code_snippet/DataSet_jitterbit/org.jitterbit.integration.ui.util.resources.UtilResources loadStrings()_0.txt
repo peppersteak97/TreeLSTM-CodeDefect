@@ -1,0 +1,14 @@
+    private static IStringResources loadStrings() {
+        try {
+            return new ResourceBundleStringResources(
+                            Resources.MNEMONIC_FACTORY);
+        }
+        catch (Exception ex) {
+            handleLoadingException(ex);
+            return null;
+        }
+        catch (Throwable th) {
+            th.printStackTrace();
+            return null;
+        }
+    }

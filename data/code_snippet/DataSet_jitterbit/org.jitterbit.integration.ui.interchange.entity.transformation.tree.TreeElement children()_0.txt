@@ -1,0 +1,3 @@
+    public Iterator<ITreeMapperNode> children() {
+        return Collections.unmodifiableList(m_children).iterator();
+    }

@@ -1,0 +1,14 @@
+	public List<String[]> getFlatDefinition() {
+		List<String[]> retval = new ArrayList<String[]>();
+		if ( m_segment == null ) return retval;
+		
+		Vector<Field> fields = m_segment.getFieldList();
+		if ( fields.size() == 0 ) return retval;
+
+		int id = 0;
+		for( Field field : fields ) {
+			field.setId(++id);
+			retval.add( field.getFlatDefinition(m_segment) );
+		}
+		return retval;
+	}

@@ -1,0 +1,11 @@
+  public TypeReference[] finish() {
+    TypeReference[] result = popularTRVs.get(this);
+    if (result != null) {
+      array = result;
+      return result;
+    } else {
+      adjustLength(cnt);
+      popularTRVs.put(this, array);
+      return array;
+    }
+  }

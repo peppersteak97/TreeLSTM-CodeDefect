@@ -1,0 +1,5 @@
+  public Enumeration<Register> enumerateVolatiles() {
+    Enumeration<Register> e1 = enumerateVolatileGPRs();
+    Enumeration<Register> e2 = enumerateVolatileFPRs();
+    return new CompoundEnumerator<Register>(e1, e2);
+  }

@@ -1,0 +1,2 @@
+  /** @return the File that contains the class specified by getMainClass() */
+  public File getMainClassContainingFile();

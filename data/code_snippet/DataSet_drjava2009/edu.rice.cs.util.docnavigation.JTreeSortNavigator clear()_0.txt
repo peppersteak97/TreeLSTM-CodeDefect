@@ -1,0 +1,7 @@
+  public void clear() {
+    assert (EventQueue.isDispatchThread() || Utilities.TEST_MODE);
+    synchronized(_model) {
+      _doc2node.clear();
+      ((DefaultMutableTreeNode)_model.getRoot()).removeAllChildren();
+    }
+  }

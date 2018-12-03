@@ -1,0 +1,3 @@
+    public String getDisplayString() {
+        return m_displayString;
+    }

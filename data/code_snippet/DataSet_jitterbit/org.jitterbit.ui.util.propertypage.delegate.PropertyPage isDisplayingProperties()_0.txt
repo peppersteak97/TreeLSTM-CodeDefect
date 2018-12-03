@@ -1,0 +1,3 @@
+	public boolean isDisplayingProperties() {
+		return m_displayedObject != null;
+	}

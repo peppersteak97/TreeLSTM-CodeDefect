@@ -1,0 +1,7 @@
+    protected static GridBagConstraints getConstraints() {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 0;
+        return gbc;
+    }

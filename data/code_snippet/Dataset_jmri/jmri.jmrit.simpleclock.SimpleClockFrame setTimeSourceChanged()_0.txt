@@ -1,0 +1,9 @@
+	private void setTimeSourceChanged() {
+		int index = timeSourceBox.getSelectedIndex();
+		int oldIndex = internalSourceIndex;
+		if (!clock.getInternalMaster()) oldIndex = hardwareSourceIndex;
+		if ( oldIndex == index ) return;
+		if (index == internalSourceIndex) clock.setInternalMaster(true,true);
+		else clock.setInternalMaster(false,true);
+		changed = true;
+	}

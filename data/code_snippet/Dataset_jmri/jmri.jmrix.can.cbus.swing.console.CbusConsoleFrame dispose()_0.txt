@@ -1,0 +1,4 @@
+    public void dispose() {
+        tc.removeCanListener(this);
+        super.dispose();
+    }

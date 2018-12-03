@@ -1,0 +1,3 @@
+    Collection<IntegrationEntityId> getDirtyEntities() {
+        return new ArrayList<IntegrationEntityId>(m_dirtyEntities);
+    }

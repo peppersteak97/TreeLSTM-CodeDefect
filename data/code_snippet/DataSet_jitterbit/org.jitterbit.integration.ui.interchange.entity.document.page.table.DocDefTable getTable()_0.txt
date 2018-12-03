@@ -1,0 +1,3 @@
+    protected final KongaTable getTable() {
+        return m_ui;
+    }

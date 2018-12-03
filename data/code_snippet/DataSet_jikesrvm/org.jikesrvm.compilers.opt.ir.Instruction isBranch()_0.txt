@@ -1,0 +1,1 @@
+ * default in some cases. For example, {@link #isMove()}, {@link #isBranch()},

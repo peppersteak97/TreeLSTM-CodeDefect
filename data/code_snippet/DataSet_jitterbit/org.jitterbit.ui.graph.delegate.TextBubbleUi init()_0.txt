@@ -1,0 +1,5 @@
+	private void init() {
+		setIcon( getDefaultIcon() );
+		setText(getDisplayName());
+		createDisplayData();
+	}

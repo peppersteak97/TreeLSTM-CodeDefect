@@ -1,0 +1,3 @@
+    public static IExceptionDisplayer createDisplayer() {
+        return new DefaultExceptionDisplayer();
+    }

@@ -1,0 +1,3 @@
+  public static int getReferenceSlotSize() {
+    return VM.BuildFor64Addr ? 2 : 1;
+  }

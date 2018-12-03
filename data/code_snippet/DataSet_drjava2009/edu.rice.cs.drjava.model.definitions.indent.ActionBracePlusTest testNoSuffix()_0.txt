@@ -1,0 +1,18 @@
+  public void testNoSuffix() throws BadLocationException {
+    _action = new ActionBracePlus(0);
+    
+    
+    _text = 
+      "method(\n"+
+      ")\n";
+
+    _aligned = 
+      "method(\n"+
+      "      )\n";
+ 
+    _setDocText(_text);
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("Line aligned to open paren.", _aligned.length(), _doc.getLength());
+    assertEquals("Line aligned to open paren.", _aligned, _doc.getText());
+  }

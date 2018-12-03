@@ -1,0 +1,4 @@
+    static public SerialSensorManager instance() {
+        if (_instance == null) _instance = new SerialSensorManager();
+        return _instance;
+    }

@@ -1,0 +1,1 @@
+  public boolean getAutoRefreshStatus() { return _autoRefreshStatus; }

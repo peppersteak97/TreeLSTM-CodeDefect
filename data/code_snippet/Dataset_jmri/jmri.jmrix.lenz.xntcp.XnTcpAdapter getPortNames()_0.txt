@@ -1,0 +1,4 @@
+	public Vector getPortNames() {
+		findInterfaces();
+		return hostNameVector;
+	}

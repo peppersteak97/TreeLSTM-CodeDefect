@@ -1,0 +1,3 @@
+  public boolean isTransient() {
+    return (modifiers & ACC_TRANSIENT) != 0;
+  }

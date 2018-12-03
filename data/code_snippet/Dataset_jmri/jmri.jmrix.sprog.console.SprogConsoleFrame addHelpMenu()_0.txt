@@ -1,0 +1,3 @@
+    protected void addHelpMenu() {
+    	addHelpMenu("package.jmri.jmrix.sprog.console.SprogConsoleFrame", true);
+    }

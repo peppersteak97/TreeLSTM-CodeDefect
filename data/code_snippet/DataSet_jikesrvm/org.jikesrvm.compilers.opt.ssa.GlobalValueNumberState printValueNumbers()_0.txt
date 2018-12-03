@@ -1,0 +1,8 @@
+  void printValueNumbers() {
+    for (Enumeration<GraphNode> e = valueGraph.enumerateVertices(); e.hasMoreElements();) {
+      ValueGraphVertex v = (ValueGraphVertex) e.nextElement();
+      int valueNumber = v.getValueNumber();
+      GVCongruenceClass c = B.get(valueNumber);
+      System.out.println(v.getName() + " " + valueNumber + " " + c.getLabel());
+    }
+  }

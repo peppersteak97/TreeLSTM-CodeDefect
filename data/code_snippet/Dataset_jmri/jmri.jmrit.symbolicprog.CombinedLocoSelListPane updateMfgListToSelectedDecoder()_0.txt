@@ -1,0 +1,11 @@
+    void updateMfgListToSelectedDecoder() {
+        DecoderFile df = DecoderIndexFile.instance()
+                        .fileFromTitle((String)mDecoderList.getSelectedValue());
+        if (log.isDebugEnabled()) log.debug("decoder selection changed to "
+                                            +(String)mDecoderList.getSelectedValue());
+        if (df!=null) {
+            if (log.isDebugEnabled()) log.debug("matching mfg is "
+                                                +df.getMfg());
+                updateMfgListWithoutTrigger(df.getMfg());
+            }
+    }

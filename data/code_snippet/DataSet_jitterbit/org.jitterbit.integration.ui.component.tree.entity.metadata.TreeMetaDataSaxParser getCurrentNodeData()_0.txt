@@ -1,0 +1,3 @@
+    NodeData getCurrentNodeData() {
+        return m_currentNodeData;
+    }

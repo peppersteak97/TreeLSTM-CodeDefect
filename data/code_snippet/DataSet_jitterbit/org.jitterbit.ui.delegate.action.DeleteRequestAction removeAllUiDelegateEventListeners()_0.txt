@@ -1,0 +1,3 @@
+	public void removeAllUiDelegateEventListeners() {
+		m_eventSenderSupport.removeAllUiDelegateEventListeners();
+	}

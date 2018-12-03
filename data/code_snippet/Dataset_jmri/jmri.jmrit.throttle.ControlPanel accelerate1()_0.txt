@@ -1,0 +1,12 @@
+    public void accelerate1() {
+        if (speedSlider.isEnabled()) {
+            if (speedSlider.getValue() != speedSlider.getMaximum()) {
+                speedSlider.setValue(speedSlider.getValue() + 1);
+            }
+        } else if(speedSpinner!=null && speedSpinner.isEnabled()) {
+            if (((Integer)JSpinnerUtil.getValue(speedSpinner)).intValue() < ((Integer)JSpinnerUtil.getModelMaximum(speedSpinner)).intValue() &&
+               ((Integer)JSpinnerUtil.getValue(speedSpinner)).intValue() >= ((Integer)JSpinnerUtil.getModelMinimum(speedSpinner)).intValue() ) {
+                    JSpinnerUtil.setValue(speedSpinner, new Integer(((Integer)JSpinnerUtil.getValue(speedSpinner)).intValue() + 1));
+            }
+        }
+    }

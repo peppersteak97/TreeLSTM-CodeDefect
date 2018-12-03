@@ -1,0 +1,22 @@
+    private IUiWorker createUiWorker() {
+        try {
+            UiWorkerFactory factory = 
+                UiWorkerFactory.newInstance();
+            return factory.createWorker();
+        }
+        catch (IntegrationUiInitializationException ex) {
+            try {
+                ErrorLogger.getDefaultLogger().logAndShowAndWait(
+                    this, 
+                    "Failed to create the UI worker. " +
+                    "This is most probably a configuration error. " +
+                    "The application will exit.",
+                    ex);
+            }
+            catch (InterruptedException ex2) {
+                ex2.printStackTrace();
+            }
+            IntegrationRuntime.getRuntime().exit(1);
+            return null;
+        }
+    }

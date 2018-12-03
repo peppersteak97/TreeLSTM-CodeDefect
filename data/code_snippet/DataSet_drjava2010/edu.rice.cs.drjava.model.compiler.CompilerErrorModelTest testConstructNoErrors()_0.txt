@@ -1,0 +1,9 @@
+  public void testConstructNoErrors() {
+    getter = new TestDocGetter();
+    model = new CompilerErrorModel(new DJError[0], getter);
+    
+    assertEquals("Should have no compiler errors.", 0, model.getNumErrors());
+    assertEquals("Should have 0 warnings" , 0, model.getNumWarnings());
+    assertEquals("Should have 0 compiler errors" , 0, model.getNumCompErrors());
+    assertTrue("hasOnlyWarnings should return true.", model.hasOnlyWarnings());
+  }

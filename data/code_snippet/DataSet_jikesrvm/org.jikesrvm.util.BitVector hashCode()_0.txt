@@ -1,0 +1,7 @@
+  public int hashCode() {
+    int h = 1234;
+    for (int i = bits.length; --i >= 0;) {
+      h ^= bits[i] * (i + 1);
+    }
+    return h;
+  }

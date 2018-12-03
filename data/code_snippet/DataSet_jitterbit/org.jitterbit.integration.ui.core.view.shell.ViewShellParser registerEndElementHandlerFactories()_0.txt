@@ -1,0 +1,16 @@
+    private void registerEndElementHandlerFactories() {
+        IEndElementHandlerFactory factory = new IEndElementHandlerFactory() {
+            public IEndElementHandler getHandler() {
+                return m_menuExtensionHandler;
+            }
+        };
+        addEndElementHandlerFactory(
+                        MenuExtensionElementHandler.MENU_EXTENSION, factory);
+        
+        factory = new IEndElementHandlerFactory() {
+            public IEndElementHandler getHandler() {
+                return m_viewElementHandler;
+            }
+        };
+        addEndElementHandlerFactory(ViewElementHandler.VIEW, factory);
+    }

@@ -1,0 +1,5 @@
+    protected void onWizardCancelled() {
+        m_isCancelled = true;
+        m_pageDisplayer.closePage(m_displayPage);
+        m_invoker.downloadWasCancelled();
+    }

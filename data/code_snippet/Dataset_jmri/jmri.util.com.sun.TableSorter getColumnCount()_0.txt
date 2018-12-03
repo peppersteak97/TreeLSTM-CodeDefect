@@ -1,0 +1,3 @@
+    public int getColumnCount() {
+        return (tableModel == null) ? 0 : tableModel.getColumnCount();
+    }

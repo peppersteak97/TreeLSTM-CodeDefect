@@ -1,0 +1,7 @@
+    private OneColumnPanel createTextPanel() {
+        return createComponentPanel(
+                        ComponentFactories.scrollFactory().newScrollPane(m_textArea),
+                        PackageResources.RepositoryUi.SELECTED_LOG,
+                        true,
+                        1.0);
+    }

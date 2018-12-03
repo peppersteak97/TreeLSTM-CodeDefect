@@ -1,0 +1,6 @@
+  public void resetExecuteExternalProcessPosition() {
+    _executeExternalDialog.setFrameState("default");
+    if (DrJava.getConfig().getSetting(DIALOG_EXTERNALPROCESS_STORE_POSITION).booleanValue()) {
+      DrJava.getConfig().setSetting(DIALOG_EXTERNALPROCESS_STATE, "default");
+    }
+  }

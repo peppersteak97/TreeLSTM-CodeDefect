@@ -1,0 +1,18 @@
+    synchronized protected void sendFunctionStatusInformationRequest()
+    {
+       if(XNetTrafficController.instance()
+                               .getCommandStation()
+                               .getCommandStationType()==0x10) {
+          // if the command station is multimouse, ignore
+          if(log.isDebugEnabled())
+		log.debug("Command station does not support Momentary functions");
+                return;
+       }
+        if(log.isDebugEnabled())log.debug("Throttle " +address +" sending request for function momentary status.");
+        /* Send the request for Function status */
+        XNetMessage msg=XNetMessage.getLocomotiveFunctionStatusMsg(this.address);
+        // now, we send the message to the command station
+        XNetTrafficController.instance().sendXNetMessage(msg,this);
+        requestState=THROTTLESTATSENT;
+        return;
+    }

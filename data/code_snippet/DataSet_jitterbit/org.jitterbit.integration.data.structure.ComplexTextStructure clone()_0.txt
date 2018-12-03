@@ -1,0 +1,10 @@
+    public ComplexTextStructure clone() throws CloneNotSupportedException {
+        ComplexTextStructure clone = (ComplexTextStructure)super.clone();
+        clone.m_segmentList = new Vector<Segment>(m_segmentList.size());
+        for( Segment seg : m_segmentList ) {
+            Segment clonedSeg = new Segment(seg);
+            clonedSeg.m_alias = seg.m_alias;
+            clone.m_segmentList.add(clonedSeg);
+        }
+        return clone;
+    }

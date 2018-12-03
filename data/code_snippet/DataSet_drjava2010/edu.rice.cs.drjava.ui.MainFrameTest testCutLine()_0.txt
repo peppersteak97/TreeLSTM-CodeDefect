@@ -1,0 +1,33 @@
+  public void testCutLine() throws BadLocationException {
+    
+    final DefinitionsPane pane = _frame.getCurrentDefPane();
+    final OpenDefinitionsDocument doc = pane.getOpenDefDocument();
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        
+        try { 
+          doc.insertString(0, "abcdefg", null);
+          pane.setCaretPosition(5);
+          _frame.validate();
+          pane.setSelectionStart(2);
+          pane.setSelectionEnd(7);
+          _frame.validate();
+          pane.cut();
+          
+          
+          _frame.validate();
+          
+          
+          Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
+          Transferable contents = clip.getContents(null);
+          _data = (String) contents.getTransferData(DataFlavor.stringFlavor);
+        }
+        catch(Throwable t) { listenerFail(t.getMessage()); }
+      }
+    });
+    Utilities.clearEventQueue();
+    assertEquals("Clipboard contents should be changed after Cut Line.", "cdefg", _data);
+    
+    assertEquals("Current line of text should be truncated by Cut Line.", "ab", doc.getText());
+    _log.log("testCutLine completed");
+  }

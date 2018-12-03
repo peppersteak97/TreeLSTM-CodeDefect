@@ -1,0 +1,23 @@
+  private Font _getLineNumFont() {
+    Font lnf = DrJava.getConfig().getSetting(OptionConstants.FONT_LINE_NUMBERS);
+    FontMetrics mets = getFontMetrics(lnf);
+    Font mainFont = _pane.getFont();
+
+    if (mets.getHeight() > _fm.getHeight()) {
+      float newSize;
+      if (lnf.getSize() > mainFont.getSize()) {
+        newSize = mainFont.getSize2D();
+      }
+      else {
+        newSize = lnf.getSize2D() - 1f;
+      }
+
+      do {
+        lnf = lnf.deriveFont(newSize);
+        mets = getFontMetrics(lnf);
+        newSize -= 1f;
+      } while (mets.getHeight() > _fm.getHeight());
+    }
+
+    return lnf;
+  }

@@ -1,0 +1,1 @@
+    public boolean isRunning() { return state != 0; }

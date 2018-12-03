@@ -1,0 +1,8 @@
+  public Highlighter.Highlight[] getHighlights() {
+    int size = _highlights.size();
+    if (size == 0) {
+      return noHighlights;
+    }
+    Highlighter.Highlight[] h = _highlights.toArray(EMTPY_HIGHLIGHTS);
+    return h;
+  }

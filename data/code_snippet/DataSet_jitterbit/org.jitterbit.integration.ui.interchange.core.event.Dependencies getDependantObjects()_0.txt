@@ -1,0 +1,7 @@
+    List<? extends IntegrationData> getDependantObjects() {
+        List<IntegrationData> li = new ArrayList<IntegrationData>();
+        for (Dependency d : m_dependencies) {
+            li.add(d.getObject());
+        }
+        return li;
+    }

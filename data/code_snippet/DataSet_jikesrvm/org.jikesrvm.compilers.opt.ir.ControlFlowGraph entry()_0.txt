@@ -1,0 +1,1 @@
+ * {@link SpaceEffGraphNode} and the {@link #entry()} and {@link #exit()}

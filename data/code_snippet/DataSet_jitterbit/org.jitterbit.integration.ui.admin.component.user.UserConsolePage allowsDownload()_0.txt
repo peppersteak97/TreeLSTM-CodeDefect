@@ -1,0 +1,22 @@
+    boolean allowsDownload() {
+        if (isDirty()) {
+            MessageDisplayer.Option option = promptUpload();
+            switch (option) {
+            case YES:
+                Uploader uploader = new Uploader();
+                uploader.start();
+                try {
+                    uploader.waitUntilDone();
+                    return true;
+                }
+                catch (InterruptedException ex) {
+                    return false;
+                }
+            case NO:
+                return true;
+            case CANCEL:
+                return false;
+            }
+        }
+        return true;
+    }

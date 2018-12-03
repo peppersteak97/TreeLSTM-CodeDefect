@@ -1,0 +1,46 @@
+	public void apply() throws SetPropertyException {
+		if( !isReadOnly() ) {
+			if( SwingUtilities.isEventDispatchThread() ) {
+				setUnderlyingValue( getDisplayedValue() );
+				if( updateDisplayAfterApply() ) {
+				    /*
+				    SwingUtilities.invokeLater( new Runnable() {
+				        public void run() {
+							try {
+							    setDisplayedValue( getUnderlyingValue() );
+							}
+							catch( SetPropertyException e ) {
+								JOptionPane.showMessageDialog(null, e.longDescription(), 
+										"Error", JOptionPane.ERROR_MESSAGE);
+							}
+				        }
+				    });
+				    */
+				}
+			}
+			else {
+				try {
+					SwingUtilities.invokeAndWait( new Runnable() {
+						public void run() {
+							if( !isReadOnly() ) {
+								try {
+									setUnderlyingValue( getDisplayedValue() );
+									if( updateDisplayAfterApply() )
+									    setDisplayedValue( getUnderlyingValue() );
+								}
+								catch( SetPropertyException e ) {
+									JOptionPane.showMessageDialog(null, e.longDescription(), 
+								}
+							}
+						}
+					});
+				} 
+				catch (InterruptedException e) {
+					throw new SetPropertyException( getPropertyOwner(), getName(), getDisplayedValue(), e );
+				} 
+				catch (InvocationTargetException e) {
+					throw new SetPropertyException( getPropertyOwner(), getName(), getDisplayedValue(), e );			
+				}
+			}
+		}
+	}

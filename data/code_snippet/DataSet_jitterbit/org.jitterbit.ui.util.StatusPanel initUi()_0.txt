@@ -1,0 +1,6 @@
+	private void initUi() {
+		setLayout(new BorderLayout());
+        setBorder(BorderFactory.createEtchedBorder());
+
+        add(m_lblStatus, BorderLayout.WEST);
+	}

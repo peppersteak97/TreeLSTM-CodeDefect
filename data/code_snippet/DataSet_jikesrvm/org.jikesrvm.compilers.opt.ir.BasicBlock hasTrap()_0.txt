@@ -1,0 +1,6 @@
+  public final boolean hasTrap() {
+    if (isEmpty()) return false;
+    Instruction s = lastRealInstruction();
+
+    return Trap.conforms(s);
+  }

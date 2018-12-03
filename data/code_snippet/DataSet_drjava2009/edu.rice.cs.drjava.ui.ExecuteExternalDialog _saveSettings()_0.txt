@@ -1,0 +1,4 @@
+  private boolean _saveSettings() {
+    _lastState = new FrameState(this);
+    return true;
+  }

@@ -1,0 +1,2 @@
+  public void testCompileWithGenerics()
+    throws BadLocationException, IOException, InterruptedException

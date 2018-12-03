@@ -1,0 +1,5 @@
+    private void setMainPanelImpl() {
+        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        ContainerDecor.decorate(m_ui, p);
+        setMainPanel(p);
+    }

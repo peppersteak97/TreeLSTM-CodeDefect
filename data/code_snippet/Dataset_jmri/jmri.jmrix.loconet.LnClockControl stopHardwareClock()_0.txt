@@ -1,0 +1,5 @@
+	public void stopHardwareClock() {
+		savedRate = curRate;
+		curRate = 0;
+		setClock();
+	}

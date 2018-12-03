@@ -1,0 +1,6 @@
+  public void testFlip() {
+    lparen.flip();
+    rparen.flip();
+    assertEquals("(", rparen.getType());
+    assertEquals(")", lparen.getType());
+  }

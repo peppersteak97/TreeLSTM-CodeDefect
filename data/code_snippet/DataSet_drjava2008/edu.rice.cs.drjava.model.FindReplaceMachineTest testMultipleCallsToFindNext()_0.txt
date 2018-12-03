@@ -1,0 +1,9 @@
+  public void testMultipleCallsToFindNext() throws BadLocationException {
+    _doc.insertString(0, EVIL_TEXT, null);
+    _initFrm(0);
+    _assertOffsets(_frm, 0, 0);
+    _frm.setFindWord("evil");
+    _testFindNextSucceeds(_frm, 0, 12);
+    _testFindNextSucceeds(_frm, 0, 25);
+    _testFindNextSucceeds(_frm, 0, 40);
+  }

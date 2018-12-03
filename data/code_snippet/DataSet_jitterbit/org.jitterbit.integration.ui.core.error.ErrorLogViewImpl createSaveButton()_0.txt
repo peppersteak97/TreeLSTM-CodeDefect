@@ -1,0 +1,4 @@
+    private JButton createSaveButton() {
+        return ComponentFactories.toolbarButtonFactory().newButton(
+                m_errorDisplayer.getSaveToFileAction());
+    }

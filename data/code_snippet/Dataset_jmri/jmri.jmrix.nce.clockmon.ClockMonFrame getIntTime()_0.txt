@@ -1,0 +1,11 @@
+    private double getIntTime() {
+        Date now = internalClock.getTime();
+        int ms = (int)(now.getTime() % 1000);
+        int ss = now.getSeconds();
+        int mm = now.getMinutes();
+        int hh = now.getHours();
+        if (log.isDebugEnabled() && false) {
+            log.debug("getIntTime: " + hh + ":" + mm + ":" + ss + "." + ms);
+        }
+        return((hh * 60 * 60) + (mm * 60) + ss + (ms / 1000));
+    }

@@ -1,0 +1,14 @@
+  public void testApplyThenResetDefault() {
+    Color testColor = Color.decode("#ABCDEF");
+    _option.setValue(testColor);
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+
+    assertEquals("Apply (updateConfig) should write change to file",
+                 OptionConstants.DEFINITIONS_NORMAL_COLOR.getDefault(),
+                 DrJava.getConfig().getSetting(OptionConstants.DEFINITIONS_NORMAL_COLOR));
+  }

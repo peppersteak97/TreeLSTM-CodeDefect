@@ -1,0 +1,3 @@
+    public int getAsWord() {
+        return (getElement(1)&0xFF)*256+(getElement(2)&0xFF);
+    }

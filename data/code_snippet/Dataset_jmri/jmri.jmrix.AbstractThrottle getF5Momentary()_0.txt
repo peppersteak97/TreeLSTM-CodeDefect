@@ -1,0 +1,3 @@
+    public boolean getF5Momentary() {
+        return f5Momentary;
+    }

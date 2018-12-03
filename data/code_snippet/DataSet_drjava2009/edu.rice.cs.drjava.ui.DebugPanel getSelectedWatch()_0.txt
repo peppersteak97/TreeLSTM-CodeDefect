@@ -1,0 +1,3 @@
+  public DebugWatchData getSelectedWatch() {
+    return _watches.get(_watchTable.getSelectedRow());
+  }

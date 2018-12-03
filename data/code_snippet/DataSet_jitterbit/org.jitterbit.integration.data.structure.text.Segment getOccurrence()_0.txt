@@ -1,0 +1,3 @@
+    public String getOccurrence() {
+        return m_occurenceType;
+    }

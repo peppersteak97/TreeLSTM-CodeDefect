@@ -1,0 +1,12 @@
+    IUiProvider getDenyBoxDecorator() {
+        return new IUiProvider() {
+
+            public void decorate(IUiDecor decor) {
+                decor.display(m_denyBox);
+            }
+            
+            public void requestFocus() {
+                m_denyBox.requestFocusInWindow();
+            }
+        };
+    }

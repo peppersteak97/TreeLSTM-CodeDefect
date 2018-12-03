@@ -1,0 +1,12 @@
+    public void setProperToolTip() {
+		int system = jmri.util.SystemType.getType();
+		if (system==jmri.util.SystemType.MACOSX) {
+			setToolTipText(rb.getString("ToolTipGenericMac"));
+		}
+		else if (system==jmri.util.SystemType.WINDOWS) {
+			setToolTipText(rb.getString("ToolTipGenericWin"));
+		}
+		else {
+			setToolTipText(rb.getString("ToolTipGeneric"));
+		}
+    }

@@ -1,0 +1,4 @@
+    protected void activated() {
+        super.activated();
+        setTestOperationEnabledState();
+    }

@@ -1,0 +1,4 @@
+    public String getApproachSensor1() {
+        if (approachSensor1 == null) return null;
+        return approachSensor1.getSystemName();
+    }

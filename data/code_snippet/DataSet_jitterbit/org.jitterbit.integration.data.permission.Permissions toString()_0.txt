@@ -1,0 +1,11 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Allowed: ");
+        if (m_allowed != null) {
+            sb.append(m_allowed);
+        }
+        sb.append("\nDenied: ");
+        if (m_denied != null) {
+            sb.append(m_denied);
+        }
+        return sb.toString();
+    }

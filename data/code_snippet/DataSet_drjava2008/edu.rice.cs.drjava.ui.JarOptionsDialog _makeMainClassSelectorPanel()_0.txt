@@ -1,0 +1,63 @@
+  private JPanel _makeMainClassSelectorPanel() {
+    
+    FileChooser chooser = new FileChooser(_rootFile);
+    chooser.setDialogTitle("Select Main Class");
+    chooser.setApproveButtonText("Select");
+    FileFilter filter = new FileFilter() {
+      public boolean accept(File f) {
+        String name = f.getName();
+        return  !f.isDirectory() && name.endsWith(".class");
+      }
+      public String getDescription() { return "Class Files (*.class)"; }
+    };
+    chooser.addChoosableFileFilter(filter);
+    
+    _mainClassField = new FileSelectorStringComponent(this, chooser, 20, 12f) {
+      protected void _chooseFile() {
+        _mainFrame.removeModalWindowAdapter(JarOptionsDialog.this);
+        super._chooseFile();
+        _mainFrame.installModalWindowAdapter(JarOptionsDialog.this, LambdaUtil.NO_OP, CANCEL);
+      }
+      public File convertStringToFile(String s) { 
+        s = s.trim().replace('.', java.io.File.separatorChar) + ".class";
+        if (s.equals("")) return null;
+        else return new File(_rootFile, s);
+      }
+      
+      public String convertFileToString(File f) {
+        if (f == null)  return "";
+        else {
+          try {
+            String s = edu.rice.cs.util.FileOps.stringMakeRelativeTo(f, _rootFile);
+            s = s.substring(0, s.lastIndexOf(".class"));
+            s = s.replace(java.io.File.separatorChar, '.').replace('$', '.');
+            int pos = 0;
+            boolean ok = true;
+            while((pos = s.indexOf('.', pos)) >= 0) {
+              if ((s.length() <= pos + 1) || (Character.isDigit(s.charAt(pos + 1)))) {
+                ok = false;
+                break;
+              }
+              ++pos;
+            }
+            if (ok) return s;
+            return "";
+          }
+          catch(IOException e) { return ""; }
+        }
+      }
+    };
+    _mainClassField.getTextField().getDocument().addDocumentListener(new DocumentListener() {
+      public void insertUpdate(DocumentEvent e) { setEnabled(); }
+      public void removeUpdate(DocumentEvent e) { setEnabled(); }
+      public void changedUpdate(DocumentEvent e) { setEnabled(); }
+      private void setEnabled() { Utilities.invokeLater(new Runnable() { public void run() { _okButton.setEnabled(true); } }); }
+    });
+    JPanel p = new JPanel();
+    p.setLayout(new BorderLayout());
+    _mainClassLabel = new JLabel("Main class:  ");
+    _mainClassLabel.setLabelFor(_mainClassField);
+    p.add(_mainClassLabel, BorderLayout.WEST);
+    p.add(_mainClassField, BorderLayout.CENTER);
+    return p;
+  }

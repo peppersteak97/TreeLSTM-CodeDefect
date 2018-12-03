@@ -1,0 +1,6 @@
+    private void createServerDisplayer() {
+        m_serverCaption = RendererUtils.getServerCaptionLabel(
+                        IntegrationUiStyleSheet.TopPanelCaptionText);
+        m_serverLabel = IntegrationUiStyleSheet.TopPanelPlainText.makeJLabel(
+                PackageResources.ConnectionStatus.NOT_CONNECTED);
+    }

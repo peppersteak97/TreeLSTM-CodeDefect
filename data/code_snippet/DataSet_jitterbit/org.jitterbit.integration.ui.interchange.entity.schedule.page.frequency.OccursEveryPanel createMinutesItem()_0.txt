@@ -1,0 +1,4 @@
+    private void createMinutesItem() {
+        ResourceBundle res = SchedulePage.getResources();
+        m_minutesItem = new HM_Item(res.getString("Label.Minutes"), 1);
+    }

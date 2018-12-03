@@ -1,0 +1,7 @@
+    public String getWhereClause() {
+        String where = m_whereClauseArea.getText().trim();
+        if (where.toLowerCase().startsWith(FILTER_MARKER)) {
+            where = where.substring(FILTER_MARKER_LENGTH);
+        }
+        return where;
+    }

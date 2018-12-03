@@ -1,0 +1,4 @@
+  protected void _addButtons() {
+    _buttonPanel.add(_addButton);
+    _buttonPanel.add(_removeButton);
+  }

@@ -1,0 +1,5 @@
+  protected void _cancelCommand() {
+    _selected = null;
+    setVisible(false);
+    _cm.signal();
+  }

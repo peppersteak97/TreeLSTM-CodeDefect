@@ -1,0 +1,9 @@
+    private OneColumnPanel getTablePanel() {
+        OneColumnPanel tablePanel = new OneColumnPanel();
+        tablePanel.setOpaque(false, false);
+        tablePanel.setFill(OneColumnPanel.NONE);
+        tablePanel.setInsets(3, 0, 10, 0);
+        addCaptions(tablePanel);
+        addTable(tablePanel);
+        return tablePanel;
+    }

@@ -1,0 +1,1 @@
+  public int getPromptLength() { return _prompt.length(); }

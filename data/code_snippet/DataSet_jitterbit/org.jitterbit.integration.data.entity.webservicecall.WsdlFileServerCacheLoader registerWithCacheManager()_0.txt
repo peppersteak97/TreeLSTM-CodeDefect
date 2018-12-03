@@ -1,0 +1,5 @@
+    private static void registerWithCacheManager() {
+        ServerCacheManager mgr = ServerCacheManager.getManager();
+        mgr.registerCache(new WsdlFileServerCache(),
+                        IWsdlFileServerCache.class);
+    }

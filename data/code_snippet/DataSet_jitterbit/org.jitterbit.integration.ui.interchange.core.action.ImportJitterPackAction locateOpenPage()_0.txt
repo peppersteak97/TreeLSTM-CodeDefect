@@ -1,0 +1,10 @@
+    private IPage locateOpenPage() {
+        if (m_currentPageId != null) {
+            for (IPage p : m_view.getOpenPages()) {
+                if (p.getId().equals(m_currentPageId)) {
+                    return p;
+                }
+            }
+        }
+        return null;
+    }

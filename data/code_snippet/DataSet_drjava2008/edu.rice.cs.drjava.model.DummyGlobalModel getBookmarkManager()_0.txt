@@ -1,0 +1,3 @@
+  public RegionManager<MovingDocumentRegion> getBookmarkManager() {
+    throw new UnsupportedOperationException("Tried to call getBookmarkManager on a Dummy");
+  }

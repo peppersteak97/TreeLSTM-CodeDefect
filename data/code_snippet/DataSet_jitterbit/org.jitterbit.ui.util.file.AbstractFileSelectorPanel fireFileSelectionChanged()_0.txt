@@ -1,0 +1,14 @@
+    private void fireFileSelectionChanged() {
+        if (m_selectionListeners.isEmpty()) {
+            return;
+        }
+        File file = getSelectedFile(false);
+        final Collection<File> selected = (file == null) ? null : 
+            KongaListUtils.asList(file);
+        m_selectionListeners.visitAll(new ListenerVisitor<IFileSelectionListener>() {
+
+            public void accept(IFileSelectionListener listener) {
+                listener.selectionChanged(selected);
+            }
+        });
+    }

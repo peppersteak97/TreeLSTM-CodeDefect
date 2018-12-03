@@ -1,0 +1,8 @@
+    protected List<JButton> getButtons() {
+        List<JButton> btns = new ArrayList<JButton>();
+        for (AdminActionFactory factory : ACTIONS) {
+            IApplicationAction a = factory.get(m_view);
+            btns.add(createButton(a, AdminActionDictionary.DICTIONARY));
+        }
+        return btns;
+    }

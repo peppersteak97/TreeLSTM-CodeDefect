@@ -1,0 +1,7 @@
+    public static File getDefaultLocation() {
+        if (s_directory == null) {
+            throw new IllegalStateException(
+                "The ProjectDirectory has not been initialized properly.");
+        }
+        return s_directory;
+    }

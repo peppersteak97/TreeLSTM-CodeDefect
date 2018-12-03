@@ -1,0 +1,5 @@
+    private HeaderItem getUserHeader() {
+        Icon icon = ICONS.getIcon(EntityType.User, EntityIconRepository.Size.SMALL);
+        return new HeaderItem(icon, PackageResources.Labels.USERS, 
+                        BorderFactory.createEmptyBorder(1, 1, 3, 1));
+    }

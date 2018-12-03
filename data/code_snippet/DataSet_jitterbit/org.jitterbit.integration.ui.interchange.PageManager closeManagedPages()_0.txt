@@ -1,0 +1,8 @@
+    boolean closeManagedPages() {
+        int openPages = m_openPages.size();
+        if (openPages == 0) {
+            return true;
+        }
+        int n = m_view.getPageEditor().closePages(m_openPages);
+        return (n == openPages);
+    }

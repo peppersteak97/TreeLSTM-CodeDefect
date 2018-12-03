@@ -1,0 +1,11 @@
+    public boolean prepareForForwardNavigation() {
+        try {
+            checkSingleRoot();
+            return true;
+        }
+        catch (RelationshipException e) {
+            getWizard().handlePageException(
+                    PackageResources.RelationshipDefinitionPage.Errors.SHORT_MESSAGE, e);
+            return false;
+        }
+    }

@@ -1,0 +1,8 @@
+    private void selectKeyColumns() {
+        ColumnEntryDialog dlg = ColumnEntryDialog.display(
+                        m_dbObject, m_selectedKeys, m_editButton);
+        if (dlg.wasOkPressed()) {
+            setNewSelection(dlg.getSelectedKeys());
+        }
+        rebuildUi();
+    }

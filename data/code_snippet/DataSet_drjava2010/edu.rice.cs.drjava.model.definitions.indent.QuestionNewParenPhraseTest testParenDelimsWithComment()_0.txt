@@ -1,0 +1,5 @@
+  public void testParenDelimsWithComment() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionNewParenPhrase(null, null);
+    
+    assertTrue("/* */ comment", rule.testApplyRule(_doc, 45, Indenter.IndentReason.OTHER));
+  }

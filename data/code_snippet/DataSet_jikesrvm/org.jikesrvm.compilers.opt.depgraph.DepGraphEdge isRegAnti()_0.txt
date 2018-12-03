@@ -1,0 +1,1 @@
+  public boolean isRegAnti() { return (scratch & REG_ANTI) != 0; }

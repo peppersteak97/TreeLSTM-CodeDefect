@@ -1,0 +1,16 @@
+    private void load() throws FileNotFoundException, IOException {
+        InputStream in = null;
+        try {
+            File file = getFile();
+            if (file.exists()) {
+                in = new FileInputStream(file);
+                m_properties.clear();
+                m_properties.load(in);
+            }
+        }
+        finally {
+            if (in != null) {
+                in.close();
+            }
+        }
+    }

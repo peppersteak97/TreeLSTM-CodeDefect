@@ -1,0 +1,3 @@
+    public Object[] toArray() {
+        return AS_ARRAY;
+    }

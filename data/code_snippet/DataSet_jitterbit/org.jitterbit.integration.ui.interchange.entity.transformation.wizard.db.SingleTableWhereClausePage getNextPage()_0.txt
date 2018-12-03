@@ -1,0 +1,7 @@
+    public IWizardPage getNextPage() {
+        IWizardPage page = getCachedNextPage();
+        if (page == null) {
+            page = createNewNextPage();
+        }
+        return page;
+    }

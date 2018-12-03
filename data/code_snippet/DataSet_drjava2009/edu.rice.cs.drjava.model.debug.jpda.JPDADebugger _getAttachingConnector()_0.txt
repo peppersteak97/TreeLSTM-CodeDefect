@@ -1,0 +1,10 @@
+  private AttachingConnector _getAttachingConnector() throws DebugException {
+    VirtualMachineManager vmm = Bootstrap.virtualMachineManager();
+    List<AttachingConnector> connectors = vmm.attachingConnectors();
+    AttachingConnector connector = null;
+    for (AttachingConnector conn: connectors) {
+      if (conn.name().equals("com.sun.jdi.SocketAttach"))  connector = conn;
+    }
+    if (connector == null) throw new DebugException("Could not find an AttachingConnector!");
+    return connector;
+  }

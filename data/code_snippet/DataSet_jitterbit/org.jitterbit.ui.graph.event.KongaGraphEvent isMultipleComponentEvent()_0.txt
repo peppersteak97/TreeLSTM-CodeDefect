@@ -1,0 +1,3 @@
+	public boolean isMultipleComponentEvent() {
+		return m_liGraphComponents.size() > 1;
+	}

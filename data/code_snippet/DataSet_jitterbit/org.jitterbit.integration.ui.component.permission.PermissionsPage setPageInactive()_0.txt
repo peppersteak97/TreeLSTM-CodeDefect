@@ -1,0 +1,7 @@
+    private void setPageInactive() {
+        m_cache.setAccessedEntity(null);
+        m_permissionsPanel.setRecursiveEnabled(false);
+        m_usersPanel.setActive(false);
+        m_permissionsPanel.setActive(false);
+        m_buttons.setActive(false);
+    }

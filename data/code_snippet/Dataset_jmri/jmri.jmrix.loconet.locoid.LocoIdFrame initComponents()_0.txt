@@ -1,0 +1,42 @@
+    public void initComponents() throws Exception {
+        ResourceBundle rb = ResourceBundle.getBundle("jmri.jmrix.loconet.locoid.LocoId");
+
+        setButton = new javax.swing.JButton(rb.getString("ButtonSet"));
+        readButton = new javax.swing.JButton(rb.getString("ButtonRead"));
+        value = new javax.swing.JTextField(2);
+
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        JPanel p = new JPanel();
+        p.setLayout(new java.awt.FlowLayout());
+        p.add(readButton);
+        p.add(setButton);
+
+        getContentPane().add(p);
+
+        p = new JPanel();
+        p.setLayout(new java.awt.FlowLayout());
+        p.add(new JLabel(rb.getString("LabelValue")));
+        p.add(value);
+
+        getContentPane().add(p);
+
+        setButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    setButtonActionPerformed();
+                }
+            });
+        readButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    readButtonActionPerformed();
+                }
+            });
+
+    	addHelpMenu("package.jmri.jmrix.loconet.locoid.LocoIdFrame", true);
+
+        pack();
+
+        connect(LnTrafficController.instance());
+
+        readButtonActionPerformed();
+    }

@@ -1,0 +1,1 @@
+ * {@link #isPEI()}, and {@link #isCall()} are some of the trait queries.

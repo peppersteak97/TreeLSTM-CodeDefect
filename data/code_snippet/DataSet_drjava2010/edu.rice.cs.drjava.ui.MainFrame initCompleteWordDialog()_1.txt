@@ -1,0 +1,160 @@
+  void initCompleteWordDialog() {
+    if (_completeWordDialog == null) {
+      _completeJavaAPICheckbox.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          String curMask = _completeWordDialog.getMask();
+          if (_completeJavaAPICheckbox.isSelected()) {
+            DrJava.getConfig().setSetting(OptionConstants.DIALOG_COMPLETE_JAVAAPI, Boolean.TRUE);
+            Set<ClassNameAndPackageEntry> s = new HashSet<ClassNameAndPackageEntry>(_completeWordDialog.getItems());
+            addJavaAPIToSet(s);
+            _completeWordDialog.setItems(true,s);
+          }
+          else {
+            Set<ClassNameAndPackageEntry> s = new HashSet<ClassNameAndPackageEntry>(_completeWordDialog.getItems());
+            generateJavaAPISet();
+            if (_javaAPISet == null) {
+              DrJava.getConfig().setSetting(OptionConstants.DIALOG_COMPLETE_JAVAAPI, Boolean.FALSE);
+              _completeJavaAPICheckbox.setSelected(false);
+              _completeJavaAPICheckbox.setEnabled(false);
+              Set<ClassNameAndPackageEntry> n = new HashSet<ClassNameAndPackageEntry>();
+              for(ClassNameAndPackageEntry entry: s) {
+                if (!(entry instanceof JavaAPIListEntry)) { n.add(entry); }
+              }
+              _completeWordDialog.setItems(true,n);
+            }
+            else {
+              for(JavaAPIListEntry entry: _javaAPISet) { s.remove(entry); }
+              _completeWordDialog.setItems(true,s);
+            }
+          }
+          _completeWordDialog.setMask(curMask);
+          _completeWordDialog.resetFocus();
+        }
+      });
+      PlatformFactory.ONLY.setMnemonic(_completeJavaAPICheckbox,'j');
+      PredictiveInputFrame.InfoSupplier<ClassNameAndPackageEntry> info = 
+        new PredictiveInputFrame.InfoSupplier<ClassNameAndPackageEntry>() {
+        public String value(ClassNameAndPackageEntry entry) {
+          StringBuilder sb = new StringBuilder();
+          sb.append(entry.getFullPackage());
+          sb.append(entry.getClassName());
+          return sb.toString();
+        }
+      };
+      PredictiveInputFrame.CloseAction<ClassNameAndPackageEntry> okAction =
+        new PredictiveInputFrame.CloseAction<ClassNameAndPackageEntry>() {
+        public String getName() { return "OK"; }
+        public KeyStroke getKeyStroke() { return KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0); }
+        public String getToolTipText() { return "Complete the identifier"; }
+        public Object value(PredictiveInputFrame<ClassNameAndPackageEntry> p) {
+          if (p.getItem() != null) {
+            OpenDefinitionsDocument odd = getCurrentDefPane().getOpenDefDocument();
+            try {
+              int loc = getCurrentDefPane().getCaretPosition();
+              String s = odd.getText(0, loc);
+              
+              if ((loc<s.length()) && (!Character.isWhitespace(s.charAt(loc))) &&
+                  ("()[]{}<>.,:;/*+-!~&|%".indexOf(s.charAt(loc)) == -1)) return null;
+              
+              int start = loc;
+              while(start > 0) {
+                if (!Character.isJavaIdentifierPart(s.charAt(start-1))) { break; }
+                --start;
+              }
+              while((start<s.length()) && (!Character.isJavaIdentifierStart(s.charAt(start))) && (start < loc)) {
+                ++start;
+              }
+              
+              if (!s.substring(start, loc).equals(p.getItem().toString())) {
+                odd.remove(start, loc-start);
+                odd.insertString(start, p.getItem().getClassName(), null);
+              }
+            }
+            catch(BadLocationException ble) { /* ignore, just don't auto-complete */ }
+          }
+          hourglassOff();
+          return null;
+        }
+      };
+      PredictiveInputFrame.CloseAction<ClassNameAndPackageEntry> fullAction =
+        new PredictiveInputFrame.CloseAction<ClassNameAndPackageEntry>() {
+        public String getName() { return "Fully Qualified"; }
+        public KeyStroke getKeyStroke() {
+          return KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, OptionConstants.MASK);
+        }
+        public String getToolTipText() { return "Complete the word using the fully-qualified class name"; }
+        public Object value(PredictiveInputFrame<ClassNameAndPackageEntry> p) {
+          if (p.getItem() != null) {
+            OpenDefinitionsDocument odd = getCurrentDefPane().getOpenDefDocument();
+            try {
+              int loc = getCurrentDefPane().getCaretPosition();
+              String s = odd.getText(0, loc);
+              
+              if ((loc<s.length()) && (!Character.isWhitespace(s.charAt(loc))) &&
+                  ("()[]{}<>.,:;/*+-!~&|%".indexOf(s.charAt(loc)) == -1)) return null;
+              
+              int start = loc;
+              while(start > 0) {
+                if (!Character.isJavaIdentifierPart(s.charAt(start-1))) { break; }
+                --start;
+              }
+              while((start<s.length()) && (!Character.isJavaIdentifierStart(s.charAt(start))) && (start < loc)) {
+                ++start;
+              }
+              
+              if (!s.substring(start, loc).equals(p.getItem().toString())) {
+                odd.remove(start, loc-start);
+                StringBuilder sb = new StringBuilder();
+                sb.append(p.getItem().getFullPackage());
+                sb.append(p.getItem().getClassName());
+                odd.insertString(start, sb.toString(), null);
+              }
+            }
+            catch(BadLocationException ble) { /* ignore, just don't auto-complete */ }
+          }
+          hourglassOff();
+          return null;
+        }
+      };
+      PredictiveInputFrame.CloseAction<ClassNameAndPackageEntry> cancelAction = 
+        new PredictiveInputFrame.CloseAction<ClassNameAndPackageEntry>() {
+        public String getName() { return "Cancel"; }
+        public KeyStroke getKeyStroke() { return KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0); }
+        public String getToolTipText() { return null; }
+        public Object value(PredictiveInputFrame<ClassNameAndPackageEntry> p) {
+          hourglassOff();
+          return null;
+        }
+      };
+      java.util.ArrayList<MatchingStrategy<ClassNameAndPackageEntry>> strategies =
+        new java.util.ArrayList<MatchingStrategy<ClassNameAndPackageEntry>>();
+      strategies.add(new FragmentStrategy<ClassNameAndPackageEntry>());
+      strategies.add(new PrefixStrategy<ClassNameAndPackageEntry>());
+      strategies.add(new RegExStrategy<ClassNameAndPackageEntry>());
+      List<PredictiveInputFrame.CloseAction<ClassNameAndPackageEntry>> actions
+        = new ArrayList<PredictiveInputFrame.CloseAction<ClassNameAndPackageEntry>>();
+      actions.add(okAction);
+      actions.add(fullAction);
+      actions.add(cancelAction);
+      GoToFileListEntry entry = new GoToFileListEntry(new DummyOpenDefDoc() {
+        public String getPackageNameFromDocument() { return ""; }
+      }, "dummyComplete");
+      _completeWordDialog = 
+        new PredictiveInputFrame<ClassNameAndPackageEntry>(MainFrame.this,
+                                                           "Auto-Complete Word",
+                                                           info,
+                                                           strategies,
+                                                           entry) {
+        public void setOwnerEnabled(boolean b) {
+          if (b) { hourglassOff(); } else { hourglassOn(); }
+        }
+        protected JComponent[] makeOptions() {
+          return new JComponent[] { _completeJavaAPICheckbox };
+        }
+      }; 
+      
+      if (DrJava.getConfig().getSetting(DIALOG_COMPLETE_WORD_STORE_POSITION).booleanValue()) {
+        _completeWordDialog.setFrameState(DrJava.getConfig().getSetting(DIALOG_COMPLETE_WORD_STATE));
+      }      
+    }
+  }

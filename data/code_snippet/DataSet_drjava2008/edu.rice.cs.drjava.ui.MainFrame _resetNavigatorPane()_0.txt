@@ -1,0 +1,13 @@
+  private void _resetNavigatorPane() {
+    if (_model.getDocumentNavigator() instanceof JTreeSortNavigator) {
+      JTreeSortNavigator<?> nav = (JTreeSortNavigator<?>)_model.getDocumentNavigator();
+      nav.setDisplayManager(getNavPaneDisplayManager());
+      nav.setRootIcon(_djProjectIcon);
+    }
+    _docSplitPane.remove(_docSplitPane.getLeftComponent());
+    _docSplitPane.setLeftComponent(new JScrollPane(_model.getDocumentNavigator().asContainer()));
+    Font doclistFont = DrJava.getConfig().getSetting(FONT_DOCLIST);
+    _model.getDocCollectionWidget().setFont(doclistFont);
+    _updateNormalColor();
+    _updateBackgroundColor();
+  }

@@ -1,0 +1,3 @@
+	public static Icon getQuestionIcon() {
+		return QUESTION_ICON;
+	}

@@ -1,0 +1,13 @@
+    void writeLV102Settings() {
+
+        Programmer opsProg = jmri.InstanceManager.programmerManagerInstance()
+                                    .getOpsModeProgrammer(false,00);
+
+	writeVoltSetting(opsProg);
+	writeELineSetting(opsProg);
+	writeRailComSetting(opsProg);
+	writeRailComModeSetting(opsProg);
+
+        jmri.InstanceManager.programmerManagerInstance()
+                    .releaseOpsModeProgrammer(opsProg);
+    }

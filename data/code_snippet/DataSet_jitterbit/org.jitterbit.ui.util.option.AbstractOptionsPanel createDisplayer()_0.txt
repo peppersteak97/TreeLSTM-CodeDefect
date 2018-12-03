@@ -1,0 +1,9 @@
+    private JComponent createDisplayer() {
+        JComponent box = (m_orientation == Orientation.HORIZONTAL) ?
+                        Box.createHorizontalBox() : Box.createVerticalBox();
+        Component strut = (m_orientation == Orientation.HORIZONTAL) ?
+                        Box.createHorizontalStrut(5) : Box.createVerticalStrut(5);
+        createSelectors(box, strut);
+        UiUtils.setOpaqueRecursively(box, false);
+        return box;
+    }

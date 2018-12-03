@@ -1,0 +1,14 @@
+  protected void _chooseFile() {
+    if (_file != null && _file.exists()) {
+      _chooser.setCurrentDirectory(_file);
+      _chooser.setSelectedFile(_file);
+    }
+    
+    if (_fileFilter != null) _chooser.setFileFilter(_fileFilter);
+    
+    int returnValue = _chooser.showDialog(_parent, null);
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+      File chosen = _chooser.getSelectedFile();
+      if (chosen != null) setFileField(chosen);
+    }
+  }

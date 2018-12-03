@@ -1,0 +1,8 @@
+  public TypeReference getInnermostElementType() {
+    TypeReference elem = getArrayElementType();
+    if (elem.isArrayType()) {
+      return elem.getInnermostElementType();
+    } else {
+      return elem;
+    }
+  }

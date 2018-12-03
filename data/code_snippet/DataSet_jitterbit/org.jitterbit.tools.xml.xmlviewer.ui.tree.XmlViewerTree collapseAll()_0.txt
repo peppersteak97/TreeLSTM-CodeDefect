@@ -1,0 +1,4 @@
+    public void collapseAll() {
+        TreeNode root = (TreeNode)getModel().getRoot();
+        expandAll(new TreePath(root), false);
+    }

@@ -1,0 +1,3 @@
+	public List<String> getOtherNamespaces() {
+		return Collections.unmodifiableList(m_OtherNamespaces);
+	}

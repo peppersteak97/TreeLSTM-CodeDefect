@@ -1,0 +1,8 @@
+    private List<IIntegrationEntityUiDelegate> getSelectedEntities() {
+        Object[] selected = m_trashCanContent.getSelectedValues();
+        List<IIntegrationEntityUiDelegate> uiDels = new ArrayList<IIntegrationEntityUiDelegate>();
+        for (Object o : selected) {
+            uiDels.add((IIntegrationEntityUiDelegate) o);
+        }
+        return uiDels;
+    }

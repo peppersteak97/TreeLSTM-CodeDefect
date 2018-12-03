@@ -1,0 +1,22 @@
+    public void previousPageRequested() {
+        if (isInWaitState()) {
+            return;
+        }
+        startWait();
+        Runnable task = new Runnable() {
+
+            public void run() {
+                m_applicablePages.removeLast();
+                IWizardPage previous = m_applicablePages.getLast();
+                if (previous != null) {
+                    previous.addToWindow(m_window);
+                    EventQueue.invokeLater(new PreviousPageJob(previous));
+                }
+                else {
+                    stopWait();
+                }
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallell(IUiWorker.GUARD.protect(task));
+    }

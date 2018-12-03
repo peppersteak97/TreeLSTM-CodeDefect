@@ -1,0 +1,3 @@
+    public void dispose() {
+        getInputComponent().removeActionListener(m_editListener);
+    }

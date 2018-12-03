@@ -1,0 +1,10 @@
+  public void textGetLine7() throws BadLocationException {
+    final String s = "12345\n7890\n2345\n789";
+    _doc.insertString(0, s, null);
+    _doc.setCurrentLocation(12);
+    assertEquals("#0.0", 3, _doc.getCurrentLine());
+    _doc.move(-5);
+    assertEquals("#0.1", 2, _doc.getCurrentLine());
+    _doc.setCurrentLocation(19);
+    assertEquals("#0.2", 4, _doc.getCurrentLine());
+  }

@@ -1,0 +1,3 @@
+	public boolean hasMultipleSourceNodes() {
+		return m_sourceNodes != null && m_sourceNodes.size() > 1;
+	}

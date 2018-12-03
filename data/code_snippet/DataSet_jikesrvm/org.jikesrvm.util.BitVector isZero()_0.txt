@@ -1,0 +1,7 @@
+  public boolean isZero() {
+    int setLength = bits.length;
+    for (int i = setLength; i-- > 0;) {
+      if (bits[i] != 0) return false;
+    }
+    return true;
+  }

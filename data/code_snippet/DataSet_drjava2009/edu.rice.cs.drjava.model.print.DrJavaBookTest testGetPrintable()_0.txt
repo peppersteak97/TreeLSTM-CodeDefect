@@ -1,0 +1,17 @@
+  public void testGetPrintable() { 
+    Graphics g = (new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB)).getGraphics();
+    Printable p = book.getPrintable(0);
+    try { 
+      assertEquals("testGetPrintable:", Integer.valueOf(Printable.PAGE_EXISTS), 
+                   Integer.valueOf(p.print(g, new PageFormat(), 0)));
+    }
+    catch(Exception e) { fail("testGetPrintable: Unexpected exception!\n" + e); }
+    
+    try {
+      p = book.getPrintable(99);
+      fail("previous operation should throw an IndexOutOfBoundsException");
+    }
+    catch(IndexOutOfBoundsException e) {
+      /* test succeeded */
+    }
+  }

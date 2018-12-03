@@ -1,0 +1,7 @@
+  protected final void emit_dup_x1() {
+    popAddr(T0);
+    popAddr(T1);
+    pushAddr(T0);
+    pushAddr(T1);
+    pushAddr(T0);
+  }

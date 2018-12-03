@@ -1,0 +1,4 @@
+  protected void resetWalkerLocationToCursor() {
+    _walker.dispose();
+    _walker = _cursor.copy();
+  }

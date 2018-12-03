@@ -1,0 +1,13 @@
+    public boolean cancel() {
+        boolean b = super.cancel();
+        if (b) {
+            setStatus(PackageResources.LoadStructures.CANCELLED);
+            if (m_inputCallback != null) {
+                m_inputCallback.cancelled(null);
+            }
+            else if (m_outputCallback != null) {
+                m_outputCallback.cancelled(null);
+            }
+        }
+        return b;
+    }

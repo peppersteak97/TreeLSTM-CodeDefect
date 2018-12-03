@@ -1,0 +1,1 @@
+    public boolean getReadOnly() { return _readOnly; }

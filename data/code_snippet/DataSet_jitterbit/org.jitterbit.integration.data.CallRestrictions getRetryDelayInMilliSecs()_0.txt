@@ -1,0 +1,3 @@
+    public long getRetryDelayInMilliSecs() {
+        return m_data.getLong(RETRY_DELAY, 0L);
+    }

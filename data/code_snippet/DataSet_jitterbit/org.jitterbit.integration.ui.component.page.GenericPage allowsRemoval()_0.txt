@@ -1,0 +1,4 @@
+        if (useForce || allowsRemoval()) {
+            prepareForRemoval();
+            return super.removeFromWindow(useForce);
+        }

@@ -1,0 +1,9 @@
+  public void testReplaceAllContinue() throws BadLocationException {
+    _doc.insertString(0, EVIL_TEXT, null);
+    _initFrm(15);
+    _assertOffsets(_frm, 15, 15);
+    _frm.setFindWord("evil");
+    _frm.setReplaceWord("monkey");
+    replaceAll();
+    assertEquals("revised text", "Hear no monkey, see no monkey, speak no monkey.", _doc.getText());
+  }

@@ -1,0 +1,12 @@
+  public T next() {
+    if (cursor == null) {
+      cursor = l.head;
+    } else {
+      if (cursor.next == null) {
+        throw new NoSuchElementException();
+      }
+      cursor = cursor.next;
+    }
+    canRemove = true;
+    return cursor.entry;
+  }

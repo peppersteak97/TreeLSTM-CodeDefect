@@ -1,0 +1,4 @@
+    protected void sendFunctionGroup3() {
+        commandStation.function9Through12Packet(address,
+                                                getF9(), getF10(), getF11(), getF12());
+    }

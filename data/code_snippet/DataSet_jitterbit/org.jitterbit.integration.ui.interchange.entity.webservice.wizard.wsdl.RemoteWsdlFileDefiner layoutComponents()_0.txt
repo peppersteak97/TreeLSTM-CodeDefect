@@ -1,0 +1,10 @@
+    private void layoutComponents() {
+        JPanel p = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = getConstraints();
+        gbc.insets = FIELD_INSETS;
+        gbc.weightx = 1.0;
+        p.add(m_urlField.getInputComponent(), gbc);
+        JComponent displayer = new JPanel(new BorderLayout());
+        displayer.add(p, BorderLayout.CENTER);
+        setDisplayer(displayer);
+    }

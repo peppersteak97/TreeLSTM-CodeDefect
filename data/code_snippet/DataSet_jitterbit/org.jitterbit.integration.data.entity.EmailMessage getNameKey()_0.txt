@@ -1,0 +1,3 @@
+    protected String getNameKey() {
+        return MESSAGE_NAME;
+    }

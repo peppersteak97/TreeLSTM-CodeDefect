@@ -1,0 +1,25 @@
+  public synchronized RVMMethod resolveInvokeSpecial() {
+    RVMClass thisClass = (RVMClass) type.peekType();
+    if (thisClass == null && name != RVMClassLoader.StandardObjectInitializerMethodName) {
+      thisClass = (RVMClass) type.resolve();
+      /* Can't fail to resolve thisClass; we're at compile time doing
+         resolution of an invocation to a private method or super call.  We
+         must have loaded the class already */
+    }
+    if (thisClass == null) {
+    }
+    RVMMethod sought = resolveInternal(thisClass);
+
+    if (sought.isObjectInitializer()) {
+    }
+
+    RVMClass cls = sought.getDeclaringClass();
+    if (!cls.isSpecial()) {
+    }
+
+    for (; cls != null; cls = cls.getSuperClass()) {
+      RVMMethod found = cls.findDeclaredMethod(sought.getName(), sought.getDescriptor());
+      if (found != null) {
+      }
+    }
+  }

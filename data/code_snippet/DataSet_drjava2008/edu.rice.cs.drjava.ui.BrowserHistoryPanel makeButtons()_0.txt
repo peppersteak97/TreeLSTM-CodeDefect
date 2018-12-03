@@ -1,0 +1,48 @@
+  protected JComponent[] makeButtons() {    
+    _backAction = new AbstractAction("Back") {
+      public void actionPerformed(ActionEvent ae) {
+        backRegion();
+      }
+    };
+    _backButton = new JButton(_backAction);
+    
+    _forwardAction = new AbstractAction("Forward") {
+      public void actionPerformed(ActionEvent ae) {
+        forwardRegion();
+      }
+    };
+    _forwardButton = new JButton(_forwardAction);
+    
+    Action goToAction = new AbstractAction("Go to") {
+      public void actionPerformed(ActionEvent ae) {
+        goToRegion();
+      }
+    };
+    _goToButton = new JButton(goToAction);
+    
+    Action removeAction = new AbstractAction("Remove") {
+      public void actionPerformed(ActionEvent ae) {
+        for (BrowserDocumentRegion r: getSelectedRegions()) {
+          _model.getBrowserHistoryManager().remove(r);
+        }
+      }
+    };
+    _removeButton = new JButton(removeAction);
+    
+    Action removeAllAction = new AbstractAction("Remove All") {
+      public void actionPerformed(ActionEvent ae) {
+        _model.getBrowserHistoryManager().clearBrowserRegions();
+      }
+    };
+    _removeAllButton = new JButton(removeAllAction);
+    
+    JComponent[] buts = new JComponent[] { 
+      _backButton,
+        _forwardButton,
+        _goToButton, 
+        _removeButton,
+        _removeAllButton
+    };
+    
+    return buts;
+  }

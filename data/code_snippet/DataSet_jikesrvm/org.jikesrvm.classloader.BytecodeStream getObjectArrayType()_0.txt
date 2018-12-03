@@ -1,0 +1,5 @@
+  public final TypeReference getObjectArrayType() {
+    if (VM.VerifyAssertions) VM._assert(opcode == JBC_anewarray);
+    TypeReference klass = getTypeReference();
+    return klass.getArrayTypeForElementType();
+  }

@@ -1,0 +1,6 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 37 * hash + m_groupID;
+        hash = 37 * hash + m_entries.hashCode();
+        return hash;
+    }

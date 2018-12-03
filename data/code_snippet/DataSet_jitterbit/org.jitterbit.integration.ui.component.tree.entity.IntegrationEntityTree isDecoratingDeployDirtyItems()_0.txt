@@ -1,0 +1,3 @@
+    public boolean isDecoratingDeployDirtyItems() {
+        return m_decorateDeployDirtyItems;
+    }

@@ -1,0 +1,1 @@
+    public JSlider getSpeedSlider() { return speedSlider; }

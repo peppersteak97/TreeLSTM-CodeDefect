@@ -1,0 +1,1 @@
+    if (_vector.size() == 0) { return null; }

@@ -1,0 +1,10 @@
+    public void display() {
+        m_dependentsListener = new DependantListener();
+        m_owner.addPropertyChangeListener(IntegrationEntity.CHILD_ADDED_PROPERTY,
+                        m_dependentsListener);
+        m_owner.addPropertyChangeListener(IntegrationEntity.CHILD_REMOVED_PROPERTY,
+                        m_dependentsListener);
+
+        m_renameListener = new RenameListener();
+        addRenameListener();
+    }

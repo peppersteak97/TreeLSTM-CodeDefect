@@ -1,0 +1,4 @@
+  public boolean isEnabled() {
+    _checkState();
+    return _delegatee.isEnabled();
+  }

@@ -1,0 +1,3 @@
+  public final boolean isPrivate() {
+    return (modifiers & ACC_PRIVATE) != 0;
+  }

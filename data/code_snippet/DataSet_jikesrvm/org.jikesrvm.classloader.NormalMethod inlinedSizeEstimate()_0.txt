@@ -1,0 +1,3 @@
+  public int inlinedSizeEstimate() {
+    return summarySize & 0xFFFF;
+  }

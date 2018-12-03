@@ -1,0 +1,12 @@
+  public void testControlFlow() throws CloneNotSupportedException {
+    PropertyMaps pm = PropertyMaps.TEMPLATE.clone();
+    DrJavaProperty p;
+
+    p = pm.getProperty("Misc","if");
+    
+    p = pm.getProperty("Misc","for");
+    
+    p = pm.getProperty("Misc","var");
+    
+    p = pm.getProperty("Misc","var.set");
+  }

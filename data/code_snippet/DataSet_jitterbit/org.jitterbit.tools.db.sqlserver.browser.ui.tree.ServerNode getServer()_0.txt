@@ -1,0 +1,3 @@
+    public Server getServer() {
+        return (Server)getUserObject();
+    }

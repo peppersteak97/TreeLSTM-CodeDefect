@@ -1,0 +1,3 @@
+	protected ListPropertyJList getJList() {
+		return (ListPropertyJList)getComponentHolder();
+	}

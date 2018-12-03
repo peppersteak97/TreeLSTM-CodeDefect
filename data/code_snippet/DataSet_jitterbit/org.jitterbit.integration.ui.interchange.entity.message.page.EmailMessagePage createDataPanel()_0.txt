@@ -1,0 +1,5 @@
+    protected IntegrationDataPanel createDataPanel() {
+        MessagePanel p = new MessagePanel(getObject().getDataObject());
+        getPageModel().bindProperties(p.getBoundPropertyControls());
+        return p;
+    }

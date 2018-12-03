@@ -1,0 +1,151 @@
+  private static ArchitectureSpecific.CodeArray generateReflectiveMethodInvokerInstructions() {
+    Assembler asm = new ArchitectureSpecific.Assembler(100);
+    int gprs;
+    Offset fpOffset = ArchEntrypoints.framePointerField.getOffset();
+    GPR T = T0;
+    gprs = NUM_PARAMETER_GPRS;
+    Offset offset = Offset.fromIntZeroExtend(5 << LG_WORDSIZE);
+    if (gprs > 0) {
+      gprs--;
+      if (VM.BuildFor32Addr) {
+        asm.emitMOV_RegDisp_Reg(SP, offset, T);
+      } else {
+        asm.emitMOV_RegDisp_Reg_Quad(SP, offset, T);
+      }
+      T = T1;
+      offset = offset.minus(WORDSIZE);
+    }
+    if (gprs > 0) {
+      if (VM.BuildFor32Addr) {
+        asm.emitMOV_RegDisp_Reg(SP, offset, T);
+      } else {
+        asm.emitMOV_RegDisp_Reg_Quad(SP, offset, T);
+      }
+    }
+
+    /* available registers S0, T0, T1 */
+
+    /* push a new frame */
+    asm.emitPUSH_Imm(INVISIBLE_METHOD_ID);
+    asm.emitADD_Reg_Imm(SP, STACKFRAME_BODY_OFFSET);
+
+    /* write parameters on stack
+    * move data from memory addressed by Paramaters array, the fourth
+    * parameter to this, into the stack.
+    * SP target address
+    * S0 source address
+    * T1 length
+    * T0 scratch
+    */
+    ThreadLocalState.emitMoveFieldToReg(asm, S0, fpOffset);
+    if (VM.BuildFor32Addr) {
+    } else {
+      if (JavaHeaderConstants.ARRAY_LENGTH_BYTES == 4) {
+      } else {
+      }
+    }
+
+    int parameterLoopLabel = asm.getMachineCodeIndex();
+    if (VM.BuildFor32Addr) {
+    } else {
+    }
+    if (VM.BuildFor32Addr) {
+    } else {
+    }
+    if (JavaHeaderConstants.ARRAY_LENGTH_BYTES == 4) {
+    } else {
+    }
+    asm.emitJMP_Imm(parameterLoopLabel);
+
+
+    if (SSE2_FULL) {
+      /* write fprs onto fprs registers */
+      ThreadLocalState.emitMoveFieldToReg(asm, S0, fpOffset);
+      if (VM.BuildFor32Addr) {
+      } else {
+        if (JavaHeaderConstants.ARRAY_LENGTH_BYTES == 4) {
+        } else {
+        }
+      }
+
+      if (VM.VerifyAssertions) VM._assert(NUM_PARAMETER_FPRS <= 4);
+
+      ForwardReference fr_next;
+
+      ForwardReference fpr_r1 = asm.forwardJcc(Assembler.EQ);
+      asm.emitMOVSD_Reg_RegInd(XMM0, T0);
+      asm.emitCMP_RegInd_Imm_Byte(S0, 0);
+      fr_next = asm.forwardJcc(Assembler.NE);
+      asm.emitCVTSD2SS_Reg_Reg(XMM0, XMM0);
+      fr_next.resolve(asm);
+
+      ForwardReference fpr_r2 = asm.forwardJcc(Assembler.EQ);
+      asm.emitMOVSD_Reg_RegDisp(XMM1, T0, Offset.fromIntZeroExtend(WORDSIZE*2));
+      asm.emitCMP_RegDisp_Imm_Byte(S0, Offset.fromIntZeroExtend(1), 0);
+      fr_next = asm.forwardJcc(Assembler.NE);
+      asm.emitCVTSD2SS_Reg_Reg(XMM1, XMM1);
+      fr_next.resolve(asm);
+
+      ForwardReference fpr_r3 = asm.forwardJcc(Assembler.EQ);
+      asm.emitMOVSD_Reg_RegDisp(XMM2, T0, Offset.fromIntZeroExtend(WORDSIZE*4));
+      asm.emitCMP_RegDisp_Imm_Byte(S0, Offset.fromIntZeroExtend(2), 0);
+      fr_next = asm.forwardJcc(Assembler.NE);
+      asm.emitCVTSD2SS_Reg_Reg(XMM2, XMM2);
+      fr_next.resolve(asm);
+
+      ForwardReference fpr_r4 = asm.forwardJcc(Assembler.EQ);
+      asm.emitMOVSD_Reg_RegDisp(XMM3, T0, Offset.fromIntZeroExtend(WORDSIZE*6));
+      asm.emitCMP_RegDisp_Imm_Byte(S0, Offset.fromIntZeroExtend(3), 0);
+      fr_next = asm.forwardJcc(Assembler.NE);
+      asm.emitCVTSD2SS_Reg_Reg(XMM3, XMM3);
+      fr_next.resolve(asm);
+
+      fpr_r1.resolve(asm);
+      fpr_r2.resolve(asm);
+      fpr_r3.resolve(asm);
+      fpr_r4.resolve(asm);
+
+    } else {
+      if (VM.VerifyAssertions) VM._assert(VM.BuildFor32Addr);
+      /* write fprs onto fprs registers */
+      ThreadLocalState.emitMoveFieldToReg(asm, S0, fpOffset);
+
+      int fprsLoopLabel = asm.getMachineCodeIndex();
+      asm.emitJMP_Imm(fprsLoopLabel);
+
+    }
+
+    /* write gprs: S0 = Base address of GPRs[], T1 = GPRs.length */
+    ThreadLocalState.emitMoveFieldToReg(asm, S0, fpOffset);
+    if (VM.BuildFor32Addr) {
+    } else {
+      if (JavaHeaderConstants.ARRAY_LENGTH_BYTES == 4) {
+      } else {
+      }
+    }
+    if (VM.BuildFor32Addr) {
+    } else {
+    }
+    if (VM.BuildFor32Addr) {
+    } else {
+    }
+    fr3.resolve(asm);
+    fr4.resolve(asm);
+
+    /* branch to method.  On a good day we might even be back */
+    ThreadLocalState.emitMoveFieldToReg(asm, S0, fpOffset);
+    if (VM.BuildFor32Addr) {
+    } else {
+    }
+
+    /* and get out */
+    if (VM.BuildFor32Addr) {
+      asm.emitADD_Reg_Imm(SP, -STACKFRAME_BODY_OFFSET + WORDSIZE);
+    } else {
+      asm.emitADD_Reg_Imm_Quad(SP, -STACKFRAME_BODY_OFFSET + WORDSIZE);
+    }
+    asm.emitPOP_RegDisp(TR, fpOffset);
+
+
+    return asm.getMachineCodes();
+  }

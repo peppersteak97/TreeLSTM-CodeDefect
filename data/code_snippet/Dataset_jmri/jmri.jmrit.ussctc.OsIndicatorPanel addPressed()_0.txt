@@ -1,0 +1,11 @@
+    void addPressed() {
+        boolean ok = true;
+        ok &= validateTurnout(outputName.getText());
+        ok &= validateSensor(sensorName.getText());
+        if (!lockName.getText().equals(""))
+            ok &= validateMemory(lockName.getText());
+        
+        if (!ok) return;
+        new OsIndicator(outputName.getText(), sensorName.getText(), lockName.getText())
+                    .instantiate();
+    }

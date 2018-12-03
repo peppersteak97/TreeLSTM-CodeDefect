@@ -1,0 +1,23 @@
+	private void init(){
+		setFont(m_font11Plain);
+		setLayout(null);
+		
+		m_panel=new JPanel();
+					
+		m_sourceTitle = "REQUEST:";
+		m_targetTitle = "RESPONSE:";
+								
+		m_sourceTreeComponent = new TreeComponent(this,TreeComponent.c_SimpleTreeSource,m_clrAttributeText,m_clrFolderText,m_clrBgdTree);
+		m_targetTreeComponent = new TreeComponent(this,TreeComponent.c_SimpleTreeTarget,m_clrAttributeText,m_clrFolderText,m_clrBgdTree);
+		m_sourceScroll=new JScrollPane(m_sourceTreeComponent,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        m_sourceScroll.getVerticalScrollBar().setUnitIncrement(10);
+		m_targetScroll=new JScrollPane(m_targetTreeComponent,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        m_targetScroll.getVerticalScrollBar().setUnitIncrement(10);
+
+		m_sourceTreeComponent.m_scroll=m_sourceScroll;
+		m_targetTreeComponent.m_scroll=m_targetScroll;
+		
+		m_sourceTreeComponent.init();
+		m_targetTreeComponent.init();
+        layoutComponents();
+	}

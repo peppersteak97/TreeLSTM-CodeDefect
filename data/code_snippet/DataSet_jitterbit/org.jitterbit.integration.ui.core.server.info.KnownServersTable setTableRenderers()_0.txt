@@ -1,0 +1,5 @@
+    private void setTableRenderers() {
+        m_serverTable.setDefaultRenderer(ServerName.class, TableRenderers.getNameRenderer());
+        m_serverTable.setDefaultRenderer(IVersion.class, TableRenderers.getVersionRenderer());
+        m_serverTable.setDefaultRenderer(Date.class, TableRenderers.getDateRenderer());
+    }

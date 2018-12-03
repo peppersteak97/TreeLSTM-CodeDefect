@@ -1,0 +1,3 @@
+    public DataLocationType getSourceType() {
+        return m_sourceTypeBox.getSelectedLocationType();
+    }

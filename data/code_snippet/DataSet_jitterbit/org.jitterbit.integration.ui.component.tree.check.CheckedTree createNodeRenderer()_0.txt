@@ -1,0 +1,3 @@
+    protected CheckBoxNodeRenderer createNodeRenderer() {
+        return new CheckBoxNodeRenderer();
+    }

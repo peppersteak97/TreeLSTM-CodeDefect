@@ -1,0 +1,8 @@
+    private int getNewAddr() {
+        try {
+            return Integer.valueOf(addrField.getText()).intValue();
+        } catch (java.lang.NumberFormatException e) {
+            addrField.setText("");
+            return 0;
+        }
+    }

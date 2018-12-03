@@ -1,0 +1,4 @@
+    private void createServerCombo() {
+        m_availableServersCombo = new AvailableServersComboBox();
+        m_availableServersCombo.addActionListener(new ServerComboListener());
+    }

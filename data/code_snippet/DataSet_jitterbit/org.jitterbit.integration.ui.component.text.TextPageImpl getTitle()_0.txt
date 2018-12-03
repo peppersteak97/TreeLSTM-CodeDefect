@@ -1,0 +1,7 @@
+    public String getTitle() {
+        if (m_object instanceof File) {
+            String fileName = ((File) m_object).getName();
+            return isDirty() ? fileName + " *" : fileName;
+        }
+        return super.getTitle();
+    }

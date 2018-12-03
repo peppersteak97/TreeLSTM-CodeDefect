@@ -1,0 +1,7 @@
+    public void readChanges() {
+        if (isChanged()) {
+            readingChanges = true;
+            amReading = true;
+            continueRead();
+        }
+    }

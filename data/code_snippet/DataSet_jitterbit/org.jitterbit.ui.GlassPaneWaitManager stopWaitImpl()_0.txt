@@ -1,0 +1,6 @@
+    private void stopWaitImpl() {
+        if (m_startWaitTimer != null) {
+            m_startWaitTimer.stop();
+        }
+        m_glassPane.setVisible(false);
+    }

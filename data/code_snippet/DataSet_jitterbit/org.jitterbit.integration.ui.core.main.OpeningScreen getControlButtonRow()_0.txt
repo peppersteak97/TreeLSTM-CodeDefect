@@ -1,0 +1,11 @@
+    private JComponent getControlButtonRow() {
+        Box row = Box.createHorizontalBox();
+        for (JToggleButton btn : m_launchButtons) {
+            row.add(btn);
+            row.add(Box.createHorizontalStrut(20));
+        }
+        row.add(Box.createHorizontalGlue());
+        createAndAddHelpButton(row);
+        row.setBorder(BorderFactory.createEmptyBorder(2, 0, 2, 2));
+        return row;
+    }

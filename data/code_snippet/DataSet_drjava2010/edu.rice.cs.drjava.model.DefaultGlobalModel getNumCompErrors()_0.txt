@@ -1,0 +1,1 @@
+  public int getNumCompErrors() { return _numCompErrors; }

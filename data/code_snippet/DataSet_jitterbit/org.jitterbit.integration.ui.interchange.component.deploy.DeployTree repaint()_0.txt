@@ -1,0 +1,3 @@
+    void repaint() {
+        m_tree.repaint();
+    }

@@ -1,0 +1,3 @@
+	public Attr getXmlAttribute() {
+		return (Attr)getUserObject();
+	}

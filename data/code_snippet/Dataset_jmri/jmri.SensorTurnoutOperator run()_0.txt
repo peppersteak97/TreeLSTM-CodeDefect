@@ -1,0 +1,38 @@
+	public void run() {
+		long startTime = System.currentTimeMillis();
+		listener = new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent e) {
+				if (e.getPropertyName().equals("KnownState")) {
+					synchronized(this) {
+						this.notify();
+					}
+				}
+			}
+		};
+		myTurnout.addPropertyChangeListener(listener);
+		try {
+			operatorCheck();
+			myTurnout.forwardCommandChangeToLayout();
+			while (++tries < maxTries) {
+				long nextTry = System.currentTimeMillis() + interval;
+				long remaining;
+				while ((remaining = nextTry - System.currentTimeMillis()) > 0) {
+					try {
+						synchronized(this) {
+							wait(remaining);
+						}
+					} catch (InterruptedException e) { };
+				}
+				if (myTurnout.isConsistentState()) {
+					break;
+				}
+				operatorCheck();
+				myTurnout.forwardCommandChangeToLayout();
+				log.warn("retrying "+myTurnout.getSystemName()+", try #"+(tries+1));
+			}
+			if (!myTurnout.isConsistentState()) {
+				log.warn("failed to throw "+myTurnout.getSystemName());
+			}
+		} catch (TurnoutOperatorException e) { };
+		myTurnout.removePropertyChangeListener(listener);
+	}

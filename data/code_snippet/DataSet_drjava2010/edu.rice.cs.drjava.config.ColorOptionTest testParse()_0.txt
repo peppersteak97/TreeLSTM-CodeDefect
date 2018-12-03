@@ -1,0 +1,12 @@
+  public void testParse() {
+    ColorOption io = new ColorOption("max_files",null);
+    
+    assertEquals(Color.black, io.parse("0x000000"));
+    assertEquals(Color.green, io.parse("0x00ff00"));
+    
+    try { io.parse("true"); fail(); }
+    catch (OptionParseException e) { }
+    
+    try { io.parse("black"); fail(); }
+    catch (OptionParseException e) { }
+  }

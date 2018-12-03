@@ -1,0 +1,17 @@
+    public boolean isValid() {
+        if (m_frequencyType == OCCURS_EVERY_X) {
+            int hm = get_Every_HM();
+            int num = get_Every_Num();
+            if (hm == 1) {
+                if (num < 1 || num > 59) {
+                    return false;
+                }
+            }
+            else {
+                if (num < 1 || num > 23) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }

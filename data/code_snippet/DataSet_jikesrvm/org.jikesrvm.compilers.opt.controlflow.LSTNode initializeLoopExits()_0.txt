@@ -1,0 +1,3 @@
+  public void initializeLoopExits() {
+    loopExits = new ArrayList<Edge>();
+  }

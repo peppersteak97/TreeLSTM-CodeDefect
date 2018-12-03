@@ -1,0 +1,3 @@
+  SpaceEffGraphNode node() {
+    return _node;
+  }

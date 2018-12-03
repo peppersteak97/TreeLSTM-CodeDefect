@@ -1,0 +1,4 @@
+    public Dimension getMaximumSize() {
+        Dimension screen = getToolkit().getScreenSize();
+        return new Dimension(screen.width, screen.height-35);
+    }

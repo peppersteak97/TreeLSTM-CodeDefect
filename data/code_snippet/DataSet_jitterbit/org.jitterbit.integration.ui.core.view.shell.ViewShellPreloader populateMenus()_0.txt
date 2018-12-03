@@ -1,0 +1,6 @@
+    private void populateMenus() {
+        IMenuManager menus = m_ui.getAppWin().getMenuManager();
+        for (MenuExtensionManager extMgr : m_menuExtensionManagers.values()) {
+            extMgr.populateMenu(menus);
+        }
+    }

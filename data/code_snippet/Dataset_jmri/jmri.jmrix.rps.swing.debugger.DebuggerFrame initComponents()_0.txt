@@ -1,0 +1,90 @@
+    public void initComponents() {
+        nf = java.text.NumberFormat.getInstance();
+        nf.setMinimumFractionDigits(1);
+        nf.setMaximumFractionDigits(1);
+        nf.setGroupingUsed(false);
+
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        
+        JPanel p, p1, p2;
+ 
+        p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+        
+        p.add(new JLabel("Time measurements: "));
+        
+        JPanel p3 = new JPanel();
+        p3.setLayout(new java.awt.GridLayout(NUMSENSORS, 2));
+        
+        for (int i = 0; i< NUMSENSORS; i++) {
+            p1 = new JPanel();
+            p1.setLayout(new FlowLayout());
+            p1.add(new JLabel("r"+(i+1)+":"));
+            p1.add(times[i]);   
+            p3.add(p1);
+            p1 = new JPanel();
+            p1.add(new JLabel("r-t: "));
+            p1.add(residuals[i]);
+            p3.add(p1);         
+        }
+        p.add(p3);
+
+        JPanel p5 = new JPanel();
+        p5.setLayout(new FlowLayout());
+        p5.add(new JLabel("Id: "));
+        p5.add(id);
+        p.add(p5);
+
+        getContentPane().add(p);
+
+        getContentPane().add(new JSeparator());
+
+        p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+        p.add(new JLabel("Results:"));
+            p1 = new JPanel();
+            p1.setLayout(new FlowLayout());
+            p1.add(new JLabel("X:"));
+            p1.add(x);
+        p.add(p1);
+            p1 = new JPanel();
+            p1.setLayout(new FlowLayout());
+            p1.add(new JLabel("Y:"));
+            p1.add(y);
+        p.add(p1);
+            p1 = new JPanel();
+            p1.setLayout(new FlowLayout());
+            p1.add(new JLabel("Z:"));
+            p1.add(z);
+        p.add(p1);
+            p1 = new JPanel();
+            p1.setLayout(new FlowLayout());
+            p1.add(new JLabel("Code:"));
+            p1.add(code);
+        p.add(p1);
+        getContentPane().add(p);
+        
+        getContentPane().add(new JSeparator());
+
+        p = new JPanel();
+        
+        mode = new JComboBox(new String[]{"From time fields", "from X,Y,Z fields", "from time file", "from X,Y,Z file"});
+        p.add(mode);
+        p.setLayout(new FlowLayout());
+        
+        doButton = new JButton("Do Once");
+        doButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    doOnce();
+                }
+            });
+        p.add(doButton);
+        getContentPane().add(p);
+        
+        Distributor.instance().addReadingListener(this);
+        Distributor.instance().addMeasurementListener(this);
+        
+        addHelpMenu("package.jmri.jmrix.rps.swing.debugger.DebuggerFrame", true);
+
+        pack();
+    }

@@ -1,0 +1,3 @@
+    public int getSecond() {
+        return (m_secondBox != null) ? m_secondBox.getSelectedIndex() : 0;
+    }

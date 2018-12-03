@@ -1,0 +1,1 @@
+  public long getLastChangeTime() { return _lastChangeTime; }

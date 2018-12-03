@@ -1,0 +1,5 @@
+    public void closeAllElements() {
+        if (m_elements.isEmpty()) {
+        }
+        m_elements.removeAllElements();
+    }

@@ -1,0 +1,3 @@
+    protected final IApplicationAction getDelegate() {
+        return m_delegate;
+    }

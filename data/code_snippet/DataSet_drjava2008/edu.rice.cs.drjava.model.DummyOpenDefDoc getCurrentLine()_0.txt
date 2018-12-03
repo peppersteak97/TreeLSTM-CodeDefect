@@ -1,0 +1,1 @@
+  public int getCurrentLine() { throw new UnsupportedOperationException("Dummy method"); }

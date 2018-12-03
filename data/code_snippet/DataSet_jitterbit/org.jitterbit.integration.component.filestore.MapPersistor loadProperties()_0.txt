@@ -1,0 +1,18 @@
+    private Properties loadProperties() {
+        Properties properties = new Properties();
+        InputStream in = null;
+        try {
+            in = new FileInputStream(m_mapFile);
+            properties.load(in);
+        } 
+        catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } 
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            KongaIoUtils.close(in);
+        }
+        return properties;
+    }

@@ -1,0 +1,4 @@
+	public String toString() {
+		sb.append(m_uiDelegate.getKongaObject().toString());
+		return sb.toString();
+	}

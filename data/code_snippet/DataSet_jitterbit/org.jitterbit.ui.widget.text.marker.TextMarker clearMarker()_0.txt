@@ -1,0 +1,6 @@
+    public void clearMarker() {
+        String selected = m_textPane.getSelectedText();
+        if (selected != null && selected.length() > 0) {
+            clearMarker(selected);
+        }
+    }

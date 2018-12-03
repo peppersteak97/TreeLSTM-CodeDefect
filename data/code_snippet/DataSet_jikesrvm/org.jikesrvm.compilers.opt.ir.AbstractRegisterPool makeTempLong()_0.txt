@@ -1,0 +1,3 @@
+  public RegisterOperand makeTempLong() {
+    return new RegisterOperand(getLong(), TypeReference.Long);
+  }

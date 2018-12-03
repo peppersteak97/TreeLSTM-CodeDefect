@@ -1,0 +1,8 @@
+    void dispose() {
+        m_entity.removePropertyChangeListener(m_listener);
+        if (m_requiredObjects != null) {
+            for (IntegrationEntity e : m_requiredObjects.keySet()) {
+                e.removePropertyChangeListener(m_listener);
+            }
+        }
+    }

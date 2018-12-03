@@ -1,0 +1,4 @@
+  public final void setOutdated() {
+    if (VM.VerifyAssertions) VM._assert(this.getCompilerType() == BASELINE);
+    flags |= OUTDATED;
+  }

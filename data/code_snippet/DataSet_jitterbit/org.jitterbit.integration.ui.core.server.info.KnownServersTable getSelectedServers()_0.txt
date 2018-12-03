@@ -1,0 +1,9 @@
+    public IServerProperties[] getSelectedServers() {
+        int[] rows = m_serverTable.getSelectedRows();
+        IServerProperties[] servers = new IServerProperties[rows.length];
+        for (int n = 0; n < rows.length; ++n) {
+            int row = m_serverTable.getTableSorter().getModelIndex(rows[n]);
+            servers[n] = ((KnownServersTableModel) m_serverTable.getUnderlyingModel()).getPropertiesAtRow(row);
+        }
+        return servers;
+    }

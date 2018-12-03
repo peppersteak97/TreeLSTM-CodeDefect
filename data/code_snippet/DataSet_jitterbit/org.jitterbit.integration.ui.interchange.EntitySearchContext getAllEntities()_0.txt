@@ -1,0 +1,3 @@
+    public List<? extends IIntegrationEntityUiDelegate> getAllEntities() {
+        return collectEntities();
+    }

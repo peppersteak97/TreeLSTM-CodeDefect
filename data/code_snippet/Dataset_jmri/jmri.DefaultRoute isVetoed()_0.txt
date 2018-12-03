@@ -1,0 +1,17 @@
+    boolean isVetoed() {
+        log.debug("check for veto");
+        if (!_enabled) return true;
+        
+        for (int i = 0; i < mNumSensors; i++) {
+            int s = mSensors[i].getKnownState();
+            int mode = getRouteSensorMode(i);
+            if (  ( (mode==VETOACTIVE) && (s==Sensor.ACTIVE) )
+                    || ( (mode==VETOINACTIVE) && (s==Sensor.INACTIVE) ) )
+        }
+        if ( mTurnout != null) {
+            int tstate = mTurnout.getKnownState();
+            if (mControlTurnoutState==Route.VETOCLOSED && tstate==Turnout.CLOSED) return true;
+            if (mControlTurnoutState==Route.VETOTHROWN && tstate==Turnout.THROWN) return true;
+        }
+        return false;
+    }

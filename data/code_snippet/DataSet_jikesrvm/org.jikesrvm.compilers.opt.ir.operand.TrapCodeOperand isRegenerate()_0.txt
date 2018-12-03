@@ -1,0 +1,3 @@
+  public boolean isRegenerate() {
+    return trapCode == RuntimeEntrypoints.TRAP_REGENERATE;
+  }

@@ -1,0 +1,16 @@
+  public void testPollListeners() {
+    TestListener trueListener = new TestListener() {
+      public boolean canAbandonFile(OpenDefinitionsDocument doc) { return true; }
+    };
+    TestListener falseListener = new TestListener() {
+      public boolean canAbandonFile(OpenDefinitionsDocument doc) { return false; }
+    };
+
+    _notifier.addListener(trueListener);
+    boolean result = _notifier.canAbandonFile(null);
+    assertTrue("should be able to abandon file", result);
+    
+    _notifier.addListener(falseListener);
+    result = _notifier.canAbandonFile(null);
+    assertTrue("should not be able to abandon file", !result);
+  }

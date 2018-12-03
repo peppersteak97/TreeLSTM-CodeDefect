@@ -1,0 +1,18 @@
+    private void layoutComponents() {
+        InputPanel p = new InputPanel();
+        p.setBorder(IntegrationUiStyleSheet.EntityPageNamePanelBorder);
+        InputField[] fields = {
+            m_nameField, 
+            m_locationOnDiskField,
+            m_createdAtField, 
+            m_modifiedAtField, 
+            m_serverField, 
+            m_descriptionField,
+            m_jitterPackCommentField,
+        };
+        InputFieldLayoutUtils.layoutOneColumn(p, fields, true, true);
+
+        setLayout(new BoxLayout(getUi(), BoxLayout.PAGE_AXIS));
+
+        add(getSubComponentPanel(p));
+    }

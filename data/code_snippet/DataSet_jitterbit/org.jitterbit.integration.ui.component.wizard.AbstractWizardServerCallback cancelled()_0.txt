@@ -1,0 +1,4 @@
+    public void cancelled() {
+        m_success = false;
+        countDown();
+    }

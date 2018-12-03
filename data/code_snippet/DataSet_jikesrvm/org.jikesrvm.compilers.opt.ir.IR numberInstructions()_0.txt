@@ -1,0 +1,8 @@
+  public int numberInstructions() {
+    int num = 0;
+    for (Instruction instr = firstInstructionInCodeOrder(); instr != null; instr =
+        instr.nextInstructionInCodeOrder(), num++) {
+      instr.scratch = num;
+    }
+    return num;
+  }

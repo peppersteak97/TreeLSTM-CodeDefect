@@ -1,0 +1,8 @@
+    private Object[] createNoMatchEntry() {
+        return new Object[] { 
+            PackageResources.EMPTY_RESULT_SET,
+            null,
+            null, 
+            null, 
+        };
+    }

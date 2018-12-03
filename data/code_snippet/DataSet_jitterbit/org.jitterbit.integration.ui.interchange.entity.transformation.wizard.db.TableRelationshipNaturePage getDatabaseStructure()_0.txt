@@ -1,0 +1,11 @@
+    private DatabaseStructure getDatabaseStructure() {
+        DatabaseStructure s = new DatabaseStructure(m_dbLocation);
+        s.setDbTables(m_incomingStructure.getDbTables());
+        if (m_sourceOrTarget == SourceTarget.Source) {
+            s.setHierarchicalFilters(m_incomingStructure.getHierarchicalFilters());
+        }
+        DbTranRelations dbRelations = new DbTranRelations();
+        setRelationships(dbRelations);
+        s.setRelations(dbRelations);
+        return s;
+    }

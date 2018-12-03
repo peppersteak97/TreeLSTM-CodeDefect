@@ -1,0 +1,3 @@
+    public EnumSet<WindowElementState> getOldState() {
+        return EnumSet.copyOf(m_oldState);
+    }

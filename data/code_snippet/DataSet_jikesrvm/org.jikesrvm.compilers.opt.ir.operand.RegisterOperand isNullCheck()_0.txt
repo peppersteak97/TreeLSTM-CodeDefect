@@ -1,0 +1,1 @@
+  public boolean isNullCheck() { return (flags2 & NULL_CHECK) != 0; }

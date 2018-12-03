@@ -1,0 +1,4 @@
+    public boolean isEnabled() {
+        IApplicationAction delegate = getDelegate();
+        return (delegate == null) ? false : delegate.isEnabled();
+    }

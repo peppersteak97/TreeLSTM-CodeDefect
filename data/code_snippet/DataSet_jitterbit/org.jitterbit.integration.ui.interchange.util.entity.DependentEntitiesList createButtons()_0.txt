@@ -1,0 +1,4 @@
+    private void createButtons() {
+        m_editAction = new EditAction();
+        m_createNewAction = new CreateAction();
+    }

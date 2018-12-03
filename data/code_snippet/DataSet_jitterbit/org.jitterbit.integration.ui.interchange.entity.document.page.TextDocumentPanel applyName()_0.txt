@@ -1,0 +1,8 @@
+    private void applyName() throws IntegrationDataPanelException {
+        try {
+            document.setName(nameField.getValue());
+        }
+        catch (IllegalNameException ex) {
+            throw new IntegrationDataPanelException(ex);
+        }
+    }

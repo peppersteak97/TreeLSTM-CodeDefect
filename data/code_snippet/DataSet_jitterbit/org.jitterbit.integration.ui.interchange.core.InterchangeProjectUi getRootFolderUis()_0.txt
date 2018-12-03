@@ -1,0 +1,3 @@
+    public List<IRootFolderUi> getRootFolderUis() {
+        return new ArrayList<IRootFolderUi>(m_mapRootFolderUis.values());
+    }

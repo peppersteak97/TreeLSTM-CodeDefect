@@ -1,0 +1,3 @@
+    public Object getOldValue() {
+        return m_oldValue;
+    }

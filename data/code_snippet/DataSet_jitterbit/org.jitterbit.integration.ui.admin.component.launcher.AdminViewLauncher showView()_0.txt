@@ -1,0 +1,10 @@
+    private void showView() {
+        try {
+            m_viewManager.showView(AdministrationView.VIEW_ID);
+        }
+        catch (ViewLoadingException ex) {
+            ErrorLogger.getDefaultLogger().logAndShow(
+                            this, 
+                            ex);
+        }
+    }

@@ -1,0 +1,7 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    try {
+    } catch (javax.swing.text.BadLocationException ex) {
+      throw new RuntimeException("Bad Location Exception");
+    }
+  }

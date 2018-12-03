@@ -1,0 +1,3 @@
+  public boolean hasFieldWrite() {
+    return (summaryFlags & HAS_FIELD_WRITE) != 0;
+  }

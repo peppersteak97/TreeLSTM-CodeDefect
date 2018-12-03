@@ -1,0 +1,5 @@
+    void validate() {
+        String url = m_location.getUrl();
+        if (url == null || url.trim().length() == 0) {
+        }
+    }

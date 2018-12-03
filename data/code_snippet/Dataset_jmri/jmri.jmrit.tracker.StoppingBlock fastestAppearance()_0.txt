@@ -1,0 +1,8 @@
+    int fastestAppearance() {
+        if (sig1 == null) {
+            log.error("Should not get null in fastestAppearance");
+            return 0;
+        }
+        if (sig2 == null) return sig1.getAppearance();
+        else return Math.max(sig1.getAppearance(), sig2.getAppearance());
+    }

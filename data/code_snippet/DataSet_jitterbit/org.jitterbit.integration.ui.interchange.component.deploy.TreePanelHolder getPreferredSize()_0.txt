@@ -1,0 +1,11 @@
+    public Dimension getPreferredSize() {
+        int width = super.getPreferredSize().width;
+        int height = 2;
+        if (m_isVisible && m_display != null) {
+            if (m_preferredSize != null) {
+                width = m_preferredSize.width;
+                height = m_preferredSize.height;
+            }
+        }
+        return new Dimension(width, height);
+    }

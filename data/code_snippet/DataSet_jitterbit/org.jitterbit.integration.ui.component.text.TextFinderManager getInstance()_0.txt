@@ -1,0 +1,3 @@
+    public static TextFinderManager getInstance() {
+        return INSTANCE;
+    }

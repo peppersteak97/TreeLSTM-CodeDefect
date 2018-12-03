@@ -1,0 +1,3 @@
+    public boolean getF19() {
+        return f19;
+    }

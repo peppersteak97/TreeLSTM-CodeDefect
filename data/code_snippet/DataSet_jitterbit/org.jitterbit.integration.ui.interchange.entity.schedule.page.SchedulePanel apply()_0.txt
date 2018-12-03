@@ -1,0 +1,10 @@
+    public void apply() throws IntegrationDataPanelException {
+        applyTheName();
+        applyThePriority();
+        applyTheOccurrence();
+        
+        TimeZone tz = TIMEZONE_SUPPORT ? m_timeZoneSelector.getSelectedTimeZone() : 
+            TimeZone.getDefault();
+        applyTheDailyFrequency(tz);
+        applyTimeZoneAndDuration(tz);
+    }

@@ -1,0 +1,52 @@
+  public void testInvalidLowerLevel() {
+    
+    String text = "(abcdefg";
+    try {
+      SExp exp = SExpParser.parse(text).get(0);
+      fail("Didn't throw a parse exception");
+    }catch(SExpParseException e) {
+      assertEquals("Incorrect exception message", 
+                   "Unexpected <EOF> at line 1",
+                   e.getMessage());
+    }
+    
+    text = "(ab\ncdefg";
+    try {
+      SExp exp = SExpParser.parse(text).get(0);
+      fail("Didn't throw a parse exception");
+    }catch(SExpParseException e) {
+      assertEquals("Incorrect exception message", 
+                   "Unexpected <EOF> at line 2",
+                   e.getMessage());
+    }
+    
+    text = "(ab\ncdefg))";
+    try {
+      SExp exp = SExpParser.parse(text).get(0);
+      fail("Didn't throw a parse exception");
+    }catch(SExpParseException e) {
+      assertEquals("Incorrect exception message", 
+                   "A top-level s-expression must be a list. "+
+                   "Invalid start of list: )",
+                   e.getMessage());
+    }
+    
+    try {
+      SExp exp = SExpParser.parse(text).get(0);
+      fail("Didn't throw a parse exception");
+    }catch(SExpParseException e) {
+      assertEquals("Incorrect exception message", 
+                   "Unexpected <EOF> at line 1",
+                   e.getMessage());
+    }
+    
+    
+    try {
+      SExp exp = SExpParser.parse(text).get(0);
+      fail("Didn't throw a parse exception");
+    }catch(SExpParseException e) {
+      assertEquals("Incorrect exception message", 
+                   "Unexpected <EOF> at line 1",
+                   e.getMessage());
+    }
+  }

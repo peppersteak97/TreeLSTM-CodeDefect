@@ -1,0 +1,13 @@
+  public void testInterpretJavaQuotedEscapedArgs() {
+    _log.log("testInterpretJavaQuotedEscapedArgs started");
+    _assertJavaTransformationTail("java Foo \"a \\\" b\"", "Foo.main(new String[]{\"a \\\" b\"});");
+    _assertJavaTransformationTail("java Foo \"\\'\"", "Foo.main(new String[]{\"\\\\'\"});");
+    _assertJavaTransformationTail("java Foo \"\\\\\"", "Foo.main(new String[]{\"\\\\\"});");
+    _assertJavaTransformationTail("java Foo \"\\\" \\d\"", "Foo.main(new String[]{\"\\\" \\\\d\"});");
+    /*    _assertJavaTransformation("java Foo \"\\n\"", "Foo.main(new String[]{\"\\n\"});");
+     _assertJavaTransformation("java Foo \"\\t\"", "Foo.main(new String[]{\"\\t\"});");
+     _assertJavaTransformation("java Foo \"\\r\"", "Foo.main(new String[]{\"\\r\"});");
+     _assertJavaTransformation("java Foo \"\\f\"", "Foo.main(new String[]{\"\\f\"});");
+     _assertJavaTransformation("java Foo \"\\b\"", "Foo.main(new String[]{\"\\b\"});"); */
+    _log.log("testInterpretJavaQuotedEscapedArgs started");
+  }

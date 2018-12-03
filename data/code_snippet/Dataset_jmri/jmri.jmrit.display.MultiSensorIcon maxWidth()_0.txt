@@ -1,0 +1,7 @@
+    protected int maxWidth() {
+        return Math.max(
+                        ((inactive!=null) ? inactive.getIconWidth() : 0),
+                Math.max((unknown!=null) ? unknown.getIconWidth() : 0,
+                        (inconsistent!=null) ? inconsistent.getIconWidth() : 0)
+            );
+    }

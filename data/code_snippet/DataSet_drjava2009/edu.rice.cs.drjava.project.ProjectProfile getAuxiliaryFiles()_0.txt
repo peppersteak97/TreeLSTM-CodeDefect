@@ -1,0 +1,1 @@
+  public DocFile[] getAuxiliaryFiles() { return _auxiliaryFiles.toArray(new DocFile[_auxiliaryFiles.size()]); }

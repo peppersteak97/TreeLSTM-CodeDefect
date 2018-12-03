@@ -1,0 +1,10 @@
+  public void testUncommentIgnoreSingleLine() throws BadLocationException {
+    String text =
+      "Here is some abritrary text that should not be uncommented.\n" +
+      "* various */ obnoxious characters,\n" +
+
+    doc.insertString(0, text, null);
+    _assertContents("Sample text is inserted improperly.", text, doc);
+    doc.uncommentLines(70, 75);
+    _assertContents("These lines should be unchanged by uncomment!", text, doc);
+  }

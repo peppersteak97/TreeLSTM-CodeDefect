@@ -1,0 +1,10 @@
+	public void init(){
+		m_isXmlSource=m_TreeMapper.isSourceXml();
+		if(m_isXmlSource){
+			m_sourceRootPath=m_TreeMapper.m_sourceTreeComponent.m_DocElementPath;
+			if(m_sourceRootPath.startsWith("[")&&m_sourceRootPath.endsWith("]")){
+				m_sourceRootPath=m_sourceRootPath.substring(1,m_sourceRootPath.length()-1);
+			}
+		}
+		m_isXmlTarget=m_TreeMapper.isTargetXml();
+	}

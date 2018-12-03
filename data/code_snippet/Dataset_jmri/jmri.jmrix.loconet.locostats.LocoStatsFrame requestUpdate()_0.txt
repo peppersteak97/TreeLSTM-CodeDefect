@@ -1,0 +1,6 @@
+    public void requestUpdate() {
+        LocoNetMessage msg = new LocoNetMessage( 2 ) ;
+        msg.setOpCode( LnConstants.OPC_GPBUSY );
+        updatePending = true ;
+        LnTrafficController.instance().sendLocoNetMessage(msg);
+    }

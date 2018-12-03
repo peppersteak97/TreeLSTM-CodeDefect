@@ -1,0 +1,3 @@
+  public boolean inSSAFormAwaitingReEntry() {
+    return (actualSSAOptions != null) && !actualSSAOptions.getScalarValid();
+  }

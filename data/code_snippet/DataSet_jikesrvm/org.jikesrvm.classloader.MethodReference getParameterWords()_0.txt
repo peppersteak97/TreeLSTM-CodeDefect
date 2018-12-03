@@ -1,0 +1,5 @@
+  public int getParameterWords() {
+    int pw = 0;
+    for (TypeReference parameterType : parameterTypes) pw += parameterType.getStackWords();
+    return pw;
+  }

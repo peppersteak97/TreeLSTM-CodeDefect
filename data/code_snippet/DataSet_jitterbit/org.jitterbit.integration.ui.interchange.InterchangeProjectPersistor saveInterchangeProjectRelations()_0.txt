@@ -1,0 +1,3 @@
+    public void saveInterchangeProjectRelations() throws InterchangeSavingException {
+        m_saveWorker.saveInterchangeProjectStructure();
+    }

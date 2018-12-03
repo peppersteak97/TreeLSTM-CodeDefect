@@ -1,0 +1,6 @@
+	private void deactivateTurnout() {
+		if (mTurnoutListener!=null) {
+			turnout.removePropertyChangeListener(mTurnoutListener);
+			mTurnoutListener = null;
+		}
+	}

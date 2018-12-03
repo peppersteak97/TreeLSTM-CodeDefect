@@ -1,0 +1,3 @@
+    public int getReceiverCount() {
+        return receivers.length-1;
+    }

@@ -1,0 +1,25 @@
+  private JComponent createSysPropTab() {
+    Properties props = System.getProperties();
+    int size = props.size();
+    String[][] rowData = new String[size][2];
+    int rowNum = 0;
+    for (Map.Entry<Object, Object> entry : props.entrySet()) {
+      rowData[rowNum][0] = (String) entry.getKey();
+      rowData[rowNum][1] = (String) entry.getValue();
+      rowNum++;
+    }
+    java.util.Arrays.sort(rowData,new java.util.Comparator<String[]>() {
+      public int compare(String[] o1, String[] o2) {
+        return o1[0].compareTo(o2[0]);
+      }
+    });
+    String[] nvStrings = new String[]{"Name","Value"};
+    UneditableTableModel model = new UneditableTableModel(rowData, nvStrings);
+    _propertiesTable = new JTable(model);
+    JScrollPane scroller = new BorderlessScrollPane(_propertiesTable);
+    wrapBorder(scroller,new EmptyBorder(5,0,0,0));
+    JPanel propTab = new JPanel(new BorderLayout());
+    propTab.add(new JLabel("Current system properties:"),BorderLayout.NORTH);
+    propTab.add(scroller,BorderLayout.CENTER);
+    return propTab;
+  }

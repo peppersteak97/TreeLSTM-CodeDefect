@@ -1,0 +1,4 @@
+    private void createFileFilterFieldForTarget() {
+        String label = PackageResources.File.NAME;
+        m_fileFilter = new TargetFileNameInputField(label, label, 30);
+    }

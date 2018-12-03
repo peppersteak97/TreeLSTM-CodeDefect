@@ -1,0 +1,3 @@
+    protected Border getPageBorder() {
+        return IntegrationUiStyleSheet.GenericPagePanelClass.getBorder();
+    }

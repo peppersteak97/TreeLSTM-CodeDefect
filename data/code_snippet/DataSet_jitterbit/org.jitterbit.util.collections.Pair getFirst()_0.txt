@@ -1,0 +1,3 @@
+    public K getFirst() {
+        return m_first;
+    }

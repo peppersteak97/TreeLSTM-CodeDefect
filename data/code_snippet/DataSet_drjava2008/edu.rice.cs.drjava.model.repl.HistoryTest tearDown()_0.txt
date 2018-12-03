@@ -1,0 +1,7 @@
+  public void tearDown() throws Exception {
+    boolean ret = IOUtil.deleteRecursively(_tempDir);
+    assertTrue("delete temp directory " + _tempDir, ret);
+    _tempDir = null;
+    _history = null;
+    super.tearDown();
+  }

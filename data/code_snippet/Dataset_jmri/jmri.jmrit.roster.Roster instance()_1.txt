@@ -1,0 +1,13 @@
+    public static synchronized Roster instance() {
+        if (_instance == null) {
+            if (log.isDebugEnabled()) log.debug("Roster creating instance");
+            _instance = new Roster();
+            try {
+                _instance.readFile(defaultRosterFilename());
+            } catch (Exception e) {
+                log.error("Exception during roster reading: "+e);
+            }
+        }
+        if (log.isDebugEnabled()) log.debug("Roster returns instance "+_instance);
+        return _instance;
+    }

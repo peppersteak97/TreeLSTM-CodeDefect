@@ -1,0 +1,18 @@
+  public void testConstructDoclessErrors() {
+    getter = new TestDocGetter();
+    errors = new CompilerError[] { 
+      new CompilerError("Test error without File", false),
+      new CompilerError("Test warning without File", true),
+      new CompilerError("Test error without File", false) 
+    };
+    
+    CompilerError[] copy = new CompilerError[errors.length];
+    for (int i = 0; i < errors.length; i++) copy[i] = errors[i];
+    model = new CompilerErrorModel(copy, getter);
+    
+    assertEquals("Should have 3 compiler errors.", 3, model.getNumErrors());
+    assertEquals("Should have 1 warning" , 1, model.getNumWarnings());
+    assertEquals("Should have 2 compiler errors" , 2, model.getNumCompErrors());
+    assertEquals("Errors should be sorted.", errors[1], model.getError(2));
+    assertTrue("hasOnlyWarnings should return false.", !model.hasOnlyWarnings());
+  }

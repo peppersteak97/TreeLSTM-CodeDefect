@@ -1,0 +1,3 @@
+    public SerialMessage createOutPacket() {
+        return null;        
+    }

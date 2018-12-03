@@ -1,0 +1,8 @@
+    public void apply() {
+        try {
+            m_value = Integer.parseInt(m_inputField.getValue());
+        }
+        catch (NumberFormatException ex) {
+            m_value = -1;
+        }
+    }

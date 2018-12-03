@@ -1,0 +1,32 @@
+    protected void updateDisplay() {
+        fullmode.setSelected(opsw[ 1]);
+        twoaspects.setSelected(opsw[ 2]);
+        semaphore.setSelected(opsw[11]);
+        pulsed.setSelected(opsw[12]);
+        disableDS.setSelected(opsw[13]);
+        fromloconet.setSelected(opsw[14]);
+        disablelocal.setSelected(opsw[15]);
+        sigaddress.setSelected(opsw[17]);
+        bcastaddress.setSelected(opsw[18]);
+        semaddress.setSelected(opsw[19]);
+        setdefault.setSelected(opsw[20]);
+        exercise.setSelected(opsw[21]);
+
+        int value = 0;
+        if (opsw[5]) value += 1;
+        if (opsw[4]) value += 2;
+        if (opsw[3]) value += 4;
+        section1to4mode.setSelectedIndex(value);
+
+        value = 0;
+        if (opsw[8]) value += 1;
+        if (opsw[7]) value += 2;
+        if (opsw[6]) value += 4;
+        section5to8mode.setSelectedIndex(value);
+
+        value = 0;
+        if (opsw[10]) value += 1;
+        if (opsw[9]) value += 2;
+        fourthAspect.setSelectedIndex(value);
+
+    }

@@ -1,0 +1,5 @@
+    static public SprogMessage getExitProgMode() {
+        SprogMessage m = new SprogMessage(1);
+        m.setOpCode(' ');
+        return m;
+    }

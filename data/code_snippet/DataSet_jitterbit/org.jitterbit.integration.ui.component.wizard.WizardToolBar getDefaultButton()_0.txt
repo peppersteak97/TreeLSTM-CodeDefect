@@ -1,0 +1,3 @@
+    public JButton getDefaultButton() {
+        return m_defaultButton;
+    }

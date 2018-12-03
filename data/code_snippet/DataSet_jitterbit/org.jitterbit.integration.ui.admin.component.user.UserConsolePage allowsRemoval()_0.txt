@@ -1,0 +1,15 @@
+    private boolean allowsRemoval() {
+        if (isDirty()) {
+            MessageDisplayer.Option option = promptUpload();
+            switch (option) {
+            case YES:
+                new Uploader().start();
+                return true;
+            case NO:
+                return true;
+            case CANCEL:
+                return false;
+            }
+        }
+        return true;
+    }

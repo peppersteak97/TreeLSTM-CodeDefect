@@ -1,0 +1,1 @@
+  public FileRegion[] getBookmarks() { return _bookmarks.toArray(new FileRegion[_bookmarks.size()]); }

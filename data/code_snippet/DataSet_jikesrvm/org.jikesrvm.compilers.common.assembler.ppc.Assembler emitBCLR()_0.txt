@@ -1,0 +1,5 @@
+  public final void emitBCLR() {
+    int mi = BCLRtemplate;
+    mIP++;
+    mc.addInstruction(mi);
+  }

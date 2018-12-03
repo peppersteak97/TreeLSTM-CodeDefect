@@ -1,0 +1,5 @@
+  protected final void emit_fadd() {
+    if (SSE2_BASE) {
+    } else {
+    }
+  }

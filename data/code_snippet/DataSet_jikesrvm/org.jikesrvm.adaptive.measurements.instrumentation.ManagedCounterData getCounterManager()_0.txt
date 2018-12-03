@@ -1,0 +1,3 @@
+  public InstrumentedEventCounterManager getCounterManager() {
+    return counterManager;
+  }

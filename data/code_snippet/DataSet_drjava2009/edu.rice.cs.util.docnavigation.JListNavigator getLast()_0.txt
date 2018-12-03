@@ -1,0 +1,1 @@
+  public ItemT getLast() { synchronized(_model) { return getFromModel(_model.size() - 1); } }

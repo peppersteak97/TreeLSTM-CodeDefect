@@ -1,0 +1,3 @@
+    public Target getDisplayedObject() {
+        return m_target;
+    }

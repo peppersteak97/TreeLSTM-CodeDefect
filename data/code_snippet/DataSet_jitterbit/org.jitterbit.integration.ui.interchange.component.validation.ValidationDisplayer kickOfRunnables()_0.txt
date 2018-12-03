@@ -1,0 +1,15 @@
+    private void kickOfRunnables() {
+        if (m_runWhenValid == null) {
+            return;
+        }
+        for (Iterator<Runnable> it = m_runWhenValid.keySet().iterator(); it.hasNext();) {
+            Runnable r = it.next();
+            r.run();
+            if (m_runWhenValid.get(r)) {
+                it.remove();
+            }
+        }
+        if (m_runWhenValid.isEmpty()) {
+            m_runWhenValid = null;
+        }
+    }

@@ -1,0 +1,3 @@
+    public final WsdlFile getWsdlFile() {
+        return m_wsdlFile;
+    }

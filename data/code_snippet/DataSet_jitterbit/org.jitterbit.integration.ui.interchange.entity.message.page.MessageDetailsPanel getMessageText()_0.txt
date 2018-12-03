@@ -1,0 +1,3 @@
+    private String getMessageText() {
+        return m_text.getValue().trim();
+    }

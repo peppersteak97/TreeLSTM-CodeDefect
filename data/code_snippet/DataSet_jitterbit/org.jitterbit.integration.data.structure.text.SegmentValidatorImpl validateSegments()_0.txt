@@ -1,0 +1,5 @@
+    private List<IValidationIssue> validateSegments() {
+        Runner runner = new Runner();
+        runner.run();
+        return runner.getIssues();
+    }

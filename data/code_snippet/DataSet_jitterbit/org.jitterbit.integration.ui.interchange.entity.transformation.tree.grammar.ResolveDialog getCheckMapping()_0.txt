@@ -1,0 +1,3 @@
+	public CheckMapping getCheckMapping(){
+		return m_checkMapping;
+	}

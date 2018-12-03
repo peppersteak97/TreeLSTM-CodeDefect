@@ -1,0 +1,3 @@
+    public int getDayNum() {
+        return m_dayNumBox.getSelectedIndex() + 1;
+    }

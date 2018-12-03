@@ -1,0 +1,6 @@
+    private ISourceSettingsExporter getExporter() {
+        if (m_exporterFactory == null) {
+            m_exporterFactory = new SourceSettingsExporterFactory();
+        }
+        return m_exporterFactory.createExporter(m_view);
+    }

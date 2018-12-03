@@ -1,0 +1,1 @@
+  public void setCondition() { flags = (flags & ~TYPE_MASK) | CONDITION; }

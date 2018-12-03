@@ -1,0 +1,4 @@
+	public static Font getLabelFont() {
+		return (o instanceof FontUIResource) ? 
+			(FontUIResource)o : DEFAULT_LABEL.getFont();
+	}

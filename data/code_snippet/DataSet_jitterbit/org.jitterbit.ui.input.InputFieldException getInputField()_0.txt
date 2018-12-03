@@ -1,0 +1,3 @@
+    public InputField getInputField() {
+        return m_inputField;
+    }

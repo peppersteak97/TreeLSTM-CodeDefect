@@ -1,0 +1,3 @@
+    IntegrationEntity getSelectedUserOrGroup() {
+        return m_currentSelection;
+    }

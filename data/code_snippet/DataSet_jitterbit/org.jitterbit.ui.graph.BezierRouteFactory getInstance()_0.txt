@@ -1,0 +1,3 @@
+    public static BezierRouteFactory getInstance() {
+        return s_instance;
+    }

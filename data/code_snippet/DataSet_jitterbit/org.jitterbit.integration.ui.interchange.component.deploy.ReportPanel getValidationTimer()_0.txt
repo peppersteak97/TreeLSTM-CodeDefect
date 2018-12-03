@@ -1,0 +1,4 @@
+    StatusUpdater getValidationTimer() {
+        return new StatusUpdater(m_statusLabel,
+                        PackageResources.DeployPage.Labels.STATUS);
+    }

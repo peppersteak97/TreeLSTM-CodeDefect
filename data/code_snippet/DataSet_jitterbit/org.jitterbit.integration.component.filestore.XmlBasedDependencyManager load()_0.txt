@@ -1,0 +1,13 @@
+    private void load() {
+        if (!m_file.exists()) {
+            return;
+        }
+        DefaultKongaSaxParser parser = new DefaultKongaSaxParser();
+        parser.addStartElementHandlerFactory(FILE, getElementHandlerFactory());
+        try {
+            parser.load(m_file);
+        }
+        catch (KongaSaxParserException ex) {
+            ex.printStackTrace();
+        }
+    }

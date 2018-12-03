@@ -1,0 +1,8 @@
+    private void addInputFields() {
+        addInputField(m_name);
+        addInputField(m_title);
+        addInputField(m_email);
+        addInputField(m_phone);
+        addInputField(m_fax);
+        addInputField(m_notes);
+    }

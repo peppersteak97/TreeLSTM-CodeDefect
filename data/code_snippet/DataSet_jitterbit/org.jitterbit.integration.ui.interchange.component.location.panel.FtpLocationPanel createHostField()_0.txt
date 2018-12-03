@@ -1,0 +1,5 @@
+    private void createHostField() {
+        String hostLabel = PackageResources.Ftp.HOST;
+        m_host = InputFieldFactory.getNonEmptyTextInputField(
+                        hostLabel, hostLabel, 30, true);
+    }

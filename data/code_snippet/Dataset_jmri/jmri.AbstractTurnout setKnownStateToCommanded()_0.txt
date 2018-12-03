@@ -1,0 +1,3 @@
+	void setKnownStateToCommanded() {
+		newKnownState(_commandedState);
+	}

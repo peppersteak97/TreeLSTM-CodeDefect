@@ -1,0 +1,4 @@
+    static public Message getEnableMain() {
+        log.error("getEnableMain doesnt have a reasonable implementation yet");
+        return null;
+    }

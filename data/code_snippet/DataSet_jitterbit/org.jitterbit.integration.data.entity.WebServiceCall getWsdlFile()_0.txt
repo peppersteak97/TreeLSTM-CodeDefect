@@ -1,0 +1,3 @@
+    public WsdlFile getWsdlFile() {
+        return (m_wsdlFile == null) ? new WsdlFile() : m_wsdlFile.getCopy();
+    }

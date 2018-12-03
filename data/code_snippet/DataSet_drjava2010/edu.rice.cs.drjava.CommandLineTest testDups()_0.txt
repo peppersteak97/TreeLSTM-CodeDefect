@@ -1,0 +1,23 @@
+  public void testDups() throws BadLocationException {
+    String[] list = new String[6];
+    list[0] = f7_name;
+    list[1] = nof4_name;
+    list[2] = nof5_name;
+    list[3] = f8_name;
+    list[4] = f8_name;
+    list[5] = f7_name;
+    DrJavaRoot.openCommandLineFiles(_mf, list, false);
+    
+    List<OpenDefinitionsDocument> docs = _mf.getModel().getOpenDefinitionsDocuments();
+    Utilities.clearEventQueue();
+    assertEquals("Exactly two documents?", 2, docs.size());
+    OpenDefinitionsDocument doc1 = docs.get(0);
+    assertEquals("Correct length of file 1?", f7_contents.length(), doc1.getLength());
+    assertEquals("Do the contents of file 1 match?", f7_contents, doc1.getText(0,f7_contents.length()));
+    Utilities.clearEventQueue();
+    OpenDefinitionsDocument doc2 = docs.get(1);
+    assertEquals("Correct length of file 2?", f8_contents.length(), doc2.getLength());
+    assertEquals("Do the contents of file 2 match?", f8_contents, doc2.getText(0,f8_contents.length()));
+    
+    assertEquals("Is the last document the active one?", doc2, _mf.getModel().getActiveDocument());
+  }

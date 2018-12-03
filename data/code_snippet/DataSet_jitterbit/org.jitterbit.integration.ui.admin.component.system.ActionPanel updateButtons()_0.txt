@@ -1,0 +1,18 @@
+    private void updateButtons() {
+        if (m_worker == null) {
+            m_startEngineAction.setEnabled(false);
+            m_stopEngineAction.setEnabled(false);
+        }
+        else {
+            if (m_currentStatus == null) {
+                m_startEngineAction.setEnabled(false);
+                m_stopEngineAction.setEnabled(false);
+            }
+            else {
+                m_startEngineAction.setEnabled(!m_currentStatus.contains(ServerStatus.RUNNING)
+                                && !m_currentStatus.contains(ServerStatus.STARTING));
+                m_stopEngineAction.setEnabled(m_currentStatus.contains(ServerStatus.RUNNING)
+                                && !m_currentStatus.contains(ServerStatus.STOPPING));
+            }
+        }
+    }

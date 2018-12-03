@@ -1,0 +1,3 @@
+  static void raiseArithmeticException() {
+    throw new java.lang.ArithmeticException();
+  }

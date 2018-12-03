@@ -1,0 +1,1 @@
+  public void setMatchWholeWord() { _matchWholeWord = true; }

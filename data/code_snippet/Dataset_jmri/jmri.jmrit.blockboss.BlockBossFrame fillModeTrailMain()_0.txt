@@ -1,0 +1,78 @@
+    JPanel fillModeTrailMain() {
+        modeTrailMain.setLayout(new GridBagLayout());
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.EAST;
+        constraints.gridheight = 1;
+        constraints.gridwidth = 1;
+        constraints.ipadx = 0;
+        constraints.ipady = 0;
+        constraints.insets = insets;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        insets.top = 9;
+        insets.bottom = 9;
+        modeTrailMain.add(new JLabel(" Protects Sensor/s"), constraints);        
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 1;
+        tmSensorField1.setToolTipText(sensorFieldTooltip);
+        modeTrailMain.add(tmSensorField1, constraints);
+        constraints.gridx = 2;
+        tmSensorField2.setToolTipText(sensorFieldTooltip);
+        modeTrailMain.add(tmSensorField2, constraints);
+        constraints.gridx = 3;
+        tmSensorField3.setToolTipText(sensorFieldTooltip);
+        modeTrailMain.add(tmSensorField3, constraints);
+        constraints.gridx = 4;
+        tmSensorField4.setToolTipText(sensorFieldTooltip);
+        modeTrailMain.add(tmSensorField4, constraints);
+
+        insets.top = 2;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        insets.bottom = 9;
+        modeTrailMain.add(new JLabel("Red When Turnout"), constraints);        
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 1;
+        tmProtectTurnoutField.setToolTipText(turnoutFieldTooltip);
+        modeTrailMain.add(tmProtectTurnoutField, constraints);
+        constraints.gridx = 2;
+        constraints.gridwidth = 2;
+        modeTrailMain.add(new JLabel("Is "+InstanceManager.turnoutManagerInstance().getThrownText()), constraints);
+        constraints.gridwidth = 1;
+        
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        insets.bottom = 2;
+        modeTrailMain.add(new JLabel("Protects Signal"), constraints);
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 1;
+        tmNextSignalField1.setToolTipText(highSignalFieldTooltip);
+        modeTrailMain.add(tmNextSignalField1, constraints);
+        constraints.gridx = 2;
+        tmNextSignalField1Alt.setToolTipText(nextSignalFieldTooltip);
+        modeTrailMain.add(tmNextSignalField1Alt, constraints);
+        constraints.gridx = 3;
+        constraints.gridwidth = 2;
+        tmLimitBox.setToolTipText(limitBoxTooltip);
+        modeTrailMain.add(tmLimitBox, constraints);
+
+        constraints.gridy = 6;
+        constraints.gridx = 1;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.WEST;
+        insets.bottom = 9;
+        tmFlashBox.setToolTipText(flashBoxTooltip);
+        modeTrailMain.add(tmFlashBox, constraints);
+
+        constraints.gridx = 3;
+        tmDistantBox.setToolTipText(distantBoxTooltip);
+        modeTrailMain.add(tmDistantBox, constraints);
+        return modeTrailMain;
+    }

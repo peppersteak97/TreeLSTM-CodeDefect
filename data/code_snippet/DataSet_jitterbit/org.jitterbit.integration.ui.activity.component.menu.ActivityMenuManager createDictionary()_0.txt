@@ -1,0 +1,6 @@
+    private static IMenuDictionary createDictionary() {
+        return new NewResourceBasedMenuDictionary(
+                ActivityResources.STRINGS,
+                ActivityResources.ICONS,
+                null);
+    }

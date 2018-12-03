@@ -1,0 +1,2 @@
+  public java.util.Set<String> getNamesOfSelectedTopLevelGroup() throws GroupNotSelectedException;
+  

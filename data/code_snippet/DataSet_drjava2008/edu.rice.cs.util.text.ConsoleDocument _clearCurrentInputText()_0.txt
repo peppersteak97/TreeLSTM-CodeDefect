@@ -1,0 +1,6 @@
+  protected void _clearCurrentInputText() {
+    try {
+      removeText(_promptPos, _document.getLength() - _promptPos);
+    }
+    catch (EditDocumentException ble) { throw new UnexpectedException(ble); }
+  }

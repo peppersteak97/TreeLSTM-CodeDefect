@@ -1,0 +1,17 @@
+    private void layoutPanel() {
+        m_displayer = new JPanel(new BorderLayout(0, 5)) {
+
+            @Override
+            public Dimension getMaximumSize() {
+                return getPreferredSize();
+            }
+        };
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(IntegrationUiStyleSheet.DefaultText.makeJLabel(
+                        PackageResources.Labels.USERS_AND_GROUPS));
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(m_refreshButton);
+        m_displayer.add(titleBox, BorderLayout.NORTH);
+        ContainerDecor.decorate(m_userAndGroupList, m_displayer, BorderLayout.CENTER);
+    }

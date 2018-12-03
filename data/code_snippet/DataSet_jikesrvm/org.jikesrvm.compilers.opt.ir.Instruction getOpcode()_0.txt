@@ -1,0 +1,3 @@
+  public char getOpcode() {
+    return operator.opcode;
+  }

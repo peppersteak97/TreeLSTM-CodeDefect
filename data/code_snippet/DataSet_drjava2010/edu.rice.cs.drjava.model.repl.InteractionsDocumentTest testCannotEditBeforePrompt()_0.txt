@@ -1,0 +1,9 @@
+  public void testCannotEditBeforePrompt() throws EditDocumentException {
+    TestBeep testBeep = new TestBeep();
+    _doc.setBeep(testBeep);
+    int origLength = _doc.getLength();
+
+    _doc.insertText(1, "text", InteractionsDocument.DEFAULT_STYLE);
+    assertEquals("Number of beeps", 1, testBeep.numBeeps);
+    assertEquals("Doc length", origLength, _doc.getLength());
+  }

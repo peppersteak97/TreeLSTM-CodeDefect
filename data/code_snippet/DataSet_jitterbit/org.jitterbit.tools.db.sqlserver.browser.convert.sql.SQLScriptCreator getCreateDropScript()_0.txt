@@ -1,0 +1,3 @@
+	protected final boolean getCreateDropScript() {
+	    return m_bCreateDropScript;
+	}

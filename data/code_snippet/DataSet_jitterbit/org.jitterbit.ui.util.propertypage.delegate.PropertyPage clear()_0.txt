@@ -1,0 +1,7 @@
+	public void clear() {
+		if( m_pnlProperties != null ) {
+			m_pnlProperties.removeAll();
+			m_topHalf.remove(m_pnlProperties);
+		}
+		m_displayedObject = null;
+	}

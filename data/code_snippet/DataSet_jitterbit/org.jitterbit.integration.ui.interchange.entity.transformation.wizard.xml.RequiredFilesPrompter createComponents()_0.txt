@@ -1,0 +1,11 @@
+    private void createComponents() {
+        caption = IntegrationUiStyleSheet.DefaultBold.makeJLabel(
+                        PackageResources.FilePrompter.CAPTION);
+        suggestedFilesExplanation = IntegrationUiStyleSheet.AdminHint.makeJLabel(
+                        PackageResources.FilePrompter.SUGGESTIONS);
+        displayers = new ArrayList<FileDependencyDisplayer>();
+        for (FileDependency fd : dependencies) {
+            displayers.add(new FileDependencyDisplayer(fd, suggestedDirectory));
+        }
+        buttonPanel = getButtonPanel(OK_CANCEL, 15);
+    }

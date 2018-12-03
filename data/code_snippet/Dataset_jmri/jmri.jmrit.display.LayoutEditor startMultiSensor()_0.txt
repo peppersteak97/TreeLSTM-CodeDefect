@@ -1,0 +1,10 @@
+    void startMultiSensor() {
+		multiLocX = xLoc;
+		multiLocY = yLoc;
+        if (multiSensorFrame == null) {
+            multiSensorFrame = new MultiSensorIconFrame(this);
+            multiSensorFrame.initComponents();
+            multiSensorFrame.pack();
+        }  
+        multiSensorFrame.setVisible(true);
+    }

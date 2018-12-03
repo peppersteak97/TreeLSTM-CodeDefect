@@ -1,0 +1,4 @@
+  private void _nextPage() {
+    _pageNumber++;
+    _goToPage(_pageNumber);
+  }

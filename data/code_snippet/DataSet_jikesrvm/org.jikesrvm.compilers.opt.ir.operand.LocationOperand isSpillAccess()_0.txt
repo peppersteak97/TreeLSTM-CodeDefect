@@ -1,0 +1,1 @@
+  public boolean isSpillAccess() { return type == SPILL_ACCESS; }

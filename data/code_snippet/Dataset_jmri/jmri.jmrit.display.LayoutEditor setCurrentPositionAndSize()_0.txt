@@ -1,0 +1,10 @@
+	public void setCurrentPositionAndSize() {
+		Dimension dim = getSize();
+		panelHeight = dim.height;
+		panelWidth = dim.width;
+		Point pt = getLocationOnScreen();
+		upperLeftX = pt.x;
+		upperLeftY = pt.y;
+		log.debug("Position - "+upperLeftX+","+upperLeftY+" Size - "+panelWidth+","+panelHeight);		
+		setDirty(true);
+	}

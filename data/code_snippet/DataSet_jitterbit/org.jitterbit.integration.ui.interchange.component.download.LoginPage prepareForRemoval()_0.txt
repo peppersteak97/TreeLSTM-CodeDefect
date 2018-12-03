@@ -1,0 +1,8 @@
+    protected void prepareForRemoval() {
+        try {
+            m_loginUi.dispose();
+        }
+        finally {
+            super.prepareForRemoval();
+        }
+    }

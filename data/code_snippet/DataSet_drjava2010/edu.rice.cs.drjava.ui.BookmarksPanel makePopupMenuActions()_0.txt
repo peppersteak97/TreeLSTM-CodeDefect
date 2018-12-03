@@ -1,0 +1,12 @@
+  protected AbstractAction[] makePopupMenuActions() {
+    AbstractAction[] acts = new AbstractAction[] {
+      new AbstractAction("Go to") { public void actionPerformed(ActionEvent e) { goToRegion(); } },
+        
+      new AbstractAction("Remove") {
+        public void actionPerformed(ActionEvent e) {
+          for (MovingDocumentRegion r: getSelectedRegions()) _regionManager.removeRegion(r);
+        }
+      }
+    };
+    return acts;
+  }

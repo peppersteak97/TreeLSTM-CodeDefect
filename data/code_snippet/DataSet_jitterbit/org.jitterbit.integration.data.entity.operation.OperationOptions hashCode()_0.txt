@@ -1,0 +1,6 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = hash * 31 + (m_logWarningAndErrors ? 1 : 0);
+        hash = hash * 31 + (m_ignoreHistory ? 1 : 0);
+        return hash;
+    }

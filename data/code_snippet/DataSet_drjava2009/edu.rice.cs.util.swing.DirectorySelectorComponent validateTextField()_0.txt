@@ -1,0 +1,24 @@
+  public boolean validateTextField() {
+    if (_validationInProgress) return true;
+    _validationInProgress = true;
+    
+    String newValue = _fileField.getText().trim();
+    
+    File newFile = FileOps.NULL_FILE;
+    if (! newValue.equals("")) {
+      newFile = new File(newValue);
+      if (! newFile.isDirectory() && _chooser.isFileSelectionEnabled()) newFile = newFile.getParentFile();
+    }
+    
+    if (newFile != FileOps.NULL_FILE && _mustExist && ! newFile.exists()) {
+      JOptionPane.showMessageDialog(_parent, "The file '"+ newValue + "'\nis invalid because it does not exist.",
+                                    "Invalid File Name", JOptionPane.ERROR_MESSAGE);
+      _validationInProgress = false;
+      return false;
+    }
+    else {
+      setFileField(newFile);
+      _validationInProgress = false;
+      return true;
+    }
+  }

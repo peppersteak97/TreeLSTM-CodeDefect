@@ -1,0 +1,3 @@
+	public TableColumnMetaData[] getColumnMetaData() {
+		return m_columnMetaData;
+	}

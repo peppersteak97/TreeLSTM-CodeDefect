@@ -1,0 +1,7 @@
+    protected List<JButton> createToolBarButtons() {
+        List<JButton> buttons = new ArrayList<JButton>();
+        buttons.add(createPopupMenuToolBarButton());
+        buttons.add(null);
+        buttons.addAll(super.createToolBarButtons());
+        return buttons;
+    }

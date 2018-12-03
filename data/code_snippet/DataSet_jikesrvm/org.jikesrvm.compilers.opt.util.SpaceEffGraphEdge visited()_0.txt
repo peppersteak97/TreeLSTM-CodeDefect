@@ -1,0 +1,1 @@
+  public final boolean visited() { return (scratch & VISITED) != 0; }

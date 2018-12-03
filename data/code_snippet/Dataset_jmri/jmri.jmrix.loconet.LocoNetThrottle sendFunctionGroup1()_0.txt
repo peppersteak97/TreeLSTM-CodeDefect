@@ -1,0 +1,16 @@
+    protected void sendFunctionGroup1()
+    {
+        int new_dirf = ((getIsForward() ? 0 : LnConstants.DIRF_DIR) |
+                        (getF0() ? LnConstants.DIRF_F0 : 0) |
+                        (getF1() ? LnConstants.DIRF_F1 : 0) |
+                        (getF2() ? LnConstants.DIRF_F2 : 0) |
+                        (getF3() ? LnConstants.DIRF_F3 : 0) |
+                        (getF4() ? LnConstants.DIRF_F4 : 0));
+        if (new_dirf != layout_dirf) {
+            LocoNetMessage msg = new LocoNetMessage(4);
+            msg.setOpCode(LnConstants.OPC_LOCO_DIRF);
+            msg.setElement(1, slot.getSlot());
+            msg.setElement(2, new_dirf);
+            network.sendLocoNetMessage(msg);
+        }
+    }

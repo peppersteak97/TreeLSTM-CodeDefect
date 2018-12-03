@@ -1,0 +1,13 @@
+    private void connect() {
+        if (!connected) {
+            if (InstanceManager.programmerManagerInstance() != null
+                && InstanceManager.programmerManagerInstance().getServiceModeProgrammer() != null) {
+                InstanceManager.programmerManagerInstance()
+                    .getServiceModeProgrammer().addPropertyChangeListener(this);
+                connected = true;
+                log.debug("Connecting to programmer");
+            } else {
+                log.debug("No programmer present to connect");
+            }
+        }
+    }

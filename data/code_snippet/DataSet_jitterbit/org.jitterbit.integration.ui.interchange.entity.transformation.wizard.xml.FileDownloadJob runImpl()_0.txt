@@ -1,0 +1,16 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus(PackageResources.DownloadContentsJob.STARTED);
+        Runnable task = new Runnable() {
+            public void run() {
+                IntegrationServer server = IntegrationServer.getInstance();
+                IFileDownloader call = server.getServerCall(IFileDownloader.class);
+                call.downloadFile(m_fileToDownload, m_callback);
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallellAndWait(task, m_callback);
+        m_latch.await();
+    }

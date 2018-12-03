@@ -1,0 +1,16 @@
+  public void textHighlightKeywords2() throws BadLocationException {
+    List<HighlightStatus> v;
+    final String s = "int y";
+    _doc.insertString(_doc.getLength(), s, null);
+    v = _doc.getHighlightStatus(0, _doc.getLength());
+    _checkHighlightStatusConsistent(v, 0, _doc.getLength());
+    
+    assertEquals("vector length", 2, v.size());
+    assertEquals(HighlightStatus.TYPE, v.get(0).getState());
+    assertEquals(HighlightStatus.NORMAL, v.get(1).getState());
+    v = _doc.getHighlightStatus(0, 2);
+    _checkHighlightStatusConsistent(v, 0, 2);
+    assertEquals("vector length", 1, v.size());
+    assertEquals(0, v.get(0).getLocation());
+    assertEquals(2, v.get(0).getLength());
+  }

@@ -1,0 +1,3 @@
+	public void transientBlock() {
+		m_isTransientBlock = true;
+	}

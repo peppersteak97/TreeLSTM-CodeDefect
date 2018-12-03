@@ -1,0 +1,1 @@
+  public final boolean flagsOn() { return (info & (DFS_VISITED | TOP_VISITED | ON_STACK)) != 0; }

@@ -1,0 +1,6 @@
+  public final int nextInstruction() {
+    if (VM.VerifyAssertions) VM._assert(bcIndex < bcLength);
+    opcode = readUnsignedByte();
+    wide = (opcode == JBC_wide);
+    return opcode;
+  }

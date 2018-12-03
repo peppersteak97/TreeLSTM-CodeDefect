@@ -1,0 +1,3 @@
+    public Color getInvalidBackground() {
+        return m_invalidBackground;
+    }

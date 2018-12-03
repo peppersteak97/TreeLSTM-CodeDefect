@@ -1,0 +1,23 @@
+    public void validateArchiveSettings() {
+        IIntegrationDataLookup lookup = m_collector.context().getDataStore();
+        Source src = (Source) lookup.getInstance(m_op.getSourceId());
+        if (src == null) {
+            fatal("No source defined.");
+        }
+        else if (src.getLocation() == null) {
+            fatal("Incomplete source definition.");
+        }
+        else if (!src.getLocation().getDataLocationType().isFileBased()) {
+            fatal("Invalid source - only file based sources accepted.");
+        }
+        Target tgt = (Target) lookup.getInstance(m_op.getTargetId());
+        if (tgt == null) {
+            fatal("No target defined.");
+        }
+        else if (tgt.getLocation() == null) {
+            fatal("Incomplete target definition.");
+        }
+        else if (!tgt.getLocation().getDataLocationType().isFileBased()) {
+            fatal("Invalid target - only file based targets accepted.");
+        }
+    }

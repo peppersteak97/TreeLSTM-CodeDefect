@@ -1,0 +1,27 @@
+    private JPanel createDataPanel() {
+        JPanel pnlData = new JPanel();
+        pnlData.setLayout( new DialogLayout() );
+        
+        JLabel lblServers = new JLabel("Server:");
+        lblServers.setDisplayedMnemonic('S');
+        lblServers.setLabelFor(m_comboServers);
+        pnlData.add(lblServers);
+        pnlData.add(m_comboServers);
+        
+        JLabel lblUser = new JLabel("User:");
+        lblUser.setDisplayedMnemonic('U');
+        lblUser.setLabelFor(m_textUser);
+        pnlData.add(lblUser);
+        pnlData.add(m_textUser);
+        
+        JLabel lblPassword = new JLabel("Password:");
+        lblPassword.setDisplayedMnemonic('P');
+        lblPassword.setLabelFor(m_pwdField);
+        pnlData.add(lblPassword);
+        pnlData.add(m_pwdField);
+        
+        Border border = BorderUtils.getEmptyPaddedLineBorder( 
+                new Insets(10, 10, 10, 10), new Insets(10, 10, 10, 10));
+        pnlData.setBorder(border);
+        return pnlData;
+    }

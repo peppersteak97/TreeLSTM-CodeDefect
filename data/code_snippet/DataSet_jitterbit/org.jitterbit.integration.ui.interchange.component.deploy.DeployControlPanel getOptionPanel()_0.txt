@@ -1,0 +1,3 @@
+    public JComponent getOptionPanel() {
+        return m_optionPanel;
+    }

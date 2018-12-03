@@ -1,0 +1,3 @@
+  private void _notifyUndoHappened() { 
+    EventQueue.invokeLater(new Runnable() { public void run() { _notifier.undoableEditHappened(); } });
+  }

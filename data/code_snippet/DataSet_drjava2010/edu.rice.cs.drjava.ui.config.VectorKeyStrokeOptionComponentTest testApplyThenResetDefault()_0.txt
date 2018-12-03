@@ -1,0 +1,15 @@
+  public void testApplyThenResetDefault() {
+    Vector<KeyStroke> testKeyStroke = new Vector<KeyStroke>();
+
+    _option.setValue(testKeyStroke);
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+    
+    assertEquals("Apply (updateConfig) should write change to file",
+                 OptionConstants.KEY_NEW_FILE.getDefault(),
+                 DrJava.getConfig().getSetting(OptionConstants.KEY_NEW_FILE));
+  }

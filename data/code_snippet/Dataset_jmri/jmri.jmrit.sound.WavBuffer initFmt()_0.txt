@@ -1,0 +1,5 @@
+    private void initFmt() {
+        fmtOffset = findHeader(0x66, 0x6D, 0x74, 0x20);
+        if (fmtOffset>0) return;
+        log.error("Didn't find fmt chunk");
+    }

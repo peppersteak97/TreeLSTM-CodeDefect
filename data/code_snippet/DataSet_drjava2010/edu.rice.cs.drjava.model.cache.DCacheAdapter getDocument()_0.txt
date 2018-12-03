@@ -1,0 +1,2 @@
+  public DefinitionsDocument getDocument() throws IOException, FileMovedException;
+  

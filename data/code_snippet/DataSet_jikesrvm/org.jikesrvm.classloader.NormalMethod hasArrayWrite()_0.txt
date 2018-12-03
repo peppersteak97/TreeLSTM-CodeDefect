@@ -1,0 +1,3 @@
+  public boolean hasArrayWrite() {
+    return (summaryFlags & HAS_ARRAY_WRITE) != 0;
+  }

@@ -1,0 +1,1 @@
+  protected JUnitErrorModel getErrorModel() { return getModel().getJUnitModel().getJUnitErrorModel(); }

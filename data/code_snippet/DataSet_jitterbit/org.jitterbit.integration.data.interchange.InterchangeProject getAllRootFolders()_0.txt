@@ -1,0 +1,3 @@
+    public Collection<RootFolder> getAllRootFolders() {
+        return Collections.unmodifiableCollection(m_mapRootFolders.values());
+    }

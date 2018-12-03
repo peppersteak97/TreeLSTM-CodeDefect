@@ -1,0 +1,8 @@
+    private void repaintTable() {
+        EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                m_table.repaint();
+            }
+        });
+    }

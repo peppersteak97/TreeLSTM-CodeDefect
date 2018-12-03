@@ -1,0 +1,1 @@
+	public LayoutBlock getBlock2() {return block2;}

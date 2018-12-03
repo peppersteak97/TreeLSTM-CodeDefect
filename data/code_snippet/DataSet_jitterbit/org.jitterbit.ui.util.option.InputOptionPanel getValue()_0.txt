@@ -1,0 +1,9 @@
+    public T getValue() {
+        for (IOptionSelector<IInputOption<T>> selector : m_selectors) {
+            if (selector.isSelected()) {
+                IInputOption<T> o = selector.getOption();
+                return o.getValue();
+            }
+        }
+        return null;
+    }

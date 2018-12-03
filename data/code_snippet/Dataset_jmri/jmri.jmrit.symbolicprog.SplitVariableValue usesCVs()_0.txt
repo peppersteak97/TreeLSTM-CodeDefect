@@ -1,0 +1,5 @@
+    public CvValue[] usesCVs() {
+        return new CvValue[]{
+            (CvValue) _cvVector.elementAt(getCvNum()),
+            (CvValue) _cvVector.elementAt(getSecondCvNum())};
+    }

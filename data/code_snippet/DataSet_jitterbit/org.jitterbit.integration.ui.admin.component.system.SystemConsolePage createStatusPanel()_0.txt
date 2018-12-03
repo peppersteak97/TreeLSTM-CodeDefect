@@ -1,0 +1,18 @@
+    private void createStatusPanel() {
+        ServerStatusActionDecorator[] actions = {
+            new ServerStatusActionDecorator(StatusDetail.SD_SHORT,
+                            PackageResources.StatusPanel.Buttons.SHORT_LABEL,
+                            PackageResources.StatusPanel.Buttons.SHORT_ICON),
+            new ServerStatusActionDecorator(StatusDetail.SD_NORMAL,
+                            PackageResources.StatusPanel.Buttons.NORMAL_LABEL,
+                            PackageResources.StatusPanel.Buttons.NORMAL_ICON),
+            new ServerStatusActionDecorator(StatusDetail.SD_FULL,
+                            PackageResources.StatusPanel.Buttons.FULL_LABEL,
+                            PackageResources.StatusPanel.Buttons.FULL_ICON),
+        };
+        m_statusPanel = new ServerStatusPanel(
+                        actions, 
+                        PackageResources.StatusPanel.TITLE,
+                        PackageResources.StatusPanel.ICON,
+                        PackageResources.StatusPanel.CAPTION);
+    }

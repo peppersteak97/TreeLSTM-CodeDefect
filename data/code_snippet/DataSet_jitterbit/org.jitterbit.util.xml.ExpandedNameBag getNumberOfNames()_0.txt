@@ -1,0 +1,8 @@
+    public int getNumberOfNames() {
+        int size = 0;
+        for (String key : m_uriToExpandedName.keySet()) {
+            List<? extends IExpandedName> values = m_uriToExpandedName.get(key);
+            size += values.size();
+        }
+        return size;
+    }

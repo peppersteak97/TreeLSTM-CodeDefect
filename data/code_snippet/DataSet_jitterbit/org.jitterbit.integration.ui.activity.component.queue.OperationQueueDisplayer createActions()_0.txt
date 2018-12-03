@@ -1,0 +1,7 @@
+    private void createActions() {
+        m_selectAllAction = DeletableTableActionsFactory.selectAll();
+        m_unselectAllAction = DeletableTableActionsFactory.unselectAll();
+        m_deleteAction = DeletableTableActionsFactory.delete(m_queueDeleter);
+        m_deleteAction.putValue(Action.SHORT_DESCRIPTION, 
+                        PackageResources.Displayer.Actions.DELETE_TOOLTIP);
+    }

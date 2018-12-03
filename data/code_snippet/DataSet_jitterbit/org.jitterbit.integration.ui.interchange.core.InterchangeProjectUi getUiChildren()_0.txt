@@ -1,0 +1,6 @@
+            if (folderUi != null && folderUi.getUiChildren().isEmpty()) {
+                for (SystemSource source : SystemSource.getSystemSources()) {
+                    SourceBaseUi baseUi = new SourceBaseUi(source);
+                    baseUi.setUiParent(folderUi);
+                }
+            }

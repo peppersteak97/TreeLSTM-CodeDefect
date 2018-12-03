@@ -1,0 +1,17 @@
+  public void testAttrsStarEnd() throws Exception {
+    XMLConfig xc = 
+      new XMLConfig(new StringReader(
+                                     "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><foo a=\"foo.a\">\n"
+                                       + "  <bar>abc</bar>\n"
+                                       + "  <fum fee=\"xyz\" fuz=\"zzz\" fiz=\"aaa\">def</fum>\n"
+                                       + "</foo>"));
+    List<String> r = xc.getMultiple("foo.*");
+    assertEquals(1, r.size());
+    assertEquals("foo.a", r.get(0));
+    
+    r = xc.getMultiple("foo/fum.*");
+    assertEquals(3, r.size());
+    assertEquals("xyz", r.get(0));
+    assertEquals("aaa", r.get(1));
+    assertEquals("zzz", r.get(2));
+  }

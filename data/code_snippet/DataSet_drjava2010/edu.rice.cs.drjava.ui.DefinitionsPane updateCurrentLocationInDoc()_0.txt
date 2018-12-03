@@ -1,0 +1,3 @@
+  public void updateCurrentLocationInDoc() {
+    _doc.setCurrentLocation(getCaretPosition());
+  }

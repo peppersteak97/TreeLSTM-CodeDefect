@@ -1,0 +1,4 @@
+  public String fileName() {
+    if (_file == null) return "";
+    return _file.getAbsolutePath();
+  }

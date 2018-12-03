@@ -1,0 +1,15 @@
+    private void download() {
+        Runnable task = new Runnable() {
+            
+            public void run() {
+                setNewStatus(PackageResources.ProcessExistingFileJob.STATUS_DOWNLOAD);
+                String locator = getWsdlFile().getLocator();
+                IntegrationServer server = IntegrationServer.getInstance();
+                IWebServiceInfoProvider call = server.getServerCall(
+                                IWebServiceInfoProvider.class);
+                call.downloadWsdl(locator, new DownloadCallback());
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallell(task);
+    }

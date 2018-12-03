@@ -1,0 +1,7 @@
+    public ServerGuid getGuid() {
+        String s = (String) m_properties.get(Property.GUID);
+        if (s == null) {
+            s = m_file.getParentFile().getName();
+        }
+        return new ServerGuid(s);
+    }

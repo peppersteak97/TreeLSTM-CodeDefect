@@ -1,0 +1,3 @@
+	public TreeComponent getTreeComponent(){
+		return m_tree;
+	}

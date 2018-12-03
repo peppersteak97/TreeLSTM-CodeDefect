@@ -1,0 +1,5 @@
+    protected PopupMenuButton createPopupMenuToolBarButton() {
+        JPopupMenu pm = getToolbarPopupMenu();
+        return (pm == null) ? null : 
+            IntegrationUiUtils.createDropDownMenuButton(pm);
+    }

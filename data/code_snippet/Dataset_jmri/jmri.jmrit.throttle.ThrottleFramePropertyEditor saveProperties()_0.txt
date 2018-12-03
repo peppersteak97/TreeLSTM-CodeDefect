@@ -1,0 +1,10 @@
+    private void saveProperties()
+    {
+        if (isDataValid())
+        {
+        	frame.titleText = titleField.getText();
+            frame.titleTextType = titleTextTypes[titleType.getSelectedIndex()];
+            frame.setFrameTitle();
+            finishEdit();
+        }
+    }

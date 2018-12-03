@@ -1,0 +1,3 @@
+	public Set entrySet() {
+		return m_mapmap.entrySet();
+	}

@@ -1,0 +1,14 @@
+    private void checkNoneNodeNeeded() {
+        int childCount = getRoot().getChildCount();
+        if (childCount == 0) {
+            if (m_noneNode == null) {
+                m_noneNode = TreeNode.getNoneNode(null);
+            }
+            insertNode(m_noneNode, getRoot());
+        }
+        else if (childCount > 1) {
+            if (getRoot().getChildAt(0) == m_noneNode) {
+                removeNode(m_noneNode);
+            }
+        }
+    }

@@ -1,0 +1,15 @@
+    private JComponent createDisplayer() {
+        OneColumnPanel p = createDisplayData();
+        m_columnArea = ComponentDecorFactory.invisible(p).getUi();
+        JPanel capsule = new JPanel(new FlowLayout(FlowLayout.LEADING, 10, 0));
+        capsule.add(m_columnArea);
+        m_dropDown = new DropDownPanel(capsule, m_dbObject.getName(), true);
+        m_dropDown.setOpaque(false);
+        m_dropDown.addChangeListener(new ChangeListener() {
+
+            public void stateChanged(ChangeEvent e) {
+                fireLayoutChanged(m_displayer);
+            }
+        });
+        return m_dropDown.getDisplayer();
+    }

@@ -1,0 +1,1 @@
+  public String lastEntry() { return _vector.get(_cursor - 1); }

@@ -1,0 +1,6 @@
+    public void setTitle() {
+        String name = "";
+        if (getTarget().getTopLevelAncestor()!=null) name=((JFrame)getTarget().getTopLevelAncestor()).getTitle();
+        if (name==null || name.equals("")) super.setTitle("Editor");
+        super.setTitle(name+" "+rb.getString("LabelEditor"));
+    }

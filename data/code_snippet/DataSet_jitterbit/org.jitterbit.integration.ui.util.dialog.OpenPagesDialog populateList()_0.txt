@@ -1,0 +1,9 @@
+    private void populateList() {
+        final ListModel model = createListModel();
+        UiUtils.runOnEventThread(new Runnable() {
+            
+            public void run() {
+                m_pageList.setModel(model);
+            }
+        });
+    }

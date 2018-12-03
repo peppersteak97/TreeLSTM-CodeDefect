@@ -1,0 +1,3 @@
+    public boolean isActive() {
+        return m_startDate != null || m_endDate != null;
+    }

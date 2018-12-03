@@ -1,0 +1,57 @@
+  public void testMetaKeyPress() throws BadLocationException {
+    final DefinitionsPane defPane = _frame.getCurrentDefPane();
+    final OpenDefinitionsDocument doc = defPane.getOpenDefDocument();
+    _assertDocumentEmpty(doc, "point 0");
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        defPane.processKeyEvent(new KeyEvent(defPane, PRESSED, (new Date()).getTime(), M_MASK, META, UNDEFINED));
+        _frame.validate();
+      }
+    });
+    Utilities.clearEventQueue();
+        
+    _assertDocumentEmpty(doc, "point 1");
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        defPane.processKeyEvent(new KeyEvent(defPane, PRESSED, (new Date()).getTime(), M_MASK, W, UNDEFINED));
+        _frame.validate();
+      }
+    }); 
+    Utilities.clearEventQueue();
+    
+    _assertDocumentEmpty(doc, "point 2");
+        
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        defPane.processKeyEvent(new KeyEvent(defPane, TYPED, (new Date()).getTime(), M_MASK, VK_UNDEF, 'w'));
+        _frame.validate();
+      }
+    });
+    Utilities.clearEventQueue();
+    
+    _assertDocumentEmpty(doc, "point 3");
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        defPane.processKeyEvent(new KeyEvent(defPane, RELEASED, (new Date()).getTime(), M_MASK, W, UNDEFINED));
+        _frame.validate();
+      }
+    });
+    Utilities.clearEventQueue();
+     
+    _assertDocumentEmpty(doc, "point 4");
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        defPane.processKeyEvent(new KeyEvent(defPane, RELEASED, (new Date()).getTime(), 0, META, UNDEFINED));
+        _frame.validate();
+      }
+    });
+    Utilities.clearEventQueue();
+    
+    _assertDocumentEmpty(doc, "point 5");
+    
+    _log.log("testMetaKeyPress completed");
+  }

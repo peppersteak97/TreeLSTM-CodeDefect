@@ -1,0 +1,4 @@
+    static Pattern getTurnoutPattern() {
+        if (turnoutPattern == null) turnoutPattern = Pattern.compile(turnoutRegex);
+        return turnoutPattern;
+    }

@@ -1,0 +1,4 @@
+  protected void _removeIndenter() {
+    DrJava.getConfig().removeOptionListener(INDENT_LEVEL, _listener1);
+    DrJava.getConfig().removeOptionListener(AUTO_CLOSE_COMMENTS, _listener2);
+  }

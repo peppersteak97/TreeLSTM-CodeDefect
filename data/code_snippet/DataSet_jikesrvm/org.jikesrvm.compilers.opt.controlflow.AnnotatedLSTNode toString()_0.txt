@@ -1,0 +1,43 @@
+  public String toString() {
+    String ifCmpString = "??";
+    if ((ifCmpInstr != null) && (IfCmp.conforms(ifCmpInstr))) {
+      ifCmpString = IfCmp.getCond(ifCmpInstr).toString();
+    }
+            predecessor +
+            "\n" +
+            "loop : " +
+            initialIteratorValue +
+            ";\n" +
+            "head {" +
+            header +
+            "}:\n" +
+            "   " +
+            phiLoopIterator +
+            "=phi(" +
+            initialIteratorValue +
+            "," +
+            carriedLoopIterator +
+            ");\n" +
+            "   " +
+            carriedLoopIterator +
+            "=" +
+            phiLoopIterator +
+            "+" +
+            strideValue +
+            ";\n" +
+            loop +
+            "\n" +
+            "exit {" +
+            exit +
+            "}:\n" +
+            "   if(" +
+            carriedLoopIterator +
+            " " +
+            ifCmpString +
+            " " +
+            terminalIteratorValue +
+            ")\n" +
+            "      goto head;\n" +
+            successor +
+            "\n");
+  }

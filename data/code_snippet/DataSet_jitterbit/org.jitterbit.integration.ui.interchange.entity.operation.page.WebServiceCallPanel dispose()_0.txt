@@ -1,0 +1,7 @@
+    public void dispose() {
+        m_sourceAndTargetCombos.dispose();
+        m_wsCallControl.dispose();
+        m_requestControl.dispose();
+        m_responseControl.dispose();
+        super.dispose();
+    }

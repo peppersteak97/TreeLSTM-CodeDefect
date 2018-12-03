@@ -1,0 +1,3 @@
+  void setMark1() {
+    operatorInfo |= MARK1;
+  }

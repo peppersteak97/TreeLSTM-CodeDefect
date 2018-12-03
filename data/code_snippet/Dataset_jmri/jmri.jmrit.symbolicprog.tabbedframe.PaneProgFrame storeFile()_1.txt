@@ -1,0 +1,26 @@
+    public boolean storeFile() {
+        log.debug("storeFile starts");
+
+        updateDccAddress();
+        _rPane.update(_rosterEntry);
+
+        if (_rosterEntry.getId().equals("") || _rosterEntry.getId().equals(rbt.getString("LabelNewDecoder"))) {
+            log.debug("storeFile without a filename; issued dialog");
+            JOptionPane.showMessageDialog(this, rbt.getString("PromptFillInID"));
+            return false;
+        }
+        _rosterEntry.ensureFilenameExists();
+        String filename = _rosterEntry.getFileName();
+
+        _rosterEntry.writeFile(cvModel, iCvModel, variableModel );
+
+        variableModel.setFileDirty(false);
+
+        XmlFile.ensurePrefsPresent(XmlFile.prefsDir());
+        Roster.writeRosterFile();
+
+        progStatus.setText(java.text.MessageFormat.format(
+                                rbt.getString("StateSaveOK"),
+                                new String[]{filename}));
+        return true;
+    }

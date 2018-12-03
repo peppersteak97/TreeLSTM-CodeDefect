@@ -1,0 +1,7 @@
+	private void refresh() {
+		removeAll();
+        for( File file : m_mapFileToFrame.keySet() ) {
+            XmlDocumentFrame frame = m_mapFileToFrame.get(file);
+            add( getMenuItem(file, frame) );
+        }
+	}

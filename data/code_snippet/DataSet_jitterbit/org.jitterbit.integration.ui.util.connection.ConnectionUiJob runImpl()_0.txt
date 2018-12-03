@@ -1,0 +1,15 @@
+    protected final void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus(PackageResources.Job.STARTED);
+        Runnable task = new Runnable() {
+          
+            public void run() {
+                makeServerCall();
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallellAndWait(task, this);
+        waitUntilDone();
+    }

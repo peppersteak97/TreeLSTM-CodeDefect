@@ -1,0 +1,3 @@
+  public boolean isEQUAL() {
+    return value == EQUAL;
+  }

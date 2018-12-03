@@ -1,0 +1,54 @@
+  public void getNodePath1() throws Exception {
+    XMLConfig xc = 
+      new XMLConfig(new StringReader(
+                                     "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><concutest>\n"
+                                       +"  <threadcheck:def>\n"
+                                       +"    <invariant>\n"
+                                       +"      <name type=\"only\" value=\"childclass1\"/>\n"
+                                       +"    </invariant>\n"
+                                       +"    <class name=\"sample.threadCheck.ThreadCheckSample4\"/>\n"
+                                       +"  </threadcheck:def>\n"
+                                       +"  <threadcheck:def>\n"
+                                       +"    <invariant>\n"
+                                       +"      <name type=\"only\" value=\"childclass-method1\"/>\n"
+                                       +"    </invariant>\n"
+                                       +"    <method name=\"sample.threadCheck.ThreadCheckSample4\" sig=\"run()V\"/>\n"
+                                       +"    <method name=\"sample.threadCheck.ThreadCheckSample4\" sig=\"run2()V\"/>\n"
+                                       +"  </threadcheck:def>\n"
+                                       +"</concutest>"));
+    assertEquals("Path of null is wrong", "", XMLConfig.getNodePath(null));
+    
+    List<Node> roots = xc.getNodes("concutest");
+    Assert.assertEquals(1, roots.size());
+    assertEquals("Path of "+roots.get(0).getNodeName()+" is wrong", "concutest", XMLConfig.getNodePath(roots.get(0)));
+    
+    List<Node> defs = xc.getNodes("concutest/threadcheck:def");
+    Assert.assertEquals(2, defs.size());
+    
+    for(Node def: defs) {
+      assertEquals("Path of "+def.getNodeName()+" is wrong", "concutest/threadcheck:def", XMLConfig.getNodePath(def));
+      List<Node> invs = xc.getNodes("invariant", def);
+      Assert.assertEquals(1, invs.size());
+      Node inv = invs.get(0);
+      assertEquals("Path of "+inv.getNodeName()+" is wrong", "concutest/threadcheck:def/invariant", 
+                   XMLConfig.getNodePath(inv));
+      List<Node> annots = xc.getNodes("*", inv);
+      Assert.assertEquals(1, annots.size());
+      assertEquals("Path of "+annots.get(0).getNodeName()+" is wrong", "concutest/threadcheck:def/invariant/name", 
+                   XMLConfig.getNodePath(annots.get(0)));
+      List<Node> classes = xc.getNodes("class", def);
+      List<Node> methods = xc.getNodes("method", def);
+      Assert.assertTrue("There must be at least one class or method per definition", 
+                        classes.size() + methods.size() > 0);
+      List<Node> all = xc.getNodes("*", def);
+      Assert.assertEquals(0, all.size()-invs.size()-classes.size()-methods.size());
+      for(Node target: classes) {
+        assertEquals("Path of "+target.getNodeName()+" is wrong", "concutest/threadcheck:def/class", 
+                     XMLConfig.getNodePath(target));
+      }
+      for(Node target: methods) {
+        assertEquals("Path of "+target.getNodeName()+" is wrong", "concutest/threadcheck:def/method", 
+                     XMLConfig.getNodePath(target));
+      }
+    }
+  }

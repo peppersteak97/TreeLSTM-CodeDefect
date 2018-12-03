@@ -1,0 +1,7 @@
+  public void organizerThresholdReached() {
+    if (Controller.options.LOGGING_LEVEL >= 2) {
+      synchronized (log) {
+        log.println(getTime() + " OrganizerThread reached sample size threshold\n");
+      }
+    }
+  }

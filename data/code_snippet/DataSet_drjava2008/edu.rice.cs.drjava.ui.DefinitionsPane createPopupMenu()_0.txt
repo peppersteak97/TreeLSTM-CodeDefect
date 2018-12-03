@@ -1,0 +1,77 @@
+  private void createPopupMenu() {
+    _popMenu = new JPopupMenu();
+
+    _popMenu.add(_mainFrame.cutAction);
+    _popMenu.add(_mainFrame.copyAction);
+    _popMenu.add(_mainFrame.pasteAction);
+    _popMenu.addSeparator();
+
+    JMenuItem indentItem = new JMenuItem("Indent Line(s)");
+    indentItem.addActionListener(new AbstractAction() {
+      public void actionPerformed(ActionEvent ae) {
+        _mainFrame.hourglassOn();
+        try {
+          indent();
+        } finally {
+          _mainFrame.hourglassOff();
+        }
+      }
+    });
+    _popMenu.add(indentItem);
+
+    JMenuItem commentLinesItem = new JMenuItem("Comment Line(s)");
+    commentLinesItem.addActionListener(new AbstractAction() {
+      public void actionPerformed( ActionEvent ae) {
+        _mainFrame.hourglassOn();
+        try{
+          _doc.setCurrentLocation(getCaretPosition());
+          _commentLines();
+        }
+        finally{ _mainFrame.hourglassOff(); }
+      }
+    });
+    _popMenu.add(commentLinesItem);
+
+    JMenuItem uncommentLinesItem = new JMenuItem("Uncomment Line(s)");
+    uncommentLinesItem.addActionListener ( new AbstractAction() {
+      public void actionPerformed( ActionEvent ae) {
+        _doc.setCurrentLocation(getCaretPosition());
+        _uncommentLines();
+      }
+    });
+    _popMenu.add(uncommentLinesItem);
+
+    /* Go to this file... */
+    _popMenu.addSeparator();
+    JMenuItem gotoFileUnderCursorItem = new JMenuItem("Go to File Under Cursor");
+    gotoFileUnderCursorItem.addActionListener ( new AbstractAction() {
+      public void actionPerformed( ActionEvent ae) {
+        _doc.setCurrentLocation(getCaretPosition());
+        _mainFrame._gotoFileUnderCursor();
+      }
+    });
+    _popMenu.add(gotoFileUnderCursorItem);
+
+    /* Toggle bookmark */
+    JMenuItem toggleBookmarkItem = new JMenuItem("Toggle Bookmark");
+    toggleBookmarkItem.addActionListener ( new AbstractAction() {
+      /** Toggle the selected line as a bookmark.  Only runs in event thread. */
+      public void actionPerformed( ActionEvent ae) {
+        _mainFrame.toggleBookmark();
+      }
+    });
+    _popMenu.add(toggleBookmarkItem);
+      
+    if (_mainFrame.getModel().getDebugger().isAvailable()) {
+      _popMenu.addSeparator();
+
+      JMenuItem breakpointItem = new JMenuItem("Toggle Breakpoint");
+      breakpointItem.addActionListener( new AbstractAction() {
+        public void actionPerformed( ActionEvent ae ) {
+          setCaretPosition(viewToModel(_popupMenuMA.getLastMouseClick().getPoint()));
+          _mainFrame.debuggerToggleBreakpoint();
+        }
+      });
+      _toggleBreakpointMenuItem = _popMenu.add(breakpointItem);
+    }
+  }

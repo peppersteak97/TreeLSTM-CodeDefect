@@ -1,0 +1,7 @@
+    private Border getFunkyBorder() {
+        return new CompoundBorder(
+                        new CompoundBorder(
+                                        new LineBorder(BLUE, 2),
+                                        new LineBorder(Color.GREEN, 1)),
+                                new LineBorder(BLUE, 3));
+    }

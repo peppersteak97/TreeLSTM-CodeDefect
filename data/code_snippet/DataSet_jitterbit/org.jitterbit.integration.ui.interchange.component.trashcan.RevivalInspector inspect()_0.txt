@@ -1,0 +1,23 @@
+    Object[] inspect() {
+        if (m_toRevive.isEmpty()) {
+            return m_toRevive.toArray();
+        }
+        m_initialObjects = getSet(m_toRevive);
+        
+        Set<Key> required = getRequiredObjects();
+        if (required == null) {
+            return m_toRevive.toArray();
+        }
+        
+        Set<Key> additional = getAdditionalObjectsToRevive(required);
+        if (additional == null) {
+            return m_toRevive.toArray();
+        }
+        
+        if (askUserAboutAdditionalObjects(additional)) {
+            m_initialObjects.addAll(additional);
+            return fromKeys(m_initialObjects).toArray();
+        }
+        
+        return new Object[0];
+    }

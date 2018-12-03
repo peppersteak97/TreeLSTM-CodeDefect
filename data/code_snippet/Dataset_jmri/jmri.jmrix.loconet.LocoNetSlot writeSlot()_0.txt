@@ -1,0 +1,15 @@
+    public LocoNetMessage writeSlot() {
+        LocoNetMessage l = new LocoNetMessage(14);
+        l.setOpCode( LnConstants.OPC_WR_SL_DATA );
+        l.setElement(1, 0x0E);
+        l.setElement(2, slot & 0x7F);
+        l.setElement(3, stat & 0x7F);
+        l.setElement(4, addr & 0x7F); l.setElement(9, (addr/128)&0x7F);
+        l.setElement(5, spd & 0x7F);
+        l.setElement(6, dirf & 0x7F);
+        l.setElement(7, trk & 0x7F);
+        l.setElement(8, ss2 & 0x7F);
+        l.setElement(10, snd & 0x7F);
+        l.setElement(11, id&0x7F); l.setElement(12, (id/128)&0x7F );
+        return l;
+    }

@@ -1,0 +1,14 @@
+    static public void configureManagers() {
+        jmri.InstanceManager.setPowerManager(new jmri.jmrix.loconet.pr2.LnPr2PowerManager());
+
+        /* jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.loconet.LnTurnoutManager()); */
+
+        /* jmri.InstanceManager.setLightManager(new jmri.jmrix.loconet.LnLightManager()); */
+
+        /* jmri.InstanceManager.setSensorManager(new jmri.jmrix.loconet.LnSensorManager()); */
+
+        jmri.InstanceManager.setThrottleManager(new jmri.jmrix.loconet.LnPr2ThrottleManager());
+
+        /* jmri.InstanceManager.setReporterManager(new jmri.jmrix.loconet.LnReporterManager()); */
+
+    }

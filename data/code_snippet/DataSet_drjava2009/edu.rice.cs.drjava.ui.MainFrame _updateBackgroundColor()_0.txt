@@ -1,0 +1,7 @@
+  private void _updateBackgroundColor() {
+    Color back = DrJava.getConfig().getSetting(DEFINITIONS_BACKGROUND_COLOR);
+    
+    _model.getDocCollectionWidget().setBackground(back);
+    
+    _repaintLineNums();
+  }

@@ -1,0 +1,8 @@
+    private OneColumnPanel createTreePanel() {
+        IComponentDecor decor = ComponentDecorFactory.centerBorder(m_tree);
+        return createComponentPanel(
+                        decor.getUi(), 
+                        null,
+                        false,
+                        0.0);
+    }

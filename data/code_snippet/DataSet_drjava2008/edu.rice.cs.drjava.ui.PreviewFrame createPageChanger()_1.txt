@@ -1,0 +1,43 @@
+  private PageChangerUpdater createPageChanger() {
+    try {
+      Class<?> spinnerClass = Class.forName("javax.swing.JSpinner");
+      final JComponent spinner = (JComponent) spinnerClass.newInstance();
+      final Method getter = spinnerClass.getMethod("getValue",new Class[0]);
+      Object model = callMethod(spinner, spinnerClass, "getModel",null,null);
+      Class<?> modelClass = model.getClass();
+      Class<?>[] ca = new Class<?>[] {Comparable.class};
+      Object[] aa = new Object[] {Integer.valueOf(1)};
+      callMethod(model,modelClass,"setMinimum",ca,aa);
+      aa[0] = Integer.valueOf(_print.getNumberOfPages());
+      callMethod(model,modelClass,"setMaximum",ca,aa);
+      ca[0] = ChangeListener.class;
+      aa[0] = new ChangeListener() {
+        public void stateChanged(ChangeEvent ev) {
+          int num = _pageNumber;
+          try {
+            num = ((Number) getter.invoke(spinner,new Object[0])).intValue()-1;
+            if ((num >= 0) && (num < _print.getNumberOfPages())) _goToPage(num);
+            else _updateActions();
+          }
+          catch(IllegalAccessException ex) { _updateActions(); }
+          catch(InvocationTargetException ex) { _updateActions(); }
+        }
+      };
+      callMethod(spinner, spinnerClass,"addChangeListener",ca,aa);
+      return new JSpinnerChanger(spinnerClass, spinner);
+    } catch(Exception e) {
+      /** Displays the previous page of the document. */
+      final JTextField tf = new JTextField();
+      tf.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ae) {
+          try {
+            int pageToGoTo = Integer.parseInt(tf.getText()) - 1;
+            if ((pageToGoTo < 0) || (pageToGoTo >= _print.getNumberOfPages())) { _updateActions(); } 
+            else _goToPage(pageToGoTo); 
+          } 
+          catch (NumberFormatException e) { _updateActions(); }
+        }
+      });
+      return new JTextFieldChanger(tf);
+    }
+  }

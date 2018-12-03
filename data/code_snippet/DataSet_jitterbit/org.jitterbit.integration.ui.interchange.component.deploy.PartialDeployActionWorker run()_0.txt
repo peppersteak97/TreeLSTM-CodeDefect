@@ -1,0 +1,13 @@
+    public void run() {
+        m_action.setEnabled(false);
+
+        try {
+            m_partialProject = InterchangeProject.createPartialProject(m_project, m_items);
+            m_deployer.addCallback(new CallbackImpl());
+            IDeployData data = createDeployData();
+            m_deployer.deploy(data);
+        }
+        catch (InconsistentProjectDataException ex) {
+            handleException(ex);
+        }
+    }

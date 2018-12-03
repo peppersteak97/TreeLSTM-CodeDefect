@@ -1,0 +1,3 @@
+    public DatabaseConnections getConnection() {
+        return m_connections;
+    }

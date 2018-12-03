@@ -1,0 +1,21 @@
+  public void testCloseMultipleFiles() throws BadLocationException {
+    assertNumOpenDocs(1);
+    OpenDefinitionsDocument doc1 = setupDocument(FOO_TEXT);
+    assertNumOpenDocs(2);
+    OpenDefinitionsDocument doc2 = setupDocument(BAR_TEXT);
+    assertNumOpenDocs(3);
+    
+    _model.closeFile(doc1);
+    assertNumOpenDocs(2);
+    
+    List<OpenDefinitionsDocument> docs = _model.getSortedOpenDefinitionsDocuments();
+    assertEquals("size of document array", 2, docs.size());
+    assertContents(BAR_TEXT, docs.get(1));
+    
+    _model.closeFile(doc2);
+    assertNumOpenDocs(1);
+    docs = _model.getOpenDefinitionsDocuments();
+    assertEquals("size of document array", 1, docs.size());
+    
+    _log.log(this + ".testCloseMultipleFiles() completed");
+  }

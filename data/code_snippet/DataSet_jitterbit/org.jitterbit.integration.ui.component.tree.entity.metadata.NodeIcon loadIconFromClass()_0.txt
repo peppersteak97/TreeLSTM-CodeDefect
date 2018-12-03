@@ -1,0 +1,24 @@
+    private void loadIconFromClass() {
+        try {
+            Class<? extends Icon> clazz = 
+                Class.forName(m_iconLocation).asSubclass(Icon.class);
+            m_icon = clazz.newInstance();
+        }
+        catch (ClassNotFoundException e) {
+            throw new XmlTreeMetaDataRuntimeException(
+                            "Failed to load node icon from class.", e);
+        }
+        catch (ClassCastException e) {
+            throw new XmlTreeMetaDataRuntimeException("Invalid icon class. The "
+                            + "class " + m_iconLocation + " does not implement the "
+                            + "javax.swing.Icon interface.");
+        }
+        catch (InstantiationException e) {
+            throw new XmlTreeMetaDataRuntimeException(
+                            "Failed to load node icon from class.", e);
+        }
+        catch (IllegalAccessException e) {
+            throw new XmlTreeMetaDataRuntimeException(
+                            "Failed to load node icon from class.", e);
+        }
+    }

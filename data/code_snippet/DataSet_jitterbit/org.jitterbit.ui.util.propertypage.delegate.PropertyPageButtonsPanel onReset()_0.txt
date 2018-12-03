@@ -1,0 +1,4 @@
+	public void onReset() {
+		m_propertyPage.onReset(false);
+		setButtonsEnabled(false);
+	}

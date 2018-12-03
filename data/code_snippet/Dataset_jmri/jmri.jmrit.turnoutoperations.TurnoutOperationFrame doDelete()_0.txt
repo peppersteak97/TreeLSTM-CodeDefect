@@ -1,0 +1,14 @@
+	private void doDelete() {
+		String query = "";;
+		if (currentOperation != null && !currentOperation.isDefinitive()) {
+			if (currentOperation.isInUse()) {
+				query = "Operation "+currentOperation.getName()+" is in use\n"+
+						"Turnouts using it will revert to the global default\n";
+			}
+			if (JOptionPane.showConfirmDialog(this, query+"Delete operation "+currentOperation.getName()+"?",
+					"Confirm delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+				currentOperation.dispose();
+				populateTabs();
+			}
+		}
+	}

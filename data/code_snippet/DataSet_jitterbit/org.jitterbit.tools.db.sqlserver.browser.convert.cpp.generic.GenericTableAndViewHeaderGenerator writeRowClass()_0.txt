@@ -1,0 +1,11 @@
+    private void writeRowClass() {
+        addLine("class " + getRowClassName());
+        addLine("{");
+        
+        writeRowClassPublic();
+        writeRowClassPrivate();
+        
+        addLine("};");
+        addLine();
+        addLine();
+    }

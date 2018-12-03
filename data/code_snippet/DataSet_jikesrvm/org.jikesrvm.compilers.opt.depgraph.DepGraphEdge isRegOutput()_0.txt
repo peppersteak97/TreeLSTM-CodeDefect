@@ -1,0 +1,1 @@
+  public boolean isRegOutput() { return (scratch & REG_OUTPUT) != 0; }

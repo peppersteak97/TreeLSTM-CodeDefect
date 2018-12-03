@@ -1,0 +1,7 @@
+    private void createDisplayer() {
+        m_logDisplayer = new OperationLogDisplayer(getWindow());
+        m_logDisplayer.getNavigationControl().addControl(m_helpButton, Integer.MAX_VALUE - 1);
+        m_logDisplayer.setDisplayedSubject(getObject());
+        IComponentDecor decor = ComponentDecorFactory.centerBorder(m_logDisplayer);
+        setDisplayPanel(decor.getUi());
+    }

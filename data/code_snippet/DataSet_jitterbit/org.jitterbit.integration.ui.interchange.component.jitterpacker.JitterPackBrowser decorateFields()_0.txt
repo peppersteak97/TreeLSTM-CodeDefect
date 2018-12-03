@@ -1,0 +1,3 @@
+    public void decorateFields() {
+        m_locationBrowser.decorateFields();
+    }

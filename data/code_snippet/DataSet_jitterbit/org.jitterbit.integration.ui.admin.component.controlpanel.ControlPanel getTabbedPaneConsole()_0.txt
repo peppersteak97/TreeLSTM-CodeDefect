@@ -1,0 +1,8 @@
+    private JComponent getTabbedPaneConsole() {
+        JTabbedPane consolePane = createTabbedPane();
+        consolePane.addChangeListener(new TabPaneListener());
+        consolePane.addTab(PackageResources.Consoles.TITLE,
+                        createConsoleLaunchingPanel());
+        consolePane.addTab(m_treePanel.getTitle(), m_treePanel.getPanel());
+        return consolePane;
+    }

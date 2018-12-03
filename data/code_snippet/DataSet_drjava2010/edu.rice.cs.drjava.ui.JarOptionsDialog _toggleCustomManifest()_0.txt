@@ -1,0 +1,4 @@
+  private void _toggleCustomManifest(){
+    _editManifest.setEnabled(_customManifest.isSelected() && (_jarClasses.isSelected() || _jarAll.isSelected()));
+    _setEnableExecutable(!_customManifest.isSelected() && (_jarClasses.isSelected() || _jarAll.isSelected()));
+  }

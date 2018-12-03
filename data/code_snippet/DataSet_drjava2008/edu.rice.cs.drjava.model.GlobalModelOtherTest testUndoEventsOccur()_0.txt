@@ -1,0 +1,31 @@
+  public void testUndoEventsOccur() /* throws BadLocationException */ {
+    
+    final TestListener listener = new TestListener() { 
+      public void undoableEditHappened() { 
+        undoableEditCount++; 
+      } 
+    };
+    
+    final OpenDefinitionsDocument doc = _model.newFile();
+
+    Utilities.clearEventQueue();
+    
+    _model.addListener(listener);
+    doc.addUndoableEditListener(new UndoableEditListener() {
+      public void undoableEditHappened(UndoableEditEvent e) { 
+        doc.getUndoManager().addEdit(e.getEdit()); 
+      }
+    });
+    
+    changeDocumentText("test", doc);
+        
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        listener.assertUndoableEditCount(1);
+        
+        _model.removeListener(listener);
+      }
+    });
+    Utilities.clearEventQueue();
+    _log.log("testUndoEventsOccur() completed");
+  }

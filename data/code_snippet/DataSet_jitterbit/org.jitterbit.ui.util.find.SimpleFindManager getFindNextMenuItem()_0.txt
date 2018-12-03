@@ -1,0 +1,5 @@
+    public JMenuItem getFindNextMenuItem() {
+        JMenuItem item = new JMenuItem(m_findNextAction);
+        item.setDisplayedMnemonicIndex(5);
+        return item;
+    }

@@ -1,0 +1,3 @@
+	public List<InterchangeProjectForDownload> getAvailableInterchangeProjects() {
+		return m_interchangeProjects;
+	}

@@ -1,0 +1,7 @@
+  private void _readInputIntoBuffer() throws IOException {
+    String input = _getInput();
+
+    for(int i = 0; i < input.length(); i++) {
+      _buffer.add(new Character(input.charAt(i)));
+    }
+  }

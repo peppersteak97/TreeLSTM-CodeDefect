@@ -1,0 +1,5 @@
+        public void dispose() {
+            if (_var != null && _l != null ) _var.removePropertyChangeListener(_l);
+            _l = null;
+            _var = null;
+        }

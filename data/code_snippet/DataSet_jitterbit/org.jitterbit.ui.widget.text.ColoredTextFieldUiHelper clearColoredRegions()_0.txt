@@ -1,0 +1,3 @@
+    void clearColoredRegions() {
+        m_coloredRegions = createNewMap();
+    }

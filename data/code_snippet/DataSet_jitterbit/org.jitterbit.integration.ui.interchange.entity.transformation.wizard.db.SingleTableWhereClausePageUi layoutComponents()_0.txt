@@ -1,0 +1,15 @@
+    private void layoutComponents() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setOpaque(false, false);
+        p.setInsets(2, 2, 2, 2);
+        
+        String list_title = PackageResources.SingleTableWhereClausePage.Labels.WHERE_CLAUSE;
+        p.add(IntegrationUiStyleSheet.CaptionText.makeJLabel(list_title));
+        
+        p.setInsets(0,2,10,2);
+        JScrollPane scroll = ComponentFactories.scrollFactory().newScrollPane(m_sqlTextArea);
+        scroll.setMinimumSize(m_sqlTextArea.getPreferredSize());
+        p.add(scroll);
+        p.add(m_table);
+        m_displayer = ComponentDecorFactory.invisible(p).getUi();
+    }

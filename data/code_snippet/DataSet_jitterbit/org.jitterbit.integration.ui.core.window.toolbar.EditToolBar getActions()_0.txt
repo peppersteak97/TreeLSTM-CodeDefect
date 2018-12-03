@@ -1,0 +1,4 @@
+        for (WindowActionFactory factory : getActions()) {
+            IApplicationAction a = factory.get(getWindow());
+            btns.add(createButton(a, WindowActionDictionary.DICTIONARY));
+        }

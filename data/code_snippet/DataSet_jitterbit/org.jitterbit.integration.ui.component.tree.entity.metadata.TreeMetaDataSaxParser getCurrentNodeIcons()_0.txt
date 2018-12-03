@@ -1,0 +1,4 @@
+    Collection<NodeIcon> getCurrentNodeIcons() {
+        return (m_mapCurrentNodeIcons == null) ? new ArrayList<NodeIcon>()
+                        : m_mapCurrentNodeIcons.values();
+    }

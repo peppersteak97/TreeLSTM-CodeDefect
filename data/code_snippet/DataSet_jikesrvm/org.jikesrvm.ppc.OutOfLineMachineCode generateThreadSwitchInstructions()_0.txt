@@ -1,0 +1,37 @@
+  private static ArchitectureSpecific.CodeArray generateThreadSwitchInstructions() {
+    Assembler asm = new ArchitectureSpecific.Assembler(0);
+
+    Offset ipOffset = ArchEntrypoints.registersIPField.getOffset();
+    Offset fprsOffset = ArchEntrypoints.registersFPRsField.getOffset();
+    Offset gprsOffset = ArchEntrypoints.registersGPRsField.getOffset();
+
+    asm.emitLAddrOffset(T2,
+                        T0,
+
+    for (int i = FIRST_NONVOLATILE_FPR; i <= LAST_NONVOLATILE_FPR; ++i) {
+      asm.emitSTFD(i, i << LOG_BYTES_IN_DOUBLE, T3);
+    }
+
+    for (int i = FIRST_NONVOLATILE_GPR; i <= LAST_NONVOLATILE_GPR; ++i) {
+      asm.emitSTAddr(i, i << LOG_BYTES_IN_ADDRESS, T3);
+    }
+
+    asm.emitSTAddr(FP, FP << LOG_BYTES_IN_ADDRESS, T3);
+
+
+    for (int i = FIRST_NONVOLATILE_FPR; i <= LAST_NONVOLATILE_FPR; ++i) {
+      asm.emitLFD(i, i << LOG_BYTES_IN_DOUBLE, T0);
+    }
+
+    for (int i = FIRST_NONVOLATILE_GPR; i <= LAST_NONVOLATILE_GPR; ++i) {
+      asm.emitLAddr(i, i << LOG_BYTES_IN_ADDRESS, T0);
+    }
+
+    asm.emitLAddr(FP, FP << LOG_BYTES_IN_ADDRESS, T0);
+
+    asm.emitLAddrOffset(T0, T1, ipOffset);
+    asm.emitMTLR(T0);
+    asm.emitBCLR();
+
+    return asm.makeMachineCode().getInstructions();
+  }

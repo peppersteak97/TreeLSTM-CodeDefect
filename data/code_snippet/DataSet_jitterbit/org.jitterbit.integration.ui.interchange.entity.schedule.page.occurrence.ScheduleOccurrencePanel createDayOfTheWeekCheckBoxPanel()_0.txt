@@ -1,0 +1,4 @@
+    private void createDayOfTheWeekCheckBoxPanel() {
+        m_dayOfTheWeekCheckBoxPanel = new DayOfTheWeekCheckBoxPanel();
+        m_dayOfTheWeekCheckBoxPanel.setOpaque(false);
+    }

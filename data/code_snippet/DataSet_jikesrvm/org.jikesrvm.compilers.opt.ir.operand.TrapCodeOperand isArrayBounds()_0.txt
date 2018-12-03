@@ -1,0 +1,3 @@
+  public boolean isArrayBounds() {
+    return trapCode == RuntimeEntrypoints.TRAP_ARRAY_BOUNDS;
+  }

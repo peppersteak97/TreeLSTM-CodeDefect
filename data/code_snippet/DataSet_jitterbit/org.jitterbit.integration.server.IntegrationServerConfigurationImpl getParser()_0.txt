@@ -1,0 +1,11 @@
+    private DefaultKongaSaxParser getParser() {
+        DefaultKongaSaxParser parser = new DefaultKongaSaxParser();
+        IStartElementHandlerFactory factory = new IStartElementHandlerFactory() {
+
+            public IStartElementHandler getHandler() {
+                return new ServerCallFactoryHandler();
+            }
+        };
+        parser.addStartElementHandlerFactory(ServerCallFactoryHandler.ROOT_ELEMENT, factory);
+        return parser;
+    }

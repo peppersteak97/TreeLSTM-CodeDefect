@@ -1,0 +1,83 @@
+  private void rewriteStackLocations() {
+    ESPOffset = getFrameFixedSize() + 4;
+    Register ESP = ir.regpool.getPhysicalRegisterSet().getESP();
+
+    boolean seenReturn = false;
+    for (InstructionEnumeration e = ir.forwardInstrEnumerator(); e.hasMoreElements();) {
+      Instruction s = e.next();
+
+      if (s.isReturn()) {
+        seenReturn = true;
+        continue;
+      }
+
+      if (s.isBranch()) {
+        moveESPBefore(s, 0);
+        continue;
+      }
+
+      if (s.operator() == BBEND) {
+        if (seenReturn) {
+          seenReturn = false;
+          ESPOffset = 0;
+        } else {
+          moveESPBefore(s, 0);
+        }
+        continue;
+      }
+
+      if (s.operator() == ADVISE_ESP) {
+        ESPOffset = MIR_UnaryNoRes.getVal(s).asIntConstant().value;
+        continue;
+      }
+
+      if (s.operator() == REQUIRE_ESP) {
+        moveESPBefore(s, MIR_UnaryNoRes.getVal(s).asIntConstant().value);
+        continue;
+      }
+
+      if (s.operator() == YIELDPOINT_PROLOGUE ||
+          s.operator() == YIELDPOINT_BACKEDGE ||
+          s.operator() == YIELDPOINT_EPILOGUE) {
+        moveESPBefore(s, 0);
+        continue;
+      }
+
+      if (s.operator() == IA32_MOV) {
+        rewriteMoveInstruction(s);
+      }
+
+      if (s.operator() == IA32_POP) {
+        ESPOffset += 4;
+      }
+
+      for (OperandEnumeration ops = s.getOperands(); ops.hasMoreElements();) {
+        Operand op = ops.next();
+        if (op instanceof StackLocationOperand) {
+          StackLocationOperand sop = (StackLocationOperand) op;
+          int offset = sop.getOffset();
+          if (sop.isFromTop()) {
+            offset = FPOffset2SPOffset(offset);
+          }
+          offset -= ESPOffset;
+          byte size = sop.getSize();
+          MemoryOperand M =
+              MemoryOperand.BD(new RegisterOperand(ESP, TypeReference.Int),
+                                   Offset.fromIntSignExtend(offset),
+                                   size,
+                                   null,
+                                   null);
+          s.replaceOperand(op, M);
+        } else if (op instanceof MemoryOperand) {
+          MemoryOperand M = op.asMemory();
+          if ((M.base != null && M.base.getRegister() == ESP) || (M.index != null && M.index.getRegister() == ESP)) {
+            M.disp = M.disp.minus(ESPOffset);
+          }
+        }
+      }
+
+      if (s.operator() == IA32_PUSH) {
+        ESPOffset -= 4;
+      }
+    }
+  }

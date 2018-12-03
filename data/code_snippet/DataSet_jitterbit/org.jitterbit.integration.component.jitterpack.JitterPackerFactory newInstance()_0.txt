@@ -1,0 +1,9 @@
+    public static JitterPackerFactory newInstance() {
+        return new JitterPackerFactory() {
+
+            @Override
+            public IJitterPacker create() {
+                return new DefaultJitterPacker();
+            }
+        };
+    }

@@ -1,0 +1,1 @@
+  public LinkageError getError() { return _error; }

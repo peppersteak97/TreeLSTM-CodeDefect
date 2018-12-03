@@ -1,0 +1,28 @@
+  protected final void combineAddresses() {
+    if (VM.VerifyAssertions) VM._assert(AddrStack != null, "No address to combine");
+    AddrStackElement tmp = AddrStack;
+    AddrStack = AddrStack.next;
+    if (VM.VerifyAssertions) VM._assert(AddrStack != null, "only 1 address to combine");
+    if (tmp.base != null) {
+      if (AddrStack.base == null) {
+        AddrStack.base = tmp.base;
+      } else if (AddrStack.index == null) {
+        if (VM.VerifyAssertions) VM._assert(AddrStack.scale == (byte) 0);
+        AddrStack.index = tmp.base;
+      } else {
+        throw new OptimizingCompilerException("three base registers in address");
+      }
+    }
+    if (tmp.index != null) {
+      if (AddrStack.index == null) {
+        if (VM.VerifyAssertions) VM._assert(AddrStack.scale == (byte) 0);
+        AddrStack.index = tmp.index;
+        AddrStack.scale = tmp.scale;
+      } else if (AddrStack.base == null && tmp.scale == (byte) 0) {
+        AddrStack.base = tmp.base;
+      } else {
+        throw new OptimizingCompilerException("two scaled registers in address");
+      }
+    }
+    AddrStack.displacement = AddrStack.displacement.plus(tmp.displacement.toInt());
+  }

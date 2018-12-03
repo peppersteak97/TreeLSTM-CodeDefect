@@ -1,0 +1,114 @@
+    public void setup() {
+        startButton.setEnabled(false);
+        startButton.setToolTipText("You can only configure this once");
+        startButton.setVisible(false);
+
+        clearButton.setEnabled(true);
+        clearButton.setVisible(true);
+
+        Sensor s;
+        try {
+            s = InstanceManager.sensorManagerInstance().
+                    provideSensor(startSensor.getText());
+            if (s==null) throw new Exception();
+        }
+        catch (Exception e) {
+            log.error("Start sensor NFG: "+startSensor.getText());
+            startButton.setEnabled(true);
+            return;
+        }
+        s.addPropertyChangeListener(new java.beans.PropertyChangeListener(){
+                public void propertyChange(java.beans.PropertyChangeEvent e) {
+                    SpeedometerFrame.log.debug("start sensor fired");
+                    if (e.getPropertyName().equals("KnownState")) {
+                        int now = ((Integer) e.getNewValue()).intValue();
+                        if ( (now==Sensor.ACTIVE && startOnEntry.isSelected())
+                             || (now==Sensor.INACTIVE && startOnExit.isSelected()) ) {
+                            if (log.isDebugEnabled()) log.debug("set start "+startTime);
+                        }
+                    }
+                }
+            });
+        startSensorIcon.setSensor(s.getSystemName());
+
+        try {
+            s = InstanceManager.sensorManagerInstance().
+                    provideSensor(stopSensor1.getText());
+            if (s==null) throw new Exception();
+        }
+        catch (Exception e) {
+            log.error("Stop 1 sensor NFG: "+stopSensor1.getText());
+            startButton.setEnabled(true);
+            return;
+        }
+        s.addPropertyChangeListener(new java.beans.PropertyChangeListener(){
+                public void propertyChange(java.beans.PropertyChangeEvent e) {
+                    SpeedometerFrame.log.debug("stop sensor fired");
+                    if (e.getPropertyName().equals("KnownState")) {
+                        int now = ((Integer) e.getNewValue()).intValue();
+                        if ( (now==Sensor.ACTIVE && stopOnEntry1.isSelected())
+                             || (now==Sensor.INACTIVE && stopOnExit1.isSelected()) ) {
+                            if (log.isDebugEnabled()) log.debug("set stop "+stopTime1);
+                            float secs = (stopTime1-startTime)/1000.f;
+                            float feet = Float.valueOf(distance1.getText()).floatValue();
+                            float speed;
+                            if (dim == false) {
+                              speed = (feet/5280.f)*(3600.f/secs);
+                              }
+                            else {
+                              speed = (feet/100000.f)*(3600.f/secs);
+                              }
+                            if (log.isDebugEnabled()) log.debug("calc from "+secs+","+feet+":"+speed);
+                            result1.setText(String.valueOf(speed).substring(0,4));
+                            String time = String.valueOf(secs);
+                            int offset = time.indexOf(".");
+                            if (offset==-1) offset=time.length();
+                            if (offset>time.length()) offset=time.length();
+                            time1.setText(time.substring(0,offset));
+                        }
+                    }
+                }
+            });
+        stopSensorIcon1.setSensor(s.getSystemName());
+
+        try {
+            s = InstanceManager.sensorManagerInstance().
+                    provideSensor(stopSensor2.getText());
+            if (s==null) throw new Exception();
+        }
+        catch (Exception e) {
+            log.error("Stop 2 sensor NFG: "+stopSensor2.getText());
+            return;
+        }
+        s.addPropertyChangeListener(new java.beans.PropertyChangeListener(){
+                public void propertyChange(java.beans.PropertyChangeEvent e) {
+                    SpeedometerFrame.log.debug("stop sensor fired");
+                    if (e.getPropertyName().equals("KnownState")) {
+                        int now = ((Integer) e.getNewValue()).intValue();
+                        if ( (now==Sensor.ACTIVE && stopOnEntry2.isSelected())
+                             || (now==Sensor.INACTIVE && stopOnExit2.isSelected()) ) {
+                            if (log.isDebugEnabled()) log.debug("set stop "+stopTime2);
+                            float secs = (stopTime2-startTime)/1000.f;
+                            float feet = Float.valueOf(distance2.getText()).floatValue();
+
+                            float speed;
+                            if (dim == false) {
+                              speed = (feet/5280.f)*(3600.f/secs);
+                              }
+                            else {
+                              speed = (feet/100000.f)*(3600.f/secs);
+                              }
+                            if (log.isDebugEnabled()) log.debug("calc from "+secs+","+feet+":"+speed);
+                            result2.setText(String.valueOf(speed).substring(0,4));
+                            String time = String.valueOf(secs);
+                            int offset = time.indexOf(".");
+                            if (offset==-1) offset=time.length();
+                            if (offset>time.length()) offset=time.length();
+                            time2.setText(time.substring(0,offset));
+                        }
+                    }
+                }
+            });
+        stopSensorIcon2.setSensor(s.getSystemName());
+
+    }

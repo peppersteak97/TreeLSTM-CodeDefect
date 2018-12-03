@@ -1,0 +1,6 @@
+    public IUiDecor asDecor() {
+        if (m_decor == null) {
+            m_decor = ComponentDecorFactory.gridBag(getUi(), m_gbc);
+        }
+        return m_decor;
+    }

@@ -1,0 +1,7 @@
+  public void testNonMatchingQuotes() throws IOException{
+    BalancingStreamTokenizer tok = make("'abc}");
+    tok.defaultThreeQuoteDollarCurlySetup();
+    String s = tok.getNextToken();
+    assertEquals("'abc}", s);
+    assertEquals(BalancingStreamTokenizer.Token.QUOTED, tok.token());
+  }

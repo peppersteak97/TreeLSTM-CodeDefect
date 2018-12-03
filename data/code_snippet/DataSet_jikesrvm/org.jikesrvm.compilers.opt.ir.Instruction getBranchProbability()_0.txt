@@ -1,0 +1,4 @@
+  public float getBranchProbability() {
+    if (VM.VerifyAssertions) VM._assert(isTwoWayBranch());
+    return BranchProfileCarrier.getBranchProfile(this).takenProbability;
+  }

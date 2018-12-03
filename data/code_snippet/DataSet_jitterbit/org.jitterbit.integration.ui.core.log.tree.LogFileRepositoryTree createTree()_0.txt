@@ -1,0 +1,10 @@
+    private void createTree() {
+        LogTreeModelFactory factory = new LogTreeModelFactory(m_repository);
+        IKongaTreeModel model = factory.getModel();
+        m_tree = new KongaTree(model);
+        m_tree.setRootVisible(false);
+        m_tree.setShowsRootHandles(true);
+        m_tree.setCellRenderer(new Renderer());
+        IKongaTreeNode current = (IKongaTreeNode) factory.getRoot().getChildAt(0);
+        m_tree.makeNodeExpanded(current);
+    }

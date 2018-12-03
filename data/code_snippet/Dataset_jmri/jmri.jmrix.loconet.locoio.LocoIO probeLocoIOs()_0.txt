@@ -1,0 +1,5 @@
+    public static void probeLocoIOs() {
+        LocoNetMessage msg;
+        msg = LocoIO.readCV(0x0100, 0, 2);
+        LnTrafficController.instance().sendLocoNetMessage(msg);
+    }

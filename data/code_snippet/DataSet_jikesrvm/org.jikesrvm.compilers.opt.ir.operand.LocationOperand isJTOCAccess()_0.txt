@@ -1,0 +1,1 @@
+  public boolean isJTOCAccess() { return type == JTOC_ACCESS; }

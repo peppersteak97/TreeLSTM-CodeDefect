@@ -1,0 +1,8 @@
+    public void dispose() {
+        for (int i = 0; i<entries.size(); i++) {
+            ((Entry)entries.get(i)).sensor
+                .removePropertyChangeListener(this);
+        }
+
+        super.dispose();
+    }

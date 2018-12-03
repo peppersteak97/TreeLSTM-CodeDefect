@@ -1,0 +1,1 @@
+  public boolean isMatchable() { return _type < BLK_CMT_BEG_TYPE; }

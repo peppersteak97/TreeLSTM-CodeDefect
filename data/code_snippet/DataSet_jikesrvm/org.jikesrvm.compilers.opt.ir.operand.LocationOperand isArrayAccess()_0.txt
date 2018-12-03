@@ -1,0 +1,1 @@
+  public boolean isArrayAccess() { return type == ARRAY_ACCESS; }

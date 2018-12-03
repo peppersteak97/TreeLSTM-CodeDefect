@@ -1,0 +1,8 @@
+    private void createRequiredItemsList() {
+        List<IIntegrationEntityUiDelegate> uiDelegates = 
+            IntegrationUiUtils.getUiDelegateList(m_requiredItems);
+        IKongaListFactory listFactory = ComponentFactories.newKongaListFactory();
+        listFactory.setCellRenderer(RendererUtils.getIntegrationEntityListCellRenderer());
+        listFactory.setVisibleRowCount(10);
+        m_requiredItemsList = listFactory.newList(uiDelegates);
+    }

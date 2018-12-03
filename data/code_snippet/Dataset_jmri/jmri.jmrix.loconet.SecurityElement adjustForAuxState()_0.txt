@@ -1,0 +1,10 @@
+    void adjustForAuxState() {
+        if (debug) log.debug("SE "+getNumber()+" adjust aux with sensor "
+                            +(newDsStateOnAux==Sensor.ACTIVE)
+                            +" aux reserved "+newReservedFromAux);
+        if ( (newDsStateOnAux==Sensor.ACTIVE)
+            || newReservedFromAux) {
+            newSpeedXA = 0;
+            newSpeedAX = 0;
+        }
+    }

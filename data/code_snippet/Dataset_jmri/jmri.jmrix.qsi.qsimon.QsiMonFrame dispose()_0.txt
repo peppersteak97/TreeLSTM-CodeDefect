@@ -1,0 +1,4 @@
+	public void dispose() {
+		QsiTrafficController.instance().removeQsiListener(this);
+		super.dispose();
+	}

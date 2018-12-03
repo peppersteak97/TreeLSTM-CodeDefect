@@ -1,0 +1,10 @@
+    public final String[] getPropertyValues() {
+        String[] keys = getPropertyKeys();
+        int N = keys.length;
+        String[] values = new String[N];
+        for (int i = 0; i < N; ++i) {
+            String value = get(keys[i]);
+            values[i] = value;
+        }
+        return values;
+    }

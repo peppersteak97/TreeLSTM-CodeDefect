@@ -1,0 +1,3 @@
+    private String getDefinedMacro() {
+        return "KONGA_DB_" + getFactoryName().toUpperCase() + "_H";
+    }

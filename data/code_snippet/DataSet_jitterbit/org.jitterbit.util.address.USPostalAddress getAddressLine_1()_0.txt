@@ -1,0 +1,3 @@
+    public String getAddressLine_1() {
+        return m_sAddressLine_1;
+    }

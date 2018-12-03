@@ -1,0 +1,19 @@
+  protected void updateOutput() {
+    CommandStation c = InstanceManager.commandStationInstance();
+    if (c != null) {
+
+      if( getLit() ) {
+        switch( mAppearance ){
+          case SignalHead.DARK:        aspect = 0 ; break;
+          case SignalHead.RED:         aspect = 1 ; break;
+          case SignalHead.YELLOW:      aspect = 2 ; break;
+          case SignalHead.GREEN:       aspect = 3 ; break;
+          case SignalHead.FLASHRED:    aspect = 4 ; break;
+          case SignalHead.FLASHYELLOW: aspect = 5 ; break;
+          case SignalHead.FLASHGREEN:  aspect = 6 ; break;
+        }
+      }
+
+      c.sendPacket( NmraPacket.accSignalDecoderPkt( DccSignalDecoderAddress, aspect ), 3);
+    }
+  }

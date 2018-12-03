@@ -1,0 +1,1 @@
+  public HighlightManager getHighlightManager() { return _highlightManager; }

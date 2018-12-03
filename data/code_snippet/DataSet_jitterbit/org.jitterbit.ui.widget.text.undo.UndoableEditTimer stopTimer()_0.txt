@@ -1,0 +1,8 @@
+    public synchronized void stopTimer() {
+        if (m_timer != null) {
+            m_timer.stop();
+            m_timer = null;
+            m_timerTask = null;
+            m_sender = null;
+        }
+    }

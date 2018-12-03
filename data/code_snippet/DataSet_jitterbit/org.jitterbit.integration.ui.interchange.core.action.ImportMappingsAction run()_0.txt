@@ -1,0 +1,6 @@
+	protected void run() {
+		Transformation tf = getActiveTransformation();
+		ICallbackResult cb = new InternalActionCallback(this);
+		IMappingImporter exporter = IMappingImporter.Factory.create(getView());
+		exporter.importMappings(tf, cb);
+	}

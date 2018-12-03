@@ -1,0 +1,4 @@
+  public void testGetName() {
+    StringOption so = new StringOption("classpath",null);
+    assertEquals("classpath", so.getName());
+  }

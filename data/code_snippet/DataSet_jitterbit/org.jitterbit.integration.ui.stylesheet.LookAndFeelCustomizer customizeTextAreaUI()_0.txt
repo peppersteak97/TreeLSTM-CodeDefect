@@ -1,0 +1,4 @@
+    private static void customizeTextAreaUI() {
+        UIManager.put("TextArea.font", 
+                        IntegrationUiStyleSheet.DefaultText.getFont());
+    }

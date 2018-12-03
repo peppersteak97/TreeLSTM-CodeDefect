@@ -1,0 +1,3 @@
+  public final Instruction makeGOTO() {
+    return Goto.create(GOTO, makeJumpTarget());
+  }

@@ -1,0 +1,6 @@
+    private void setWindowSize() {
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        m_frame.setSize(getWindowDimension(tk));
+        setPositionOnScreen();
+        setInitialExtendedState(tk);
+    }

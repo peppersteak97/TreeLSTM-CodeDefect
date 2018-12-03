@@ -1,0 +1,6 @@
+    void goingInactive() {
+        if (log.isDebugEnabled()) log.debug("Block "+getSystemName()+" goes UNOCCUPIED");
+        setValue(null);
+        setDirection(Path.NONE);
+        setState(UNOCCUPIED);
+    }

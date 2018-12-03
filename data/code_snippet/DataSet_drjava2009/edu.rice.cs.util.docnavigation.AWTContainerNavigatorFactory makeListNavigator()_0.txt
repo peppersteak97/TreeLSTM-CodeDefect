@@ -1,0 +1,1 @@
+  public IDocumentNavigator<ItemT> makeListNavigator() { return new JListSortNavigator<ItemT>(); }

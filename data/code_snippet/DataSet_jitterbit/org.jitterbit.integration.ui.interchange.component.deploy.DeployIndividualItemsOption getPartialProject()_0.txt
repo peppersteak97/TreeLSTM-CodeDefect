@@ -1,0 +1,3 @@
+    public InterchangeProject getPartialProject() {
+        return m_partialProject;
+    }

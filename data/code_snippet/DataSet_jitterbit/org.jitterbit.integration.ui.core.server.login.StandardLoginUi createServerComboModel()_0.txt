@@ -1,0 +1,12 @@
+    private ComboBoxModel createServerComboModel() {
+        List<IServerProperties> servers = 
+            ServerManager.getManager().getRegisteredServers();
+        Collections.sort(servers, new ServerSorter());
+        Set<String> items = new LinkedHashSet<String>();
+        for (IServerProperties server : servers) {
+            String name = server.getName();
+            items.add(name);
+            m_serverUserMap.put(name, server.getLatestUser());
+        }
+        return new DefaultComboBoxModel(items.toArray());
+    }

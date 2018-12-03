@@ -1,0 +1,26 @@
+  public void _import() {
+    _mainFrame.removeModalWindowAdapter(this);
+    int rc = _importChooser.showOpenDialog(this);
+    _mainFrame.installModalWindowAdapter(this, LambdaUtil.NO_OP, OK);
+    switch (rc) {
+      case JFileChooser.CANCEL_OPTION:
+      case JFileChooser.ERROR_OPTION: {
+        return;
+      }
+      
+      case JFileChooser.APPROVE_OPTION: {
+        File[] chosen = _importChooser.getSelectedFiles();
+        if (chosen == null) {
+          return;
+        } 
+        if (chosen.length == 0) {
+          File f = _importChooser.getSelectedFile();
+          MainFrame.openExtProcessFile(f);
+          updateList(DrJava.getConfig().getSetting(OptionConstants.EXTERNAL_SAVED_COUNT)-1);
+        }
+        return;
+      }
+        
+        throw new UnexpectedException();
+    }
+  }

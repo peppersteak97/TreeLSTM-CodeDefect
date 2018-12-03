@@ -1,0 +1,14 @@
+  protected JComponent[] makeButtons() {
+    _updateNowButton = new JButton("Update");
+    _updateNowButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) { 
+        EventQueue.invokeLater(new Runnable() { public void run() { updateText(); } }); }
+    });
+    _runAgainButton = new JButton("Run Again");
+    _runAgainButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        runAgainActionPerformed(e);
+      }
+    });
+    return new JComponent[] { _updateNowButton, _runAgainButton };
+  }

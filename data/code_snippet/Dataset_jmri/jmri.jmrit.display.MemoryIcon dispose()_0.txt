@@ -1,0 +1,5 @@
+    public void dispose() {
+        memory.removePropertyChangeListener(this);
+        memory = null;
+        super.dispose();
+    }

@@ -1,0 +1,14 @@
+    private IWizardPage getTargetStartPage() throws WizardConfigurationException {
+        DataStructureType targetType = m_startPage.getTargetStructureType();
+
+        IWizardPage page = m_mapTargetStartPages.get(targetType);
+        if (page != null) {
+            m_targetStartPage = page;
+            return page;
+        }
+
+        page = createNewTargetStartPage(targetType);
+        m_mapTargetStartPages.put(targetType, page);
+        m_targetStartPage = page;
+        return page;
+    }

@@ -1,0 +1,3 @@
+    public ITargetUi getUi() {
+        return (ITargetUi) super.getUi();
+    }

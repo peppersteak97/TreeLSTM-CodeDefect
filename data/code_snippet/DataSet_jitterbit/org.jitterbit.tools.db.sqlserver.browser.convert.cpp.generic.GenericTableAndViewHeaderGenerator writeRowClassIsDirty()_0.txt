@@ -1,0 +1,19 @@
+    private void writeRowClassIsDirty() {
+        addLine("\tbool IsDirty() const");
+        addLine("\t{");
+        StringBuffer sb = new StringBuffer();
+        int nCount = 0;
+        for( Column c : getValidColumns() ) {
+            if( nCount > 0 ) {
+                sb.append(" ||");
+                sb.append( KongaIoUtils.LINE_BREAK );
+                sb.append("\t\t\t");
+            }
+            sb.append( CppUtils.getIsColumnDirtyMemberName(c));
+            ++nCount;
+        }
+        sb.append(";");
+        addLine("\t\treturn " + sb.toString());
+        addLine("\t}");
+        addLine();
+    }

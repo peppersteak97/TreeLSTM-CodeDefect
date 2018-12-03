@@ -1,0 +1,9 @@
+    private void createComponents() {
+        createStartDateField();
+        createEndDateField();
+        createEndDateActivator();
+        createDateChooser();
+        createStartDateButton();
+        createEndDateButton();
+        createCaption();
+    }

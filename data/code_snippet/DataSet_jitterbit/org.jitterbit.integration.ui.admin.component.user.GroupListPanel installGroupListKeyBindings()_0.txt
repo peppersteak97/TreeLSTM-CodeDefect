@@ -1,0 +1,5 @@
+    private void installGroupListKeyBindings() {
+        KeyBindingInstaller installer = new KeyBindingInstaller(m_groupList);
+        installer.addBinding(KeyUtils.getCtrlDown(KeyEvent.VK_N), 
+        installer.install();
+    }

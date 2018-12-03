@@ -1,0 +1,4 @@
+    private void resetDefaultIcon() {
+        defaultIcon = new NamedIcon("resources/icons/misc/X-red.gif",
+                            "resources/icons/misc/X-red.gif");
+    }

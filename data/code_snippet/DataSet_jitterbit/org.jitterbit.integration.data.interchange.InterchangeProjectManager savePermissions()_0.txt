@@ -1,0 +1,6 @@
+    public void savePermissions() throws PermissionsSavingException {
+        if (m_currentProject == null) {
+            throw new IllegalStateException("No InterchangeProject is currently loaded.");
+        }
+        PermissionsManager.getManager().save(m_permissionFileMgr);
+    }

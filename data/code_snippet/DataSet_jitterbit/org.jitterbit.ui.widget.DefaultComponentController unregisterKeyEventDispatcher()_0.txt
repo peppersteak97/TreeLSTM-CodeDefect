@@ -1,0 +1,4 @@
+    private void unregisterKeyEventDispatcher() {
+        KeyboardFocusManager mgr = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        mgr.removeKeyEventDispatcher(m_keyEventDispatcher);
+    }

@@ -1,0 +1,8 @@
+  public void testEscapeWhitespaceRange() throws IOException{
+    BalancingStreamTokenizer tok = make("aBc",'a');
+    tok.defaultThreeQuoteDollarCurlySetup();
+    tok.whitespaceRange(97,122);
+    String s = tok.getNextToken();
+    assertEquals("aB", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+  }

@@ -1,0 +1,3 @@
+    public Transformation getActiveTransformation() {
+        return m_activeTransformation;
+    }

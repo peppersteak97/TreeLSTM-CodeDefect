@@ -1,0 +1,3 @@
+    public String getBeginQuote() {
+        return m_beginQuote;
+    }

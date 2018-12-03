@@ -1,0 +1,11 @@
+  public String toString() {
+    StringBuilder buf = new StringBuilder("");
+    if (list.isEmpty()) {
+      buf.append("empty");
+    } else {
+      for (GCIRMapElement ptr : list) {
+        buf.append(ptr);
+      }
+    }
+    return buf.toString();
+  }

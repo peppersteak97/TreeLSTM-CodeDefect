@@ -1,0 +1,7 @@
+    void setTimeLabel() {
+        Date now = clock.getTime();
+        int hours = now.getHours();
+        int minutes = now.getMinutes();
+        timeLabel.setText(" "+(hours/10)+(hours-(hours/10)*10)+":"+
+                                (minutes/10)+(minutes-(minutes/10)*10));
+    }

@@ -1,0 +1,6 @@
+	protected void init() {
+
+
+		Mx1TrafficController.instance().addMx1Listener(~0, this);
+
+	}

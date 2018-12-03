@@ -1,0 +1,10 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append(LINE_BREAK);
+        sb.append(LINE_BREAK);
+        sb.append(m_callRestriction);
+        sb.append(LINE_BREAK);
+        sb.append(LINE_BREAK);
+        sb.append(m_wsdlFile);
+        return sb.toString();
+    }

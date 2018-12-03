@@ -1,0 +1,6 @@
+    public void dispose() {
+        reporter.removePropertyChangeListener(this);
+        reporter = null;
+        
+        super.dispose();
+    }

@@ -1,0 +1,4 @@
+    protected String getComboBoxLabel() {
+        return TransformationWizard.getStringResources().getString(
+                        getClass().getSimpleName() + ".Label.Combo");
+    }

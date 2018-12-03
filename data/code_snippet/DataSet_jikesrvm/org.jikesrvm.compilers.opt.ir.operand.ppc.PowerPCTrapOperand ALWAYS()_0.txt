@@ -1,0 +1,3 @@
+  public static PowerPCTrapOperand ALWAYS() {
+    return new PowerPCTrapOperand(ALWAYS);
+  }

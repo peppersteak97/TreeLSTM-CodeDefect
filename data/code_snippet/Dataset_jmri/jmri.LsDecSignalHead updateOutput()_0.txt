@@ -1,0 +1,32 @@
+    protected void updateOutput() {
+	if (mLit == false) {
+            mDark.setCommandedState(mDarkState);
+            return;
+        } else {
+            switch (mAppearance) {
+                case RED:
+                    mRed.setCommandedState(mRedState);
+                    break;
+        	case FLASHRED:
+                    mFlashRed.setCommandedState(mFlashRedState);
+                    break;
+        	case YELLOW:
+                    mYellow.setCommandedState(mYellowState);
+                    break;
+        	case FLASHYELLOW:
+                    mFlashYellow.setCommandedState(mFlashYellowState);
+                    break;
+        	case GREEN:
+                    mGreen.setCommandedState(mGreenState);
+                    break;
+        	case FLASHGREEN:
+                    mFlashGreen.setCommandedState(mFlashGreenState);
+                    break;
+        	default:
+                    log.warn("Unexpected new appearance: "+mAppearance);
+        	case DARK:
+                    mDark.setCommandedState(mDarkState);
+                    break;
+            }
+        }
+    }

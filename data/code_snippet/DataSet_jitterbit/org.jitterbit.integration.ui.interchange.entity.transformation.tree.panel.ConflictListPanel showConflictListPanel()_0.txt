@@ -1,0 +1,6 @@
+	public void showConflictListPanel(){
+		m_TreeMapper.m_listScrollPane.setViewportView(this);
+		m_TreeMapper.m_listScrollPane.validate();
+		m_TreeMapper.m_listScrollPane.getVerticalScrollBar().setValue(0);
+		m_TreeMapper.m_listScrollPane.getHorizontalScrollBar().setValue(0);
+	}

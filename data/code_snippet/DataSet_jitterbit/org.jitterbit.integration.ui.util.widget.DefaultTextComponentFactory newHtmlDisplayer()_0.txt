@@ -1,0 +1,6 @@
+    public JEditorPane newHtmlDisplayer() {
+        HtmlDisplayer displayer = new HtmlDisplayer();
+        displayer.setEditable(false);
+        displayer.activate();
+        return displayer;
+    }

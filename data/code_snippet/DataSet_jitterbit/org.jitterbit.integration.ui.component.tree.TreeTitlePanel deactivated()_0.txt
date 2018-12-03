@@ -1,0 +1,4 @@
+    public void deactivated() {
+        m_panel.setBackground(IntegrationUiStyleSheet.TreeTitleUnfocusedBackground);
+        IntegrationUiStyleSheet.TreeTitleUnfocusedText.makeOver(m_titleLabel);
+    }

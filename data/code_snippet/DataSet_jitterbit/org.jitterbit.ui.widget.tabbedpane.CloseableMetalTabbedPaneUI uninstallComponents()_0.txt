@@ -1,0 +1,5 @@
+    protected void uninstallComponents() {
+        if (m_closeButton.getParent() == tabPane) {
+            tabPane.remove(m_closeButton);
+        }
+    }

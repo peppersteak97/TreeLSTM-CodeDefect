@@ -1,0 +1,13 @@
+    public void initButtonActionPerformed() {
+        int nodeAddress = readNodeAddress();
+        if (nodeAddress < 0) return;
+        curNode = (SerialNode) SerialTrafficController.instance().getNodeFromAddress(nodeAddress);
+        if (curNode == null) {
+            statusText1.setText(rb.getString("Error4"));
+            statusText1.setVisible(true);
+            errorInStatus1 = true;
+            resetNotes2();
+            return;
+        }
+        SerialTrafficController.instance().sendSerialMessage((SerialMessage) curNode.createInitPacket(), null);
+    }

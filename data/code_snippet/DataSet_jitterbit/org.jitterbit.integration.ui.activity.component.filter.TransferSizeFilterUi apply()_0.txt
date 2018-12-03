@@ -1,0 +1,10 @@
+    public void apply() {
+        m_comparisonOp = m_operatorCombo.getSelectedItem();
+        m_sizeUnit = m_sizeUnitCombo.getSelectedItem();
+        try {
+            m_value = Integer.parseInt(m_valueField.getValue());
+        } 
+        catch( NumberFormatException e ) {
+            m_value = -1;
+        }
+    }

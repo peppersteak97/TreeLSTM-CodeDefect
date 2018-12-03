@@ -1,0 +1,18 @@
+  protected void _addButtons() {
+    Action saveAction = new AbstractAction("Save") {
+      public void actionPerformed (ActionEvent ae) {
+        _history = _textArea.getText();
+        _dialog.dispose();
+      }
+    };
+    
+    Action cancelAction = new AbstractAction("Cancel") {
+      public void actionPerformed (ActionEvent ae) { _dialog.dispose(); }
+    };
+    
+    JButton saveButton = new JButton(saveAction);
+    JButton cancelButton = new JButton(cancelAction);
+    _buttonPanel.add(saveButton);
+    _buttonPanel.add(cancelButton);
+    _dialog.getRootPane().setDefaultButton(saveButton);
+  }

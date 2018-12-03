@@ -1,0 +1,7 @@
+  public PhysicalRegisterEnumeration enumerateNonvolatileFPRs() {
+    Register[] r = new Register[NUM_NONVOLATILE_FPRS];
+    for (int i = 0; i < NUM_NONVOLATILE_FPRS; i++) {
+      r[i] = getFPR(NONVOLATILE_FPRS[i]);
+    }
+    return new PhysicalRegisterEnumeration(r);
+  }

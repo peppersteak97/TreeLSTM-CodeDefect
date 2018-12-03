@@ -1,0 +1,18 @@
+    private void setupOneTouchAnimation() {
+        BasicSplitPaneDivider divider = ((BasicSplitPaneUI) getUI()).getDivider();
+        for (Component c : divider.getComponents()) {
+            if (c instanceof JButton) {
+                configureOneTouchButton((JButton) c);
+            }
+        }
+        divider.addContainerListener(new ContainerAdapter() {
+            
+            @Override
+            public void componentAdded(ContainerEvent e) {
+                Component c = e.getChild();
+                if (c instanceof JButton) {
+                    configureOneTouchButton((JButton) c);
+                }
+            }
+        });
+    }

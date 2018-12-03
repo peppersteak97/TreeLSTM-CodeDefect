@@ -1,0 +1,14 @@
+  public void textTopLevelClassNameWComments() throws BadLocationException, ClassNameNotFoundException {
+    String weird = "package edu . rice\n./*comment!*/cs.drjava; \n" +
+      "/* class Y */ \n" +
+      " /* class Foo \n" +
+      " * class Bar \n" +
+      " interface Baz \n" +
+      " */ \n" +
+      "class MyClass {";
+    
+    String result = "MyClass";
+    _doc.insertString(0, weird, null);
+    
+    assertEquals("class name for class: '" + weird + "'", result, _doc.getFirstTopLevelClassName());
+  }

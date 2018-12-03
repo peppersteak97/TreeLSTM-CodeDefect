@@ -1,0 +1,5 @@
+    private void rollbackData() {
+        for (Map.Entry<String, Object> e : m_rollbackData.entrySet()) {
+            m_entity.setProperty(e.getKey(), e.getValue(), true);
+        }
+    }

@@ -1,0 +1,9 @@
+  protected final void emit_aaload() {
+    genBoundsCheck();
+    if (MemoryManagerConstants.NEEDS_READ_BARRIER) {
+      Barriers.compileArrayLoadBarrier(this);
+      pushAddr(T0);
+    } else {
+      pushAddr(T2);
+    }
+  }

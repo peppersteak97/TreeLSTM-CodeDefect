@@ -1,0 +1,1 @@
+//  public IndentInfo getIndentInformation() { throw new UnsupportedOperationException("Dummy method"); }

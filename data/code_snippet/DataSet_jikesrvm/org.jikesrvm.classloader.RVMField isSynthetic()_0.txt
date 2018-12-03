@@ -1,0 +1,3 @@
+  public boolean isSynthetic() {
+    return (modifiers & ACC_SYNTHETIC) != 0;
+  }

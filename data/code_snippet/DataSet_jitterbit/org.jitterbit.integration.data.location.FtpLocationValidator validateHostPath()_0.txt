@@ -1,0 +1,5 @@
+    private void validateHostPath() {
+        String hostPath = m_location.getHostPath();
+        if (hostPath == null || hostPath.trim().length() == 0) {
+        }
+    }

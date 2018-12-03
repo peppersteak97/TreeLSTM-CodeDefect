@@ -1,0 +1,5 @@
+    private void addInputFields() {
+        addInputField(m_wsCallControl.asInputFieldForChangeDetection());
+        addInputField(m_firstTransformationControl.asInputFieldForChangeDetection());
+        addInputField(m_secondTransformationControl.asInputFieldForChangeDetection());
+    }

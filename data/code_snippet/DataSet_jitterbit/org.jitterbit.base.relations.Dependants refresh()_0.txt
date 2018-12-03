@@ -1,0 +1,8 @@
+    public void refresh() {
+        List<IKongaRelational> allDeps = getAll();
+        m_mapDependantsByID.clear();
+        m_mapDependantsByIndex.clear();
+        for( IKongaRelational r : allDeps ) {
+            add(r);
+        }
+    }

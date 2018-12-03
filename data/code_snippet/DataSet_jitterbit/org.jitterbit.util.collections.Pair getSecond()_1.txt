@@ -1,0 +1,3 @@
+    public V getSecond() {
+        return m_second;
+    }

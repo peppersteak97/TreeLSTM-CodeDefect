@@ -1,0 +1,116 @@
+    private void internalSyncInitStates() {
+        Date now = internalClock.getTime();
+        int priorState = internalSyncInitStateCounter;
+        do {
+            if (log.isDebugEnabled() && internalSyncInitStateCounter != 0 && false){
+                log.debug("internalSyncInitStates begin: " + internalSyncInitStateCounter + " @ " + now);
+            }
+	        priorState = internalSyncInitStateCounter;
+	        switch (internalSyncInitStateCounter) {
+	        case 0:
+	        	break;
+	        case -1:
+	        	alarmSyncUpdate.stop();
+	        	internalSyncInitStateCounter = 0;
+	        	internalSyncRunStateCounter = 0;
+	            setClockButton.setEnabled(true);
+	            setRatioButton.setEnabled(true);
+	            set1224Button.setEnabled(true);
+	            setStopNceButton.setEnabled(true);
+	            setStartNceButton.setEnabled(true);
+	        	break;
+	        case -3:
+	        	internalSyncRunStateCounter = 0;
+	        	alarmSyncUpdate.stop();
+	        	issueClockStop();
+	        	internalSyncInitStateCounter++;
+	        	break;
+	        case -2:
+	        	if (!waitingForCmdStop){
+		            internalSyncInitStateCounter = 0;
+	        	}
+	        	break;
+	        case 1:
+	            priorDiffs.clear();
+	            priorCorrections.clear();
+	            priorOffsetErrors.clear();
+	            syncInterval = TARGET_SYNC_DELAY;
+	            setClockButton.setEnabled(false);
+	            setRatioButton.setEnabled(false);
+	            set1224Button.setEnabled(false);
+	            setStopNceButton.setEnabled(false);
+	            setStartNceButton.setEnabled(false);
+	            issueClockStop();
+	            internalSyncInitStateCounter++;
+	            break;
+	        case 2:
+	        	if (!waitingForCmdStop){
+		            internalSyncInitStateCounter++;
+	        	}
+	        	break;
+	        case 3:
+	            issueClockRatio((int)internalClock.getRate());
+	            internalSyncInitStateCounter++;
+	            break;
+	        case 4:
+	        	if (!waitingForCmdRatio){
+		            internalSyncInitStateCounter++;
+	        	}
+	        	break;
+	        case 5:
+	            issueClock1224(true);
+	            internalSyncInitStateCounter++;
+	            break;
+	        case 6:
+	        	if (!waitingForCmd1224){
+		            internalSyncInitStateCounter++;
+	        	}
+	        	break;
+	        case 7:
+	            now = internalClock.getTime();
+	            issueClockSet(now.getHours(), now.getMinutes(), now.getSeconds());
+	            internalSyncInitStateCounter++;
+	            break;
+	        case 8:
+	        	if (!waitingForCmdTime){
+		            internalSyncInitStateCounter++;
+	        	}
+	        	break;
+	        case 9:
+	            issueClockStart();
+	            internalSyncInitStateCounter++;
+	            break;
+	        case 10:
+	        	if (!waitingForCmdStart){
+		            internalSyncInitStateCounter++;
+	        	}
+	        	break;
+	        case 11:
+	            issueReadOnlyRequest();
+	            internalSyncInitStateCounter++;
+	            break;
+	        case 12:
+	        	if (!waitingForCmdRead){
+		            internalSyncInitStateCounter++;
+	        	}
+	        	break;
+	        case 13:
+	        	updateNceClockDisplay();
+	        	updateInternalClockDisplay();
+	            alarmSyncStart();
+	            internalSyncInitStateCounter++;
+	            break;
+	        case 14:
+	        	internalSyncInitStateCounter = 0;
+	            internalSyncRunStateCounter = 1;
+	            if (log.isDebugEnabled() && false){
+	                log.debug("internalSyncState: init done");
+	            }
+	            break;
+	        default:
+	            internalSyncInitStateCounter = 0;
+	        	log.error("Uninitialized value: internalSyncInitStateCounter");
+	            break;
+	        }
+        } while (priorState != internalSyncInitStateCounter);
+    }

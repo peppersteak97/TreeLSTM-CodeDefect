@@ -1,0 +1,3 @@
+  public Iterator<T> iterator() {
+    return elements.iterator();
+  }

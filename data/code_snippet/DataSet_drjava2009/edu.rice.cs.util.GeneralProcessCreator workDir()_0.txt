@@ -1,0 +1,3 @@
+  public String workDir() {
+    return _workdir;
+  }

@@ -1,0 +1,40 @@
+  public void interpretCurrentInteraction() {
+
+    Utilities.invokeLater(new Runnable() {
+      public void run() {
+        
+        
+        String text = _document.getCurrentInteraction();
+        String toEval = text.trim();
+        if (toEval.startsWith("java ")) toEval = _transformJavaCommand(toEval);
+        else if (toEval.startsWith("applet ")) toEval = _transformAppletCommand(toEval);
+        else if (DrJava.getConfig().getSetting(OptionConstants.DEBUG_AUTO_IMPORT).booleanValue() &&
+            toEval.startsWith("import ")) {
+          String line = toEval;
+          do {
+            line = line.substring("import ".length());
+            String substr = line;
+            int endPos = 0;
+            while((endPos<substr.length()) &&
+                  ((Character.isJavaIdentifierPart(substr.charAt(endPos))) ||
+                   (substr.charAt(endPos) == '.') ||
+                   (substr.charAt(endPos) == '*'))) ++endPos;
+            substr = substr.substring(0,endPos);
+            _autoImportSet.add(substr);
+            
+            line = line.substring(substr.length()).trim();
+            if (!line.startsWith(";")) break;
+            line = line.substring(1).trim();
+          } while(line.startsWith("import "));
+        }
+        final String evalText = toEval;
+
+        new Thread(new Runnable() { 
+          public void run() { 
+            try { interpret(evalText); } 
+            catch(Throwable t) { DrJavaErrorHandler.record(t); }
+          } 
+        }).start(); 
+      }
+    });
+  }

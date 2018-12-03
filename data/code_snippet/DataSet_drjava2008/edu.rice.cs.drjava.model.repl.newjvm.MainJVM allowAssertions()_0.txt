@@ -1,0 +1,4 @@
+  protected boolean allowAssertions() {
+    String version = System.getProperty("java.version");
+    return (_allowAssertions && (version != null) && ("1.4.0".compareTo(version) <= 0));
+  }

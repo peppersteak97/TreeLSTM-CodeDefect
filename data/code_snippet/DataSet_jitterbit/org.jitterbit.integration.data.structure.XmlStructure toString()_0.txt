@@ -1,0 +1,6 @@
+    public String toString() {
+        sb.append(m_dtdFilePath);
+        sb.append(m_rootNode);
+        sb.append(m_targetDtdUrl);
+        return sb.toString();
+    }

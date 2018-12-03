@@ -1,0 +1,10 @@
+  public boolean isAffineLoop() {
+    return (initialIteratorValue != null) &&
+           isLoopInvariant(initialIteratorValue, loop, header) &&
+           (terminalIteratorValue != null) &&
+           isLoopInvariant(terminalIteratorValue, loop, header) &&
+           (strideValue != null) &&
+           isLoopInvariant(strideValue, loop, header) &&
+           (iteratorInstr != null) &&
+           ((iteratorInstr.operator.opcode == INT_ADD_opcode) || (iteratorInstr.operator.opcode == INT_SUB_opcode));
+  }

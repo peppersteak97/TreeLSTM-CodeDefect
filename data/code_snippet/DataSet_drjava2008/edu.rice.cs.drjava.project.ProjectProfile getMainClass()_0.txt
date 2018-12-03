@@ -1,0 +1,1 @@
+  public File getMainClass() { return _mainClass; }

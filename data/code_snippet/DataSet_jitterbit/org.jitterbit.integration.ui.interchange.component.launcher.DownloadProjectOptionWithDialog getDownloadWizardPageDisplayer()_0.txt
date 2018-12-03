@@ -1,0 +1,13 @@
+    protected IPageDisplayer getDownloadWizardPageDisplayer() {
+        return new PageDisplayerAdapter() {
+
+            @Override
+            public boolean displayPage(IPage page) {
+                IComponentDecor decor = ComponentDecorFactory.centerBorder(page);
+                m_dialog.setContentPane(decor.getUi());
+                m_dialog.getRootPane().validate();
+                m_dialog.getRootPane().repaint();
+                return true;
+            }
+        };
+    }

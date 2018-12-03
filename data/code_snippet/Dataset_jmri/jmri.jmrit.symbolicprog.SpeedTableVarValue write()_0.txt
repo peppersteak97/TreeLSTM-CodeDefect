@@ -1,0 +1,2 @@
+        if (_progState != IDLE) log.warn("Programming state "+_progState+", not IDLE, in write()");
+        isReading = false;

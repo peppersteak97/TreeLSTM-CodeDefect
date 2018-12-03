@@ -1,0 +1,11 @@
+			if (getViewCoordinates()) {
+				popup.add("x= " + this.getX());
+				popup.add("y= " + this.getY());
+				popup.add(new AbstractAction("Set x & y") {
+	                public void actionPerformed(ActionEvent e) {
+	                	String name = getText();
+	                	displayCoordinateEdit(name);
+	                }
+				});
+				
+			}

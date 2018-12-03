@@ -1,0 +1,12 @@
+    private JPanel getRelationshipComboBoxHeader() {
+        JPanel relComboHeader = new JPanel();
+        relComboHeader.setLayout(new BoxLayout(relComboHeader, BoxLayout.LINE_AXIS));
+        JLabel lbl = IntegrationUiStyleSheet.InputLabelText.makeJLabel(
+                PackageResources.RelationshipDefinitionPage.Labels.RELATIONSHIPS);
+        relComboHeader.add(lbl);
+        relComboHeader.add(Box.createHorizontalGlue());
+        relComboHeader.add(m_newRelationshipButton);
+        relComboHeader.add(Box.createHorizontalStrut(10));
+        relComboHeader.add(m_deleteRelationshipButton);
+        return relComboHeader;
+    }

@@ -1,0 +1,4 @@
+  private void _currThreadResumed() throws DebugException {
+    _log.log(this + " is executing _currThreadResumed()");
+    EventQueue.invokeLater(new Runnable() { public void run() { _notifier.currThreadResumed(); } });
+  }

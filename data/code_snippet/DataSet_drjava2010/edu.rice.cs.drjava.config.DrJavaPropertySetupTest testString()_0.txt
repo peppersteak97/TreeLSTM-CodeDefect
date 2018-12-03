@@ -1,0 +1,46 @@
+  public void testString() throws CloneNotSupportedException {
+    PropertyMaps pm = PropertyMaps.TEMPLATE.clone();
+    DrJavaProperty p;
+    
+    p = pm.getProperty("Misc","strlen");
+    assertTrue(p.getCurrent(pm).startsWith("(strlen Error"));
+    p.setAttribute("op","abc");
+    assertEquals("3",p.getCurrent(pm));
+    p.setAttribute("op","");
+    assertEquals("0",p.getCurrent(pm));
+    p.setAttribute("op","1234567890");
+    assertEquals("10",p.getCurrent(pm));
+    
+    p = pm.getProperty("Misc","replace.string");
+    assertTrue(p.getCurrent(pm).startsWith("(replace.string Error"));
+    p.setAttribute("text","");
+    assertTrue(p.getCurrent(pm).startsWith("(replace.string Error"));
+    p.resetAttributes();
+    p.setAttribute("old","abc");
+    assertTrue(p.getCurrent(pm).startsWith("(replace.string Error"));
+    p.resetAttributes();
+    p.setAttribute("new","123");
+    assertTrue(p.getCurrent(pm).startsWith("(replace.string Error"));
+    p.resetAttributes();
+    p.setAttribute("text","");
+    p.setAttribute("old","abc");
+    assertTrue(p.getCurrent(pm).startsWith("(replace.string Error"));
+    p.resetAttributes();
+    p.setAttribute("text","");
+    p.setAttribute("new","123");
+    assertTrue(p.getCurrent(pm).startsWith("(replace.string Error"));
+    p.resetAttributes();
+    p.setAttribute("old","abc");
+    p.setAttribute("new","123");
+    assertTrue(p.getCurrent(pm).startsWith("(replace.string Error"));
+    p.setAttribute("text","");
+    assertEquals("",p.getCurrent(pm));
+    p.setAttribute("text","abc");
+    assertEquals("123",p.getCurrent(pm));
+    p.setAttribute("text","xyzabcdef");
+    assertEquals("xyz123def",p.getCurrent(pm));
+    p.setAttribute("text","abc111abc222");
+    assertEquals("123111123222",p.getCurrent(pm));
+    p.setAttribute("text","111.*222");
+    assertEquals("111123222",p.getCurrent(pm));
+  }

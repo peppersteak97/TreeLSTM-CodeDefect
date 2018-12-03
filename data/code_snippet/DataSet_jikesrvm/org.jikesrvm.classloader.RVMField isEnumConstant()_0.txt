@@ -1,0 +1,3 @@
+  public boolean isEnumConstant() {
+    return (modifiers & ACC_ENUM) != 0;
+  }

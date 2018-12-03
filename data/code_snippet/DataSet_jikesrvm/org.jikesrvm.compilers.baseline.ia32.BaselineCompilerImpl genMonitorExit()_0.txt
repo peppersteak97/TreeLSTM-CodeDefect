@@ -1,0 +1,8 @@
+  private void genMonitorExit() {
+    if (method.isStatic()) {
+      Offset klassOffset = Offset.fromIntSignExtend(Statics.findOrCreateObjectLiteral(klass.getClassForType()));
+      asm.emitPUSH_Abs(Magic.getTocPointer().plus(klassOffset));
+    } else {
+    }
+    asm.emitCALL_Abs(Magic.getTocPointer().plus(Entrypoints.unlockMethod.getOffset()));
+  }

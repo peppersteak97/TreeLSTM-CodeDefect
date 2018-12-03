@@ -1,0 +1,14 @@
+    private void executeImpl() {
+        IWindowSection section = m_appWin.getWindowSection(IApplicationWindow.SOUTH);
+        if (section.containsContent(IPermissionsView.CONTENT_ID)) {
+            IWindowSectionContent c = section.getContent(IPermissionsView.CONTENT_ID);
+            if (c instanceof IPermissionsView) {
+                ((IPermissionsView) c).setAccessedEntity(getAccessedEntity());
+            }
+            section.setActiveContent(c);
+            section.ensureVisible();
+            return;
+        }
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallell(new CreateContentJob(section));
+    }

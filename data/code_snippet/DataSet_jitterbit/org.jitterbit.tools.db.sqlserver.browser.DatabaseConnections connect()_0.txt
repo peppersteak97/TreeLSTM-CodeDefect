@@ -1,0 +1,21 @@
+    public void connect() throws SqlServerBrowserException {
+        + Integer.toString(DEFAULT_PORT) + "/TranDb";	
+        try {
+            Class.forName("org.postgresql.Driver").newInstance();
+            
+            Connection connection = DriverManager.getConnection(sUrl, m_sUser, m_sPassword);
+            /*
+            Connection connection = DriverManager.getConnection(
+                            "sa", "P1n0la");
+            */
+            m_connections.put("", connection);
+        } catch (InstantiationException e) {
+            throw new SqlServerBrowserException("Failed to create a connection to the server.", e);
+        } catch (IllegalAccessException e) {
+            throw new SqlServerBrowserException("Failed to create a connection to the server.", e);
+        } catch (ClassNotFoundException e) {
+            throw new SqlServerBrowserException("Failed to create a connection to the server.", e);
+        } catch (SQLException e) {
+            throw new SqlServerBrowserException("Failed to create a connection to the server.", e);
+        }
+    }

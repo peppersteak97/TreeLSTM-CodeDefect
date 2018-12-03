@@ -1,0 +1,3 @@
+    public ServerInfo toServerInfo() {
+        return new ServerInfo(getGuid(), getName(), getVersion());
+    }

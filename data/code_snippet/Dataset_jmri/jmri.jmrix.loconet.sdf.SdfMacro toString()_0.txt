@@ -1,0 +1,2 @@
+ * <dt>toString()<dd>A brief description, with a terminating newline
+ * <dt>oneInstructionString()<dd>The entire single instruction in MPASM from, 

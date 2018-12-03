@@ -1,0 +1,3 @@
+    public EnumSet<DataLocationType> getSupportedSourceTypes() {
+        return m_dataLoader.getSupportedSourceTypes();
+    }

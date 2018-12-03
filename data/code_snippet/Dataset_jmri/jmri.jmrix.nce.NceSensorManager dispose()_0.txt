@@ -1,0 +1,4 @@
+    public void dispose() {
+        NceTrafficController.instance().removeNceListener(listener);
+        super.dispose();
+    }

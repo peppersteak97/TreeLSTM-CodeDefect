@@ -1,0 +1,3 @@
+  protected String toStringHelp() {
+    return " " + _first + _rest.toStringHelp();
+  }

@@ -1,0 +1,17 @@
+    void writeAll() {
+        try {
+            setAddress(256);
+        } catch (Exception e) {
+            log.debug("writeAll aborted due to invalid address"+e);
+            readAllButton.setSelected(false);
+            writeAllButton.setSelected(false);
+            status.setText("");
+            return;
+        }
+        
+        copyToOpsw();
+        
+        read = false;
+        state = 1;
+        nextRequest();
+    }

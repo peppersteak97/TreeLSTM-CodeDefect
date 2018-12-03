@@ -1,0 +1,3 @@
+  public boolean isExplicitStore() {
+    return operator.isExplicitStore();
+  }

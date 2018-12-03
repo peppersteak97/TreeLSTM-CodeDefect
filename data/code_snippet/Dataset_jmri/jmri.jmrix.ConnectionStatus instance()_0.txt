@@ -1,0 +1,8 @@
+	public static synchronized ConnectionStatus instance() {
+		if (_instance == null) {
+			if (log.isDebugEnabled()) log.debug("ConnectionStatus creating instance");
+			_instance = new ConnectionStatus();
+		}
+		if (log.isDebugEnabled()) log.debug("ConnectionStatus returns instance "+_instance);
+		return _instance;
+	}

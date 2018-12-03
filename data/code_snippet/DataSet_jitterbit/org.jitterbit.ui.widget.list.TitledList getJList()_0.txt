@@ -1,0 +1,3 @@
+    public JList getJList() {
+        return m_list;
+    }

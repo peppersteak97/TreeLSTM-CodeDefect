@@ -1,0 +1,9 @@
+    JComponent newInstructionPane() {
+        JPanel p = new JPanel();
+        p.setLayout(new BorderLayout());
+        instruction.setText("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+        p.add(instruction, BorderLayout.WEST);
+        p.setMaximumSize(instruction.getPreferredSize());
+        instruction.setText("Select an instruction in the tree to the left");
+        return p;
+    }

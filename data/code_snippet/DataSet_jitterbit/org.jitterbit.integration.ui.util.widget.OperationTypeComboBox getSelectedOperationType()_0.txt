@@ -1,0 +1,7 @@
+    public OperationType getSelectedOperationType() {
+        Object selected = super.getSelectedItem();
+        if (selected != null) {
+            return ((ComboItem) selected).OpType;
+        }
+        return null;
+    }

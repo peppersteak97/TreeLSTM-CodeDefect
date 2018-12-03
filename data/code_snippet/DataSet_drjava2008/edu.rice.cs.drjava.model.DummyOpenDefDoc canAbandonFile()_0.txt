@@ -1,0 +1,1 @@
+  public boolean canAbandonFile() { throw new UnsupportedOperationException("Dummy method"); }

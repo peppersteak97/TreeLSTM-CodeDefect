@@ -1,0 +1,9 @@
+  public int getInlineDepth() {
+    int depth = 0;
+    InlineSequence parent = this.caller;
+    while (parent != null) {
+      depth++;
+      parent = parent.caller;
+    }
+    return depth;
+  }

@@ -1,0 +1,7 @@
+    private DatabaseDriverDescription getDriverImpl() {
+        String driverName = getDriverName();
+        if (driverName == null || driverName.length() == 0) {
+            return null;
+        }
+        return DatabaseDriverDescription.create(driverName, begin, end);
+    }

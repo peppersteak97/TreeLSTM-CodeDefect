@@ -1,0 +1,10 @@
+  public void testSwitchToNonExistantInterpreter() {
+    debug.logStart();
+    try {
+      _jvm.setActiveInterpreter("thisisabadname");
+      fail("Should have thrown an exception!");
+    }
+    catch (IllegalArgumentException e) {
+    }
+    debug.logEnd();
+  }

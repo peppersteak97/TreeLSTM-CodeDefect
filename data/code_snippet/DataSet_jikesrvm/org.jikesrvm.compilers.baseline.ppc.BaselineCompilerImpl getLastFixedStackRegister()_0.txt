@@ -1,0 +1,3 @@
+  public final byte getLastFixedStackRegister() {
+    return lastFixedStackRegister;
+  }

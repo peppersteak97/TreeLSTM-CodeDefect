@@ -1,0 +1,30 @@
+  protected final void emit_lcmp() {
+    popLong(T3, T2);
+    popLong(T1, T0);
+
+    ForwardReference fr_end_1;
+    ForwardReference fr_end_2;
+    if (VM.BuildFor64Addr) {
+      asm.emitCMPD(T0, T2);
+      ForwardReference fr1 = asm.emitForwardBC(LT);
+      ForwardReference fr2 = asm.emitForwardBC(GT);
+      fr_end_1 = asm.emitForwardB();
+      fr1.resolve(asm);
+      fr_end_2 = asm.emitForwardB();
+      fr2.resolve(asm);
+    } else {
+      ForwardReference fr1 = asm.emitForwardBC(LT);
+      ForwardReference fr2 = asm.emitForwardBC(GT);
+      ForwardReference fr3 = asm.emitForwardBC(LT);
+      ForwardReference fr4 = asm.emitForwardBC(GT);
+      fr_end_1 = asm.emitForwardB();
+      fr1.resolve(asm);
+      fr3.resolve(asm);
+      fr_end_2 = asm.emitForwardB();
+      fr2.resolve(asm);
+      fr4.resolve(asm);
+    }
+    fr_end_1.resolve(asm);
+    fr_end_2.resolve(asm);
+    pushInt(T0);
+  }

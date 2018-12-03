@@ -1,0 +1,3 @@
+  public final RVMClass getDeclaringClass() {
+    return declaringClass.peekType().asClass();
+  }

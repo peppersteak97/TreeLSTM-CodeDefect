@@ -1,0 +1,39 @@
+    private void initializeConsistBox() {
+        ArrayList existingConsists = ConsistMan.getConsistList();
+        if(!existingConsists.isEmpty()) {
+           consistAdrBox.removeAllItems();
+           for(int i=0; i<existingConsists.size(); i++) {
+                consistAdrBox.insertItemAt(existingConsists.get(i),i);
+           }
+           consistAdrBox.setEnabled(true);
+           consistAdrBox.insertItemAt("",0);
+           consistAdrBox.setSelectedItem(adrSelector.getAddress());
+           if(adrSelector.getAddress()!=null) {
+		if(consistModel.getConsist()!=null){
+			consistModel.getConsist().removeConsistListener(this);
+			_status.setText("Ready");
+		}
+ 		consistModel.setConsist(adrSelector.getAddress());
+		consistModel.getConsist().addConsistListener(this);
+		adrSelector.setEnabled(false);
+	   } else {
+		if(consistModel.getConsist()!=null){
+			consistModel.getConsist().removeConsistListener(this);
+			_status.setText("Ready");
+		}
+		consistModel.setConsist((Consist)null);
+		adrSelector.setEnabled(true);
+	   }
+        } else {
+	   consistAdrBox.setEnabled(false);
+           consistAdrBox.removeAllItems();
+           consistAdrBox.insertItemAt("",0);
+           consistAdrBox.setSelectedIndex(0);
+	   if(consistModel.getConsist()!=null){
+		consistModel.getConsist().removeConsistListener(this);
+		_status.setText("Ready");
+	   }
+	   consistModel.setConsist((Consist)null);
+	   adrSelector.setEnabled(true);
+        }
+     }

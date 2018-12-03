@@ -1,0 +1,3 @@
+	void done() {
+		summary.remove(this);
+	}

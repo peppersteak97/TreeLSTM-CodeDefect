@@ -1,0 +1,7 @@
+    private void collect() {
+        m_links = new ArrayList<IIntegrationLink>();
+        collectSourceLink();
+        collectTargetLink();
+        collectDocumentLinks();
+        collectWebServiceCallLinks();
+    }

@@ -1,0 +1,23 @@
+    public void undoEdit() {
+        if (canUndo()) {
+            m_undoManager.undo();
+            if (m_currentSavePointDistance == 0) {
+                if (m_savePointDistances.isEmpty()) {
+                    setClean();
+                }
+                else {
+                    m_currentSavePointDistance = m_savePointDistances.pop();
+                    setDirty();
+                }
+            }
+            else {
+                --m_currentSavePointDistance;
+                if (m_currentSavePointDistance == 0) {
+                    setClean();
+                }
+                else {
+                    setDirty();
+                }
+            }
+        }
+    }

@@ -1,0 +1,4 @@
+    public boolean isSelected() {
+        Object o = getValue(ON_OFF);
+        return (o instanceof Boolean) ? ((Boolean) o).booleanValue() : false;
+    }

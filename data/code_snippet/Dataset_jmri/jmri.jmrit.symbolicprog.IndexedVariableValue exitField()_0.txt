@@ -1,0 +1,9 @@
+    void exitField() {
+        if (_value != null && !oldContents.equals(_value.getText())) {
+            int newVal = (Integer.valueOf(_value.getText()).intValue());
+            int oldVal = (Integer.valueOf(oldContents).intValue());
+            updatedTextField();
+            prop.firePropertyChange("Value", new Integer(oldVal),
+                                    new Integer(newVal));
+        }
+    }

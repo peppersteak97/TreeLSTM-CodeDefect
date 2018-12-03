@@ -1,0 +1,17 @@
+	void saveAll() {
+	    startWait();
+	    try {
+		    for( JInternalFrame frame : m_deskTop.getAllFrames() ) {
+		        try {
+	                ((XmlDocumentFrame)frame).saveFile();
+	            } 
+		        catch (IOException e) {
+					JOptionPane.showMessageDialog(
+							MainWindow.this, e.getMessage(), "Save Failed", JOptionPane.ERROR_MESSAGE);
+	            }
+		    }
+	    }
+	    finally {
+	        stopWait();
+	    }
+	}

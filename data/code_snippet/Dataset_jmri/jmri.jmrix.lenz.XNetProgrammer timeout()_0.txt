@@ -1,0 +1,7 @@
+	synchronized protected void timeout() {
+		if (progState != NOTPROGRAMMING) {
+			if (log.isDebugEnabled()) log.debug("timeout!");
+			progState = NOTPROGRAMMING;
+			notifyProgListenerEnd(_val, jmri.ProgListener.FailedTimeout);
+		}
+	}

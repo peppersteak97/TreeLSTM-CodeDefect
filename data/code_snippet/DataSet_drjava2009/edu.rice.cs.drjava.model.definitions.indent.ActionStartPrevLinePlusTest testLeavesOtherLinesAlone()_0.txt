@@ -1,0 +1,6 @@
+  public void testLeavesOtherLinesAlone() throws javax.swing.text.BadLocationException {
+    _setDocText("foo\nbar\nblah");
+    _doc.setCurrentLocation(10);
+    assertEquals(15, _doc.getLength());
+    assertEquals("foo\nbar\n   blah", _doc.getText());
+  }

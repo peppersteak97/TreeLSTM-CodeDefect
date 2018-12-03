@@ -1,0 +1,3 @@
+    public IWindowSection getSource() {
+        return (IWindowSection) super.getSource();
+    }

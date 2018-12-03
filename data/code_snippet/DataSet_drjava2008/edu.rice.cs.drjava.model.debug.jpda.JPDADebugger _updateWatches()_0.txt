@@ -1,0 +1,13 @@
+  private /* synchronized */ void _updateWatches() {
+    assert EventQueue.isDispatchThread();
+    if (! isReady()) return;
+    
+    for (DebugWatchData w : _watches) {
+      String val = _model.getInteractionsModel().getVariableToString(w.getName());
+      if (val == null) { w.setNoValue(); }
+      else { w.setValue(val); }
+      String type = _model.getInteractionsModel().getVariableType(w.getName());
+      if (type == null) { w.setNoType(); }
+      else { w.setType(type); }
+    }
+  }

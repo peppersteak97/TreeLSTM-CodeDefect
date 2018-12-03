@@ -1,0 +1,1 @@
+    static public boolean hasInstance() { return (null!=m2Instance); }

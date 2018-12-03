@@ -1,0 +1,4 @@
+    void save() throws InterchangeSavingException {
+        Set<Key> savedItems = new HashSet<Key>();
+        saveImpl(m_entityToSave, savedItems);
+    }

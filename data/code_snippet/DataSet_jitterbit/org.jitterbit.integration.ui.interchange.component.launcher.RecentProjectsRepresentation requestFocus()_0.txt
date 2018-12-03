@@ -1,0 +1,9 @@
+    public void requestFocus() {
+        m_table.requestFocus();
+        EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                setInitialSelection();
+            }
+        });
+    }

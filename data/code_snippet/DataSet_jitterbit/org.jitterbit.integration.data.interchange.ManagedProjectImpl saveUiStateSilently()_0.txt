@@ -1,0 +1,8 @@
+    private void saveUiStateSilently() {
+        try {
+            saveUiState();
+        }
+        catch (InterchangeSavingException e) {
+            e.printStackTrace();
+        }
+    }

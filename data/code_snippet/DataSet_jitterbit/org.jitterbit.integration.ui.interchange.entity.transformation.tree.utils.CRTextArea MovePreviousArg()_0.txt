@@ -1,0 +1,6 @@
+	void MovePreviousArg(){
+		setPreviousArgFocus();
+		requestFocus();
+		select(m_textAreaExpression_start_pos,m_textAreaExpression_end_pos);
+		repaint();
+	}

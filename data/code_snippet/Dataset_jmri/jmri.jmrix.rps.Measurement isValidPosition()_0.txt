@@ -1,0 +1,4 @@
+    public boolean isValidPosition() { 
+        if (!valid) return false;
+        return !(Math.abs(x) > 1.E10 || Math.abs(x) > 1.E10 || Math.abs(x) > 1.E10);   
+    }

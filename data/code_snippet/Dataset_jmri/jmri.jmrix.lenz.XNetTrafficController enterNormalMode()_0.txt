@@ -1,0 +1,3 @@
+    protected AbstractMRMessage enterNormalMode() { 
+		return XNetMessage.getExitProgModeMsg();
+	}

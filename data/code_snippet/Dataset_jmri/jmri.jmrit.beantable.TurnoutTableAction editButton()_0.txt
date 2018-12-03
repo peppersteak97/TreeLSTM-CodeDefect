@@ -1,0 +1,5 @@
+    protected JButton editButton() {
+        
+        JButton editButton = new JButton(AbstractTableAction.rb.getString("EditTurnoutOperation"));
+        return(editButton);
+    }

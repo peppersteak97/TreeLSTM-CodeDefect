@@ -1,0 +1,13 @@
+    private void setInitialServerComboState() {
+        ServerManager mgr = ServerManager.getManager();
+        String nextServerToLoginTo = mgr.getNextServerToLoginTo();
+        if (nextServerToLoginTo != null) {
+            m_serverComboBox.setSelectedItem(nextServerToLoginTo);
+        }
+        else {
+            String current = mgr.getCurrentServerName();
+            if (current != null) {
+                m_serverComboBox.setSelectedItem(current);
+            }
+        }
+    }

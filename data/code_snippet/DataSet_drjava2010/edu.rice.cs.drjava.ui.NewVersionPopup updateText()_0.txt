@@ -1,0 +1,50 @@
+  private void updateText() {
+    if (_msg != null) {
+      _versionPanel = new JOptionPane(_msg,JOptionPane.INFORMATION_MESSAGE,
+                                      JOptionPane.DEFAULT_OPTION,null,
+                                      new Object[0]);   
+      
+      JPanel cp = new JPanel(new BorderLayout(5,5));
+      cp.setBorder(new EmptyBorder(5,5,5,5));
+      setContentPane(cp);
+      cp.add(_versionPanel, BorderLayout.CENTER);
+      cp.add(_bottomPanel, BorderLayout.SOUTH);    
+      getRootPane().setDefaultButton(_closeButton);
+      setTitle("Check for New Version of DrJava");
+      pack();
+      _mainFrame.setPopupLoc(this);
+      return;
+    }
+    setTitle("Checking for new versions, please wait...");
+    String[] msg = new String[] {"Checking drjava.org for new versions.", "Please wait..."};
+    _versionPanel = new JOptionPane(msg,JOptionPane.INFORMATION_MESSAGE,
+                                    JOptionPane.DEFAULT_OPTION,null,
+                                    new Object[0]);   
+    JPanel cp = new JPanel(new BorderLayout(5,5));
+    cp.setBorder(new EmptyBorder(5,5,5,5));
+    setContentPane(cp);
+    cp.add(_versionPanel, BorderLayout.CENTER);
+    cp.add(_bottomPanel, BorderLayout.SOUTH);    
+    getRootPane().setDefaultButton(_closeButton);
+    pack();
+    _mainFrame.setPopupLoc(this);
+    
+    EventQueue.invokeLater(new Runnable() {
+      public void run() {
+        _msg = getMessage(null);
+        _versionPanel = new JOptionPane(_msg,JOptionPane.INFORMATION_MESSAGE,
+                                        JOptionPane.DEFAULT_OPTION,null,
+                                        new Object[0]);   
+        
+        JPanel cp = new JPanel(new BorderLayout(5,5));
+        cp.setBorder(new EmptyBorder(5,5,5,5));
+        setContentPane(cp);
+        cp.add(_versionPanel, BorderLayout.CENTER);
+        cp.add(_bottomPanel, BorderLayout.SOUTH);    
+        getRootPane().setDefaultButton(_closeButton);
+        setTitle("Check for New Version of DrJava");
+        pack();
+        _mainFrame.setPopupLoc(NewVersionPopup.this);
+      }
+    });
+  }

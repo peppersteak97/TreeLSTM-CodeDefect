@@ -1,0 +1,7 @@
+  public void testIsQuoted() {
+    assertTrue("#0.0", !lparen.isQuoted());
+    lparen.setState(INSIDE_DOUBLE_QUOTE);
+    assertTrue("#0.1", lparen.isQuoted());
+    lparen.setState(INSIDE_BLOCK_COMMENT);
+    assertTrue("#0.2", !lparen.isQuoted());
+  }

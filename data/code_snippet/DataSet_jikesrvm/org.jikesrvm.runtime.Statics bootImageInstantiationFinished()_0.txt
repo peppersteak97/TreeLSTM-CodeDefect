@@ -1,0 +1,5 @@
+  public static Object bootImageInstantiationFinished() {
+    Object t = objectSlots;
+    objectSlots = null;
+    return t;
+  }

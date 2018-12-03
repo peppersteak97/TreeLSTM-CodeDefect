@@ -1,0 +1,10 @@
+  public void reset() {
+    if (lock!=null) {
+      lock.lockNoHandshake();
+    }
+    gcTrigger = Collection.UNKNOWN_GC_TRIGGER;
+    requestFlag = false;
+    if (lock!=null) {
+      lock.unlock();
+    }
+  }

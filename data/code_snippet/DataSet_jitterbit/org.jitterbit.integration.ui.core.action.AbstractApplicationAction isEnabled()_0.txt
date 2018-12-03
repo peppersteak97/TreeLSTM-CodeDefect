@@ -1,0 +1,4 @@
+        if (!isEnabled()) {
+            succeeded(null);
+            return;
+        }

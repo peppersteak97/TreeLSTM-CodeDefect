@@ -1,0 +1,11 @@
+    public void loadData() throws ViewActionsMetaDataException {
+        try {
+            super.load(m_xmlResource);
+        }
+        catch (KongaSaxParserException ex) {
+            throw new ViewActionsMetaDataException(ex);
+        }
+        catch (ViewActionsMetaDataRuntimeException e) {
+            throw new ViewActionsMetaDataException(e);
+        }
+    }

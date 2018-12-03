@@ -1,0 +1,21 @@
+	void setDeList(){
+		if(m_list.getItemCount()>0)m_list.removeAll();
+		for(String de:m_deList)
+		{
+			m_list.add(de);
+		}
+		m_deListSelected=null;
+		if(m_list.getItemCount()>0){
+			m_list.select(0);
+			m_isSelectAll=false;
+		}
+		m_list.doLayout();
+		m_list.validate();
+		
+		if(m_case==1){
+			setupMpChoice();
+			m_curMpChoice=0;
+			setMpExprTextArea(m_curMpChoice);
+		}
+		initResolveSettings();
+	}

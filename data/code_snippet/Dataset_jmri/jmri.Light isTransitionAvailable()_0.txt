@@ -1,0 +1,2 @@
+        @throws IllegalArgumentException if isTransitionAvailable() is false and minutes is not 0.0
+        @throws IllegalArgumentException if minutes is negative

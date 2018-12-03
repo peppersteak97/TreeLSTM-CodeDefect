@@ -1,0 +1,8 @@
+    private void store() {
+        try {
+            KongaIoUtils.createAndWrite(m_file, generateXml());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }

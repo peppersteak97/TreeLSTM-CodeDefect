@@ -1,0 +1,3 @@
+  private static void throwIllegalArgumentException() throws IllegalArgumentException {
+    throw new IllegalArgumentException();
+  }

@@ -1,0 +1,3 @@
+  public int lower8() {
+    return Bits.lower8(value);
+  }

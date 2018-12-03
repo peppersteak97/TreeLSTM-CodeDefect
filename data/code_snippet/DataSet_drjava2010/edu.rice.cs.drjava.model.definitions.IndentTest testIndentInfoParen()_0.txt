@@ -1,0 +1,16 @@
+  public void testIndentInfoParen() throws BadLocationException {
+    _doc.insertString(0, "\n(\n", null);
+    _assertLineBraceInfo(2, OPEN_PAREN);
+    _assertBraceInfo(2, OPEN_PAREN);
+    _doc.insertString(1, "  helo ", null);
+    _doc.move(2);
+    _assertContents("\n  helo (\n", _doc);
+    _assertLineBraceInfo(2, OPEN_PAREN);
+    _assertBraceInfo(2, OPEN_PAREN);
+    _doc.move(-1);
+    _doc.insertString(9, " (", null);
+    _doc.move(1);
+    _assertContents("\n  helo ( (\n", _doc);
+    _assertLineBraceInfo(2, OPEN_PAREN);
+    _assertBraceInfo(2, OPEN_PAREN);
+  }

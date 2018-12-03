@@ -1,0 +1,10 @@
+  public String toString() {
+    final StringBuilder result = new StringBuilder("\n{ ");
+    
+    for (OptionParser<?> key: keys) {
+      result.append(key.name).append(" = ").append(getString(key)).append('\n');
+    }
+    
+    result.append('}');
+    return result.toString();
+  }

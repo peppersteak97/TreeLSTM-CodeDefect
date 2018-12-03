@@ -1,0 +1,1 @@
+  public boolean hasSuspendedThreads() { return false; }

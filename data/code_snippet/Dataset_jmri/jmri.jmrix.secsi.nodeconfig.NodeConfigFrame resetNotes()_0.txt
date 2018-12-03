@@ -1,0 +1,12 @@
+    private void resetNotes() {
+        if (errorInStatus1) {
+            if (editMode) {
+                statusText1.setText(editStatus1);
+            }
+            else {
+                statusText1.setText(stdStatus1);
+            }
+            errorInStatus1 = false;
+        }
+        resetNotes2();
+    }

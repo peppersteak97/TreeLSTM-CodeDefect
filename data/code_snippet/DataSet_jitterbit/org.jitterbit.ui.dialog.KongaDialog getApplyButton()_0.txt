@@ -1,0 +1,3 @@
+    public JButton getApplyButton() {
+		return m_btnApply;
+	}

@@ -1,0 +1,12 @@
+    private void createButtons() {
+        int length = m_actions.length;
+        m_buttons = new JButton[length];
+        ButtonSizeManager sizeMgr = new ButtonSizeManager();
+        IButtonFactory factory = ComponentFactories.buttonFactory();
+        for (int n = 0; n < length; ++n) {
+            JButton b = factory.newButton(m_actions[n]);
+            sizeMgr.add(b);
+            m_buttons[n] = b;
+        }
+        sizeMgr.apply();
+    }

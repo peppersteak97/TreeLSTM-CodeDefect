@@ -1,0 +1,14 @@
+    private void createActionsAndButtons() {
+        m_sourceToTargetAction = new SourceToTargetTransfer();
+        m_targetToSourceAction = new TargetToSourceTransfer();
+
+        m_toTargetButton = new JButton(m_sourceToTargetAction);
+        m_toTargetButton.setIcon(m_toTargetIcon);
+        m_toTargetButton.setBorder(null);
+        m_toTargetButton.setContentAreaFilled(false);
+
+        m_toSourceButton = new JButton(m_targetToSourceAction);
+        m_toSourceButton.setIcon(m_toSourceIcon);
+        m_toSourceButton.setBorder(null);
+        m_toSourceButton.setContentAreaFilled(false);
+    }

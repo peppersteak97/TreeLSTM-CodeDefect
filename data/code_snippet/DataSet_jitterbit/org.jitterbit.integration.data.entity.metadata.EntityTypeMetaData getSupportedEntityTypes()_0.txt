@@ -1,0 +1,6 @@
+    public EnumSet<EntityType> getSupportedEntityTypes() {
+        if (m_supportedTypes == null) {
+            m_supportedTypes = EnumSet.copyOf(m_xmlLoader.getSupportedTypes());
+        }
+        return m_supportedTypes;
+    }

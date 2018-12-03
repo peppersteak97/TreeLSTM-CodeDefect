@@ -1,0 +1,36 @@
+  private static ArchitectureSpecific.CodeArray generateReflectiveMethodInvokerInstructions() {
+    Assembler asm = new ArchitectureSpecific.Assembler(0);
+
+
+
+
+    int spillLoopLabel = asm.getMachineCodeIndex();
+    fr1.resolve(asm);
+
+    asm.emitLVAL(T0, INVISIBLE_METHOD_ID);
+
+
+    ForwardReference setupFPRLoader = asm.emitForwardBL();
+
+    for (int i = LAST_VOLATILE_FPR; i >= FIRST_VOLATILE_FPR; --i) {
+    }
+
+
+    ForwardReference setupGPRLoader = asm.emitForwardBL();
+
+    for (int i = LAST_VOLATILE_GPR; i >= FIRST_VOLATILE_GPR; --i) {
+    }
+
+
+
+
+    setupFPRLoader.resolve(asm);
+    asm.emitADDI(T4,
+                 VOLATILE_FPRS << LG_INSTRUCTION_WIDTH,
+
+    setupGPRLoader.resolve(asm);
+    asm.emitADDI(T4,
+                 VOLATILE_GPRS << LG_INSTRUCTION_WIDTH,
+
+    return asm.makeMachineCode().getInstructions();
+  }

@@ -1,0 +1,4 @@
+    public boolean hasFields() {
+        List<Field> fields = getFieldList();
+        return (fields != null) && !fields.isEmpty();
+    }

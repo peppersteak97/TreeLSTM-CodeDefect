@@ -1,0 +1,1 @@
+    public synchronized int incrementGet() { return ++m_iValue; }

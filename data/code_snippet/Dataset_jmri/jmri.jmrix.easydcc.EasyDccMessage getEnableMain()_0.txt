@@ -1,0 +1,6 @@
+    static public EasyDccMessage getEnableMain() {
+        EasyDccMessage m = new EasyDccMessage(1);
+        m.setBinary(false);
+        m.setOpCode('E');
+        return m;
+    }

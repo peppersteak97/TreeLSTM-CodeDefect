@@ -1,0 +1,13 @@
+    public void addNotify() {
+        super.addNotify();
+        if (mShown)
+            return;
+        JMenuBar jMenuBar = getJMenuBar();
+        if (jMenuBar != null) {
+            int jMenuBarHeight = jMenuBar.getPreferredSize().height;
+            Dimension dimension = getSize();
+            dimension.height += jMenuBarHeight;
+            setSize(dimension);
+        }
+        mShown = true;
+    }

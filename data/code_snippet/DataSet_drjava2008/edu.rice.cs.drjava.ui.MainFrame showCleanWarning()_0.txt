@@ -1,0 +1,27 @@
+  private boolean showCleanWarning() {
+    if (DrJava.getConfig().getSetting(PROMPT_BEFORE_CLEAN).booleanValue()) {
+      String buildDirTxt = "";
+      try { buildDirTxt = _model.getBuildDirectory().getCanonicalPath(); }
+      catch (Exception e) { buildDirTxt = _model.getBuildDirectory().getPath(); }
+      ConfirmCheckBoxDialog dialog =
+        new ConfirmCheckBoxDialog(MainFrame.this,
+                                  "Clean Build Directory?",
+                                  "Cleaning your build directory will delete all\n" + 
+                                  "class files and empty folders within that directory.\n" + 
+                                  "Are you sure you want to clean\n" + 
+                                  buildDirTxt + "?",
+                                  "Do not show this message again");
+      int rc = dialog.show();
+      switch (rc) {
+        case JOptionPane.YES_OPTION:
+          _saveAll();
+          if (dialog.getCheckBoxValue()) DrJava.getConfig().setSetting(PROMPT_BEFORE_CLEAN, Boolean.FALSE);
+          return true;
+        case JOptionPane.NO_OPTION:      return false;
+        case JOptionPane.CANCEL_OPTION:  return false;
+        case JOptionPane.CLOSED_OPTION:  return false;
+        default:  throw new RuntimeException("Invalid rc from showConfirmDialog: " + rc);
+      }
+    }
+    return true;
+  }

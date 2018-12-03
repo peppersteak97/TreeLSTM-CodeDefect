@@ -1,0 +1,18 @@
+  public String toString() {
+    if (methOp != null) return methOp.toString();
+    switch (type) {
+      case METHOD_ACCESS:
+        return "<mem loc: methOp is null!>";
+      case FIELD_ACCESS:
+        return "<mem loc: " + fieldRef.getType().getName() + "." + fieldRef.getName() + ">";
+      case ARRAY_ACCESS:
+        return "<mem loc: array " + arrayElementType + "[]>";
+      case JTOC_ACCESS:
+        return "<mem loc: JTOC @" + VM.addressAsHexString(JTOCoffset.toWord().toAddress()) + ">";
+      case SPILL_ACCESS:
+        return "<mem loc: spill FP " + spillOffset + ">";
+      case ALENGTH_ACCESS:
+        return "<mem loc: array length>";
+    }
+    return "<mem loc: no aliases>";
+  }

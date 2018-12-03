@@ -1,0 +1,7 @@
+    private void installUndoRedo() {
+        IUndoRedoSupportManager mgr = getUndoRedoSupportManager();
+        mgr.enableUndoRedo(m_webServiceUrlField);
+        mgr.enableUndoRedo(m_soapActionField);
+        m_restrictionsPanel.installUndoRedo(mgr);
+        m_securityPanel.installUndoRedo(mgr);
+    }

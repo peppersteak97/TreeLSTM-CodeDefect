@@ -1,0 +1,6 @@
+    void write() throws IOException {
+        File file = m_fileProvider.getFile();
+        if (file != null) {
+            KongaIoUtils.createAndWrite(file, getXml());
+        }
+    }

@@ -1,0 +1,1 @@
+  public File getWorkingDirectory() { return _workingDirectory; }

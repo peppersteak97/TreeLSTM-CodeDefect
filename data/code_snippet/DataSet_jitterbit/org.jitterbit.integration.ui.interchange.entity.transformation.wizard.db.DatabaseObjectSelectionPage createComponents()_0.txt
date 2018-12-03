@@ -1,0 +1,4 @@
+    private void createComponents() {
+        m_objectSearcher = new ObjectSearcher(this, getUndoRedoSupportManager());
+        m_objectSelector = new ObjectSelector(this, m_dbLocation);
+    }

@@ -1,0 +1,8 @@
+  public void start() {
+    LocoNetMessage l = new LocoNetMessage(4);
+    l.setElement(0, LnConstants.OPC_RQ_SL_DATA);
+    l.setElement(1, CONFIG_SLOT );
+    l.setElement(2, 0);
+    l.setElement(3, 0);
+    LnTrafficController.instance().sendLocoNetMessage(l);
+  }

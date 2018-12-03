@@ -1,0 +1,33 @@
+  public void testLiveUpdateOfHistoryMaxSize() {
+    final int maxLength = 20;
+    final FileConfiguration config = DrJava.getConfig();
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { config.setSetting(HISTORY_MAX_SIZE, Integer.valueOf(20)); }
+    });
+    Utilities.clearEventQueue();
+
+    for (int i = 0; i < maxLength; i++) {
+      _history.add("testing " + i);
+    }
+
+    assertEquals("History size should be 20", 20, _history.size());
+    
+
+    Utilities.invokeAndWait(new Runnable() { public void run() { config.setSetting(HISTORY_MAX_SIZE, 10); } });
+    Utilities.clearEventQueue();
+    
+    assertEquals("History size should be 10", 10, _history.size());
+    _history.setMaxSize(100);
+
+    assertEquals("History size should still be 10", 10, _history.size());
+
+    _history.setMaxSize(0);
+    assertEquals("History size should be 0", 0, _history.size());
+
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { config.setSetting(HISTORY_MAX_SIZE, Integer.valueOf(-1)); }
+    });
+
+    Utilities.clearEventQueue();
+    assertEquals("History size should still be 0", 0, _history.size());
+  }

@@ -1,0 +1,4 @@
+    private IManagedProject getManagedProject() {
+        InterchangeProjectManager mgr = InterchangeProjectManager.getManager();
+        return mgr.getProject(getProject());
+    }

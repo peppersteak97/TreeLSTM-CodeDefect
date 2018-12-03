@@ -1,0 +1,20 @@
+    protected JPanel createTitlePanel() {
+        JPanel pnl = new JPanel();
+        if (m_titleBackground != null) {
+            pnl.setBackground(m_titleBackground);
+        }
+        JLabel title = new JLabel(m_title, m_titleIcon, SwingConstants.LEFT);
+        if (m_titleForeground != null) {
+            title.setForeground(m_titleForeground);
+        }
+        if (m_titleFont != null) {
+            title.setFont(m_titleFont);
+        }
+        pnl.setBorder(m_titleBorder);
+
+        pnl.setLayout(new BoxLayout(pnl, BoxLayout.LINE_AXIS));
+        pnl.add(title);
+        pnl.add(Box.createHorizontalGlue());
+        pnl.setBorder(getTitleBorder());
+        return pnl;
+    }

@@ -1,0 +1,22 @@
+  public void testIndentParenPhrases() throws BadLocationException {
+    String text =
+      "foo(i,\n" +
+      "j.\n" +
+      "bar().\n" +
+      "baz(),\n" +
+      "cond1 ||\n" +
+      "cond2);\n" +
+      "i = myArray[x *\n" +
+      "y.\n" +
+      "foo() +\n" +
+      "z\n" +
+      "];\n";
+    
+    String indented =
+      "foo(i,\n" +
+    
+    _doc.insertString(0, text, null);
+    _assertContents(text, _doc);
+    safeIndentLines(0, _doc.getLength());
+    _assertContents(indented, _doc);
+  }

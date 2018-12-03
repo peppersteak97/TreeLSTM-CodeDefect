@@ -1,0 +1,51 @@
+    public JPanel doLocale() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout());
+        locales = null;
+        localeBox = new JComboBox(new String[]{
+                        Locale.getDefault().getDisplayName(),
+                        "(Please Wait)"});
+        panel.add(localeBox);
+
+        Runnable r  = new Runnable() {
+            public void run() {
+                locales = jmri.util.LocaleUtil.getAvailableLocales();
+                localeNames = new String[locales.length];
+                for (int i = 0; i<locales.length; i++) {
+                    localeNames[i] = locales[i].getDisplayName();
+                }
+                Runnable update = new Runnable() {
+                    public void run() {
+                        localeBox.setModel(new javax.swing.DefaultComboBoxModel(localeNames));
+                        localeBox.setSelectedItem(Locale.getDefault().getDisplayName());
+                    }
+                };
+                javax.swing.SwingUtilities.invokeLater(update);
+            }
+        };
+        new Thread(r).start();
+        return panel;
+    }
+
+    JComboBox localeBox;
+    Locale[] locales;
+    String[] localeNames;
+
+    /**
+     * Get the currently configured Locale
+     * or Locale.getDefault if no configuration has been done.
+     */
+    public Locale getLocale() {
+        if (localeBox==null || locales==null) return Locale.getDefault();
+        String desired = (String)localeBox.getSelectedItem();
+        for (int i = 0; i<locales.length; i++) {
+            if (desired.equals(localeNames[i])) return locales[i];
+        }
+        return null;
+    }
+
+    public String getClassName() {
+        return LAFGroup.getSelection().getActionCommand();
+
+    }
+}

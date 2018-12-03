@@ -1,0 +1,22 @@
+  private void _setUpStatusBar() {
+    
+    
+    _statusField.setFont(_statusField.getFont().deriveFont(Font.PLAIN));
+    _statusReport.setHorizontalAlignment(SwingConstants.RIGHT);
+    
+    JPanel fileNameAndMessagePanel = new JPanel(new BorderLayout());
+    fileNameAndMessagePanel.add(_statusField, BorderLayout.CENTER);
+    fileNameAndMessagePanel.add(_statusReport, BorderLayout.EAST);
+    
+    _currLocationField.setFont(_currLocationField.getFont().deriveFont(Font.PLAIN));
+    _currLocationField.setHorizontalAlignment(SwingConstants.RIGHT);
+    _currLocationField.setPreferredSize(new Dimension(165,12));
+    
+    _statusBar.add( fileNameAndMessagePanel, BorderLayout.CENTER );
+    _statusBar.add( _currLocationField, BorderLayout.EAST );
+    _statusBar.
+      setBorder(new CompoundBorder(new EmptyBorder(2,2,2,2),
+                                   new CompoundBorder(new BevelBorder(BevelBorder.LOWERED), new EmptyBorder(2,2,2,2))));
+    getContentPane().add(_statusBar, BorderLayout.SOUTH);
+    
+  }

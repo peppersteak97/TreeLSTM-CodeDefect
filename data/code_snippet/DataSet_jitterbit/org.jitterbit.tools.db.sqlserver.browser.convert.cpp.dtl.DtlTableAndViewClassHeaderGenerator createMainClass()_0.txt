@@ -1,0 +1,9 @@
+    private void createMainClass() {
+        String sBaseClass = getQualifiedBaseClassName();
+        addLine("class " + getMainClassName() + " : public " + sBaseClass + " {");
+        addLine();
+        writeMainClassPublic();
+        writeMainClassPrivate();
+        addLine("};");
+        addLine();
+    }

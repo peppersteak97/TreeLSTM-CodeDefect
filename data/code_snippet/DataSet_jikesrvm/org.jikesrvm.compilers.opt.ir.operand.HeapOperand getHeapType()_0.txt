@@ -1,0 +1,3 @@
+  public T getHeapType() {
+    return value.getHeapType();
+  }

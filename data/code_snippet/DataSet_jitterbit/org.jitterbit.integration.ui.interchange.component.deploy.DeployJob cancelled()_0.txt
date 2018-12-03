@@ -1,0 +1,10 @@
+    public void cancelled() {
+        synchronized (m_syncLock) {
+            if (m_cancelHasBeenHandled) {
+                return;
+            }
+            m_cancelHasBeenHandled = true;
+        }
+        setStatus(PackageResources.Deployer.Job.CANCELLED);
+        m_externalCallback.cancelled();
+    }

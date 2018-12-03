@@ -1,0 +1,15 @@
+    public Iterable<ISourceFileHistoryEntry> getSelectedEntries() {
+        List<ISourceFileHistoryEntry> toDelete = null;
+        int checkCol = SourceHistoryTableModel.CHECK_SELECTED.getIndex();
+        for (int row = 0, rows = getRowCount(); row < rows; ++row) {
+            if ((Boolean) getValueAt(row, checkCol)) {
+                if (toDelete == null) {
+                    toDelete = new ArrayList<ISourceFileHistoryEntry>();
+                }
+                toDelete.add(getHistoryEntry(row));
+            }
+        }
+        return (toDelete == null) ? 
+                        KongaCollectionUtils.<ISourceFileHistoryEntry>getEmptyIterable() :
+                            toDelete;
+    }

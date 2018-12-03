@@ -1,0 +1,61 @@
+    void start() throws InterruptedException {
+        uploadFirstFile();
+        File suggestedDirectory = new File(m_firstFile).getParentFile();
+        while (!isAborted() && moreFilesAreRequired()) {
+            List<FileDependency> remainingDependenciesToAskFor = getRemainingDependencies();
+            if (!remainingDependenciesToAskFor.isEmpty()) {
+                List<FileDependency> userInput = RequiredFilesPrompter.getInput(
+                                getRemainingDependencies(), suggestedDirectory);
+                if (userInput == null) {
+                    abort();
+                    break;
+                }
+                for (FileDependency dep : userInput) {
+                    uploadNewBatch(dep);
+                    if (isAborted()) {
+                        break;
+                    }
+                }
+            }
+            if (!m_alreadyUploadedButServerNeedsMeAgain.isEmpty()) {
+                List<ParentFile> parentFiles = new ArrayList<ParentFile>(
+                                m_alreadyUploadedButServerNeedsMeAgain.keySet());
+                for (ParentFile parent : parentFiles) {
+                    Set<? extends String> required = m_alreadyUploadedButServerNeedsMeAgain.get(parent);
+                    if (required.isEmpty()) {
+                        continue;
+                    }
+                    List<File> files = new ArrayList<File>();
+                    for (String path : required) {
+                        try {
+                            IFile file = m_fileStore.getFile(path);
+                            if (file == null) {
+                                String msg = "An internal error occurred. "
+                                                + "Please contact Jitterbit support.";
+                                Exception ex = new Exception("The path '" + path + "' was not found in " +
+                                        "the client filestore, even though it was just uploaded to the server.");
+                                ErrorLogger.getDefaultLogger().logAndShow(m_wizardPage.getWizard(), msg, ex);
+                                abort();
+                            }
+                            else {
+                                files.add(file.getPhysicalRepresentation());
+                            }
+                        }
+                        catch (FileStoreException ex) {
+                            String msg = "An internal error occurred. "
+                                            + "Please contact Jitterbit support.";
+                            ErrorLogger.getDefaultLogger().logAndShow(m_wizardPage.getWizard(), msg, ex);
+                            abort();
+                        }
+                    }
+                    if (!isAborted()) {
+                        uploadNewBatch(new FileDependency(parent, files));
+                    }
+                    if (isAborted()) {
+                        break;
+                    }
+                }
+            }
+        }
+        m_success = !isAborted();
+    }

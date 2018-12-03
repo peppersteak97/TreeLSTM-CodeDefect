@@ -1,0 +1,12 @@
+    private void registerListeners() {
+        
+        m_inputPanel.setSendInputChangeEvents(true);
+        m_inputPanel.addInputChangeListener(new NextPageEnabledHandler());
+        
+        ((JTextField) m_name.getInputComponent()).addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                m_page.moveNext();
+            }
+        });
+    }

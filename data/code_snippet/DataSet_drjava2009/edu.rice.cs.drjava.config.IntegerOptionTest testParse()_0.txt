@@ -1,0 +1,12 @@
+  public void testParse() {
+    IntegerOption io = new IntegerOption("max_files",null);
+    
+    assertEquals(Integer.valueOf(3), io.parse("3"));
+    assertEquals(Integer.valueOf(-3), io.parse("-3"));
+    
+    try { io.parse("true"); fail(); }
+    catch (OptionParseException e) { }
+    
+    try { io.parse(".33"); fail(); }
+    catch (OptionParseException e) { }
+  }

@@ -1,0 +1,6 @@
+    private void layoutForTarget() {
+        TwoColumnPanel p = createControlCanvas();
+        addLoginBox(p);
+        p.addRow(InputFieldFactory.getCapsule(m_fileFilter));
+        wrap(p);
+    }

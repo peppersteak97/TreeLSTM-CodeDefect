@@ -1,0 +1,22 @@
+    public void doneButtonActionPerformed() {
+        if (editMode) {
+            editMode = false;
+            curNode = null;
+            addButton.setVisible(true);
+            editButton.setVisible(true);
+            deleteButton.setVisible(true);
+            doneButton.setVisible(true);
+            updateButton.setVisible(false);
+            cancelButton.setVisible(false);
+            nodeAddrField.setVisible(true);
+            nodeAddrStatic.setVisible(false);     
+        }
+        if (changedNode) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    rb.getString("Reminder1")+"\n"+rb.getString("Reminder2"),
+                        rb.getString("ReminderTitle"),
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
+        setVisible(false);
+        dispose();
+    }

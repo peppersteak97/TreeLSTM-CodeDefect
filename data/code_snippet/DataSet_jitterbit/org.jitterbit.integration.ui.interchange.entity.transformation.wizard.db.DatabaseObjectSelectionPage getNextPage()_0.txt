@@ -1,0 +1,10 @@
+    public IWizardPage getNextPage() {
+        Set<DatabaseObject> selected = m_objectSelector.getSelectedObjects();
+        if (selected.isEmpty()) {
+        }
+        IWizardPage page = getCachedPage(selected);
+        if (page == null) {
+            page = createNewNextPage(selected);
+        }
+        return page;
+    }

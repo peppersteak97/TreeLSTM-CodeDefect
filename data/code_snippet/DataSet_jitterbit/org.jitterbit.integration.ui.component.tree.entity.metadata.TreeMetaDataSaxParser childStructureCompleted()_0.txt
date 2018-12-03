@@ -1,0 +1,5 @@
+    void childStructureCompleted() {
+        m_structureNodes.pop();
+        m_currentStructureNode = m_structureNodes.empty() ? null : m_structureNodes
+                        .peek();
+    }

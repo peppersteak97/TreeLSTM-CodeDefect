@@ -1,0 +1,3 @@
+    public boolean getF20Momentary() {
+        return f20Momentary;
+    }

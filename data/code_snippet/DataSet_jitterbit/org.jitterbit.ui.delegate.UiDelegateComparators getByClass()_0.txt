@@ -1,0 +1,8 @@
+    public static <T extends IKongaUiDelegate> Comparator<T> getByClass() {
+        return new Comparator<T>() {
+            public int compare(T o1, T o2) {
+                int i = o1.getClass().getName().compareTo(o2.getClass().getName());
+                return (i == 0) ? UiDelegateComparators.<T>getByDisplayName().compare(o1, o2) : i;
+            }
+        };
+    }

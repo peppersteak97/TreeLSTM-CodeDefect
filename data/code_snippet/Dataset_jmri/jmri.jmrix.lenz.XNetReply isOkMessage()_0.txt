@@ -1,0 +1,4 @@
+    public boolean isOkMessage() {
+        return (this.getElement(0)==XNetConstants.LI_MESSAGE_RESPONSE_HEADER && 
+                this.getElement(1)==XNetConstants.LI_MESSAGE_RESPONSE_SEND_SUCCESS);
+    }	

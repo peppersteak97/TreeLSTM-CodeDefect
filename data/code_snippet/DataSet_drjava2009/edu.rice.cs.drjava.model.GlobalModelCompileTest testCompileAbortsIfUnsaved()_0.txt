@@ -1,0 +1,19 @@
+  public void testCompileAbortsIfUnsaved() throws Exception {
+    final OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    
+    CompileShouldSucceedListener listener = new CompileShouldSucceedListener() {
+      public void saveBeforeCompile() {
+        assertModified(true, doc);
+        synchronized(this) { saveBeforeCompileCount++; }
+      }
+    };
+    
+    _model.addListener(listener);
+    listener.compile(doc);
+    _log.log("critical compile complete");
+    listener.assertSaveBeforeCompileCount(1);
+    assertModified(true, doc);
+    assertContents(FOO_TEXT, doc);
+    _model.removeListener(listener);
+    _log.log("testCompileAbortsIfUnsaved complete");
+  }

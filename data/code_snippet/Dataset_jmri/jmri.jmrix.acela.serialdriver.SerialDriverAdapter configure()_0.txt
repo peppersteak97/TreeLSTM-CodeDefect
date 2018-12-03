@@ -1,0 +1,12 @@
+    public void configure() {
+        AcelaTrafficController.instance().connectPort(this);
+
+
+   	jmri.InstanceManager.setLightManager(new jmri.jmrix.acela.AcelaLightManager());
+
+        AcelaSensorManager s;
+        jmri.InstanceManager.setSensorManager(s = new jmri.jmrix.acela.AcelaSensorManager());
+        AcelaTrafficController.instance().setSensorManager(s);	
+
+        jmri.jmrix.acela.ActiveFlag.setActive();
+    }

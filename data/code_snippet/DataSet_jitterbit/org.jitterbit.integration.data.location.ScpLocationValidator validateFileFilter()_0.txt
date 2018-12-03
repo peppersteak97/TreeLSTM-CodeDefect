@@ -1,0 +1,5 @@
+    private void validateFileFilter() {
+        String filter = m_location.getFileFilter();
+        if (filter == null || filter.trim().length() == 0) {
+        }
+    }

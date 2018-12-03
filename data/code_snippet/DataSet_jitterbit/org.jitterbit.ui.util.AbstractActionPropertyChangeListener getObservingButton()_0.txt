@@ -1,0 +1,3 @@
+    protected final AbstractButton getObservingButton() {
+        return m_observer.get();
+    }

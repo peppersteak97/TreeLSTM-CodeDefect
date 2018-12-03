@@ -1,0 +1,8 @@
+    private void addGlobalKeyDispatchersForDebugging() {
+        if (DebugMode.IS_ENABLED) {
+            new DebugConsoleLauncher(m_appWin).install();
+            if (DebugMode.LOG_KEYSTROKES) {
+                ApplicationKeyLogger.getLogger().install();
+            }
+        }
+    }

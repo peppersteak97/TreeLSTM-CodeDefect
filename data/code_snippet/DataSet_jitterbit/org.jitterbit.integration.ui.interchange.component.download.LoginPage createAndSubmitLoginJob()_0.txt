@@ -1,0 +1,7 @@
+    private LoginJob createAndSubmitLoginJob() {
+        LoginJob job = new LoginJob(m_loginUi.getCredentials());
+        IUiJobManager mgr = IntegrationUi.getUi().getJobManager();
+        IUiJobProgressDisplayer displayer = UiJobProgressDialogDisplayer.createDisplayer(job);
+        mgr.submitForParallellProcessing(job, KongaListUtils.asList(displayer));
+        return job;
+    }

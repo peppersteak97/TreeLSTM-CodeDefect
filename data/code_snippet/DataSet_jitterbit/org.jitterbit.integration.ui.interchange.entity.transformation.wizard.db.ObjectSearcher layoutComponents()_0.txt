@@ -1,0 +1,10 @@
+    private void layoutComponents() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setInsets(2, 2, 2, 2);
+        layoutSearchLabel(p);
+        layoutChoicePanel(p);
+        layoutFieldPanel(p);
+        layoutCheckPanel(p);
+        m_ui = ComponentDecorFactory.invisible(p).getUi();
+        UiUtils.setOpaqueRecursivelySkipDefaults(m_ui, false);
+    }

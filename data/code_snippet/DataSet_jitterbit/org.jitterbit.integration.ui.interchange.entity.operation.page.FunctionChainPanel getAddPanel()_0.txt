@@ -1,0 +1,9 @@
+    private JPanel getAddPanel() {
+        JPanel pnl = new JPanel();
+        pnl.setOpaque(false);
+        pnl.setLayout(new BoxLayout(pnl, BoxLayout.LINE_AXIS));
+        PopupMenuButton add = createAddButton(null);
+        pnl.add(add);
+        pnl.add(Box.createHorizontalGlue());
+        return pnl;
+    }

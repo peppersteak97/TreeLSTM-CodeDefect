@@ -1,0 +1,11 @@
+            public IIntegrationLink getInputLink() {
+                TextDocumentId docId = m_tf.getSourceTextDocumentId();
+                if (docId != null) {
+                    TextDocument doc = (TextDocument) m_dataLookup.getInstance(docId);
+                    if (doc != null) {
+                        return TransformationDocumentLink.createSourceLink(doc, m_tf);
+                    }
+                    logMissingLink(m_tf, EntityType.Document, docId);
+                }
+                return null;
+            }

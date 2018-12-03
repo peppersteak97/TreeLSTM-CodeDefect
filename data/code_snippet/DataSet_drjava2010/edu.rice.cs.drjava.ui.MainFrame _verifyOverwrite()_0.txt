@@ -1,0 +1,1 @@
+          (projectFile.exists() && ! _verifyOverwrite())) { return; }

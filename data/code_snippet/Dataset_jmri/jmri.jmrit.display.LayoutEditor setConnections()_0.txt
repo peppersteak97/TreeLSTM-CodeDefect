@@ -1,0 +1,30 @@
+	public void setConnections() {
+		if (trackList.size()>0) {
+			for (int i = 0; i<trackList.size(); i++) {
+				((TrackSegment)trackList.get(i)).setObjects(this);
+			}
+		}
+		if (pointList.size()>0) {
+			for (int i = 0; i<pointList.size(); i++) {
+				((PositionablePoint)pointList.get(i)).setObjects(this);
+			}
+		}
+		if (xingList.size()>0) {
+			for (int i = 0; i<xingList.size(); i++) {
+				((LevelXing)xingList.get(i)).setObjects(this);
+			}
+		}
+		if (turntableList.size()>0) {
+			for (int i = 0; i<turntableList.size(); i++) {
+				((LayoutTurntable)turntableList.get(i)).setObjects(this);
+			}
+		}
+		if (turnoutList.size()>0) {
+			for (int i = 0; i<turnoutList.size(); i++) {
+				((LayoutTurnout)turnoutList.get(i)).setObjects(this);
+			}
+		}
+		auxTools.initializeBlockConnectivity();
+		log.debug("Initializing Block Connectivity for "+layoutName);
+		resetDirty();
+	}

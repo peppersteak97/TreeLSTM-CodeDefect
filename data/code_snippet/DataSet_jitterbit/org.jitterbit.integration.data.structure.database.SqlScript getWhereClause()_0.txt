@@ -1,0 +1,6 @@
+    public String getWhereClause() {
+        Entry entry = m_entries[SQL_STATEMENT - 1];
+        if (entry == null) {
+        }
+        String where = entry.m_whereClause;
+    }

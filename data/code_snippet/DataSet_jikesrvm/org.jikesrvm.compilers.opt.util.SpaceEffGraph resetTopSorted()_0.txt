@@ -1,0 +1,4 @@
+  public void resetTopSorted() {
+    forwardTopSorted = false;
+    backwardTopSorted = false;
+  }

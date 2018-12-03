@@ -1,0 +1,11 @@
+  private void _showDebuggerPanel() {
+    if (_detachDebugFrameMenuItem.isSelected()) {
+      _debugFrame.setDisplayInFrame(true);
+    }
+    else {
+      _debugSplitPane.setTopComponent(_docSplitPane);
+      _mainSplit.setTopComponent(_debugSplitPane);
+    }
+    _debugPanel.updateData();
+    _lastFocusOwner.requestFocusInWindow();
+  }

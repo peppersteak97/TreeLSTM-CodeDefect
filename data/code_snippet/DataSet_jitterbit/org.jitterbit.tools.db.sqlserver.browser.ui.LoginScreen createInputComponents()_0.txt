@@ -1,0 +1,8 @@
+    private void createInputComponents() {
+        m_comboServers = new JComboBox();
+        m_comboServers.setEditable(true);
+        for( String s : m_liServers )
+            m_comboServers.addItem(s);
+        m_textUser = new JTextField(m_sLastUser);
+        m_pwdField = new JPasswordField(m_sLastPassword);
+    }

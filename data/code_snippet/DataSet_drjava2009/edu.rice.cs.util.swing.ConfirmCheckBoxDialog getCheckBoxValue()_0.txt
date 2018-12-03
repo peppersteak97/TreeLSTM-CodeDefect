@@ -1,0 +1,1 @@
+  public boolean getCheckBoxValue() { return _checkBox.isSelected(); }

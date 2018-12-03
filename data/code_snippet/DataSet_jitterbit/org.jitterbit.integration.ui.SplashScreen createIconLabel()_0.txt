@@ -1,0 +1,3 @@
+    private JLabel createIconLabel() {
+        return new JLabel(ICON);
+    }

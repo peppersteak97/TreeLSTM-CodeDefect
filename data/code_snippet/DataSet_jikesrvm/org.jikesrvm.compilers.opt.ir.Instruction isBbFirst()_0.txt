@@ -1,0 +1,8 @@
+    if (isBbFirst()) {
+      return Label.getBlock(this).block;
+    } else if (isBbLast()) {
+      return BBend.getBlock(this).block;
+    } else {
+      for (instr = getNext(); !instr.isBbLast(); instr = instr.getNext()) ;
+      return BBend.getBlock(instr).block;
+    }

@@ -1,0 +1,3 @@
+    public boolean requiresInput() {
+        return true;
+    }

@@ -1,0 +1,3 @@
+    void prepareForRemoval() {
+        IntegrationUiHelp.getHelp().unregisterComponentHelpID(m_helpButton);
+    }

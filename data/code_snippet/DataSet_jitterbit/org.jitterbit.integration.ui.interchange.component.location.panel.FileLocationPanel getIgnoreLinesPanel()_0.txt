@@ -1,0 +1,3 @@
+    public IgnoreLinesPanel getIgnoreLinesPanel() {
+        return m_ignoreLinesPanel;
+    }

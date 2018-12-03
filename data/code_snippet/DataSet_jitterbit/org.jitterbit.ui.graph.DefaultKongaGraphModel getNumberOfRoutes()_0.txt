@@ -1,0 +1,3 @@
+	public int getNumberOfRoutes() {
+		return m_liRoutes.size();
+	}

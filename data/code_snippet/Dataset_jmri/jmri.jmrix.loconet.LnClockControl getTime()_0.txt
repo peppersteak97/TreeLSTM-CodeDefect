@@ -1,0 +1,9 @@
+	public Date getTime() {
+		Date tem = clock.getTime();
+		int cHours = tem.getHours();
+		long cNumMSec = tem.getTime();
+		long nNumMSec = ((cNumMSec/mSecPerHour)*mSecPerHour) - (cHours*mSecPerHour) +
+                    (curHours*mSecPerHour) + (curMinutes*mSecPerMinute) ;
+		nNumMSec += (long) ( ( ( 915 - curFractionalMinutes) / 915.0 * 60000) ) ;
+		return (new Date(nNumMSec));
+	}

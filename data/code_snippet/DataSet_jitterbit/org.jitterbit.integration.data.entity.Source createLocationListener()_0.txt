@@ -1,0 +1,9 @@
+    private PropertyChangeListener createLocationListener() {
+        return new PropertyChangeListener() {
+            
+            public void propertyChange(PropertyChangeEvent evt) {
+                Source.this.firePropertyChange(LOCATION, evt.getOldValue(), 
+                                evt.getNewValue());
+            }
+        };
+    }

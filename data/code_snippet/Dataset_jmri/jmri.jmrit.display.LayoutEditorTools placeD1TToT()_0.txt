@@ -1,0 +1,44 @@
+	private void placeD1TToT() {
+		if (testIcon == null)
+			testIcon = signalIconEditor.getIcon(0);
+		if( layoutTurnout2Horizontal && layoutTurnout2ThroatLeft && layoutTurnout2BUp) {
+			setSignalHeadOnPanel(0,d1TToTField.getText().trim(),
+				(int)(layoutTurnout2.getCoordsC().getX()),
+				(int)(layoutTurnout2.getCoordsC().getY()+4) );
+		}
+		else if( layoutTurnout2Horizontal && layoutTurnout2ThroatLeft && (!layoutTurnout2BUp) ) {
+			setSignalHeadOnPanel(0,d1TToTField.getText().trim(),
+				(int)(layoutTurnout2.getCoordsC().getX()),
+				(int)(layoutTurnout2.getCoordsC().getY()-4-testIcon.getIconHeight()) );
+		}
+		else if( layoutTurnout2Horizontal && (!layoutTurnout2ThroatLeft) && layoutTurnout2BUp ) {
+			setSignalHeadOnPanel(2,d1TToTField.getText().trim(),
+				(int)(layoutTurnout2.getCoordsC().getX()-testIcon.getIconWidth()),
+				(int)(layoutTurnout2.getCoordsC().getY()+4) );
+		}
+		else if( layoutTurnout2Horizontal && (!layoutTurnout2ThroatLeft) && (!layoutTurnout2BUp) ) {
+			setSignalHeadOnPanel(2,d1TToTField.getText().trim(),
+				(int)(layoutTurnout2.getCoordsC().getX()-testIcon.getIconWidth()),
+				(int)(layoutTurnout2.getCoordsC().getY()-4-testIcon.getIconHeight()) );
+		}
+		else if( layoutTurnout2Vertical && layoutTurnout2ThroatUp && layoutTurnout2BLeft ) {
+			setSignalHeadOnPanel(3,d1TToTField.getText().trim(),
+				(int)(layoutTurnout2.getCoordsC().getX()+4),
+				(int)(layoutTurnout2.getCoordsC().getY()) );
+		}
+		else if( layoutTurnout2Vertical && layoutTurnout2ThroatUp && (!layoutTurnout2BLeft) ) {
+			setSignalHeadOnPanel(3,d1TToTField.getText().trim(),
+				(int)(layoutTurnout2.getCoordsC().getX()-4-testIcon.getIconWidth()),
+				(int)(layoutTurnout2.getCoordsC().getY()) );
+		}
+		else if( layoutTurnout2Vertical && (!layoutTurnout2ThroatUp) && layoutTurnout2BLeft ) {
+			setSignalHeadOnPanel(1,d1TToTField.getText().trim(),
+				(int)(layoutTurnout2.getCoordsC().getX()+4),
+				(int)(layoutTurnout2.getCoordsC().getY()-testIcon.getIconHeight()) );
+		}
+		else if( layoutTurnout2Vertical && (!layoutTurnout2ThroatUp) && (!layoutTurnout2BLeft) ) {
+			setSignalHeadOnPanel(1,d1TToTField.getText().trim(),
+				(int)(layoutTurnout2.getCoordsC().getX()-4-testIcon.getIconWidth()),
+				(int)(layoutTurnout2.getCoordsC().getY()-testIcon.getIconHeight()) );
+		}
+	}

@@ -1,0 +1,10 @@
+    public void load() throws DataLocationMetaDataXmlException {
+        try {
+            load(XML_RESOURCE);
+            m_sourceTypes = m_locationHandler.getSupportedSourceTypes();
+            m_targetTypes = m_locationHandler.getSupportedTargetTypes();
+        }
+        catch (KongaSaxParserException ex) {
+            throw new DataLocationMetaDataXmlException(ex);
+        }
+    }

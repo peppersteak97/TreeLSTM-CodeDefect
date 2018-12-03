@@ -1,0 +1,3 @@
+    public void apply() {
+        m_status = m_statusCombo.getSelectedStatus();
+    }

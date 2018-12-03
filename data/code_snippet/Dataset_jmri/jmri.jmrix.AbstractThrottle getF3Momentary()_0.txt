@@ -1,0 +1,3 @@
+    public boolean getF3Momentary() {
+        return f3Momentary;
+    }

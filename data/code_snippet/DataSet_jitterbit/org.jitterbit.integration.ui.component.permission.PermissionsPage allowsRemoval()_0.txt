@@ -1,0 +1,3 @@
+    private boolean allowsRemoval() {
+        return isDirty() ? promptSave() : true;
+    }

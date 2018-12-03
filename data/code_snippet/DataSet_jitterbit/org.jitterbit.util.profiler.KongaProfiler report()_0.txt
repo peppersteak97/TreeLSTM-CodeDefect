@@ -1,0 +1,5 @@
+    public void report() {
+        for (Iterator<IProfiledThread> it = getProfiledThreads(); it.hasNext(); ) {
+            it.next().report();
+        }
+    }

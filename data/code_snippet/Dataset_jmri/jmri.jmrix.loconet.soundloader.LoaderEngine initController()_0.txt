@@ -1,0 +1,3 @@
+    void initController() {
+        if (controller == null) controller = LnTrafficController.instance();
+    }

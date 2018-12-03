@@ -1,0 +1,33 @@
+    private void commonInitialization() {
+        setLayout(null);
+        setLineStyle(LineStyle.ANGLED);
+        setRowHeight(18);
+        setCellRenderer(new KongaTreeCellRenderer());
+        getSelectionModel()
+                        .setSelectionMode(TreeSelectionModel.CONTIGUOUS_TREE_SELECTION);
+        mapKeyStrokes();
+        m_selectionManager = new KongaTreeSelectionManager(this);
+        m_mouseDragSelector = new MouseDragSelector(this);
+        m_mouseClickListener = new MouseClickListener();
+        addMouseListener(m_mouseClickListener);
+        m_mouseRenameListener = new MouseRenameListener(this);
+        m_dndMouseListener = new DragAndDropMouseListener(this);
+        FocusListener[] focusListeners = getFocusListeners();
+        for (int i = 0; i < focusListeners.length; ++i) {
+            if (focusListeners[i] instanceof BasicTreeUI.FocusHandler) {
+                removeFocusListener(focusListeners[i]);
+                break;
+            }
+        }
+        addFocusListener(new FocusHandler());
+        m_expansionListener = new KongaExpansionListener();
+        addTreeWillExpandListener(m_expansionListener);
+        m_tooltipStringMaker = new IToolTipStringMaker() {
+
+            public String getTooltipString(Object o) {
+                return (o instanceof IKongaTreeNode) ? 
+                                ((IKongaTreeNode) o).getDisplayName() : 
+            }
+        };
+        m_renameNodeHandler = new RenameNodeHandler(this);
+    }

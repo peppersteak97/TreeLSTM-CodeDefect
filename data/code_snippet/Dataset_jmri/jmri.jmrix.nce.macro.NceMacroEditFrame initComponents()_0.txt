@@ -1,0 +1,134 @@
+    public void initComponents() throws Exception {
+     	
+    	textMacro.setText("Macro");
+        textMacro.setVisible(true);
+        
+        textReply.setText("Reply:"); 
+        textReply.setVisible(true);
+  
+        macroReply.setText("unknown"); 
+        macroReply.setVisible(true);
+
+        previousButton.setText("Previous");
+        previousButton.setVisible(true);
+        previousButton.setToolTipText("Search for macro decrementing");
+        
+        nextButton.setText("   Next   ");
+        nextButton.setVisible(true);
+        nextButton.setToolTipText("Search for macro incrementing");
+        
+        getButton.setText("  Get  ");
+        getButton.setVisible(true);
+        getButton.setToolTipText("Read macro from NCE CS");
+        
+        macroTextField.setText("");
+		macroTextField.setToolTipText("Enter macro 0 to 255");
+		macroTextField.setMaximumSize(new Dimension(macroTextField
+				.getMaximumSize().width, macroTextField.getPreferredSize().height));
+        
+        saveButton.setText("Save");
+        saveButton.setVisible(true);
+        saveButton.setEnabled (false);
+        saveButton.setToolTipText("Update macro in NCE CS");
+        
+        backUpButton.setText("Backup");
+        backUpButton.setVisible(true);
+        backUpButton.setToolTipText("Save all macros to a file");
+   	   
+        restoreButton.setText("Restore");
+        restoreButton.setVisible(true);
+        restoreButton.setToolTipText("Restore all macros from a file");
+   	   
+		checkBoxEmpty.setText("Empty Macro");
+        checkBoxEmpty.setVisible(true);
+        checkBoxEmpty.setToolTipText("Check to search for empty macros");
+        
+        checkBoxNce.setText("NCE Turnout");
+        checkBoxNce.setVisible(true);
+        checkBoxNce.setToolTipText("Use NCE terminology for turnout states");
+        
+        space1.setText("            ");
+        space1.setVisible(true);
+        space2.setText(" ");
+        space2.setVisible(true); 
+        
+        initAccyFields();
+        
+        setTitle("Edit NCE Macro");
+        getContentPane().setLayout(new GridBagLayout());
+        
+        addItem(textMacro, 2,0);
+        
+        addItem(previousButton, 1,1);
+        addItem(macroTextField, 2,1);
+        addItem(nextButton, 3,1);
+        addItem(checkBoxEmpty, 4,1);
+        
+        addItem(textReply, 0,2);
+        addItem(macroReply, 1,2);
+        addItem(getButton, 2,2);
+        addItem(checkBoxNce, 4,2);
+        
+        addItem(space1, 1,3);
+        
+        
+        addAccyRow (num1, textAccy1, accyTextField1, cmdButton1, deleteButton1, 5);
+          
+        addAccyRow (num2, textAccy2, accyTextField2, cmdButton2, deleteButton2, 6);
+        
+        addAccyRow (num3, textAccy3, accyTextField3, cmdButton3, deleteButton3, 7);
+        
+        addAccyRow (num4, textAccy4, accyTextField4, cmdButton4, deleteButton4, 8);
+        
+        addAccyRow (num5, textAccy5, accyTextField5, cmdButton5, deleteButton5, 9);
+        
+        addAccyRow (num6, textAccy6, accyTextField6, cmdButton6, deleteButton6, 10);
+        
+        addAccyRow (num7, textAccy7, accyTextField7, cmdButton7, deleteButton7, 11);
+        
+        addAccyRow (num8, textAccy8, accyTextField8, cmdButton8, deleteButton8, 12);
+        
+        addAccyRow (num9, textAccy9, accyTextField9, cmdButton9, deleteButton9, 13);
+        
+        addAccyRow (num10, textAccy10, accyTextField10, cmdButton10, deleteButton10, 14);
+        
+        addItem(space2, 2,15);
+        
+        addItem(saveButton, 2,16);
+        addItem(backUpButton, 3,16);
+        addItem(restoreButton, 4,16);
+        
+        addButtonAction(previousButton);
+        addButtonAction(nextButton);
+        addButtonAction(getButton);
+        addButtonAction(saveButton);
+        addButtonAction(backUpButton);
+        addButtonAction(restoreButton);
+        
+        addButtonCmdAction(cmdButton1);
+        addButtonCmdAction(cmdButton2);
+        addButtonCmdAction(cmdButton3);
+        addButtonCmdAction(cmdButton4);
+        addButtonCmdAction(cmdButton5);
+        addButtonCmdAction(cmdButton6);
+        addButtonCmdAction(cmdButton7);
+        addButtonCmdAction(cmdButton8);
+        addButtonCmdAction(cmdButton9);
+        addButtonCmdAction(cmdButton10);
+        
+        addButtonDelAction(deleteButton1);
+        addButtonDelAction(deleteButton2);
+        addButtonDelAction(deleteButton3);
+        addButtonDelAction(deleteButton4);
+        addButtonDelAction(deleteButton5);
+        addButtonDelAction(deleteButton6);
+        addButtonDelAction(deleteButton7);
+        addButtonDelAction(deleteButton8);
+        addButtonDelAction(deleteButton9);
+        addButtonDelAction(deleteButton10);
+        
+        addCheckBoxAction(checkBoxNce);
+
+		pack();
+		if ( (getWidth()<400) && (getHeight()<400)) setSize(400, 400);
+    }

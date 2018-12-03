@@ -1,0 +1,4 @@
+            if (isSendingUndoEvents()) {
+                m_changeManager.sendUndoableEdit(this, createUndoableEdit(
+                                m_selectedModel, m));
+            }

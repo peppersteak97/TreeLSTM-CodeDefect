@@ -1,0 +1,7 @@
+    private void rebuildUi() {
+        assert (m_columnArea != null);
+        m_columnArea.removeAll();
+        OneColumnPanel p = createDisplayData();
+        p.addToParent(m_columnArea, null);
+        fireLayoutChanged(m_columnArea);
+    }

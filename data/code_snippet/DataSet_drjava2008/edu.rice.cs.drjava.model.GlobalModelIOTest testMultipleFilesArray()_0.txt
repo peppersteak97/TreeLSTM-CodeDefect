@@ -1,0 +1,16 @@
+  public void testMultipleFilesArray() throws BadLocationException {
+    OpenDefinitionsDocument doc1, doc2, doc3;
+    doc1 = setupDocument(FOO_TEXT);
+    doc2 = setupDocument(BAR_TEXT);
+    doc3 = setupDocument(FOO_TEXT);
+    assertNumOpenDocs(4);
+    
+    List<OpenDefinitionsDocument> docs = _model.getSortedOpenDefinitionsDocuments();
+    assertEquals("size of document array", 4, docs.size());
+    
+    assertEquals("document 1", doc1, docs.get(1));
+    assertEquals("document 2", doc2, docs.get(2));
+    assertEquals("document 3", doc3, docs.get(3));
+    
+    _log.log(this + ".testMultipleFilesArray() completed");
+  }

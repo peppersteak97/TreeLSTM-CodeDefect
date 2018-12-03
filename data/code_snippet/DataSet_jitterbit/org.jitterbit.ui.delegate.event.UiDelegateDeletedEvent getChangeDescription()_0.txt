@@ -1,0 +1,13 @@
+	public String getChangeDescription() {
+        String desc = null;
+		if( isSingleDelegateEvent() ) {
+			IKongaUiDelegate ewUi = getUiDelegate();
+			if( ewUi instanceof IKongaDataUiDelegate ) {
+			}
+			else {
+			}
+		}
+		else {
+		}
+        return desc;
+	}

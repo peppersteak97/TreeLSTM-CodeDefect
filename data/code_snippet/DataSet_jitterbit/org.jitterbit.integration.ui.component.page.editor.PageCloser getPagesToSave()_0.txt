@@ -1,0 +1,5 @@
+    private IPage[] getPagesToSave() {
+        IPagesToSaveCollector collector = getPagesToSaveCollector();
+        IPage[] pages = collector.collect();
+        return collector.wasCancelled() ? null : pages;
+    }

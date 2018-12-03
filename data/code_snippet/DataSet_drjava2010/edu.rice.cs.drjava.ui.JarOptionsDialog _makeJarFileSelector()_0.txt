@@ -1,0 +1,23 @@
+  private JPanel _makeJarFileSelector() {
+    JFileChooser fileChooser = new JFileChooser(_model.getBuildDirectory());
+    fileChooser.setDialogTitle("Select Jar Output File");
+    fileChooser.setApproveButtonText("Select");
+    fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    fileChooser.setMultiSelectionEnabled(false);
+    fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
+    
+    _jarFileSelector = new FileSelectorComponent(this, fileChooser, 20, 12f, false) {
+      /** Opens the file chooser to select a file, putting the result in the file field. */
+      protected void _chooseFile() {
+        _mainFrame.removeModalWindowAdapter(JarOptionsDialog.this);
+        super._chooseFile();
+        _mainFrame.installModalWindowAdapter(JarOptionsDialog.this, LambdaUtil.NO_OP, CANCEL);
+      }
+    };
+    _jarFileSelector.setFileFilter(new FileFilter() {
+      public boolean accept(File f) { return f.getName().endsWith(".jar") || f.isDirectory(); }
+      public String getDescription() { return "Java Archive Files (*.jar)"; }
+    });
+    
+    return _jarFileSelector;
+  }

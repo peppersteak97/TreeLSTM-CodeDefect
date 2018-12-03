@@ -1,0 +1,5 @@
+	public Point2D getCoordsD() {
+		double x = center.getX() - dispB.getX();
+		double y = center.getY() - dispB.getY();
+		return new Point2D.Double(x,y);
+	}

@@ -1,0 +1,3 @@
+  public String toString() {
+    return "dynamic library " + libName + ", handler=0x" + Long.toHexString(libHandler.toWord().toLong());
+  }

@@ -1,0 +1,5 @@
+  public void tearDown() throws Exception {
+    _log.log("Tearing down (DebugTestCase)" + this);
+    _debugger = null;
+    super.tearDown();
+  }

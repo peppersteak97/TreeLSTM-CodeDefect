@@ -1,0 +1,4 @@
+  private void removeListener() {
+    _textField.getDocument().removeDocumentListener(_listener);
+    _textField.removeCaretListener(_listener);
+  }

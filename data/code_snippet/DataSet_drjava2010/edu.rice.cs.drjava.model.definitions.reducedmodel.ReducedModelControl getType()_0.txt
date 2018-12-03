@@ -1,0 +1,10 @@
+  String getType() {
+    ReducedToken rmcToken = _rmc.current();
+    if (! rmcToken.isGap())
+      return rmcToken.getType();
+    
+    ReducedToken rmbToken = _rmb.current();
+    if (! rmbToken.isGap()) {
+      return rmbToken.getType();
+    }
+  }

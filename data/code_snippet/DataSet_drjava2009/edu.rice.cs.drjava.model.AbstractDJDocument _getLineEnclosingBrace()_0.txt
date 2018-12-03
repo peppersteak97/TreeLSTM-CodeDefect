@@ -1,0 +1,16 @@
+  public BraceInfo _getLineEnclosingBrace() {
+    
+/* */ assert Utilities.TEST_MODE || EventQueue.isDispatchThread();
+    
+    final int lineStart = _getLineStartPos(_currentLocation);
+    if (lineStart < 0) return BraceInfo.NULL;
+    final int keyPos = lineStart;
+    final Query key = new Query.LineEnclosingBrace(keyPos);
+    final BraceInfo cached = (BraceInfo) _checkCache(key);
+    if (cached != null) return cached;
+    
+    BraceInfo b = _reduced._getLineEnclosingBrace();
+    
+    _storeInCache(key, b, keyPos - 1);
+    return b;
+  }

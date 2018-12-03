@@ -1,0 +1,9 @@
+    private void prepareForRemoval() {
+        if (m_isDisplayed) {
+            uninstallMainPanelMouseListener();
+            uninstallKeyDispatcher();
+            uninstallUndoRedo();
+            uninstallHelpButton();
+            m_isDisplayed = false;
+        }
+    }

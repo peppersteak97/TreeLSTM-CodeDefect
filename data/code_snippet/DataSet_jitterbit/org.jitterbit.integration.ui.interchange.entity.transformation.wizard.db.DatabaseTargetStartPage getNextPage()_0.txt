@@ -1,0 +1,10 @@
+    public IWizardPage getNextPage() {
+        DatabaseLocation location = getDatabaseLocation();
+        if (location == null) {
+        }
+        IWizardPage page = getCachedNextPage(location);
+        if (page == null) {
+            page = createNewNextPage(location);
+        }
+        return page;
+    }

@@ -1,0 +1,4 @@
+    private XmlStructureFile getSelectedFile() {
+        Object o = m_existingFilesList.getSelectedValue();
+        return (o instanceof FileListItem) ? ((FileListItem) o).File : null;
+    }

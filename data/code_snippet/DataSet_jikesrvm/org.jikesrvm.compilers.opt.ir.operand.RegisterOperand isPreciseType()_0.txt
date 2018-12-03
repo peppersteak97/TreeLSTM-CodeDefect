@@ -1,0 +1,1 @@
+  public boolean isPreciseType() { return (flags & PRECISE_TYPE) != 0; }

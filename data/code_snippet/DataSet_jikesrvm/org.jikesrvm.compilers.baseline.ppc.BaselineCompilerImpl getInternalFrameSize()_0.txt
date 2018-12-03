@@ -1,0 +1,14 @@
+  private int getInternalFrameSize() {
+    int size = startLocalOffset;
+    if (method.getDeclaringClass().hasDynamicBridgeAnnotation()) {
+      size += (LAST_NONVOLATILE_FPR - FIRST_VOLATILE_FPR + 1) << LOG_BYTES_IN_DOUBLE;
+      size += (LAST_NONVOLATILE_GPR - FIRST_VOLATILE_GPR + 1) << LOG_BYTES_IN_ADDRESS;
+    } else {
+      size += (lastFloatStackRegister - FIRST_FLOAT_LOCAL_REGISTER + 1) << LOG_BYTES_IN_DOUBLE;
+      size += (lastFixedStackRegister - FIRST_FIXED_LOCAL_REGISTER + 1) << LOG_BYTES_IN_ADDRESS;
+    }
+    if (VM.BuildFor32Addr) {
+      size = Memory.alignUp(size, STACKFRAME_ALIGNMENT);
+    }
+    return size;
+  }

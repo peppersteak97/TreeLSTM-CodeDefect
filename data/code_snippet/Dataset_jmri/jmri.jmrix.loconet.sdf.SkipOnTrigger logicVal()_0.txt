@@ -1,0 +1,3 @@
+    String logicVal() {
+        return decodeFlags(logic, trigLogicCodes, trigLogicMasks, trigLogicNames);
+    }

@@ -1,0 +1,5 @@
+  public Register getFloat() {
+    Register reg = makeNewReg();
+    reg.setFloat();
+    return reg;
+  }

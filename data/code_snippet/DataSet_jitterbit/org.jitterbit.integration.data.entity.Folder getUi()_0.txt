@@ -1,0 +1,3 @@
+    public IFolderUi getUi() {
+        return (IFolderUi) super.getUi();
+    }

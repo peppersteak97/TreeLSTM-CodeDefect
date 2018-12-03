@@ -1,0 +1,12 @@
+    private JComponent createDisplay() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setInsets(5, 5, 5, 5);
+        p.setWeightX(1.0);
+        p.add(createTreePanel());
+        p.setFillOut();
+        p.add(createTextPanel());
+        JComponent p2 = new JPanel(new BorderLayout());
+        p2.setOpaque(false);
+        p.addToParent(p2, BorderLayout.CENTER);
+        return p2;
+    }

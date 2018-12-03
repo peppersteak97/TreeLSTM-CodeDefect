@@ -1,0 +1,5 @@
+  public byte[] getBytes() {
+    byte[] codes = initBytes(bsize, PSEUDO_LoadFloatConst);
+    int2bytes(codes, 2, fbits);
+    return codes;
+  }

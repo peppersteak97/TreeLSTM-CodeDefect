@@ -1,0 +1,9 @@
+    public void setInitialExpansionState() {
+        if (m_initiallySelected == null) {
+            m_container.synchronizeExpansionState();
+        }
+        else {
+
+            m_container.synchronizeExpansionState();
+        }
+    }

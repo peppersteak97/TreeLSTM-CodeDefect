@@ -1,0 +1,9 @@
+    public IntegrationEntityId getID() {
+        KongaID id = super.getID();
+        if (id instanceof IntegrationEntityId) {
+            return (IntegrationEntityId) id;
+        }
+        IntegrationEntityId eId = createNewID();
+        setID(eId);
+        return eId;
+    }

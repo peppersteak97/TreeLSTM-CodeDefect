@@ -1,0 +1,4 @@
+    private void executeImpl() {
+        IPageSaver saver = getPageSaver();
+        saver.saveActivePage(new InternalActionCallback(this));
+    }

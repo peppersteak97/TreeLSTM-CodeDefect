@@ -1,0 +1,4 @@
+  public ItemT getData() {
+    @SuppressWarnings("unchecked") ItemT result = (ItemT) super.getUserObject();
+    return result;
+  }

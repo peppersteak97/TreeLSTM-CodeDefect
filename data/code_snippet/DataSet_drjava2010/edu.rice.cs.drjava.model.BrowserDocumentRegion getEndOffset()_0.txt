@@ -1,0 +1,1 @@
+  public int getEndOffset() { return _endPosition.getOffset(); }

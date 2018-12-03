@@ -1,0 +1,3 @@
+    public IEndElementHandler getEndElementHandler() {
+        return m_endElementHandler;
+    }

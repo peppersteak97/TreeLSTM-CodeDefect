@@ -1,0 +1,5 @@
+        if (getPositionable()) {
+            lock.setSelected(false);
+        } else {
+            lock.setSelected(true);
+        }

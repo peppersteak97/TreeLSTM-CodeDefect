@@ -1,0 +1,4 @@
+  public Object[] toArray() {
+    if (VM.VerifyAssertions) VM._assert(false);
+    return null;
+  }

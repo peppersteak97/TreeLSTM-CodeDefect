@@ -1,0 +1,40 @@
+    protected void sendFunctionGroup3()
+    {
+       if((requestState&(THROTTLESPEEDSENT|THROTTLESTATSENT|THROTTLEFUNCSENT))
+		==THROTTLESTATSENT) 
+       {
+                log.warn("Outstanding request, Function Group 3 change ignored");
+		return;
+       }
+       XNetMessage msg=new XNetMessage(6);
+       msg.setElement(0,XNetConstants.LOCO_OPER_REQ);
+       msg.setElement(1,XNetConstants.LOCO_SET_FUNC_GROUP3);
+       msg.setElement(2,this.getDccAddressHigh());// set to the upper
+						    // byte of the  DCC address
+       msg.setElement(3,this.getDccAddressLow()); // set to the lower byte
+						    //of the DCC address
+       // Now, we need to figure out what to send in element 3
+       int element4value=0;
+       if(f9)
+	{
+	  element4value += 1;
+	}
+       if(f10)
+	{
+	  element4value += 2;
+	}
+       if(f11)
+	{
+	  element4value += 4;
+	}
+       if(f12)
+	{
+	  element4value += 8;
+	}
+       msg.setElement(4,element4value);
+       msg.setParity(); // Set the parity bit
+       // now, we send the message to the command station
+       XNetTrafficController.instance().sendXNetMessage(msg,this);
+       if(!isAvailable) 
+          requestState=THROTTLEFUNCSENT;
+    }

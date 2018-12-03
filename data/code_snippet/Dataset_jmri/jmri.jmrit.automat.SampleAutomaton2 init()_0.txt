@@ -1,0 +1,15 @@
+    protected void init() {
+
+        sensor = InstanceManager.sensorManagerInstance().
+                    provideSensor(sensorName);
+
+        programmer = InstanceManager.programmerManagerInstance()
+                        .getOpsModeProgrammer(locoLong, locoNumber);
+
+		if (sensor!=null) {
+			now = sensor.getKnownState();
+			setMomentum(now);
+		} else {
+			log.error("Failure to provide sensor "+sensorName+" on initialization");
+		}
+    }

@@ -1,0 +1,3 @@
+    public void clearOutputTurnouts() {
+        mNumOutputTurnouts = 0;
+    }

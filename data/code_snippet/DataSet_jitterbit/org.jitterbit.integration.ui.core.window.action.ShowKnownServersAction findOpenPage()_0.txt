@@ -1,0 +1,12 @@
+	private IPage findOpenPage() {
+        if (m_pageIdentifier == null) {
+            return null;
+        }
+        for (Iterator<IPage> it = getWindow().getPageEditor().getOpenPages(); it.hasNext(); ) {
+            IPage p = it.next();
+			if (p.getId() == m_pageIdentifier) {
+				return p;
+			}
+		}
+		return null;
+	}

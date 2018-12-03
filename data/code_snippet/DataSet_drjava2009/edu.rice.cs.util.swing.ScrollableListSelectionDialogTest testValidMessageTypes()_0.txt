@@ -1,0 +1,43 @@
+  public void testValidMessageTypes() {
+    try {
+      new  ScrollableListSelectionDialog(null, TITLE, LEADER, DATA, DESC, ScrollableListSelectionDialog.SelectionState.SELECTED, JOptionPane.ERROR_MESSAGE);
+    } catch (IllegalArgumentException e) {
+      fail("JOptionPane.ERROR_MESSAGE is a valid message type");
+    }
+    
+    try {
+      new  ScrollableListSelectionDialog(null, TITLE, LEADER, DATA, DESC, ScrollableListSelectionDialog.SelectionState.SELECTED, JOptionPane.INFORMATION_MESSAGE);
+    } catch (IllegalArgumentException e) {
+      fail("JOptionPane.INFORMATION_MESSAGE is a valid message type");
+    }
+    
+    try {
+      new  ScrollableListSelectionDialog(null, TITLE, LEADER, DATA, DESC, ScrollableListSelectionDialog.SelectionState.SELECTED, JOptionPane.WARNING_MESSAGE);
+    } catch (IllegalArgumentException e) {
+      fail("JOptionPane.WARNING_MESSAGE is a valid message type");
+    }
+    
+    try {
+      new  ScrollableListSelectionDialog(null, TITLE, LEADER, DATA, DESC, ScrollableListSelectionDialog.SelectionState.SELECTED, JOptionPane.QUESTION_MESSAGE);
+    } catch (IllegalArgumentException e) {
+      fail("JOptionPane.QUESTION_MESSAGE is a valid message type");
+    }
+    
+    try {
+      new  ScrollableListSelectionDialog(null, TITLE, LEADER, DATA, DESC, ScrollableListSelectionDialog.SelectionState.SELECTED, JOptionPane.PLAIN_MESSAGE);
+    } catch (IllegalArgumentException e) {
+      fail("JOptionPane.PLAIN_MESSAGE is a valid message type");
+    }
+    
+    try {
+      new  ScrollableListSelectionDialog(null, TITLE, LEADER, DATA, DESC, ScrollableListSelectionDialog.SelectionState.SELECTED, -128);
+      fail("-128 is not a valid message type");
+    } catch (IllegalArgumentException e) {
+    }
+    
+    try {
+      new  ScrollableListSelectionDialog(null, TITLE, LEADER, DATA, DESC, ScrollableListSelectionDialog.SelectionState.SELECTED, 42);
+      fail("42 is not a valid message type");
+    } catch (IllegalArgumentException e) {
+    }
+  }

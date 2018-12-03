@@ -1,0 +1,4 @@
+  public void textGetLine6() {
+    _doc.gotoLine(4);
+    assertEquals("#0.0", 1, _doc.getCurrentLine());
+  }

@@ -1,0 +1,3 @@
+    public int getPulseWidth() {
+        return (pulseWidth);
+    }

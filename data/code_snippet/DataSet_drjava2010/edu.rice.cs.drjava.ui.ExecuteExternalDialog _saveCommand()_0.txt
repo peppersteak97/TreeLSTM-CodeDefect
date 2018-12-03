@@ -1,0 +1,33 @@
+  private void _saveCommand() {          
+    if (_editMode) {
+      final Vector<String> names = DrJava.getConfig().getSetting(OptionConstants.EXTERNAL_SAVED_NAMES);
+      _mainFrame.removeModalWindowAdapter(this);
+      String name = JOptionPane.showInputDialog(this, "Name for saved process:", names.get(_editIndex));
+      _mainFrame.installModalWindowAdapter(this, LambdaUtil.NO_OP, CANCEL);
+      if (name == null) {
+        _saveSettings();
+        this.setVisible(false);
+        if (_cm != null) { _cm.signal(); }
+        return;
+      }
+      editInMenu(_editIndex, name, _commandLine.getText(), _commandWorkDirLine.getText(), 
+                 _commandEnclosingFileLine.getText());
+    }
+    else {
+      int count = DrJava.getConfig().getSetting(OptionConstants.EXTERNAL_SAVED_COUNT);
+      _mainFrame.removeModalWindowAdapter(this);
+      String name = JOptionPane.showInputDialog(this, "Name for saved process:", "External Java "+(count+1));
+      _mainFrame.installModalWindowAdapter(this, LambdaUtil.NO_OP, CANCEL);
+      if (name == null) {
+        _saveSettings();
+        this.setVisible(false);
+        if (_cm != null) { _cm.signal(); }
+        return;
+      }
+      addToMenu(name, _commandLine.getText(), _commandWorkDirLine.getText(), _commandEnclosingFileLine.getText());
+    }
+    
+    _saveSettings();
+    this.setVisible(false);
+    if (_cm != null) { _cm.signal(); }
+  }  

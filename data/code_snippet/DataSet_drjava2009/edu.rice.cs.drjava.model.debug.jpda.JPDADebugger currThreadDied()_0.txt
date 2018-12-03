@@ -1,0 +1,23 @@
+ void currThreadDied() throws DebugException {
+    assert EventQueue.isDispatchThread();
+    printMessage("The current thread has finished.");
+    _runningThread = null;
+    
+    _updateWatches();
+    
+    if (_suspendedThreads.size() > 0) {
+      ThreadReference thread = _suspendedThreads.peek();
+      _switchToInterpreterForThreadReference(thread);
+      
+      try {
+        if (thread.frameCount() <= 0) {
+          printMessage("Could not scroll to source for " + thread.name() + ". It has no stackframes.");
+        }
+        else scrollToSource(thread.frame(0).location());
+      }
+      catch(IncompatibleThreadStateException e) { throw new UnexpectedException(e); }
+      
+      _switchToSuspendedThread();
+    }
+    _notifier.currThreadDied();
+  }

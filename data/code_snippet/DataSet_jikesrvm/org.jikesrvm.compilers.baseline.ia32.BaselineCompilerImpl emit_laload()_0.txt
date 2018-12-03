@@ -1,0 +1,13 @@
+  protected final void emit_laload() {
+    if (VM.BuildFor32Addr && SSE2_BASE) {
+    }
+    if (VM.BuildFor32Addr) {
+      if (SSE2_BASE) {
+        asm.emitMOVQ_Reg_RegIdx(XMM0, T1, T0, Assembler.LONG, NO_SLOT);
+        asm.emitMOVQ_RegInd_Reg(SP, XMM0);
+      } else {
+      }
+    } else {
+      adjustStack(-WORDSIZE, true);
+    }
+  }

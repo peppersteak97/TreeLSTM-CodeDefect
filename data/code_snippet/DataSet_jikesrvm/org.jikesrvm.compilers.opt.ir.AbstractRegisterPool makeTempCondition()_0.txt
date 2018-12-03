@@ -1,0 +1,4 @@
+  public RegisterOperand makeTempCondition() {
+    Register reg = getCondition();
+    return new RegisterOperand(reg, TypeReference.Int);
+  }

@@ -1,0 +1,3 @@
+    public OperationHistoryFilters getFilters() {
+        return (OperationHistoryFilters)super.getFilters();
+    }

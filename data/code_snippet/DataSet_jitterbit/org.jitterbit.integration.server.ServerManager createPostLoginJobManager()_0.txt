@@ -1,0 +1,4 @@
+    private void createPostLoginJobManager() {
+        m_postLoginJobMgr = new DefaultPostLoginManager();
+        registerPostLoginJobs();
+    }

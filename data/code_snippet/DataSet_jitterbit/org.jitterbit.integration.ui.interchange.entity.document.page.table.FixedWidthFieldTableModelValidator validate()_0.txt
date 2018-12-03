@@ -1,0 +1,6 @@
+    void validate() throws TextDocumentDefinitionException {
+        Collection<? extends IValidationIssue> issues = m_validator.validate();
+        if (!issues.isEmpty()) {
+            displayValidationErrors(issues);
+        }
+    }

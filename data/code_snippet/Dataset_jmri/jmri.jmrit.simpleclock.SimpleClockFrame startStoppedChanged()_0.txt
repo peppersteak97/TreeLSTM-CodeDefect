@@ -1,0 +1,4 @@
+	private void startStoppedChanged() {
+		clock.setStartStopped(startStoppedCheckBox.isSelected());
+		changed = true;
+	}

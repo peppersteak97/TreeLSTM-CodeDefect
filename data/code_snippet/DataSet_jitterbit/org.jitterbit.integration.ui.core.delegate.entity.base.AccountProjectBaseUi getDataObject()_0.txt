@@ -1,0 +1,3 @@
+    public AccountProject getDataObject() {
+        return (AccountProject)getKongaObject();
+    }

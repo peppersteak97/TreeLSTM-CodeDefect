@@ -1,0 +1,1 @@
+  public int getSelectionCount() { return 1; } // return getSelectedIndices().length; }

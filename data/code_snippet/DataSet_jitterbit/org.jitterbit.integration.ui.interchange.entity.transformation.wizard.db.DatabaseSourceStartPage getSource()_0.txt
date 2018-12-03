@@ -1,0 +1,11 @@
+    private Source getSource() {
+        Object entity = super.getSelectedEntity();
+        Source source = null;
+        if (entity instanceof Source) {
+            source = (Source) entity;
+        }
+        else if (entity instanceof ISourceUi) {
+            source = ((ISourceUi) entity).getDataObject();
+        }
+        return source;
+    }

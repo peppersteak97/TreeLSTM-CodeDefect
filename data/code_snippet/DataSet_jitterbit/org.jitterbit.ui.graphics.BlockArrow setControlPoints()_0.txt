@@ -1,0 +1,31 @@
+    private void setControlPoints() {
+        Point[] arp = new Point[10];
+        arp[0] = new Point(m_pts[0].x, 0);
+        arp[1] = new Point(m_pts[0].x, m_pts[2].y);
+        arp[2] = new Point(2 * m_pts[1].x / 3, m_pts[2].y);
+        arp[3] = new Point(m_pts[3].x, m_pts[2].y);
+        arp[4] = new Point(m_pts[3]);
+        for (int i = 5; i < 8; ++i) {
+            arp[i] = new Point(arp[8 - i].x, -arp[8 - i].y);
+        }
+        arp[8] = new Point(m_pts[1]);
+        arp[9] = new Point(arp[2].x, arp[2].y - 20);
+
+        Point[] transformed = new Point[10];
+        for (int i = 0; i < 10; ++i) {
+            transformed[i] = new Point();
+        }
+        getArrowToComponentTransformation().transform(arp, 0, transformed, 0, 10);
+        
+        m_ctrlPoints = new ControlPoint[10];
+        m_ctrlPoints[0] = new ReshapeControlPoint(arp[0], transformed[0], Direction.W);
+        m_ctrlPoints[1] = new ReshapeControlPoint(arp[1], transformed[1], Direction.NW);
+        m_ctrlPoints[2] = new ReshapeControlPoint(arp[2], transformed[2], Direction.N);
+        m_ctrlPoints[3] = new ReshapeControlPoint(arp[3], transformed[3], Direction.NE);
+        m_ctrlPoints[4] = new ReshapeControlPoint(arp[4], transformed[4], Direction.E);
+        m_ctrlPoints[5] = new ReshapeControlPoint(arp[5], transformed[5], Direction.SE);
+        m_ctrlPoints[6] = new ReshapeControlPoint(arp[6], transformed[6], Direction.S);
+        m_ctrlPoints[7] = new ReshapeControlPoint(arp[7], transformed[7], Direction.SW);
+        m_ctrlPoints[8] = new ReshapeControlPoint(arp[8], transformed[8], Direction.NW);
+        m_ctrlPoints[9] = new RotateControlPoint(arp[9], transformed[9]);
+    }

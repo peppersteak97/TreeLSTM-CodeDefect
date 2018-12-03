@@ -1,0 +1,26 @@
+  public boolean isMiranda() {
+
+    RVMClass declaringClass = (RVMClass) type.peekType();
+    if (declaringClass == null) { return false; }
+
+    if (!declaringClass.isResolved()) {
+      declaringClass.resolve();
+    }
+
+    for (RVMClass c = declaringClass; c != null; c = c.getSuperClass()) {
+
+      if (c.findDeclaredMethod(name, descriptor) != null) {
+        return false;
+      }
+    }
+
+    for (RVMClass c = declaringClass; c != null; c = c.getSuperClass()) {
+      for (RVMClass intf : c.getDeclaredInterfaces()) {
+        if (searchInterfaceMethods(intf) != null) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }

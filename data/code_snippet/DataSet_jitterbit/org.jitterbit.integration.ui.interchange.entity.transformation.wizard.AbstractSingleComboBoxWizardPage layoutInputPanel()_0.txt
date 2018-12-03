@@ -1,0 +1,12 @@
+    private void layoutInputPanel() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setOpaque(false, false);
+        p.setInsets(5, 5, 5, 5);
+        InputField combo = m_entityBoxControls.asInputFieldForLayout(
+                        m_entityBox.getName(), m_entityBox.getLabel().getText());
+        p.add(InputFieldFactory.getCapsule(combo));
+        p.add(getAdditionalComponents());
+
+        InvisiblePanel.convert(m_inputPanel.getUi());
+        p.addToParent(m_inputPanel.getUi(), null);
+    }

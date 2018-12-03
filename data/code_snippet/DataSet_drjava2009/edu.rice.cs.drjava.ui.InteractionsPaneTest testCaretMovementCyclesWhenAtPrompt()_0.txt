@@ -1,0 +1,10 @@
+  public void testCaretMovementCyclesWhenAtPrompt() throws EditDocumentException {
+    _doc.append("test text", InteractionsDocument.DEFAULT_STYLE);
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        _controller.moveToPrompt();
+        _controller.moveLeftAction.actionPerformed(null);
+      }
+    });
+    assertEquals("Caret was not cycled when moved left at the prompt.", _doc.getLength(), _pane.getCaretPosition());
+  }

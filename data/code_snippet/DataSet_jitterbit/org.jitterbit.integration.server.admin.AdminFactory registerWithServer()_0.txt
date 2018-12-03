@@ -1,0 +1,10 @@
+    private static void registerWithServer() {
+        IntegrationServer server = IntegrationServer.getInstance();
+        IServerCallFactory<IAdmin> callFactory = new IServerCallFactory<IAdmin>() {
+
+            public IAdmin get() {
+                return new AdminImpl();
+            }
+        };
+        server.registerCallFactory(IAdmin.class, callFactory);
+    }

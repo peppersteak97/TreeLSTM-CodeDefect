@@ -1,0 +1,9 @@
+  public int countNumSpillElements() {
+    int count = 0;
+    for (RegSpillListElement elem : regSpillList) {
+      if (elem.isSpill()) {
+        count++;
+      }
+    }
+    return count;
+  }

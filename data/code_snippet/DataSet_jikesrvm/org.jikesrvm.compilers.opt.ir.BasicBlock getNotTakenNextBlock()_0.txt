@@ -1,0 +1,8 @@
+  public final BasicBlock getNotTakenNextBlock() {
+    Instruction last = lastRealInstruction();
+    if (Goto.conforms(last) || MIR_Branch.conforms(last)) {
+      return last.getBranchTarget();
+    } else {
+      return nextBasicBlockInCodeOrder();
+    }
+  }

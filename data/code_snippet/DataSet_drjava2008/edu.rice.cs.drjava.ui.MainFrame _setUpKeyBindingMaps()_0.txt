@@ -1,0 +1,42 @@
+  private void _setUpKeyBindingMaps() {
+    final ActionMap actionMap = _currentDefPane.getActionMap();
+    final KeyBindingManager kbm = KeyBindingManager.ONLY;
+    
+    kbm.put(KEY_BACKWARD, actionMap.get(DefaultEditorKit.backwardAction), null, "Backward");
+    kbm.addShiftAction(KEY_BACKWARD, DefaultEditorKit.selectionBackwardAction);
+    
+    kbm.put(KEY_BEGIN_DOCUMENT, actionMap.get(DefaultEditorKit.beginAction), null, "Begin Document");
+    kbm.addShiftAction(KEY_BEGIN_DOCUMENT, DefaultEditorKit.selectionBeginAction);
+    
+    kbm.put(KEY_BEGIN_LINE, _beginLineAction, null, "Begin Line");
+    kbm.addShiftAction(KEY_BEGIN_LINE, _selectionBeginLineAction);
+    
+    kbm.put(KEY_PREVIOUS_WORD, actionMap.get(DefaultEditorKit.previousWordAction), null, "Previous Word");
+    kbm.addShiftAction(KEY_PREVIOUS_WORD, DefaultEditorKit.selectionPreviousWordAction);
+    
+    kbm.put(KEY_DOWN, actionMap.get(DefaultEditorKit.downAction), null, "Down");
+    kbm.addShiftAction(KEY_DOWN, DefaultEditorKit.selectionDownAction);
+    
+    kbm.put(KEY_END_DOCUMENT, actionMap.get(DefaultEditorKit.endAction), null, "End Document");
+    kbm.addShiftAction(KEY_END_DOCUMENT, DefaultEditorKit.selectionEndAction);
+    
+    kbm.put(KEY_END_LINE, actionMap.get(DefaultEditorKit.endLineAction), null, "End Line");
+    kbm.addShiftAction(KEY_END_LINE, DefaultEditorKit.selectionEndLineAction);
+    
+    kbm.put(KEY_NEXT_WORD, actionMap.get(DefaultEditorKit.nextWordAction), null, "Next Word");
+    kbm.addShiftAction(KEY_NEXT_WORD, DefaultEditorKit.selectionNextWordAction);
+    
+    kbm.put(KEY_FORWARD, actionMap.get(DefaultEditorKit.forwardAction), null, "Forward");
+    kbm.addShiftAction(KEY_FORWARD, DefaultEditorKit.selectionForwardAction);
+    
+    kbm.put(KEY_UP, actionMap.get(DefaultEditorKit.upAction), null, "Up");
+    kbm.addShiftAction(KEY_UP, DefaultEditorKit.selectionUpAction);
+    
+    
+    kbm.put(KEY_PAGE_DOWN, actionMap.get(DefaultEditorKit.pageDownAction), null, "Page Down");
+    kbm.put(KEY_PAGE_UP, actionMap.get(DefaultEditorKit.pageUpAction), null, "Page Up");
+    kbm.put(KEY_CUT_LINE, _cutLineAction, null, "Cut Line");
+    kbm.put(KEY_CLEAR_LINE, _clearLineAction, null, "Clear Line");
+    kbm.put(KEY_SHIFT_DELETE_PREVIOUS, actionMap.get(DefaultEditorKit.deletePrevCharAction), null, "Delete Previous");
+    kbm.put(KEY_SHIFT_DELETE_NEXT, actionMap.get(DefaultEditorKit.deleteNextCharAction), null, "Delete Next");
+  }

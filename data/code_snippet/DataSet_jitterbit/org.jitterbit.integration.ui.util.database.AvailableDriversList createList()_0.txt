@@ -1,0 +1,7 @@
+    private void createList() {
+        IKongaListFactory factory = ComponentFactories.newKongaListFactory();
+        m_list = factory.newList();
+        m_list.setSelectionMode(ListSelectionMode.SINGLE_SELECTION);
+        m_list.addSelectionListener(m_listSelectionListener);
+        m_list.setDefaultAction(new ListAction());
+    }

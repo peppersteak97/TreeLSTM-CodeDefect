@@ -1,0 +1,4 @@
+    	if (prefs.getConnection3().equals("(none)")){
+    		cs5a.setText(" ");
+    		return;
+    	}

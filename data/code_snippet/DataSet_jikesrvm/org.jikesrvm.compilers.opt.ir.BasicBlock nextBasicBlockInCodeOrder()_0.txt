@@ -1,0 +1,3 @@
+  public final BasicBlock nextBasicBlockInCodeOrder() {
+    return (BasicBlock) getNext();
+  }

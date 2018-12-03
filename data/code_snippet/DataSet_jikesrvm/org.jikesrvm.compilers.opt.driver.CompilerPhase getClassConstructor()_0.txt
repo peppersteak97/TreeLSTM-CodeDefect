@@ -1,0 +1,4 @@
+  public Constructor<CompilerPhase> getClassConstructor() {
+    OptimizingCompilerException.UNREACHABLE();
+    return null;
+  }

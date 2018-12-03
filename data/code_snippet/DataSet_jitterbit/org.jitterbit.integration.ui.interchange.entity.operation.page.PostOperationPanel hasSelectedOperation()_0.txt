@@ -1,0 +1,4 @@
+    private boolean hasSelectedOperation() {
+        return OPERATIONS_SUPPORTED && 
+            (m_operationControl.getSelectedEntity() != null);
+    }

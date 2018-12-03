@@ -1,0 +1,8 @@
+    public static <T extends Comparable<T>, V> Comparator<Pair<T, V>> compareFirst() {
+        return new Comparator<Pair<T,V>>() {
+
+            public int compare(Pair<T, V> o1, Pair<T, V> o2) {
+                return o1.m_first.compareTo(o2.m_first);
+            }
+        };
+    }

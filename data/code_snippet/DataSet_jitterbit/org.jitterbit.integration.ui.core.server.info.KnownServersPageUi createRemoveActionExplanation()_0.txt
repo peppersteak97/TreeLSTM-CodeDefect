@@ -1,0 +1,11 @@
+    private void createRemoveActionExplanation() {
+        JTextArea expl = ComponentFactories.textFactory().newTextArea(3, 40);
+        if (expl instanceof IEnhancedTextComponent) {
+            ((IEnhancedTextComponent) expl).disableContextMenu();
+        }
+    	expl.setText(PackageResources.Actions.Remove.EXPLANATION);
+    	expl.setEditable(false);
+    	expl.setEnabled(false);
+    	IntegrationUiStyleSheet.AdminHint.makeOver(expl);
+    	m_removeServersActionExplanation = expl;
+    }

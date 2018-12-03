@@ -1,0 +1,12 @@
+  public void testContentsAndReset() throws EditDocumentException {
+    String banner = TEST_BANNER;
+    String prompt = _doc.getPrompt();
+    String newBanner = "THIS IS A NEW BANNER\n";
+    assertEquals("Contents before insert", banner + prompt, _doc.getDocText(0, _doc.getLength()));
+    _doc.insertText(_doc.getLength(), "text", InteractionsDocument.DEFAULT_STYLE);
+    _doc.insertBeforeLastPrompt("before", InteractionsDocument.DEFAULT_STYLE);
+    assertEquals("Contents before reset", banner + "before" + prompt + "text",  
+                 _doc.getDocText(0, _doc.getLength()));
+    _doc.reset(newBanner);
+    assertEquals("Contents after reset", newBanner + prompt, _doc.getDocText(0, _doc.getLength()));
+  }

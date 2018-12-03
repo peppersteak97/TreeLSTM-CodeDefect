@@ -1,0 +1,5 @@
+    protected JComponent createTransientTrigger() {
+        m_buttonMode = ButtonMode.UNKNOWN;
+        m_button = createButton();
+        return m_button;
+    }

@@ -1,0 +1,3 @@
+    public boolean getF19Momentary() {
+        return f19Momentary;
+    }

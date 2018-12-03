@@ -1,0 +1,16 @@
+  private void updateView() {
+    List<String> strs = _chm.getStrings();
+    ListItem[] arr = new ListItem[strs.size()];
+    for(int i=0; i<strs.size(); ++i) arr[strs.size()-i-1] = new ListItem(strs.get(i));
+    _historyList.setListData(arr);
+    if (_historyList.getModel().getSize()>0) {
+      _historyList.setSelectedIndex(0);
+      getRootPane().setDefaultButton(_okButton);
+      _okButton.setEnabled(true);
+    }
+    else {
+      getRootPane().setDefaultButton(_cancelButton);
+      _okButton.setEnabled(false);
+    }
+    updatePreview();
+  }

@@ -1,0 +1,14 @@
+    void updatedTextField() {
+        if (log.isDebugEnabled()) log.debug("actionPerformed");
+        CvValue cv17 = (CvValue)_cvVector.elementAt(getCvNum());
+        CvValue cv18 = (CvValue)_cvVector.elementAt(getCvNum()+1);
+        int newVal;
+        try { newVal = Integer.valueOf(_value.getText()).intValue(); }
+        catch (java.lang.NumberFormatException ex) { newVal = 0; }
+
+        int newCv17 = ((newVal/256)&0x3F) | 0xc0;
+        int newCv18 = newVal & 0xFF;
+        cv17.setValue(newCv17);
+        cv18.setValue(newCv18);
+        if (log.isDebugEnabled()) log.debug("new value "+newVal+" gives CV17="+newCv17+" CV18="+newCv18);
+    }

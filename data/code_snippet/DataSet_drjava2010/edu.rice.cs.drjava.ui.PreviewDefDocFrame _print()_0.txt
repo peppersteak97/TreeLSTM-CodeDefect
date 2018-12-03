@@ -1,0 +1,6 @@
+  protected void _print() {
+    try { _document.print(); }
+    catch (FileMovedException fme) { _mainFrame._showFileMovedError(fme); }
+    catch (PrinterException e) { _showError(e, "Print Error", "An error occured while printing."); }
+    catch (BadLocationException e) { _showError(e, "Print Error", "An error occured while printing."); }
+  }

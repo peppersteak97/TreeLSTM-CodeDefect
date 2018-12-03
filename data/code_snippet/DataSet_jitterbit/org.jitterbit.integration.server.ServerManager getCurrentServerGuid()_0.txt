@@ -1,0 +1,3 @@
+    public synchronized ServerGuid getCurrentServerGuid() {
+        return m_serverGuid;
+    }

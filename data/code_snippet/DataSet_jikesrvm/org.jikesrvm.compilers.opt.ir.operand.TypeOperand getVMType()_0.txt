@@ -1,0 +1,6 @@
+  public RVMType getVMType() {
+    if (type != null)
+      return type;
+    else
+      return typeRef.peekType();
+  }

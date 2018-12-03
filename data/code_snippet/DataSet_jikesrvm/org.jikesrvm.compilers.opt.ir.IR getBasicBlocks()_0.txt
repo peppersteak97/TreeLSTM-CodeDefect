@@ -1,0 +1,3 @@
+  public BasicBlockEnumeration getBasicBlocks() {
+    return IREnumeration.forwardBE(this);
+  }

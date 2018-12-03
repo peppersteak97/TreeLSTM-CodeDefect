@@ -1,0 +1,15 @@
+  private void moveToNextMethodId() {
+
+    this.curmid = maps[curidx] & ~NEXT_BIT;
+    this.moreMethId = (maps[curidx] & NEXT_BIT) != 0;
+
+    this.curidx++;
+    this.curmpc = maps[curidx] & ~NEXT_BIT;
+    this.moreElemnt = (maps[curidx] & NEXT_BIT) != 0;
+
+    this.curidx++;
+
+    if (!hasMoreElements() && hasMoreMethodId()) {
+      moveToNextMethodId();
+    }
+  }

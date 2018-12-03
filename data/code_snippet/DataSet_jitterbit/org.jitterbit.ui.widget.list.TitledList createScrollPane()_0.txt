@@ -1,0 +1,12 @@
+    protected JScrollPane createScrollPane() {
+        JScrollPane scroll = new JScrollPane(m_list) {
+            
+            @Override
+            public Dimension getMinimumSize() {
+                int listHeight = m_list.getPreferredSize().height;
+                return new Dimension(super.getPreferredSize().width, 
+                                     Math.min(200, listHeight));
+            }
+        };
+        return scroll;
+    }

@@ -1,0 +1,38 @@
+    public JPanel getCombinedJPanel() { 
+        if (panelUsed) {
+            log.error("getCombinedPanel invoked after panel already requested");
+            return null;
+        }
+        if (textUsed) {
+            log.error("getCombinedPanel invoked after text already requested");
+            return null;
+        }
+        if (boxUsed) {
+            log.error("getCombinedPanel invoked after text already requested");
+            return null;
+        }
+        panelUsed = true;
+        
+        if (varFontSize) text.setFont(new Font("", Font.PLAIN, 32));
+         
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.X_AXIS));
+        p.add(text);
+        if (!locked || 
+              ( (InstanceManager.throttleManagerInstance() !=null) 
+                    && !InstanceManager.throttleManagerInstance().addressTypeUnique()
+              )
+           )
+            p.add(box);
+        
+         p.addComponentListener(
+                 new ComponentAdapter()
+         {
+             public void componentResized(ComponentEvent e)
+             {
+                 changeFontSizes();
+             }
+         });
+
+        return p;
+    }     

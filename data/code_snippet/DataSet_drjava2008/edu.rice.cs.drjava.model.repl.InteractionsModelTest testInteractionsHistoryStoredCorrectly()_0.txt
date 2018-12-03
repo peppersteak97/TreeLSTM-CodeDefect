@@ -1,0 +1,40 @@
+  public void testInteractionsHistoryStoredCorrectly() throws Exception {
+    _log.log("testInteractionsHistoryStoredCorrectly started");
+    final Object _lock = new Object();
+    final String code = "public class A {\n";
+    
+    final BadSyntaxInteractionsModel model = (BadSyntaxInteractionsModel) _model;
+    
+    final InteractionsDocument doc = model.getDocument();
+    
+    model._logInteractionStart();
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        doc.insertText(doc.getLength(), code, InteractionsDocument.DEFAULT_STYLE);
+        model.setSyntaxErrorStrings("Encountered Unexpected \"<EOF>\"", "public class A {\n");
+      }
+    });
+    Utilities.clearEventQueue();
+    model.interpretCurrentInteraction();
+    model._waitInteractionDone();
+    
+    
+    String result = doc.getCurrentInteraction();
+    assertEquals("Current interaction should still be there - should not have interpreted", expected, result);
+    History h = doc.getHistory();
+    assertEquals("History should be empty", 0, h.size());
+    
+    final String code1 = "}\n";
+    model.disableSyntaxError();
+    model._logInteractionStart();
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { doc.insertText(doc.getLength(), code1, InteractionsDocument.DEFAULT_STYLE); }
+    });
+    Utilities.clearEventQueue();
+    _model.interpretCurrentInteraction();
+    model._waitInteractionDone();
+    
+    assertEquals("Current interaction should not be there - should have interpreted", "", doc.getCurrentInteraction());
+    assertEquals("History should contain one interaction", 1, h.size());
+    _log.log("testInteractionsHistoryStoredCorrectly ended");
+  }

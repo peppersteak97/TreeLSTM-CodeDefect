@@ -1,0 +1,4 @@
+    static Pattern getHeadPattern() {
+        if (headPattern == null) headPattern = Pattern.compile(headRegex);
+        return headPattern;
+    }

@@ -1,0 +1,3 @@
+    DataStructureType getSourceStructureType() {
+        return ((DataTypeComboItem) m_sourceTypeBox.getSelectedItem()).getDataType();
+    }

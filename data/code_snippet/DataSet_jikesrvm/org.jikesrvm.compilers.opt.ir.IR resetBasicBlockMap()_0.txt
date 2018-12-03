@@ -1,0 +1,7 @@
+  public void resetBasicBlockMap() {
+    basicBlockMap = new BasicBlock[getMaxBasicBlockNumber() + 1];
+    for (Enumeration<BasicBlock> bbEnum = cfg.basicBlocks(); bbEnum.hasMoreElements();) {
+      BasicBlock block = bbEnum.nextElement();
+      basicBlockMap[block.getNumber()] = block;
+    }
+  }

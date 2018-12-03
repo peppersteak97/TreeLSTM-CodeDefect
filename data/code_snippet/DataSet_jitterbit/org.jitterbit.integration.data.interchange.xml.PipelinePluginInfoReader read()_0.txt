@@ -1,0 +1,13 @@
+    void read() throws IOException {
+        FileReader reader = null;
+        try {
+            File file = getFile();
+            if (file.exists()) {
+                reader = new FileReader(file);
+                m_pluginStore.load(reader);
+            }
+        }
+        finally {
+            KongaIoUtils.close(reader);
+        }
+    }

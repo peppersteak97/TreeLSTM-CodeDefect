@@ -1,0 +1,4 @@
+    public int getOffset() {
+        Element e = root.getChild("offset");
+        return Integer.parseInt(e.getText());
+    }

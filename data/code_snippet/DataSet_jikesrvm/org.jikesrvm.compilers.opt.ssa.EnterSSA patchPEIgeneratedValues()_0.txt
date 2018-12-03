@@ -1,0 +1,54 @@
+  private void patchPEIgeneratedValues() {
+    if (!ir.hasReachableExceptionHandlers()) return;
+
+    HashSet<Pair<BasicBlock, RegisterOperand>> needed = new HashSet<Pair<BasicBlock,RegisterOperand>>(4);
+    BasicBlockEnumeration blocks = ir.getBasicBlocks();
+    while (blocks.hasMoreElements()) {
+      BasicBlock block = blocks.next();
+      if (block.getExceptionalOut().hasMoreElements()) {
+        Instruction pei = block.lastRealInstruction();
+        if (pei != null && pei.isPEI() && ResultCarrier.conforms(pei)) {
+          boolean copyNeeded = false;
+          RegisterOperand v = ResultCarrier.getResult(pei);
+          if (v != null) {
+            Register orig = v.getRegister();
+            {
+              BasicBlockEnumeration out = block.getApplicableExceptionalOut(pei);
+              while (out.hasMoreElements()) {
+                BasicBlock exp = out.next();
+                LiveSet explive = live.getLiveInfo(exp).getIn();
+                if (explive.contains(orig)) {
+                  copyNeeded = true;
+                  break;
+                }
+              }
+            }
+            if (copyNeeded) {
+              BasicBlockEnumeration out = block.getApplicableExceptionalOut(pei);
+              while (out.hasMoreElements()) {
+                BasicBlock exp = out.next();
+                needed.add(new Pair<BasicBlock, RegisterOperand>(exp, v));
+              }
+            }
+          }
+        }
+      }
+    }
+    if (!needed.isEmpty()) {
+      for (Pair<BasicBlock, RegisterOperand> copy : needed) {
+        BasicBlock inBlock = copy.first;
+        RegisterOperand registerOp = copy.second;
+        TypeReference type = registerOp.getType();
+        Register register = registerOp.getRegister();
+        Register temp = ir.regpool.getReg(register);
+        inBlock.prependInstruction(SSA.makeMoveInstruction(ir, register, temp, type));
+        BasicBlockEnumeration outBlocks = inBlock.getIn();
+        while (outBlocks.hasMoreElements()) {
+          BasicBlock outBlock = outBlocks.next();
+          Instruction x = SSA.makeMoveInstruction(ir, temp, register, type);
+          SSA.addAtEnd(ir, outBlock, x, true);
+        }
+      }
+      prepare();
+    }
+  }

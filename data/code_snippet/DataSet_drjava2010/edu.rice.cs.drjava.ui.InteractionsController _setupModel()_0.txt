@@ -1,0 +1,1 @@
+  protected void _setupModel() { _doc.setBeep(_pane.getBeep()); }

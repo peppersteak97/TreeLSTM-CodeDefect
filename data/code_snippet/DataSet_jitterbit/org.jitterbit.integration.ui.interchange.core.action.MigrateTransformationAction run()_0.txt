@@ -1,0 +1,12 @@
+    protected void run() {
+        Transformation activeTf = checkActiveTransformation();
+        if (activeTf == null) {
+            return;
+        }
+        ITransformationUi activeTfUi = activeTf.getUi();
+        Transformation secondTf = getSecondTransformation(activeTfUi);
+        if (secondTf != null) {
+            getTestCenter().migrateTransformation(activeTf, secondTf);
+            succeeded(null);
+        }
+    }

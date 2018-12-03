@@ -1,0 +1,3 @@
+    public JComponent getFunctionChainDisplayer() {
+        return m_chainDropDownPanel.getDisplayer();
+    }

@@ -1,0 +1,3 @@
+	public boolean isApplicationMessageEventsEnabled() {
+		return m_bApplicationMessageEventsEnabled;
+	}

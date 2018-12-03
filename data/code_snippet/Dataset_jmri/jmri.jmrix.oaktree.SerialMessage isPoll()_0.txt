@@ -1,0 +1,1 @@
+    public boolean isPoll() { return getElement(1)==48;}

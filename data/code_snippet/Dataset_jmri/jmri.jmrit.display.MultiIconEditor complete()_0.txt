@@ -1,0 +1,3 @@
+    public void complete() {
+        this.add(catalog);
+    }

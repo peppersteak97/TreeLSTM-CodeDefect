@@ -1,0 +1,3 @@
+  public void testGetPageFormat() {
+    assertEquals("testGetPageFormat:", PageFormat.PORTRAIT, book.getPageFormat(0).getOrientation());
+  }

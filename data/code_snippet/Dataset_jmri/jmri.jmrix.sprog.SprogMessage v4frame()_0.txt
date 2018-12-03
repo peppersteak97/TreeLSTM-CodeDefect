@@ -1,0 +1,12 @@
+    public SprogMessage v4frame() {
+      int i=0;
+      SprogMessage f = new SprogMessage(MAXSIZE);
+      f.setElement(0, (int)':');
+      for (i = 1; i <= _nDataChars; i++) {
+        f.setElement(i, _dataChars[i-1]);
+      }
+      f.setElement(i++, CR);
+      f.setElement(i++, LF);
+      f._nDataChars = i;
+      return f;
+    }

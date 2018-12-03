@@ -1,0 +1,6 @@
+    private void createSelectors() {
+        UndoableButtonGroup group = new RadioButtonGroup();
+        addChangeSource(group);
+        m_btn_type_A = createRadioButton(group);
+        m_btn_type_B = createRadioButton(group);
+    }

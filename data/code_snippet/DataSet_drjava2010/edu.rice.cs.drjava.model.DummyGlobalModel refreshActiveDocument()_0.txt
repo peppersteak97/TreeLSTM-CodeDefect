@@ -1,0 +1,3 @@
+  public void refreshActiveDocument() {
+    throw new UnsupportedOperationException("Tried to call refreshActiveDocument on a Dummy");
+  }

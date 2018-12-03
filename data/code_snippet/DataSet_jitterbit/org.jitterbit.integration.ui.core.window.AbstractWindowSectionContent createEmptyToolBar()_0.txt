@@ -1,0 +1,7 @@
+    private static JToolBar createEmptyToolBar() {
+        JToolBar tb = new JToolBar();
+        tb.setFloatable(false);
+        tb.setRollover(true);
+        tb.setOpaque(false);
+        return tb;
+    }

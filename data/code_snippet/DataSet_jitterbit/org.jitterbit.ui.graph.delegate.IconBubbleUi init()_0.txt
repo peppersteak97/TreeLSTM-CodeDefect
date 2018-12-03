@@ -1,0 +1,6 @@
+	private void init() {
+		this.setResizeable(false);
+		this.disableMinimization();
+
+		setResizeable(false);
+	}

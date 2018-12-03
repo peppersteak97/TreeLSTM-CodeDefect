@@ -1,0 +1,9 @@
+    private TwoColumnPanel getTimePanel() {
+        ResourceBundle res = SchedulePage.getResources();
+        TwoColumnPanel times = new TwoColumnPanel();
+        times.addRow(InputLabelText.makeJLabel(res.getString("Label.StartingAt")), 
+                        m_startTime);
+        times.addRow(InputLabelText.makeJLabel(res.getString("Label.EndingAt")), 
+                        m_endTime);
+        return times;
+    }

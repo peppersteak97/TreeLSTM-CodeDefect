@@ -1,0 +1,5 @@
+    private void addListeners() {
+        m_windowListener = new DialogWindowListener();
+        m_pageWindow.addWindowListener(m_windowListener);
+        m_pageWindow.addWindowFocusListener(new FocusOwnerListener());
+    }

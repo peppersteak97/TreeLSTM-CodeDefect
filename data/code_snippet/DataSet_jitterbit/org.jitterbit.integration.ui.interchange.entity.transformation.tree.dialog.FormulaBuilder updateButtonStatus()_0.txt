@@ -1,0 +1,6 @@
+    public void updateButtonStatus(){
+		m_isTestInputDialogDirty=true;
+		m_buttonTestInExpBld.setEnabled(m_textAreaExpression.getText().length()>0);
+        m_buttonUndo.setEnabled1(canUndo());
+        m_buttonRedo.setEnabled1(canRedo());
+    }

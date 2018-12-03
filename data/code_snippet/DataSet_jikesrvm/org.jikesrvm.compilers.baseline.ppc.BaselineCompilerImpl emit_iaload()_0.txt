@@ -1,0 +1,4 @@
+  protected final void emit_iaload() {
+    genBoundsCheck();
+    pushInt(T2);
+  }

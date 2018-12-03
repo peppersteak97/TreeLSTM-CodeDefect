@@ -1,0 +1,10 @@
+  public void testGetErrorAtOffset() throws IOException, OperationCanceledException {
+    fullSetup();
+    
+    OpenDefinitionsDocument doc = getter.getDocumentForFile(files[4]);
+    assertEquals("Wrong error at given offset.", errors[1],
+                 model.getErrorAtOffset(doc, 125));
+    doc = getter.getDocumentForFile(files[4]);
+    assertEquals("Wrong error at given offset.", errors[5],
+                 model.getErrorAtOffset(doc, 38));
+  }

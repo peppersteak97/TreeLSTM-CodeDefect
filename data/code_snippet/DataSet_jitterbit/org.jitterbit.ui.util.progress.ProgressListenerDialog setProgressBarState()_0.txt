@@ -1,0 +1,8 @@
+    private void setProgressBarState() {
+        UiUtils.runOnEventThread(new Runnable() {
+            
+            public void run() {
+                setProgressBarStateImpl();
+            }
+        });
+    }

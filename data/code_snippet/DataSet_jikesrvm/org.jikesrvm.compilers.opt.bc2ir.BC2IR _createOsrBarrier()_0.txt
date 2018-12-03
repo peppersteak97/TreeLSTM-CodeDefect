@@ -1,0 +1,104 @@
+  private Instruction _createOsrBarrier() {
+    ArrayList<Operand> livevars = new ArrayList<Operand>();
+
+    /* for local variables, we have to use helper to make a register. */
+    /* ltypes and stypes should be the full length
+     * WARNING: what's the order of DUMMY and LONG?
+     */
+    int localnum = _localState.length;
+    byte[] ltypes = new byte[localnum];
+
+    int num_llocals = 0;
+    for (int i = 0, n = _localState.length; i < n; i++) {
+      Operand op = _localState[i];
+
+      if ((op != null) && (op != DUMMY)) {
+        livevars.add(_loadLocalForOSR(op));
+        num_llocals++;
+
+        if (op instanceof ReturnAddressOperand) {
+          ltypes[i] = ReturnAddressTypeCode;
+        } else {
+          TypeReference typ = op.getType();
+          if (typ.isWordType() || (typ == TypeReference.NULL_TYPE)) {
+            ltypes[i] = WordTypeCode;
+          } else {
+            ltypes[i] = typ.getName().parseForTypeCode();
+          }
+        }
+
+      } else {
+        ltypes[i] = VoidTypeCode;
+      }
+    }
+    int stacknum = stack.getSize();
+    byte[] stypes = new byte[stacknum];
+
+    /* the variable on stack can be used directly ? */
+    int num_lstacks = 0;
+    for (int i = 0, n = stack.getSize(); i < n; i++) {
+      Operand op = stack.peekAt(i);
+
+      if ((op != null) && (op != DUMMY)) {
+
+        if (op.isRegister()) {
+          livevars.add(op.asRegister().copyU2U());
+        } else {
+          livevars.add(op.copy());
+        }
+
+        num_lstacks++;
+
+        if (op instanceof ReturnAddressOperand) {
+          stypes[i] = ReturnAddressTypeCode;
+        } else {
+          TypeReference typ = op.getType();
+          if (typ.isWordType() || (typ == TypeReference.NULL_TYPE)) {
+            stypes[i] = WordTypeCode;
+          } else {
+            /* for stack operand, reverse the order for long and double */
+            byte tcode = typ.getName().parseForTypeCode();
+            if ((tcode == LongTypeCode) || (tcode == DoubleTypeCode)) {
+              stypes[i - 1] = tcode;
+              stypes[i] = VoidTypeCode;
+            } else {
+              stypes[i] = tcode;
+            }
+          }
+        }
+
+      } else {
+        stypes[i] = VoidTypeCode;
+      }
+    }
+
+                                                num_llocals + num_lstacks);
+
+    for (int i = 0, n = livevars.size(); i < n; i++) {
+      Operand op = livevars.get(i);
+      if (op instanceof ReturnAddressOperand) {
+        int tgtpc = ((ReturnAddressOperand) op).retIndex - gc.method.getOsrPrologueLength();
+        op = new IntConstantOperand(tgtpc);
+      } else if (op instanceof LongConstantOperand) {
+        op = _prepareLongConstant(op);
+      } else if (op instanceof DoubleConstantOperand) {
+        op = _prepareDoubleConstant(op);
+      }
+
+      if (VM.VerifyAssertions) VM._assert(op != null);
+
+      OsrBarrier.setElement(barrier, i, op);
+    }
+
+    OsrTypeInfoOperand typeinfo = new OsrTypeInfoOperand(ltypes, stypes);
+
+    OsrBarrier.setTypeInfo(barrier, typeinfo);
+
+    /* if the current method is for specialization, the bcIndex
+     * has to be adjusted at "OsrPointConstructor".
+     */
+    barrier.position = gc.inlineSequence;
+    barrier.bcIndex = instrIndex;
+
+    return barrier;
+  }

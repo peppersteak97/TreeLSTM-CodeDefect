@@ -1,0 +1,5 @@
+  public void resetToCurrent() {
+    _setSelected(DrJava.getConfig().getSetting(OptionConstants.TOOLBAR_TEXT_ENABLED).booleanValue(),
+                 DrJava.getConfig().getSetting(OptionConstants.TOOLBAR_ICONS_ENABLED).booleanValue(),
+                 DrJava.getConfig().getSetting(OptionConstants.TOOLBAR_ENABLED).booleanValue());
+  }

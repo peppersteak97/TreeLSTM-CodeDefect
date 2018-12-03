@@ -1,0 +1,9 @@
+        if (isLastPage()) {
+            XmlStructure xml = createXmlStructure();
+            if (m_sourceOrTarget == SourceTarget.Source) {
+                tf.setInputStructure(xml);
+            }
+            else {
+                tf.setOutputStructure(xml);
+            }
+        }

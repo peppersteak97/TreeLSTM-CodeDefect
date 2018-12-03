@@ -1,0 +1,4 @@
+    void showRecButtonChanged() {
+        panel.setShowReceivers(showRecButton.isSelected());
+        panel.repaint();
+    }

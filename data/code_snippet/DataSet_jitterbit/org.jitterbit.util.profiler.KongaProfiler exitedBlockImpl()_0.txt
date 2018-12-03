@@ -1,0 +1,12 @@
+    private void exitedBlockImpl() {
+        Thread t = Thread.currentThread();
+        ProfiledThread pt = null;
+        synchronized (LOCK) {
+            pt = (ProfiledThread) m_threads.get(t);
+            if (pt == null) {
+                pt = new ProfiledThread(t);
+                m_threads.put(t, pt);
+            }
+        }
+        pt.exitedBlock();
+    }

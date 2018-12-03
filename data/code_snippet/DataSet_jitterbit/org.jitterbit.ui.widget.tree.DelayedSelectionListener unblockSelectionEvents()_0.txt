@@ -1,0 +1,3 @@
+	public void unblockSelectionEvents() {
+		m_blockSelectionEventFiring = false;
+	}

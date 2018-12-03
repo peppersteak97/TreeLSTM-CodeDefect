@@ -1,0 +1,3 @@
+	public int intVal() {
+		return m_intVal;
+	}

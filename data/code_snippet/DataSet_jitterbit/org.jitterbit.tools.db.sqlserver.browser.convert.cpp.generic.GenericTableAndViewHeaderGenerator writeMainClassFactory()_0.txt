@@ -1,0 +1,4 @@
+    private void writeMainClassFactory() {
+        addLine("\tstatic " + getMainClassName() + "* MakeInstance(konga::DbConnection* pConn);");
+        addLine();
+    }

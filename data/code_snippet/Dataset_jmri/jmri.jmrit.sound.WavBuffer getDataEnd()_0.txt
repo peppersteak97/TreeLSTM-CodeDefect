@@ -1,0 +1,3 @@
+    public int getDataEnd() {
+        return dataOffset+8+getDataSize()-1;
+    }

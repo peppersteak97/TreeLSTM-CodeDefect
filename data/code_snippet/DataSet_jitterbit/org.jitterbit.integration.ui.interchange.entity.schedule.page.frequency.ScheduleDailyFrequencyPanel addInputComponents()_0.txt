@@ -1,0 +1,6 @@
+    private void addInputComponents() {
+        addInputField(new TimeOfTheDayInputField("", m_onceAtTime));
+        addInputField(m_buttonGroup.createInputField(m_occursOnceSelector, "", null));
+        addInputField(m_buttonGroup.createInputField(m_occursEverySelector, "", null));
+        addInputPanel(m_occursEveryPanel);
+    }

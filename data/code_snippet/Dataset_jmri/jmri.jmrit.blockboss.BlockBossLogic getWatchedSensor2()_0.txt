@@ -1,0 +1,4 @@
+    public String getWatchedSensor2() {
+        if (watchedSensor2 == null) return null;
+        return watchedSensor2.getSystemName();
+    }

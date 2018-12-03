@@ -1,0 +1,1 @@
+  public boolean isNonVolatile() { return (flags & NON_VOLATILE) != 0; }

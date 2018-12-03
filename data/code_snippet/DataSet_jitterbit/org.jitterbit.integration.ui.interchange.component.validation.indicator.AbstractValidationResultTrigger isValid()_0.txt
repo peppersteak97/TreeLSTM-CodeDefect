@@ -1,0 +1,3 @@
+    protected final boolean isValid() {
+        return isValid(m_validationResult);
+    }

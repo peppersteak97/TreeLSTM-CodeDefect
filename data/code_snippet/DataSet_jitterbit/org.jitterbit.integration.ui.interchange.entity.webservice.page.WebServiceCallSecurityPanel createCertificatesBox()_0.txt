@@ -1,0 +1,4 @@
+    private void createCertificatesBox() {
+        m_certificatesBox = ComponentFactories.comboBoxFactory().newComboBox(
+                        new Object[] { "(none)" }, "XXXXXXXXXXXXXXXXXXX");
+    }

@@ -1,0 +1,3 @@
+    public IWindowSectionContentProvider newContentProvider() {
+        return new ContentProviderImpl();
+    }

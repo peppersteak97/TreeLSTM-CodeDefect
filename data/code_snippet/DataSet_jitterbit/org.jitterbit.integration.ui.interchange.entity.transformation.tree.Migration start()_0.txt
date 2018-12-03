@@ -1,0 +1,31 @@
+	public void start(){
+		Debug.println("start()");
+		Dimension d=getContentPane().getSize();
+		
+		int width=d.width, height=d.height;
+		int dx = (width-12)*6/31;
+		
+		m_scroll.setSize(width, height);
+				
+		int x=0, widths[] = {dx, dx/3, dx, dx/2, dx, dx/3, dx};
+
+		for(int i=iComponentStart;i<iComponentEnd;i++){
+			if(widths[i] < m_min_widths[i]) widths[i] = m_min_widths[i];
+			x += widths[i] + 2;
+
+		}
+		x=x-2;
+		if(x < width) widths[3] += width - x;	
+
+		
+		x=0;
+		int dh=m_scroll_bar_height;
+		
+		for(int i=iComponentStart;i<iComponentEnd;i++){
+			m_Components[i].setBounds(x, 0, widths[i], height-dh);
+			x += widths[i] + 2;
+		}
+								
+		doLayout();
+		setVisible(true);
+	}

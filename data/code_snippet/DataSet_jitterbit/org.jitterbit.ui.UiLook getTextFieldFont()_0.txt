@@ -1,0 +1,4 @@
+	public static Font getTextFieldFont() {
+		return ( o instanceof FontUIResource ) ?
+			(FontUIResource)o : DEFAULT_TEXTFIELD.getFont();
+	}

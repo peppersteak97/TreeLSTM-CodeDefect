@@ -1,0 +1,4 @@
+    public JList newList() {
+        JList list = new JList();
+        return customizeList(list);
+    }

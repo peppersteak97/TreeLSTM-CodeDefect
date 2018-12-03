@@ -1,0 +1,3 @@
+    public Segment getSegment() {
+        return null;
+    }

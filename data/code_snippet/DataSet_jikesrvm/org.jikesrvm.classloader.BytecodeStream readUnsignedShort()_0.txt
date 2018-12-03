@@ -1,0 +1,6 @@
+  private int readUnsignedShort() {
+    if (VM.VerifyAssertions) VM._assert(bcIndex <= bcLength);
+    int i = (bcodes[bcIndex++] & 0xFF) << BITS_IN_BYTE;
+    i |= (bcodes[bcIndex++] & 0xFF);
+    return i;
+  }

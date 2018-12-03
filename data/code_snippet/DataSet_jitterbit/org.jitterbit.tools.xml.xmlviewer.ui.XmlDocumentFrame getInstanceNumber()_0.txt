@@ -1,0 +1,9 @@
+	private static int getInstanceNumber() {
+		for( int i = 1; ; ++i ) {
+			Integer instance = new Integer(i);
+			if( !s_frameInstanceNumbers.contains(instance) ) {
+				s_frameInstanceNumbers.add(instance);
+				return instance.intValue();
+			}
+		}
+	}

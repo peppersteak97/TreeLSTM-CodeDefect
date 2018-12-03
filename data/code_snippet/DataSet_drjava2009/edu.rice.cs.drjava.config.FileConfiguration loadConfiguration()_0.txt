@@ -1,0 +1,3 @@
+  public void loadConfiguration() throws IOException {
+    loadConfiguration(new BufferedInputStream(new FileInputStream(file)));
+  }

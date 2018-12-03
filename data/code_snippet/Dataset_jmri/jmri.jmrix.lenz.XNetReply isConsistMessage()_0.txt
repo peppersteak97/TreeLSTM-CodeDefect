@@ -1,0 +1,8 @@
+    public boolean isConsistMessage() {
+        int message=this.getElement(0);
+        if( message==XNetConstants.LOCO_MU_DH_ERROR ||
+	    message==XNetConstants.LOCO_DH_INFO_V1 || 
+	    message==XNetConstants.LOCO_DH_INFO_V2 )
+		return true;
+        return false;
+    }

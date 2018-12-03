@@ -1,0 +1,30 @@
+  private void _insertVariableCommand() {
+    _props.clearVariables();
+    _mainFrame.removeModalWindowAdapter(this);
+    _insertVarDialogMonitor.reset();
+    _insertVarDialog.setVisible(true);
+    new Thread(new Runnable() {
+      public void run() {
+        _insertVarDialogMonitor.attemptEnsureSignaled();
+        EventQueue.invokeLater(new Runnable() {
+          public void run() {
+            EventQueue.invokeLater(new Runnable() { public void run() { ExecuteExternalDialog.this.toFront(); } });
+            _mainFrame.installModalWindowAdapter(ExecuteExternalDialog.this, LambdaUtil.NO_OP, CANCEL);
+
+            edu.rice.cs.plt.tuple.Pair<String,DrJavaProperty> selected = _insertVarDialog.getSelected();
+            if (selected != null) {
+              String text = _lastCommandFocus.getText();
+              Caret caret = _lastCommandFocus.getCaret();
+              int min = Math.min(caret.getDot(), caret.getMark());
+              int max = Math.max(caret.getDot(), caret.getMark());
+              if (min != max) { text = text.substring(0, min) + text.substring(max); }
+              text = text.substring(0,min) + "${" + selected.first() + "}" + text.substring(min);
+              _lastCommandFocus.setText(text);
+              caret.setDot(min+selected.first().length()+2);
+              _lastCommandFocus.setCaret(caret);
+            }
+          }
+        });
+      }
+    }).start();
+  }  

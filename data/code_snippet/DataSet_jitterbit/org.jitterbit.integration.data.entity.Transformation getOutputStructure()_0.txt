@@ -1,0 +1,23 @@
+    public DataStructure getOutputStructure() {
+        DataStructureType type = getTargetType();
+        if (type == null) {
+            return null;
+        }
+        switch (type) {
+        case XML:
+            XmlStructure struct = new XmlStructure();
+            struct.setFilePath(getProperty(TARGET_XML));
+            struct.setRootNodeName(getProperty(TARGET_DTD_ROOT));
+            struct.setTargetDtdUrl(getProperty(TARGET_DTD_URL));
+            return struct;
+        case Database:
+        case Text:
+        case ComplexText:
+        case WebServiceRequest:
+        case WebServiceResponse:
+        case None:
+            return m_outputStructure;
+        default:
+            throw new IllegalStateException(
+        }
+    }

@@ -1,0 +1,1 @@
+    public int getNumDataElements() {        return _nDataChars;}

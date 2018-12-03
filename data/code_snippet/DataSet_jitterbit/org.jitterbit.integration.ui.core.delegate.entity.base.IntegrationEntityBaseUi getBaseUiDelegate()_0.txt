@@ -1,0 +1,3 @@
+    public IIntegrationEntityUiDelegate getBaseUiDelegate() {
+        return (IIntegrationEntityUiDelegate)super.getBaseUiDelegate();
+    }

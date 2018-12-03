@@ -1,0 +1,4 @@
+    protected void register() {
+        log.error("unexpected call to register()");
+        new Exception().printStackTrace();
+    }

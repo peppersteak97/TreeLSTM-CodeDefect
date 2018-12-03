@@ -1,0 +1,12 @@
+    protected void startFlash() {
+        if (timer==null) {
+            timer = new javax.swing.Timer(delay, new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        timeout();
+                    }
+                });
+            timer.setInitialDelay(delay);
+            timer.setRepeats(true);
+        }
+        timer.start();
+    }

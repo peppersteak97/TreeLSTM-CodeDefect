@@ -1,0 +1,6 @@
+      if (isStartupInProgress()) {
+        /* There is a slave to be quit, but _slave == null, so we cannot contact it yet. Instead we set _quitOnStartup
+         * and tell the slave to quit when it registers in registerSlave. */
+        _quitOnStartup = true;
+        return;
+      }

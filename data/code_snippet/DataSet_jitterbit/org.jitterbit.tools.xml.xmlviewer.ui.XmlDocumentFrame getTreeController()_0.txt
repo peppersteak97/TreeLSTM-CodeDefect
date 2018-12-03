@@ -1,0 +1,3 @@
+	public TreeController getTreeController() {
+	    return m_treeController;
+	}

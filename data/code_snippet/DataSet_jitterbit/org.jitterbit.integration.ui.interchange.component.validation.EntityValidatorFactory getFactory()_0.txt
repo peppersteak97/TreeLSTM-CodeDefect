@@ -1,0 +1,3 @@
+    public static EntityValidatorFactory getFactory() {
+        return INSTANCE;
+    }

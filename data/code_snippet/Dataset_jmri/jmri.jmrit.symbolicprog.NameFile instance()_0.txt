@@ -1,0 +1,13 @@
+	public synchronized static NameFile instance() {
+		if (_instance == null) {
+			if (log.isDebugEnabled()) log.debug("NameFile creating instance");
+			_instance = new NameFile();
+			try {
+				_instance.readFile(defaultNameFilename());
+			} catch (Exception e) {
+				log.error("Exception during name file reading: "+e);
+			}
+		}
+		if (log.isDebugEnabled()) log.debug("NameFile returns instance "+_instance);
+		return _instance;
+	}

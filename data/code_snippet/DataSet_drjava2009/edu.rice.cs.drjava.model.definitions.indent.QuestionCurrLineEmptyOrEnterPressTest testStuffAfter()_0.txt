@@ -1,0 +1,4 @@
+  public void testStuffAfter() throws javax.swing.text.BadLocationException {
+    _setDocText(stuffExample);
+    assertTrue("text after the cursor", !_rule.testApplyRule(_doc, 11, Indenter.IndentReason.OTHER));
+  }

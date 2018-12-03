@@ -1,0 +1,6 @@
+	public synchronized Action getOpenAction() {
+	    if (m_openAction == null) {
+            m_openAction = new OpenAction();
+        }
+	    return m_openAction;
+	}

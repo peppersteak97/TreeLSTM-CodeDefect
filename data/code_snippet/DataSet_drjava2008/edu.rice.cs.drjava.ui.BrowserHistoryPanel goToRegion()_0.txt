@@ -1,0 +1,10 @@
+  protected void goToRegion() {
+    ArrayList<BrowserDocumentRegion> r = getSelectedRegions();
+    if (r.size() == 1) {
+      _model.getBrowserHistoryManager().setCurrentRegion(r.get(0));
+      updateButtons();
+      RegionListUserObj<BrowserDocumentRegion> userObj = getUserObjForRegion(r.get(0));
+      if (userObj != null) { _list.ensureIndexIsVisible(_listModel.indexOf(userObj)); }
+      _frame.scrollToDocumentAndOffset(r.get(0).getDocument(), r.get(0).getStartOffset(), false, false);
+    }
+  }

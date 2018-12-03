@@ -1,0 +1,13 @@
+  public String toString() {
+    return ("Compiler advice: " +
+            className +
+            " " +
+            methodName +
+            " " +
+            methodSig +
+            " " +
+            compiler +
+            "(" +
+            optLevel +
+            ")");
+  }

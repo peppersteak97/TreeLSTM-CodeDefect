@@ -1,0 +1,1 @@
+    public int getTrigger() { return trigger; }

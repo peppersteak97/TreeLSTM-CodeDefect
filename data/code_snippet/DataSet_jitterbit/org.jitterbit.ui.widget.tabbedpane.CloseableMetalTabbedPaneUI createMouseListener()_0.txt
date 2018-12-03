@@ -1,0 +1,3 @@
+    protected MouseListener createMouseListener() {
+        return new MyMouseHandler();
+    }

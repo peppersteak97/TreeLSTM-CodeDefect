@@ -1,0 +1,9 @@
+    private void setInitialFocus() {
+        IPage p = getInitiallyFocusedPage();
+        if (p != null) {
+            giveFocusToPage(p);
+        }
+        else {
+            giveFocusToTree();
+        }
+    }

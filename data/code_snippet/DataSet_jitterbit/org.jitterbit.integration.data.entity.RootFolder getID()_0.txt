@@ -1,0 +1,3 @@
+    public RootFolderId getID() {
+        return (RootFolderId) super.getID();
+    }

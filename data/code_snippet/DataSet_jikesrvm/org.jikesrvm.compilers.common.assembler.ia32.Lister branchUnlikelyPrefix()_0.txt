@@ -1,0 +1,3 @@
+  public void branchUnlikelyPrefix() {
+    prefix = Prefix.UNLIKELY;
+  }

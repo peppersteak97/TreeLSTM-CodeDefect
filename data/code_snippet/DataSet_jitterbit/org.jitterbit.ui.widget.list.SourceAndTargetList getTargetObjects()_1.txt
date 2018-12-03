@@ -1,0 +1,3 @@
+    public final List<Object> getTargetObjects() {
+        return new ArrayList<Object>(m_targetObjects);
+    }

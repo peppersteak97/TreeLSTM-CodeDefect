@@ -1,0 +1,7 @@
+    protected List<JButton> getButtons() {
+        List<JButton> buttons = super.getButtons();
+        if (m_recalculateAction != null) {
+            buttons.add(getButton(m_recalculateAction));
+        }
+        return buttons;
+    }

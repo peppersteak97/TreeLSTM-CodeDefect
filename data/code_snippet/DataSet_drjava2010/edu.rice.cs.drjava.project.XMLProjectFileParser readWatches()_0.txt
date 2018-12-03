@@ -1,0 +1,8 @@
+  protected List<DebugWatchData> readWatches() {
+    List<DebugWatchData> wList = new ArrayList<DebugWatchData>();
+    List<Node> defs = _xc.getNodes("watches/watch");
+    for(Node n: defs) {
+      wList.add(new DebugWatchData(_xc.get(".name", n)));
+    }
+    return wList;
+  }

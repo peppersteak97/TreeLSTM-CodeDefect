@@ -1,0 +1,10 @@
+  public String toString() {
+    StringBuilder sb = new StringBuilder(" ");
+    for (InlineSequence is = this; is != null; is = is.caller) {
+      sb.append(is.method.getDeclaringClass().getDescriptor()).append(" ").
+          append(is.method.getName()).append(" ").
+          append(is.method.getDescriptor()).append(" ").
+          append(is.bcIndex).append(" ");
+    }
+    return sb.toString();
+  }

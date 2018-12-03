@@ -1,0 +1,3 @@
+  protected void startVShortTimer() {
+      restartTimer(V_SHORT_TIMEOUT);
+  }

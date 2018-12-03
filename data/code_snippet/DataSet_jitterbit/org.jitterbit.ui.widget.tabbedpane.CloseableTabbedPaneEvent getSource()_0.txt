@@ -1,0 +1,3 @@
+    public CloseableTabbedPane getSource() {
+        return (CloseableTabbedPane) super.getSource();
+    }

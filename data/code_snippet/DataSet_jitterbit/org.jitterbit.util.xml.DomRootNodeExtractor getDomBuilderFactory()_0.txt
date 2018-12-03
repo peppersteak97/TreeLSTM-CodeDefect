@@ -1,0 +1,5 @@
+    private DocumentBuilderFactory getDomBuilderFactory() {
+        DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
+        f.setNamespaceAware(true);
+        return f;
+    }

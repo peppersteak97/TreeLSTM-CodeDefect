@@ -1,0 +1,8 @@
+  public Enumeration<DF_Equation> getEquations() {
+    return new FilterEnumerator<GraphNode, DF_Equation>(equations.enumerateNodes(),
+        new FilterEnumerator.Filter<GraphNode, DF_Equation>() {
+          public boolean isElement(GraphNode x) {
+            return x instanceof DF_Equation;
+          }
+        });
+  }

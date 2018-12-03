@@ -1,0 +1,40 @@
+    protected IPageDisplayer getDownloadWizardPageDisplayer() {
+        return new PageDisplayerAdapter() {
+
+            @Override
+            public boolean displayPage(IPage page) {
+                decorateLauncher(page);
+                addLayoutListener(page);
+                return true;
+            }
+            
+            private void decorateLauncher(IPage page) {
+                JPanel p = new JPanel(new GridBagLayout());
+                p.setBorder(BorderFactory.createEtchedBorder());
+                ComponentDecorFactory.gridBag(p, getInitialConstraints(), page);
+                getLauncher().getDecor().display(p);
+            }
+            
+            private GridBagConstraints getInitialConstraints() {
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.anchor = GridBagConstraints.NORTHWEST;
+                gbc.fill = GridBagConstraints.BOTH;
+                gbc.weightx = 1.0;
+                gbc.weighty = 1.0;
+                return gbc;
+            }
+
+            private void addLayoutListener(IPage page) {
+                page.addPropertyChangeListener(new PropertyChangeListener() {
+
+                    public void propertyChange(PropertyChangeEvent evt) {
+                        if (evt.getPropertyName().equals(ILoginUi.LAYOUT)) {
+                            JFrame frame = IntegrationUi.getUi().getActiveFrame();
+                            frame.getRootPane().validate();
+                            frame.getRootPane().repaint();
+                        }
+                    }
+                });
+            }
+        };
+    }

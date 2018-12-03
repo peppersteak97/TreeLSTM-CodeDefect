@@ -1,0 +1,3 @@
+    public DayOfTheWeek getSelectedItem() {
+        return (DayOfTheWeek) super.getSelectedItem();
+    }

@@ -1,0 +1,3 @@
+  public boolean isCompare() {
+    return operator.isCompare();
+  }

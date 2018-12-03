@@ -1,0 +1,14 @@
+    public String toString() {
+			int val ;
+      StringBuffer sb = new StringBuffer() ;
+      for (int i=0; i<_nDataBytes; i++)
+			{
+				if( i > 0 )
+					sb.append( ' ' ) ;
+
+				val = _dataBytes[i] & 0xFF ;
+				sb.append( hexChars[ val >> 4 ] );
+				sb.append( hexChars[ val & 0x0F ] ) ;
+			}
+		  return sb.toString() ;
+    }

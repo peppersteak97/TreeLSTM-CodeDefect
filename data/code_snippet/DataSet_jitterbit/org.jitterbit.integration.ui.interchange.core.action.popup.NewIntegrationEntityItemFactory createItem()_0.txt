@@ -1,0 +1,5 @@
+    protected IPopupMenuItem createItem() {
+        InterchangeActionFactory factory =
+            InterchangeActionFactory.getNewEntityFactory(m_type);
+        return new Item(factory.get(m_view), m_type);
+    }

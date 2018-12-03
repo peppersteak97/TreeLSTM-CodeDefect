@@ -1,0 +1,3 @@
+    public TextDocument getMainObject() {
+        return (TextDocument) super.getMainObject();
+    }

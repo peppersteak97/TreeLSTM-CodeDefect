@@ -1,0 +1,37 @@
+	void checkFastClock() {
+		Date currentTime = mFastClock.getTime();
+		int oldMinutes = mCurrentMinutes;
+		mCurrentMinutes = (currentTime.getHours()*60) + currentTime.getMinutes();
+		boolean inRange = false;
+		for (int index = 0;(index<mNumMinuteListenerTimes)&&!inRange;index++) {
+			if (oldMinutes<mCurrentMinutes) {
+				if ( ((oldMinutes<mMinuteBeginTime[index]) && 
+					(mCurrentMinutes>=mMinuteBeginTime[index])) ||
+						((oldMinutes<mMinuteEndTime[index]) && 
+							(mCurrentMinutes>=mMinuteEndTime[index])) ) {
+					inRange = true;
+				}
+			}
+			else {
+				if (mMinuteBeginTime[index]<=mMinuteEndTime[index]) {
+					if ( ( (oldMinutes<mMinuteBeginTime[index]) && 
+						((mCurrentMinutes+1440)>=mMinuteBeginTime[index]) ) ||
+							( (oldMinutes<=mMinuteEndTime[index]) && 
+								((mCurrentMinutes+1440)>mMinuteEndTime[index]) ) ) {
+						inRange = true;
+					}
+				}
+				else {
+					if ( ( (oldMinutes<mMinuteBeginTime[index]) && 
+						((mCurrentMinutes+1440)>=mMinuteBeginTime[index]) ) ||
+							( ((oldMinutes-1440)<mMinuteEndTime[index]) && 
+								(mCurrentMinutes>=mMinuteEndTime[index])) ) {
+						inRange = true;
+					}
+				}
+			}
+		}
+		if (inRange) {
+			calculateConditionals();
+		}
+	}

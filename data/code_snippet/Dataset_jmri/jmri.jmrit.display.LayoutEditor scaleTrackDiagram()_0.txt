@@ -1,0 +1,80 @@
+	protected void scaleTrackDiagram() {
+		if (scaleTrackDiagramOpen) {
+			scaleTrackDiagramFrame.setVisible(true);
+			return;
+		}
+		if (scaleTrackDiagramFrame == null) {
+            scaleTrackDiagramFrame = new JmriJFrame( rb.getString("ScaleTrackDiagram") );
+            scaleTrackDiagramFrame.addHelpMenu("package.jmri.jmrit.display.ScaleTrackDiagram", true);
+            scaleTrackDiagramFrame.setLocation(70,30);
+            Container theContentPane = scaleTrackDiagramFrame.getContentPane();        
+            theContentPane.setLayout(new BoxLayout(theContentPane, BoxLayout.Y_AXIS));
+            JPanel panel31 = new JPanel(); 
+            panel31.setLayout(new FlowLayout());
+			JLabel xTranslateLabel = new JLabel( rb.getString("XTranslateLabel"));
+            panel31.add(xTranslateLabel);
+            panel31.add(xTranslateField);
+            xTranslateField.setToolTipText( rb.getString("XTranslateHint") );
+            theContentPane.add(panel31);
+            JPanel panel32 = new JPanel(); 
+            panel32.setLayout(new FlowLayout());
+			JLabel yTranslateLabel = new JLabel( rb.getString("YTranslateLabel"));
+            panel32.add(yTranslateLabel);
+            panel32.add(yTranslateField);
+            yTranslateField.setToolTipText( rb.getString("YTranslateHint") );
+            theContentPane.add(panel32);
+            JPanel panel33 = new JPanel(); 
+            panel33.setLayout(new FlowLayout());
+			JLabel message1Label = new JLabel( rb.getString("Message1Label"));
+            panel33.add(message1Label);
+            theContentPane.add(panel33);			
+            JPanel panel21 = new JPanel(); 
+            panel21.setLayout(new FlowLayout());
+			JLabel xFactorLabel = new JLabel( rb.getString("XFactorLabel"));
+            panel21.add(xFactorLabel);
+            panel21.add(xFactorField);
+            xFactorField.setToolTipText( rb.getString("FactorHint") );
+            theContentPane.add(panel21);
+            JPanel panel22 = new JPanel(); 
+            panel22.setLayout(new FlowLayout());
+			JLabel yFactorLabel = new JLabel( rb.getString("YFactorLabel"));
+            panel22.add(yFactorLabel);
+            panel22.add(yFactorField);
+            yFactorField.setToolTipText( rb.getString("FactorHint") );
+            theContentPane.add(panel22);
+            JPanel panel23 = new JPanel(); 
+            panel23.setLayout(new FlowLayout());
+			JLabel message2Label = new JLabel( rb.getString("Message2Label"));
+            panel23.add(message2Label);
+            theContentPane.add(panel23);			
+            JPanel panel5 = new JPanel();
+            panel5.setLayout(new FlowLayout());
+            panel5.add(scaleTrackDiagramDone = new JButton(rb.getString("ScaleTranslate")));
+            scaleTrackDiagramDone.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    scaleTrackDiagramDonePressed(e);
+                }
+            });
+            scaleTrackDiagramDone.setToolTipText( rb.getString("ScaleTranslateHint") );
+            panel5.add(scaleTrackDiagramCancel = new JButton(rb.getString("Cancel")));
+            scaleTrackDiagramCancel.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    scaleTrackDiagramCancelPressed(e);
+                }
+            });
+            scaleTrackDiagramCancel.setToolTipText( rb.getString("CancelHint") );
+            theContentPane.add(panel5);
+		}
+		xFactorField.setText("1.0");
+		yFactorField.setText("1.0");
+		xTranslateField.setText("0");
+		yTranslateField.setText("0");
+		scaleTrackDiagramFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+				public void windowClosing(java.awt.event.WindowEvent e) {
+					scaleTrackDiagramCancelPressed(null);
+				}
+			});
+        scaleTrackDiagramFrame.pack();
+        scaleTrackDiagramFrame.setVisible(true);	
+		scaleTrackDiagramOpen = true;
+	}	

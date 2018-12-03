@@ -1,0 +1,14 @@
+  protected AbstractAction[] makePopupMenuActions() {
+    AbstractAction[] acts = new AbstractAction[] {
+      new AbstractAction("Go to") {
+        public void actionPerformed(ActionEvent e) { goToRegion(); }
+      },
+        
+        new AbstractAction("Remove") {
+          public void actionPerformed(ActionEvent e) {
+            for (Breakpoint bp: getSelectedRegions()) _regionManager .removeRegion(bp);
+          }
+        }
+    };
+    return acts;
+  }

@@ -1,0 +1,19 @@
+  public String cmdline() {
+    if (_cmdline == null) {
+      if (_cachedCmdLine == null) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < _cmdarray.length; ++i) {
+          sb.append(" ");
+          sb.append(StringOps.unescapeFileName(_cmdarray[i]));
+        }
+        _cachedCmdLine = sb.toString();
+        if (_cachedCmdLine.length() > 0) {
+          _cachedCmdLine = _cachedCmdLine.substring(1);
+        }
+      }
+      return _cachedCmdLine;
+    }
+    else {
+      return _cmdline;
+    }
+  }

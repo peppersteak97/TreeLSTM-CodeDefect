@@ -1,0 +1,12 @@
+    private void createTable() {
+        createTableModel();
+        m_entryTable = new OperationLogTable(m_tableModel);
+        new OperationLogTableController(m_entryTable).install();
+        new FilterPopupInvoker(this, m_entryTable);
+        m_entryTable.getSelectionModel().addListSelectionListener(new TableListener());
+
+        int rowHeight = m_entryTable.getRowHeight();
+        Dimension dim = m_entryTable.getPreferredScrollableViewportSize();
+        dim.height = rowHeight * 10;
+        m_entryTable.setPreferredScrollableViewportSize(dim);
+    }

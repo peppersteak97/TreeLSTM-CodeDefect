@@ -1,0 +1,6 @@
+    private boolean triggerSave() {
+        IApplicationAction save = getSaveAction();
+        save.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED,
+                        "save_page"));
+        return save.getExecutionError() == null;
+    }

@@ -1,0 +1,10 @@
+  public boolean isTopLevelGroupSelected() {
+    assert (EventQueue.isDispatchThread() || Utilities.TEST_MODE);
+    TreePath[] ps = getSelectionPaths();
+    if (ps == null) { return false; }
+    for(TreePath p: ps) {
+      TreeNode n = (TreeNode) p.getLastPathComponent();
+      if (n instanceof GroupNode<?>) { return true; }
+    }
+    return false;
+  }

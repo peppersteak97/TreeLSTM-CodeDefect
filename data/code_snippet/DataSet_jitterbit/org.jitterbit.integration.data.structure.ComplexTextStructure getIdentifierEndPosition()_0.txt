@@ -1,0 +1,3 @@
+    public int getIdentifierEndPosition() {
+        return m_identifierEndPos;
+    }

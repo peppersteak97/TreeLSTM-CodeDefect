@@ -1,0 +1,6 @@
+    private void layoutComponents() {
+        m_displayer = new JPanel(new BorderLayout(0, 5));
+        m_displayer.add(m_explanationLabel, BorderLayout.NORTH);
+        ContainerDecor.decorate(m_columnTable, m_displayer, BorderLayout.WEST);
+        m_displayer.setOpaque(false);
+    }

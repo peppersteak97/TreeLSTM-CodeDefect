@@ -1,0 +1,11 @@
+    public WorkflowProcessId getFailureProcessId() {
+        String id = getProperty(FAILURE_WORKFLOW);
+        if (id != null && id.length() > 0) {
+            try {
+                return new WorkflowProcessId(id);
+            }
+            catch (IllegalArgumentException e) {
+            }
+        }
+        return null;
+    }

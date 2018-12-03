@@ -1,0 +1,7 @@
+    public String toString() {
+        sb.append(getDataObject().getItemType());
+        for (IKongaDataUiDelegate child : getUiChildren()) {
+            sb.append(child.toString());
+        }
+        return sb.toString();
+    }

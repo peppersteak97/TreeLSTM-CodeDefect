@@ -1,0 +1,1 @@
+  public boolean isExcludedLiveA() { return (flags & EXCLUDE_LIVEANAL) != 0; }

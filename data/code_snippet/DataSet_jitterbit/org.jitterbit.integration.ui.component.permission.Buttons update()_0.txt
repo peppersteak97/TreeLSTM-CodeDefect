@@ -1,0 +1,7 @@
+    void update() {
+        if (m_isActive) {
+            boolean pageDirty = m_page.isDirty();
+            m_applyButton.setEnabled(pageDirty);
+            m_resetButton.setEnabled(pageDirty);
+        }
+    }

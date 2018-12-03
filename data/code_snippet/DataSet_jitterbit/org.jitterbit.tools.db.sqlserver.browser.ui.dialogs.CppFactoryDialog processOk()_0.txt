@@ -1,0 +1,9 @@
+    private void processOk() {
+        savePreferences();
+        new CppFactoryCreator(m_db, 
+                			  m_textFactoryName.getText(), 
+                			  m_textLibraryName.getText(),
+                			  m_textNamespace.getText(), 
+                			  m_textDirectory.getText()).createScripts();
+        dispose();
+    }

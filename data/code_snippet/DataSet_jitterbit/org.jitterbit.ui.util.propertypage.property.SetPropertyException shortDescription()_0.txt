@@ -1,0 +1,6 @@
+	public String shortDescription() {
+		sb.append( getPropertyName() );
+		sb.append( m_value );
+		sb.append( getObject().toString() );
+		return sb.toString();
+	}

@@ -1,0 +1,3 @@
+    String brkVal() {
+        return decodeFlags(brk, loopCodes, loopMasks, loopNames);
+    }

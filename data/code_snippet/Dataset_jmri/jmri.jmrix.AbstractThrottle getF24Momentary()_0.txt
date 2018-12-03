@@ -1,0 +1,3 @@
+    public boolean getF24Momentary() {
+        return f24Momentary;
+    }

@@ -1,0 +1,29 @@
+    protected void runJob() {
+        Runnable r = null;
+        while (!m_isStopRequested) {
+            try {
+                r = getJob();
+            }
+            catch (InterruptedException interruptEx) {
+                Thread.currentThread().interrupt();
+                break;
+            }
+            try {
+                r.run();
+            }
+            catch (Exception ex) {
+                ex.printStackTrace(System.out);
+            }
+            finally {
+                Thread.interrupted();
+                r = null;
+                m_job = null;
+            }
+            if (m_threadPool.isDebug()) {
+                                + Thread.currentThread().getName());
+            }
+            m_threadPool.returnThreadToPool(this);
+        }
+        m_job = null;
+        m_threadPool.returnThreadToPool(this);
+    }

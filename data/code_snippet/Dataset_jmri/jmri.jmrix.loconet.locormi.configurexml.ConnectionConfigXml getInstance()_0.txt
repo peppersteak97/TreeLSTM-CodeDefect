@@ -1,0 +1,4 @@
+    protected void getInstance() {
+        log.error("unexpected call to getInstance");
+        new Exception().printStackTrace();
+    }

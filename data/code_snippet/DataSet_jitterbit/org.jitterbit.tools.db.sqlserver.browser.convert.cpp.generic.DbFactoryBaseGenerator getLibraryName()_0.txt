@@ -1,0 +1,3 @@
+    public final String getLibraryName() {
+        return m_sLibraryName;
+    }

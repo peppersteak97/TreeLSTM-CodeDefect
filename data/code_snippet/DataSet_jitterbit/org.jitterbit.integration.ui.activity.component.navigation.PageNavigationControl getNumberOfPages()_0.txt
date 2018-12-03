@@ -1,0 +1,7 @@
+    private int getNumberOfPages() {
+        int pages = m_numberOfRecords / m_recordsPerPage;
+        if (m_numberOfRecords % m_recordsPerPage != 0) {
+            ++pages;
+        }
+        return pages;
+    }

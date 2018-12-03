@@ -1,0 +1,26 @@
+    private void registerEndElementHandlerFactories() {
+        IEndElementHandlerFactory factory = new IEndElementHandlerFactory() {
+
+            public IEndElementHandler getHandler() {
+                return new NodeElementHandler();
+            }
+        };
+        addEndElementHandlerFactory(NODE, factory);
+
+        factory = new IEndElementHandlerFactory() {
+
+            public IEndElementHandler getHandler() {
+                return new StructureElementHandler();
+            }
+        };
+        addEndElementHandlerFactory(STRUCTURE, factory);
+        addEndElementHandlerFactory(CHILD, factory);
+
+        factory = new IEndElementHandlerFactory() {
+
+            public IEndElementHandler getHandler() {
+                return new IconElementHandler();
+            }
+        };
+        addEndElementHandlerFactory(ICON, factory);
+    }

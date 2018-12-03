@@ -1,0 +1,5 @@
+    private void installAutoComplete() {
+        ICompletionContext context = new TargetFileNameCompletionContext();
+        m_autoCompleter = AutoCompleterFactory.newAutoCompleter(context);
+        m_autoCompleter.install(getInputComponent());
+    }

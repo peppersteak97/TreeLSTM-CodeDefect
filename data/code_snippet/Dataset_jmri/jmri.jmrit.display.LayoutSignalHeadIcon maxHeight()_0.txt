@@ -1,0 +1,11 @@
+    protected int maxHeight() {
+        int max = 0;
+        max = Math.max((red!=null) ? red.getIconHeight() : 0, max);
+        max = Math.max((yellow!=null) ? yellow.getIconHeight() : 0, max);
+        max = Math.max((green!=null) ? green.getIconHeight() : 0, max);
+        max = Math.max((flashRed!=null) ? flashRed.getIconHeight() : 0, max);
+        max = Math.max((flashYellow!=null) ? flashYellow.getIconHeight() : 0, max);
+        max = Math.max((flashGreen!=null) ? flashGreen.getIconHeight() : 0, max);
+        max = Math.max((dark!=null) ? dark.getIconHeight() : 0, max);
+        return max;
+    }

@@ -1,0 +1,3 @@
+  public static int getHighestInUseSlot() {
+    return nextReferenceSlot - (VM.BuildFor32Addr ? 1 : 2);
+  }

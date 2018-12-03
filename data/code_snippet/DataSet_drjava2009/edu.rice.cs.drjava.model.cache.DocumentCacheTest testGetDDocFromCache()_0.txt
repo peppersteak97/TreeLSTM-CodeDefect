@@ -1,0 +1,34 @@
+  public void testGetDDocFromCache() throws BadLocationException, IOException, OperationCanceledException {
+    File file1 = tempFile(1);
+    File file2 = tempFile(2);
+    File file3 = tempFile(3);
+    File file4 = tempFile(4);
+    File file5 = tempFile(5);
+    File file6 = tempFile(6);
+    
+    OpenDefinitionsDocument doc1 = openFile(file1);
+    assertTrue("The document should not start out in the cache", _adapterTable.get(doc1).isReady());
+    assertEquals("There should be 1 documents in the cache", 1, _cache.getNumInCache());
+    
+    OpenDefinitionsDocument doc2 = openFile(file2);
+    assertTrue("The document should not start out in the cache", _adapterTable.get(doc2).isReady());
+    assertEquals("There should be 2 documents in the cache", 2, _cache.getNumInCache());
+    
+    OpenDefinitionsDocument doc3 = openFile(file3);
+    assertTrue("The document should not start out in the cache", _adapterTable.get(doc3).isReady());
+    assertEquals("There should be 3 documents in the cache", 3, _cache.getNumInCache());
+    
+    OpenDefinitionsDocument doc4 = openFile(file4);
+    assertTrue("The document should not start out in the cache", _adapterTable.get(doc4).isReady());
+    assertEquals("There should be 4 documents in the cache", 4, _cache.getNumInCache());
+    
+    OpenDefinitionsDocument doc5 = openFile(file5);
+    assertTrue("The document should not start out in the cache", _adapterTable.get(doc5).isReady());
+    assertFalse("The document should not start out in the cache", _adapterTable.get(doc1).isReady());
+    assertEquals("There should be 4 documents in the cache", 4, _cache.getNumInCache());
+    
+    OpenDefinitionsDocument doc6 = openFile(file6);
+    assertTrue("The document should not start out in the cache", _adapterTable.get(doc6).isReady());
+    assertFalse("The document should not start out in the cache", _adapterTable.get(doc2).isReady());
+    assertEquals("There should be 4 documents in the cache", 4, _cache.getNumInCache());
+  }

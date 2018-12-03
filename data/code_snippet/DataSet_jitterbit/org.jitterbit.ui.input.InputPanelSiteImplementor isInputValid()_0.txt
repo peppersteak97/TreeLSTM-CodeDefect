@@ -1,0 +1,3 @@
+    public boolean isInputValid() {
+        return m_inputPanel.isInputValid();
+    }

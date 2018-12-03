@@ -1,0 +1,16 @@
+    private void putRecentProjectsInPreferences() {
+        clearPreferences();
+        int n = 0;
+        for (ProjectLocation ml : m_recentProjects) {
+            String nameKey = getRecentProjectNameKey(n);
+            String locKey = getRecentProjectLocationKey(n);
+            if (ml != null) {
+                m_preferences.putString(nameKey, ml.getProjectName());
+                m_preferences.putFile(locKey, ml.getLocation());
+            }
+            ++n;
+            if (n == HISTORY_SIZE) {
+                break;
+            }
+        }
+    }

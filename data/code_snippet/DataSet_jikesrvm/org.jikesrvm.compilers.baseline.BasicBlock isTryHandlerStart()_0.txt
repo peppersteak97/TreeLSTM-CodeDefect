@@ -1,0 +1,3 @@
+  public boolean isTryHandlerStart() {
+    return ((state & TRYHANDLERSTART) == TRYHANDLERSTART);
+  }

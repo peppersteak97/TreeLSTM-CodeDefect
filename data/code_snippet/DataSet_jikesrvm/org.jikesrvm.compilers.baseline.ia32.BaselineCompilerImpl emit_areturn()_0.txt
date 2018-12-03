@@ -1,0 +1,5 @@
+  protected final void emit_areturn() {
+    if (method.isSynchronized()) genMonitorExit();
+    asm.emitPOP_Reg(T0);
+    genEpilogue(WORDSIZE, WORDSIZE);
+  }

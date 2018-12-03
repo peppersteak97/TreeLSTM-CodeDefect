@@ -1,0 +1,3 @@
+  protected static String getDefaultNewFileRep() {
+    return "New Folder";
+  }

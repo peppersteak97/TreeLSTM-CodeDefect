@@ -1,0 +1,3 @@
+  public static <T> Enumeration<T> emptyEnumeration() {
+    return (Enumeration<T>) (Enumeration) EMPTY;
+  }

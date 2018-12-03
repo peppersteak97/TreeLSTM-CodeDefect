@@ -1,0 +1,7 @@
+    public IExportableProperty[] getExportableProperties() {
+        return new IExportableProperty[] {
+            new ExportableStringProperty(this, PROPERTY_URL, 
+            new ExportableStringProperty(this, PROPERTY_LOGIN, 
+            new ExportableStringProperty(this, PROPERTY_PASSWORD, 
+        };
+    }

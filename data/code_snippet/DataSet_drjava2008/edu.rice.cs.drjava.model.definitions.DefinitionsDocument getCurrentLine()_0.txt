@@ -1,0 +1,1 @@
+  public int getCurrentLine() { return getLineOfOffset(_currentLocation); }

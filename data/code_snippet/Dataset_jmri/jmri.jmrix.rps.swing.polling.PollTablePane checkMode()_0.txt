@@ -1,0 +1,8 @@
+    void checkMode() {
+        if (bscMode.isSelected())
+            Engine.instance().setBscPollMode();
+        else if (throttleMode.isSelected())
+            Engine.instance().setThrottlePollMode();
+        else
+            Engine.instance().setDirectPollMode();
+    }

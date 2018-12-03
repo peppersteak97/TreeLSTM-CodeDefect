@@ -1,0 +1,3 @@
+    public static final ImageIcon getDatabaseTreeIcon() {
+        return DATABASE_TREE;
+    }

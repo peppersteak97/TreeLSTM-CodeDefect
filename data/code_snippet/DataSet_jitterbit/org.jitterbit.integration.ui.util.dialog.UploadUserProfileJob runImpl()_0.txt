@@ -1,0 +1,17 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus(DetailLevel.SHORT, PackageResources.UserProfile.Upload.STARTED);
+
+        Runnable task = new Runnable() {
+            
+            public void run() {
+                IntegrationServer server = IntegrationServer.getInstance();
+                IUserAdmin call = server.getServerCall(IUserAdmin.class);
+                call.setUserInfo(m_callback, m_user);
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallellAndWait(task, m_callback);
+    }

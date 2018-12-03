@@ -1,0 +1,11 @@
+  public void testInterpretCurrentInteractionWithIncompleteInput() throws EditDocumentException, InterruptedException,
+    RemoteException {
+    _log.log("testInterpretCurrentInteractionWithIncompleteInput started");
+    assertReplThrewContinuationException("void m() {");
+    assertReplThrewContinuationException("void m() {;");
+    assertReplThrewContinuationException("1+");
+    assertReplThrewContinuationException("(1+2");
+    assertReplThrewSyntaxException("(1+2;");
+    assertReplThrewContinuationException("for (;;");
+    _log.log("testInterpretCurrentInteractionWithIncompleteInput ended");
+  }

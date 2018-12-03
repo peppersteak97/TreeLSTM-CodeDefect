@@ -1,0 +1,1 @@
+  public boolean unregisterJavaFileExtension() { return false; }

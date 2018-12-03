@@ -1,0 +1,3 @@
+  public RegisterOperand copyD2D() {
+    return copyRO();
+  }

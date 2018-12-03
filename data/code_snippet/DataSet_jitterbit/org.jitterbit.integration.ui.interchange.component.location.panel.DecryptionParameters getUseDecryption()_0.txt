@@ -1,0 +1,3 @@
+    public boolean getUseDecryption() {
+        return m_data.getFirst();
+    }

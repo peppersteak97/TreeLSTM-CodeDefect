@@ -1,0 +1,1 @@
+  public void showBookmarks() { showTab(_bookmarksPanel, true); }

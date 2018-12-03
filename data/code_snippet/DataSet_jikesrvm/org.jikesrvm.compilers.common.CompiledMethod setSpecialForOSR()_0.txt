@@ -1,0 +1,5 @@
+  public void setSpecialForOSR() {
+    flags |= SPECIAL_FOR_OSR;
+    this.osrJTOCoffset = Statics.allocateReferenceSlot(false).toInt();
+    Statics.setSlotContents(this.getOsrJTOCoffset(), this.instructions);
+  }

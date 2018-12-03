@@ -1,0 +1,3 @@
+    public boolean isUpToDate() {
+        return m_notDeployed == null && m_dirty == null;
+    }

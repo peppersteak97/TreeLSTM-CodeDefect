@@ -1,0 +1,3 @@
+    protected String mainWindowHelpID() {
+            return "package.apps.Apps";
+    }

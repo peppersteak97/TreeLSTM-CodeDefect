@@ -1,0 +1,14 @@
+    boolean selectNewToFile() {
+        if (fileChooser==null) {
+            fileChooser = jmri.jmrit.XmlFile.userFileChooser();
+        }
+        fileChooser.setSelectedFile(new File(mFromFilename));
+        int retVal = fileChooser.showSaveDialog(mParent);
+
+
+        mToFile = fileChooser.getSelectedFile();
+        mToFilename = mToFile.getName();
+        mFullToFilename = mToFile.getAbsolutePath();
+        log.debug("New to file: "+mToFilename+" at "+mFullToFilename);
+        return true;
+    }

@@ -1,0 +1,5 @@
+    public ThreadPoolWorker getThread() throws InterruptedException {
+        if (m_isDebug) {
+        }
+        return (ThreadPoolWorker)m_idleWorkers.get();
+    }

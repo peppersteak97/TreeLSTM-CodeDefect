@@ -1,0 +1,3 @@
+  public boolean isMagic() {
+    return getType().isMagicType() || ((resolvedMember != null) && (resolvedMember.isSysCall() || resolvedMember.isSpecializedInvoke()));
+  }

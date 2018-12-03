@@ -1,0 +1,7 @@
+  public void endCompoundEdit() {
+    if (_inCompoundEdit) {
+      CompoundUndoManager undoMan = _doc.getUndoManager();
+      _inCompoundEdit = false;
+      undoMan.endCompoundEdit(_compoundEditKey);
+    }
+  }

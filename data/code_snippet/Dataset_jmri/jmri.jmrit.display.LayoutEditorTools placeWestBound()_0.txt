@@ -1,0 +1,15 @@
+	private void placeWestBound() {
+		if (testIcon == null)
+			testIcon = signalIconEditor.getIcon(0);
+		Point2D p = boundary.getCoords();
+		if (trackHorizontal) {
+			setSignalHeadOnPanel(0,westBoundField.getText().trim(),
+				(int)(p.getX()),
+				(int)(p.getY()-4-testIcon.getIconHeight()) );
+		}
+		else if (trackVertical) {
+			setSignalHeadOnPanel(3,westBoundField.getText().trim(),
+				(int)(p.getX()+4),
+				(int)(p.getY()) );
+		}	
+	}

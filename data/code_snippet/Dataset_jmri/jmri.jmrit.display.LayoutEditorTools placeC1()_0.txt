@@ -1,0 +1,24 @@
+	private void placeC1() {
+		if (testIcon == null)
+			testIcon = signalIconEditor.getIcon(0);
+		if( layoutTurnoutHorizontal && layoutTurnoutThroatLeft ) {
+			setSignalHeadOnPanel(0,c1Field.getText().trim(),
+				(int)(layoutTurnout.getCoordsC().getX()),
+				(int)(layoutTurnout.getCoordsC().getY()-4-testIcon.getIconHeight()) );
+		}
+		else if( layoutTurnoutHorizontal && (!layoutTurnoutThroatLeft) ) {
+			setSignalHeadOnPanel(2,c1Field.getText().trim(),
+				(int)(layoutTurnout.getCoordsC().getX()-testIcon.getIconWidth()),
+				(int)(layoutTurnout.getCoordsC().getY()+4) );
+		}
+		else if( layoutTurnoutVertical && layoutTurnoutThroatUp ) {
+			setSignalHeadOnPanel(3,c1Field.getText().trim(),
+				(int)(layoutTurnout.getCoordsC().getX()+4),
+				(int)(layoutTurnout.getCoordsC().getY()) );
+		}
+		else if( layoutTurnoutVertical && (!layoutTurnoutThroatUp) ) {
+			setSignalHeadOnPanel(1,c1Field.getText().trim(),
+				(int)(layoutTurnout.getCoordsC().getX()-4-testIcon.getIconWidth()),
+				(int)(layoutTurnout.getCoordsC().getY()-testIcon.getIconHeight()) );
+		}
+	}

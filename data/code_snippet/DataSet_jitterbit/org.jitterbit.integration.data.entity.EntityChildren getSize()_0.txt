@@ -1,0 +1,8 @@
+    public int getSize() {
+        int children = 0;
+        for (Class<?> cls : m_mapChildrenByID.keySet()) {
+            List<IntegrationEntity> list = getAll(cls);
+            children += list.size();
+        }
+        return children;
+    }

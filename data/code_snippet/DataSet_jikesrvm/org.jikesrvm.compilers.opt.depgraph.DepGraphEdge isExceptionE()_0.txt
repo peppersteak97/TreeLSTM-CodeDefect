@@ -1,0 +1,1 @@
+  public boolean isExceptionE() { return (scratch & EXCEPTION_E) != 0; }

@@ -1,0 +1,4 @@
+    public StructureNature getStructureNature() {
+        return (m_dbTables.getNumberOfTables() < 2) ? 
+                        StructureNature.Flat : StructureNature.Tree;
+    }

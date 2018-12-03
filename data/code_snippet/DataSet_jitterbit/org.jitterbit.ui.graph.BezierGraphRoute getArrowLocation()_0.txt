@@ -1,0 +1,3 @@
+	public Point getArrowLocation() {
+		return m_curve.getArrowLocation();
+	}

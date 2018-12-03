@@ -1,0 +1,6 @@
+    public void forceToFront() {
+        if (getState() == Frame.ICONIFIED) {
+            setState(Frame.NORMAL);
+        }
+        toFront();
+    }

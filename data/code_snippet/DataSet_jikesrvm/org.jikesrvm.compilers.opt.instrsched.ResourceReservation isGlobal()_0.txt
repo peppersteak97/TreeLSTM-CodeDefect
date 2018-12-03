@@ -1,0 +1,3 @@
+  public boolean isGlobal() {
+    return (rclass & 0x80000000) != 0;
+  }

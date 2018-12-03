@@ -1,0 +1,8 @@
+    public Locale getLocale() {
+        if (localeBox==null || locales==null) return Locale.getDefault();
+        String desired = (String)localeBox.getSelectedItem();
+        for (int i = 0; i<locales.length; i++) {
+            if (desired.equals(localeNames[i])) return locales[i];
+        }
+        return null;
+    }

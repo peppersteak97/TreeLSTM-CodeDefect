@@ -1,0 +1,14 @@
+  static FileConfiguration _initConfig() throws IllegalStateException {
+    
+    FileConfiguration config;
+    
+    
+    catch (IOException e) { /* IOException occurred, continue without a real file */ }
+    
+    config = new FileConfiguration(propFile);
+    try { config.loadConfiguration(); }
+    catch (Exception e) {
+      config.storeStartupException(e);
+    }
+    return config;
+  }

@@ -1,0 +1,9 @@
+  private void _hideDebuggerPanel() {
+    if (_detachDebugFrameMenuItem.isSelected()) {
+      _debugFrame.setVisible(false);
+    }
+    else {
+      _mainSplit.setTopComponent(_docSplitPane);
+    }
+    _lastFocusOwner.requestFocusInWindow();
+  }

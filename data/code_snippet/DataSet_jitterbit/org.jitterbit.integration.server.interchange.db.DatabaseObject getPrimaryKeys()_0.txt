@@ -1,0 +1,9 @@
+    public List<DatabaseColumn> getPrimaryKeys() {
+        List<DatabaseColumn> pks = new ArrayList<DatabaseColumn>();
+        for (DatabaseColumn c : m_columns) {
+            if (c.isPrimaryKey()) {
+                pks.add(c);
+            }
+        }
+        return pks;
+    }

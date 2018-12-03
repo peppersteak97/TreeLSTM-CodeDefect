@@ -1,0 +1,18 @@
+    static TableCellRenderer getLocationRenderer() {
+        return new DefaultTableCellRenderer() {
+
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(
+                                table, value, isSelected, hasFocus, row, column);
+                if (value instanceof JitterPackLocationTableItem) {
+                    setIcon(PackageResources.JITTERPACK_ICON);
+                    setToolTipText(getText());
+                }
+                else {
+                    setIcon(null);
+                }
+                return this;
+            }
+        };
+    }

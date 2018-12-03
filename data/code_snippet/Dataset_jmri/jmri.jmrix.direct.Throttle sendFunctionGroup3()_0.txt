@@ -1,0 +1,7 @@
+    protected void sendFunctionGroup3() {
+
+        byte[] result = jmri.NmraPacket.function9Through12Packet(address, (address>=100),
+                                         getF9(), getF10(), getF11(), getF12());
+
+        TrafficController.instance().sendPacket(result, 1);
+    }

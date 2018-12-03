@@ -1,0 +1,8 @@
+  protected static HashSet<String> _makeNormEndings() {
+    HashSet<String> normEndings = new HashSet<String>();
+    normEndings.add(";");
+    normEndings.add("{");
+    normEndings.add("}");
+    normEndings.add("(");
+    return  normEndings;
+  }

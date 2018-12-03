@@ -1,0 +1,7 @@
+    static public final SprogSlotManager instance() {
+        if (self == null) {
+          log.debug("creating a new SprogSlotManager object");
+          self = new SprogSlotManager();
+        }
+        return self;
+    }

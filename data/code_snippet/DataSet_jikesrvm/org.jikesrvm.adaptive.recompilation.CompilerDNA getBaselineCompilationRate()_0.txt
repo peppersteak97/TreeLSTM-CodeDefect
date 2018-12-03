@@ -1,0 +1,3 @@
+  public static double getBaselineCompilationRate() {
+    return compilationRates[BASELINE];
+  }

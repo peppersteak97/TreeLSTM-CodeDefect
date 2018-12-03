@@ -1,0 +1,3 @@
+    static boolean isSupported() {
+        return SUPPORTED;
+    }

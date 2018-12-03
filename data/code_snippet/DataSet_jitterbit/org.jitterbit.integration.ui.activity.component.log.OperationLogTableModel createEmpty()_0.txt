@@ -1,0 +1,3 @@
+    public static OperationLogTableModel createEmpty() {
+        return new OperationLogTableModel();
+    }

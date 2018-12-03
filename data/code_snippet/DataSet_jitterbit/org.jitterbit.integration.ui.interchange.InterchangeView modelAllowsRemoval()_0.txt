@@ -1,0 +1,4 @@
+            if( modelAllowsRemoval() ) {
+                removeDataModelUi(oldModel);
+                restoreState = true;
+            }

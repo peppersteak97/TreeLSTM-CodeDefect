@@ -1,0 +1,6 @@
+    private IPageSaver getPageSaver() {
+        if (m_pageSaver == null) {
+            m_pageSaver = PageSaverFactory.getFactory().newSaver(getPageEditor());
+        }
+        return m_pageSaver;
+    }

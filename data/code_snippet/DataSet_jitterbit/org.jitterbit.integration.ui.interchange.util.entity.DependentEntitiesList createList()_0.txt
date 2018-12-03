@@ -1,0 +1,20 @@
+    private void createList() {
+        IDoubleClickHandler clickHandler = new IDoubleClickHandler() {
+
+            public void handleDoubleClick(JList source, int indexClickedOn) {
+            }
+        }; 
+        m_list = ComponentFactories.listFactory().newList(getDependants(), clickHandler); 
+        m_list.setCellRenderer(RendererUtils.getIntegrationEntityListCellRenderer());
+        m_list.setVisibleRowCount(8);
+        m_list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        m_list.addListSelectionListener(new ListSelectionListener() {
+
+            public void valueChanged(ListSelectionEvent e) {
+                if (e.getValueIsAdjusting()) {
+                    return;
+                }
+                m_editAction.setEnabled(m_list.getSelectedValue() != null);
+            }
+        });
+    }

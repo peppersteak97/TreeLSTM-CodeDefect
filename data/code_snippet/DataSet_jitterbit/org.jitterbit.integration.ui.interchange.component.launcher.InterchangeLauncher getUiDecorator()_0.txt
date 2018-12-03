@@ -1,0 +1,14 @@
+    public IUiProvider getUiDecorator() {
+        return new IUiProvider() {
+
+            public void decorate(IUiDecor decor) {
+                if (m_launchScreen == null) {
+                    m_launchScreen = new LaunchScreen(m_launchOptions);
+                }
+                decor.display(m_launchScreen.getContentPane());
+            }
+
+            public void requestFocus() {
+            }
+        };
+    }

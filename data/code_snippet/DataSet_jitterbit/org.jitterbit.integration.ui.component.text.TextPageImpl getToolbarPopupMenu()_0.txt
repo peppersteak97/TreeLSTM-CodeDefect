@@ -1,0 +1,5 @@
+    protected JPopupMenu getToolbarPopupMenu() {
+        JPopupMenu pm = new JPopupMenu();
+        m_ui.populateIconPopupMenu(pm);
+        return pm;
+    }

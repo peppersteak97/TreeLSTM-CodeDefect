@@ -1,0 +1,4 @@
+    protected void onCancel() {
+        m_hasChanged = false;
+        super.onCancel();
+    }

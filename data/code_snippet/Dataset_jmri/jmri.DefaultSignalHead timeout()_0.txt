@@ -1,0 +1,6 @@
+    private void timeout() {
+        if (mFlashOn) mFlashOn = false;
+        else mFlashOn = true;
+        
+        updateOutput();
+    }

@@ -1,0 +1,26 @@
+    protected void init() {
+
+        try {
+            Class cs = Class.forName("org.python.core.PySystemState");
+            java.lang.reflect.Method initialize =
+                        cs.getMethod("initialize",null);
+            initialize.invoke(null, null);
+
+            interp = Class.forName("org.python.util.PythonInterpreter").newInstance();
+
+            java.lang.reflect.Method set =
+                        interp.getClass().getMethod("set", new Class[]{String.class, Object.class});
+            set.invoke(interp, new Object[]{"dcc", InstanceManager.commandStationInstance()});
+            set.invoke(interp, new Object[]{"self", this});
+
+            exec = interp.getClass().getMethod("exec", new Class[]{String.class});
+
+            exec.invoke(interp, new Object[]{"execfile(\""+filename+"\")"});
+
+            exec.invoke(interp, new Object[]{"init()"});
+
+        } catch (Exception e) {
+            log.error("Exception creating jython system objects: "+e);
+            e.printStackTrace();
+        }
+    }

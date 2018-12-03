@@ -1,0 +1,3 @@
+  public static PowerPCTrapOperand LOWER() {
+    return new PowerPCTrapOperand(LOWER);
+  }

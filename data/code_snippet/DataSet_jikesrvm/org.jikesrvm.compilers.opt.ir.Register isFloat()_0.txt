@@ -1,0 +1,1 @@
+  public boolean isFloat() { return (flags & FLOAT) != 0; }

@@ -1,0 +1,7 @@
+    void dispose() {
+        if (popup != null) popup.removeAll();
+        popup = null;
+        rlspeed = null;
+        lrspeed = null;
+        dir = null;
+    }

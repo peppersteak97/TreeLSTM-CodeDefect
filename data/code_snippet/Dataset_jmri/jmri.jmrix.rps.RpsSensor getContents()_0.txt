@@ -1,0 +1,3 @@
+    java.util.List getContents() {
+        return contents;
+    }

@@ -1,0 +1,11 @@
+  public void tearDown() throws Exception {
+    /* On Windows, the tearDown/cleanUp process sporadically throws a java.util.concurrent.RejectedExecutionException
+     * with a traceback only involving Java library code.  This try/catch construction catches those exceptions so that
+     * they are not propagated up to the controlling JUnit framework and printed.
+     */
+    try {
+      _option = null;
+      super.tearDown();
+    }
+    catch(Exception e) { /* ignore */ }
+  }

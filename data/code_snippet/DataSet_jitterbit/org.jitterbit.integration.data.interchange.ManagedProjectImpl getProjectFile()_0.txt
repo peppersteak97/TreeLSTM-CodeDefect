@@ -1,0 +1,3 @@
+    public InterchangeProjectFile getProjectFile() {
+        return m_projectFile;
+    }

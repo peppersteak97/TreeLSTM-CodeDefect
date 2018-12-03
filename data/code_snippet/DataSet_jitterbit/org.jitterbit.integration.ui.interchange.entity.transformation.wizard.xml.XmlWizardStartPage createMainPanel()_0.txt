@@ -1,0 +1,8 @@
+    private void createMainPanel() {
+        JPanel main = TransformationWizard.getUtils().createPageMainPanel(
+                        getMainCaption(),
+                        getSubCaption(),
+                        m_ui.getDisplayer()); 
+        m_ui.registerKeyBindings(main);
+        setMainPanel(main);
+    }

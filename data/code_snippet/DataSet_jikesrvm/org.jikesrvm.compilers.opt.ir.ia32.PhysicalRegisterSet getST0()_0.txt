@@ -1,0 +1,5 @@
+  public Register getST0() {
+    if (VM.VerifyAssertions) VM._assert(NUM_RETURN_FPRS == 1);
+    if (VM.VerifyAssertions) VM._assert(ArchConstants.SSE2_FULL);
+    return reg[ST0];
+  }

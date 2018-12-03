@@ -1,0 +1,21 @@
+  public void testMultipleWriters() throws InterruptedException {
+    final StringBuilder buf = new StringBuilder();
+
+    WriterThread w1 = new PrinterWriterThread("w1 ", buf);
+    WriterThread w2 = new PrinterWriterThread("w2 ", buf);
+    WriterThread w3 = new PrinterWriterThread("w3 ", buf);
+
+    _notifyCount = 3;
+
+    synchronized(_notifyObject) {
+      w1.start();
+      w2.start();
+      w3.start();
+      _notifyObject.wait();
+    }
+    String output = buf.toString();
+
+    assertTrue("w1 writes should happen in order", output.indexOf("w1 w1 w1 ") != -1);
+    assertTrue("w2 writes should happen in order", output.indexOf("w2 w2 w2 ") != -1);
+    assertTrue("w1 writes should happen in order", output.indexOf("w3 w3 w3 ") != -1);
+  }

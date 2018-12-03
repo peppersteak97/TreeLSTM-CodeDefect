@@ -1,0 +1,1 @@
+  public boolean isAuxiliaryFile() { throw new UnsupportedOperationException("isAuxiliaryFile() not implemented"); }

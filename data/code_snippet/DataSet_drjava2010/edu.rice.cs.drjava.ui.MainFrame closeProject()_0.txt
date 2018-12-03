@@ -1,0 +1,4 @@
+  boolean closeProject() {
+    updateStatusField("Closing current project");
+    return _closeProject();
+  }

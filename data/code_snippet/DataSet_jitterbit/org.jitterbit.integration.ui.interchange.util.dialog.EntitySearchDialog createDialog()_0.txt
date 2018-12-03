@@ -1,0 +1,6 @@
+    private void createDialog() {
+        JPanel cp = IntegrationUiStyleSheet.getDialogContentPane();
+        ContainerDecor.decorate(m_ui, cp, BorderLayout.CENTER);
+        cp.add(createButtonPanel(), BorderLayout.SOUTH);
+        setContentPane(cp);
+    }

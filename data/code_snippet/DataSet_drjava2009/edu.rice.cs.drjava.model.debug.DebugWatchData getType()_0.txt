@@ -1,0 +1,3 @@
+  public String getType() {
+    return (_showType) ? _type : "";
+  }

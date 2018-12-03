@@ -1,0 +1,19 @@
+  public int read() {
+    int record[] = new int[MAX_LEN];
+    do {
+      record = readLine();
+      if (type == EXT_ADDR) {
+        address = address & 0xffff
+            + record[4] * 256 * 65536 + record[5] * 65536;
+        record = readLine();
+      }
+    } while ((type != DATA) && (type != END));
+    if (type == END) {
+      return 0;
+    }
+    data = new int[len];
+    for (int i=0; i < len; i++) {
+      data[i] = record[TYPE + 1 + i];
+    }
+    return len;
+  }

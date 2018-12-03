@@ -1,0 +1,8 @@
+  void setupEquations() {
+    for (BasicBlockEnumeration e = ir.getBasicBlocks(); e.hasMoreElements();) {
+      BasicBlock bb = e.next();
+      DF_LatticeCell dom = findOrCreateCell(bb);
+      DF_LatticeCell[] pred = getCellsForPredecessors(bb);
+      newEquation(dom, DominatorOperator.MEET, pred);
+    }
+  }

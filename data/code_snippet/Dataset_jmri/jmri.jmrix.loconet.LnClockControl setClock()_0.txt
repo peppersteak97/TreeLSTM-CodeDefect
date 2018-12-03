@@ -1,0 +1,11 @@
+    private void setClock() {
+		if (setInternal || synchronizeWithInternalClock || correctFastClock) {
+			LocoNetSlot s = SlotManager.instance().slot(LnConstants.FC_SLOT);
+			s.setFcDays(curDays);
+			s.setFcHours(curHours);
+			s.setFcMinutes(curMinutes);
+			s.setFcRate(curRate);
+			s.setFcFracMins(curFractionalMinutes);
+			LnTrafficController.instance().sendLocoNetMessage(s.writeSlot());
+		}
+    }

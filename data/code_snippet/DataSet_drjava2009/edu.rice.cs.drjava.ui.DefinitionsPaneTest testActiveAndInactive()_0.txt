@@ -1,0 +1,26 @@
+  public void testActiveAndInactive() {
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        
+        DefinitionsPane pane1, pane2;
+        DJDocument doc1, doc2;
+        
+        pane1 = _frame.getCurrentDefPane(); 
+        doc1 = pane1.getDJDocument();
+        assertTrue("the active pane should have an open definitions document", doc1 instanceof OpenDefinitionsDocument);
+        
+        pane2 = _frame.getCurrentDefPane();  
+        doc2 = pane2.getDJDocument();
+        
+        assertTrue("the active pane should have an open definitions document", doc2 instanceof OpenDefinitionsDocument);
+        
+        DefinitionsPane pane = _frame.getCurrentDefPane();
+        assertEquals("Confirm that next pane is the other pane", pane1, pane);
+        
+        assertTrue("pane2 should have an open definitions document", doc2 instanceof OpenDefinitionsDocument);
+        assertTrue("pane1 should have an open definitions document", doc1 instanceof OpenDefinitionsDocument);
+        
+        _log.log("testActiveAndInactive completed");
+      }
+    });
+  }

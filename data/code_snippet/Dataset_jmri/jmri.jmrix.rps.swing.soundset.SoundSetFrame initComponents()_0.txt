@@ -1,0 +1,11 @@
+    public void initComponents() {
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        
+        pane = new SoundSetPane();
+        pane.initComponents();
+        getContentPane().add(pane);
+         
+        addHelpMenu("package.jmri.jmrix.rps.swing.soundset.SoundSetFrame", true);
+
+        pack();
+    }

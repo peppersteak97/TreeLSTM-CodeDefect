@@ -1,0 +1,3 @@
+    public WebServiceWizard getWizard() {
+        return (WebServiceWizard) super.getWizard();
+    }

@@ -1,0 +1,4 @@
+        if (! _compoundEditInProgress()) {
+          super.addEdit(ce);
+          _notifyUndoHappened();
+        }

@@ -1,0 +1,5 @@
+  public void resetToDefault() {
+    _setSelected(OptionConstants.TOOLBAR_TEXT_ENABLED.getDefault().booleanValue(),
+                 OptionConstants.TOOLBAR_ICONS_ENABLED.getDefault().booleanValue(),
+                 OptionConstants.TOOLBAR_ENABLED.getDefault().booleanValue());
+  }

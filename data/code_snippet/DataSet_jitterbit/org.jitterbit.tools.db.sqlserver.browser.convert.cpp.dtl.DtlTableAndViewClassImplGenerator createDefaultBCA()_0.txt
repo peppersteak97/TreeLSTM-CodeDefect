@@ -1,0 +1,16 @@
+    private void createDefaultBCA() {
+        addLine("template<> class DefaultBCA<" + getRowClassName() + ">");
+        addLine("{");
+        addLine("public:");
+        addLine("\t void operator()(BoundIOs &cols, " + getRowClassName() + " &rowbuf)");
+        addLine("\t{");
+        for( Column c : getColumnOwner().getColumns() ) {
+            if( isColumnSkipped(c) ) {
+                continue;
+            }
+            addLine("\t\tcols[\"" + c.getName() + "\"] == rowbuf." + c.getName() + ";");
+        }
+        writeSkippedColumns();
+        addLine("\t}");
+        addLine("};");
+    }

@@ -1,0 +1,2 @@
+/** Redirects requests for input through the abstract method _getInput().
+  * @version $Id: InputStreamRedirector.java 4969 2009-08-03 17:00:20Z mgricken $

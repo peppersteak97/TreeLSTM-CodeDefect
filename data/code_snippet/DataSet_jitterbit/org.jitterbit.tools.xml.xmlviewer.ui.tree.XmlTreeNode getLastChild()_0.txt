@@ -1,0 +1,3 @@
+    public XmlTreeNode getLastChild() {
+        return (XmlTreeNode)super.getLastChild();
+    }

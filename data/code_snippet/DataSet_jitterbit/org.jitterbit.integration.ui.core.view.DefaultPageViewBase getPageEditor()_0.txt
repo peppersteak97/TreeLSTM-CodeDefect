@@ -1,0 +1,3 @@
+    public IPageEditor getPageEditor() {
+        return m_window.getPageEditor();
+    }

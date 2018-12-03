@@ -1,0 +1,9 @@
+    void addRpsReporter() {
+        RpsPositionIcon l = new RpsPositionIcon();
+        setNextLocation(l);
+        l.setSize(l.getPreferredSize().width, l.getPreferredSize().height);
+        l.setDisplayLevel(SENSORS);
+        putLabel(l);
+        l.setPositionable(true);
+        moveToFront(l);
+    }

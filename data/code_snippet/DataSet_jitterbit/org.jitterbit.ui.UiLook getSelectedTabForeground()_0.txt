@@ -1,0 +1,3 @@
+	public static Color getSelectedTabForeground() {
+		return getTitlePanelForeground(true);
+	}

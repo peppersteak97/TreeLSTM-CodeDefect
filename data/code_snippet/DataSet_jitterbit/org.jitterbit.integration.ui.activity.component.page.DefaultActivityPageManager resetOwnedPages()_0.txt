@@ -1,0 +1,5 @@
+    private void resetOwnedPages() {
+        for (IActivityPage p : m_ownedPages.keySet()) {
+            m_ownedPages.put(p, Boolean.FALSE);
+        }
+    }

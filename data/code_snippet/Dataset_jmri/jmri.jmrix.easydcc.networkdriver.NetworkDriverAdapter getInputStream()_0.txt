@@ -1,0 +1,11 @@
+    public DataInputStream getInputStream() {
+        if (!opened) {
+            log.error("getInputStream called before load(), stream not available");
+        }
+        try {
+            return new DataInputStream(socket.getInputStream());
+        } catch (java.io.IOException ex1) {
+            log.error("Exception getting input stream: "+ex1);
+            return null;
+        }
+    }

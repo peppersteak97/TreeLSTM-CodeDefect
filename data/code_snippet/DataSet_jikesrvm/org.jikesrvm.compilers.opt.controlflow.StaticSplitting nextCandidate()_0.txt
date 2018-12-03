@@ -1,0 +1,5 @@
+  private CandInfo nextCandidate() {
+    CandInfo res = cands;
+    cands = cands.next;
+    return res;
+  }

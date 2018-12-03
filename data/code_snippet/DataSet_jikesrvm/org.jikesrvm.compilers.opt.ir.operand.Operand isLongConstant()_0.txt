@@ -1,0 +1,3 @@
+  public final boolean isLongConstant() {
+    return this instanceof LongConstantOperand;
+  }

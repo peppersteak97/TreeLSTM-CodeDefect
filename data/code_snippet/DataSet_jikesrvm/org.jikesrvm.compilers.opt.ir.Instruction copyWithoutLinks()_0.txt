@@ -1,0 +1,14 @@
+  public Instruction copyWithoutLinks() {
+    Instruction copy = new Instruction(operator, ops.length);
+    for (int i = 0; i < ops.length; i++) {
+      if (ops[i] != null) {
+        copy.ops[i] = ops[i].copy();
+        copy.ops[i].instruction = copy;
+      }
+    }
+    copy.bcIndex = bcIndex;
+    copy.operatorInfo = operatorInfo;
+    copy.position = position;
+
+    return copy;
+  }

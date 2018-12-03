@@ -1,0 +1,3 @@
+    public boolean getLimitSpeed1() {
+        return limitSpeed1;
+    }

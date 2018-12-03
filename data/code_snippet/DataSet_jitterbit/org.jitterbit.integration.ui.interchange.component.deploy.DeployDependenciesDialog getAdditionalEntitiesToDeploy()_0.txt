@@ -1,0 +1,16 @@
+    private Set<IntegrationEntity> getAdditionalEntitiesToDeploy() {
+        Set<IntegrationEntity> items = new HashSet<IntegrationEntity>();
+        if (m_requiredItems != null) {
+            items.addAll(m_requiredItems);
+        }
+        if (m_dirtyItemsTable != null) {
+            for (int row = 0, rows = m_dirtyItemsTable.getRowCount(); row < rows; ++row) {
+                if (((Boolean) m_dirtyItemsTable.getValueAt(row, 0)).booleanValue() ) {
+                    IIntegrationEntityUiDelegate uiDel = 
+                        (IIntegrationEntityUiDelegate) m_dirtyItemsTable.getValueAt(row, 1);
+                    items.add(uiDel.getDataObject());
+                }
+            }
+        }
+        return items;
+    }

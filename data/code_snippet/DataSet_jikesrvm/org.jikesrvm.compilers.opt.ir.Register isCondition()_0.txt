@@ -1,0 +1,1 @@
+  public boolean isCondition() { return (flags & CONDITION) != 0; }

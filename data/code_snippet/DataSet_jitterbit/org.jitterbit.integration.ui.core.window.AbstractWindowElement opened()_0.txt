@@ -1,0 +1,5 @@
+    protected void opened() {
+        for (IWindowElement child : getChildElements()) {
+            child.appendState(WindowElementState.OPEN);
+        }
+    }

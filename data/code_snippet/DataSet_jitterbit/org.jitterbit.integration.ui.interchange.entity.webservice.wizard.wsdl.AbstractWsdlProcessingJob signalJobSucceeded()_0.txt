@@ -1,0 +1,9 @@
+    protected final void signalJobSucceeded() {
+        if (m_wsdlFile != null && m_parsedInfo != null) {
+            m_parsedInfo.setIdentifier(m_wsdlFile.getLocator());
+        }
+        if (m_callback != null) {
+            m_callback.processCompletedSuccessfully(m_wsdlFile, m_parsedInfo);
+        }
+        setDone();
+    }

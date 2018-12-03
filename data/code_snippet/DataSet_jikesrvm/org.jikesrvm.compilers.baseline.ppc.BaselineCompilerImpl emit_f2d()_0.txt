@@ -1,0 +1,4 @@
+  protected final void emit_f2d() {
+    popFloat(F0);
+    pushDouble(F0);
+  }

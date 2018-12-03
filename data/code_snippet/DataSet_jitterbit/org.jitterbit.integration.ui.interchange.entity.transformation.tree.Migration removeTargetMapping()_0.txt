@@ -1,0 +1,5 @@
+	private void removeTargetMapping(){
+		m_targetMapArea.removeMappings();
+		m_newTargetTree.repaint();
+		m_oldTargetTree.repaint();
+	}

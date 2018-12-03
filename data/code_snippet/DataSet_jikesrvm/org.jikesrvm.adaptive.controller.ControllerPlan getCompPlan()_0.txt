@@ -1,0 +1,8 @@
+                                  getCompPlan().getMethod().getDeclaringClass().isInBootImage()) {
+      Controller.compilationQueue.insert(getPriority(), this);
+      AOSLogging.logger.recompilationScheduled(getCompPlan(), getPriority());
+      return true;
+    } else {
+      getCompPlan().getMethod().replaceCompiledMethod(null);
+      return true;
+    }

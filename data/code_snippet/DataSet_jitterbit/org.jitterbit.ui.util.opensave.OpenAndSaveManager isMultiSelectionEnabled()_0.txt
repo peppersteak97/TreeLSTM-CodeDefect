@@ -1,0 +1,3 @@
+	public boolean isMultiSelectionEnabled() {
+		return m_fileChooser.isMultiSelectionEnabled();
+	}

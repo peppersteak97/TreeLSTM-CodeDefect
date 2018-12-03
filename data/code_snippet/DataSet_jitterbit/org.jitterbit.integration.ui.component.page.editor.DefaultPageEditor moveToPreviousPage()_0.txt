@@ -1,0 +1,4 @@
+    public void moveToPreviousPage() {
+        activate();
+        m_navigationManager.switchToPreviousPage();
+    }

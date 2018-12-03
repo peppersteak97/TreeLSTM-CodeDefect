@@ -1,0 +1,3 @@
+    public T getSelectedItem() {
+        return (T)super.getSelectedItem();
+    }

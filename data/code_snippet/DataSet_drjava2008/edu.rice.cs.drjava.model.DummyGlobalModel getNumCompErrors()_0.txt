@@ -1,0 +1,3 @@
+  public int getNumCompErrors() {
+    throw new UnsupportedOperationException("Tried to call getNumCompErrors on a Dummy");
+  }

@@ -1,0 +1,30 @@
+  public void testRunMainMethod() throws Exception {
+    debug.logStart();
+    
+    File dir = makeCanonical(new File(_tempDir, "bar"));
+    dir.mkdir();
+    File file = makeCanonical(new File(dir, "Foo.java"));
+    final OpenDefinitionsDocument doc = doCompile(FOO_CLASS, file);
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        try { doc.runMain(null); }
+        catch(Exception e) { throw new UnexpectedException(e); }
+      }
+    });
+    
+    assertInteractionsContains(InteractionsModel.BANNER_PREFIX);
+    doc.insertString(doc.getLength(), " ", null);
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        try { doc.runMain(null); }
+        catch(Exception e) { throw new UnexpectedException(e); }
+      }
+    });
+    
+    assertInteractionsContains(DefaultGlobalModel.DOCUMENT_OUT_OF_SYNC_MSG);
+    Utilities.clearEventQueue();  
+    
+    _log.log("testRunMainMethod() completed");
+    debug.logEnd();
+  }

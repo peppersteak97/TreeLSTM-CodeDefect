@@ -1,0 +1,5 @@
+  public String toString() {
+    return "IdentInfo[" + _distToStart + ", " + _lineEnclosingBraceType + ", " + _distToLineEnclosingBrace + ", " +
+      _distToLineEnclosingBraceStart + ", " + _enclosingBraceType + ", " + _distToEnclosingBrace + ", " + 
+      _distToEnclosingBraceStart + "]";
+  }

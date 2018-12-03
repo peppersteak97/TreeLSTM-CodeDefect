@@ -1,0 +1,38 @@
+    static public String prefsDir() {
+        String jmriPrefsDir = System.getProperty("jmri.prefsdir","");
+        if (jmriPrefsDir.length()>0) return jmriPrefsDir+File.separator;
+        
+        String osName       = System.getProperty("os.name","<unknown>");
+        String mrjVersion   = System.getProperty("mrj.version","<unknown>");
+        String userHome     = System.getProperty("user.home","");
+
+        if (!userHome.equals("")) userHome = userHome+File.separator;
+
+
+        if ( !mrjVersion.equals("<unknown>")) {
+            if (osName.toLowerCase().equals("mac os x")) {
+                result = userHome+"Library"+File.separator+"Preferences"
+                    +File.separator+"JMRI"+File.separator;
+            } else {
+                if (!(mrjVersion.charAt(0)=='2'))
+                    log.error("Decided Mac Classic, but mrj.version is \""
+                              +mrjVersion+"\" os.name is \""
+                              +osName+"\"");
+                result = userHome+"JMRI"+File.separator;
+            }
+        } else if (osName.equals("Linux")) {
+            result = userHome+".jmri"+File.separator;
+        } else {
+            result = userHome+"JMRI"+File.separator;
+        }
+
+        if (log.isDebugEnabled()) log.debug("prefsDir defined as \""+result+
+                                            "\" based on os.name=\""
+                                            +osName
+                                            +"\" mrj.version=\""
+                                            +mrjVersion
+                                            +"\" user.home=\""
+                                            +userHome
+                                            +"\"");
+        return result;
+    }

@@ -1,0 +1,3 @@
+  public static TrapCodeOperand StackOverflow() {
+    return new TrapCodeOperand((byte) RuntimeEntrypoints.TRAP_STACK_OVERFLOW);
+  }

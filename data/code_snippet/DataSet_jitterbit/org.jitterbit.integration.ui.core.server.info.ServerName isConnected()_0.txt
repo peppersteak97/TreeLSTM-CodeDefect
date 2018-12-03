@@ -1,0 +1,4 @@
+    public boolean isConnected() {
+        ServerManager mgr = ServerManager.getManager();
+        return m_guid.equals(mgr.getCurrentServerGuid());
+    }

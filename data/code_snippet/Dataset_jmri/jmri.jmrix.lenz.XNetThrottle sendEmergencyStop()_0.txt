@@ -1,0 +1,15 @@
+    protected void sendEmergencyStop()
+    {
+        /* Emergency stop sent */
+        XNetMessage msg=new XNetMessage(4);
+        msg.setElement(0,XNetConstants.EMERGENCY_STOP);
+        msg.setElement(1,this.getDccAddressHigh());// set to the upper
+        // byte of the  DCC address
+        msg.setElement(2,this.getDccAddressLow()); // set to the lower byte
+        //of the DCC address
+        msg.setParity(); // Set the parity bit
+        // now, we send the message to the command station
+        XNetTrafficController.instance().sendXNetMessage(msg,this);
+        if(!isAvailable) 
+            requestState=THROTTLESPEEDSENT;
+    }

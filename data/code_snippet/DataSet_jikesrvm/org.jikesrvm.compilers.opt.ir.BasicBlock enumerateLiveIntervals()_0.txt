@@ -1,0 +1,3 @@
+  public final LiveIntervalEnumeration enumerateLiveIntervals() {
+    return new LiveIntervalEnumeration((LiveIntervalElement) scratchObject);
+  }

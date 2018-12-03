@@ -1,0 +1,3 @@
+    public File getProjectLocation() {
+        return new File(m_newProjectLocation.getText().trim());
+    }

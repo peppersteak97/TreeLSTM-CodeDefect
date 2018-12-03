@@ -1,0 +1,4 @@
+    public void clearAllMarkers() {
+        m_markers.clear();
+        decorateDocument();
+    }

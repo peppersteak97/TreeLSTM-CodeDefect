@@ -1,0 +1,3 @@
+	public Object[] getSelectedValues() {
+		return getDisplayer().getSelectedValues();
+	}

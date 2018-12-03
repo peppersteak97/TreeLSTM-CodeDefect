@@ -1,0 +1,21 @@
+    public void apply() throws IntegrationDataPanelException {
+
+        FtpLocation loc = getDisplayedObject();
+        loc.setHost(getHost());
+        loc.setHostPath(getHostPath());
+        loc.setPort(getPort());
+        loc.setLogin(getLogin());
+        loc.setPassword(getPassword());
+        loc.setFileFilter(getFileFilter());
+        loc.setTransferType(getTransferType());
+        loc.setPassiveMode(getPassiveMode());
+        loc.setSSLOption(m_sslOptionPanel.getSelectedOption());
+        if (getSourceTarget() == SourceTarget.Source) {
+            loc.setRenameFileTo(getRenameFileTo());
+            loc.setIgnoreFirstLines(getIgnoreFirstLines());
+            loc.setIgnoreLastLines(getIgnoreLastLines());
+        }
+        else {
+            loc.setFtpRenameEnabled(m_renameCheck.isSelected());
+        }
+    }

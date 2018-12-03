@@ -1,0 +1,4 @@
+    private void createMainPanel() {
+        m_mainPanel = new JPanel(new CardLayout());
+        m_mainPanel.setOpaque(false);
+    }

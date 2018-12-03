@@ -1,0 +1,3 @@
+    public String getHostPath() {
+        return m_hostPath.getValue().trim();
+    }

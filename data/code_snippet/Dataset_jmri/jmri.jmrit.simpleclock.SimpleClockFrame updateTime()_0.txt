@@ -1,0 +1,7 @@
+    void updateTime() {
+        if (clock.getRun() || showTime) {
+            showTime = false;
+            setTimeLabel();
+            timeLabel.setVisible(true);
+        }
+    }

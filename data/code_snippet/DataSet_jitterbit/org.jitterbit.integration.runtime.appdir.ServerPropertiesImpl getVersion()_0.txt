@@ -1,0 +1,15 @@
+    public IVersion getVersion() {
+        String s = (String) m_properties.get(Property.VERSION);
+        if (s != null && s.length() > 0) {
+            try {
+                return VersionFactory.fromString(s);
+            }
+            catch (IllegalVersionException e) {
+                e.printStackTrace();
+            }
+            catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }

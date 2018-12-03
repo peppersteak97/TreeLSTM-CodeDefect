@@ -1,0 +1,10 @@
+    private void bindEscape() {
+        getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(
+                        KeyUtils.ESCAPE, ESCAPE_ACTION);
+        getRootPane().getActionMap().put(ESCAPE_ACTION, new AbstractAction() {
+
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        });
+    }

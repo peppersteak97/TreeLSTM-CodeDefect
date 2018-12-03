@@ -1,0 +1,3 @@
+  public final MethodOperand asMethod() {
+    return (MethodOperand) this;
+  }

@@ -1,0 +1,37 @@
+  public ConditionOperand translateUNSIGNED() {
+    switch (value) {
+      case CMPL_EQUAL:
+        value = EQUAL;
+        break;
+      case CMPL_GREATER:
+        value = HIGHER;
+        break;
+      case CMPG_LESS:
+        value = LOWER;
+        break;
+      case CMPL_GREATER_EQUAL:
+        value = HIGHER_EQUAL;
+        break;
+      case CMPG_LESS_EQUAL:
+        value = LOWER_EQUAL;
+        break;
+      case CMPL_NOT_EQUAL:
+        value = NOT_EQUAL;
+        break;
+      case CMPL_LESS:
+        value = LOWER;
+        break;
+      case CMPG_GREATER_EQUAL:
+        value = HIGHER_EQUAL;
+        break;
+      case CMPG_GREATER:
+        value = HIGHER;
+        break;
+      case CMPL_LESS_EQUAL:
+        value = LOWER_EQUAL;
+        break;
+      default:
+        throw new OptimizingCompilerException("invalid condition " + this);
+    }
+    return this;
+  }

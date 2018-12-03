@@ -1,0 +1,10 @@
+    void selection() {
+        int current = modeBox.getSelectedIndex();
+        details.removeAll();
+        if (log.isDebugEnabled()) log.debug("new selection is "+current
+        							+" "+modeBox.getSelectedItem());
+        if (current!=0) classList[current].loadDetails(details);
+        validate();
+        if (getTopLevelAncestor()!=null) ((JFrame)getTopLevelAncestor()).pack();
+        repaint();
+    }

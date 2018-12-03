@@ -1,0 +1,5 @@
+    public static TextInputField getDescriptionField() {
+        JLabel label = InputLabelText.makeJLabel(fieldName);
+        JTextArea input = ComponentFactories.textFactory().newTextArea(4, 30);
+        return new TextInputField(fieldName, input, label);
+    }

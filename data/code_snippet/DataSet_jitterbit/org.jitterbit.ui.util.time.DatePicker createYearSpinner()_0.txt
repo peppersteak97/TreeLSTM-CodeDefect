@@ -1,0 +1,7 @@
+    private void createYearSpinner() {
+        int currentYear = m_calendar.get(Calendar.YEAR);
+        SpinnerModel m = new SpinnerNumberModel(
+                        currentYear, currentYear - 500, currentYear + 500, 1);
+        m_yearSpinner = new JSpinner(m);
+        m_yearSpinner.addChangeListener(m_daysPanelUpdater);
+    }

@@ -1,0 +1,9 @@
+    protected DocumentContentChangeListener createDocumentListener() {
+        return new DocumentContentChangeListener() {
+
+            @Override
+            public void contentChanged(DocumentEvent e) {
+                fireChange(e);
+            }
+        };
+    }

@@ -1,0 +1,10 @@
+    private void insertWebServiceCallIntoProject() {
+        InterchangeProject project = m_view.getDataModelUi().getDataObject();
+        InterchangeProjectLock.lock();
+        try {
+            project.insertEntity(m_newWebServiceCall, m_owner);
+        }
+        finally {
+            InterchangeProjectLock.unlock();
+        }
+    }

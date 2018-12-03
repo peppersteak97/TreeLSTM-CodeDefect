@@ -1,0 +1,11 @@
+            public IIntegrationLink createSuccessLink() {
+                EmailMessageId msgId = m_op.getSuccessMessageId();
+                if (msgId != null) {
+                    EmailMessage msg = (EmailMessage) m_dataLookup.getInstance(msgId);
+                    if (msg != null) {
+                        return OperationMessageLink.createSuccessLink(msg, m_op);
+                    }
+                    logMissingLink(m_op, EntityType.EmailMessage, msgId);
+                }
+                return null;
+            }

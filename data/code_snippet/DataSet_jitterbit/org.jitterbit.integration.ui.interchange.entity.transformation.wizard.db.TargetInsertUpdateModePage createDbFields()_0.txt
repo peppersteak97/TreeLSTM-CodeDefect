@@ -1,0 +1,5 @@
+    private DbFields createDbFields() {
+        DbFields dbFields = new DbFields();
+        addUpdateKeyInformation(dbFields);
+        return dbFields;
+    }

@@ -1,0 +1,6 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 37 * hash + (m_detailLevel == null ? 0 : m_detailLevel.hashCode());
+        hash = 37 * hash + m_message.hashCode();
+        return hash;
+    }

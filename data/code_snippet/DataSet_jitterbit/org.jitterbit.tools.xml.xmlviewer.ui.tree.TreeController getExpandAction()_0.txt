@@ -1,0 +1,3 @@
+	public Action getExpandAction() {
+		return m_expandAction;
+	}

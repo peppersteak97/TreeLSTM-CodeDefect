@@ -1,0 +1,4 @@
+    private void addGlobalKeyDispatchers() {
+        addStandardGlobalKeyDispatchers();
+        addGlobalKeyDispatchersForDebugging();
+    }

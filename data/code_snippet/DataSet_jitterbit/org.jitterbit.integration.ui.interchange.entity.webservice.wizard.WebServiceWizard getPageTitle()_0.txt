@@ -1,0 +1,8 @@
+    public String getPageTitle() {
+        String title = m_title;
+        if (title == null) {
+            title = (m_newWebServiceCall == null) ? 
+                            PackageResources.PAGE_TITLE : m_newWebServiceCall.getName();
+        }
+        return title;
+    }

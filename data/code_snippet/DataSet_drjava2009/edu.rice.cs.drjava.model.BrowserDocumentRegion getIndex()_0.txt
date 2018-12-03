@@ -1,0 +1,1 @@
+  public int getIndex() { return _index; }

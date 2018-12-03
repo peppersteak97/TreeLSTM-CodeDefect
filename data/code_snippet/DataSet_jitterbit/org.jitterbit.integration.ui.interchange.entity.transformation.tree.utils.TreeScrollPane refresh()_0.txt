@@ -1,0 +1,4 @@
+	public void refresh(){
+		m_tree.refresh();
+		doLayout();
+	}

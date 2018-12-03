@@ -1,0 +1,4 @@
+    private void createTable() {
+        m_table = new JitterPackTable(true);
+        m_table.addSelectionListener(new TableSelectionBroadcaster());
+    }

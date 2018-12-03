@@ -1,0 +1,4 @@
+  public void testCurrent() {
+    ModelList<Integer>.ModelIterator itFull = fFull.getIterator();
+    itFull.next();
+  }

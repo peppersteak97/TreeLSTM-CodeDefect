@@ -1,0 +1,3 @@
+	public int getY() { 
+		return m_rect.getY(); 
+	}

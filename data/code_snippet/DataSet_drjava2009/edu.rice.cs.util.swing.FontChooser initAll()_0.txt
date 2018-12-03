@@ -1,0 +1,19 @@
+  private void initAll() {
+    getContentPane().setLayout(null);
+    setBounds(50, 50, 425, 400);
+    _sampleText = new JLabel();
+    addLists();
+    addButtons();
+    _sampleText.setForeground(Color.black);
+    getContentPane().add(_sampleText);
+    addWindowListener(new WindowAdapter() {
+      public void windowClosing(java.awt.event.WindowEvent e) {
+        setVisible(false);
+      }
+    });
+    addComponentListener(new ComponentAdapter() {
+      public void componentResized(ComponentEvent evt) {
+        resize();
+      }
+    });
+  }

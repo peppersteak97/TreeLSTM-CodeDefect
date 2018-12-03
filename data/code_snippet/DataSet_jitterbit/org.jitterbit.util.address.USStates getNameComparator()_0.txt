@@ -1,0 +1,7 @@
+    public static Comparator<USStates> getNameComparator() {
+        return new Comparator<USStates>() {
+            public int compare(USStates lhs, USStates rhs) {
+                return lhs.getName().compareTo(rhs.getName());
+            }
+        };
+    }

@@ -1,0 +1,4 @@
+  public String getConsoleInput() { 
+    String s = _interactionsModel.getConsoleInput(); 
+    return s; 
+  }

@@ -1,0 +1,15 @@
+    void setSoundPressed() {
+        if (soundChooser == null) {
+            soundChooser = new JFileChooser(jmri.jmrit.XmlFile.userFileLocationDefault());
+            soundChooser.setFileFilter(new jmri.util.NoArchiveFileFilter());
+        }
+        soundChooser.rescanCurrentDirectory();
+        int retVal = soundChooser.showOpenDialog(null);
+        if (retVal == JFileChooser.APPROVE_OPTION) {
+            try {
+                soundFile.setText(soundChooser.getSelectedFile().getCanonicalPath());
+            } catch (java.io.IOException e) {
+                log.error("exception setting sound file: "+e);
+            }
+        }
+    }

@@ -1,0 +1,9 @@
+    protected void handleSelectionChange() {
+        IIndexedSelection sel = getSelection();
+        if (sel.isEmpty()) {
+            setEnabled(false);
+        }
+        else {
+            setEnabled(areAllSelectedRowsDeletable(sel));
+        }
+    }

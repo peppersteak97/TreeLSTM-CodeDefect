@@ -1,0 +1,27 @@
+    protected void runImpl() throws InterruptedException {
+        setStatus("Processing");
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        Future<?> f = w.submitForParallell(new Runnable() {
+
+            public void run() {
+                try {
+                    m_wsInfo = new WebServiceInfoBuilder().build(m_wsdlUrl);
+                }
+                catch (WsdlParserException e) {
+                    setStatus(Resources.UiJobStrings.ERROR);
+                    m_parseException = e;
+                }
+                finally {
+                    m_latch.countDown();
+                }
+            }
+        });
+        try {
+            f.get();
+        }
+        catch (ExecutionException e) {
+            setStatus(Resources.UiJobStrings.ERROR);
+            m_parseException = new WsdlParserException(e.getCause());
+        }
+        waitUntilDone();
+    }

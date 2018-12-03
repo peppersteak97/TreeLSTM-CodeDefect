@@ -1,0 +1,8 @@
+    private void createComboInputField() {
+        ComboBoxModel model = createComboBoxModel();
+        JComboBox combo = new JComboBox(model);
+        combo.setEditable(true);
+        combo.setSelectedIndex(-1);
+        combo.setRenderer(new DefaultListDecorRenderer());
+        getInputPanel().addInputField(m_comboInputField);
+    }

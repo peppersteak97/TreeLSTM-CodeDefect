@@ -1,0 +1,4 @@
+    public double getVSound() {
+        Element e = root.getChild("vsound");
+        return Double.parseDouble(e.getText());
+    }

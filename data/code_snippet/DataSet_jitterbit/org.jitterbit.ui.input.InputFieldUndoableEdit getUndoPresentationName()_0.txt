@@ -1,0 +1,3 @@
+    public String getUndoPresentationName() {
+        return getUndoRedoPresentationNameImpl(UiResourceBundle.getString("Undo"));
+    }

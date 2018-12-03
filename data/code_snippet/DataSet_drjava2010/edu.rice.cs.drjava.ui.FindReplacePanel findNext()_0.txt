@@ -1,0 +1,7 @@
+  void findNext() {
+    _frame.updateStatusField("Finding Next");
+    _machine.setSearchBackwards(false);
+    _findLabelBot.setText("Next");
+    if (DrJava.getConfig().getSetting(OptionConstants.FIND_REPLACE_FOCUS_IN_DEFPANE).booleanValue()) {
+    }
+  }

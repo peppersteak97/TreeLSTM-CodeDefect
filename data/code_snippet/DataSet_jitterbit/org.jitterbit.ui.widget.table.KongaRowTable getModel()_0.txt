@@ -1,0 +1,3 @@
+        if (!(table.getModel() instanceof IKongaRowTableModel)) {
+            throw new IllegalArgumentException(
+        }

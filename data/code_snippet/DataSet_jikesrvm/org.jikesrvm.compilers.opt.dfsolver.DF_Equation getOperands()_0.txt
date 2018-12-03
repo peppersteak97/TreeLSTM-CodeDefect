@@ -1,0 +1,3 @@
+  public DF_LatticeCell[] getOperands() {
+    return operands;
+  }

@@ -1,0 +1,12 @@
+  public ReducedToken prevItem() {
+    int rmbOffset = _rmb.getBlockOffset();
+    int rmcOffset = _rmc.getBlockOffset();
+    
+    prev();
+    ReducedToken temp = currentToken();
+    next();
+    
+    _rmb.setBlockOffset(rmbOffset);
+    _rmc.setBlockOffset(rmcOffset);
+    return temp;
+  }

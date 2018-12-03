@@ -1,0 +1,11 @@
+    public synchronized void switchOff() {
+        if (!m_isOn) {
+            return;
+        }
+        m_isOn = false;
+        m_manager.removeInterchangeProjectManagerListener(this);
+        IManagedProject p = m_manager.getCurrentProject();
+        if (p != null) {
+            p.getProject().removeInterchangeProjectListener(this);
+        }
+    }

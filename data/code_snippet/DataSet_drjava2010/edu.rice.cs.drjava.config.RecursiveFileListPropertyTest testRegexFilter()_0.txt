@@ -1,0 +1,5 @@
+  public void testRegexFilter() {
+    FileFilter filter = new RecursiveFileListProperty.RegexFilter(".");
+    Assert.assertTrue("Does not accept single char strings", filter.accept(new File("a")));
+    Assert.assertFalse("Does not reject non-length 1 strings", filter.accept(new File("abc")));
+  }

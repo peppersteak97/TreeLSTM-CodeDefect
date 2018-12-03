@@ -1,0 +1,2 @@
+     * object once dispose() has been called.  Note, however,
+     * that there is no guarantee about behavior in that case.

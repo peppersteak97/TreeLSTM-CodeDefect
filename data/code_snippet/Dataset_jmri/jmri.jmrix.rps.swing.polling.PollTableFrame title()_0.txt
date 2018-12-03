@@ -1,0 +1,1 @@
+    protected String title() { return rb.getString("TitlePolling"); }  // product name, not translated

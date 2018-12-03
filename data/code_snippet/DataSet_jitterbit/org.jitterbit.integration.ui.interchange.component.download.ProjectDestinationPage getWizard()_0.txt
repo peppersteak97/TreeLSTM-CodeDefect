@@ -1,0 +1,3 @@
+    public DownloadProjectWizard getWizard() {
+        return (DownloadProjectWizard) super.getWizard();
+    }

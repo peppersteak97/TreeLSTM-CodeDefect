@@ -1,0 +1,7 @@
+  public int populationCount() {
+    int count = 0;
+    for (int bit : bits) {
+      count += Integer.bitCount(bit);
+    }
+    return count;
+  }

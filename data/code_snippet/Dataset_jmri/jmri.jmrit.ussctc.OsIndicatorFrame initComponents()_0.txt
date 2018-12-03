@@ -1,0 +1,10 @@
+    public void initComponents() throws Exception {
+        addHelpMenu("package.jmri.jmrit.ussctc.OsIndicatorFrame", true);
+        
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        getContentPane().add(new OsIndicatorPanel());
+        setTitle(OsIndicatorPanel.rb.getString("TitleOsIndicator"));
+        
+        pack();
+    }

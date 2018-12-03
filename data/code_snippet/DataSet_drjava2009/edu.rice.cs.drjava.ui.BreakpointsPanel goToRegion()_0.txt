@@ -1,0 +1,4 @@
+  protected void goToRegion() {
+    ArrayList<Breakpoint> bps = getSelectedRegions();
+    if (bps.size() == 1) _debugger.scrollToSource(bps.get(0));
+  }

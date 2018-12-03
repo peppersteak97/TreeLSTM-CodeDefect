@@ -1,0 +1,3 @@
+  public byte getAddressH() {
+    return (byte) ( (address / 0x100) & 0xff);
+  }

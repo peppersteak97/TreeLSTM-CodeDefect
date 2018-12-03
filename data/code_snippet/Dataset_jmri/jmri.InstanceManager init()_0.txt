@@ -1,0 +1,6 @@
+    protected void init() {
+        turnoutManager = new jmri.managers.ProxyTurnoutManager();
+        sensorManager = new jmri.managers.ProxySensorManager();
+        lightManager = new jmri.managers.ProxyLightManager();
+        reporterManager = new jmri.managers.ProxyReporterManager();
+    }

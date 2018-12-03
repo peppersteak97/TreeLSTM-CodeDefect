@@ -1,0 +1,3 @@
+    DatabaseColumn getSelectedParentField() {
+        return m_selectedParentField;
+    }

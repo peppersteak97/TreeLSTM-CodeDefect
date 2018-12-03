@@ -1,0 +1,4 @@
+    protected final synchronized void setInterrupted() {
+        appendStatus(INTERRUPTED);
+        revokeState(STOPPING);
+    }

@@ -1,0 +1,3 @@
+    protected IntegrationData getSource() {
+        return m_source;
+    }

@@ -1,0 +1,31 @@
+  public synchronized ReflectionBase getInvoker() {
+    if (!VM.runningVM) {
+      return null;
+    }
+    ReflectionBase invoker;
+    if (invokeMethods != null) {
+      synchronized(RVMMethod.class) {
+        invoker = invokeMethods.get(this);
+      }
+    } else {
+      invoker = null;
+    }
+    if (invoker == null) {
+      Class<ReflectionBase> reflectionClass = (Class<ReflectionBase>)RVMClass.createReflectionClass(this);
+      if (reflectionClass != null) {
+        try {
+          invoker = reflectionClass.newInstance();
+        } catch (Throwable e) {
+          throw new Error(e);
+        }
+      } else {
+        invoker = ReflectionBase.nullInvoker;
+      }
+      if (invokeMethods != null) {
+        synchronized(RVMMethod.class) {
+          invokeMethods.put(this, invoker);
+        }
+      }
+    }
+    return invoker;
+  }

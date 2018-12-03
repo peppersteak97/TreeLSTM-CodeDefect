@@ -1,0 +1,4 @@
+    public double userGetRate() { 
+		if (internalMaster) return mFactor;
+		else return hardwareFactor;
+	}

@@ -1,0 +1,8 @@
+    private void checkSourceTarget() {
+        if (source == SystemSource.WEB_SERVICE_CALL || target == SystemTarget.WEB_SERVICE_CALL) {
+            if (source != SystemSource.WEB_SERVICE_CALL || target != SystemTarget.WEB_SERVICE_CALL) {
+                sourceIsValid = (source == active) || (active == null);
+                targetIsValid = (target == active);
+            }
+        }
+    }

@@ -1,0 +1,3 @@
+    public int getRetries() {
+        return m_data.getInt(RETRIES, 0);
+    }

@@ -1,0 +1,27 @@
+  protected void updateText() {
+    if (_updateNowButton.isEnabled()) {
+      if (_changeCount > 0) {
+        _changeCount = 0;
+        EventQueue.invokeLater(new Runnable() {
+          public void run() {
+            _textArea.setText(_sb.toString());
+            int maxLines = edu.rice.cs.drjava.DrJava.getConfig().
+              getSetting(edu.rice.cs.drjava.config.OptionConstants.FOLLOW_FILE_LINES);
+              try {
+                int start = 0;
+                int len = _textArea.getText().length();
+                int curLines = _textArea.getLineCount();
+                if (curLines>maxLines) {
+                  start = _textArea.getLineStartOffset(curLines-maxLines);
+                  len -= start;
+                  _sb = new StringBuilder(_textArea.getText(start,len));
+                  _textArea.setText(_sb.toString());
+                }
+              }
+              catch(javax.swing.text.BadLocationException e) { /* ignore, do not truncate */ }
+            }
+          }
+        });
+      }
+      updateButtons();
+    }

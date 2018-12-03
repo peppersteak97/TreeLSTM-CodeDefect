@@ -1,0 +1,4 @@
+  public void updateServerStateListener(){
+    if( stateListner != null )
+      stateListner.notifyServerStateChanged(this);
+  }

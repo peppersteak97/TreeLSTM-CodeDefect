@@ -1,0 +1,8 @@
+  public void defaultThreeQuoteDollarCurlySetup() {
+    wordRange(0,255);
+    whitespaceRange(0,32);
+    addQuotes("\"", "\"");
+    addQuotes("'", "'");
+    addQuotes("`", "`");
+    addQuotes("${", "}");
+  }

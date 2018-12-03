@@ -1,0 +1,12 @@
+    private static List<IServerProperties> getRegisteredServersImpl() {
+        if (s_directory == null) {
+            throw new IllegalStateException(
+                "The ServerDirectory has not been initialized properly.");
+        }
+        List<IServerProperties> servers = new ArrayList<IServerProperties>();
+        File[] subDirs = s_directory.listFiles(new ServerDirectoryFilter());
+        for (File subDir : subDirs) {
+            servers.add(new ServerPropertiesImpl(subDir));
+        }
+        return servers;
+    }

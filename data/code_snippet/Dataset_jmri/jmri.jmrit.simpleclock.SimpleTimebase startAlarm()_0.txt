@@ -1,0 +1,3 @@
+	void startAlarm() {
+	    if (timer == null) handleAlarm();
+	}

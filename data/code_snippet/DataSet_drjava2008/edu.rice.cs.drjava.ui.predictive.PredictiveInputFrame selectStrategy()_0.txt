@@ -1,0 +1,10 @@
+  public void selectStrategy() {
+    _currentStrategy = _strategies.get(_strategyBox.getSelectedIndex());
+    removeListener();
+    _pim.setStrategy(_currentStrategy);
+    updateTextField();
+    updateExtensionLabel();
+    updateList();
+    addListener();
+    _textField.requestFocus();
+  }

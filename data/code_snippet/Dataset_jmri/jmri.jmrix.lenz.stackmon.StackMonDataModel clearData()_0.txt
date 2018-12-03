@@ -1,0 +1,5 @@
+    public void clearData(){
+       _addressList=new java.util.ArrayList();
+       _typeList=new java.util.Hashtable();
+       fireTableDataChanged();
+    }

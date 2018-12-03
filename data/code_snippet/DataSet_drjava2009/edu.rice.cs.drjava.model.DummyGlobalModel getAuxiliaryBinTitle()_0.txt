@@ -1,0 +1,3 @@
+  public String getAuxiliaryBinTitle() {
+    throw new UnsupportedOperationException("Tried to call getAuxiliaryBinTitle on a Dummy");
+  }

@@ -1,0 +1,22 @@
+    private JPanel createConsoleLaunchingPanel() {
+        OneColumnPanel launchPanel = new OneColumnPanel();
+        launchPanel.setFillNone();
+        launchPanel.setAnchor(OneColumnPanel.WEST);
+        launchPanel.setInsets(10, 10, 10, 10);
+        for (IConsoleLauncher launcher : m_launchers) {
+            launchPanel.add(launcher);
+        }
+
+        JPanel p = new JPanel(new BorderLayout());
+        launchPanel.addToParent(p, BorderLayout.CENTER);
+        JPanel p2 = new JPanel() {
+
+            @Override
+            public Dimension getMaximumSize() {
+                return getPreferredSize();
+            }
+        };
+        InvisiblePanel.convertAndAdd(p2, p);
+        UiUtils.setOpaqueRecursively(p2, false);
+        return p2;
+    }

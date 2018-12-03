@@ -1,0 +1,17 @@
+	private JMenuBar createMenuBar() {
+		JMenuBar bar = new JMenuBar();
+		
+		m_fileMenu = new FileMenu(m_openAndSaveManager, this);
+		bar.add(m_fileMenu);
+		
+		JMenu searchMenu = new JMenu("Search");
+		searchMenu.setMnemonic('S');
+		searchMenu.add( m_findManager.getFindMenuItem() );
+		searchMenu.add( m_findManager.getFindNextMenuItem() );
+		bar.add(searchMenu);
+		
+		m_windowsMenu = new WindowsMenu();
+		bar.add(m_windowsMenu);
+		
+		return bar;
+	}

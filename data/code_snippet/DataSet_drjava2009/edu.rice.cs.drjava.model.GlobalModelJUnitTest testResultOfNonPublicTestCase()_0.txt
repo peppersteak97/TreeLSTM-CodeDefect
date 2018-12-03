@@ -1,0 +1,27 @@
+  public void testResultOfNonPublicTestCase() throws Exception {
+    if (printMessages) System.out.println("----testResultOfNonPublicTestCase-----");
+    
+    final OpenDefinitionsDocument doc = setupDocument(NONPUBLIC_TEXT);
+    final File file = new File(_tempDir, "NonPublic.java");
+    saveFile(doc, new FileSelector(file));
+    
+    JUnitTestListener listener = new JUnitTestListener();
+    
+    _model.addListener(listener);
+    
+    listener.compile(doc);
+    listener.checkCompileOccurred();
+    
+    listener.runJUnit(doc);
+    
+    if (printMessages) System.out.println("after test");
+    
+    
+    listener.assertJUnitStartCount(1);
+    listener.assertJUnitEndCount(1);
+    
+    assertEquals("test case has one error reported", 1, _model.getJUnitModel().getJUnitErrorModel().getNumErrors());
+    _model.removeListener(listener);
+    
+    _log.log("testResultOfNonPublicTestCase completed");
+  }

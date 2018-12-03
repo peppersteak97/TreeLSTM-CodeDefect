@@ -1,0 +1,9 @@
+  public BraceInfo _getEnclosingBrace() {
+    int pos = _currentLocation;
+    final Query key = new Query.EnclosingBrace(pos);
+    final BraceInfo cached = (BraceInfo) _checkCache(key);
+    if (cached != null) return cached;
+    BraceInfo b = _reduced._getEnclosingBrace();
+    _storeInCache(key, b, pos - 1);
+    return b;
+  }

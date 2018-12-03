@@ -1,0 +1,7 @@
+	public int countChildren() {
+		int n = 0;
+		if (operand != null) {
+			n += 1 + operand.countChildren();
+		}
+		return n;
+	}

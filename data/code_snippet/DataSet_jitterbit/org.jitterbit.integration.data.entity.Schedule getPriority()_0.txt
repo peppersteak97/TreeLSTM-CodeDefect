@@ -1,0 +1,9 @@
+    public SchedulePriority getPriority() {
+        try {
+            return SchedulePriority.fromId(
+                            Integer.parseInt(getProperty(PRIORITY_PROPERTY)));
+        }
+        catch (NumberFormatException e) {
+            return SchedulePriority.Medium;
+        }
+    }

@@ -1,0 +1,10 @@
+    private void checkCache() {
+        Transformation tf = m_invoker.getTransformation();
+        try {
+            setInputJtr(m_cache.getInputStructure(tf));
+            setOutputJtr(m_cache.getOutputStructure(tf));
+        }
+        catch (DataCacheException e) {
+            m_cache.delete(tf);
+        }
+    }

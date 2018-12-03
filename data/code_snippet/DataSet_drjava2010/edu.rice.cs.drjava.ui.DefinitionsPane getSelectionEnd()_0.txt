@@ -1,0 +1,3 @@
+          (viewToModel(e.getPoint()) > getSelectionEnd()) ) {
+        setCaretPosition(viewToModel(e.getPoint()));
+      }*/

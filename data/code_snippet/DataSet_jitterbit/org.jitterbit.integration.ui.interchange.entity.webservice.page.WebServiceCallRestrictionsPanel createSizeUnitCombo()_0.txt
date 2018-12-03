@@ -1,0 +1,4 @@
+    private void createSizeUnitCombo() {
+        m_sizeUnitCombo = ComponentFactories.comboBoxFactory().newComboBox(
+                        StorageSizeUnit.values());
+    }

@@ -1,0 +1,3 @@
+    public String getFaxNumber() {
+        return m_sFaxNumber;
+    }

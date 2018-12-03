@@ -1,0 +1,3 @@
+  public boolean isAllocated() {
+    return (flags & ALLOCATED) != 0;
+  }

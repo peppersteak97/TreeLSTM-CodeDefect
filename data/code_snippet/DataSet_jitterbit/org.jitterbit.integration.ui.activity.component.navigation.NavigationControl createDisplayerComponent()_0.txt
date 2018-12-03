@@ -1,0 +1,7 @@
+    private JComponent createDisplayerComponent() {
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.X_AXIS));
+        p.setOpaque(false);
+        p.setBorder(IntegrationUiStyleSheet.GenericPageTitlePanel.getBorder());
+        return p;
+    }

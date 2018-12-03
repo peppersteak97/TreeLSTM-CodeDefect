@@ -1,0 +1,10 @@
+    private OneColumnPanel getMessagePanel() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setFill(OneColumnPanel.NONE);
+        p.setInsets(2, 0, 4, 0);
+        addCaption(p);
+        addMessage(p);
+        p.setBackground(Color.WHITE);
+        p.setBorder(BorderUtils.getEmptyPaddedLineBorder(null, new Insets(5, 5, 5, 5)));
+        return p;
+    }

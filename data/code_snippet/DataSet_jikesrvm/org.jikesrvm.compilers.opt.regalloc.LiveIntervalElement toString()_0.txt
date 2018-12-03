@@ -1,0 +1,3 @@
+  public String toString() {
+    return "Reg: " + register + "\n     Begin: " + begin + "\n     End:   " + end;
+  }

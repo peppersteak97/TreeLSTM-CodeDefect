@@ -1,0 +1,40 @@
+  private static ArchitectureSpecific.CodeArray generateRestoreHardwareExceptionStateInstructions() {
+    Assembler asm = new ArchitectureSpecific.Assembler(0);
+
+    if (VM.BuildFor32Addr) {
+      asm.emitMOV_Reg_RegDisp(S0, T0, ArchEntrypoints.registersFPField.getOffset());
+    } else {
+      asm.emitMOV_Reg_RegDisp_Quad(S0, T0, ArchEntrypoints.registersFPField.getOffset());
+    }
+    ThreadLocalState.emitMoveRegToField(asm, ArchEntrypoints.framePointerField.getOffset(), S0);
+
+    if (VM.BuildFor32Addr) {
+      asm.emitMOV_Reg_RegDisp(S0, T0, ArchEntrypoints.registersGPRsField.getOffset());
+      asm.emitMOV_Reg_RegDisp(SP, S0, Offset.fromIntZeroExtend(SP.value() << LG_WORDSIZE));
+    } else {
+      asm.emitMOV_Reg_RegDisp_Quad(S0, T0, ArchEntrypoints.registersGPRsField.getOffset());
+      asm.emitMOV_Reg_RegDisp_Quad(SP, S0, Offset.fromIntZeroExtend(SP.value() << LG_WORDSIZE));
+    }
+
+    asm.emitPUSH_RegDisp(T0, ArchEntrypoints.registersIPField.getOffset());
+
+    Offset off = Offset.zero();
+    for (byte i = 0; i < NUM_GPRS; i++, off = off.plus(WORDSIZE)) {
+      if (i != S0.value() && i != ESI.value() && i != SP.value()) {
+        if (VM.BuildFor32Addr) {
+          asm.emitMOV_Reg_RegDisp(GPR.lookup(i), S0, off);
+        } else {
+          asm.emitMOV_Reg_RegDisp_Quad(GPR.lookup(i), S0, off);
+        }
+      }
+    }
+
+    if (VM.BuildFor32Addr) {
+      asm.emitMOV_Reg_RegDisp(S0, S0, Offset.fromIntZeroExtend(S0.value() << LG_WORDSIZE));
+    } else {
+      asm.emitMOV_Reg_RegDisp_Quad(S0, S0, Offset.fromIntZeroExtend(S0.value() << LG_WORDSIZE));
+    }
+
+    asm.emitRET();
+    return asm.getMachineCodes();
+  }

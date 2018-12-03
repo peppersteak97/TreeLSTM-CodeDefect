@@ -1,0 +1,34 @@
+  public void testEscapeDollarNestedQuotedKeywordsWSSignificant() throws IOException {
+    BalancingStreamTokenizer tok = make("abc\\=${def;ghi='abc'}\\\\;123\n456 ${abc def \"xxx '111' yyy\"} 789",'\\');
+    tok.wordRange(0,255);
+    tok.addQuotes("\"", "\"");
+    tok.addQuotes("'", "'");
+    tok.addQuotes("`", "`");
+    tok.addQuotes("${", "}");
+    tok.addKeyword(";");
+    tok.addKeyword("=");
+    String s = tok.getNextToken();
+    assertEquals("abc=", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("${def;ghi='abc'}", s);
+    assertEquals(BalancingStreamTokenizer.Token.QUOTED, tok.token());
+    s = tok.getNextToken();
+    assertEquals("\\", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals(";", s);
+    assertEquals(BalancingStreamTokenizer.Token.KEYWORD, tok.token());
+    s = tok.getNextToken();
+    assertEquals("123\n456 ", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("${abc def \"xxx '111' yyy\"}", s);
+    assertEquals(BalancingStreamTokenizer.Token.QUOTED, tok.token());
+    s = tok.getNextToken();
+    assertEquals(" 789", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals(null, s);
+    assertEquals(BalancingStreamTokenizer.Token.END, tok.token());
+  }

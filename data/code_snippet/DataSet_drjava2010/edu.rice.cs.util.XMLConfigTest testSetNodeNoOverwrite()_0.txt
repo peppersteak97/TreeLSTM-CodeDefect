@@ -1,0 +1,17 @@
+  public void testSetNodeNoOverwrite() throws Exception {
+    XMLConfig xc = new XMLConfig();
+    xc.set("foo/bar", "abc", false);
+    
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                             "  <bar>abc</bar>"+NL+"</foo>"+NL), xc.toString());
+    assertEquals("abc", xc.get("foo/bar"));
+    
+    xc.set("foo/bar", "def", false);
+    
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                             "  <bar>abc</bar>"+NL+"  <bar>def</bar>"+NL+"</foo>"+NL), xc.toString());
+    List<String> r = xc.getMultiple("foo/bar");
+    assertEquals(2, r.size());
+    assertEquals("abc", r.get(0));
+    assertEquals("def", r.get(1));
+  }

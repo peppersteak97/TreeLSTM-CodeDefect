@@ -1,0 +1,4 @@
+    public boolean isKillMain() {
+        String s = toString();
+        return s.contains("POWER OFF") && s.contains("SET");
+    }

@@ -1,0 +1,5 @@
+  public void focusOnLastFocusOwner() {
+    _lock.startRead();
+    try { for (GlobalModelListener l : _listeners) { l.focusOnLastFocusOwner(); } }
+    finally { _lock.endRead(); }
+  }

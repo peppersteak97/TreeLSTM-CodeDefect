@@ -1,0 +1,6 @@
+    static public DefaultLogixManager instance() {
+        if (_instance == null) {
+            _instance = new DefaultLogixManager();
+        }
+        return (_instance);
+    }

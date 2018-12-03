@@ -1,0 +1,11 @@
+  public void debuggerStarted() {
+    assert EventQueue.isDispatchThread();
+    _lock.startRead();
+    try {
+      int size = _listeners.size();
+      for (int i = 0; i < size; i++) {
+        _listeners.get(i).debuggerStarted();
+      }
+    }
+    finally { _lock.endRead(); }
+  }

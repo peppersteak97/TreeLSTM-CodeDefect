@@ -1,0 +1,13 @@
+    public String toString() {
+        String s = "";
+        if (!SprogTrafficController.instance().isSIIBootMode()) {
+            for (int i=0; i<_nDataChars; i++) {
+                s+=(char)_dataChars[i];
+            }
+        } else {
+            for (int i=0; i<_nDataChars; i++) {
+                s+="<"+(int)_dataChars[i]+">";
+            }
+        }
+        return s;
+    }

@@ -1,0 +1,46 @@
+  void setupEquations() {
+    for (BasicBlockEnumeration e = ir.getBasicBlocks(); e.hasMoreElements();) {
+      BasicBlock bb = e.nextElement();
+      for (SSADictionary.AllInstructionEnumeration e2 = ssa.getAllInstructions(bb); e2.hasMoreElements();) {
+        Instruction s = e2.nextElement();
+        if (!ssa.usesHeapVariable(s) && !ssa.defsHeapVariable(s)) {
+          continue;
+        }
+        if (s.isDynamicLinkingPoint()) {
+          processCall(s);
+        } else if (GetStatic.conforms(s)) {
+          processLoad(s);
+        } else if (GetField.conforms(s)) {
+          processLoad(s);
+        } else if (PutStatic.conforms(s)) {
+          processStore(s);
+        } else if (PutField.conforms(s)) {
+          processStore(s);
+        } else if (New.conforms(s)) {
+          processNew(s);
+        } else if (NewArray.conforms(s)) {
+          processNew(s);
+        } else if (ALoad.conforms(s)) {
+          processALoad(s);
+        } else if (AStore.conforms(s)) {
+          processAStore(s);
+        } else if (Call.conforms(s)) {
+          processCall(s);
+        } else if (MonitorOp.conforms(s)) {
+          processCall(s);
+        } else if (Prepare.conforms(s)) {
+          processCall(s);
+        } else if (Attempt.conforms(s)) {
+          processCall(s);
+        } else if (CacheOp.conforms(s)) {
+          processCall(s);
+        } else if (Phi.conforms(s)) {
+          processPhi(s);
+        } else if (s.operator == READ_CEILING) {
+          processCall(s);
+        } else if (s.operator == WRITE_FLOOR) {
+          processCall(s);
+        }
+      }
+    }
+  }

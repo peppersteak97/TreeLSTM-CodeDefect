@@ -1,0 +1,13 @@
+    private void createComponents() {
+        String sName = PackageResources.Labels.NAME;
+        JLabel lblName = InputLabelText.makeJLabel(sName);
+        m_nameField = InterchangeViewUtils.getIntegrationEntityNameInputField(m_wsCall,
+                        sName, lblName, 30);
+        m_nameField.setValue(m_wsCall.getName());
+        m_nameField.getInputComponent().setCaretPosition(0);
+
+        m_detailsPanel = new WebServiceCallDetailsPanel(m_wsCall);
+        m_securityPanel = new WebServiceCallSecurityPanel(m_wsCall);
+        m_restrictionsPanel = new WebServiceCallRestrictionsPanel(m_wsCall);
+        m_structuresPanel = new WebServiceCallStructuresPanel();
+    }

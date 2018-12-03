@@ -1,0 +1,11 @@
+    private void createComponents() {
+        m_existingFilesList = createFileList();
+        m_foldersBox = ComponentFactories.comboBoxFactory().newComboBox("XXXXXXXXXXXXXXXXX");
+        populate(null);
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                m_foldersBox.addActionListener(new ComboListener());
+            }
+        });
+    }

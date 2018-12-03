@@ -1,0 +1,3 @@
+  public void print() throws PrinterException, BadLocationException, FileMovedException {
+    throw new UnsupportedOperationException("Dummy method");
+  }

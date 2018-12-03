@@ -1,0 +1,55 @@
+  public void testDocumentSwitching() throws BadLocationException {
+    SDTestListener listener = new SDTestListener() {
+      public synchronized void newFileCreated(OpenDefinitionsDocument doc) { newCount++; }
+      public synchronized void activeDocumentChanged(OpenDefinitionsDocument doc) { switchCount++; }
+    };
+    getSDModel().addListener(listener);
+
+    OpenDefinitionsDocument doc3 = getSDModel().getActiveDocument();
+    changeDocumentText(FOO_TEXT, doc3);
+    listener.assertSwitchCount(0);
+
+    OpenDefinitionsDocument doc2 = setupDocument(BAR_TEXT);
+    assertNumOpenDocs(2);
+    listener.assertNewCount(1);
+    listener.assertSwitchCount(1);
+    assertActiveDocument(doc2);
+
+    OpenDefinitionsDocument doc1 = setupDocument(BAZ_TEXT);
+    assertNumOpenDocs(3);
+    listener.assertNewCount(2);
+    listener.assertSwitchCount(2);
+    assertActiveDocument(doc1);
+
+    getSDModel().setActivePreviousDocument();
+    listener.assertSwitchCount(3);
+    assertActiveDocument(doc3);
+
+    getSDModel().setActiveNextDocument();
+    listener.assertSwitchCount(4);
+    assertActiveDocument(doc1);
+    
+    getSDModel().setActiveNextDocument();
+    listener.assertSwitchCount(5);
+    assertActiveDocument(doc2);
+
+    getSDModel().setActiveNextDocument();
+    listener.assertSwitchCount(6);
+    assertActiveDocument(doc3);
+
+    getSDModel().setActiveNextDocument();
+    listener.assertSwitchCount(7);
+    assertActiveDocument(doc1);
+
+    getSDModel().setActivePreviousDocument();
+    listener.assertSwitchCount(8);
+    assertActiveDocument(doc3);
+
+    getSDModel().setActiveDocument(doc1);
+    listener.assertSwitchCount(9);
+    assertActiveDocument(doc1);
+
+    assertNumOpenDocs(3);
+    getSDModel().removeListener(listener);
+    _log.log("testDocumentSwitching completed");
+  }

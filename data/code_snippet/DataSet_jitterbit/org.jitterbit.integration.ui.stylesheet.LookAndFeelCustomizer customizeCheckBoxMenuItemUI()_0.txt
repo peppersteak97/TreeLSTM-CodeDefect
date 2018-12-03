@@ -1,0 +1,4 @@
+    private static void customizeCheckBoxMenuItemUI() {
+        UIManager.put("CheckBoxMenuItem.font",
+                        IntegrationUiStyleSheet.DefaultMenuText.getFont());
+    }

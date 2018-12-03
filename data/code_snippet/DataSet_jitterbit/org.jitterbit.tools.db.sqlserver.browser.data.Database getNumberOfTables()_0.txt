@@ -1,0 +1,3 @@
+    public int getNumberOfTables() {
+        return (m_liTables == null) ? -1 : m_liTables.size();
+    }

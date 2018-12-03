@@ -1,0 +1,3 @@
+    public DatabaseLocation getDatabaseLocation() {
+        return m_dbLocation;
+    }

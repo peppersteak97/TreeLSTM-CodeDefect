@@ -1,0 +1,4 @@
+    public void clear() {
+        m_validItemIcons.clear();
+        m_invalidItemIcons.clear();
+    }

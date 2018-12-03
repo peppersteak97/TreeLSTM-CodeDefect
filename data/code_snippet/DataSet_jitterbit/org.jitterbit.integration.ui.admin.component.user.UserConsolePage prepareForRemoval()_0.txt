@@ -1,0 +1,4 @@
+    private void prepareForRemoval() {
+        ServerManager.getManager().removeServerConnectionListener(m_connectionListener);
+        m_undoRedoController.dispose();
+    }

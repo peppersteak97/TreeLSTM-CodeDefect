@@ -1,0 +1,1 @@
+  public boolean isSourceFile() { throw new UnsupportedOperationException("Dummy method"); }

@@ -1,0 +1,34 @@
+  public void testConcurrentWrites() throws IOException, InterruptedException {
+    
+    File file3 = IOUtil.createAndMarkTempFile("logtest003",".txt");
+    
+    Date earlier = new Date();
+    
+    Log log3 = new Log(file3, true);
+    Random r = new Random();
+    Thread[] threads = new Thread[NUM_THREADS];
+    for (int i = 0; i < NUM_THREADS; i++) threads[i] = new LogTestThread(log3, r.nextInt(DELAY));
+    for (int i = 0; i < NUM_THREADS; i++) threads[i].start();
+    for (int i = 0; i < NUM_THREADS; i++) threads[i].join();
+    log3.close();
+    
+    BufferedReader fin = new BufferedReader(new FileReader(file3));
+    Date now = new Date();
+    String s0 = fin.readLine();
+    Date time0 = parse(s0);
+    assertTrue("Log not opened after 'earlier' and before 'now'", withinTolerance(earlier, time0, now));
+    
+    String log3OpenMsg = "Log '" + file3.getName() + "' opened: ";
+    assertEquals("Incorrect log open message", log3OpenMsg , getStringAfterDate(s0).substring(0, log3OpenMsg.length()));
+    
+    for (int i = 0; i < NUM_THREADS; i++) {
+      String s1 = fin.readLine();
+      Date time1 = parse(s1);
+      assertTrue("Date of message not after 'earlier' and before 'now'", withinTolerance(earlier, time1, now));
+      assertTrue("Date of message not after 'previous time' and before 'now'", withinTolerance(time0, time1, now));
+      assertEquals("Log message", "Test message", getStringAfterDate(s1));
+      time0 = time1;
+    } 
+    
+    fin.close();
+  }

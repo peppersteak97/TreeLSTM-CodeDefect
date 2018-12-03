@@ -1,0 +1,43 @@
+    private void createInputPanel() {
+        m_inputPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints left = new GridBagConstraints();
+        left.anchor = GridBagConstraints.NORTHWEST;
+        left.fill = GridBagConstraints.HORIZONTAL;
+        
+        Insets tightInsets = new Insets(0, 2, 3, 0);
+        Insets wideInsets = new Insets(10, 2, 10, 20);
+
+        left.fill = GridBagConstraints.HORIZONTAL;
+        
+        left.insets = tightInsets;
+        
+        left.gridx = 0;
+        left.gridwidth = 2;
+        m_inputPanel.add(getRelationshipComboBoxHeader(), left);
+        m_inputPanel.add(m_relationshipsBox, left);
+
+        left.gridwidth = 1;
+        left.insets = wideInsets;
+        m_inputPanel.add(m_parentChildCombos.getParentBox(), left);
+        m_inputPanel.add(m_parentChildCombos.getParentFieldBox(), left);
+
+        left.gridwidth = 2;
+        left.insets = tightInsets;
+        m_inputPanel.add(getFieldListHeader(), left);
+
+        m_inputPanel.add(ComponentFactories.scrollFactory().newScrollPane(
+                        m_fieldRelationshipsList), left);
+
+        GridBagConstraints right = new GridBagConstraints();
+        right.anchor = GridBagConstraints.NORTHWEST;
+        right.fill = GridBagConstraints.HORIZONTAL;
+        right.insets = wideInsets;
+        right.gridx = 1;
+        right.gridy = 2;
+        m_inputPanel.add(m_parentChildCombos.getChildBox(), right);
+        
+        right.gridy = 3;
+        m_inputPanel.add(m_parentChildCombos.getChildFieldBox(), right);
+
+        UiUtils.setOpaqueRecursivelySkipDefaults(m_inputPanel, false);
+    }

@@ -1,0 +1,25 @@
+    public void initComponents() {
+
+    	table	= JTableUtil.sortableDataModel(model);
+    	scroll	= new JScrollPane(table);
+
+        model.configureTable(table);
+
+        setTitle("Packet Monitor");
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        getContentPane().add(scroll);
+        
+        JPanel p1 = new JPanel();
+        JButton b = new JButton(rb.getString("ButtonClear"));
+        b.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                model.reset();
+            }
+        });
+        p1.add(b);
+        getContentPane().add(p1);
+        
+        pack();
+
+    }

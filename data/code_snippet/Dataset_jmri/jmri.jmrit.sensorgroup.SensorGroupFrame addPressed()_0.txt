@@ -1,0 +1,36 @@
+    void addPressed() {
+        log.debug("start with "+sensorModel.getRowCount()+" lines");
+        RouteManager rm = InstanceManager.routeManagerInstance();
+        String group = name.getText().toUpperCase();
+        
+        List l = rm.getSystemNameList();     
+        String prefix = (namePrefix+group+nameDivider).toUpperCase();
+        
+        for (int i = 0; i<l.size(); i++) {
+            String name = (String) l.get(i);
+            if (name.startsWith(prefix)) {
+                Route r = rm.getBySystemName((String)l.get(i));
+                r.deActivateRoute();
+                rm.deleteRoute(r);
+            }
+        }        
+
+        for (int i = 0; i<sensorModel.getRowCount(); i++) {
+            if (includedSensors[i].booleanValue()) {
+                String sensor = (String)sensorModel.getValueAt(i,sensorModel.SNAME_COLUMN);
+                String name = namePrefix+group+nameDivider+sensor;
+                Route r = new DefaultRoute(name);
+                r.addSensorToRoute(sensor, Route.ONACTIVE);
+                for (int j=0; j<sensorModel.getRowCount(); j++) {
+                    if (includedSensors[j].booleanValue()) {
+                        String outSensor = (String)sensorModel.getValueAt(j,sensorModel.SNAME_COLUMN);
+                        int mode = Sensor.INACTIVE;
+                        if (i==j) mode = Sensor.ACTIVE;
+                        r.addOutputSensor(outSensor, mode);
+                    }
+                }
+                r.activateRoute();
+                rm.register(r);
+            }
+        }
+    }

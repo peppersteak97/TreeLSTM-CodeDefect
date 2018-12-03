@@ -1,0 +1,3 @@
+	public boolean isSendingPropertyChangeEvents() {
+		return !m_propertyChangeEventsBlocked;
+	}

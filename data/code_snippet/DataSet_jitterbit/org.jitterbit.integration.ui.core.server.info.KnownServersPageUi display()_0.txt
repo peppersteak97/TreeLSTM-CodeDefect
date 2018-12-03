@@ -1,0 +1,4 @@
+    void display() {
+        m_tableUi.setController(createController());
+        m_tableUi.display();
+    }

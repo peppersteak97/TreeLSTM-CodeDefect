@@ -1,0 +1,3 @@
+	public List<IKongaTreeNode> getDraggedNodes() {
+		return m_draggedNodes;
+	}

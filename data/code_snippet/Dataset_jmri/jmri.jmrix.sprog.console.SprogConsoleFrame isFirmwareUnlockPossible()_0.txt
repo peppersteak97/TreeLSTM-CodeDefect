@@ -1,0 +1,7 @@
+    public boolean isFirmwareUnlockPossible() {
+        if (isSprogII && ((sprogMajorVersion == 1) && (sprogMinorVersion >= 6))
+                          || ((sprogMajorVersion == 2) && (sprogMinorVersion >= 1))) {
+            return true;
+        } else
+            return false;
+    }

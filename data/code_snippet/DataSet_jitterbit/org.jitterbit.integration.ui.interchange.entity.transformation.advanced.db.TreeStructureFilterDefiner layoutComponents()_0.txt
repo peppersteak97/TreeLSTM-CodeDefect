@@ -1,0 +1,9 @@
+    private void layoutComponents() {
+        Layout layout = new Layout();
+        layout.addRow(m_captionLabel);
+        layout.addRow(m_rootLabel);
+        JLabel whereLabel = IntegrationUiStyleSheet.DefaultBold.makeJLabel(
+                        PackageResources.TreeFilterDefiner.Labels.WHERE);
+        layout.addTextArea(whereLabel, m_whereClauseArea);
+        m_displayer = layout.getUi();
+    }

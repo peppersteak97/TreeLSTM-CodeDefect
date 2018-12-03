@@ -1,0 +1,6 @@
+    public void compile() {
+        if (!m_compiled) {
+            m_totalPattern = Pattern.compile(m_totalPatternString, Pattern.MULTILINE);
+            m_compiled = true;
+        }
+    }

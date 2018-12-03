@@ -1,0 +1,10 @@
+    public String getCurrentPortName() {
+        if (mPort == null) {
+            if (getPortNames().size()<=0) {
+                log.error("No usable ports returned");
+                return null;
+            }
+            return (String)getPortNames().elementAt(0);
+        }
+        return mPort;
+    }

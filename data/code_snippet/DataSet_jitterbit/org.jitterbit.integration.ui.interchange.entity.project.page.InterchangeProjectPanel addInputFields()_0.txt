@@ -1,0 +1,5 @@
+    private void addInputFields() {
+        addInputField(m_nameField, m_nameField, m_nameField);
+        addInputField(m_descriptionField);
+        addInputField(m_jitterPackCommentField);
+    }

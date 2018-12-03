@@ -1,0 +1,13 @@
+  public void clearCodeOrder() {
+    SpaceEffGraphNode cur = _firstNode;
+    if (cur == null) return;
+    while (true) {
+      SpaceEffGraphNode next = cur.next;
+      if (next == null) break;
+      cur.next = null;
+      next.prev = null;
+      cur = next;
+    }
+    _firstNode = null;
+    _lastNode = null;
+  }

@@ -1,0 +1,14 @@
+    void addSensor() {
+        int errorCheck = checkEntry("Sensor" , nextSensor.getText());
+        if (errorCheck != 0) return;
+        SensorIcon l = new SensorIcon();
+        l.setActiveIcon(sensorIconEditor.getIcon(0));
+        l.setInactiveIcon(sensorIconEditor.getIcon(1));
+        l.setInconsistentIcon(sensorIconEditor.getIcon(2));
+        l.setUnknownIcon(sensorIconEditor.getIcon(3));
+        l.setSensor(nextSensor.getText());
+        setNextLocation(l);
+        putSensor(l);
+        l.setPositionable(true);
+        moveToFront(l);
+    }

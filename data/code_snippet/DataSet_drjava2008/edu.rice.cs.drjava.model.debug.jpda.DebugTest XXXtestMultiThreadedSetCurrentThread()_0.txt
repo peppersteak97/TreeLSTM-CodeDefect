@@ -1,0 +1,33 @@
+  public synchronized void XXXtestMultiThreadedSetCurrentThread() throws Exception {
+    _log.log("----testMultiThreadedSetCurrentThread----");
+    BreakpointTestListener debugListener = new BreakpointTestListener();
+    _debugger.addListener(debugListener);
+    
+    OpenDefinitionsDocument doc = _startupDebugger("Monkey.java",
+                                                   MONKEY_CLASS);
+    
+    int index = MONKEY_CLASS.indexOf("System.out.println(\"I\'m a thread! Yeah!\");");
+    _debugger.toggleBreakpoint(doc,index, 11, true);
+    index = MONKEY_CLASS.indexOf("System.out.println(\"James likes bananas!\");");
+    _debugger.toggleBreakpoint(doc,index, 17, true);
+    
+    synchronized(_notifierLock) {
+      interpretIgnoreResult("java Monkey");
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    DebugThreadData threadA = new JPDAThreadData(_debugger.getCurrentThread());
+    DebugThreadData threadB = new JPDAThreadData(_debugger.getThreadAt(1));
+    synchronized(_notifierLock) {
+      _asyncDoSetCurrentThread(threadB);
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    
+    DebugThreadData thread1 = new JPDAThreadData(_debugger.getThreadAt(1));
+    DebugThreadData thread2 = new JPDAThreadData(_debugger.getCurrentThread());
+    
+    assertTrue(thread1.getUniqueID() == threadA.getUniqueID());
+    assertTrue(thread2.getUniqueID() == threadB.getUniqueID());
+    
+    _shutdownAndWaitForInteractionEnded();
+    _debugger.removeListener(debugListener);
+  }

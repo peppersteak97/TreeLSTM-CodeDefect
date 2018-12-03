@@ -1,0 +1,48 @@
+    public void validateInput() throws InputPanelException {
+        if (!m_isActive) {
+            return;
+        }
+
+        List<InputFieldException> fieldExceptions = null;
+        for (int n = 0, nFields = m_inputFields.size(); n < nFields; ++n) {
+            IInputFieldValidator validator = m_fieldValidators.get(n);
+            boolean bValid = true;
+            if (validator != null) {
+                InputField field = m_inputFields.get(n);
+                if (!field.isActive()) {
+                    continue;
+                }
+                try {
+                    validator.validateField(field);
+                }
+                catch (InputFieldException e) {
+                    if (fieldExceptions == null) {
+                        fieldExceptions = new ArrayList<InputFieldException>();
+                    }
+                    fieldExceptions.add(e);
+                    bValid = false;
+                }
+                IInputFieldDecorator decorator = m_fieldDecorators.get(n);
+                if (decorator != null) {
+                    decorator.decorateField(field, bValid);
+                }
+            }
+
+        }
+        for (IInputPanelSite pnl : m_inputPanels) {
+            try {
+                pnl.validateInput();
+            }
+            catch (InputPanelException e) {
+                if (fieldExceptions == null) {
+                    fieldExceptions = new ArrayList<InputFieldException>();
+                }
+                for (InputFieldException fieldEx : e.getFieldExceptions()) {
+                    fieldExceptions.add(fieldEx);
+                }
+            }
+        }
+        if (fieldExceptions != null) {
+            throw new InputPanelException(fieldExceptions);
+        }
+    }

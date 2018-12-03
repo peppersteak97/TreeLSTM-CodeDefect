@@ -1,0 +1,8 @@
+    public Iterable<Map.Entry<String, String>> entrySet() {
+        return new Iterable<Map.Entry<String,String>>() {
+
+            public Iterator<Entry<String, String>> iterator() {
+                return data.entrySet().iterator();
+            }
+        };
+    }

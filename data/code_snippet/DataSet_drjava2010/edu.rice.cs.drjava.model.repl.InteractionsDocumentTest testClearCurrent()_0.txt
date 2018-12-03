@@ -1,0 +1,6 @@
+  public void testClearCurrent() throws EditDocumentException {
+    int origLength = _doc.getLength();
+    _doc.insertText(origLength, "text", InteractionsDocument.DEFAULT_STYLE);
+    _doc.insertBeforeLastPrompt("before", InteractionsDocument.DEFAULT_STYLE);
+    _doc.clearCurrentInteraction();
+  }

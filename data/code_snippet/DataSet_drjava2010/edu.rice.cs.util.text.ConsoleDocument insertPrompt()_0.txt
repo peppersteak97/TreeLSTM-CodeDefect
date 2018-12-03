@@ -1,0 +1,8 @@
+  public void insertPrompt() {
+    try {
+      int len = _document.getLength();
+      _promptPos = len + _prompt.length();
+      _document.setHasPrompt(true);
+    }
+    catch (EditDocumentException e) { throw new UnexpectedException(e);  }
+  }

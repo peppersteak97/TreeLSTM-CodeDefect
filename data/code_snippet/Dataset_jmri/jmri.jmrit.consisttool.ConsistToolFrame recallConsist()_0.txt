@@ -1,0 +1,48 @@
+    private void recallConsist() {
+	if(adrSelector.getAddress()==null) {
+	   locoSelector.reset();
+	   locoRosterBox.setSelectedIndex(0);
+	   if(consistModel.getConsist()!=null){
+		consistModel.getConsist().removeConsistListener(this);
+		_status.setText("Ready");
+	   }
+	   consistModel.setConsist((Consist)null);
+	
+           canAdd();
+
+	   return;
+	}
+	DccLocoAddress address = adrSelector.getAddress();
+	if(consistModel.getConsist()!=null){
+		consistModel.getConsist().removeConsistListener(this);
+		_status.setText("Ready");
+	}
+	Consist selectedConsist = ConsistMan.getConsist(address);
+	consistModel.setConsist(selectedConsist);
+	selectedConsist.addConsistListener(this);
+
+	locoSelector.reset();
+	locoRosterBox.setSelectedIndex(0);
+        locoDirectionNormal.setSelected(true);
+
+	if(consistModel.getRowCount()==0)
+		locoDirectionNormal.setEnabled(false);
+	else
+		locoDirectionNormal.setEnabled(true);
+
+	if(log.isDebugEnabled()) log.debug("Recall Consist " + address);
+
+	if(selectedConsist.getConsistType()==Consist.ADVANCED_CONSIST) {
+	        log.debug("Consist type is Advanced Consist ");
+	        isAdvancedConsist.setSelected(true);
+        	isCSConsist.setSelected(false);
+		_Consist_Type=Consist.ADVANCED_CONSIST;
+	} else {
+	        log.debug("Consist type is Command Station Consist ");
+	        isAdvancedConsist.setSelected(false);
+        	isCSConsist.setSelected(true);
+		_Consist_Type=Consist.CS_CONSIST;
+	}
+
+	canAdd();
+    }

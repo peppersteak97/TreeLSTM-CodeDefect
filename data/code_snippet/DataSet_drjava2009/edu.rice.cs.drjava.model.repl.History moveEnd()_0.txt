@@ -1,0 +1,1 @@
+  public void moveEnd() { _cursor = _vector.size(); }

@@ -1,0 +1,3 @@
+    public Action getRedoAction() {
+        return m_redoAction;
+    }

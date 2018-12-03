@@ -1,0 +1,18 @@
+  protected final void emit_f2i() {
+    popFloat(F0);
+    asm.emitFCMPU(F0, F0);
+    ForwardReference fr1 = asm.emitForwardBC(NE);
+    asm.emitFCTIWZ(F0, F0);
+    if (VM.BuildFor64Addr) {
+      pushLowDoubleAsInt(F0);
+    } else {
+      asm.emitSTFDoffset(F0, THREAD_REGISTER, Entrypoints.scratchStorageField.getOffset());
+      asm.emitLIntOffset(T0, THREAD_REGISTER, Entrypoints.scratchStorageField.getOffset().plus(4));
+      pushInt(T0);
+    }
+    ForwardReference fr2 = asm.emitForwardB();
+    fr1.resolve(asm);
+    asm.emitLVAL(T0, 0);
+    pushInt(T0);
+    fr2.resolve(asm);
+  }

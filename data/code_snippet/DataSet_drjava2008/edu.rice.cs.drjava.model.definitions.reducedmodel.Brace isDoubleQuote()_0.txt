@@ -1,0 +1,1 @@
+  public boolean isDoubleQuote() { return _type == DOUBLE_QUOTE_TYPE; }

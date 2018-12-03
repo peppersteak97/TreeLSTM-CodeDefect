@@ -1,0 +1,6 @@
+    static public MrcMessage getKillMain() {
+        MrcMessage m = new MrcMessage(1);
+        m.setBinary(false);
+        m.setOpCode('K');
+        return m;
+    }

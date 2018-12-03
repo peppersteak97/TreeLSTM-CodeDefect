@@ -1,0 +1,8 @@
+    private void createComponents() {
+        createStartStopAction();
+        createRootSelector();
+        createExtensionCheck();
+        createProgressPanel();
+        createTable();
+        createUi();
+    }

@@ -1,0 +1,5 @@
+    static public BlockManager blockManagerInstance()  {
+        if (instance().blockManager != null) return instance().blockManager;
+        instance().blockManager = new BlockManager();
+        return instance().blockManager;
+    }

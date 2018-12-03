@@ -1,0 +1,3 @@
+    public SqlScript getSqlScript() {
+        return m_sqlScript.getCopy();
+    }

@@ -1,0 +1,5 @@
+  protected final void emit_i2s() {
+    asm.emitPOP_Reg(T0);
+    asm.emitMOVSX_Reg_Reg_Word(T0, T0);
+    asm.emitPUSH_Reg(T0);
+  }

@@ -1,0 +1,3 @@
+    protected final synchronized boolean isStopping() {
+        return isInState(STOPPING);
+    }

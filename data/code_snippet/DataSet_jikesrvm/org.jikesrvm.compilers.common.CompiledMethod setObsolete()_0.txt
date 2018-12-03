@@ -1,0 +1,3 @@
+  public final void setObsolete() {
+    flags |= OBSOLETE;
+  }

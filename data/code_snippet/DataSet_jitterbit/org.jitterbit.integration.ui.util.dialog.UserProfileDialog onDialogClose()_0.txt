@@ -1,0 +1,6 @@
+    protected void onDialogClose() {
+        if (m_currentProcessID != null) {
+            IntegrationUi.getUi().getJobManager().cancelJob(m_currentProcessID);
+        }
+        super.onDialogClose();
+    }

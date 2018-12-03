@@ -1,0 +1,4 @@
+    protected void onYes() {
+        m_option = SAVE;
+        super.onYes();
+    }

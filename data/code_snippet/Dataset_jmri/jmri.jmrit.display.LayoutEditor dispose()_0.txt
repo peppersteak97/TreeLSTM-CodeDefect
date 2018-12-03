@@ -1,0 +1,4 @@
+	public void dispose() {
+		jmri.jmrit.display.PanelMenu.instance().updateLayoutEditorPanel(this);
+		super.dispose();
+	}

@@ -1,0 +1,1 @@
+    public boolean isErr() { return getElement(1)==0xC5;}

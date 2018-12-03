@@ -1,0 +1,3 @@
+    public List<IWizardPage> getAllApplicablePages() {
+        return new ArrayList<IWizardPage>(m_applicablePages);
+    }

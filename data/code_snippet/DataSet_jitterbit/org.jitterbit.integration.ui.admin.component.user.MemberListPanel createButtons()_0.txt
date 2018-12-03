@@ -1,0 +1,5 @@
+    private void createButtons() {
+        IButtonFactory factory = ComponentFactories.buttonFactory();
+        m_addMemberButton = factory.newButton(m_addMemberAction);
+        m_removeMemberButton = factory.newButton(m_removeMemberAction);
+    }

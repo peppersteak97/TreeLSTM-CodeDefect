@@ -1,0 +1,3 @@
+	public String getProcessName() {
+		return getProperty(Transformation.TARGET_DTD_ROOT);
+	}

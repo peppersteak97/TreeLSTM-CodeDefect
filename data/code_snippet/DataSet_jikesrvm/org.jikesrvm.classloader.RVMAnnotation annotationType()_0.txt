@@ -1,0 +1,1 @@
+  TypeReference annotationType() { return type; }

@@ -1,0 +1,8 @@
+  public void testDummyDocumentRegion() {
+    Region r1 = new DummyDocumentRegion(new File("dummy1"), 5, 20);
+    Region r2 = new DummyDocumentRegion(new File("dummy1"), 5, 20);
+    Region r3 = new DummyDocumentRegion(new File("dummy2"), 20, 20);
+    assertEquals("equality test 1", r1, r1);
+    assertFalse("equality test 2", r1.equals(r2));
+    assertFalse("equality test 3", r2.equals(r3));
+  }

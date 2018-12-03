@@ -1,0 +1,5 @@
+  public final void emitSYNC() {
+    int mi = SYNCtemplate;
+    mIP++;
+    mc.addInstruction(mi);
+  }

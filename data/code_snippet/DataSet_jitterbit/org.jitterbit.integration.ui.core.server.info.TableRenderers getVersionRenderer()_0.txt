@@ -1,0 +1,26 @@
+    public static TableCellRenderer getVersionRenderer() {
+        return new DefaultTableCellRenderer() {
+          
+            @Override
+            protected void setValue(Object value) {
+                if (value instanceof IVersion) {
+                    super.setValue(value.toString());
+                }
+                else {
+                }
+            }
+
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(
+                                table, value, isSelected, hasFocus, row, column);
+                if (value instanceof IVersion) {
+                    setHorizontalAlignment(LEFT);
+                }
+                else {
+                    setHorizontalAlignment(CENTER);
+                }
+                return this;
+            }
+        };
+    }

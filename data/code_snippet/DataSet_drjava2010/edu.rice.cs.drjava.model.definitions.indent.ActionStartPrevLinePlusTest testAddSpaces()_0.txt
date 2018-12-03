@@ -1,0 +1,6 @@
+  public void testAddSpaces() throws javax.swing.text.BadLocationException {
+    _setDocText("foo\nbar");
+    _doc.setCurrentLocation(4);
+    assertEquals(10, _doc.getLength());
+    assertEquals("foo\n   bar", _doc.getText());
+  }

@@ -1,0 +1,1 @@
+    public boolean isUnsolicited() { return unsolicited; };

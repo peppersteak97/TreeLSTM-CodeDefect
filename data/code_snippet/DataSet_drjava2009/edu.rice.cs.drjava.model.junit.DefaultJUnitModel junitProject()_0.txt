@@ -1,0 +1,8 @@
+  public void junitProject() {
+    LinkedList<OpenDefinitionsDocument> lod = new LinkedList<OpenDefinitionsDocument>();
+    
+    for (OpenDefinitionsDocument doc : _model.getOpenDefinitionsDocuments()) { 
+      if (doc.inProjectPath())  lod.add(doc);
+    }
+    junitOpenDefDocs(lod, true);
+  }

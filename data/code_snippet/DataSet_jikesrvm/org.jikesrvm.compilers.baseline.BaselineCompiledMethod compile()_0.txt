@@ -1,0 +1,6 @@
+  public void compile() {
+    BaselineCompilerImpl comp = new BaselineCompilerImpl(this, localFixedLocations, localFloatLocations);
+    comp.compile();
+    this.lastFixedStackRegister = comp.getLastFixedStackRegister();
+    this.lastFloatStackRegister = comp.getLastFloatStackRegister();
+  }

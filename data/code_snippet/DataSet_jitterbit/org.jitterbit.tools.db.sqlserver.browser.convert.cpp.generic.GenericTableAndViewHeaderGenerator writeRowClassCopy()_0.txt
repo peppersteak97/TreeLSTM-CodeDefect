@@ -1,0 +1,15 @@
+    private void writeRowClassCopy() {
+        addLine("\tvoid Copy(const " + getRowClassName() + "& r)");
+        addLine("\t{");
+        for( Column c : getValidColumns() ) {
+            addLine("\t\t" + CppUtils.getColumnMemberName(c) + " = r." +
+                    CppUtils.getColumnMemberName(c) + ";");
+            addLine("\t\t" + CppUtils.getIsColumnNullMemberName(c) + " = r." +
+                    CppUtils.getIsColumnNullMemberName(c) + ";");
+            addLine("\t\t" + CppUtils.getIsColumnDirtyMemberName(c) + " = r." +
+                    CppUtils.getIsColumnDirtyMemberName(c) + ";");
+            addLine();
+        }
+        addLine("\t}");
+        addLine();
+    }

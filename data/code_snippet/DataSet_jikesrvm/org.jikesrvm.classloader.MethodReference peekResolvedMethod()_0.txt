@@ -1,0 +1,7 @@
+  public RVMMethod peekResolvedMethod() {
+    if (resolvedMember != null) return resolvedMember;
+
+    RVMType declaringClass = type.peekType();
+    if (declaringClass == null) return null;
+    return resolveInternal((RVMClass)declaringClass);
+  }

@@ -1,0 +1,7 @@
+  public void next() {
+    if (_docs.size() > 0) {
+      _current++;
+      if (_current >= _docs.size()) _current = 0;
+      show(_current);
+    }
+  }

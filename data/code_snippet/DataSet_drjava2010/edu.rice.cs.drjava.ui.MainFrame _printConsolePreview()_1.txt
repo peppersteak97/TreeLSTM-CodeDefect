@@ -1,0 +1,9 @@
+  private void _printConsolePreview() {
+    try {
+      _model.getConsoleDocument().preparePrintJob();
+      new PreviewConsoleFrame(_model, this, false);
+    }
+    catch (IllegalStateException e) {
+      _showError(e, "Print Error", "An error occured while preparing the print preview.");
+    }
+  }

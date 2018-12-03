@@ -1,0 +1,14 @@
+    private void executeImpl() {
+        Runnable deploy = getDeployJob();
+        Runnable failed = new Runnable() {
+
+            public void run() {
+            }
+        };
+        Runnable decline = new Runnable() {
+
+            public void run() {
+            }
+        };
+        m_view.saveAndRun(deploy, failed, decline);
+    }

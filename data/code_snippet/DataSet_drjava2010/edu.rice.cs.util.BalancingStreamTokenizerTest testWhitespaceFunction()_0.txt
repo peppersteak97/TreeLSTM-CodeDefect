@@ -1,0 +1,9 @@
+  public void testWhitespaceFunction() throws IOException {
+    BalancingStreamTokenizer tok = make("Hello@World");
+    tok.defaultThreeQuoteDollarCurlySetup();
+    tok.whitespace(64);
+    String s = tok.getNextToken();
+    assertEquals("Hello",s);
+    s = tok.getNextToken();
+    assertEquals("World",s);
+  }

@@ -1,0 +1,3 @@
+  public void saveConfiguration() throws IOException {
+    saveConfiguration("DrJava configuration file");
+  }

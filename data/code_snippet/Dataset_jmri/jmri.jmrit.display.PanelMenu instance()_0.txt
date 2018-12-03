@@ -1,0 +1,4 @@
+	static public PanelMenu instance() {
+		if (thisMenu==null) thisMenu = new PanelMenu();
+		return thisMenu;
+	}

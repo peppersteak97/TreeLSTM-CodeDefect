@@ -1,0 +1,1 @@
+  public boolean isQuoted() { return  _state == INSIDE_DOUBLE_QUOTE; }

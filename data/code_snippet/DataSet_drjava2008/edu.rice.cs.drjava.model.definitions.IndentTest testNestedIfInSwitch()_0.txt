@@ -1,0 +1,28 @@
+  public void testNestedIfInSwitch() throws BadLocationException {
+    String text =
+      "switch(cond) {\n" +
+      "case 1:\n" +
+      "object.doStuff();\n" +
+      "if(object.hasDoneStuff()) {\n" +
+      "thingy.doOtherStuff();\n" +
+      "lion.roar(\"raaargh\");\n" +
+      "}\n" +
+      "break;\n" +
+      "}\n";
+    
+    String indented =
+      "switch(cond) {\n" +
+      "  case 1:\n" +
+      "    object.doStuff();\n" +
+      "    if(object.hasDoneStuff()) {\n" +
+      "      thingy.doOtherStuff();\n" +
+      "      lion.roar(\"raaargh\");\n" +
+      "    }\n" +
+      "    break;\n" +
+      "}\n";
+    
+    _doc.insertString(0, text, null);
+    _assertContents(text, _doc);
+    safeIndentLines(0, _doc.getLength());
+    _assertContents(indented, _doc);
+  }

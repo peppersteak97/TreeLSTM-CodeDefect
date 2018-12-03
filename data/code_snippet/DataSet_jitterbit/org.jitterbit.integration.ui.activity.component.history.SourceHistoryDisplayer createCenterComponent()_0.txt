@@ -1,0 +1,3 @@
+    private JComponent createCenterComponent() {
+        return ComponentFactories.scrollFactory().newScrollPane(m_table);
+    }

@@ -1,0 +1,5 @@
+  public void activeCompilerChanged() {
+    _lock.startRead();
+    try { for (CompilerListener cl : _listeners) { cl.activeCompilerChanged(); } }
+    finally { _lock.endRead(); }
+  }

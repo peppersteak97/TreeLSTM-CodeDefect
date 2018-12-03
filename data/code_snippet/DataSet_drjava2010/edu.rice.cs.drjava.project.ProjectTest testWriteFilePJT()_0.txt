@@ -1,0 +1,47 @@
+  public void testWriteFilePJT() throws IOException, MalformedProjectFileException {
+    File pf = new File(parent, "test3.pjt");
+    IOUtil.writeStringToFile(pf, "");
+    ProjectProfile fb = new ProjectProfile(pf);
+
+    fb.addSourceFile(makeGetter(0, 0, 0, 0,  "dir1/testfile1.java", "dir1", false, false, pf));
+    fb.addSourceFile(makeGetter(1, 1, 0, 0,  "dir1/testfile2.java", "dir1", false, false, pf));
+    fb.addSourceFile(makeGetter(20, 22, 0, 0, "dir2/testfile3.java", "dir2", false, false, pf));
+    fb.addSourceFile(makeGetter(1, 1, 0, 0,  "dir2/testfile4.java", "dir2", true, false, pf));
+    fb.addSourceFile(makeGetter(0, 0, 0, 0,  "dir3/testfile5.java", "", false, false, pf));
+    fb.addAuxiliaryFile(makeGetter(1, 1, 0, 0, absp + "test/testfile6.java", "/home/javaplt", false, false, null));
+    fb.addAuxiliaryFile(makeGetter(1, 1, 0, 0, absp + "test/testfile7.java", "/home/javaplt", false, false, null));
+    fb.addCollapsedPath("./[ Source Files ]/dir1/");
+    fb.addClassPathFile(new AbsRelFile(parent, "lib"));
+    fb.setBuildDirectory(new File(parent, "built"));
+    fb.setWorkingDirectory(new File(parent, "src"));
+    fb.setMainClass("some.main.ClassName");
+    fb.writeOld();
+
+    StringBuilder received = new StringBuilder();
+    FileReader fr = new FileReader(pf);
+    int c = fr.read();
+    while (c >= 0) {
+      received.append((char)c);
+      c = fr.read();
+    }
+    fr.close();
+
+    ProjectFileIR pfir = null;
+    try { pfir = ProjectFileParser.ONLY.parse(pf); }
+    catch(MalformedProjectFileException e) {
+      throw new MalformedProjectFileException(e.getMessage() + ", file: " + pf);
+    }
+    assertEquals("number of source files", 5, pfir.getSourceFiles().length);
+    assertEquals("number of aux files", 2, pfir.getAuxiliaryFiles().length);
+    assertEquals("number of collapsed", 1, pfir.getCollapsedPaths().length);
+    assertEquals("number of classpaths", 1, IterUtil.sizeOf(pfir.getClassPaths()));
+
+    assertEquals("first aux filename", new File(parent,"test/testfile6.java").getPath(), 
+                 pfir.getAuxiliaryFiles()[0].getPath());
+    assertEquals("last collapsed path", "./[ Source Files ]/dir1/", pfir.getCollapsedPaths()[0]);
+    assertEquals("build-dir name", buildDir, pfir.getBuildDirectory());
+    assertEquals("work-dir name", srcDir, pfir.getWorkingDirectory());
+    assertEquals("classpath name", new File(parent,"lib"), IterUtil.first(pfir.getClassPaths()));
+    assertEquals("main-class name", "some.main.ClassName", pfir.getMainClass());
+    pf.delete();
+  }

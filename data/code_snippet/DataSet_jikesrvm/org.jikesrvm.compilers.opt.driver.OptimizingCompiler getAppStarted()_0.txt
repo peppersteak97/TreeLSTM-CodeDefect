@@ -1,0 +1,1 @@
+  public static synchronized boolean getAppStarted() { return appStarted; }

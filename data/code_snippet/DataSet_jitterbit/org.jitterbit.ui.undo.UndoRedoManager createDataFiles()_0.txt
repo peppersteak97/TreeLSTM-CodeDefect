@@ -1,0 +1,12 @@
+	private void createDataFiles() {
+		m_arDataFiles = new File[MAX_CHANGES_STORED];
+		try {
+			for( int i = 0; i < MAX_CHANGES_STORED; ++i ) {
+				f.deleteOnExit();
+				m_arDataFiles[i] = f;
+			}
+			System.out.println(m_arDataFiles[0].getAbsolutePath());
+		}
+		catch( IOException e ) {
+		}
+	}

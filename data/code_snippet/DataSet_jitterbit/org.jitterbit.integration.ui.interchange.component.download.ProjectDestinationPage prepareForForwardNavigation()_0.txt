@@ -1,0 +1,7 @@
+    public boolean prepareForForwardNavigation() {
+        if (isProjectNameValid() && isNewProjectLocationValid()) {
+            updateWizard();
+            return true;
+        }
+        return false;
+    }

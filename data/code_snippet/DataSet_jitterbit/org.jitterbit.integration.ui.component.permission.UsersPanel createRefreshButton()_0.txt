@@ -1,0 +1,14 @@
+    private void createRefreshButton() {
+        m_refreshButton = ComponentFactories.buttonFactory().newButton();
+        ILabelDecorator decorator = LabelDecorators.REFRESH_BUTTON;
+        LabelDecorators.decorate(m_refreshButton, decorator);
+        m_refreshButton.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                updateUsersList();
+            }
+        });
+        IntegrationUiStyleSheet.LinkButton.makeOver(m_refreshButton);
+        m_refreshButton.setContentAreaFilled(false);
+        IntegrationUiStyleSheet.enableRolloverForButton(m_refreshButton);
+    }

@@ -1,0 +1,12 @@
+  public String getString() {
+    try {
+      int start = _startPos.getOffset();
+      int end = _endPos.getOffset();
+      int length = end - start;
+      if (length <= 120) return _doc.getText(start, length);
+      StringBuilder sb = new StringBuilder(124);
+      sb.append(_doc.getText(start, 120)).append(" ...");
+      return sb.toString();
+    }
+    catch(BadLocationException e) { throw new UnexpectedException(e); }
+  }

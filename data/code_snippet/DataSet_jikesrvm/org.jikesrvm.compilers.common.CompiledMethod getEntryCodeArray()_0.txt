@@ -1,0 +1,4 @@
+  public final CodeArray getEntryCodeArray() {
+    if (VM.VerifyAssertions) VM._assert((flags & COMPILED) != 0);
+    return instructions;
+  }

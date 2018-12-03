@@ -1,0 +1,5 @@
+  protected final void emit_fneg() {
+    popFloat(F0);
+    asm.emitFNEG(F0, F0);
+    pushFloat(F0);
+  }

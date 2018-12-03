@@ -1,0 +1,3 @@
+    public IWindowSectionContentDisplayer newDisplayer() {
+        return new DisplayerImpl(m_searchContext);
+    }

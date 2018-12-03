@@ -1,0 +1,23 @@
+  public boolean isBootstrapClassDescriptor() {
+    non_bootstrap_outer:
+    for (final byte[] test : NON_BOOTSTRAP_CLASS_PREFIX_SET) {
+      if (test.length > val.length) continue;
+      for (int j = 0; j < test.length; j++) {
+        if (val[j] != test[j]) {
+          continue non_bootstrap_outer;
+        }
+      }
+      return false;
+    }
+    bootstrap_outer:
+    for (final byte[] test : BOOTSTRAP_CLASS_PREFIX_SET) {
+      if (test.length > val.length) continue;
+      for (int j = 0; j < test.length; j++) {
+        if (val[j] != test[j]) {
+          continue bootstrap_outer;
+        }
+      }
+      return true;
+    }
+    return false;
+  }

@@ -1,0 +1,7 @@
+    List<IPage> getOpenPages() {
+        List<IPage> pages = new ArrayList<IPage>(m_pagesInTabPane);
+        for (IPage page : m_detachedPages.keySet()) {
+            pages.add(page);
+        }
+        return pages;
+    }

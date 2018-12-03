@@ -1,0 +1,18 @@
+  private synchronized String toUnicodeStringInternal() {
+    if (unicodeStringOrJTOCoffset == null) {
+      return null;
+    } else if (unicodeStringOrJTOCoffset instanceof String) {
+      return (String)unicodeStringOrJTOCoffset;
+    } else {
+      if (VM.runningVM) {
+        Object result = Statics.getSlotContentsAsObject(Offset.fromIntSignExtend((Integer)unicodeStringOrJTOCoffset));
+        return (String)result;
+      } else {
+        try {
+          return UTF8Convert.fromUTF8(val).intern();
+        } catch (UTFDataFormatException e) {
+          throw new Error("Error in UTF data encoding: ", e);
+        }
+      }
+    }
+  }

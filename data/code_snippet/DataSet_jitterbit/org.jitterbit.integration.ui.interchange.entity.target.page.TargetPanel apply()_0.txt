@@ -1,0 +1,16 @@
+    public void apply() throws IntegrationDataPanelException {
+        if (m_topPanel.getTargetType() == null) {
+            throw new IntegrationDataPanelException(
+                            PackageResources.Errors.TARGET_TYPE_MISSING);
+        }
+        DataLocationPanel locPanel = m_locationDisplayer.getCurrentLocationPanel();
+
+        locPanel.apply();
+        try {
+            m_target.setName(m_topPanel.getTargetName());
+        }
+        catch (IllegalNameException e) {
+            throw new IntegrationDataPanelException(e);
+        }
+        m_target.setLocation(locPanel.getDisplayedObject());
+    }

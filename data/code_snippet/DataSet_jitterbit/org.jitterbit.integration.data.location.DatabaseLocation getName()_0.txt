@@ -1,0 +1,7 @@
+    public String getName() {
+        String db = getDatabase();
+        if (db == null || db.length() == 0) {
+            return getServer();
+        }
+                new Object[] { db, getServer() });
+    }

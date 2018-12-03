@@ -1,0 +1,38 @@
+    public void addTrackSegment() {
+		numTrackSegments ++;
+		String name = "";
+		boolean duplicate = true;
+		while (duplicate) {
+			name = "T"+numTrackSegments;
+			if (findTrackSegmentByName(name)==null) duplicate = false;
+			if (duplicate) numTrackSegments ++;
+		}
+		newTrack = new TrackSegment(name,beginObject,beginPointType,
+						foundObject,foundPointType,dashedLine.isSelected(),
+						mainlineTrack.isSelected(),this);
+		if (newTrack!=null) {
+			trackList.add(newTrack);
+			setDirty(true);
+			setLink(newTrack,TRACK,beginObject,beginPointType);
+			setLink(newTrack,TRACK,foundObject,foundPointType);
+			LayoutBlock b = provideLayoutBlock(blockIDField.getText().trim());
+			if (b!=null) {
+				newTrack.setLayoutBlock(b);
+				auxTools.setBlockConnectivityChanged();
+				String sensorName = (blockSensor.getText().trim());
+				if (sensorName.length()>0) {
+					if (!validateSensor(sensorName,b,this)) {
+						b.setOccupancySensorName("");
+					}
+					else {
+						blockSensor.setText( b.getOccupancySensorName() );
+					}
+				}
+				newTrack.updateBlockInfo();
+			}
+			
+		}
+		else {
+			log.error("Failure to create a new Track Segment");
+		}
+	}

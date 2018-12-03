@@ -1,0 +1,3 @@
+  public void resetToCurrent() {
+    if (_option != null) setValue(DrJava.getConfig().getSetting(_option));
+  }

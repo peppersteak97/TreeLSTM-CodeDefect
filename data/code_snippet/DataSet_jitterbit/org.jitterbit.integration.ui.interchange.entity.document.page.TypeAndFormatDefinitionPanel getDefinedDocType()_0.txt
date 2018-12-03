@@ -1,0 +1,6 @@
+    private int getDefinedDocType() {
+        if (isSimpleText()) {
+            return isFixedWidth() ? TextDocument.c_flat_fix_doc : TextDocument.c_flat_del_doc;
+        }
+        return isFixedWidth() ? TextDocument.c_complex_fix_doc : TextDocument.c_complex_del_doc;
+    }

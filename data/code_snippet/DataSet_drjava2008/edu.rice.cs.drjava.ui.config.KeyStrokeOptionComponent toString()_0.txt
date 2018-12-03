@@ -1,0 +1,4 @@
+  public String toString() {
+    return "<KSOC>label:" + getLabelText() + "ks: " +
+      getKeyStroke() + "jb: " + _button.getText() + "</KSOC>\n";
+  }

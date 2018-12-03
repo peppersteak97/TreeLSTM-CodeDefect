@@ -1,0 +1,3 @@
+    public QueueFilters getFilters() {
+        return (QueueFilters) super.getFilters();
+    }

@@ -1,0 +1,8 @@
+    public String toString() {
+        sb.append(m_dbTables.getTables());
+        sb.append(m_dbFields);
+        sb.append(m_sqlScript);
+        sb.append(m_treeFilters);
+        sb.append(m_relations);
+        return sb.toString();
+    }

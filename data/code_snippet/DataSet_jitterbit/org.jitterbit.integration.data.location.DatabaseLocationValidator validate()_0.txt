@@ -1,0 +1,9 @@
+    void validate() {
+        validateDriver();
+        if (m_location.isManualMode()) {
+            validateManualMode();
+        }
+        else {
+            validateNonManualMode();
+        }
+    }

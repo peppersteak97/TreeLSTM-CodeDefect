@@ -1,0 +1,5 @@
+  public void throwCaughtException() throws Exception {
+    if (_caughtException != null) {
+      throw _caughtException;
+    }
+  }

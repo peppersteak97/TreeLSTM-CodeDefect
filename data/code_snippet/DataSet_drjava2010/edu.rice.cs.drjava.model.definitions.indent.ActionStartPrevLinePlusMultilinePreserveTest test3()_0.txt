@@ -1,0 +1,5 @@
+  public void test3() throws BadLocationException {
+    helperCommentTest("/* abc\ndefg\n   hijklmnop",
+                      7, 10,
+                      "/* abc\n * defg\n */\n   hijklmnop");
+  }

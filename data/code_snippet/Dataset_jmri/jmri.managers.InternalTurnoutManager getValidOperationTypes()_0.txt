@@ -1,0 +1,1 @@
+    public String[] getValidOperationTypes() { return new String[]{"NoFeedback"}; }

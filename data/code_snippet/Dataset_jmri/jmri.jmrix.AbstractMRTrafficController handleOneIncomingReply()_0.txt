@@ -1,0 +1,74 @@
+    public void handleOneIncomingReply() throws java.io.IOException {
+
+        AbstractMRReply msg = newReply();
+
+        waitForStartOfReply(istream);
+
+        loadChars(msg, istream);
+
+        replyInDispatch = true;
+        if (log.isDebugEnabled()) log.debug("dispatch reply of length "+msg.getNumDataElements()+
+                                        " contains "+msg.toString()+" state "+mCurrentState);
+
+        Runnable r = new RcvNotifier(msg, mLastSender, this);
+        try {
+            javax.swing.SwingUtilities.invokeAndWait(r);
+        } catch (Exception e) {
+            log.error("Unexpected exception in invokeAndWait:" +e);
+            e.printStackTrace();
+        }
+        
+        if (!msg.isUnsolicited()) {
+            switch (mCurrentState) {
+            case WAITMSGREPLYSTATE: {
+                synchronized (xmtRunnable) {
+                    mCurrentState = NOTIFIEDSTATE;
+                    replyInDispatch = false;
+                    xmtRunnable.notify();
+                }
+                break;
+            }
+            case WAITREPLYINPROGMODESTATE: {
+                mCurrentMode = PROGRAMINGMODE;
+                replyInDispatch = false;
+                
+                int warmUpDelay = enterProgModeDelayTime();
+                if (warmUpDelay != 0) {
+                    try {
+                        synchronized (xmtRunnable) {
+                            xmtRunnable.wait(warmUpDelay);
+                        }
+                    } catch (InterruptedException e) {
+                    }
+                }
+                synchronized (xmtRunnable) {
+                    mCurrentState = OKSENDMSGSTATE;
+                    xmtRunnable.notify();
+                }
+                break;
+            }
+            case WAITREPLYINNORMMODESTATE: {
+                mCurrentMode = NORMALMODE;
+                replyInDispatch = false;
+                synchronized (xmtRunnable) {
+                    mCurrentState = OKSENDMSGSTATE;
+                    xmtRunnable.notify();
+                }
+                break;
+            }
+            default: {
+                replyInDispatch = false;
+                if (allowUnexpectedReply == true) {
+                    if (log.isDebugEnabled())
+                        log.debug("Allowed unexpected reply received in state: "
+                                  + mCurrentState   + " was " + msg.toString());
+                } else {
+                    log.error("reply complete in unexpected state: "
+                              + mCurrentState + " was " + msg.toString());
+                }
+            }
+            }
+        } else {
+            replyInDispatch = false;
+        }
+    }

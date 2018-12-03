@@ -1,0 +1,3 @@
+    public void removeAll() {
+        m_delegate.removeAll();
+    }

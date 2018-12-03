@@ -1,0 +1,3 @@
+    private void createRefreshAction() {
+        m_refreshAction = new RefreshAction(m_cacheCollection);
+    }

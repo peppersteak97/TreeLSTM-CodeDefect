@@ -1,0 +1,4 @@
+    private void displayInMainWindow() {
+        IWindowSectionContentDisplayer displayer = getWindowDisplayer();
+        displayer.displayInWindow(m_view.getWindow(), IApplicationWindow.EAST);
+    }

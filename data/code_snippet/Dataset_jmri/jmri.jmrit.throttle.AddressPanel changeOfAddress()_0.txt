@@ -1,0 +1,19 @@
+	public void changeOfAddress() {
+		if (listeners != null) {
+			for (int i = 0; i < listeners.size(); i++) {
+				AddressListener l = (AddressListener) listeners.get(i);
+				if (log.isDebugEnabled()) {
+					log.debug("Notify address listener " + l);
+				}
+				currentAddress = addrSelector.getAddress();
+				if (currentAddress != null) {
+					l.notifyAddressChosen(currentAddress.getNumber(),
+							currentAddress.isLongAddress());
+				}
+				if (consistAddress != null) {
+					l.notifyAddressChosen(consistAddress.getNumber(),
+							consistAddress.isLongAddress());
+				}
+			}
+		}
+	}

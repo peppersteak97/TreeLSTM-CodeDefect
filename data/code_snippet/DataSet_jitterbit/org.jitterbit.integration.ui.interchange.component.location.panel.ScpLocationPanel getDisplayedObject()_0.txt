@@ -1,0 +1,3 @@
+    public ScpLocation getDisplayedObject() {
+        return (ScpLocation) super.getDisplayedObject();
+    }

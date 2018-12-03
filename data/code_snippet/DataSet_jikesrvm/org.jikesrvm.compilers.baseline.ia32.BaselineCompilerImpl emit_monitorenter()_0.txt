@@ -1,0 +1,7 @@
+  protected final void emit_monitorenter() {
+    if (VM.BuildFor32Addr) {
+    } else {
+    }
+    genNullCheck(asm, T0);
+    asm.emitCALL_Abs(Magic.getTocPointer().plus(Entrypoints.lockMethod.getOffset()));
+  }

@@ -1,0 +1,3 @@
+    public String getLocator() {
+        return get(WSDL_LOCATOR);
+    }

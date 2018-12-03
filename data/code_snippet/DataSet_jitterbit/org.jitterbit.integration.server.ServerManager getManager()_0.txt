@@ -1,0 +1,3 @@
+    public static ServerManager getManager() {
+        return s_instance;
+    }

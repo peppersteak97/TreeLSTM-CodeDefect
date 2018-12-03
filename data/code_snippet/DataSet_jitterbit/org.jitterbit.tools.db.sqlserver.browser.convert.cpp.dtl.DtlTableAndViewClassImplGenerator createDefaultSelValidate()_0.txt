@@ -1,0 +1,36 @@
+    private void createDefaultSelValidate() {
+        boolean bApplicable = false;
+        for( Column c : getColumnOwner().getColumns() ) {
+            if( isColumnSkipped(c) ) {
+                continue;
+            }
+            if( c.isNullable() ) {
+                if( !bApplicable ) {
+                    String sCppType = SqlToCppTypeConverter.getCppType(c);
+                    if( sCppType.length() == 0 ) {
+                        continue;
+                    }
+                    
+                    bApplicable = true;
+                    addLine("template<> class DefaultSelValidate<" + getRowClassName() + ">");
+                    addLine("{");
+                    addLine("public:");
+                    addLine("\t bool operator()(BoundIOs &cols, " + getRowClassName() + " &rowbuf)");
+                    addLine("\t{");
+                }
+                addLine("\t\tif( cols[\"" + c.getName() + "\"].IsNull() ) {");
+                insertAssignmentForNull(c);
+                addLine("\t\t}");
+                addLine("\t\telse {");
+                addLine("\t\t\trowbuf.Is" + c.getName() + "Null = false;");
+                addLine("\t\t}");
+            }
+        }
+        if( bApplicable ) {
+            writeSkippedColumns();
+            addLine("\t\treturn true;");
+            addLine("\t}");
+            addLine("};");
+            addLine();
+        }
+    }

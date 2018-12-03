@@ -1,0 +1,3 @@
+  public void pack() {
+    Utilities.invokeAndWait(new Runnable() { public void run() { packHelp(); } });
+  }

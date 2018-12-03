@@ -1,0 +1,5 @@
+    private void loadData() throws InterchangeViewMetaDataXmlException {
+        m_dataLoader = new InterchangeViewMetaDataLoader(
+                        "org.jitterbit.integration.data.interchange.InterchangeViewModelMetaData.xml");
+        m_dataLoader.load();
+    }

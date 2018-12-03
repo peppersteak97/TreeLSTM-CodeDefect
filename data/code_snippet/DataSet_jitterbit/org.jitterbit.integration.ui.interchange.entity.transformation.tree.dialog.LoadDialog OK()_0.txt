@@ -1,0 +1,4 @@
+	void OK(){
+		m_flag=1;
+		dispose();
+	}

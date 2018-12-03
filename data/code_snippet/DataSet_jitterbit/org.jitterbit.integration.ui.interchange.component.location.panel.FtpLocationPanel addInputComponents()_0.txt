@@ -1,0 +1,10 @@
+    private void addInputComponents() {
+        addInputField(m_host, m_host, m_host);
+        addInputField(m_port, PORT_VALIDATOR, m_port);
+        addInputField(m_hostPath, m_hostPath, m_hostPath);
+        addInputField(m_passiveMode);
+        addInputField(m_renameCheck);
+        addInputPanel(m_fileLocationPanel);
+        addInputPanel(m_transferTypePanel);
+        addInputPanel(m_sslOptionPanel);
+    }

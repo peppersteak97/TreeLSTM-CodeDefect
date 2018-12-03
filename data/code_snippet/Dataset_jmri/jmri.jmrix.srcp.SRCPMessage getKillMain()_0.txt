@@ -1,0 +1,5 @@
+    static public SRCPMessage getKillMain() {
+        SRCPMessage m = new SRCPMessage("SET 1 POWER OFF\n");
+        m.setBinary(false);
+        return m;
+    }

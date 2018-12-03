@@ -1,0 +1,8 @@
+    private JComponent createTopPanel() {
+        JComponent capsule = m_newProjectLocationDisplayer.getComponent();
+        UiUtils.setOpaqueRecursivelySkipDefaults(capsule, false);
+        JPanel top = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        top.add(capsule);
+        top.setOpaque(false);
+        return top;
+    }

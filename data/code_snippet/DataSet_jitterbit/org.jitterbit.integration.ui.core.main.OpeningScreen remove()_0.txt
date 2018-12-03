@@ -1,0 +1,4 @@
+    public void remove() {
+        disposeHelpButton();
+        removeUiComponents();
+    }

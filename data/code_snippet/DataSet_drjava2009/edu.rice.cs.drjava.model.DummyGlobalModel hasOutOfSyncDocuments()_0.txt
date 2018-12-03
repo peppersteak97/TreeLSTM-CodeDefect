@@ -1,0 +1,3 @@
+  public boolean hasOutOfSyncDocuments() {
+    throw new UnsupportedOperationException("Tried to call hasOutOfSyncDocuments on a Dummy");
+  }

@@ -1,0 +1,3 @@
+    private synchronized void flagAsFailed() {
+        m_failed = true;
+    }

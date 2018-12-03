@@ -1,0 +1,4 @@
+    private void validateIgnoreLast() {
+        if (m_location.getIgnoreLastLines() < 0) {
+        }
+    }

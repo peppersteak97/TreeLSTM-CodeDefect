@@ -1,0 +1,1 @@
+  public boolean isDouble() { return (flags & DOUBLE) != 0; }

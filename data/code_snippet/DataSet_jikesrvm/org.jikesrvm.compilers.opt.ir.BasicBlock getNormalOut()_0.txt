@@ -1,0 +1,3 @@
+  public final BasicBlockEnumeration getNormalOut() {
+    return new NormalOutEdgeEnum(this);
+  }

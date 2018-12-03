@@ -1,0 +1,3 @@
+    public final String getTitle() {
+        return m_navigationControl.getTitle();
+    }

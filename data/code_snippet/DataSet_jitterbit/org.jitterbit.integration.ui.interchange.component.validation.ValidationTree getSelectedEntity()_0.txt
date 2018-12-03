@@ -1,0 +1,3 @@
+    IntegrationEntity getSelectedEntity() {
+        return m_selectedEntity;
+    }

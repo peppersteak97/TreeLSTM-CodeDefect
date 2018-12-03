@@ -1,0 +1,3 @@
+    public final String getFactoryName() {
+        return m_sFactoryName;
+    }

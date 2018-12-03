@@ -1,0 +1,15 @@
+    private JComponent createDisplayer() {
+        InputPanel ip = new InputPanel();
+        JLabel checkLabel = IntegrationUiStyleSheet.InputLabelText.makeJLabel(
+                        PackageResources.PortPanel.DEFAULT);
+        CheckBoxInputField checkInput = new CheckBoxInputField(
+        InputFieldLayoutUtils.layoutOneColumn(
+                        ip, 
+                        new InputField[] { checkInput, m_portNumberField }, 
+                        false,
+                        false);
+        JComponent display = InvisiblePanel.newPanel(ip.getUi());
+        String title = PackageResources.PortPanel.TITLE;
+        display.setBorder(IntegrationUiStyleSheet.getDefaultTitleBorder(title));
+        return display;
+    }

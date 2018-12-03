@@ -1,0 +1,3 @@
+    public int headIndex() {
+        return -1;
+    }

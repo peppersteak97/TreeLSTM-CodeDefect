@@ -1,0 +1,3 @@
+    public final WebServiceCall getWebServiceCall() {
+        return m_wsCall;
+    }

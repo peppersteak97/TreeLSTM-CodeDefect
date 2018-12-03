@@ -1,0 +1,3 @@
+    public BrowserObjectType getType() {
+        return BrowserObjectType.TABLE;
+    }

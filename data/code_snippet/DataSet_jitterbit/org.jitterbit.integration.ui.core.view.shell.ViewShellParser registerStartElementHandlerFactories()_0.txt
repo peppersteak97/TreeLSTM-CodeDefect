@@ -1,0 +1,22 @@
+    private void registerStartElementHandlerFactories() {
+        IStartElementHandlerFactory factory = new IStartElementHandlerFactory() {
+            public IStartElementHandler getHandler() {
+                return m_viewElementHandler;
+            }
+        };
+        addStartElementHandlerFactory(ViewElementHandler.VIEW, factory);
+
+        factory = new IStartElementHandlerFactory() {
+            public IStartElementHandler getHandler() {
+                return m_launcherHandler;
+            }
+        };
+        addStartElementHandlerFactory(LauncherElementHandler.LAUNCHER, factory);
+        
+        factory = new IStartElementHandlerFactory() {
+            public IStartElementHandler getHandler() {
+                return m_menuExtensionHandler;
+            }
+        };
+        addStartElementHandlerFactory(MenuExtensionElementHandler.MENU_EXTENSION, factory);
+    }

@@ -1,0 +1,14 @@
+    public void delete() {
+        if (!isDeleted()) {
+            if (getParent() != null) {
+                getParent().removeChild(this);
+            }
+            List<IntegrationEntity> children = new ArrayList<IntegrationEntity>(
+                            getAllChildren());
+            for (IntegrationEntity child : children) {
+                child.delete();
+            }
+            
+            super.delete();
+        }
+    }

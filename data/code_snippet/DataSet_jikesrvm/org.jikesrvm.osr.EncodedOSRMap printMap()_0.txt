@@ -1,0 +1,32 @@
+  public void printMap() {
+    if (lastEntry > 0) {
+      VM.sysWrite("On-stack-replacement maps:\n");
+    }
+    for (int i = 0; i <= lastEntry; i++) {
+      VM.sysWrite("Entry " + i + " : ");
+      int mapIndex = getOSRMapIndex(i);
+      VM.sysWrite("  mapIndex " + mapIndex + ", ");
+      int mcOffset = getMCOffset(i);
+      VM.sysWrite("  mc " + mcOffset + ", ");
+      int bcIndex = getBCIndex(i);
+      VM.sysWriteln("bc " + bcIndex);
+
+      /*
+      for (int j=0; j<osrMaps.length; j++) {
+        VM.sysWriteHex(osrMaps[j]);VM.sysWrite(" ");
+      }
+      VM.sysWrite("\n");
+      */
+
+      int regmap = osrMaps[mapIndex] & ~NEXT_BIT;
+      VM.sysWrite("regmap: " + Integer.toBinaryString(regmap));
+
+      OSRMapIterator iterator = new OSRMapIterator(osrMaps, mapIndex);
+
+      while (iterator.hasMore()) {
+        VM.sysWrite("(" + iterator.getValueType() + "," + iterator.getValue() + ")");
+        iterator.moveToNext();
+      }
+      VM.sysWrite("\n");
+    }
+  }

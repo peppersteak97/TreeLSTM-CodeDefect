@@ -1,0 +1,3 @@
+    public EntityType getType() {
+        return m_type;
+    }

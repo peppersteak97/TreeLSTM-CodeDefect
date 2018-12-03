@@ -1,0 +1,19 @@
+  public void testCancelSaveAsAlreadySaved() throws BadLocationException, IOException {
+    OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    final File file = tempFile();
+    
+    saveFile(doc, new FileSelector(file));
+    assertModified(false, doc);
+    assertContents(FOO_TEXT, doc);
+    assertEquals("contents of saved file", FOO_TEXT, IOUtil.toString(file));
+    
+    _model.addListener(new TestListener());
+    
+    changeDocumentText(BAR_TEXT, doc);
+    
+    saveFileAs(doc, new CancelingSelector());
+    
+    assertEquals("contents of saved file", FOO_TEXT, IOUtil.toString(file));
+    
+    _log.log("testCancelSaveAsAlreadySaved completed");
+  }

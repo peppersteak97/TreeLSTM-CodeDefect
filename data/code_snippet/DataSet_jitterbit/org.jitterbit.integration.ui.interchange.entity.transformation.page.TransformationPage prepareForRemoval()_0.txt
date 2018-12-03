@@ -1,0 +1,4 @@
+    protected void prepareForRemoval() {
+        getTreeMapper().prepareForRemoval();
+        super.prepareForRemoval();
+    }

@@ -1,0 +1,9 @@
+    public Entry[] getAllEntries() {
+        List<Entry> li = new ArrayList<Entry>();
+        for (Entry element : m_entries) {
+            if (element != null) {
+                li.add(element);
+            }
+        }
+        return li.toArray(new Entry[li.size()]);
+    }

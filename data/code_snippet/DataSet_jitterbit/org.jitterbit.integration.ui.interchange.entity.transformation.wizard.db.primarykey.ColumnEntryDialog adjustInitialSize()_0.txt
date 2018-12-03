@@ -1,0 +1,7 @@
+    private void adjustInitialSize() {
+        Dimension size = getSize();
+        if (size.height > 500) {
+            size.height = 500;
+            setSize(size);
+        }
+    }

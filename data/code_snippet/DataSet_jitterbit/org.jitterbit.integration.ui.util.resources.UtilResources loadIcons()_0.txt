@@ -1,0 +1,9 @@
+    private static IIconProvider loadIcons() {
+        try {
+            return new ResourceBundleIconProvider(
+        }
+        catch (Exception ex) {
+            handleLoadingException(ex);
+            return null;
+        }
+    }

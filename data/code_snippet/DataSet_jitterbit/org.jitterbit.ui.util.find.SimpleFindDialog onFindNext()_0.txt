@@ -1,0 +1,7 @@
+    private void onFindNext() {
+        if (!m_findListeners.isEmpty()) {
+            FindEvent e = getCurrentFindEvent();
+            for (IFindListener lst : m_findListeners)
+                lst.findNext(e);
+        }
+    }

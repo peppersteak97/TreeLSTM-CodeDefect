@@ -1,0 +1,6 @@
+	public void endConfigure() {
+		int newInterval = ((Integer)JSpinnerUtil.getValue(intervalSpinner)).intValue();
+		myOp.setInterval(newInterval);
+		int newMaxTries = ((Integer)JSpinnerUtil.getValue(maxTriesSpinner)).intValue();
+		myOp.setMaxTries(newMaxTries);
+	}

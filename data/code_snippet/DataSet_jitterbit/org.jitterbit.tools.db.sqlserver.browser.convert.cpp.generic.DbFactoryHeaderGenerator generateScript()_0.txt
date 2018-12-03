@@ -1,0 +1,8 @@
+    protected void generateScript() {
+        writeHeader();
+        startNamespace();
+        writeFactory();
+        endNamespace();
+        addLine();
+        addLine("#endif");
+    }

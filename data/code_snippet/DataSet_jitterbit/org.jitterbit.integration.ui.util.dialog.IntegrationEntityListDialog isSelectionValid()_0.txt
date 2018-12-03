@@ -1,0 +1,15 @@
+    protected boolean isSelectionValid() {
+        Object[] selected = m_list.getSelectedValues();
+        if (selected.length == 0) {
+            return false;
+        }
+        if (m_disabledEntities == null) {
+            return true;
+        }
+        for (Object o : selected) {
+            if (!m_disabledEntities.contains(o)) {
+                return true;
+            }
+        }
+        return false;
+    }

@@ -1,0 +1,9 @@
+  private void genSynchronizedMethodEpilogue() {
+    if (method.isStatic()) { 
+      Offset klassOffset = Offset.fromIntSignExtend(Statics.findOrCreateObjectLiteral(klass.getClassForType()));
+      asm.emitLAddrToc(T0, klassOffset);
+    } else { 
+      copyByLocation(ADDRESS_TYPE, getGeneralLocalLocation(0), ADDRESS_TYPE, (short)T0);
+    }
+    asm.emitBCCTRL();
+  }

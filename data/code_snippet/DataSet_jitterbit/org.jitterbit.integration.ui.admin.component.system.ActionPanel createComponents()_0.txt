@@ -1,0 +1,4 @@
+    private void createComponents() {
+        m_startEngineAction = new StartEngineAction();
+        m_stopEngineAction = new StopEngineAction();
+    }

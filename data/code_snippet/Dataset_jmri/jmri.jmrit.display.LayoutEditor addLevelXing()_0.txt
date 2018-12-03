@@ -1,0 +1,29 @@
+    public void addLevelXing() {
+		numLevelXings ++;
+		String name = "";
+		boolean duplicate = true;
+		while (duplicate) {
+			name = "X"+numLevelXings;
+			if (findLevelXingByName(name)==null) duplicate = false;
+			if (duplicate) numLevelXings ++;
+		}
+		LevelXing o = new LevelXing(name,currentPoint,this);
+		if (o!=null) {
+			xingList.add(o);
+			setDirty(true);
+			LayoutBlock b = provideLayoutBlock(blockIDField.getText().trim());
+			if (b!=null) {
+				o.setLayoutBlockAC(b);
+				o.setLayoutBlockBD(b);
+				String sensorName = (blockSensor.getText().trim());
+				if (sensorName.length()>0) {
+					if (!validateSensor(sensorName,b,this)) {
+						b.setOccupancySensorName("");
+					}
+					else {
+						blockSensor.setText( b.getOccupancySensorName() );
+					}
+				}
+			}
+		}
+	}

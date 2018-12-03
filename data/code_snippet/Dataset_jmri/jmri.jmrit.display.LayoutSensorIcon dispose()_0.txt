@@ -1,0 +1,11 @@
+    public void dispose() {
+        sensor.removePropertyChangeListener(this);
+        sensor = null;
+
+        active = null;
+        inactive = null;
+        inconsistent = null;
+        unknown = null;
+
+        super.dispose();
+    }

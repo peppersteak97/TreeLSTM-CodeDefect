@@ -1,0 +1,10 @@
+  public void freeResources() {
+    _docToTreeNode.clear();
+    _regionToTreeNode.clear();
+    for (Pair<Option<Color>, OptionListener<Color>> p: _colorOptionListeners) {
+      DrJava.getConfig().removeOptionListener(p.first(), p.second());
+    }
+    if (_lastIndex < OptionConstants.FIND_RESULTS_COLORS.length) {
+      --DefinitionsPane.FIND_RESULTS_PAINTERS_USAGE[_lastIndex];
+    }
+  }

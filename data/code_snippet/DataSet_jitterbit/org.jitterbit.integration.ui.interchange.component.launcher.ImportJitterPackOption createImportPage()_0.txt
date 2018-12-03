@@ -1,0 +1,25 @@
+    private IPage createImportPage() {
+        IImportJitterPackUi ui = createImportUi();
+        IUnpackCallback callback = new UnpackCallbackImpl();
+        return new ImportJitterPackPage(ui, callback) {
+
+            @Override
+            protected List<JButton> createToolBarButtons() {
+                List<JButton> original = super.createToolBarButtons();
+                List<JButton> buttons = new ArrayList<JButton>();
+                buttons.add(original.get(0));
+                buttons.add(getCancelButton());
+                buttons.add(null);
+                buttons.add(createHelpButton(getHelpId()));
+                return buttons;
+            }
+            
+            private JButton getCancelButton() {
+                CancelAction action = new CancelAction();
+                JButton button = createToolBarButton(action);
+                button.setFont(button.getFont().deriveFont(Font.BOLD));
+                button.setText((String) action.getValue(Action.NAME));
+                return button;
+            }
+        };
+    }

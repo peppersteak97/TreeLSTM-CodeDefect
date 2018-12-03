@@ -1,0 +1,12 @@
+  private String printBlocks() {
+    StringBuilder res = new StringBuilder();
+    for (Enumeration<BasicBlockLE> e = blocks.contents(); e.hasMoreElements();) {
+      BasicBlockLE b = e.nextElement();
+      if (b == currentBBLE) {
+        res.append("*");
+      }
+      res.append(b.toString());
+      res.append(" ");
+    }
+    return res.toString();
+  }

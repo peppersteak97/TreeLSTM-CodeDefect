@@ -1,0 +1,3 @@
+    private void resetStartTime() {
+        m_startTime.setToStartOfDay();
+    }

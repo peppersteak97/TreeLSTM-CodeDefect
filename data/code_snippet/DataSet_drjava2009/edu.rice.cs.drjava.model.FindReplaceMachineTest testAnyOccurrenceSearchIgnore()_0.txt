@@ -1,0 +1,54 @@
+  public void testAnyOccurrenceSearchIgnore() throws BadLocationException {
+    _doc.insertString(0, IGNORE_TEXT, null);
+    _initFrm(0);
+    _frm.setFindWord("lt");
+    _frm.setIgnoreCommentsAndStrings(true);
+    _frm.setSearchBackwards(false);
+    
+    _testFindNextSucceeds(_frm, 0, 12);
+    _testFindNextSucceeds(_frm, 0, 25);
+    _testFindNextSucceeds(_frm, 0, 40);
+    _testFindNextSucceeds(_frm, 0, 53);
+    _testFindNextSucceeds(_frm, 0, 66);
+    _testFindNextSucceeds(_frm, 0, 75);
+    _testFindNextSucceeds(_frm, 0, 85);
+    _testFindNextSucceeds(_frm, 0, 95);
+    _frm.setLastFindWord();
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 0, 83);
+    _testFindNextSucceeds(_frm, 0, 73);
+    _testFindNextSucceeds(_frm, 0, 64);
+    _testFindNextSucceeds(_frm, 0, 51);
+    _testFindNextSucceeds(_frm, 0, 38);
+    _testFindNextSucceeds(_frm, 0, 23);
+    _testFindNextSucceeds(_frm, 0, 10);
+    _testFindNextSucceeds(_frm, 0, 93);
+    
+    _frm.setSearchBackwards(false);
+    _frm.setFindWord("ment");
+    _testFindNextSucceeds(_frm, 0, 152);
+    _testFindNextSucceeds(_frm, 0, 206);
+    _testFindNextSucceeds(_frm, 0, 358);
+    
+    _frm.setLastFindWord();
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 0, 202);
+    _testFindNextSucceeds(_frm, 0, 148);
+    _testFindNextSucceeds(_frm, 0, 354);
+    
+    _frm.setSearchBackwards(false);
+    _frm.setFindWord("@");
+    _testFindNextSucceeds(_frm, 0, 291);
+    
+    _frm.setLastFindWord();
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 0, 290);
+    
+    _frm.setSearchBackwards(false);
+    _frm.setFindWord("ring");
+    _testFindNextSucceeds(_frm, 0, 246);
+    
+    _frm.setLastFindWord();
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 0, 242);
+  }

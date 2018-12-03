@@ -1,0 +1,3 @@
+  public ReducedModelState getStateAtCurrent() { 
+    return _reduced.getStateAtCurrent(); 
+  }

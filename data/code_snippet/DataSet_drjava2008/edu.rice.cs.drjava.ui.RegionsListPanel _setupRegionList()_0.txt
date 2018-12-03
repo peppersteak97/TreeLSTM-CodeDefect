@@ -1,0 +1,51 @@
+  private void _setupRegionList() {
+    _listModel = new DefaultListModel();
+    _list = new JList(_listModel) {
+      public String getToolTipText(MouseEvent evt) {
+        int index = locationToIndex(evt.getPoint());
+        
+        @SuppressWarnings("unchecked") RegionListUserObj<R> node = (RegionListUserObj<R>)getModel().getElementAt(index);
+        R r = node.region();
+        String tooltip = null;
+        
+        OpenDefinitionsDocument doc = r.getDocument();
+        try {
+          int lnr = doc.getLineOfOffset(r.getStartOffset())+1;
+          int startOffset = doc._getOffset(lnr - 3);
+          if (startOffset<0) { startOffset = 0; }
+          int endOffset = doc._getOffset(lnr + 3);
+          if (endOffset<0) { endOffset = doc.getLength()-1; }
+          
+          String s = doc.getText(startOffset, endOffset-startOffset);
+          
+          int rStart = r.getStartOffset() - startOffset;
+          if (rStart<0) { rStart = 0; }
+          int rEnd = r.getEndOffset() - startOffset;
+          if (rEnd>s.length()) { rEnd = s.length(); }
+          if ((rStart <= s.length()) && (rEnd >= rStart)) {
+            String t1 = StringOps.encodeHTML(s.substring(0, rStart));
+            String t2 = StringOps.encodeHTML(s.substring(rStart, rEnd));
+            String t3 = StringOps.encodeHTML(s.substring(rEnd));
+            s = t1 + "<font color=#ff0000>" + t2 + "</font>" + t3;
+          }
+          else {
+            s = StringOps.encodeHTML(s);
+          }
+          tooltip = "<html><pre>"+s+"</pre></html>";
+        }
+        catch(javax.swing.text.BadLocationException ble) { tooltip = null; /* just don't give a tool tip */ }
+        return tooltip;
+      }
+    };
+    _list.getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+    _list.addListSelectionListener(new ListSelectionListener() {
+      public void valueChanged(ListSelectionEvent e) { updateButtons(); }
+    });            
+    _list.addKeyListener(new KeyAdapter() {
+      public void keyPressed(KeyEvent e) { if (e.getKeyCode() == KeyEvent.VK_ENTER) performDefaultAction(); } 
+    });
+    _list.setFont(DrJava.getConfig().getSetting(OptionConstants.FONT_DOCLIST));
+    
+    _leftPane.add(new JScrollPane(_list));
+    ToolTipManager.sharedInstance().registerComponent(_list);
+  }

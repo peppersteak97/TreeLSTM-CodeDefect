@@ -1,0 +1,16 @@
+    private void openAsynchronously() {
+        IntegrationUi.getUi().startWait();
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        try {
+            Future<EntityPagePairList> f = w.submitForSequential(new PageCreationJob());
+            w.submitForSequential(new DisplayJob(f));
+        }
+        finally {
+            w.submitForSequential(new IUiWorker.ISafeRunnable() {
+                
+                public void run() {
+                    IntegrationUi.getUi().stopWait();
+                }
+            });
+        }
+    }

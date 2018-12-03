@@ -1,0 +1,5 @@
+  public void projectRunnableChanged() {
+    _lock.startRead();
+    try { for (GlobalModelListener l : _listeners) { l.projectRunnableChanged(); } }
+    finally { _lock.endRead(); }
+  }

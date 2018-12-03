@@ -1,0 +1,10 @@
+  private void _compile() {
+    _cleanUpDebugger();
+    hourglassOn();
+    try {
+      try { _model.getCompilerModel().compile(_model.getDocumentNavigator().getSelectedDocuments()); }
+      catch (FileMovedException fme) { _showFileMovedError(fme); }
+      catch (IOException ioe) { _showIOError(ioe); }
+    }
+    finally { hourglassOff();}
+  }

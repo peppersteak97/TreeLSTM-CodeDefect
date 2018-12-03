@@ -1,0 +1,5 @@
+    private void addTopPanel() {
+        m_topPanel.setBorder(BorderFactory.createEtchedBorder());
+        m_topPanel.addToParent(m_frame.getContentPane(), BorderLayout.NORTH);
+        m_topPanelAdded = true;
+    }

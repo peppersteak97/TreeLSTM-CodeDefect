@@ -1,0 +1,6 @@
+    private static void createSubDirs() throws AppDirInitializationException {
+        LogDirectory.init(s_directory);
+        ProjectDirectory.init(s_directory);
+        ServerDirectory.init(s_directory);
+        CacheDirectory.init(s_directory);
+    }

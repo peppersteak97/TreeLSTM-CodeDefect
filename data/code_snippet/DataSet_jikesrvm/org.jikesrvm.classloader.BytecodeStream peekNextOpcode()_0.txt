@@ -1,0 +1,4 @@
+  public final int peekNextOpcode() {
+    if (VM.VerifyAssertions) VM._assert(bcIndex < bcLength);
+    return getUnsignedByte(bcIndex);
+  }

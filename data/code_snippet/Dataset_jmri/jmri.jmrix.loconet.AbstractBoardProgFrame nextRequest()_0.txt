@@ -1,0 +1,29 @@
+    void nextRequest() {
+        if (read) {
+            status.setText("Reading opsw "+state);
+            LocoNetMessage l = new LocoNetMessage(6);
+            l.setOpCode(LnConstants.OPC_MULTI_SENSE);
+            int element = 0x62;
+            if ( (address&0x80) != 0 ) element|= 1;
+            l.setElement(1, element);
+            l.setElement(2, address&0x7F);
+            l.setElement(3, typeWord);
+            int loc = (state-1)/8;
+            int bit = (state-1)-loc*8;
+            l.setElement(4, loc*16+bit*2);
+            LnTrafficController.instance().sendLocoNetMessage(l);
+        } else {
+            status.setText("Writing opsw "+state);
+            LocoNetMessage l = new LocoNetMessage(6);
+            l.setOpCode(LnConstants.OPC_MULTI_SENSE);
+            int element = 0x72;
+            if ( (address&0x80) != 0 ) element|= 1;
+            l.setElement(1, element);
+            l.setElement(2, address&0x7F);
+            l.setElement(3, typeWord);
+            int loc = (state-1)/8;
+            int bit = (state-1)-loc*8;
+            l.setElement(4, loc*16+bit*2+(opsw[state]?1:0));
+            LnTrafficController.instance().sendLocoNetMessage(l);
+        }
+    }

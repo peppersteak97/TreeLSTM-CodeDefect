@@ -1,0 +1,9 @@
+    private void setUpListeners() {
+        m_sourceList.getJList().addListSelectionListener(
+                new SourceListSelectionHandler());
+        m_targetList.getJList().addListSelectionListener(
+                new TargetListSelectionHandler());
+        
+        new DoubleClickHandler(m_sourceList.getJList(), m_sourceToTargetAction);
+        new DoubleClickHandler(m_targetList.getJList(), m_targetToSourceAction);
+    }

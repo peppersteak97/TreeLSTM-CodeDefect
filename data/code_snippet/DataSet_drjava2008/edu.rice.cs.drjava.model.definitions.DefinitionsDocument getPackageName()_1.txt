@@ -1,0 +1,17 @@
+  public String getPackageName() {
+    Reader r;
+    try { return new Parser(r).packageDeclaration().getName(); }
+    catch (ParseException e) { return ""; }
+    catch (TokenMgrError e) { return ""; }
+    catch (Error e) {
+      String msg = e.getMessage();
+      if (msg != null && msg.startsWith("Invalid escape character")) {
+        return "";
+      }
+      else { throw e; }
+    }
+    finally {
+      try { r.close(); }
+      catch (IOException e) { /* ignore */ }
+    }
+  }

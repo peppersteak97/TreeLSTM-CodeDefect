@@ -1,0 +1,34 @@
+  public Iterable<File> getClassPath() {
+    Iterable<File> result = IterUtil.empty();
+    
+    if (isProjectActive()) {
+      File buildDir = getBuildDirectory();
+      if (buildDir != null) { result = IterUtil.compose(result, buildDir); }
+      
+      /* We prefer to assume the project root is the project's source root, rather than
+       * checking *every* file in the project for its source root.  This is a bit problematic,
+       * because "Compile Project" won't care if the user has multiple source roots (or even just a
+       * single "src" subdirectory), and the user in this situation (assuming the build dir is 
+       * null) wouldn't notice a problem until trying to access the compiled classes in the 
+       * Interactions.
+       */
+      File projRoot = getProjectRoot();
+      if (projRoot != null) { result = IterUtil.compose(result, projRoot); }
+      
+      Iterable<AbsRelFile> projectExtras = getExtraClassPath();
+      if (projectExtras != null) { result = IterUtil.compose(result, projectExtras); }
+    }
+    else { result = IterUtil.compose(result, getSourceRootSet()); }
+    
+    Vector<File> globalExtras = DrJava.getConfig().getSetting(EXTRA_CLASSPATH);
+    if (globalExtras != null) { result = IterUtil.compose(result, globalExtras); }
+    
+    /* We must add JUnit to the class path.  We do so by including the current JVM's class path.
+     * This is not ideal, because all other classes on the current class path (including all of DrJava's
+     * internal classes) are also included.  But we're probably stuck doing something like this if we
+     * want to continue bundling JUnit with DrJava.
+     */
+    result = IterUtil.compose(result, ReflectUtil.SYSTEM_CLASS_PATH);
+    
+    return result;
+  }

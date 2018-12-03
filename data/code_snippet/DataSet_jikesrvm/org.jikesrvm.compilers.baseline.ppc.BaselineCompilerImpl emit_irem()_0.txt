@@ -1,0 +1,6 @@
+  protected final void emit_irem() {
+    popInt(T1);
+    popInt(T0);
+    asm.emitTWEQ0(T1);
+    pushInt(T1);
+  }

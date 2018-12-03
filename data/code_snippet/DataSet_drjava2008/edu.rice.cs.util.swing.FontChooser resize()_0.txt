@@ -1,0 +1,16 @@
+  private void resize() {
+    int w = getWidth();
+    int h = getHeight();
+    double wf = (double) w / 425;
+    int w2 = (int) (80 * wf);
+    int w3 = (int) (50 * wf);
+    if (w3 < 30) w3 = 30;
+    int w1 = w - w2 - w3 - 25;
+    _fontList.setBounds(5, 5, w1, h - 91);
+    _styleList.setBounds(w1 + 10, 5, w2, h - 91);
+    _sizeList.setBounds(w1 + w2 + 15, 5, w3, h - 91);
+    _sampleText.setBounds(10, h - 78, w - 20, 45);
+    _okButton.setBounds(w - 165, h - 55, 70, 20);
+    _cancelButton.setBounds(w - 81, h - 55, 70, 20);
+    validate();
+  }

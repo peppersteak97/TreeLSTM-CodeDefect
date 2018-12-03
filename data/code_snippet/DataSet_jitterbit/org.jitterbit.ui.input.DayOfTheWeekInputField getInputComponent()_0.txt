@@ -1,0 +1,3 @@
+    public DayOfTheWeekCheckBoxPanel getInputComponent() {
+        return (DayOfTheWeekCheckBoxPanel) super.getInputComponent();
+    }

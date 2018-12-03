@@ -1,0 +1,6 @@
+    public static synchronized IServerInformationStore getInformationStore() {
+        if (s_infoStore == null) {
+            s_infoStore = new ServerInfoStore();
+        }
+        return s_infoStore;
+    }

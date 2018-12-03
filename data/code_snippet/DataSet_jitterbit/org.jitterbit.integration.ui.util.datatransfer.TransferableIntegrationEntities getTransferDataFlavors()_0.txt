@@ -1,0 +1,3 @@
+    public DataFlavor[] getTransferDataFlavors() {
+        return s_flavors;
+    }

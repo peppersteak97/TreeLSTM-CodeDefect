@@ -1,0 +1,3 @@
+    public Source getDisplayedObject() {
+        return m_source;
+    }

@@ -1,0 +1,3 @@
+  public boolean resultMayEscapeThread() {
+    return (escapeInfo & RES_ESCAPE) != 0L;
+  }

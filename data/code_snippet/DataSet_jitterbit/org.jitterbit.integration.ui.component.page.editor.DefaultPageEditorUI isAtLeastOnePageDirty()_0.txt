@@ -1,0 +1,13 @@
+    boolean isAtLeastOnePageDirty() {
+        for (IPage p : m_pagesInTabPane) {
+            if (p.isDirty()) {
+                return true;
+            }
+        }
+        for (IPage page : m_detachedPages.keySet()) {
+            if (page.isDirty()) {
+                return true;
+            }
+        }
+        return false;
+    }

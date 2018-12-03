@@ -1,0 +1,14 @@
+    void setOutput() {
+        boolean bo20 = ( bo[20].getKnownState() == Sensor.ACTIVE);
+        boolean bo21 = ( bo[21].getKnownState() == Sensor.ACTIVE);
+        boolean tu16 = ( tu[16].getKnownState() == Sensor.ACTIVE);
+        boolean si21 = ( si[21].getCommandedState() == THROWN);
+
+        int value = GREEN;
+        if ( bo20 && !tu16 )
+            value = RED;
+        else if ( bo21 && tu16 )
+            value = RED;
+
+        sig.setAppearance(value);
+    }

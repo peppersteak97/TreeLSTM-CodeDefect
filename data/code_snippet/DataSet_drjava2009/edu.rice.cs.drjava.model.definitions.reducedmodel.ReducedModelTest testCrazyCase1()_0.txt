@@ -1,0 +1,24 @@
+  public void testCrazyCase1() {
+    model1.insertChar('/');
+    insertGap(model1, 4);
+    model1.insertChar('*');
+    model1.insertChar('/');
+    model1.move(-1);
+    assertEquals("#0.0", "/", model1.currentToken().getType());
+    model1.move(-1);
+    assertEquals("#0.1", "*", model1.currentToken().getType());
+    model1.move(1);
+    model1.insertChar('/');
+    assertEquals("#1.0", 2, model1.currentToken().getSize());
+    model1.move(-2);
+    assertEquals("#1.0", "*", model1.currentToken().getType());
+    model1.move(-4);
+    model1.insertChar('*');
+    model1.move(-2);
+    assertEquals("#2.0", "/*", model1.currentToken().getType());
+    assertEquals("#2.1", FREE, model1.currentToken().getState());
+    model1.move(6);
+    assertEquals("#2.2", "*/", model1.currentToken().getType());
+    assertEquals("#2.3", FREE, model1.currentToken().getState());
+    assertEquals("#2.4", INSIDE_BLOCK_COMMENT, model1.getStateAtCurrent());
+  }

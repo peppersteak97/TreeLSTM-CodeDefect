@@ -1,0 +1,5 @@
+  public final RVMType getPrimitiveArrayType() {
+    if (VM.VerifyAssertions) VM._assert(opcode == JBC_newarray);
+    int etype = readUnsignedByte();
+    return RVMArray.getPrimitiveArrayType(etype);
+  }

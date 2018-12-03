@@ -1,0 +1,5 @@
+  protected void _init() {
+    _addDocumentStyles();
+    _setupModel();
+    _setupView();
+  }

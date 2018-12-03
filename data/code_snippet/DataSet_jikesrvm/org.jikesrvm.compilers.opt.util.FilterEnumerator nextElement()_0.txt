@@ -1,0 +1,8 @@
+  public T nextElement() {
+    if (done) {
+      throw new NoSuchElementException();
+    }
+    S o = next;
+    advance();
+    return f.map(o);
+  }

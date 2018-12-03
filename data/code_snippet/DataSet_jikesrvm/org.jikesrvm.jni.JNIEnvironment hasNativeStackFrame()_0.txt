@@ -1,0 +1,3 @@
+  public boolean hasNativeStackFrame() {
+    return alwaysHasNativeFrame || JNIRefsTop != 0;
+  }

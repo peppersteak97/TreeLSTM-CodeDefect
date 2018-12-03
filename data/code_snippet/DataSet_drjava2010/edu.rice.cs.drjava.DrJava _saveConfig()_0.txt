@@ -1,0 +1,14 @@
+  protected static void _saveConfig() {
+    try { getConfig().saveConfiguration(); }
+    catch(IOException e) {
+      JOptionPane.showMessageDialog(null, 
+                                    "Could not save the location of tools.jar in \n" +
+                                    "the '.drjava' file in your home directory. \n" +
+                                    "Another process may be using the file.\n\n" + e,
+                                    "Could Not Save Changes",
+                                    JOptionPane.ERROR_MESSAGE);
+      DrJavaErrorHandler.record(new UnexpectedException(e, "Could not save the location of tools.jar in \n" +
+                                                        "the '.drjava' file in your home directory. \n" +
+                                                        "Another process may be using the file.\n\n"));
+    }
+  }

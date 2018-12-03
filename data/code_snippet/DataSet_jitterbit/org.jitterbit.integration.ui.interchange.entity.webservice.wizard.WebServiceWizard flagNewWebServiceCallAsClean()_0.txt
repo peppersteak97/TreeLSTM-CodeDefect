@@ -1,0 +1,11 @@
+    private void flagNewWebServiceCallAsClean() {
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                IPage page = m_view.getPageForDisplayedObject(m_newWebServiceCallUi);
+                if (page instanceof GenericPage) {
+                    ((GenericPage) page).setClean();
+                }
+            }
+        });
+    }

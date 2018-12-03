@@ -1,0 +1,4 @@
+  public boolean updateConfig() {
+    if (! _font.equals(DrJava.getConfig().getSetting(_option))) DrJava.getConfig().setSetting(_option, _font);
+    return true;
+  }

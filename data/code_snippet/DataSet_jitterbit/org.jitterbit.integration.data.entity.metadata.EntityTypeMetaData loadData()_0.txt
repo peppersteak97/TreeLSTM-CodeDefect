@@ -1,0 +1,5 @@
+    private void loadData() throws EntityTypeMetaDataXmlException {
+        m_xmlLoader = new EntityTypeMetaDataXmlLoader();
+        m_xmlLoader.load();
+        loadIcons();
+    }

@@ -1,0 +1,39 @@
+  public void testGetMultipleSourceRootsDefaultPackage() throws BadLocationException, IOException {
+    debug.logStart();
+    
+    File baseTempDir = tempDirectory();
+    
+    File subdir1 = makeCanonical(new File(baseTempDir, "a"));
+    subdir1.mkdir();
+    File subdir2 = makeCanonical(new File(baseTempDir, "b"));
+    subdir2.mkdir();
+    
+    File file1 = makeCanonical(new File(subdir1, "DrJavaTestFoo.java"));
+    OpenDefinitionsDocument doc1 = setupDocument(FOO_TEXT);
+    saveFileAs(doc1, new FileSelector(file1));
+    
+    File file2 = makeCanonical(new File(subdir1, "Bar.java"));
+    OpenDefinitionsDocument doc2 = setupDocument(BAR_TEXT);
+    saveFileAs(doc2, new FileSelector(file2));
+    
+    File file3 = makeCanonical(new File(subdir2, "Bar.java"));
+    OpenDefinitionsDocument doc3 = setupDocument(BAR_TEXT);
+    saveFileAs(doc3, new FileSelector(file3));
+    
+    Utilities.clearEventQueue();
+    
+    _model.addListener(new TestListener());
+    
+    Iterable<File> roots = _model.getSourceRootSet();
+    assertEquals("number of source roots", 2, IterUtil.sizeOf(roots));
+    Iterator<File> i = roots.iterator();
+    File root1 = i.next();
+    File root2 = i.next();
+    
+    if (!( (root1.equals(subdir1) && root2.equals(subdir2)) || (root1.equals(subdir2) && root2.equals(subdir1)) )) {
+      fail("source roots did not match");
+    }
+    
+    _log.log("testGetMultipleSourceRootsDefaultPackage() completed");
+    debug.logEnd();
+  }

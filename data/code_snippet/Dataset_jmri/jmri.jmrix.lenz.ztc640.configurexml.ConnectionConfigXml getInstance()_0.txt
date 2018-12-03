@@ -1,0 +1,3 @@
+    protected void getInstance() {
+        adapter = ZTC640Adapter.instance();
+    }

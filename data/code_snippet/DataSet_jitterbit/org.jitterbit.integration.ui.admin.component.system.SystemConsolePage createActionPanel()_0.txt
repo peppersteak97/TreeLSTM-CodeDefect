@@ -1,0 +1,3 @@
+    private void createActionPanel() {
+        m_actionPanel = new ActionPanel();
+    }

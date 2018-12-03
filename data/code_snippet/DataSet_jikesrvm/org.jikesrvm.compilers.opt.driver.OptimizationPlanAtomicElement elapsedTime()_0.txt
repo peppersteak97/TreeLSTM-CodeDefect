@@ -1,0 +1,3 @@
+  public double elapsedTime() {
+    return Time.nanosToMillis(phaseNanos);
+  }

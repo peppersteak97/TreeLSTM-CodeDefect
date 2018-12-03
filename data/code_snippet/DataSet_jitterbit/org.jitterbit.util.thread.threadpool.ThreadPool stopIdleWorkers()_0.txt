@@ -1,0 +1,5 @@
+    public void stopIdleWorkers() {
+        for (Iterator<?> it = m_idleWorkers.getAll().iterator(); it.hasNext(); ) {
+            ((ThreadPoolWorker)it.next()).requestStop();
+        }
+    }

@@ -1,0 +1,7 @@
+    public void release() {
+		if (!active) {
+			if (log.isDebugEnabled())
+				log.warn("release called when not active");
+		} else
+			dispose();
+	}

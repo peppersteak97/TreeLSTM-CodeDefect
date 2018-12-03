@@ -1,0 +1,3 @@
+    public int timesVisited() {
+        return m_timesVisited;
+    }

@@ -1,0 +1,3 @@
+        if (byteNumber > (numOutputCards()*(bitsPerCard/8)) ) {
+            warn("TCH Tech NIC - Output lines out-of-range for defined node");
+        }

@@ -1,0 +1,3 @@
+    public LogFilters getFilters() {
+        return (LogFilters)super.getFilters();
+    }

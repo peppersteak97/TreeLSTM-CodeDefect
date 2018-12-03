@@ -1,0 +1,44 @@
+	public void reportError() {
+		switch (errorCode){
+
+		case ERROR_LOCO_IN_USE: 
+			JOptionPane.showMessageDialog(NceConsistEditFrame.this, "Loco address "
+					+ locoNumInUse + " is part of consist " + consistNumVerify,
+					"NCE Consist", JOptionPane.ERROR_MESSAGE);
+			break;
+
+		case ERROR_NO_EMPTY_CONSIST:
+			JOptionPane.showMessageDialog(NceConsistEditFrame.this,
+					"There are no empty consists, please clear a consist and try again",
+					"NCE Consist", JOptionPane.ERROR_MESSAGE);
+			break;
+			
+		case ERROR_CONSIST_DOESNT_MATCH:
+			if (JOptionPane.showConfirmDialog(null,
+					"The roster consist does not match the consist in NCE memory, continue loading?"
+					+ getRosterText(cre),
+					"Continue loading consist from roster?",
+					JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
+				if (JOptionPane.showConfirmDialog(null,
+						"Consist " + cre.getId() + " was assigned NCE consist number " + cre.getConsistNumber() +
+						"\n Do you want to reset it so you can load next time?",
+						"Reset NCE consist number?",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+					cre.setConsistNumber(CLEARED);
+				}
+				changeButtons (false);
+				saveLoadButton.setEnabled(canLoad());
+				break;
+			}
+			changeButtons (true);
+			loadFullRoster (cre);
+			saveLoadButton.setEnabled(canLoad());
+			break;
+		case WARN_CONSIST_ALREADY_LOADED:
+			JOptionPane.showMessageDialog(NceConsistEditFrame.this,
+					"Consist has already been loaded!",
+					"NCE Consist", JOptionPane.WARNING_MESSAGE);
+			break;
+		}
+		errorCode = 0;
+	}

@@ -1,0 +1,3 @@
+  public TreeNode nextElement() {
+    return iterator.next();
+  }

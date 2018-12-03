@@ -1,0 +1,4 @@
+  public void testGetIndentOfCurrStmtEndOfDoc() throws BadLocationException {
+    _setDocText("foo.\n");
+    assertEquals("cursor at end of document, no indent", 0, _getIndentOfCurrStmt(5));
+  }

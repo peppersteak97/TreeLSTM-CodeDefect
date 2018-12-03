@@ -1,0 +1,4 @@
+    int sensorState() {
+        if (sensor != null) return sensor.getKnownState();
+        else return Sensor.UNKNOWN;
+    }

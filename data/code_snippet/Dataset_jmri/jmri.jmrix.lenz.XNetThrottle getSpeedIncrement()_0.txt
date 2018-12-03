@@ -1,0 +1,4 @@
+    public float getSpeedIncrement()
+    {
+        return speedIncrement;
+    }

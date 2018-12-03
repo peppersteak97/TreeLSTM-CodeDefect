@@ -1,0 +1,25 @@
+  private static ArchitectureSpecific.CodeArray generateSaveThreadStateInstructions() {
+    if (VM.VerifyAssertions) {
+    }
+    Assembler asm = new ArchitectureSpecific.Assembler(0);
+    Offset ipOffset = ArchEntrypoints.registersIPField.getOffset();
+    Offset fpOffset = ArchEntrypoints.registersFPField.getOffset();
+    Offset gprsOffset = ArchEntrypoints.registersGPRsField.getOffset();
+    if (VM.BuildFor32Addr) {
+      asm.emitMOV_Reg_RegDisp(S0, TR, ArchEntrypoints.framePointerField.getOffset());
+    } else {
+      asm.emitMOV_Reg_RegDisp_Quad(S0, TR, ArchEntrypoints.framePointerField.getOffset());
+    }
+    if (VM.BuildFor32Addr) {
+      for (int i = 0; i < NUM_NONVOLATILE_GPRS; i++) {
+        asm.emitMOV_RegDisp_Reg(S0,
+                                Offset.fromIntZeroExtend(NONVOLATILE_GPRS[i].value() << LG_WORDSIZE),
+      }
+    } else {
+      for (int i = 0; i < NUM_NONVOLATILE_GPRS; i++) {
+        asm.emitMOV_RegDisp_Reg_Quad(S0,
+                                     Offset.fromIntZeroExtend(NONVOLATILE_GPRS[i].value() << LG_WORDSIZE),
+      }
+    }
+    return asm.getMachineCodes();
+  }

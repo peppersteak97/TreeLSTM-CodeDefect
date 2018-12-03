@@ -1,0 +1,4 @@
+  public Tokens.SExpToken peek() {
+    if (buffer == null) buffer = readToken();
+    return buffer;
+  }

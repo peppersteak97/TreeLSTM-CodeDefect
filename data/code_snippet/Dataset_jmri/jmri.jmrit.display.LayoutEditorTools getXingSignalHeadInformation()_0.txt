@@ -1,0 +1,20 @@
+	private boolean getXingSignalHeadInformation() {
+		aHead = getSignalHeadFromEntry(aField,false,setSignalsAtXingFrame);
+		bHead = getSignalHeadFromEntry(bField,false,setSignalsAtXingFrame);
+		cHead = getSignalHeadFromEntry(cField,false,setSignalsAtXingFrame);
+		dHead = getSignalHeadFromEntry(dField,false,setSignalsAtXingFrame);
+		if ( ((aHead!=null) && (cHead==null)) || ((aHead==null) && (cHead!=null)) ||
+				((bHead!=null) && (dHead==null)) || ((bHead==null) && (dHead!=null)) ) {
+			JOptionPane.showMessageDialog(setSignalsAtXingFrame,
+					rb.getString("SignalsError14"),
+						rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		if ( (aHead==null) && (bHead==null) && (cHead==null) && (dHead==null) ) {
+			JOptionPane.showMessageDialog(setSignalsAtXingFrame,
+					rb.getString("SignalsError12"),
+						rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
+	}

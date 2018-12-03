@@ -1,0 +1,3 @@
+  public static BranchProfileOperand likely() {
+    return new BranchProfileOperand(LIKELY);
+  }

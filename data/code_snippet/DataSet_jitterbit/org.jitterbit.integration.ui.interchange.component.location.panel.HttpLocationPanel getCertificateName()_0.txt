@@ -1,0 +1,3 @@
+    private String getCertificateName() {
+        return m_certificate.getValue().trim();
+    }

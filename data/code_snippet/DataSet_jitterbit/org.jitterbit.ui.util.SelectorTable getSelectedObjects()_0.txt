@@ -1,0 +1,9 @@
+    public List<E> getSelectedObjects() {
+        List<E> selected = new ArrayList<E>();
+        for (int n = 0, rows = getRowCount(); n < rows; ++n) {
+            if (((Boolean) getValueAt(n, 0)).booleanValue()) {
+                selected.add((E) getValueAt(n, 1));
+            }
+        }
+        return selected;
+    }

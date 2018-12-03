@@ -1,0 +1,33 @@
+  public void testCancelOpenFile() throws BadLocationException, IOException {
+    
+    OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    assertNumOpenDocs(2);
+    
+    TestListener listener = new TestIOListener() {
+      public synchronized boolean canAbandonFile(OpenDefinitionsDocument doc) {
+        canAbandonCount++;
+      }
+    };
+    
+    _model.addListener(listener);
+    try {
+      _model.openFile(new CancelingSelector());
+    }
+    catch (AlreadyOpenException aoe) {
+      fail("File was already open!");
+    }
+    catch (OperationCanceledException oce) {
+    }
+    finally {
+      assertNumOpenDocs(2);
+      listener.assertOpenCount(0);
+      listener.assertCloseCount(0);
+      
+      List<OpenDefinitionsDocument> docs = _model.getOpenDefinitionsDocuments();
+      doc = docs.get(1);
+      assertModified(true, doc);
+      assertContents(FOO_TEXT, doc);
+    }
+    
+    _log.log("testCancelOpenFile completed");
+  }

@@ -1,0 +1,1 @@
+	public Point getLocaction() { return new Point(m_ix, m_iy); }

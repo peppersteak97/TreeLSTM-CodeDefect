@@ -1,0 +1,13 @@
+  void showGraphStats() {
+    System.out.println("graph has " + equations.numberOfNodes() + " nodes");
+    int count = 0;
+    for (Enumeration<GraphNode> e = equations.enumerateNodes(); e.hasMoreElements();) {
+      GraphNode eq = e.nextElement();
+      GraphNodeEnumeration outs = eq.outNodes();
+      while (outs.hasMoreElements()) {
+        count++;
+        outs.next();
+      }
+    }
+    System.out.println("graph has " + count + " edges");
+  }

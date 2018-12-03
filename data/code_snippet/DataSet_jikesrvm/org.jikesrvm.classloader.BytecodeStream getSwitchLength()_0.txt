@@ -1,0 +1,4 @@
+  public final int getSwitchLength() {
+    if (VM.VerifyAssertions) VM._assert(opcode == JBC_lookupswitch);
+    return readSignedInt();
+  }

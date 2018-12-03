@@ -1,0 +1,11 @@
+    public String toString() {
+        switch (this) {
+        case Dummy0:
+        case Dummy5:
+        case Dummy7:
+            throw new UnsupportedOperationException(
+                            "Cannot use the dummy DataLocationTypes.");
+        default:
+            return super.toString();
+        }
+    }

@@ -1,0 +1,4 @@
+    public boolean isServiceModePossible() {
+      if (mode == SERVICE) {return true;}
+      else return false;
+    }

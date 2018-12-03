@@ -1,0 +1,1 @@
+	public boolean wasResizedOnPaint() { return m_bWasResized; }

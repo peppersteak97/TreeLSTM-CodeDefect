@@ -1,0 +1,3 @@
+	protected KongaGraph getGraph() {
+		return m_graph;
+	}

@@ -1,0 +1,3 @@
+    public boolean isCaseSensitive() {
+        return m_bMatchCase;
+    }

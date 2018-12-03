@@ -1,0 +1,1 @@
+  public boolean isMacPlatform() { return false; }

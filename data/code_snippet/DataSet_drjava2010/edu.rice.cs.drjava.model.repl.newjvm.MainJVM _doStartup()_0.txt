@@ -1,0 +1,25 @@
+  private void _doStartup() {
+    File dir = _workingDir;
+    if (dir == FileOps.NULL_FILE) { dir = IOUtil.WORKING_DIRECTORY; }
+
+    List<String> jvmArgs = new ArrayList<String>();
+    if (_allowAssertions) { jvmArgs.add("-ea"); }
+    int debugPort = _getDebugPort();
+    if (debugPort > -1) {
+      jvmArgs.add("-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=" + debugPort);
+      jvmArgs.add("-Xdebug");
+      jvmArgs.add("-Xnoagent");
+      jvmArgs.add("-Djava.compiler=NONE");
+    }
+    String slaveMemory = DrJava.getConfig().getSetting(OptionConstants.SLAVE_JVM_XMX);
+    if (!"".equals(slaveMemory) && !OptionConstants.heapSizeChoices.get(0).equals(slaveMemory)) {
+      jvmArgs.add("-Xmx" + slaveMemory + "M");
+    }
+    String slaveArgs = DrJava.getConfig().getSetting(OptionConstants.SLAVE_JVM_ARGS);
+    if (PlatformFactory.ONLY.isMacPlatform()) {
+      jvmArgs.add("-Xdock:name=Interactions");
+    }
+    jvmArgs.addAll(ArgumentTokenizer.tokenize(slaveArgs));
+    
+    invokeSlave(new JVMBuilder(_startupClassPath).directory(dir).jvmArguments(jvmArgs));
+  }

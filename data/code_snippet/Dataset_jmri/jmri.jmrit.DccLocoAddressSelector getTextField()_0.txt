@@ -1,0 +1,8 @@
+    public JTextField getTextField() { 
+        if (textUsed) {
+            reportError("getTextField invoked after text already requested");
+            return null;
+        }
+        textUsed = true;
+        return text;
+    }     

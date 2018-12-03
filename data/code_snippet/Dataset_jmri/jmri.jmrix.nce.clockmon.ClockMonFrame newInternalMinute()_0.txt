@@ -1,0 +1,13 @@
+    public void newInternalMinute()
+    {
+        //		 if (log.isDebugEnabled()) {
+        //	log.debug("newInternalMinute clockMode: " + clockMode + " nceInit: " + nceSyncInitStateCounter + " nceRun: " + nceSyncRunStateCounter);
+        //}
+        //NCE clock is running
+        if (lastClockReadPacket != null && lastClockReadPacket.getElement(CS_CLOCK_STATUS) == 0) {
+            if (clockMode == SYNCMODE_INTERNAL_MASTER) {
+                // start alarm timer
+                alarmSyncStart();
+            }
+        }
+    }

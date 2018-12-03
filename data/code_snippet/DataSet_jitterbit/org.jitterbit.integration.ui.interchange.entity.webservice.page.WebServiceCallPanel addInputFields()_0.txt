@@ -1,0 +1,6 @@
+    private void addInputFields() {
+        addInputField(m_nameField, m_nameField, m_nameField);
+        addInputPanel(m_detailsPanel);
+        addInputPanel(m_securityPanel);
+        addInputPanel(m_restrictionsPanel);
+    }

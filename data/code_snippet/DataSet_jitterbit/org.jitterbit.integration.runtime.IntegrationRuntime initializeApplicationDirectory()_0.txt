@@ -1,0 +1,12 @@
+    private void initializeApplicationDirectory() {
+        try {
+            if (!ApplicationDirectory.init(IntegrationUi.getAppDirLocationProvider())) {
+                Runtime.getRuntime().exit(1);
+            }
+            ApplicationDirectory.checkReadMe();
+        }
+        catch (AppDirInitializationException e) {
+            SplashScreen.destroy();
+            Runtime.getRuntime().exit(1);
+        }
+    }

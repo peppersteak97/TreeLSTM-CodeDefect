@@ -1,0 +1,3 @@
+    public Action getMoveUpAction() {
+        return m_moveUpAction;
+    }

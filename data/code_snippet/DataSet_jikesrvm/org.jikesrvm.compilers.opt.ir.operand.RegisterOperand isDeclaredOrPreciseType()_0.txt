@@ -1,0 +1,1 @@
+  public boolean isDeclaredOrPreciseType() { return (flags & (DECLARED_TYPE | PRECISE_TYPE)) != 0; }

@@ -1,0 +1,4 @@
+	protected void onClose() {
+        m_okWasPressed = false;
+		onDialogClose();
+	}

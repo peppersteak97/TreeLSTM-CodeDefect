@@ -1,0 +1,8 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder(m_parentColumn.getDatabaseObject().getName());
+        sb.append(m_parentColumn.getName());
+        sb.append(TableRelationship.RELATIONSHIP_INDICATOR);
+        sb.append(m_childColumn.getDatabaseObject().getName());
+        sb.append(m_childColumn.getName());
+        return sb.toString();
+    }

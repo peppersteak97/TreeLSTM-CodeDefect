@@ -1,0 +1,4 @@
+  public final int getOptCompiledLevel() {
+    if (!isOptCompiled()) return -1;
+    return ((OptCompiledMethod) cm).getOptLevel();
+  }

@@ -1,0 +1,26 @@
+    private List<IListItem> getAffectedItems() {
+        List<IIntegrationEntityUiDelegate> entityList = new ArrayList<IIntegrationEntityUiDelegate>();
+        List<IntegrationEntityId> unknown = new ArrayList<IntegrationEntityId>();
+        if (entitiesWithWarningsExist()) {
+            Set<IntegrationEntityId> entityIDs = new HashSet<IntegrationEntityId>(m_itemWarnings.keySet());
+            entityIDs.addAll(m_itemRenames.keySet());
+            for (IntegrationEntityId id : entityIDs) {
+                IIntegrationEntityUiDelegate uiDel = getEntity(id);
+                if (uiDel != null) {
+                    entityList.add(uiDel);
+                }
+                else {
+                    unknown.add(id);
+                }
+            }
+            Collections.sort(entityList, Comparators.UI_DELEGATE_BY_CLASS_THEN_NAME);
+        }
+        List<IListItem> listItems = new ArrayList<IListItem>();
+        for (IIntegrationEntityUiDelegate e : entityList) {
+            listItems.add(new IntegrationEntityListItem(e));
+        }
+        for (IntegrationEntityId uid : unknown) {
+            listItems.add(new UnknownEntityListItem(uid));
+        }
+        return listItems;
+    }

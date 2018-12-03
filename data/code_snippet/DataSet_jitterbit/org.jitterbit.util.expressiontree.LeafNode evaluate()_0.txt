@@ -1,0 +1,5 @@
+	public IOperand evaluate() {
+		if( m_value.isConstant() )
+			return m_value;
+		return m_value = m_operandFactory.getOperand(m_value.getName());
+	}

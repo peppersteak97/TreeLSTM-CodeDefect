@@ -1,0 +1,15 @@
+    protected void copyToOpsw() {
+        setSpeedFromDisplay(3, slow1);
+        opsw[6] = rev1.isSelected();
+        setSpeedFromDisplay(11, slow2);
+        opsw[14] = rev2.isSelected();
+        setSpeedFromDisplay(19, slow3);
+        opsw[22] = rev3.isSelected();
+        setSpeedFromDisplay(27, slow4);
+        opsw[30] = rev4.isSelected();
+        int index = current.getSelectedIndex();
+        opsw[2] = ((index&0x04)!=0) ? true : false;
+        opsw[1] = ((index&0x02)!=0) ? true : false;
+        opsw[9] = ((index&0x01)!=0) ? false : true;
+
+    }

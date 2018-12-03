@@ -1,0 +1,12 @@
+    private IPage getInitiallyFocusedPage() {
+        IPage p = m_view.getActivePage();
+        if (p != null) {
+            return p;
+        }
+        if (m_view.getNumberOfPages() > 0) {
+            for (IPage page : m_view.getOpenPages()) {
+                return page;
+            }
+        } 
+        return null;
+    }

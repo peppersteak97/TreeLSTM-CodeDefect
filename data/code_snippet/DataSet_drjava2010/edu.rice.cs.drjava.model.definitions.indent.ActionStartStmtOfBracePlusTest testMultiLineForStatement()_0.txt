@@ -1,0 +1,27 @@
+  public void testMultiLineForStatement() throws BadLocationException {
+    IndentRuleAction rule1 = new ActionStartStmtOfBracePlus(0);
+    
+    String text = "  for (int i=0;\n" +
+                  "       i<j;\n" +
+                  "       i++)\n" +
+                  "  {\n" +
+                  "bar();";
+    String aligned1 = "  for (int i=0;\n" +
+                      "       i<j;\n" +
+                      "       i++)\n" +
+                      "  {\n" +
+                      "  bar();";
+    String aligned2 = "  for (int i=0;\n" +
+                      "       i<j;\n" +
+                      "       i++)\n" +
+                      "  {\n" +
+                      "    bar();";
+    
+    _setDocText(text);
+    rule1.testIndentLine(_doc, 44, Indenter.IndentReason.OTHER);
+    assertEquals("multi-line for statement, with indent, no suffix", aligned1, _doc.getText());
+    
+    _setDocText(text);
+    rule2.testIndentLine(_doc, 44, Indenter.IndentReason.OTHER);
+    assertEquals("multi-line for statement, with indent, with suffix", aligned2, _doc.getText());
+  }

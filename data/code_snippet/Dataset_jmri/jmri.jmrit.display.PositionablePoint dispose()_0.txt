@@ -1,0 +1,4 @@
+    void dispose() {
+        if (popup != null) popup.removeAll();
+        popup = null;
+    }

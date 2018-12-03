@@ -1,0 +1,8 @@
+    private DataStructure getSourceStructure() {
+        DatabaseStructure s = new DatabaseStructure(m_dbLocation);
+        s.setDbTables(m_incomingStructure.getDbTables());
+        s.setDbFields(m_incomingStructure.getDbFields());
+        s.setRelations(m_incomingStructure.getRelations());
+        s.setHierarchicalFilters(m_ui.getDefinedFilters());
+        return s;
+    }

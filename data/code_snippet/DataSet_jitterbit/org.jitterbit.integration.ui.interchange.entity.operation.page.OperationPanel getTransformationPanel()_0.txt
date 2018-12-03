@@ -1,0 +1,8 @@
+    private TransformationPanel getTransformationPanel() {
+        if (m_transformationPanel == null) {
+            m_transformationPanel = new TransformationPanel(m_page);
+            m_transformationPanel.addPropertyChangeListener(m_optionsPanel.getSourceListener());
+            addInputPanel(m_transformationPanel);
+        }
+        return m_transformationPanel;
+    }

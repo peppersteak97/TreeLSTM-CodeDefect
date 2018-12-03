@@ -1,0 +1,3 @@
+    public JButton getArrowButton() {
+        return m_btnOptionActions;
+    }

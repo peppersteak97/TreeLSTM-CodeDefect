@@ -1,0 +1,19 @@
+  private void generateHIR() {
+    if (DBG_BB || DBG_SELECTED) db("bbl: " + printBlocks());
+    generateFrom(0);
+    for (currentBBLE = blocks.getNextEmptyBlock(currentBBLE); currentBBLE != null; currentBBLE =
+        blocks.getNextEmptyBlock(currentBBLE)) {
+      currentBBLE.clearSelfRegen();
+      runoff = Math.min(blocks.getNextBlockBytecodeIndex(currentBBLE), currentBBLE.max);
+      if (currentBBLE.stackState == null) {
+        stack.clear();
+      } else {
+        stack = currentBBLE.stackState.copy();
+      }
+      _localState = currentBBLE.copyLocalState();
+      if (DBG_BB || DBG_SELECTED) db("bbl: " + printBlocks());
+      generateFrom(currentBBLE.low);
+    }
+    if (DBG_BB || DBG_SELECTED) db("doing final pass over basic blocks: " + printBlocks());
+    blocks.finalPass(inlinedSomething);
+  }

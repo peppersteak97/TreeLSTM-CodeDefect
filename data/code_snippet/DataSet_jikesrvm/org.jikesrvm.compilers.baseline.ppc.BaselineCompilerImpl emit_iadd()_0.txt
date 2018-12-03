@@ -1,0 +1,6 @@
+  protected final void emit_iadd() {
+    popInt(T0);
+    popInt(T1);
+    asm.emitADD(T2, T1, T0);
+    pushInt(T2);
+  }

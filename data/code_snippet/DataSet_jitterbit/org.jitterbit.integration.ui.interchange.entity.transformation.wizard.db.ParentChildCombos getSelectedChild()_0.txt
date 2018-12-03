@@ -1,0 +1,3 @@
+    DatabaseObject getSelectedChild() {
+        return m_selectedChild;
+    }

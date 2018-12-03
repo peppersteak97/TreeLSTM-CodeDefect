@@ -1,0 +1,1 @@
+    public boolean isExtended() { return _dataChars[0]=='T'; }

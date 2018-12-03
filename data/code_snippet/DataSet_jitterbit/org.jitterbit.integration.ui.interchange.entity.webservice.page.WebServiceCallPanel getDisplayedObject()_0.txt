@@ -1,0 +1,3 @@
+    public WebServiceCall getDisplayedObject() {
+        return m_wsCall;
+    }

@@ -1,0 +1,22 @@
+        public IUiJobManager createManager() throws IntegrationUiInitializationException {
+            String className = IntegrationUiProperties.getInstance().getString(
+            try {
+                Class<? extends IUiJobManager> clazz = 
+                    Class.forName(className).asSubclass(IUiJobManager.class);
+                return clazz.newInstance();
+            }
+            catch (ClassNotFoundException e) {
+                throw new IntegrationUiInitializationException(e);
+            }
+            catch (ClassCastException e) {
+                throw new IntegrationUiInitializationException(
+                                className +
+                                IUiJobManager.class.getName() +
+            }
+            catch (InstantiationException e) {
+                throw new IntegrationUiInitializationException(e);
+            }
+            catch (IllegalAccessException e) {
+                throw new IntegrationUiInitializationException(e);
+            }
+        }

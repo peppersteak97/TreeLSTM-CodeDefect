@@ -1,0 +1,4 @@
+    static IKongaTreeNode create() {
+        IRootFolderUi fUi = new RootFolderBaseUi(f);
+        return new RootNode(fUi);
+    }

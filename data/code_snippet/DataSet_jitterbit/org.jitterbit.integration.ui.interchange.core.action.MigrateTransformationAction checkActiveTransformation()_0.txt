@@ -1,0 +1,9 @@
+    private Transformation checkActiveTransformation() {
+        Transformation activeTf = getActiveTransformation();
+        if (activeTf == null) {
+            ApplicationMessageEvent.postErrorMessage(this,
+                            "Cannot migrate since no transformation is active.");
+            failed("No transformation is active.");
+        }
+        return activeTf;
+    }

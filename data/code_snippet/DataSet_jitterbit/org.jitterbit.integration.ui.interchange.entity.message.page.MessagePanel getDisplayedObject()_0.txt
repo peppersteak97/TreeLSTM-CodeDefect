@@ -1,0 +1,3 @@
+    public Message getDisplayedObject() {
+        return m_message;
+    }

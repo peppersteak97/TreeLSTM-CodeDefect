@@ -1,0 +1,4 @@
+    static public SerialLightManager instance() {
+        if (_instance == null) _instance = new SerialLightManager();
+        return _instance;
+    }

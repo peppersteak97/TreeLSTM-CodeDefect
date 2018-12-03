@@ -1,0 +1,9 @@
+  public String toString() {
+    try {
+      String path = getData().getCanonicalPath();
+      int index = path.lastIndexOf(File.separator);
+      path = path.substring(index+1);
+      return path;
+    }
+    catch(IOException e) { return getData().toString(); }
+  }

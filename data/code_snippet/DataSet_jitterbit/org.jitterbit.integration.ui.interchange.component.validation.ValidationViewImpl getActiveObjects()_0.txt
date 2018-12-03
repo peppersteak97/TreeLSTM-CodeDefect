@@ -1,0 +1,3 @@
+    public List<?> getActiveObjects() {
+        return new ArrayList<Object>();
+    }

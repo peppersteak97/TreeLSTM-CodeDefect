@@ -1,0 +1,18 @@
+    public void loadImage() {
+        if (file == null) {
+            thumbnail = null;
+            return;
+        }
+
+        m_imgOriginalImage = new ImageIcon(file.getPath());
+        if (m_imgOriginalImage != null) {
+        	final int iMaxSize = 90;
+            if (m_imgOriginalImage.getIconWidth() > iMaxSize) {
+                thumbnail = new ImageIcon(m_imgOriginalImage.getImage().
+                                          getScaledInstance(iMaxSize, -1,
+                                                      Image.SCALE_DEFAULT));
+            } else { 
+                thumbnail = m_imgOriginalImage;
+            }
+        }
+    }

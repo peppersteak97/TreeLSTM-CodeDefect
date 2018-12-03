@@ -1,0 +1,3 @@
+  public void addToBrowserHistory() {
+    throw new UnsupportedOperationException("Tried to call getBookmarkManager on a Dummy");
+  }

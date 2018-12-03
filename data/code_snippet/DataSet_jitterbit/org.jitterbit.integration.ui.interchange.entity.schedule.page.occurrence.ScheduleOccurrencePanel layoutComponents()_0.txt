@@ -1,0 +1,18 @@
+    private void layoutComponents() {
+        TwoColumnPanel p = new TwoColumnPanel();
+        p.addRow(m_typeSelectionPanel.getUi(), m_inputPanel);
+        wrap(p);
+
+        m_dailyPanel.setLayout(new BoxLayout(m_dailyPanel.getUi(), BoxLayout.PAGE_AXIS));
+        JPanel dailyTop = new JPanel();
+        dailyTop.setOpaque(false);
+        dailyTop.setLayout(new BoxLayout(dailyTop, BoxLayout.LINE_AXIS));
+        dailyTop.add(m_every_X_days_panel.getUi());
+        dailyTop.add(Box.createHorizontalGlue());
+        m_dailyPanel.add(dailyTop);
+        m_dailyPanel.add(Box.createVerticalGlue());
+
+        m_inputPanel.add(m_dailyPanel.getUi(), "DAILY");
+        m_inputPanel.add(m_weeklyPanel.getUi(), "WEEKLY");
+        m_inputPanel.add(m_monthlyPanel.getUi(), "MONTHLY");
+    }

@@ -1,0 +1,6 @@
+  public void testReplace() {
+    String test = "aabbccdd";
+    assertEquals("testReplace:", "aab12cdd", StringOps.replace(test, "bc","12"));
+    test = "cabcabc";
+    assertEquals("testReplace:", "cabc", StringOps.replace(test, "cabc", "c"));
+  }

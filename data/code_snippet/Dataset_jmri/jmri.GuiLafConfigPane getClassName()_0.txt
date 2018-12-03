@@ -1,0 +1,4 @@
+    public String getClassName() {
+        return LAFGroup.getSelection().getActionCommand();
+
+    }

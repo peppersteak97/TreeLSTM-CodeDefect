@@ -1,0 +1,4 @@
+  public Register getReturnFPR() {
+    if (VM.VerifyAssertions) VM._assert(NUM_RETURN_FPRS == 1);
+    return getFPR(0);
+  }

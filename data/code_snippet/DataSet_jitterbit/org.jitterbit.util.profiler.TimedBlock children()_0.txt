@@ -1,0 +1,3 @@
+    public Iterator<ITimedBlock> children() {
+        return Collections.unmodifiableCollection(m_children.values()).iterator();
+    }

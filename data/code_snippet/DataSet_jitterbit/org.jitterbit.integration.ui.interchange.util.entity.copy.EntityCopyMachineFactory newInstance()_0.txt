@@ -1,0 +1,9 @@
+    public static EntityCopyMachineFactory newInstance() {
+        return new EntityCopyMachineFactory() {
+
+            @Override
+            public IEntityCopyMachine create() {
+                return new EntityCopyMachineImpl();
+            }
+        };
+    }

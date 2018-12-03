@@ -1,0 +1,8 @@
+    private static ComboBoxModel createComboModel() {
+        List<TimeZoneItem> timeZones = new ArrayList<TimeZoneItem>();
+        for (TimeZone tz : getAllTimeZones()) {
+            timeZones.add(new TimeZoneItem(tz));
+        }
+        Collections.sort(timeZones);
+        return new DefaultComboBoxModel(timeZones.toArray());
+    }

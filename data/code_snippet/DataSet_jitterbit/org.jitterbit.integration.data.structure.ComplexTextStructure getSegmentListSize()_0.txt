@@ -1,0 +1,3 @@
+    public int getSegmentListSize(){
+        return m_segmentList.size();
+    }

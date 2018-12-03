@@ -1,0 +1,17 @@
+    private void loadRequestAndResponseStructures() {
+        try {
+            WebServiceCall ws = getObject().getDataObject();
+            IMappingTreeStructure request = m_structureCache.getRequestStructure(ws);
+            IMappingTreeStructure response = m_structureCache.getResponseStructure(ws);
+            if (request == null || response == null) {
+                refreshTreeStructures();
+            }
+            else {
+                ((WebServiceCallPanel) getDetailsPanel()).displayStructures(request, response);
+                m_refreshStructuresAction.setEnabled(true);
+            }
+        }
+        catch (DataCacheException e) {
+            refreshTreeStructures();
+        }
+    }

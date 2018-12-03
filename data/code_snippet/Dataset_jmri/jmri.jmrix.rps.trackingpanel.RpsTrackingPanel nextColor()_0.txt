@@ -1,0 +1,7 @@
+    Color nextColor() {
+        int red = Math.min(255, ((measurementColor>>2)&0x1)*255/1);
+        int green = Math.min(255, ((measurementColor>>1)&0x1)*255/1);
+        int blue = Math.min(255, ((measurementColor>>0)&0x1)*255/1);
+        measurementColor++;
+        return new Color(red, green, blue);
+    }

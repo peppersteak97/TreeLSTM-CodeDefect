@@ -1,0 +1,6 @@
+    private JScrollPane createTableScroll() {
+        JScrollPane scroll = new JScrollPane(m_table);
+        scroll.getViewport().setBackground(Color.WHITE);
+        scroll.getViewport().getView().setBackground(Color.WHITE);
+        return scroll;
+    }

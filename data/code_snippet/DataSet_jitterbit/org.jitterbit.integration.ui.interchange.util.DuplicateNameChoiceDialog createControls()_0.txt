@@ -1,0 +1,8 @@
+    private void createControls() {
+        ButtonGroup buttons = new ButtonGroup();
+        createRenameOptionControl(buttons);
+        createReplaceOptionControl(buttons);
+        createDoNotMoveOptionControl(buttons);
+        setInitialOption();
+        createInputPanel();
+    }

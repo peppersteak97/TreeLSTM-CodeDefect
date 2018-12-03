@@ -1,0 +1,11 @@
+	private synchronized void reportDeleteOfSelectedItems() {
+		List<KongaGraphComponent> liSelected = m_selectionModel.getSelectedComponents();
+		if( liSelected == null )
+			return;
+		if( liSelected.size() == 1 ) {
+			fireDeleteRequest(liSelected.get(0));
+		}
+		else {
+		    fireDeleteRequest(liSelected);
+		}
+	}

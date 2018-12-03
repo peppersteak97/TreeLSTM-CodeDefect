@@ -1,0 +1,3 @@
+    public char typeLetter() {
+        return ((Manager)mgrs.get(0)).typeLetter();
+    }

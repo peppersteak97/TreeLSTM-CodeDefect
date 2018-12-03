@@ -1,0 +1,3 @@
+  public boolean hasModifiedDocuments() {
+    throw new UnsupportedOperationException("Tried to call hasModifiedDocuments on a Dummy!");
+  }

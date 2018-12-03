@@ -1,0 +1,3 @@
+    int getNumberOfOpenPages() {
+        return m_tabPane.getTabCount() + m_detachedPages.size();
+    }

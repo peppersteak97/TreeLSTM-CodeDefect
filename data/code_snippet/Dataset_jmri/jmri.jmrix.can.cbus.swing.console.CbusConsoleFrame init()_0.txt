@@ -1,0 +1,4 @@
+    protected void init() {
+        tc = jmri.jmrix.can.TrafficController.instance();
+        tc.addCanListener(this);
+    }

@@ -1,0 +1,22 @@
+    public void initializeNodes() {
+		String str = "";
+		for (int i=0;i<128;i++) {
+			configNodeAddresses[i] = -1;
+			configNodes[i] = null;
+		}
+		SerialNode node = (SerialNode) SerialTrafficController.instance().getNode(0);
+        int index = 1;
+        while (node != null) {
+			configNodes[numConfigNodes] = node;
+			configNodeAddresses[numConfigNodes] = node.getNodeAddress();
+			str = Integer.toString(configNodeAddresses[numConfigNodes]);
+			nodeSelBox.addItem(str);
+			if (index == 1) {
+				selNode = node;
+				selNodeNum = configNodeAddresses[numConfigNodes];
+			}
+			numConfigNodes ++;		
+			node = (SerialNode) SerialTrafficController.instance().getNode(index);
+			index ++;
+		}
+    }

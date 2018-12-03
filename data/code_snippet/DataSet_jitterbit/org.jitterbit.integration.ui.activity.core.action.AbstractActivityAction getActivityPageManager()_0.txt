@@ -1,0 +1,6 @@
+    private synchronized IActivityPageManager getActivityPageManager() {
+        if (m_activityPageManager == null) {
+            m_activityPageManager = createActivityPageManager(m_pageDisplayer);
+        }
+        return m_activityPageManager;
+    }

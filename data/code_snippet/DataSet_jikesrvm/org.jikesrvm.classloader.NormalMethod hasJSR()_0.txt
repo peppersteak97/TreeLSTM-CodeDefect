@@ -1,0 +1,3 @@
+  public boolean hasJSR() {
+    return (summaryFlags & HAS_JSR) != 0;
+  }

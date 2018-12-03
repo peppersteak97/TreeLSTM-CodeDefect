@@ -1,0 +1,3 @@
+    public static NameValidatorStore getInstance() {
+        return s_instance;
+    }

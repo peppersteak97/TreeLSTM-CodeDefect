@@ -1,0 +1,3 @@
+    public void collapseAll() {
+        expandCollapseAllImpl(new TreePath(getRootNode()), false);
+    }

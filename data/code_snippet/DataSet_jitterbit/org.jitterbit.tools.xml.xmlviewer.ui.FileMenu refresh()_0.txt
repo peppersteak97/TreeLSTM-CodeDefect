@@ -1,0 +1,5 @@
+    public void refresh() {
+        removeAll();
+        setSaveEnabled( m_mainWindow.getDesktop().getAllFrames().length > 0 );
+        createMenuItems();
+    }

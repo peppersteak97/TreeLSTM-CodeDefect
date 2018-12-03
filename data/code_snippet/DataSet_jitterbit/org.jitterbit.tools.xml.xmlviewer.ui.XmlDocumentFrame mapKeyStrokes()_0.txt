@@ -1,0 +1,9 @@
+	private void mapKeyStrokes() {
+		InputMap inputMap = getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		inputMap.put( KeyStroke.getKeyStroke(KeyEvent.VK_1, KeyEvent.CTRL_DOWN_MASK), "expand" );
+		inputMap.put( KeyStroke.getKeyStroke(KeyEvent.VK_2, KeyEvent.CTRL_DOWN_MASK), "collapse" );
+		
+		ActionMap actionMap = getActionMap();
+		actionMap.put("expand", m_treeController.getExpandAction());
+		actionMap.put("collapse", m_treeController.getCollapseAction());
+	}

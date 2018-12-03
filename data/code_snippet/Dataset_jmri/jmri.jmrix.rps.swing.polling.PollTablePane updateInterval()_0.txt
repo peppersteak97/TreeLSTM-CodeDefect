@@ -1,0 +1,5 @@
+    void updateInterval() {
+        int interval = Integer.parseInt(delay.getText());
+        log.debug("set interval to "+interval);
+        Engine.instance().setPollingInterval(interval);
+    }

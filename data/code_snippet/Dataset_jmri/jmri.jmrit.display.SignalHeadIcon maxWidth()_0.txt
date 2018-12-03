@@ -1,0 +1,12 @@
+    protected int maxWidth() {
+        int max = 0;
+        max = Math.max((red!=null) ? red.getIconWidth() : 0, max);
+        max = Math.max((yellow!=null) ? yellow.getIconWidth() : 0, max);
+        max = Math.max((green!=null) ? green.getIconWidth() : 0, max);
+        max = Math.max((flashRed!=null) ? flashRed.getIconWidth() : 0, max);
+        max = Math.max((flashYellow!=null) ? flashYellow.getIconWidth() : 0, max);
+        max = Math.max((flashGreen!=null) ? flashGreen.getIconWidth() : 0, max);
+        max = Math.max((held!=null) ? held.getIconWidth() : 0, max);
+        max = Math.max((dark!=null) ? dark.getIconWidth() : 0, max);
+        return max;
+    }

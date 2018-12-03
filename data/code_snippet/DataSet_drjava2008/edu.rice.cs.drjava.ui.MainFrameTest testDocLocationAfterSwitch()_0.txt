@@ -1,0 +1,35 @@
+  public void testDocLocationAfterSwitch() throws BadLocationException {
+    final DefinitionsPane pane = _frame.getCurrentDefPane();
+    final OpenDefinitionsDocument doc = pane.getOpenDefDocument();
+    setDocText(doc.getDocument(), "abcd");
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        doc.setCurrentLocation(3); 
+      } 
+    }); 
+    
+    assertEquals("Location of old doc before switch", 3, doc.getCurrentLocation());
+    assertEquals("Location of cursor in old document", 3, pane.getCaretPosition());
+    
+    SingleDisplayModel model = _frame.getModel();
+    final OpenDefinitionsDocument oldDoc = doc;
+    final DefinitionsPane oldPane = pane;
+    final OpenDefinitionsDocument newDoc = model.newFile();
+    
+    DefinitionsPane curPane;
+    OpenDefinitionsDocument curDoc;
+    curPane = _frame.getCurrentDefPane();
+    assertEquals("New curr DefPane's document", newDoc, curDoc);
+    assertEquals("Location in new document", 0, newDoc.getCurrentLocation());
+    
+    model.setActiveNextDocument(); 
+    Utilities.clearEventQueue();
+    assertEquals("Next active doc", oldDoc, model.getActiveDocument());
+
+   
+    curPane = _frame.getCurrentDefPane();
+    assertEquals("Next active pane", oldPane, curPane);
+    assertEquals("Current document is old document", oldDoc, curDoc);
+    assertEquals("Location of caret in old document", 3, curPane.getCaretPosition());
+    _log.log("testDocLocationAfterSwitch completed");
+  }

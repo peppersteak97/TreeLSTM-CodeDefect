@@ -1,0 +1,22 @@
+  protected final void emit_lcmp() {
+    if (VM.BuildFor32Addr) {
+      asm.emitPOP_Reg(S0);
+      ForwardReference fr1 = asm.forwardJcc(Assembler.LT);
+      ForwardReference fr2 = asm.forwardJcc(Assembler.NE);
+      ForwardReference fr3 = asm.forwardJMP();
+      fr2.resolve(asm);
+      ForwardReference fr4 = asm.forwardJMP();
+      fr1.resolve(asm);
+      fr3.resolve(asm);
+      fr4.resolve(asm);
+    } else {
+      ForwardReference fr1 = asm.forwardJcc(Assembler.LT);
+      ForwardReference fr2 = asm.forwardJcc(Assembler.NE);
+      ForwardReference fr3 = asm.forwardJMP();
+      fr2.resolve(asm);
+      ForwardReference fr4 = asm.forwardJMP();
+      fr1.resolve(asm);
+      fr3.resolve(asm);
+      fr4.resolve(asm);
+    }
+  }

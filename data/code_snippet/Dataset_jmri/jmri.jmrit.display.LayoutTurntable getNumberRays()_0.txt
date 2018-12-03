@@ -1,0 +1,1 @@
+	public int getNumberRays() {return rayList.size();}

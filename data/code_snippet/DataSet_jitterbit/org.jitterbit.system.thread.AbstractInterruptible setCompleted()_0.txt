@@ -1,0 +1,4 @@
+    protected final synchronized void setCompleted() {
+        appendStatus(COMPLETED);
+        revokeState(STOPPING);
+    }

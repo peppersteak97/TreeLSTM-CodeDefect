@@ -1,0 +1,3 @@
+    public String getCurrentLocalName() {
+        return m_elements.empty() ? null : m_elements.peek().LocalName;
+    }

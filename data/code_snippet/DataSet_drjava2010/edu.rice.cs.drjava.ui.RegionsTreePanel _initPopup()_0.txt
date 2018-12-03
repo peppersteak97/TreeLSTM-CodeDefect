@@ -1,0 +1,10 @@
+  private void _initPopup() {
+    _regionPopupMenu = new JPopupMenu(_title);
+    AbstractAction[] acts = makePopupMenuActions();
+    if (acts != null) {
+      for (AbstractAction a: acts) {
+        _regionPopupMenu.add(a);
+      }
+      _regTree.addMouseListener(new RegionMouseAdapter());
+    }
+  }

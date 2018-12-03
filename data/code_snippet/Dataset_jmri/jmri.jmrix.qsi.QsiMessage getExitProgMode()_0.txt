@@ -1,0 +1,5 @@
+    static public QsiMessage getExitProgMode() {
+        QsiMessage m = new QsiMessage(1);
+        m.setOpCode(' ');
+        return m;
+    }

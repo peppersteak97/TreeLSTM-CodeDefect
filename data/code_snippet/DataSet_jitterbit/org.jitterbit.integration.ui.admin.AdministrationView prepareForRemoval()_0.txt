@@ -1,0 +1,6 @@
+    public void prepareForRemoval() {
+        super.prepareForRemoval();
+        m_pageManager.prepareForRemoval();
+        m_menuManager.removeTopLevelExtensionsFromWindow();
+        m_menuManager.removeMenuLevelExtensionsFromWindow();
+    }

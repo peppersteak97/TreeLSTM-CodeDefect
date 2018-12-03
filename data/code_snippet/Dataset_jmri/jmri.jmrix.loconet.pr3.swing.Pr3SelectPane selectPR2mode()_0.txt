@@ -1,0 +1,9 @@
+    void selectPR2mode() {
+        status.setText(res.getString("StatusPr2"));
+        LocoNetMessage msg = new LocoNetMessage( 6 ) ;
+        msg.setOpCode( 0xD3 );
+        msg.setElement( 1, 0x10 );
+        msg.setElement( 3, 0 );
+        msg.setElement( 4, 0 );
+        LnTrafficController.instance().sendLocoNetMessage(msg);
+    }

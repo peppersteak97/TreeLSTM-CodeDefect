@@ -1,0 +1,15 @@
+  protected final void printMethodMessage() {
+    String compilerName = getCompilerName();
+
+    if (compilerName.equals("baseline")) {
+      VM.sysWrite("-methodBaseline ");
+    } else if (VM.VerifyAssertions) {
+      VM._assert(false, "Unknown compiler");
+    }
+    VM.sysWrite(method.getDeclaringClass().toString());
+    VM.sysWrite(" ");
+    VM.sysWrite(method.getName());
+    VM.sysWrite(" ");
+    VM.sysWrite(method.getDescriptor());
+    VM.sysWrite(" \n");
+  }

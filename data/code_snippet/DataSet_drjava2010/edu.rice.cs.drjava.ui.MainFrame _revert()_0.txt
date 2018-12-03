@@ -1,0 +1,4 @@
+  private void _revert() {
+    List<OpenDefinitionsDocument> l = _model.getDocumentNavigator().getSelectedDocuments();
+    for(OpenDefinitionsDocument d: l) { _revert(d); }
+  }

@@ -1,0 +1,2 @@
+        setTitle(title());
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));

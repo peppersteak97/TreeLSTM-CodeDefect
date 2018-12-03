@@ -1,0 +1,3 @@
+    protected void init() {
+        SerialTrafficController.instance().addSerialListener(this);
+    }

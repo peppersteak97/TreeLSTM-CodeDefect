@@ -1,0 +1,5 @@
+    public Date getTime() {
+    	long elapsedMSec = (new Date()).getTime() - startAtTime.getTime();
+    	long nowMSec = setTimeValue.getTime()+(long)(mFactor*(double)elapsedMSec);
+    	return new Date(nowMSec);
+    }    	

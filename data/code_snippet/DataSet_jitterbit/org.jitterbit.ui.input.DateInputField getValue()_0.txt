@@ -1,0 +1,8 @@
+    public Date getValue() {
+        try {
+            return getDate();
+        }
+        catch (ParseException e) {
+            return null;
+        }
+    }

@@ -1,0 +1,6 @@
+    public void flush() {
+        m_mainStream.flush();
+        for (PrintStream ps : m_additionalStreams) {
+            ps.flush();
+        }
+    }

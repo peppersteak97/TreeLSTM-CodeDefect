@@ -1,0 +1,8 @@
+  private Register[] getSymbolicRegisters() {
+    Register[] map = new Register[ir.getNumberOfSymbolicRegisters()];
+    for (Register reg = ir.regpool.getFirstSymbolicRegister(); reg != null; reg = reg.getNext()) {
+      int number = reg.getNumber();
+      map[number] = reg;
+    }
+    return map;
+  }

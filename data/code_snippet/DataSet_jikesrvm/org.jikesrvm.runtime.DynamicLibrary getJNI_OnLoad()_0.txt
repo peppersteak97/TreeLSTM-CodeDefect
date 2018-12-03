@@ -1,0 +1,11 @@
+  private Address getJNI_OnLoad() {
+    Address candidate = getSymbol("JNI_OnLoad");
+    Iterator<DynamicLibrary> libs = dynamicLibraries.valueIterator();
+    while(libs.hasNext()) {
+      DynamicLibrary lib = libs.next();
+      if (lib.jniOnLoad == candidate) {
+        return Address.zero();
+      }
+    }
+    return candidate;
+  }

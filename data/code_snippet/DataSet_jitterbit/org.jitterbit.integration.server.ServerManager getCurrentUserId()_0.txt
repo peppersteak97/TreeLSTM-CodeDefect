@@ -1,0 +1,3 @@
+    public synchronized UserId getCurrentUserId() {
+        return m_userId;
+    }

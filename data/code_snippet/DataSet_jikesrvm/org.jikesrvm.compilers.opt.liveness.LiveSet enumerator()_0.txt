@@ -1,0 +1,3 @@
+  public final LiveSetEnumerator enumerator() {
+    return new LiveSetEnumerator(first);
+  }

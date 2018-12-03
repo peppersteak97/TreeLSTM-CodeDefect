@@ -1,0 +1,57 @@
+  void initOpenJavadocDialog() {
+    if (_openJavadocDialog == null) {
+      PredictiveInputFrame.InfoSupplier<JavaAPIListEntry> info = 
+        new PredictiveInputFrame.InfoSupplier<JavaAPIListEntry>() {
+        public String value(JavaAPIListEntry entry) {
+          return entry.getFullString();
+        }
+      };
+      PredictiveInputFrame.CloseAction<JavaAPIListEntry> okAction = 
+        new PredictiveInputFrame.CloseAction<JavaAPIListEntry>() {
+        public String getName() { return "OK"; }
+        public KeyStroke getKeyStroke() { return KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0); }
+        public String getToolTipText() { return null; }
+        public Object value(PredictiveInputFrame<JavaAPIListEntry> p) {
+          if (p.getItem() != null) {
+            PlatformFactory.ONLY.openURL(p.getItem().getURL());
+          }
+          hourglassOff();
+          return null;
+        }
+      };
+      PredictiveInputFrame.CloseAction<JavaAPIListEntry> cancelAction = 
+        new PredictiveInputFrame.CloseAction<JavaAPIListEntry>() {
+        public String getName() { return "Cancel"; }
+        public KeyStroke getKeyStroke() { return KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0); }
+        public String getToolTipText() { return null; }
+        public Object value(PredictiveInputFrame<JavaAPIListEntry> p) {
+          hourglassOff();
+          return null;
+        }
+      };
+      java.util.ArrayList<MatchingStrategy<JavaAPIListEntry>> strategies =
+        new java.util.ArrayList<MatchingStrategy<JavaAPIListEntry>>();
+      strategies.add(new FragmentStrategy<JavaAPIListEntry>());
+      strategies.add(new PrefixStrategy<JavaAPIListEntry>());
+      strategies.add(new RegExStrategy<JavaAPIListEntry>());
+      List<PredictiveInputFrame.CloseAction<JavaAPIListEntry>> actions
+        = new ArrayList<PredictiveInputFrame.CloseAction<JavaAPIListEntry>>();
+      actions.add(okAction);
+      actions.add(cancelAction);
+      _openJavadocDialog = 
+        new PredictiveInputFrame<JavaAPIListEntry>(MainFrame.this,
+                                                   "Open Java API Javadoc Webpage",
+                                                   info,
+                                                   strategies,
+                                                   new JavaAPIListEntry("dummyJavadoc", "dummyJavadoc", null)) {
+        public void setOwnerEnabled(boolean b) {
+          if (b) { hourglassOff(); } else { hourglassOn(); }
+        }
+      }; 
+      
+      if (DrJava.getConfig().getSetting(DIALOG_OPENJAVADOC_STORE_POSITION).booleanValue()) {
+        _openJavadocDialog.setFrameState(DrJava.getConfig().getSetting(DIALOG_OPENJAVADOC_STATE));
+      }
+      generateJavaAPIList();
+    }
+  }

@@ -1,0 +1,3 @@
+	protected Color getBackgroundColor() { 
+		return m_rect.getBackgroundColor(); 
+	}

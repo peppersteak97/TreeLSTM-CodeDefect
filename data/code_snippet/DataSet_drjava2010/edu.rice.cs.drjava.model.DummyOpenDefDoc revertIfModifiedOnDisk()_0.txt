@@ -1,0 +1,3 @@
+  public boolean revertIfModifiedOnDisk() throws IOException {
+    throw new UnsupportedOperationException("Dummy method");
+  }

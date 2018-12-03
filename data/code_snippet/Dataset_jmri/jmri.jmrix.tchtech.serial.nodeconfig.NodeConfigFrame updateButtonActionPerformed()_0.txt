@@ -1,0 +1,24 @@
+    public void updateButtonActionPerformed() {
+		if ( !readPulseWidth() ) return;
+        if ( !checkConsistency() ) return;
+        if (curNode.getNodeType() != nodeType) {
+            curNode.setNodeType(nodeType);
+        }
+        setNodeParameters();
+        changedNode = true;
+        editMode = false;
+        curNode = null;
+        addButton.setVisible(true);
+        editButton.setVisible(true);
+        deleteButton.setVisible(true);
+        doneButton.setVisible(true);
+        updateButton.setVisible(false);
+        cancelButton.setVisible(false);
+        nodeAddrField.setVisible(true);
+        nodeAddrStatic.setVisible(false);             
+        statusText2.setText(stdStatus2);
+        statusText3.setText(stdStatus3);
+        statusText1.setText(rb.getString("FeedBackUpdate")+" "+
+                                    Integer.toString(nodeAddress));
+        errorInStatus1 = true;
+    }

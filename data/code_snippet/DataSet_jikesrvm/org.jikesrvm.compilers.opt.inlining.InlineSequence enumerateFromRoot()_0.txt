@@ -1,0 +1,22 @@
+  public java.util.Enumeration<InlineSequence> enumerateFromRoot() {
+    return new java.util.Enumeration<InlineSequence>() {
+      Stack<InlineSequence> stack;
+
+      {
+        stack = new Stack<InlineSequence>();
+        InlineSequence parent = InlineSequence.this;
+        while (parent.caller != null) {
+          stack.push(parent);
+          parent = parent.caller;
+        }
+      }
+
+      public boolean hasMoreElements() {
+        return !stack.isEmpty();
+      }
+
+      public InlineSequence nextElement() {
+        return stack.pop();
+      }
+    };
+  }

@@ -1,0 +1,3 @@
+    public IDependencyStore getDependencyStore() {
+        return this;
+    }

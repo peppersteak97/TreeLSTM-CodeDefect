@@ -1,0 +1,11 @@
+  public void testRecallFromHistory() throws EditDocumentException {
+    String origText = _doc.getDocText(0, _doc.getLength());
+    _doc.addToHistory("command");
+    assertEquals("Contents before recall prev", origText, _doc.getDocText(0, _doc.getLength()));
+
+    _doc.recallPreviousInteractionInHistory();
+    assertEquals("Contents after recall prev", origText + "command", _doc.getDocText(0, _doc.getLength()));
+
+    _doc.recallNextInteractionInHistory();
+    assertEquals("Contents after recall next", origText, _doc.getDocText(0, _doc.getLength()));
+  }

@@ -1,0 +1,34 @@
+	public void setInitialKnownStateFromFeedback() {
+		if (_activeFeedbackType == ONESENSOR) {
+			if (_firstSensor != null) {
+				int sState = _firstSensor.getKnownState();
+				if (sState == Sensor.ACTIVE)
+					newKnownState(THROWN);
+				else if (sState == Sensor.INACTIVE)
+					newKnownState(CLOSED);
+			} else {
+				log.warn("expected Sensor 1 not defined - " + getSystemName());
+				newKnownState(UNKNOWN);
+			}
+		} else if (_activeFeedbackType == TWOSENSOR) {
+			int s1State = Sensor.UNKNOWN;
+			int s2State = Sensor.UNKNOWN;
+			if (_firstSensor != null)
+				s1State = _firstSensor.getKnownState();
+			else {
+				log.warn("expected Sensor 1 not defined - " + getSystemName());
+			}
+			if (_secondSensor != null)
+				s2State = _secondSensor.getKnownState();
+			else {
+				log.warn("expected Sensor 2 not defined - " + getSystemName());
+			}
+			if ((s1State == Sensor.ACTIVE) && (s2State == Sensor.INACTIVE))
+				newKnownState(THROWN);
+			else if ((s1State == Sensor.INACTIVE) && (s2State == Sensor.ACTIVE))
+				newKnownState(CLOSED);
+			else if (_knownState != UNKNOWN)
+				newKnownState(UNKNOWN);
+		} else {
+		}
+	}

@@ -1,0 +1,3 @@
+    DataLocationType getDefaultTargetType() {
+        return m_defaultTargetLocationType;
+    }

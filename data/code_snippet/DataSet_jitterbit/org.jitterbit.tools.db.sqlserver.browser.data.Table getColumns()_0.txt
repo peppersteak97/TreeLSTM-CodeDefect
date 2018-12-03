@@ -1,0 +1,3 @@
+    public List<Column> getColumns() {
+        return new ArrayList<Column>(m_liColumns);
+    }

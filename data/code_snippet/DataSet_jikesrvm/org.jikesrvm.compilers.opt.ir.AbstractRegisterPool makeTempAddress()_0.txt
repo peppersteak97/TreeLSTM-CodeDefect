@@ -1,0 +1,3 @@
+  public RegisterOperand makeTempAddress() {
+    return new RegisterOperand(getAddress(), TypeReference.Address);
+  }

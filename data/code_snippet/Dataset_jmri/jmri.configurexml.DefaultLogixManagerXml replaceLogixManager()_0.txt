@@ -1,0 +1,12 @@
+    protected void replaceLogixManager() {
+        if (InstanceManager.logixManagerInstance().getClass().getName()
+                .equals(DefaultLogixManager.class.getName()))
+            return;
+        if (InstanceManager.logixManagerInstance() != null)
+            InstanceManager.configureManagerInstance().deregister(
+                InstanceManager.logixManagerInstance() );
+
+        DefaultLogixManager pManager = DefaultLogixManager.instance();
+        InstanceManager.setLogixManager(pManager);
+        InstanceManager.configureManagerInstance().registerConfig(pManager);
+    }

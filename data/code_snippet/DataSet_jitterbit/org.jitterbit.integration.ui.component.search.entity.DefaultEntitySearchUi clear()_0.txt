@@ -1,0 +1,4 @@
+    void clear() {
+        m_searchField.setText("");
+        m_listModel.removeAllElements();
+    }

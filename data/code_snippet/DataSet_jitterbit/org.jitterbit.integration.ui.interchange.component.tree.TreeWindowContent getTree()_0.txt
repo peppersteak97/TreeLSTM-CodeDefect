@@ -1,0 +1,3 @@
+    public InterchangeTree getTree() {
+        return (InterchangeTree) super.getTree();
+    }

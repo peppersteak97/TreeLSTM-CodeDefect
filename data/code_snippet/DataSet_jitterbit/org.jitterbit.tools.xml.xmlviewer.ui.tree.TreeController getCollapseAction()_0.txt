@@ -1,0 +1,3 @@
+	public Action getCollapseAction() {
+		return m_collapseAction;
+	}

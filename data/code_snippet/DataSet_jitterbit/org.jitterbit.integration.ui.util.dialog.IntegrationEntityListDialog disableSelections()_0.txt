@@ -1,0 +1,3 @@
+    protected void disableSelections() {
+        m_list.setSelectionModel(new NoSelectionModel());
+    }

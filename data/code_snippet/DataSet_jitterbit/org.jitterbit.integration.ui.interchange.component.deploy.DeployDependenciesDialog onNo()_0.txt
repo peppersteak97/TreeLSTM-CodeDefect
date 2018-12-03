@@ -1,0 +1,4 @@
+    protected void onNo() {
+        super.onNo();
+        m_callback.cancelled(null);
+    }

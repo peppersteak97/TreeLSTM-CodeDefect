@@ -1,0 +1,8 @@
+    private void deleteEntry() {
+	int address=0;
+	if(!adrTextField.getText().equals("")){
+	   address=Integer.parseInt(adrTextField.getText());
+           XNetMessage msg = XNetMessage.getDeleteAddressOnStackMsg(address);
+           XNetTrafficController.instance().sendXNetMessage(msg,this);
+        }
+    }

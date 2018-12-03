@@ -1,0 +1,11 @@
+    void write() throws IOException {
+        FileWriter writer = null;
+        try {
+            File file = getFile();
+            writer = new FileWriter(file);
+            m_pluginStore.persist(writer);
+        }
+        finally {
+            KongaIoUtils.close(writer);
+        }
+    }

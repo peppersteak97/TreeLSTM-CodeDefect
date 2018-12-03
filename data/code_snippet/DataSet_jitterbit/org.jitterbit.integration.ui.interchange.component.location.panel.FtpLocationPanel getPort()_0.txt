@@ -1,0 +1,8 @@
+    public int getPort() {
+        try {
+            return Integer.parseInt(m_port.getValue());
+        }
+        catch (NumberFormatException e) {
+            return FtpLocation.DEFAULT_PORT;
+        }
+    }

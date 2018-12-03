@@ -1,0 +1,4 @@
+  public void testWingInsideBlock() throws javax.swing.text.BadLocationException {
+    assertFalse("Wing Inside BlockComment 1", _rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+    assertFalse("Wing Inside BlockComment 2", _rule.testApplyRule(_doc, 2, Indenter.IndentReason.OTHER));
+  }

@@ -1,0 +1,17 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus(PackageResources.Retriever.STARTING);
+        Runnable task = new Runnable() {
+
+            public void run() {
+                IntegrationServer server = IntegrationServer.getInstance();
+                IInterchangeProjectDownloader call = server.getServerCall(
+                                IInterchangeProjectDownloader.class);
+                call.getAvailableInterchangeProjects(m_callback);
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallellAndWait(task, m_callback);
+    }

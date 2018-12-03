@@ -1,0 +1,3 @@
+        if (all.isEmpty() || m_filters.isEmpty() || !isActive()) {
+            return all;
+        }

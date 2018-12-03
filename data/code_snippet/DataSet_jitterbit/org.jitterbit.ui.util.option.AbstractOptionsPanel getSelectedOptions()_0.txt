@@ -1,0 +1,9 @@
+    protected List<T> getSelectedOptions() {
+        List<T> selection = new ArrayList<T>();
+        for (IOptionSelector<T> selector : m_selectors) {
+            if (selector.isSelected()) {
+                selection.add(selector.getOption());
+            }
+        }
+        return selection;
+    }

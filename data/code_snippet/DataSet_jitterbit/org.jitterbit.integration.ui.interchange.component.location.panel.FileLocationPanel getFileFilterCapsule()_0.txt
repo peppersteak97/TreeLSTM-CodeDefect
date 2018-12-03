@@ -1,0 +1,4 @@
+    private JComponent getFileFilterCapsule() {
+        JComponent c = InputFieldFactory.getCapsule(m_fileFilter);
+        return InvisiblePanel.newPanel(c);
+    }

@@ -1,0 +1,7 @@
+    private void createFont() {
+        m_font = FontUtils.getMatchingFont(m_fontFamilies, m_fontSize, m_fontStyle);
+        if( m_font == null ) {
+            m_font = new JLabel().getFont();
+            m_font = m_font.deriveFont(m_fontStyle, m_fontSize);
+        }
+    }

@@ -1,0 +1,3 @@
+    public synchronized IntegrationEntity getParent() {
+        return m_parent;
+    }

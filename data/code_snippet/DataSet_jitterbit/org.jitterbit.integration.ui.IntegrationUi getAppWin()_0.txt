@@ -1,0 +1,3 @@
+    public IApplicationWindow getAppWin() {
+        return m_appWin;
+    }

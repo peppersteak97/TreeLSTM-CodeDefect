@@ -1,0 +1,11 @@
+	private void setClockStartChanged() {
+		int sel = Timebase.NONE;
+		if (clockStartBox.getSelectedIndex()==startNixieClock) 
+			sel = Timebase.NIXIE_CLOCK;
+		else if (clockStartBox.getSelectedIndex()==startAnalogClock)
+			sel = Timebase.ANALOG_CLOCK;
+		else if (clockStartBox.getSelectedIndex()==startLcdClock)
+			sel = Timebase.LCD_CLOCK;
+		clock.setStartClockOption(sel);
+		changed = true;
+	}

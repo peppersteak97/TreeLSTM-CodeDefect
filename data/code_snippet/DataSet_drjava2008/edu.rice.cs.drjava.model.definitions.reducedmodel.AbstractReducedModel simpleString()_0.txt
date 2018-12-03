@@ -1,0 +1,25 @@
+  public String simpleString() {
+    final StringBuilder val = new StringBuilder();
+    ReducedToken tmp;
+    
+    TokenList.Iterator it = _tokens.getIterator();
+    
+    if (_cursor.atStart())  val.append(PTR_CHAR).append(_cursor.getBlockOffset());
+    
+    while (!it.atEnd()) {
+      tmp = it.current();
+      
+      if (!_cursor.atStart() && !_cursor.atEnd() && (tmp == _cursor.current())) {
+        val.append(PTR_CHAR).append(_cursor.getBlockOffset());
+      }
+      
+      val.append('|').append(tmp).append('|').append("    ");
+      it.next();
+    }
+    
+    if (_cursor.atEnd()) val.append(PTR_CHAR).append(_cursor.getBlockOffset());
+    
+    val.append("|end|");
+    it.dispose();
+    return val.toString();
+  }

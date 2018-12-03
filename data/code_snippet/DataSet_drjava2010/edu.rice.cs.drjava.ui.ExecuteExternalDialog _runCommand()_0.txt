@@ -1,0 +1,19 @@
+  private void _runCommand() {
+    _mainFrame.updateStatusField("Executing external process...");
+    GeneralProcessCreator.LOG.log("_runCommand(): ${enclosing.djapp.file} = "+_commandEnclosingFileLine.getText());
+    
+    _mainFrame.removeModalWindowAdapter(this);
+    if (_commandLinePreview.getText().length() > 0) {
+      try { 
+        _props = PropertyMaps.TEMPLATE.clone();
+        PropertyMaps pm = _props.clone();
+        runCommand("", _commandLine.getText(), _commandWorkDirLine.getText(), 
+                   _commandEnclosingFileLine.getText().trim(), pm);
+      } 
+      catch(CloneNotSupportedException e) { throw new edu.rice.cs.util.UnexpectedException(e); }
+    }
+    
+    _saveSettings();
+    this.setVisible(false);
+    if (_cm != null) { _cm.signal(); }    
+  }

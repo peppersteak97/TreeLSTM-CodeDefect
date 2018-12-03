@@ -1,0 +1,3 @@
+  public RegionManager<MovingDocumentRegion> createFindResultsManager() {
+    throw new UnsupportedOperationException("Tried to call createFindResultsManager on a Dummy");
+  }

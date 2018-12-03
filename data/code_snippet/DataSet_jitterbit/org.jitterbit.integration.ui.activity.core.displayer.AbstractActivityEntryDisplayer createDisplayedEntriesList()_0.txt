@@ -1,0 +1,9 @@
+    private void createDisplayedEntriesList() {
+        if (m_allEntries.isEmpty()) {
+            m_filteredEntries = m_allEntries;
+            m_displayedEntries = m_allEntries;
+            return;
+        }
+        m_filteredEntries = m_navigationControl.getFilteredList(m_allEntries);
+        m_displayedEntries = m_navigationControl.getDisplayList(m_filteredEntries);
+    }

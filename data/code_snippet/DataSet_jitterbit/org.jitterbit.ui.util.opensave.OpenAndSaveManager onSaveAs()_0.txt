@@ -1,0 +1,21 @@
+	public void onSaveAs() {
+	    if (m_saveFileFilters == null) {
+            m_fileChooser.setFileFilter(null);
+        }
+        else {
+            for (FileFilter ff : m_saveFileFilters)
+                m_fileChooser.addChoosableFileFilter(ff);
+        }
+        int iVal = m_fileChooser.showSaveDialog(m_owner);
+        if (iVal == JFileChooser.APPROVE_OPTION) {
+			m_file = m_fileChooser.getSelectedFile();
+			FileFilter currentFilter = m_fileChooser.getFileFilter();
+			if (!currentFilter.accept(m_file)
+                            && currentFilter instanceof ChoosableFileFilter) {
+                                + ((ChoosableFileFilter) currentFilter).getExtension());
+            }
+            if (m_fileSaver != null) {
+                m_fileSaver.saveToFile(m_file);
+            }
+		}
+	}

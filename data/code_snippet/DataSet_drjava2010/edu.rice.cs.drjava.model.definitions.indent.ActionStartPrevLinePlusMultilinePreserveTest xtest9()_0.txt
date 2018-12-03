@@ -1,0 +1,5 @@
+  public void xtest9() throws BadLocationException {
+    helperCommentTest("/**\n * Text\n */",
+                      4, 7,
+                      "/**\n * \n * Text\n */");
+  }

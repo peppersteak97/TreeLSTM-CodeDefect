@@ -1,0 +1,3 @@
+    public WorkflowProcess getDataObject() {
+        return (WorkflowProcess)getKongaObject();
+    }

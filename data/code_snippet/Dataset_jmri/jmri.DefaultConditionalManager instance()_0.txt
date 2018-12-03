@@ -1,0 +1,6 @@
+    static public DefaultConditionalManager instance() {
+        if (_instance == null) {
+            _instance = new DefaultConditionalManager();
+        }
+        return (_instance);
+    }

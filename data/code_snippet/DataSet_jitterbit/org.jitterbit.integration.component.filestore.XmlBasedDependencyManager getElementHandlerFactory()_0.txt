@@ -1,0 +1,9 @@
+    private IStartElementHandlerFactory getElementHandlerFactory() {
+        final IStartElementHandler handler = new ElementHandler();
+        return new IStartElementHandlerFactory() {
+
+            public IStartElementHandler getHandler() {
+                return handler;
+            }
+        };
+    }

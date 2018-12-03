@@ -1,0 +1,12 @@
+    private List<IIntegrationEntityUiDelegate> getDirtyEntities() {
+        List<IIntegrationEntityUiDelegate> dirty = null;
+        for (IPage page : getOpenPages()) {
+            if (page.isDirty()) {
+                if (dirty == null) {
+                    dirty = new ArrayList<IIntegrationEntityUiDelegate>();
+                }
+                dirty.add((IIntegrationEntityUiDelegate) page.getObject());
+            }
+        }
+        return dirty;
+    }

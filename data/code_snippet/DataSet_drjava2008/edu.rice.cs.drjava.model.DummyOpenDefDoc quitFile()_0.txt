@@ -1,0 +1,1 @@
+  public boolean quitFile() { throw new UnsupportedOperationException("Dummy method"); }

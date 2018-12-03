@@ -1,0 +1,8 @@
+  public final int numberOfNodes() {
+    int n = 0;
+    for (Enumeration<TreeNode> e = elements(); e.hasMoreElements();) {
+      e.nextElement();
+      n++;
+    }
+    return n;
+  }

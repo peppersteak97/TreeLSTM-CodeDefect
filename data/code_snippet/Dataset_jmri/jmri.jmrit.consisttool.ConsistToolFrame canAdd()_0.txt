@@ -1,0 +1,33 @@
+     public void canAdd(){
+	   if(adrSelector.getAddress()!=null) {
+		DccLocoAddress address = adrSelector.getAddress();
+		if(consistModel.getRowCount()==	ConsistMan.getConsist(address)
+							   .sizeLimit()){
+			locoSelector.setEnabled(false);
+    			locoRosterBox.setEnabled(false);
+			addLocoButton.setEnabled(false);
+			resetLocoButton.setEnabled(false);
+			locoDirectionNormal.setEnabled(false);
+		} else {
+			locoSelector.setEnabled(true);
+    			locoRosterBox.setEnabled(true);
+			addLocoButton.setEnabled(true);
+			resetLocoButton.setEnabled(true);
+			locoDirectionNormal.setEnabled(false);
+	   		if(consistModel.getRowCount()==0)
+	   		     locoDirectionNormal.setEnabled(false);
+	   		else
+			     locoDirectionNormal.setEnabled(true);
+		 }
+	   } else {
+		locoSelector.setEnabled(true);
+    		locoRosterBox.setEnabled(true);
+		addLocoButton.setEnabled(true);
+		resetLocoButton.setEnabled(true);
+		locoDirectionNormal.setEnabled(false);
+	   	if(consistModel.getRowCount()==0)
+	        	locoDirectionNormal.setEnabled(false);
+	   	else
+			locoDirectionNormal.setEnabled(true);
+	   }
+	}

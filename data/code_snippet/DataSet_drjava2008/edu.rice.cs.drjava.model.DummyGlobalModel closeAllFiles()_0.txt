@@ -1,0 +1,3 @@
+  public boolean closeAllFiles() {
+    throw new UnsupportedOperationException("Tried to call closeAllFiles on a Dummy");
+  }

@@ -1,0 +1,8 @@
+    protected void onDialogClose() {
+        try {
+            m_ui.dispose();
+        }
+        finally {
+            super.onDialogClose();
+        }
+    }

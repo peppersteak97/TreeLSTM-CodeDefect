@@ -1,0 +1,8 @@
+    public void dispose() {
+        if (m_comboBox == null) {
+            return;
+        }
+        m_editProducer.uninstall(m_comboBox);
+        m_undoListeners.removeAll();
+        m_comboBox = null;
+    }

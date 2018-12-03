@@ -1,0 +1,17 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus("Requesting structures from server");
+
+        Runnable task = new Runnable() {
+            
+            public void run() {
+                IntegrationServer server = IntegrationServer.getInstance();
+                IWebServiceInfoProvider call = server.getServerCall(IWebServiceInfoProvider.class);
+                call.getInputAndOutputJTR(m_opInfo, m_callback);
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallellAndWait(task, m_callback);
+    }

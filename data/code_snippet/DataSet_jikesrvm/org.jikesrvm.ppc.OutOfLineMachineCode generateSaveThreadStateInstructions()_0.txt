@@ -1,0 +1,18 @@
+  private static ArchitectureSpecific.CodeArray generateSaveThreadStateInstructions() {
+    Assembler asm = new ArchitectureSpecific.Assembler(0);
+
+
+    for (int i = FIRST_NONVOLATILE_FPR; i <= LAST_NONVOLATILE_FPR; ++i) {
+      asm.emitSTFD(i, i << LOG_BYTES_IN_DOUBLE, T1);
+    }
+
+    for (int i = FIRST_NONVOLATILE_GPR; i <= LAST_NONVOLATILE_GPR; ++i) {
+      asm.emitSTAddr(i, i << LOG_BYTES_IN_ADDRESS, T1);
+    }
+
+    asm.emitSTAddr(FP, FP << LOG_BYTES_IN_ADDRESS, T1);
+
+    asm.emitBCLR();
+
+    return asm.makeMachineCode().getInstructions();
+  }

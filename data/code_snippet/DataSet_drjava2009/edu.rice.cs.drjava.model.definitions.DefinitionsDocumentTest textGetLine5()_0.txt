@@ -1,0 +1,4 @@
+  public void textGetLine5() {
+    _doc.setCurrentLocation(0);
+    assertEquals("#0.0", 1, _doc.getCurrentLine());
+  }

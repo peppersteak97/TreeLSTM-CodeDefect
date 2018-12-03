@@ -1,0 +1,14 @@
+  private void globalValueNumber() {
+    if (DEBUG) {
+      VM.sysWrite(valueGraph.toString());
+    }
+    initialize();
+    initializeWorkList();
+    while (!workList.empty()) {
+      GVCongruenceClass partition = workList.pop();
+      partitionClass(partition);
+    }
+    if (DEBUG) {
+      printValueNumbers();
+    }
+  }

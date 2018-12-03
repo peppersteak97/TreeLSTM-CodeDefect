@@ -1,0 +1,12 @@
+	protected IPropertyComponentHolder createComponentHolder() {
+        IPropertyComponentHolder h = null;
+		String s = getStringValue();
+		if ( m_bIsPassword ) {
+			h = new PasswordField();
+		}
+		else {
+            h = StringUtils.isNotBlank(s) ? 
+                    new TextField(s) : new EmptyTextField();
+		}
+        return h;
+	}

@@ -1,0 +1,10 @@
+    public void publish() {
+        UiUtils.runOnEventThread(new Runnable() {
+
+            public void run() {
+                pack();
+                setLocationRelativeTo(null);
+                setVisible(true);
+            }            
+        });
+    }

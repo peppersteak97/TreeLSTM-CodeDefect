@@ -1,0 +1,19 @@
+    private void writeMainClassPublicMethods() {
+        addLine("\t" + CppUtils.STRING + " GetTableName() const {");
+        addLine("\t\treturn \"" + getColumnOwner().getName() + "\";");
+        addLine("\t}");
+        addLine();
+        
+        addLine("\tvoid DoFieldExchange(const " + getRowClassName() + "& row) {");
+        addLine("\t\tm_row.Copy(row);");
+        addLine("\t}");
+        addLine();
+        
+        addLine("\tvoid Edit();");
+        addLine();
+
+        addLine("\t" + CppUtils.STRING + " GetUpdateFilter() {");
+        addLine("\t\treturn m_stUpdateFilter;");
+        addLine("\t}");
+        addLine();
+    }

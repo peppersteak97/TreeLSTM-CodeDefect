@@ -1,0 +1,4 @@
+    private void createComponents() {
+        m_tableUi = new KnownServersTable();
+        m_actions = new ServerTableActions(m_window, m_tableUi);
+    }

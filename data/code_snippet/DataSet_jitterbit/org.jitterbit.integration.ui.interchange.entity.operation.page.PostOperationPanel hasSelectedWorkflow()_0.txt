@@ -1,0 +1,4 @@
+    private boolean hasSelectedWorkflow() {
+        return WORKFLOW_SUPPORTED && 
+            (m_workflowControl.getSelectedEntity() != null);
+    }

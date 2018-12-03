@@ -1,0 +1,4 @@
+    public boolean prepareForDisplay() {
+        getWindow().getActiveObjectManager().addActiveObjectProvider(this);
+        return true;
+    }

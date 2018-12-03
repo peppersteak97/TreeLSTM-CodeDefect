@@ -1,0 +1,11 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        int n = 0;
+        for (Relation r : m_fieldRelations) {
+            if (n > 0) {
+            }
+            sb.append(r);
+            ++n;
+        }
+        return sb.toString();
+    }

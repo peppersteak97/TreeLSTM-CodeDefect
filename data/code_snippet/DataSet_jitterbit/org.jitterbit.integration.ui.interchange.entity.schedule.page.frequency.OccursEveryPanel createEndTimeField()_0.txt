@@ -1,0 +1,4 @@
+    private void createEndTimeField() {
+        m_endTime = new TimeOfTheDayControl();
+        resetEndTime();
+    }

@@ -1,0 +1,7 @@
+    public void reset() {
+        if (m_value < 0) {
+        }
+        else {
+            m_inputField.setValue(m_value);
+        }
+    }

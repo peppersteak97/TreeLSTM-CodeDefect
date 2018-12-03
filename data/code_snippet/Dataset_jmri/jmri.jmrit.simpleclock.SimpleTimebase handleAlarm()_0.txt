@@ -1,0 +1,22 @@
+	void handleAlarm() {
+	    if (timer==null) {
+            timer = new javax.swing.Timer(60*1000, new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        handleAlarm();
+                    }
+                });
+        }
+
+        timer.stop();
+        Date date = getTime();
+        int waitSeconds = 60-date.getSeconds();
+        timer.setInitialDelay(delay);
+        timer.start();
+        
+        int minutes = date.getMinutes();
+    	if (minutes!=oldMinutes) 
+    	    pcMinutes.firePropertyChange("minutes", new Double(oldMinutes), new Double(minutes));
+
+        oldMinutes = minutes;
+
+    }

@@ -1,0 +1,16 @@
+    private LinkedHashSet<ProjectLocation> getRecentProjectsFromPreferences() {
+        Set<ProjectLocation> locs = new LinkedHashSet<ProjectLocation>();
+        int index = 0;
+        for (int n = 0; n < HISTORY_SIZE; ++n) {
+            String name = m_preferences.getString(getRecentProjectNameKey(n), null);
+            if (name != null && name.length() > 0) {
+                File loc = m_preferences.getFile(getRecentProjectLocationKey(n), null);
+                File file = new File(loc, name + InterchangeProjectFile.FILE_EXTENSION);
+                if (file.exists()) {
+                    locs.add(new ProjectLocation(name, loc));
+                    ++index;
+                }
+            }
+        }
+        return new LinkedHashSet<ProjectLocation>(locs);
+    }

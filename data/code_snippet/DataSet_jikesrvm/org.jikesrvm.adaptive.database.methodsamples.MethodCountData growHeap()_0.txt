@@ -1,0 +1,12 @@
+  private void growHeap() {
+    double[] tmp1 = new double[counts.length * 2];
+    for (int i = 1; i < counts.length; i++) {
+      tmp1[i] = counts[i];
+    }
+    counts = tmp1;
+    int[] tmp2 = new int[cmids.length * 2];
+    for (int i = 1; i < cmids.length; i++) {
+      tmp2[i] = cmids[i];
+    }
+    cmids = tmp2;
+  }

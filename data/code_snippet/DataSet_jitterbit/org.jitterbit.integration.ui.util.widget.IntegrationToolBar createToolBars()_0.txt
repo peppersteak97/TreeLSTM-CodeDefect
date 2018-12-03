@@ -1,0 +1,22 @@
+    private void createToolBars() {
+        m_liToolBars = new ArrayList<JToolBar>();
+        JToolBar tb = null;
+        for (JButton btn : m_buttons) {
+            if (btn == null) {
+                if (tb == null) {
+                    continue;
+                }
+                m_liToolBars.add(tb);
+                tb = null;
+            }
+            else {
+                if (tb == null) {
+                    tb = createEmptyToolBar();
+                }
+                tb.add(btn);
+            }
+        }
+        if (tb != null) {
+            m_liToolBars.add(tb);
+        }
+    }

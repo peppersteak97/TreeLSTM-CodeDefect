@@ -1,0 +1,18 @@
+  public PropertyMaps clone() throws CloneNotSupportedException {
+    PropertyMaps clone = new PropertyMaps();
+    clone._props.clear();
+    for(String category: _props.keySet()) {
+      for (String key: _props.get(category).keySet()) {
+        clone.setProperty(category, getProperty(key));
+      }
+    }
+    clone._variables.clear();
+    for(String name: _variables.keySet()) {
+      Stack<VariableProperty> stack = new Stack<VariableProperty>();
+      for (VariableProperty v: _variables.get(name)) {
+        stack.add(new VariableProperty(v.getName(),v.getCurrent(this)));
+      }
+      clone._variables.put(name, stack);
+    }
+    return clone;
+  }

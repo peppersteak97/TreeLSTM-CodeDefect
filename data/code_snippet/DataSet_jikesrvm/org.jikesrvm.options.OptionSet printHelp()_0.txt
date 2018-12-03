@@ -1,0 +1,75 @@
+  public void printHelp() {
+
+    VM.sysWriteln("Commands");
+    VM.sysWrite(prefix);VM.sysWriteln("[:help]\t\t\tPrint brief description of arguments");
+    VM.sysWrite(prefix);VM.sysWriteln(":printOptions\t\tPrint the current values of options");
+    VM.sysWriteln();
+
+    VM.sysWrite("Boolean Options (");
+    VM.sysWrite(prefix);VM.sysWrite(":<option>=true or ");
+    VM.sysWrite(prefix);VM.sysWriteln(":<option>=false)");
+    VM.sysWriteln("Option                                 Description");
+
+    Option o = getFirst();
+    while (o != null) {
+      if (o.getType() == Option.BOOLEAN_OPTION) {
+        String key = o.getKey();
+        VM.sysWrite(key);
+        for (int c = key.length(); c<39;c++) {
+          VM.sysWrite(" ");
+        }
+        VM.sysWriteln(o.getDescription());
+      }
+      o = o.getNext();
+    }
+
+    VM.sysWrite("\nValue Options (");VM.sysWrite(prefix);VM.sysWriteln(":<option>=<value>)");
+    VM.sysWriteln("Option                         Type    Description");
+
+    o = getFirst();
+    while (o != null) {
+      if (o.getType() != Option.BOOLEAN_OPTION &&
+          o.getType() != Option.ENUM_OPTION) {
+        String key = o.getKey();
+        VM.sysWrite(key);
+        for (int c = key.length(); c<31;c++) {
+          VM.sysWrite(" ");
+        }
+        switch (o.getType()) {
+          case Option.INT_OPTION:          VM.sysWrite("int     "); break;
+          case Option.ADDRESS_OPTION:      VM.sysWrite("address "); break;
+          case Option.FLOAT_OPTION:        VM.sysWrite("float   "); break;
+          case Option.MICROSECONDS_OPTION: VM.sysWrite("usec    "); break;
+          case Option.PAGES_OPTION:        VM.sysWrite("bytes   "); break;
+          case Option.STRING_OPTION:       VM.sysWrite("string  "); break;
+        }
+        VM.sysWriteln(o.getDescription());
+      }
+      o = o.getNext();
+    }
+
+    VM.sysWriteln("\nSelection Options (set option to one of an enumeration of possible values)");
+
+    o = getFirst();
+    while (o != null) {
+      if (o.getType() == Option.ENUM_OPTION) {
+        String key = o.getKey();
+        VM.sysWrite(key);
+        for (int c = key.length(); c<31;c++) {
+          VM.sysWrite(" ");
+        }
+        VM.sysWriteln(o.getDescription());
+        VM.sysWrite("    { ");
+        boolean first = true;
+        for (String val : ((EnumOption)o).getValues()) {
+          VM.sysWrite(first ? "" : ", ");
+          VM.sysWrite(val);
+          first = false;
+        }
+        VM.sysWriteln(" }");
+      }
+      o = o.getNext();
+    }
+
+    VM.sysExit(VM.EXIT_STATUS_PRINTED_HELP_MESSAGE);
+  }

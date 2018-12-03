@@ -1,0 +1,6 @@
+  protected final void emit_swap() {
+    popAddr(T0);
+    popAddr(T1);
+    pushAddr(T0);
+    pushAddr(T1);
+  }

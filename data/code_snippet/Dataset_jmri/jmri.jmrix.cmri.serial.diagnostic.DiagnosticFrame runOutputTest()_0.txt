@@ -1,0 +1,43 @@
+    protected void runOutputTest() {
+        outTimer = new Timer(obsDelay,new ActionListener() {
+            public void actionPerformed(ActionEvent evnt) 
+            {
+                if (testRunning && outTest) {
+                    short[] outBitPattern = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};
+                    String[] portID = {"A","B","C","D"};
+                    outBytes[curOutByte] = (byte)outBitPattern[curOutBit];                    
+                    SerialMessage m = createOutPacket();
+                    m.setTimeout(50);
+                    SerialTrafficController.instance().sendSerialMessage(m,curFrame);
+                    statusText1.setText("Port "+portID[curOutByte-begOutByte]+" Bit "+
+                            Integer.toString(curOutBit)+
+                                    " is on - Compare LED's with the pattern below");
+                    statusText1.setVisible(true);
+                    String st = "";
+                    for (int i = begOutByte;i<=endOutByte;i++) {
+                        st = st + "  ";
+                        for (int j = 0;j<8;j++) {
+                            if ( (i==curOutByte) && (j==curOutBit) )
+                                st = st + "X ";
+                            else
+                                st = st + "O ";
+                        }
+                    }                        
+                    statusText2.setText(st);
+                    statusText2.setVisible(true);                        
+                    curOutBit ++;
+                    if (curOutBit>7) {
+                        curOutBit = 0;
+                        outBytes[curOutByte] = 0;
+                        curOutByte ++;
+                        if (curOutByte>endOutByte) {
+                            curOutByte = begOutByte;
+                            numIterations ++;
+                        }
+                    }
+                }
+            }
+        });
+
+        outTimer.start();
+    }

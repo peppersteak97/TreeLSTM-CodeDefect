@@ -1,0 +1,1 @@
+    public int slotStatus() 	{ return stat&LnConstants.LOCOSTAT_MASK; }

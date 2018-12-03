@@ -1,0 +1,11 @@
+    void onReset() {
+        m_cache.clear();
+        IntegrationEntity selected = m_usersPanel.getSelectedUserOrGroup();
+        if (selected == null) {
+            m_permissionsPanel.clear();
+        }
+        else {
+            m_permissionsPanel.update(selected, m_cache.getPermissions(selected));
+        }
+        m_buttons.update();
+    }

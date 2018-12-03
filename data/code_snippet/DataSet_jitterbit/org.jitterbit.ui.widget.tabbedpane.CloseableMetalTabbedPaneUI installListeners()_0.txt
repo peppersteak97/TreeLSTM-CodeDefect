@@ -1,0 +1,7 @@
+    protected void installListeners() {
+        super.installListeners();
+        tabPane.addPropertyChangeListener(CloseableTabbedPane.PROPERTY_CLOSE_ICON, 
+                        m_iconChangeListener);
+        tabPane.addPropertyChangeListener(CloseableTabbedPane.PROPERTY_USE_CLOSE_BUTTON, 
+                        m_buttonUseListener);
+    }

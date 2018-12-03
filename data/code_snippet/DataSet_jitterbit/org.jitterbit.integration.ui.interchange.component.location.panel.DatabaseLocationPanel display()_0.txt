@@ -1,0 +1,4 @@
+    public void display() {
+        super.display();
+        m_driverField.setSendUndoEvents(false);
+    }

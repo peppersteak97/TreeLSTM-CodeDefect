@@ -1,0 +1,2 @@
+  public String getFirstTopLevelClassName() throws ClassNameNotFoundException;
+  

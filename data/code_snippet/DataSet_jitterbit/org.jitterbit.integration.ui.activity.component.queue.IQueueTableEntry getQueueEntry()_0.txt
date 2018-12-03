@@ -1,0 +1,3 @@
+        public IOperationQueueEntry getQueueEntry() {
+            return null;
+        }

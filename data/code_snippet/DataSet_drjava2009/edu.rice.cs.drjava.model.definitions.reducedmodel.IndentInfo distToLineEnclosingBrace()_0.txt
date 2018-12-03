@@ -1,0 +1,1 @@
+  public int distToLineEnclosingBrace() { return _distToLineEnclosingBrace; }

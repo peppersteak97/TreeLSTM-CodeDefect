@@ -1,0 +1,3 @@
+  public Iterator<GCIRMapElement> iterator() {
+    return list.iterator();
+  }

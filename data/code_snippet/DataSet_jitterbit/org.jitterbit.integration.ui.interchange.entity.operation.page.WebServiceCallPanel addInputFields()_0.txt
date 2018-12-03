@@ -1,0 +1,7 @@
+    private void addInputFields() {
+        addInputField(m_sourceAndTargetCombos.getSourceField());
+        addInputField(m_sourceAndTargetCombos.getTargetField());
+        addInputField(m_wsCallControl.asInputFieldForChangeDetection());
+        addInputField(m_requestControl.asInputFieldForChangeDetection());
+        addInputField(m_responseControl.asInputFieldForChangeDetection());
+    }

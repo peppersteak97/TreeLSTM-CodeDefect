@@ -1,0 +1,16 @@
+    void readCV16() {
+        Programmer p = modePane.getProgrammer();
+        if (p == null) {
+            state = IDLE;
+            status.setText("No programmer connected");
+        } else {
+            try {
+                status.setText("reading...");
+                state = READCV16;
+                p.readCV(16, this);
+            } catch (jmri.ProgrammerException ex) {
+                state = IDLE;
+                status.setText(""+ex);
+            }
+        }
+    }

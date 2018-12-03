@@ -1,0 +1,3 @@
+	public String getDisplayedText() {
+	    return (m_textArea == null) ? "" : m_textArea.getText();
+	}

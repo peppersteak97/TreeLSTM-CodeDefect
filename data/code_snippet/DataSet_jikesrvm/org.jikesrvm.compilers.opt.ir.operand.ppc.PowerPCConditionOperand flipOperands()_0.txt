@@ -1,0 +1,29 @@
+  public PowerPCConditionOperand flipOperands() {
+    switch (value) {
+      case EQUAL:
+        value = NOT_EQUAL;
+        break;
+      case NOT_EQUAL:
+        value = EQUAL;
+        break;
+      case LESS:
+        value = GREATER;
+        break;
+      case LESS_EQUAL:
+        value = GREATER_EQUAL;
+        break;
+      case GREATER:
+        value = LESS;
+        break;
+      case GREATER_EQUAL:
+        value = LESS_EQUAL;
+        break;
+      case OVERFLOW:
+        value = NOT_OVERFLOW;
+        break;
+      case NOT_OVERFLOW:
+        value = OVERFLOW;
+        break;
+    }
+    return this;
+  }

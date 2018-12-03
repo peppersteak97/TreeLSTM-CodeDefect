@@ -1,0 +1,6 @@
+    protected SprogTrafficController controller() {
+        if (_controller == null) {
+            _controller = SprogTrafficController.instance();
+        }
+        return _controller;
+    }

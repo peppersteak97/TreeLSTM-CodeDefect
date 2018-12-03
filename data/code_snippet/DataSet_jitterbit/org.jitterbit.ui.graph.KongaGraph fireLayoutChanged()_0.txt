@@ -1,0 +1,8 @@
+	protected final void fireLayoutChanged() {
+		if( m_liGraphListeners == null )
+			return;
+		KongaGraphEvent e = new KongaGraphEvent(this);
+		for( IKongaGraphListener lst : m_liGraphListeners ) {
+			lst.layoutChanged(e);
+		}
+	}

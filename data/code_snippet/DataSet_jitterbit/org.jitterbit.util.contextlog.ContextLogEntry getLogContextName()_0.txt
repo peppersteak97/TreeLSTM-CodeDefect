@@ -1,0 +1,3 @@
+    public String getLogContextName() {
+        return m_stLogContextName;
+    }

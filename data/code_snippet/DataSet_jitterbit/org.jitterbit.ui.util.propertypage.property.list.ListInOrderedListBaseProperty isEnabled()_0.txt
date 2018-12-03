@@ -1,0 +1,3 @@
+	protected boolean isEnabled() {
+		return getDisplayer().isEnabled();
+	}

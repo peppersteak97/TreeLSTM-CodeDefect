@@ -1,0 +1,2 @@
+  public DefinitionsDocument make() throws IOException, BadLocationException, FileMovedException;
+  

@@ -1,0 +1,7 @@
+    static public QsiMessage getReadBootVersion() {
+        QsiMessage m = new QsiMessage(3);
+        m.setOpCode(RD_VER);
+        m.setLength(2);
+        m.setChecksum();
+        return m.frame();
+    }

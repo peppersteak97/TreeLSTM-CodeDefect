@@ -1,0 +1,4 @@
+	protected void removeRoutes() {
+		m_liInRoutes.clear();
+		m_liInRoutes.clear();
+	}

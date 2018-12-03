@@ -1,0 +1,6 @@
+    synchronized void uninstall() {
+        if (m_isInstalled) {
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(m_dispatcher);
+            m_isInstalled = false;
+        }
+    }

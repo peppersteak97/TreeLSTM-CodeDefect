@@ -1,0 +1,3 @@
+        for (TimeZone tz : getAllTimeZones()) {
+            timeZones.add(new TimeZoneItem(tz));
+        }

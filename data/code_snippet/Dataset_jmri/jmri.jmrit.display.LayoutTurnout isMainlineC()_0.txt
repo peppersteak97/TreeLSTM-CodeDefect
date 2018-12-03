@@ -1,0 +1,15 @@
+	public boolean isMainlineC() {
+		if (connectC != null) 
+			return ((TrackSegment)connectC).getMainline();
+		else {
+			if ( (type==DOUBLE_XOVER) || (type==LH_XOVER) || (type==RH_XOVER) ) {
+				if (connectD != null) 
+					return ((TrackSegment)connectD).getMainline();
+			}
+			else if (continuingSense == Turnout.THROWN) {
+				if (connectA != null) 
+					return ((TrackSegment)connectA).getMainline();
+			}
+		}	
+		return false;
+	}

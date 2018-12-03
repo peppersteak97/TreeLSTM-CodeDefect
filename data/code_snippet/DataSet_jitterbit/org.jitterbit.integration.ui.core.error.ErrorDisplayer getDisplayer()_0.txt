@@ -1,0 +1,8 @@
+    private JComponent getDisplayer() {
+        synchronized (m_lock) {
+            if (m_displayer == null) {
+                m_displayer = createDisplayer();
+            }
+        }
+        return m_displayer;
+    }

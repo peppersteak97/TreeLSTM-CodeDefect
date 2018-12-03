@@ -1,0 +1,7 @@
+    private void addInputFields() {
+        addInputPanel(m_topPanel);
+        addInputPanel(m_schedulePanel);
+        addInputPanel(m_optionsPanel);
+        addInputPanel(m_onSuccessPanel);
+        addInputPanel(m_onFailurePanel);
+    }

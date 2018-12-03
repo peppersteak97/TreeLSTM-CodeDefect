@@ -1,0 +1,3 @@
+    private Set<V> createSet() {
+        return new HashSet<V>(m_initialSetCapacity);
+    }

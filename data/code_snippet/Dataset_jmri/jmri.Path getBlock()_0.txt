@@ -1,0 +1,3 @@
+    public Block getBlock() {
+        return _block;
+    }

@@ -1,0 +1,3 @@
+    public List<IntegrationEntity> getExpandedOnStartUp() {
+        return translateDescriptorList(m_expandedOnStartUp);
+    }

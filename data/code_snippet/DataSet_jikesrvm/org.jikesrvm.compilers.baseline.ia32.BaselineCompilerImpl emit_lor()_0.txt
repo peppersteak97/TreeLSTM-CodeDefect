@@ -1,0 +1,8 @@
+  protected final void emit_lor() {
+    if (VM.BuildFor32Addr) {
+      asm.emitOR_RegInd_Reg(SP, T0);
+      asm.emitOR_RegDisp_Reg(SP, ONE_SLOT, S0);
+    } else {
+      asm.emitOR_RegInd_Reg_Quad(SP, T0);
+    }
+  }

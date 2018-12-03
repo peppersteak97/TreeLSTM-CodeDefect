@@ -1,0 +1,1 @@
+  public boolean hadStartupException() { return _startupException != null; }

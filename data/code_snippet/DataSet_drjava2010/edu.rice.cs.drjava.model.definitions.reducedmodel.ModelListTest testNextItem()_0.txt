@@ -1,0 +1,8 @@
+  public void testNextItem() {
+    ModelList<Integer>.ModelIterator itFull = fFull.getIterator();
+    itFull.insert(Integer.valueOf(0));
+    assertEquals("#0.2", Integer.valueOf(0), itFull.current());
+    itFull.insert(Integer.valueOf(1));
+    assertEquals("#0.1", Integer.valueOf(1), itFull.current());
+    assertEquals("#0.0", Integer.valueOf(0), itFull.nextItem());
+  }

@@ -1,0 +1,9 @@
+    private ComboBoxModel createTargetComboModel() {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.addElement(new TargetDataTypeComboItem(null));
+        WizardConfiguration conf = m_page.getWizard().getConfiguration();
+        for (DataStructureType targetType : conf.getSupportedOutputTypes()) {
+            model.addElement(new TargetDataTypeComboItem(targetType));
+        }
+        return model;
+    }

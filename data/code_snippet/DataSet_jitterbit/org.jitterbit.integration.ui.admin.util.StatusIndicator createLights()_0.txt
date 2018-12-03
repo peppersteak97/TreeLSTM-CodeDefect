@@ -1,0 +1,20 @@
+    private void createLights() {
+        m_lights = new HashMap<ServerStatus, StatusLight>();
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.gridy = 0;
+
+        for (ServerStatus s : SUPPORTED_STATII) {
+            StatusLight light = new StatusLight(STATUS_ICONS.get(s));
+            gbc.gridx = 0;
+            m_panel.add(new JLabel(light), gbc);
+            gbc.gridx = 1;
+            JLabel lbl = IntegrationUiStyleSheet.DefaultText.makeJLabel(s.toString());
+            lbl.setToolTipText(s.getDescription());
+            m_panel.add(lbl, gbc);
+            m_lights.put(s, light);
+            ++gbc.gridy;
+        }
+    }

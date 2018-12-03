@@ -1,0 +1,9 @@
+    private void layoutComponents() {
+        setLayout(new BoxLayout(getUi(), BoxLayout.LINE_AXIS));
+        add(m_frontLabel);
+        add(m_dayNumBox);
+        add(Box.createHorizontalStrut(5));
+        add(m_weekDayBox);
+        add(Box.createHorizontalStrut(5));
+        add(m_every_X_month_panel);
+    }

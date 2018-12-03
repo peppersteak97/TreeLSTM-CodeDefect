@@ -1,0 +1,5 @@
+  public void saveUntitled() {
+    _lock.startRead();
+    try { for (CompilerListener cl : _listeners) { cl.saveUntitled(); } }
+    finally { _lock.endRead(); }
+  }

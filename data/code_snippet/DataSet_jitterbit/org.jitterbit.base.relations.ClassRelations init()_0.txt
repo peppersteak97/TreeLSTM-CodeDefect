@@ -1,0 +1,13 @@
+	private void init() {
+        IClassRelationInitializer initializer = null;
+        try {
+            initializer = ClassRelationInitializerFactory.getInitializer();
+        }
+        catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        initializer.initializeClassRelations(this);
+    }

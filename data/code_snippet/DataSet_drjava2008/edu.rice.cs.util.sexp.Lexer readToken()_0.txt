@@ -1,0 +1,30 @@
+  public Tokens.SExpToken readToken() {
+    
+    if (buffer != null) {
+      Tokens.SExpToken token = buffer;
+      return token;
+    }
+    
+    int tokenType = getToken();
+    switch (tokenType) {
+      case TT_NUMBER: 
+        return new Tokens.NumberToken(nval);
+        
+      case TT_WORD:
+        String s = sval.toLowerCase();
+        Tokens.SExpToken regToken = wordTable.get(s);
+        if (regToken == null) return new Tokens.WordToken(sval);
+        
+        return regToken;
+        
+      case TT_EOF: return null;
+      case '(': return Tokens.LeftParenToken.ONLY;
+      case ')': return Tokens.RightParenToken.ONLY;
+      case '"': return new Tokens.QuotedTextToken(sval);
+      case '\\': 
+        return Tokens.BackSlashToken.ONLY;
+        
+      default:
+        return new Tokens.WordToken("" + (char)tokenType);
+    }
+  }

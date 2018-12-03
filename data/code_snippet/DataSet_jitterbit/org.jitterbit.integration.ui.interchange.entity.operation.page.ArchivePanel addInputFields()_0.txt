@@ -1,0 +1,4 @@
+    private void addInputFields() {
+        addInputField(m_sourceAndTargetCombos.getSourceField());
+        addInputField(m_sourceAndTargetCombos.getTargetField());
+    }

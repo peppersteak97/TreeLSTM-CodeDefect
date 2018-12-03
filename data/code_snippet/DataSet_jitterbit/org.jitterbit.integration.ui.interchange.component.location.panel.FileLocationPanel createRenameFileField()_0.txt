@@ -1,0 +1,4 @@
+    private void createRenameFileField() {
+        String label = PackageResources.File.RENAME;
+        m_renameFileTo = InputFieldFactory.getTextInputField(label, label, 30, true);
+    }

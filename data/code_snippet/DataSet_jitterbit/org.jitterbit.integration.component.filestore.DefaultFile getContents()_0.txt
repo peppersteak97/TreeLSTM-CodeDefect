@@ -1,0 +1,3 @@
+    public String getContents() throws IOException {
+        return KongaIoUtils.read(getPhysicalRepresentation());
+    }

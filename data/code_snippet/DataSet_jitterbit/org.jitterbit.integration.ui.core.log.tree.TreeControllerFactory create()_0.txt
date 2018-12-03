@@ -1,0 +1,11 @@
+    private IComponentController<KongaTree> create() {
+        DefaultComponentController<KongaTree> ctrl = new DefaultComponentController<KongaTree>();
+        ctrl.addMouseEventHandler(MouseEvent.MOUSE_CLICKED, new DoubleClickHandler());
+        ctrl.addMouseEventHandler(MouseEvent.MOUSE_ENTERED, new MouseEnteredHandler());
+        ctrl.addMouseEventHandler(MouseEvent.MOUSE_EXITED, new MouseExitedHandler());
+        ctrl.registerAction(DefaultComponentController.ENTER_KEYSTROKE, m_openFileAction);
+        ctrl.registerAction(DefaultComponentController.OPEN_KEYSTROKE, m_openFileAction);
+        ctrl.setPopupMenuRequestHandler(new PopupHandler());
+        m_controller = ctrl;
+        return ctrl;
+    }

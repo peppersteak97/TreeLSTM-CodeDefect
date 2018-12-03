@@ -1,0 +1,4 @@
+  static void emitBootRecordDeclarations() {
+    RVMClass bootRecord = TypeReference.findOrCreate(org.jikesrvm.runtime.BootRecord.class).resolve().asClass();
+    emitCDeclarationsForJavaType("BootRecord", bootRecord);
+  }

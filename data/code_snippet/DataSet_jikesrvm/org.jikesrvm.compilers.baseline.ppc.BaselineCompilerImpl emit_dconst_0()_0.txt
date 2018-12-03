@@ -1,0 +1,4 @@
+  protected final void emit_dconst_0() {
+    asm.emitLFStoc(F0, Entrypoints.zeroFloatField.getOffset(), T0);
+    pushDouble(F0);
+  }

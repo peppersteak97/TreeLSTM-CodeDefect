@@ -1,0 +1,3 @@
+    private void createPage() {
+        m_deployPage = new DeployPage(m_pageId, m_view, m_deployer, m_launcher);
+    }

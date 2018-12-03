@@ -1,0 +1,3 @@
+    void waitUntilDone() throws InterruptedException {
+        m_latch.await();
+    }

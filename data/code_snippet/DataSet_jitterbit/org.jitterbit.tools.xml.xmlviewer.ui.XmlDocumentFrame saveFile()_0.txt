@@ -1,0 +1,3 @@
+	public void saveFile() throws IOException {
+	    saveFileAs(m_file.getFileObject());
+	}

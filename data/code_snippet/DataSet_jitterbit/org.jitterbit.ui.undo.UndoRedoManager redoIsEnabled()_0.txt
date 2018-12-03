@@ -1,0 +1,3 @@
+	private boolean redoIsEnabled() {
+		return (m_current != null) && (m_current.getNext() != null);
+	}

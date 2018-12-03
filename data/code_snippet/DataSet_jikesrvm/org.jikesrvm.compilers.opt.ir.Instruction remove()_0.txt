@@ -1,0 +1,13 @@
+  public Instruction remove() {
+    if (IR.PARANOID) {
+      isLinked();
+      VM._assert(!isBbFirst() && !isBbLast(), "Removal of first/last instructions in block not supported");
+    }
+
+    Instruction Prev = prev, Next = next;
+    Prev.next = Next;
+    Next.prev = Prev;
+    next = null;
+    prev = null;
+    return Prev;
+  }

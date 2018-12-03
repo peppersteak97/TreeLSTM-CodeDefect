@@ -1,0 +1,5 @@
+    private void validateNonManualMode() {
+        String server = m_location.getServer();
+        if (server == null || server.trim().length() == 0) {
+        }
+    }

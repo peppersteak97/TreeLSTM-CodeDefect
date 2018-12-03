@@ -1,0 +1,4 @@
+  public void disablePrompt() {
+    _document.setHasPrompt(false);
+    _promptPos = _document.getLength();
+  }

@@ -1,0 +1,4 @@
+    private void validateDailyFrequency() {
+        if (!m_schedule.getDailyFrequency().isValid()) {
+        }
+    }

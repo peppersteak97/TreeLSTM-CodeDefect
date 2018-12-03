@@ -1,0 +1,3 @@
+        if (parentUi.getDataObject().getEntityType() == type) {
+            uiDels.add(parentUi);
+        }

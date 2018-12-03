@@ -1,0 +1,14 @@
+  public void testApplyThenResetDefault() {
+    Font testFont = Font.decode("Monospaced-BOLD-10");
+
+    _option.setValue(testFont);
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+
+    assertEquals("Apply (updateConfig) should write change to file",
+                 OptionConstants.FONT_MAIN.getDefault(),
+                 DrJava.getConfig().getSetting(OptionConstants.FONT_MAIN));
+  }

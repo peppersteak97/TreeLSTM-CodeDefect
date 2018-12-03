@@ -1,0 +1,23 @@
+	public void reset() {
+		if( m_first != null ) {
+			ChangeEntry e = m_first.getNext();
+			m_first.clear();
+			while( e != null ) {
+				ChangeEntry e1 = e.getNext();
+				e.clear();
+				e = e1;
+			}
+			m_first = null;
+			m_last = null;
+			m_current = null;
+		}
+		m_iCurrentVersion = 0;
+		m_groups.set(null);
+		
+		if( m_undoAction != null ) {
+			m_undoAction.setEnabled(false);
+		}
+		if( m_redoAction != null ) {
+			m_redoAction.setEnabled(false);
+		}
+	}

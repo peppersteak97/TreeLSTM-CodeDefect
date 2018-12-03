@@ -1,0 +1,7 @@
+  protected final void emit_baload() {
+    if (VM.BuildFor32Addr) {
+      asm.emitMOVSX_Reg_RegIdx_Byte(T1, S0, T0, Assembler.BYTE, NO_SLOT);
+    } else {
+      asm.emitMOVSXQ_Reg_RegIdx_Byte(T1, S0, T0, Assembler.BYTE, NO_SLOT);
+    }
+  }

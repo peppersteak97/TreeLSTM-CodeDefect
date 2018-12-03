@@ -1,0 +1,10 @@
+  public void testIsShadowed() {
+    assertTrue("#0.0", !lparen.isShadowed());
+    lparen.setState(INSIDE_DOUBLE_QUOTE);
+    assertEquals("#0.0.1", INSIDE_DOUBLE_QUOTE, lparen.getState());
+    assertTrue("#0.1", lparen.isShadowed());
+    rparen.setState(INSIDE_BLOCK_COMMENT);
+    assertTrue("#0.2", rparen.isShadowed());
+    rparen.setState(FREE);
+    assertTrue("#0.3", !rparen.isShadowed());
+  }

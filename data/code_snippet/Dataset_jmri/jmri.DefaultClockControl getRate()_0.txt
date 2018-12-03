@@ -1,0 +1,3 @@
+	public double getRate() {
+		return InstanceManager.timebaseInstance().getRate();
+	}

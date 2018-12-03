@@ -1,0 +1,1 @@
+    public boolean getHasServiceMode() {return true;}

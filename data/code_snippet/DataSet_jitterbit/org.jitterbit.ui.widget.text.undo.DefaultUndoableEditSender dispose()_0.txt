@@ -1,0 +1,9 @@
+    public void dispose() {
+        if (m_textComponent == null) {
+            return;
+        }
+        m_focusHandler.uninstall(m_textComponent);
+        m_textComponent.getDocument().removeUndoableEditListener(this);
+        m_textComponent = null;
+        m_undoListeners.removeAll();
+    }

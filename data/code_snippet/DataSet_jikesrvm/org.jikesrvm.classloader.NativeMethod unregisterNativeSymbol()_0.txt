@@ -1,0 +1,9 @@
+  public synchronized void unregisterNativeSymbol() {
+    if (VM.BuildForPowerOpenABI) {
+      nativeIP = Address.zero();
+      nativeTOC = Address.zero();
+    } else {
+      nativeIP = Address.zero();
+    }
+    replaceCompiledMethod(null);
+  }

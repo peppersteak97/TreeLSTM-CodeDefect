@@ -1,0 +1,5 @@
+    private void initData() {
+        dataOffset = findHeader(0x64, 0x61, 0x74, 0x61);
+        if (dataOffset>0) return;
+        log.error("Didn't find data chunk");
+    }

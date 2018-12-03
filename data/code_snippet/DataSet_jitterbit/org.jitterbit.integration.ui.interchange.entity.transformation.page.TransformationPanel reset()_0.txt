@@ -1,0 +1,10 @@
+    public void reset() {
+        m_nameField.setValue(m_transformation.getName());
+        m_nameField.getInputComponent().setCaretPosition(0);
+        try {
+            m_treeMapper.refresh();
+        }
+        catch (TreeMapperException ex) {
+            ex.printStackTrace();
+        }
+    }

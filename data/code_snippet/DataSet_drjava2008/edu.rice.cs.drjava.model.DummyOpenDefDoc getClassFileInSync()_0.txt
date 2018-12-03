@@ -1,0 +1,1 @@
+  public boolean getClassFileInSync() { throw new UnsupportedOperationException("Dummy method"); }

@@ -1,0 +1,3 @@
+    protected void onNewCurrentPage() {
+        m_displayPage.displayPage(getCurrentPage());
+    }

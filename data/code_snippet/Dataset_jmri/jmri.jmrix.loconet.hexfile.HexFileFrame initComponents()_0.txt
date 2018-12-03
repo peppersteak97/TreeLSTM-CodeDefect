@@ -1,0 +1,69 @@
+    public void initComponents() throws Exception {
+
+        openHexFileButton.setText("Open file");
+        openHexFileButton.setVisible(true);
+        openHexFileButton.setToolTipText("run from hex file");
+
+        filePauseButton.setText("Pause");
+        filePauseButton.setVisible(true);
+        filePauseButton.setToolTipText("pauses the trace at the source");
+
+        jButton1.setText("Continue");
+        jButton1.setVisible(true);
+        jButton1.setToolTipText("continues the trace at the source");
+
+        delayField.setText("200");
+        delayField.setVisible(true);
+        delayField.setToolTipText("delay (in milliseconds) between commands");
+
+        jLabel1.setText("Delay:");
+        jLabel1.setVisible(true);
+
+        setTitle("LocoNet Simulator");
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        JPanel pane1 = new JPanel();
+        pane1.setLayout(new BoxLayout(pane1, BoxLayout.X_AXIS));
+        pane1.add(openHexFileButton);
+        getContentPane().add(pane1);
+
+        JPanel pane2 = new JPanel();
+        pane2.setLayout(new BoxLayout(pane2, BoxLayout.X_AXIS));
+        pane2.add(jLabel1);
+        pane2.add(delayField);
+        getContentPane().add(pane2);
+
+        JPanel pane3 = new JPanel();
+        pane3.setLayout(new BoxLayout(pane3, BoxLayout.X_AXIS));
+        pane3.add(filePauseButton);
+        pane3.add(jButton1);
+        getContentPane().add(pane3);
+
+
+        openHexFileButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    openHexFileButtonActionPerformed(e);
+                }
+            });
+        filePauseButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    filePauseButtonActionPerformed(e);
+                }
+            });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    jButton1ActionPerformed(e);
+                }
+            });
+        delayField.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    delayFieldActionPerformed(e);
+                }
+            });
+
+        port = new LnHexFilePort();
+        port.setDelay(Integer.valueOf(delayField.getText()).intValue());
+
+        configure();
+
+    }

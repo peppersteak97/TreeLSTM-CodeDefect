@@ -1,0 +1,12 @@
+  public void testHasErrorsWithPositions() throws IOException, OperationCanceledException {
+    fullSetup();
+    
+    OpenDefinitionsDocument doc = getter.getDocumentForFile(files[4]);
+    assertTrue("File should have errors with lines.", model.hasErrorsWithPositions(doc));
+    
+    doc.setFile(new File("/tmp/./nowhere5"));
+    assertTrue("Same file should have errors with lines.", model.hasErrorsWithPositions(doc));
+    
+    doc = getter.getDocumentForFile(files[1]);
+    assertTrue("File shouldn't have errors with lines.", !model.hasErrorsWithPositions(doc));
+  }

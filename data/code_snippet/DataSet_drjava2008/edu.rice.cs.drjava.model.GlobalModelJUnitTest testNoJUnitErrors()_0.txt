@@ -1,0 +1,24 @@
+  public void testNoJUnitErrors() throws Exception {
+    if (printMessages) System.out.println("----testNoJUnitErrors-----");
+    
+    final OpenDefinitionsDocument doc = setupDocument(MONKEYTEST_PASS_TEXT);
+    final File file = new File(_tempDir, "MonkeyTestPass.java");
+    saveFile(doc, new FileSelector(file));
+    JUnitTestListener listener = new JUnitTestListener();
+    _model.addListener(listener);
+    
+    listener.checkCompileOccurred();
+    
+    listener.runJUnit(doc);
+    
+    listener.assertJUnitStartCount(1);
+    
+    if (printMessages) System.out.println("errors: "+_model.getJUnitModel().getJUnitErrorModel());
+    
+    listener.assertNonTestCaseCount(0);
+    assertEquals("test case should have no errors reported",  0,
+                 _model.getJUnitModel().getJUnitErrorModel().getNumErrors());
+    
+    _model.removeListener(listener);
+    _log.log("testNoJUnitErrors completed");
+  }

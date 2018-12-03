@@ -1,0 +1,8 @@
+      jt.setFont(getFont());
+      jl.addListSelectionListener(new ListSelectionListener() {
+        public void valueChanged(ListSelectionEvent e) {
+          jt.setText((String) jl.getSelectedValue());
+          si = (String) jl.getSelectedValue();
+          showSample();
+        }
+      });

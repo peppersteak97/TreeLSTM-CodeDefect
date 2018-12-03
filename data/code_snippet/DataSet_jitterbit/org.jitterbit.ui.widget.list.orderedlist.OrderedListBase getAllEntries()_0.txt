@@ -1,0 +1,8 @@
+	protected List getAllEntries() {
+		List<Object> retVal = new ArrayList<Object>();
+		int iSize = m_listModel.size();
+		for( int i=0; i<iSize; ++i ) {
+			retVal.add( m_listModel.getElementAt(i) );
+		}
+		return retVal;
+	}

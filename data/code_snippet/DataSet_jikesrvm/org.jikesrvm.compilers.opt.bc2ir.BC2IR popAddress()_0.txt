@@ -1,0 +1,5 @@
+  public Operand popAddress() {
+    Operand r = pop();
+    if (VM.VerifyAssertions) VM._assert(r.isAddress());
+    return r;
+  }

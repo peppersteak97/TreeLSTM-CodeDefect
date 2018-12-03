@@ -1,0 +1,4 @@
+    static public UsbDriverAdapter instance() {
+        if (mInstance == null) mInstance = new UsbDriverAdapter();
+        return mInstance;
+    }

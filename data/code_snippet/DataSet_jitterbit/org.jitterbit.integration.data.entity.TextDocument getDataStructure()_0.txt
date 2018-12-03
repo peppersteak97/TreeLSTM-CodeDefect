@@ -1,0 +1,3 @@
+	public TextStructure getDataStructure(){
+		return m_textStructure;
+	}

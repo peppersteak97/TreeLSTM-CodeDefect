@@ -1,0 +1,7 @@
+    void initData() {
+        final int MAX_SE = 1024;
+        final int length = MAX_SE*ENTRYSIZE;
+        contents = new int[length];
+        for (int j=0; j<length; j++)
+            contents[j]=0x3FFF;
+    }

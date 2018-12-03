@@ -1,0 +1,3 @@
+  public boolean isVolatile() {
+    return (modifiers & ACC_VOLATILE) != 0;
+  }

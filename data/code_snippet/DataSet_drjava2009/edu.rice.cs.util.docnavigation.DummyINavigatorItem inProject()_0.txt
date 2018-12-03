@@ -1,0 +1,1 @@
+  public boolean inProject() { throw new UnsupportedOperationException("inProject() not implemented"); }

@@ -1,0 +1,8 @@
+    public StringKeyValuePairs getProperties() {
+        StringKeyValuePairs keyValues = new StringKeyValuePairs();
+        keyValues.put(FOLDER_ID, getID().toString());
+        keyValues.put(FOLDER_NAME, getName());
+        keyValues.put(CONTENTS_ENTITY_TYPE, Integer.toString(getItemType().getId()));
+
+        return keyValues;
+    }

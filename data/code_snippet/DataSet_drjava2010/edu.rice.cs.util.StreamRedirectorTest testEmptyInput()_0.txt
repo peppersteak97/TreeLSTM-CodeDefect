@@ -1,0 +1,8 @@
+  public void testEmptyInput() throws IOException {
+    InputStreamRedirector isr = new InputStreamRedirector() {
+      protected String _getInput() {
+        return "";
+      }
+    };
+    assertEquals("Should return -1 to indicate end of stream", -1, isr.read());
+  }

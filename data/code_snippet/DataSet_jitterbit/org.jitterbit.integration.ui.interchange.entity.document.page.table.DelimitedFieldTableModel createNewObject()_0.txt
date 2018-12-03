@@ -1,0 +1,3 @@
+    public Field createNewObject() {
+        return new Field(-1, "", "String", "", "", 0, false);
+    }

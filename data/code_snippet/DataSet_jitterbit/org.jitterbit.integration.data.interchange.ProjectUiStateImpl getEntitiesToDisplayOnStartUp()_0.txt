@@ -1,0 +1,3 @@
+    public List<IntegrationEntity> getEntitiesToDisplayOnStartUp() {
+        return translateDescriptorList(m_displayOnStartUp);
+    }

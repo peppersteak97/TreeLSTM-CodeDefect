@@ -1,0 +1,7 @@
+    private void createDelimitedComponents() {
+        m_docTypeLabel = ComponentFactories.textFactory().newTextField(
+                        RESOURCES.getString("Label.ComplexDelimited"), 20);
+        m_docTypeLabel.setEditable(false);
+        m_delimQualifierPanel = new DelimiterAndQualifierPanel(m_document);
+        addInputPanel(m_delimQualifierPanel);
+    }

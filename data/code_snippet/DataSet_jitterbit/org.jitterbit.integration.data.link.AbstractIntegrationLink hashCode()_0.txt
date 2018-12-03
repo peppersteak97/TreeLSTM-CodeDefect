@@ -1,0 +1,6 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 37 * hash + m_main.getID().hashCode();
+        hash = 37 * hash + m_dependant.getID().hashCode();
+        return hash;
+    }

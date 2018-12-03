@@ -1,0 +1,14 @@
+  public void XXXtestThreadShouldDie() throws Exception {
+    debug.logStart();
+    _log.log("----testThreadShouldDie----");
+    StepTestListener debugListener = new StepTestListener();
+    _debugger.addListener(debugListener);
+
+    _startupDebugger("DrJavaThreadDeathTest.java", THREAD_DEATH_CLASS);
+
+    interpret("Jones.threadShouldDie()");
+
+    _shutdownWithoutSuspendedInteraction();
+    _debugger.removeListener(debugListener);
+    debug.logEnd();
+  }

@@ -1,0 +1,14 @@
+    private void createDisplayer() {
+        m_displayer = new OneColumnPanel();
+        m_displayer.setFill(OneColumnPanel.BOTH);
+        m_displayer.setInsets(2, 0, 10, 0);
+        for (Table t : m_tables) {
+            DropDownPanel ddp = new DropDownPanel(
+                            ComponentDecorFactory.invisible(t).getUi(),
+                            t.getDbObject().getName(),
+                            true);
+            ddp.setOpaque(false);
+            m_displayer.add(ddp.getDisplayer());
+        }
+        m_displayer.setOpaque(false, false);
+    }

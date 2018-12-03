@@ -1,0 +1,6 @@
+    Collection<IBoundProperty> getBoundPropertyControls() {
+        IBoundProperty name = BoundPropertyControlFactory.newNameControl(m_nameField);
+        List<IBoundProperty> ctrls = KongaListUtils.asList(name);
+        ctrls.addAll(m_detailsPanel.getBoundPropertyControls());
+        return ctrls;
+    }

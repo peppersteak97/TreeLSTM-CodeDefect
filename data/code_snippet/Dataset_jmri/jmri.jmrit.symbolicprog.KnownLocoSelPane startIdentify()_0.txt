@@ -1,0 +1,14 @@
+    private void startIdentify() {
+        final KnownLocoSelPane me = this;
+        IdentifyLoco id = new IdentifyLoco() {
+                private KnownLocoSelPane who = me;
+                protected void done(int dccAddress) {
+                    who.selectLoco(dccAddress);
+                }
+                protected void message(String m) {
+                    if (mStatusLabel != null) mStatusLabel.setText(m);
+                }
+                public void error() {}
+            };
+        id.start();
+    }

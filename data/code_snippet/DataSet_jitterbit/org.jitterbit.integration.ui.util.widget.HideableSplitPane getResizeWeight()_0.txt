@@ -1,0 +1,3 @@
+    public double getResizeWeight() {
+        return m_dividerHidden ? 1.0 : super.getResizeWeight();
+    }

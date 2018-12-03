@@ -1,0 +1,8 @@
+    private static GridBagConstraints getInitialLeftConstraints() {
+        GridBagConstraints left = new GridBagConstraints();
+        left.anchor = GridBagConstraints.NORTHWEST;
+        left.insets = DEFAULT_GBC_INSETS_LEFT;
+        left.gridx = 0;
+        left.gridy = 0;
+        return left;
+    }

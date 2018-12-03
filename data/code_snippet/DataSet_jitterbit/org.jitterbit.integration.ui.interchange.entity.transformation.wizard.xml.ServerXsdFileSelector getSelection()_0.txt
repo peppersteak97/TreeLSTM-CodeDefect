@@ -1,0 +1,17 @@
+    public IServerXsdFileSelection getSelection() {
+        final XmlStructureFileFolder folder = getSelectedFolder();
+        if (folder == null) {
+            return null;
+        }
+        final XmlStructureFile file = getSelectedFile();
+        return new IServerXsdFileSelection() {
+
+            public XmlStructureFile getFile() {
+                return file;
+            }
+
+            public XmlStructureFileFolder getFolder() {
+                return folder;
+            }
+        };
+    }

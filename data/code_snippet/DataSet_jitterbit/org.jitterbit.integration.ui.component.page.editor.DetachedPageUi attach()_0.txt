@@ -1,0 +1,8 @@
+    void attach() {
+        UiUtils.runOnEventThread(new Runnable() {
+            
+            public void run() {
+                m_pageWindow.dispose();
+            }
+        });
+    }

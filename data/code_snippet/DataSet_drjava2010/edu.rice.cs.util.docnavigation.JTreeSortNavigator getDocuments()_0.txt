@@ -1,0 +1,12 @@
+  public ArrayList<ItemT> getDocuments() {
+    
+    
+      Enumeration<?> e = ((DefaultMutableTreeNode)_model.getRoot()).depthFirstEnumeration();
+      
+      while(e.hasMoreElements()) {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.nextElement();
+        if (node.isLeaf() && node != _model.getRoot()) {
+          list.add(getNodeUserObject(node));
+        }
+      }
+    }

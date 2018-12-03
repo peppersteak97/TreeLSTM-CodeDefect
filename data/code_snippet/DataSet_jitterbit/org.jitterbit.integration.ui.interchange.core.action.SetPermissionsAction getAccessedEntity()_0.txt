@@ -1,0 +1,4 @@
+    private IIntegrationEntityUiDelegate getAccessedEntity() {
+        List<IIntegrationEntityUiDelegate> active = getActiveObjects(IIntegrationEntityUiDelegate.class);
+        return active.isEmpty() ? null : active.get(0);
+    }

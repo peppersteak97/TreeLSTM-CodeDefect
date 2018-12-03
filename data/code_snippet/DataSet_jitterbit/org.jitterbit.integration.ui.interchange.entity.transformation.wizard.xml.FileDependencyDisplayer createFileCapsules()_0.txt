@@ -1,0 +1,7 @@
+    private List<RequiredFileCapsule> createFileCapsules() {
+        List<RequiredFileCapsule> fileCapsules = new ArrayList<RequiredFileCapsule>();
+        for (File file : dependency.getRequiredFiles()) {
+            fileCapsules.add(new RequiredFileCapsule(file, suggestedDirectory));
+        }
+        return fileCapsules;
+    }

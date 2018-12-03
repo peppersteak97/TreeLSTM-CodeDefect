@@ -1,0 +1,22 @@
+	private void initUi() {
+		setFrameIcon(null);
+		
+		Container cp = getContentPane();
+		cp.setLayout( new BorderLayout() );
+		
+		m_treeController = new TreeController();
+		cp.add( new ModePanel(), BorderLayout.NORTH );
+		m_panel = new JPanel( new BorderLayout() );
+		m_currentMode = s_currentDefaultMode;
+		if( s_currentDefaultMode == TEXT_MODE )
+			displayText();
+		else
+			displayTree();
+		cp.add( m_panel, BorderLayout.CENTER );
+		
+		mapKeyStrokes();
+		
+		pack();
+		setSize(600, 600);
+		setLocation(s_xOffset * m_instanceNumber, s_yOffset * m_instanceNumber);
+	}

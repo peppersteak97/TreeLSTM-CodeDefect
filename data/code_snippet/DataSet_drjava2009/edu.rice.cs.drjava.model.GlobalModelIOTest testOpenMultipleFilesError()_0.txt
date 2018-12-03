@@ -1,0 +1,27 @@
+  public void testOpenMultipleFilesError() {
+    
+    OpenDefinitionsDocument[] docs = null;
+    
+    try {
+      docs = _model.openFiles(new FileOpenSelector() {
+        public File[] getFiles() { return new File[] {null}; }
+      });
+      fail("IO exception was not thrown!");
+    }
+    catch (IOException e) {  /* As we expected, the file was not found */ }
+    catch (Exception e) { fail("Unexpectedly exception caught!"); }
+    
+    try {
+      docs = _model.openFiles(new FileOpenSelector() {
+        public File[] getFiles() { return null; }
+      });
+      
+      fail("IO exception was not thrown!");
+    }
+    catch (IOException e) { /* As we expected, the file was not found. */ }
+    catch (Exception e) { fail("Unexpectedly exception caught!"); }
+    
+    assertTrue("non-existent file", docs == null);
+    
+    _log.log("testOpenMultipleFilesError completed");
+  }

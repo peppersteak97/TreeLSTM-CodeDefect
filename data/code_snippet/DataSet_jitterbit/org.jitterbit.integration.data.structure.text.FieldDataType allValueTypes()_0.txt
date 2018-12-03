@@ -1,0 +1,3 @@
+    public static EnumSet<FieldDataType> allValueTypes() {
+        return EnumSet.range(String, Boolean);
+    }

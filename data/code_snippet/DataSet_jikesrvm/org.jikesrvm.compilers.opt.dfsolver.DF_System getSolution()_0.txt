@@ -1,0 +1,3 @@
+  public DF_Solution getSolution() {
+    return cells;
+  }

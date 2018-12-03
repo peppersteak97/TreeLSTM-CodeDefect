@@ -1,0 +1,13 @@
+  public void testCancelDoesNotChangeConfig() {
+
+    Font testFont = Font.decode("Monospaced-BOLD-10");
+
+    _option.setValue(testFont);
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    assertEquals("Cancel (resetToCurrent) should not change the config",
+                 OptionConstants.FONT_MAIN.getDefault(),
+                 DrJava.getConfig().getSetting(OptionConstants.FONT_MAIN));
+
+  }

@@ -1,0 +1,3 @@
+    public IGroupUi getUi() {
+        return (IGroupUi) super.getUi();
+    }

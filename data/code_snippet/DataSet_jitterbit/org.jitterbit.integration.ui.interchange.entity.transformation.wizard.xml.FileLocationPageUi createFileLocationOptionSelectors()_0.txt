@@ -1,0 +1,12 @@
+    private void createFileLocationOptionSelectors() {
+        IRadioButtonFactory factory = ComponentFactories.radioButtonFactory();
+        ActionListener listener = new RadioButtonListener();
+        ButtonGroup group = new ButtonGroup();
+        
+        String label = PackageResources.StructureFileLocationPage.Choices.COPY;
+        m_copyFileOption = createSelector(factory, label, group, listener);
+        label = PackageResources.StructureFileLocationPage.Choices.CURRENT_LOCATION;
+        m_currentLocationUrlOption = createSelector(factory, label, group, listener);
+        label = PackageResources.StructureFileLocationPage.Choices.CUSTOM_URL;
+        m_customLocationUrlOption = createSelector(factory, label, group, listener);
+    }

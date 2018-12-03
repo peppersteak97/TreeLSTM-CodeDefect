@@ -1,0 +1,3 @@
+  public String toString() {
+    return StringUtilities.asciiBytesToString(val);
+  }

@@ -1,0 +1,10 @@
+    Runnable getSaveJob() {
+        if (m_saveJob == null) {
+            m_saveJob = new Runnable() {
+                
+                public void run() {
+                }
+            };
+        }
+        return m_saveJob;
+    }

@@ -1,0 +1,10 @@
+    public String getFilterString() {
+        StringBuilder sb = new StringBuilder();
+        for (IActivityEntryFilterUi<T> f : m_filters) {
+            String s = f.getFilterString();
+            if (s != null && s.length() > 0) {
+                sb.append(s);
+            }
+        }
+        return sb.toString();
+    }

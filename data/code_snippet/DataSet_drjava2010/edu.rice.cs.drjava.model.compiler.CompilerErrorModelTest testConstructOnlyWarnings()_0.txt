@@ -1,0 +1,13 @@
+  public void testConstructOnlyWarnings() {
+    getter = new TestDocGetter();
+    errors = new DJError[] { 
+      new DJError("Test warning without File", true),
+      new DJError("Test warning without File", true) 
+    };
+    model = new CompilerErrorModel(errors, getter);
+    
+    assertEquals("Should have 2 errors.", 2, model.getNumErrors());
+    assertEquals("Should have 2 warnings" , 2, model.getNumWarnings());
+    assertEquals("Should have 0 compiler errors" , 0, model.getNumCompErrors());
+    assertTrue("hasOnlyWarnings should return true.", model.hasOnlyWarnings());
+  }

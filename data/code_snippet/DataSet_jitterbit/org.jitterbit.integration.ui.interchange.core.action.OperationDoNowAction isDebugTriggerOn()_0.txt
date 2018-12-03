@@ -1,0 +1,3 @@
+        if (DebugMode.IS_ENABLED && isDebugTriggerOn()) {
+            return getTimesToRunImpl();
+        }

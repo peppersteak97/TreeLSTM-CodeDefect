@@ -1,0 +1,3 @@
+    public boolean hasPanelMenu() {
+        return menuBox.isSelected();
+    }

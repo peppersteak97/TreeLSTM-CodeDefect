@@ -1,0 +1,3 @@
+  int getIntBits() {
+    return (int) (value & 0x0FFFFFFFF);
+  }

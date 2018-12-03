@@ -1,0 +1,3 @@
+    public Character getMnemonic() {
+        return m_mnemonic;
+    }

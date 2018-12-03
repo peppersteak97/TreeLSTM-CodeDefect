@@ -1,0 +1,3 @@
+  public R getResult() {
+    return _result;
+  }

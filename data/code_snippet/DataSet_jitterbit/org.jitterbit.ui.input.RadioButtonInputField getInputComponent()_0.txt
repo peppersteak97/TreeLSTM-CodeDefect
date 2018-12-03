@@ -1,0 +1,3 @@
+    public JRadioButton getInputComponent() {
+        return (JRadioButton) super.getInputComponent();
+    }

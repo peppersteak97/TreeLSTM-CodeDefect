@@ -1,0 +1,17 @@
+    private void saveToDisk() {
+        File output = getOutputFile();
+        if (output == null) {
+            return;
+        }
+        try {
+            DeployResultPersistorFactory factory = DeployResultPersistorFactory.getFactory();
+            IDeployResultPersistor persistor = factory.filePersistor(output, m_objectLookup);
+            m_results.persist(persistor);
+        }
+        catch (DeployResultPersistorException ex) {
+            ErrorLogger.getDefaultLogger().logAndShow(
+                            this,
+                            PackageResources.ResultDisplayer.Save.ERROR,
+                            ex);
+        }
+    }

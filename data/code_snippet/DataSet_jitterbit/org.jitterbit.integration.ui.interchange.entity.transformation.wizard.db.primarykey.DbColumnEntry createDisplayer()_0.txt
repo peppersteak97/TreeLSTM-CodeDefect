@@ -1,0 +1,9 @@
+    private JComponent createDisplayer() {
+        OneRowPanel p = new OneRowPanel();
+        p.setAnchor(OneRowPanel.WEST);
+        p.setInsets(2, 3, 2, 3);
+        p.add(m_checkBox);
+        p.add(createLabel());
+        p.setOpaque(false, false);
+        return ComponentDecorFactory.invisible(p).getUi();
+    }

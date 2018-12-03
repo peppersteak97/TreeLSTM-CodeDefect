@@ -1,0 +1,3 @@
+    public IWizardPage getNextPage() {
+        return m_nextPageFactory.getNextPage(getSelectedFile(), getRoots());
+    }

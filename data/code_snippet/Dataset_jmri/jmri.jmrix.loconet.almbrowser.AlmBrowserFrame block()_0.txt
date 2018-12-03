@@ -1,0 +1,6 @@
+    int block() {
+        int element = Integer.parseInt(elementNumber.getText())-1;
+        int size = Integer.parseInt(itemSize.getText());
+        int item = Integer.parseInt(itemNumber.getText())-1;
+        return size*item+element;
+    }

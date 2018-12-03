@@ -1,0 +1,8 @@
+	public FunctionButtonPropertyEditor getFunctionButtonEditor()
+	{
+		if (functionButtonEditor == null)
+		{
+			functionButtonEditor = new FunctionButtonPropertyEditor();
+		}
+		return functionButtonEditor;
+	}

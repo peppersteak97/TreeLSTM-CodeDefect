@@ -1,0 +1,5 @@
+  public /* synchronized */ boolean isCurrentThreadSuspended() throws DebugException {
+    assert EventQueue.isDispatchThread();
+    if (! isReady()) return false;
+    return hasSuspendedThreads() && ! hasRunningThread();
+  }

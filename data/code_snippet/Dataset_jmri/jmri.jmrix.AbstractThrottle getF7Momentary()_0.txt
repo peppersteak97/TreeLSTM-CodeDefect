@@ -1,0 +1,3 @@
+    public boolean getF7Momentary() {
+        return f7Momentary;
+    }

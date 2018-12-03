@@ -1,0 +1,7 @@
+  protected void _styleChanged() {    
+    
+      int length = getLength() - _currentLocation;
+      
+      DocumentEvent evt = new DefaultDocumentEvent(_currentLocation, length, DocumentEvent.EventType.CHANGE);
+      fireChangedUpdate(evt);
+  } 

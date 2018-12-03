@@ -1,0 +1,7 @@
+  private void _removeAllAuxiliary() {
+    assert EventQueue.isDispatchThread();
+    Runnable1<OpenDefinitionsDocument> op =  new Runnable1<OpenDefinitionsDocument>() { 
+      public void run(OpenDefinitionsDocument d) { _model.removeAuxiliaryFile(d); }
+    };
+    _processDocs(_model.getDocumentNavigator().getDocumentsInBin(_model.getAuxiliaryBinTitle()), op);
+  }

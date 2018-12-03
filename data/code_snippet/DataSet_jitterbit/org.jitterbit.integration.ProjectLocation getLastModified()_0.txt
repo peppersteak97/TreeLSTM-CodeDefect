@@ -1,0 +1,9 @@
+    public Date getLastModified() {
+        Date modified = readDateProperty(InterchangeProjectFile.MODIFIED);
+        if (modified == null) {
+            long time = m_file.exists() ? m_file.lastModified() : 
+                getLocation().lastModified();
+            modified = new Date(time);
+        }
+        return modified;
+    }

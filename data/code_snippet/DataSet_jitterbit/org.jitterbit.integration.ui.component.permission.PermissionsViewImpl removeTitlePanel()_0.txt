@@ -1,0 +1,3 @@
+    private void removeTitlePanel() {
+        m_titlePanel.prepareForRemoval();
+    }

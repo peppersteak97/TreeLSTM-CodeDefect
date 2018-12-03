@@ -1,0 +1,7 @@
+    public void dispose() {
+        dataModel.dispose();
+        dataModel = null;
+        dataTable = null;
+        dataScroll = null;
+        super.dispose();
+    }

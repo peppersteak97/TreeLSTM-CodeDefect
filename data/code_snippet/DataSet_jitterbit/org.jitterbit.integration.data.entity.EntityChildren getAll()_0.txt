@@ -1,0 +1,17 @@
+    public List<IntegrationEntity> getAll() {
+        int nKeys = m_mapChildrenByID.size();
+        List<IntegrationEntity>[] lists = new List[nKeys];
+        int n = 0;
+        int nTotalElements = 0;
+        for (Class<?> cls : m_mapChildrenByID.keySet()) {
+            List<IntegrationEntity> list = getAll(cls);
+            nTotalElements += list.size();
+            lists[n++] = list;
+        }
+
+        List<IntegrationEntity> retList = new ArrayList<IntegrationEntity>(nTotalElements);
+        for (int i = 0; i < nKeys; ++i) {
+            retList.addAll(lists[i]);
+        }
+        return retList;
+    }

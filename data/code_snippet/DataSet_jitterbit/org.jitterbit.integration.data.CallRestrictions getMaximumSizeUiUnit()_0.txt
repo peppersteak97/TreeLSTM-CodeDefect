@@ -1,0 +1,11 @@
+    public StorageSizeUnit getMaximumSizeUiUnit() {
+        String unitAbbrev = m_data.get(MAX_SIZE_UI_UNIT);
+        StorageSizeUnit unit = null;
+        if (unitAbbrev != null) {
+            unit = StorageSizeUnit.fromAbbreviation(unitAbbrev);
+        }
+        if (unit == null) {
+            unit = StorageSizeUnit.Kilobytes;
+        }
+        return unit;
+    }

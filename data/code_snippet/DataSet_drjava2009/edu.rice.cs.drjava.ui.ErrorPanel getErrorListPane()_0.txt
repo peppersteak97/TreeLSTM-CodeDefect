@@ -1,0 +1,2 @@
+    getErrorListPane().setFont(f);
+    

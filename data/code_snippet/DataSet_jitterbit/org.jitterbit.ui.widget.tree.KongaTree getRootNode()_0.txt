@@ -1,0 +1,13 @@
+    public IKongaTreeNode getRootNode() {
+        if (getModel() == null) {
+            return null;
+        }
+        Object o = getModel().getRoot();
+        if (o == null) {
+            return null;
+        }
+        if (o instanceof IKongaTreeNode) {
+            return (IKongaTreeNode) o;
+        }
+                        + IKongaTreeNode.class.getName()
+    }

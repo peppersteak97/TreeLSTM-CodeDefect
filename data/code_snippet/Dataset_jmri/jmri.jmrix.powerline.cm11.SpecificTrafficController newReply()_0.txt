@@ -1,0 +1,4 @@
+    protected AbstractMRReply newReply() { 
+        SpecificReply reply = new SpecificReply();
+        return reply;
+    }

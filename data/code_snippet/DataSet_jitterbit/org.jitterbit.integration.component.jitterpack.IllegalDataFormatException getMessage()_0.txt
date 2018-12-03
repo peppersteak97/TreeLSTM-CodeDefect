@@ -1,0 +1,7 @@
+    public String getMessage() {
+        String message = super.getMessage();
+        if (message == null || message.trim().length() == 0) {
+            return "The file is not a valid " + JitterPackConstants.SINGULAR + ".";
+        }
+        return message;
+    }

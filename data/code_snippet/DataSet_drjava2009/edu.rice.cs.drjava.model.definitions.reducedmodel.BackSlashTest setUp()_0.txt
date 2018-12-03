@@ -1,0 +1,6 @@
+  protected void setUp() throws Exception {
+    super.setUp();
+    model0 = new ReducedModelControl();
+    model1 = new ReducedModelControl();
+    model2 = new ReducedModelControl();
+  }

@@ -1,0 +1,4 @@
+    public IWindowSectionContentProvider newContentProvider() {
+        ValidationViewFactory viewFactory = getValidationViewFactory();
+        return new ContentProviderImpl(m_validationContext, viewFactory);
+    }

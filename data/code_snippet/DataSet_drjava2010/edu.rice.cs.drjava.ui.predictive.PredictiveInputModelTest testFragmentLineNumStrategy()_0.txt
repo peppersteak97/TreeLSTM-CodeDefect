@@ -1,0 +1,21 @@
+  public void testFragmentLineNumStrategy() {
+    PredictiveInputModel<String> pim = new PredictiveInputModel<String>(true,
+                                                                        new PredictiveInputModel.FragmentLineNumStrategy<String>(),
+                                                                        "Frame",
+                                                                        "JFrame",
+                                                                        "Window",
+                                                                        "JWindow",
+                                                                        "Test");
+    pim.setMask("");
+    assertEquals(5, pim.getMatchingItems().size());
+    assertTrue(pim.getMatchingItems().contains("Frame"));
+    assertTrue(pim.getMatchingItems().contains("JFrame"));
+    assertTrue(pim.getMatchingItems().contains("Window"));
+    assertTrue(pim.getMatchingItems().contains("JWindow"));
+    assertTrue(pim.getMatchingItems().contains("Test"));
+
+    pim.setMask("f");
+    assertEquals(2, pim.getMatchingItems().size());
+    assertTrue(pim.getMatchingItems().contains("Frame"));
+    assertTrue(pim.getMatchingItems().contains("JFrame"));
+  }

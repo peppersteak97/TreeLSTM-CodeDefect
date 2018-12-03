@@ -1,0 +1,10 @@
+    protected void newline() {
+        charnum = 0;
+        linenum++;
+        if (linenum >= lines_per_page) {
+            if (isPreview) pageImages.addElement(previewImage);
+            page.dispose();
+            page = null;
+        	newpage();
+        }
+    }

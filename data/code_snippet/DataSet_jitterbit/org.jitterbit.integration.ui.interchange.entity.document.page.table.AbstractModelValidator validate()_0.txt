@@ -1,0 +1,6 @@
+    protected final void validate() throws TextDocumentDefinitionException {
+        List<IValidationIssue> fatalIssues = getFatalIssues();
+        if (fatalIssues != null) {
+            throwException(fatalIssues);
+        }
+    }

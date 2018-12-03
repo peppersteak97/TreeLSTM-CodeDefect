@@ -1,0 +1,9 @@
+	private void onClassesSelected() {
+        Object[] arSelected = m_mainPanel.getSelectedClasses();
+        int n = arSelected.length;
+        m_arSelectedClasses = new Class[n];
+        for (int i = 0; i < n; ++i) {
+            m_arSelectedClasses[i] = (Class) arSelected[i];
+        }
+        setVisible(false);
+    }	

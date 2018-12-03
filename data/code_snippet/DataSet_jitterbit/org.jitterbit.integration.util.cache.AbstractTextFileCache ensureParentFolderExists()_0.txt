@@ -1,0 +1,9 @@
+    public void ensureParentFolderExists() throws DataCacheException {
+        if (!m_parentDir.exists()) {
+            m_parentDir.mkdirs();
+        }
+        if (!m_parentDir.exists()) {
+        }
+        if (!m_parentDir.isDirectory()) {
+        }
+    }

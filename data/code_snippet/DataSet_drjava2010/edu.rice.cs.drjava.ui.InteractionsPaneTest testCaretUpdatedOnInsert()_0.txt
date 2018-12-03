@@ -1,0 +1,61 @@
+  public void testCaretUpdatedOnInsert() throws EditDocumentException {
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        
+        _pane.processKeyEvent(new KeyEvent(_pane, PRESSED, (new Date()).getTime(), SHIFT, KeyEvent.VK_T, UNDEFINED));
+        _pane.processKeyEvent(new KeyEvent(_pane, TYPED, (new Date()).getTime(), 0, VK_UNDEF, 'T'));
+        _pane.processKeyEvent(new KeyEvent(_pane, RELEASED, (new Date()).getTime(), SHIFT, KeyEvent.VK_T, UNDEFINED));
+        
+        _pane.processKeyEvent(new KeyEvent(_pane, PRESSED, (new Date()).getTime(), SHIFT, KeyEvent.VK_Y, UNDEFINED));
+        _pane.processKeyEvent(new KeyEvent(_pane, TYPED, (new Date()).getTime(), 0, VK_UNDEF, 'Y'));
+        _pane.processKeyEvent(new KeyEvent(_pane, RELEASED, (new Date()).getTime(), SHIFT, KeyEvent.VK_Y, UNDEFINED));
+        
+        _pane.processKeyEvent(new KeyEvent(_pane, PRESSED, (new Date()).getTime(), SHIFT, KeyEvent.VK_P, UNDEFINED));
+        _pane.processKeyEvent(new KeyEvent(_pane, TYPED, (new Date()).getTime(), 0, VK_UNDEF, 'P'));
+        _pane.processKeyEvent(new KeyEvent(_pane, RELEASED, (new Date()).getTime(), SHIFT, KeyEvent.VK_P, UNDEFINED));
+        
+        _pane.processKeyEvent(new KeyEvent(_pane, PRESSED, (new Date()).getTime(), SHIFT, KeyEvent.VK_E, UNDEFINED));
+        _pane.processKeyEvent(new KeyEvent(_pane, TYPED, (new Date()).getTime(), 0, VK_UNDEF, 'E'));
+        _pane.processKeyEvent(new KeyEvent(_pane, RELEASED, (new Date()).getTime(), SHIFT, KeyEvent.VK_E, UNDEFINED));
+        
+        _pane.processKeyEvent(new KeyEvent(_pane, PRESSED, (new Date()).getTime(), SHIFT, KeyEvent.VK_D, UNDEFINED));
+        _pane.processKeyEvent(new KeyEvent(_pane, TYPED, (new Date()).getTime(), 0, VK_UNDEF, 'D'));
+        _pane.processKeyEvent(new KeyEvent(_pane, RELEASED, (new Date()).getTime(), SHIFT, KeyEvent.VK_D, UNDEFINED));
+      }
+    });
+
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    assertEquals("caret should be at end of document", _doc.getLength(), _pane.getCaretPosition());
+    
+    final int pos = _doc.getLength() - 5;
+    Utilities.invokeAndWait(new Runnable() { public void run() { _pane.setCaretPosition(pos); } });
+
+    
+    _model.replSystemErrPrint("aa");
+    Utilities.clearEventQueue();
+
+    assertEquals("caret should be in correct position", pos + 2, _pane.getCaretPosition());
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() { _pane.setCaretPosition(_doc.getPromptPos()); } });
+    _model.replSystemOutPrint("b");
+    Utilities.clearEventQueue();
+    assertEquals("caret should be at prompt", _doc.getPromptPos(), _pane.getCaretPosition());
+    
+    _model.replSystemErrPrint("ccc");
+    Utilities.clearEventQueue();
+    assertEquals("caret should be at prompt", _doc.getPromptPos(), _pane.getCaretPosition());
+    
+    final int newPos = _doc.getPromptPos();
+
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() {
+        _pane.setCaretPosition(newPos + 1);
+        _pane.processKeyEvent(new KeyEvent(_pane, PRESSED, (new Date()).getTime(), SHIFT, KeyEvent.VK_D, UNDEFINED));
+        _pane.processKeyEvent(new KeyEvent(_pane, TYPED, (new Date()).getTime(), 0, VK_UNDEF, 'D'));
+        _pane.processKeyEvent(new KeyEvent(_pane, RELEASED, (new Date()).getTime(), SHIFT, KeyEvent.VK_D, UNDEFINED));
+      } 
+    });
+    Utilities.clearEventQueue();
+    assertEquals("caret should be one char after the inserted D", newPos + 2, _pane.getCaretPosition());
+  }

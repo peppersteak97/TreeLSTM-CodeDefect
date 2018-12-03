@@ -1,0 +1,3 @@
+    public int getNumberOfStoredProcedures() {
+        return (m_liStoredProcedures == null) ? -1 : m_liStoredProcedures.size();
+    }

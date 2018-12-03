@@ -1,0 +1,27 @@
+  public GraphNode next() {
+    if (empty()) {
+      GraphNode v = theNextElement;
+      currentRoot = theNextElement;
+      info[v.getIndex()] = getConnected(v);
+      push(v);
+    }
+    recurse:
+    while (!empty()) {
+      GraphNode v = peek();
+      GraphNodeEnumeration pendingChildren = info[v.getIndex()];
+      for (GraphNodeEnumeration e = pendingChildren; e.hasMoreElements();) {
+        GraphNode n = e.next();
+        GraphNodeEnumeration nChildren = info[n.getIndex()];
+        if (nChildren == null) {
+          info[n.getIndex()] = getConnected(n);
+          push(n);
+          continue recurse;
+        }
+      }
+      while (info[theNextElement.getIndex()] != null && e.hasMoreElements()) {
+        theNextElement = e.next();
+      }
+      return pop();
+    }
+    return null;
+  }

@@ -1,0 +1,10 @@
+    private void layoutComponents() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setInsets(IntegrationUiStyleSheet.DEFAULT_GBC_INSETS_LEFT);
+        String subCaption = RESOURCES.getString("Caption.Qualifiers");
+        p.add(IntegrationUiStyleSheet.AdminHint.makeJLabel(subCaption));
+        p.add(getFieldsBox());
+        p.setBorder(IntegrationUiStyleSheet.getDefaultTitleBorder(RESOURCES.getString("Caption.Delimiter")));
+        p.setOpaque(false, true);
+        wrap(p);
+    }

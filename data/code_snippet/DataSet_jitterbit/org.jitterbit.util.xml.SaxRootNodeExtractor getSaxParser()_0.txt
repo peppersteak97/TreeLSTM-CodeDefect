@@ -1,0 +1,8 @@
+    private SAXParser getSaxParser() throws KongaXmlException {
+        try {
+            SAXParserFactory factory = getParserFactory();
+            return factory.newSAXParser();
+        }
+        catch (Exception ex) {
+        }
+    }

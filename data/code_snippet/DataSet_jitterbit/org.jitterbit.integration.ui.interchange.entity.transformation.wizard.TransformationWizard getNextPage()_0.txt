@@ -1,0 +1,28 @@
+    public IWizardPage getNextPage() {
+        IWizardPage page = super.getNextPage();
+        if (page == null) {
+            try {
+                if (m_sourceStartPage == null) {
+                    page = getSourceStartPage();
+                    if (page == null) {
+                        if (isNoneSourceToFirstTargetPageTransition()) {
+                            page = getTargetStartPage();
+                        }
+                    }
+                }
+                else if (m_targetStartPage == null) {
+                    page = getTargetStartPage();
+                }
+            }
+            catch (WizardConfigurationException ex) {
+                handlePageException("Failed to create the next page due to invalid " +
+                        "application configuration.", ex);
+                abort();
+            }
+            catch (RuntimeException ex) {
+                ex.printStackTrace();
+                onWizardCancelled();
+            }
+        }
+        return page;
+    }

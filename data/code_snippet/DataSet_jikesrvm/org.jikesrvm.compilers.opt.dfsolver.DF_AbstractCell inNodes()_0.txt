@@ -1,0 +1,11 @@
+  public GraphNodeEnumeration inNodes() {
+    return new GraphNodeEnumeration() {
+      private final Iterator<DF_Equation> i = defs.iterator();
+
+      public boolean hasMoreElements() { return i.hasNext(); }
+
+      public GraphNode next() { return i.next(); }
+
+      public GraphNode nextElement() { return next(); }
+    };
+  }

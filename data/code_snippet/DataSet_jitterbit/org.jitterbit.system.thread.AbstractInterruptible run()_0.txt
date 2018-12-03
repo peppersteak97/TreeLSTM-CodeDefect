@@ -1,0 +1,23 @@
+    public final void run() {
+        try {
+            synchronized (this) {
+                if (isStopping()) {
+                    return;
+                }
+                setStatus(RUNNING);
+            }
+            runImpl();
+        }
+        catch (Throwable th) {
+            m_uncaughtException = th;
+            appendStatus(FAILED);
+        }
+        finally {
+            synchronized (this) {
+                revokeState(RUNNING);
+                revokeState(STOPPING);
+                appendStatus(DONE);
+                m_latch.countDown();
+            }
+        }
+    }

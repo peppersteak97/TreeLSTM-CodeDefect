@@ -1,0 +1,8 @@
+    public StructureNode getRootStructureNode() {
+        if (!m_dataHasBeenLoaded) {
+            throw new IllegalStateException(
+                            "The meta data must have been loaded with the load() "
+                                            + "method before this method can be called.");
+        }
+        return m_rootStructureNode;
+    }

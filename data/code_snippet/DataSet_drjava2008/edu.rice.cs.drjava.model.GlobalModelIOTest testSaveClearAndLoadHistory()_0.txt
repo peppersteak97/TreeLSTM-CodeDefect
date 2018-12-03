@@ -1,0 +1,65 @@
+  public void testSaveClearAndLoadHistory() throws EditDocumentException, IOException, InterruptedException {
+    String newLine = StringOps.EOL;
+    final InteractionListener listener = new InteractionListener();
+    
+    _model.addListener(listener);
+    File f = tempFile();
+    FileSelector fs = new FileSelector(f);
+    String s1 = "int x = 5;";
+    String s2 = "System.out.println(\"x = \" + x)";
+    String s3 = "int y;" + newLine + "int z;";
+    listener.assertInteractionStartCount(0);
+    listener.assertInteractionEndCount(0);
+    
+    interpretIgnoreResult(s1);
+    listener.waitInteractionDone();
+    
+    listener.assertInteractionEndCount(1);
+    listener.assertInteractionStartCount(1);
+    
+    listener.logInteractionStart();
+    interpretIgnoreResult(s2);
+    listener.waitInteractionDone();
+    
+    listener.logInteractionStart();
+    interpretIgnoreResult(s3);
+    listener.waitInteractionDone();
+    
+    assertEquals("History and getHistoryAsString should be the same.",
+                 s1 + newLine + s2 + newLine + s3 + newLine,
+                 _model.getHistoryAsString());
+    String delim = History.INTERACTION_SEPARATOR + newLine;
+    assertEquals("History and getHistoryAsStringWithSemicolons don't match up correctly.",
+                 s1 + delim + s2 + delim + s3 + delim,
+                 _model.getHistoryAsStringWithSemicolons());
+    listener.assertInteractionEndCount(3);
+    listener.assertInteractionStartCount(3);
+    safeSaveHistory(fs);
+    
+    assertEquals("contents of saved file", History.HISTORY_FORMAT_VERSION_2 + s1 + delim + s2 + delim + s3 + delim,
+                 IOUtil.toString(f));
+    
+    _model.clearHistory();
+    assertEquals("History is not clear", "", _model.getHistoryAsString());
+    
+    Utilities.invokeLater(new Runnable() { 
+      public void run() { 
+        _model.resetInteractions(_model.getWorkingDirectory());
+        _model.resetConsole();
+      }
+    });
+    listener.waitResetDone();
+    
+    listener.logInteractionStart();
+    safeLoadHistory(fs);
+    listener.waitInteractionDone();
+        
+    ConsoleDocument con = _model.getConsoleDocument();
+    debug.log(con.getDocText(0, con.getLength()).trim());
+    assertEquals("Output of loaded history is not correct", "x = 5", con.getDocText(0, con.getLength()).trim());
+    listener.assertInteractionStartCount(4);
+    listener.assertInteractionEndCount(4);
+    _model.removeListener(listener);
+
+    _log.log("testSaveClearAndLoadHistory completed");
+  }

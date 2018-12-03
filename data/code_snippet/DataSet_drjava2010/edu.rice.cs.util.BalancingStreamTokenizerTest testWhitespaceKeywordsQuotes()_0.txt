@@ -1,0 +1,15 @@
+  public void testWhitespaceKeywordsQuotes() throws IOException {
+    BalancingStreamTokenizer tok = make("Hello World");
+    tok.defaultThreeQuoteDollarCurlySetup();
+    tok.wordRange(0,96);
+    tok.addKeyword("hello");
+    tok.addKeyword("world");
+    tok.addQuotes("a:",":a");
+    tok.whitespaceRange(97,122);
+    String s = tok.getNextToken();
+    assertEquals("H", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals(" W", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+  }

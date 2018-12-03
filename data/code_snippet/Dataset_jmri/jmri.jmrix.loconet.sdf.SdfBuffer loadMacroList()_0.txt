@@ -1,0 +1,8 @@
+    void loadMacroList() {
+        resetIndex();
+        ops = new ArrayList();
+        while (moreData()) {
+            SdfMacro m = SdfMacro.decodeInstruction(this);
+            ops.add(m);
+        }
+    }

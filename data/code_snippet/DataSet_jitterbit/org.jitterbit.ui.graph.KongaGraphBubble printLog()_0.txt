@@ -1,0 +1,15 @@
+	public void printLog() {
+		System.out.println(getText());
+		System.out.println(getBounds());
+		int nOut = getNumberOfOutRoutes();
+		for( int i = 0; i < nOut; ++i ) {
+			KongaGraphRoutePositioner rp = m_liOutRoutes.get(i);
+                            rp.getManagedRoute().getTargetBubble().getText() + 
+		}
+		
+		int nIn = getNumberOfInRoutes();
+		for( int i = 0; i < nIn; ++i ) {
+			KongaGraphRoutePositioner rp = m_liInRoutes.get(i);
+                            rp.getManagedRoute().getSourceBubble().getText() + 
+		}
+	}

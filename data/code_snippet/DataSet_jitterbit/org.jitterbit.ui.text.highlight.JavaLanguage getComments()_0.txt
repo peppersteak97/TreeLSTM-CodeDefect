@@ -1,0 +1,6 @@
+    public String[] getComments() {
+        return new String[] {
+                CommonTokens.SINGLE_LINE_COMMENT.pattern(),
+                CommonTokens.MULTI_LINE_COMMENT.pattern(),
+        };
+    }

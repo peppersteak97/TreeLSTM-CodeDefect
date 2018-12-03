@@ -1,0 +1,17 @@
+    public IWizardPage getNextPage() {
+        WebServiceOperationInfo selectedOperation = m_ui.getSelectedOperation();
+        if (selectedOperation == null) {
+        }
+        IWizardPage page = null;
+        if (m_nextPageCache == null) {
+            m_nextPageCache = new HashMap<WebServiceOperationInfo, IWizardPage>();
+        }
+        else {
+            page = m_nextPageCache.get(selectedOperation);
+        }
+        if (page == null) {
+            page = new WebServiceWizardDetailsPage(getWizard(), m_webServiceInfo,
+                            selectedOperation);
+        }
+        return page;
+    }

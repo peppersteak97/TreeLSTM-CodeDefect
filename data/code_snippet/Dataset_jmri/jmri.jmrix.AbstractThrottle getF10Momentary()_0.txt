@@ -1,0 +1,3 @@
+    public boolean getF10Momentary() {
+        return f10Momentary;
+    }

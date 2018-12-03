@@ -1,0 +1,13 @@
+    private NormalAndBoldTextPane createText() {
+        NormalAndBoldTextPane text = NormalAndBoldTextPane.newReadOnly();
+        text.insertIcon(PackageResources.BetaFeatureBanner.ICON);
+        text.insertBold(PackageResources.BetaFeatureBanner.HEADER);
+        text.insertNewLine();
+        text.insertNormal(PackageResources.BetaFeatureBanner.MESSAGE);
+        if (m_details != null) {
+            text.insertNewLine();
+            text.insertNormal(m_details);
+        }
+        text.setCaretPosition(0);
+        return text;
+    }

@@ -1,0 +1,5 @@
+    private void layoutComponents() {
+        m_uiRepresentation = new JPanel(new BorderLayout());
+        layoutTitle();
+        layoutButtons();
+    }

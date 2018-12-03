@@ -1,0 +1,31 @@
+    public String toMonitorString() {
+        if (getNumDataElements() == 1) {
+            String val;
+            int msg = getElement(0);
+            switch (msg&0xFF) {
+                case Constants.POLL_REQ: val = "Data Available\n";break;
+                case Constants.TIME_REQ: val = "CP11 time request\n";break;
+                case 0xA6: val = "CP10 time request\n";break;
+                case 0xF3: val = "Input Filter Failed\n";break;
+                case Constants.READY_REQ: val = "Interface Ready\n";break;
+                default: val = "One byte, probably CRC\n";break;
+            }
+            return val;
+        } else if ((getNumDataElements() == 2) && ((getElement(1)&0xFF) == Constants.READY_REQ)) {
+            return "CRC 0x"+jmri.util.StringUtil.twoHexFromInt(getElement(0))+" and Interface Ready\n";    
+        } else if ((getElement(0)&0xFF) == Constants.POLL_REQ ) { 
+            String s = "Receive data, "+(getElement(1)&0xFF)+ " bytes: ";
+            int last = (getElement(1)&0xFF)+1;
+            int bits = (getElement(2)&0xFF);
+            for (int i=3; i<=last; i++) {
+                if ((bits&0x01) != 0)
+                    s+=X10Sequence.formatCommandByte(getElement(i)&0xFF);
+                else
+                    s+=X10Sequence.formatAddressByte(getElement(i)&0xFF);
+            }
+            return s+"\n";
+        } else {
+            String s = "Unknown reply of length "+getNumDataElements()+" "+toString();
+            return s+"\n";
+        }
+    }

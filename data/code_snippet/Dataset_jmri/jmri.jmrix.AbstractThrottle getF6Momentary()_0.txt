@@ -1,0 +1,3 @@
+    public boolean getF6Momentary() {
+        return f6Momentary;
+    }

@@ -1,0 +1,4 @@
+    public boolean isEnableMain() {
+        String s = toString();
+        return s.contains("POWER ON") && s.contains("SET");
+    }

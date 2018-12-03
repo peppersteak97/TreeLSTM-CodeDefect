@@ -1,0 +1,1 @@
+  public boolean isDeclaredType() { return (flags & DECLARED_TYPE) != 0; }

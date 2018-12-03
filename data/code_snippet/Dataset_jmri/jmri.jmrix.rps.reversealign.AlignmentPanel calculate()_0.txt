@@ -1,0 +1,55 @@
+    void calculate() {
+        
+        int offset = 0;
+        
+        Point3d[] points = new Point3d[NREADINGS];
+
+        for (int i = 0; i<NREADINGS; i++) 
+            points[i] = lines[i].getPoint();
+       
+        
+        {
+            Reading r = getReading(NREADINGS, 0);
+            
+            Calculator c = Algorithms.newCalculator(points, getVSound(), offset, (String)algorithm.getSelectedItem());
+            Measurement m = c.convert(r);
+             
+            x1l.setText(nf.format(m.getX()));
+            y1l.setText(nf.format(m.getY()));
+            z1l.setText(nf.format(-m.getZ()));
+            stat1.setText(""+m.getCode());
+       }
+        {
+            Reading r = getReading(NREADINGS, 1);
+            
+            Calculator c = Algorithms.newCalculator(points, getVSound(), offset, (String)algorithm.getSelectedItem());
+            Measurement m = c.convert(r);
+            
+            x2l.setText(nf.format(m.getX()));
+            y2l.setText(nf.format(m.getY()));
+            z2l.setText(nf.format(-m.getZ()));
+            stat2.setText(""+m.getCode());
+       }
+        {
+            Reading r = getReading(NREADINGS, 2);
+            
+            Calculator c = Algorithms.newCalculator(points, getVSound(), offset, (String)algorithm.getSelectedItem());
+            Measurement m = c.convert(r);
+            
+            x3l.setText(nf.format(m.getX()));
+            y3l.setText(nf.format(m.getY()));
+            z3l.setText(nf.format(-m.getZ()));
+            stat3.setText(""+m.getCode());
+       }
+        {
+            Reading r = getReading(NREADINGS, 3);
+            
+            Calculator c = Algorithms.newCalculator(points, getVSound(), offset, (String)algorithm.getSelectedItem());
+            Measurement m = c.convert(r);
+                        
+            x4l.setText(nf.format(m.getX()));
+            y4l.setText(nf.format(m.getY()));
+            z4l.setText(nf.format(-m.getZ()));
+            stat4.setText(""+m.getCode());
+       }
+    }

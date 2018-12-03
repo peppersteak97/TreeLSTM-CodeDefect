@@ -1,0 +1,3 @@
+    protected void init() {
+        log.debug("CrrInit.init");
+   }

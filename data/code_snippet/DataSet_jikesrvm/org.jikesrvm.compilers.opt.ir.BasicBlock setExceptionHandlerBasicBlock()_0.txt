@@ -1,0 +1,3 @@
+  public final void setExceptionHandlerBasicBlock() {
+    flags |= EXCEPTION_HANDLER;
+  }

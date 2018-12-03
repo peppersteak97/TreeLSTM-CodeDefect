@@ -1,0 +1,3 @@
+  protected void stopTimer() {
+      if (timer!=null) timer.stop();
+  }

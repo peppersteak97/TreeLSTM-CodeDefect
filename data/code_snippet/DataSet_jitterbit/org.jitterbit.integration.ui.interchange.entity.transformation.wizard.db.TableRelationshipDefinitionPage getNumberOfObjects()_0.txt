@@ -1,0 +1,3 @@
+    int getNumberOfObjects() {
+        return m_dbObjects.length;
+    }

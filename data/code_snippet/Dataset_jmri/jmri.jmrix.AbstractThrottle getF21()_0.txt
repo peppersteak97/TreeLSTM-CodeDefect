@@ -1,0 +1,3 @@
+    public boolean getF21() {
+        return f21;
+    }

@@ -1,0 +1,3 @@
+    void clearButtonChanged() {
+        panel.clear();
+    }

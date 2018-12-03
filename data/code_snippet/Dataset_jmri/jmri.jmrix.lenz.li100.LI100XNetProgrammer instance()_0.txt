@@ -1,0 +1,4 @@
+        static public XNetProgrammer instance() {
+                if (self == null) self = new LI100XNetProgrammer();
+                return self;
+                }

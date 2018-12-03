@@ -1,0 +1,10 @@
+  protected final void emit_i2l() {
+    if (VM.BuildFor64Addr) {
+      popInt(T0);
+      pushLong(T0, T0);
+    } else {
+      peekInt(T0, 0);
+      asm.emitSRAWI(T1, T0, 31);
+      pushInt(T1);
+    }
+  }

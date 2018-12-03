@@ -1,0 +1,9 @@
+    private OneColumnPanel createSearchFieldPanel() {
+        m_searchField = new SearchField(m_resultUpdater);
+        OneColumnPanel col = new OneColumnPanel();
+        col.setWeightX(1.0);
+        col.setInsets(2, 2, 2, 2);
+        m_searchField.layoutIn(col);
+        col.add(m_stringSearchOptions);
+        return col;
+    }

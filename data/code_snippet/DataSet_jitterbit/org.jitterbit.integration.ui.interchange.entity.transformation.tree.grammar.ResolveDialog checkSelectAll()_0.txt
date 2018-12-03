@@ -1,0 +1,10 @@
+	void checkSelectAll(){
+		m_selectAll.setVisible(m_done==false&&m_deList!=null&&m_deList.size()>1);
+		m_selectAll.setEnabled(m_deList!=null&&m_deList.size()>1);
+		m_selectAll.setText((m_isSelectAll==false)?"Select all":"Clear all");
+		if(c_removeNextPrev==false){
+			m_buttonPrevious.setEnabled(m_curResolvePos>0&&m_done==false);
+			m_buttonNext.setEnabled(m_curResolvePos<(m_conflictSourcePathList.length-1)&&m_done==false);
+		}
+		m_buttonMain.setEnabled(m_done==false&&checkReady());
+	}

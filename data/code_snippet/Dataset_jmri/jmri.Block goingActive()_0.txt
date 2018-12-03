@@ -1,0 +1,42 @@
+    void goingActive() {
+        int count = 0;
+        Path next = null;
+        for (int i = 0; i<paths.size(); i++) {
+            Path p = (Path) paths.get(i);
+            if (p.checkPathSet() && (p.getBlock().getSensor().getState()==Sensor.ACTIVE)) {
+                count++;
+                next = p;
+            }
+        }
+        if (count == 0) log.info("Sensor ACTIVE came out of nowhere, no neighbors active for block "+getSystemName()+". Value not set.");
+        else if (count == 1) { 
+        
+            if ((next!= null) && (next.getBlock()!=null)) {
+                setValue(next.getBlock().getValue());
+                setDirection(next.getFromBlockDirection());
+                if (log.isDebugEnabled()) log.debug("Block "+getSystemName()+" gets new value from "+next.getBlock().getSystemName()+", direction="+next.decodeDirection(getDirection()));
+            } else if (next == null) log.error("unexpected next==null processing signal in block "+getSystemName());
+            else if (next.getBlock() == null) log.error("unexpected next.getBlock()=null processing signal in block "+getSystemName());
+        }
+        else {  
+			if (log.isDebugEnabled()) log.debug ("Block "+getSystemName()+"- count of active linked blocks = "+count);
+            next = null;
+            count = 0;
+            for (int i = 0; i<paths.size(); i++) {
+                Path p = (Path) paths.get(i);
+                if (p.checkPathSet() && (p.getBlock().getSensor().getState()==Sensor.ACTIVE)
+                    && (p.getBlock().getDirection() == p.getFromBlockDirection())) {
+                    count++;
+                    next = p;
+                } 
+            }       
+            if (count==1) {
+                setValue(next.getBlock().getValue());
+                setDirection(next.getFromBlockDirection());
+                if (log.isDebugEnabled()) log.debug("Block "+getSystemName()+" with direction "+Path.decodeDirection(getDirection())+" gets new value from "+next.getBlock().getSystemName()+", direction="+next.decodeDirection(getDirection()));
+            } else {
+                log.debug("count of "+count+" ACTIVE neightbors with proper direction can't be handled for block "+getSystemName());
+            }
+        }
+        setState(OCCUPIED);
+    }

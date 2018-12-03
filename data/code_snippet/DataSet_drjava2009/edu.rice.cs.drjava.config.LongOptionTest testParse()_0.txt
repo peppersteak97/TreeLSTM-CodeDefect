@@ -1,0 +1,12 @@
+  public void testParse() {
+    LongOption io = new LongOption("max_files",null);
+    
+    assertEquals(new Long(Integer.MAX_VALUE+1), io.parse(new Long(Integer.MAX_VALUE+1).toString()));
+    assertEquals(new Long(Integer.MIN_VALUE-1), io.parse(new Long(Integer.MIN_VALUE-1).toString()));
+    
+    try { io.parse("true"); fail(); }
+    catch (OptionParseException e) { }
+    
+    try { io.parse(".33"); fail(); }
+    catch (OptionParseException e) { }
+  }

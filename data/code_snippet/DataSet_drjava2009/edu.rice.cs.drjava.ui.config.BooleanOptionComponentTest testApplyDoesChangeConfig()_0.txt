@@ -1,0 +1,11 @@
+  public void testApplyDoesChangeConfig() {
+    Boolean testBoolean = new Boolean (!DrJava.getConfig().getSetting(OptionConstants.LINEENUM_ENABLED).booleanValue());
+
+    _option.setValue(testBoolean);
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+    assertEquals("Apply (updateConfig) should write change to file",
+                 testBoolean,
+                 DrJava.getConfig().getSetting(OptionConstants.LINEENUM_ENABLED));
+  }

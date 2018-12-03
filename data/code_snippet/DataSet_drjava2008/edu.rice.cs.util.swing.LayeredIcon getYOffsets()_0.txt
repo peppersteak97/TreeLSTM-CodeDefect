@@ -1,0 +1,3 @@
+  public int[] getYOffsets(){
+    return _xoffs;
+  }

@@ -1,0 +1,18 @@
+  public final synchronized void compile() {
+    if (VM.VerifyAssertions) VM._assert(getDeclaringClass().isResolved());
+    if (isCompiled()) return;
+
+    if (VM.TraceClassLoading && VM.runningVM) VM.sysWrite("RVMMethod: (begin) compiling " + this + "\n");
+
+    CompiledMethod cm = genCode();
+
+    synchronized (cm) {
+      if (cm.isInvalid()) {
+        CompiledMethods.setCompiledMethodObsolete(cm);
+      } else {
+        currentCompiledMethod = cm;
+      }
+    }
+
+    if (VM.TraceClassLoading && VM.runningVM) VM.sysWrite("RVMMethod: (end)   compiling " + this + "\n");
+  }

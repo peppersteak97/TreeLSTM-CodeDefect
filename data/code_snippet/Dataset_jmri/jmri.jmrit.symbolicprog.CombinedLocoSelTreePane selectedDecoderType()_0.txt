@@ -1,0 +1,4 @@
+    String selectedDecoderType() {
+        if (!isDecoderSelected()) return null;
+        else return ((DecoderTreeNode)dTree.getLastSelectedPathComponent()).getTitle();
+    }

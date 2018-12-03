@@ -1,0 +1,6 @@
+    public OneLinePanel setFillNone() {
+        setWeightX(0.0);
+        setWeightY(0.0);
+        setFill(NONE);
+        return this;
+    }

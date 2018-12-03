@@ -1,0 +1,8 @@
+  public FrameState getFrameState() {
+    if (isVisible()) {
+      return new FrameState(this);
+    }
+    else {
+      return _lastState;
+    }
+  }

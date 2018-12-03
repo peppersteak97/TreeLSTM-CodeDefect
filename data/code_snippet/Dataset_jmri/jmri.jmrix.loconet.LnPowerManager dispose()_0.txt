@@ -1,0 +1,4 @@
+	public void dispose() {
+		if (tc!=null) tc.removeLocoNetListener(~0, this);
+		tc = null;
+	}

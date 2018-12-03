@@ -1,0 +1,6 @@
+    private Container getButtons() {
+        JPanel buttons = getButtonPanel(KongaDialog.OK_CANCEL, 15);
+        buttons.setOpaque(false);
+        buttons.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        return buttons;
+    }

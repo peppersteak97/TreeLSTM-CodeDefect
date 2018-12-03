@@ -1,0 +1,9 @@
+	public boolean isMainlineBD() {
+		if ( ((connectB != null) && (((TrackSegment)connectB).getMainline())) ||
+			((connectD != null) && (((TrackSegment)connectD).getMainline())) ) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}

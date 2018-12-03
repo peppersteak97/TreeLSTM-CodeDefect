@@ -1,0 +1,6 @@
+    private void endNamespace() {
+        if( getNamespace().length() > 0 ) {
+            addLine("}  
+            addLine();
+        }
+    }

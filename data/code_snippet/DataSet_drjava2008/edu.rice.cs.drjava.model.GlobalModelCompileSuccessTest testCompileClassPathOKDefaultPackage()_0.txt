@@ -1,0 +1,2 @@
+  public void testCompileClassPathOKDefaultPackage()
+    throws BadLocationException, IOException, InterruptedException

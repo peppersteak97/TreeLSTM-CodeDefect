@@ -1,0 +1,4 @@
+    private void validateLayout() {
+        m_panel.validate();
+        m_panel.repaint();
+    }

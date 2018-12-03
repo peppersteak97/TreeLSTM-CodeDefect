@@ -1,0 +1,5 @@
+    private void registerListeners() {
+        PanelListener lst = new PanelListener();
+        m_usersPanel.addSelectionListener(lst);
+        m_permissionsPanel.addChangeListener(lst);
+    }

@@ -1,0 +1,5 @@
+    private void addInputFields() {
+        addInputField(m_name, m_name, m_name);
+        addInputField(m_sourceType, new SourceTypeValidator(),
+                        new LabelIconFieldDecorator());
+    }

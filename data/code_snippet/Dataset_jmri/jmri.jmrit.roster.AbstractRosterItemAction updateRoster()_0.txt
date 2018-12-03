@@ -1,0 +1,3 @@
+    void updateRoster() {
+        addToEntryToRoster();
+    }

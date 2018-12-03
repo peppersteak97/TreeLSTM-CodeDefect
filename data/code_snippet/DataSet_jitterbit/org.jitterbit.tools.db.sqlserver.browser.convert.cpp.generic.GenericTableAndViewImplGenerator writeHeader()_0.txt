@@ -1,0 +1,17 @@
+    private void writeHeader() {
+    	addCopyrightNotice();
+        addLine("#include <assert.h>");
+        addLine("#include <dtl/DTL.h>");
+        addLine();
+        addLine("#include <konga/Utils/StringUtils.h>");
+        addLine();
+        addLine("#include <konga/Db/DbUtils/DbUtils.h>");
+        addLine("#include <konga/Db/DtlDbUtils/DtlDbConnection.h>");
+        addLine("#include <konga/Db/Dtl" + getNamespace() + "/Dtl" + getMainClassName() + ".h>");
+        addLine();
+        addLine("#include \"" + getMainClassName() + ".h\"");
+        addLine();
+        addLine("using namespace konga;");
+        addLine("using namespace " + getNamespace() + ";");
+        addLine();
+    }

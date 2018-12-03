@@ -1,0 +1,8 @@
+  private void initLocalPool() {
+    int numLocals = method.getLocalWords();
+    intLocals = new Register[numLocals];
+    addressLocals = new Register[numLocals];
+    floatLocals = new Register[numLocals];
+    longLocals = new Register[numLocals];
+    doubleLocals = new Register[numLocals];
+  }

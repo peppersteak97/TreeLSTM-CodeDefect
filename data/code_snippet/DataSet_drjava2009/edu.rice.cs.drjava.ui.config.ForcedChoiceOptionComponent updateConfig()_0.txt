@@ -1,0 +1,8 @@
+  public boolean updateConfig() {
+    String oldValue = DrJava.getConfig().getSetting(_option);
+    String newValue = _comboBox.getSelectedItem().toString();
+
+    if (! newValue.equals(oldValue)) { DrJava.getConfig().setSetting(_option, newValue); }
+
+    return true;
+  }

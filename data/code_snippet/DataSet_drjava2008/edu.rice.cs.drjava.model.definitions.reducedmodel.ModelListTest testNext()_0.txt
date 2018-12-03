@@ -1,0 +1,14 @@
+  public void testNext() {
+    ModelList<Integer>.ModelIterator itFull = fFull.getIterator();
+    ModelList<Integer>.ModelIterator itEmpty = fEmpty.getIterator();
+
+    itFull.insert(Integer.valueOf(6));
+    itFull.insert(Integer.valueOf(5));
+    itFull.insert(Integer.valueOf(4));
+    assertEquals("#1.0", Integer.valueOf(4), itFull.current());
+    itFull.next();
+    assertEquals("#1.1", Integer.valueOf(5), itFull.current());
+    itFull.next();
+    assertEquals("#1.2", Integer.valueOf(6), itFull.current());
+    itFull.next();
+  }

@@ -1,0 +1,6 @@
+    _addButton = new JButton(_getAddAction());    
+    _moveUpButton = new JButton(new AbstractAction("Move Up") {
+      public void actionPerformed(ActionEvent ae) {
+        _moveUpAction();
+      }
+    });

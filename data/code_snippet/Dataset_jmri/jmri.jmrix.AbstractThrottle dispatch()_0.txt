@@ -1,0 +1,4 @@
+    public void dispatch() {
+        if (!active) log.warn("dispatch called when not active");
+        release();
+    }

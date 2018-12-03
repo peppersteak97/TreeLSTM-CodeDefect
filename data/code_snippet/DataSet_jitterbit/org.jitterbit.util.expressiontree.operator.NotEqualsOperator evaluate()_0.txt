@@ -1,0 +1,6 @@
+	public IOperand evaluate() {
+			if ( !(hasLeftOperand() && hasRightOperand())) {
+		}
+		return getOperandOperations().not(
+					getOperandOperations().equals(getLeftOperand().evaluate(), getRightOperand().evaluate()) );
+	}

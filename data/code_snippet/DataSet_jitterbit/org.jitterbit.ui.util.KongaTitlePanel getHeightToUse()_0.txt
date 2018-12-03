@@ -1,0 +1,8 @@
+	private int getHeightToUse() {
+		if (m_iHeightToUse == -1 && m_iUserDefinedHeight > 0) {
+            int iLabelH = m_lblTitle.getPreferredSize().height + 10;
+            m_iHeightToUse = (m_iUserDefinedHeight > iLabelH) ? m_iUserDefinedHeight
+                            : iLabelH;
+        }
+        return m_iHeightToUse;
+	}

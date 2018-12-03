@@ -1,0 +1,11 @@
+  public final BasicBlock getFallThroughBlock() {
+    if (hasGoto()) return null;
+    if (hasSwitch()) return null;
+    if (hasReturn()) return null;
+    if (hasAthrowInst()) return null;
+    if (hasTrap()) return null;
+    if (hasNonReturningCall()) return null;
+    if (hasNonReturningOsr()) return null;
+
+    return nextBasicBlockInCodeOrder();
+  }

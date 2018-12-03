@@ -1,0 +1,3 @@
+  public final MemoryOperand asMemory() {
+    return (MemoryOperand) this;
+  }

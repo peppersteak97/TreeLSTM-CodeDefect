@@ -1,0 +1,3 @@
+  public final AddressConstantOperand asAddressConstant() {
+    return (AddressConstantOperand) this;
+  }

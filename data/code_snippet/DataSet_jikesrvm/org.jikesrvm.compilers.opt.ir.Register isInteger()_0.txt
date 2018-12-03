@@ -1,0 +1,1 @@
+  public boolean isInteger() { return (flags & INTEGER) != 0; }

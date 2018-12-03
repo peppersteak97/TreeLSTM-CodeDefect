@@ -1,0 +1,3 @@
+		protected void removeRequested() {
+			ListInOrderedListBaseProperty.this.removeRequested();
+		}

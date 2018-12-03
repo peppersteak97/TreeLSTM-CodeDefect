@@ -1,0 +1,49 @@
+  private static ArchitectureSpecific.CodeArray generateThreadSwitchInstructions() {
+    if (VM.VerifyAssertions) {
+    }
+    Assembler asm = new ArchitectureSpecific.Assembler(0);
+    Offset ipOffset = ArchEntrypoints.registersIPField.getOffset();
+    Offset fpOffset = ArchEntrypoints.registersFPField.getOffset();
+    Offset gprsOffset = ArchEntrypoints.registersGPRsField.getOffset();
+    Offset regsOffset = Entrypoints.threadContextRegistersField.getOffset();
+
+    if (VM.BuildFor32Addr) {
+    } else {
+    }
+    if (VM.BuildFor32Addr) {
+      for (int i = 0; i < NUM_NONVOLATILE_GPRS; i++) {
+        asm.emitMOV_RegDisp_Reg(S0,
+                                Offset.fromIntZeroExtend(NONVOLATILE_GPRS[i].value() << LG_WORDSIZE),
+                                NONVOLATILE_GPRS[i]);
+      }
+    } else {
+      for (int i = 0; i < NUM_NONVOLATILE_GPRS; i++) {
+        asm.emitMOV_RegDisp_Reg_Quad(S0,
+                                     Offset.fromIntZeroExtend(NONVOLATILE_GPRS[i].value() << LG_WORDSIZE),
+                                     NONVOLATILE_GPRS[i]);
+      }
+    }
+
+
+    if (VM.BuildFor32Addr) {
+    } else {
+    }
+    ThreadLocalState.emitMoveRegToField(asm,
+                                        ArchEntrypoints.framePointerField.getOffset(),
+                                        S0);
+    if (VM.BuildFor32Addr) {
+      for (int i = 0; i < NUM_NONVOLATILE_GPRS; i++) {
+        asm.emitMOV_Reg_RegDisp(NONVOLATILE_GPRS[i],
+                                S0,
+                                Offset.fromIntZeroExtend(NONVOLATILE_GPRS[i].value() <<
+                                                         LG_WORDSIZE));
+      }
+    } else {
+      for (int i = 0; i < NUM_NONVOLATILE_GPRS; i++) {
+        asm.emitMOV_Reg_RegDisp_Quad(NONVOLATILE_GPRS[i],
+                                     S0,
+                                     Offset.fromIntZeroExtend(NONVOLATILE_GPRS[i].value() << LG_WORDSIZE));
+      }
+    }
+    return asm.getMachineCodes();
+  }

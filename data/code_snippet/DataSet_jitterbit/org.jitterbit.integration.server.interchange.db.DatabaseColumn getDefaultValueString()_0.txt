@@ -1,0 +1,3 @@
+    public String getDefaultValueString(){
+    	return m_sDefaultValue;
+    }

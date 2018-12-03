@@ -1,0 +1,8 @@
+    private DocumentBuilder getDomBuilder() throws KongaXmlException {
+        try {
+            DocumentBuilderFactory f = getDomBuilderFactory();
+            return f.newDocumentBuilder();
+        }
+        catch (ParserConfigurationException ex) {
+        }
+    }

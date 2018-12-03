@@ -1,0 +1,3 @@
+    LogStatusFilter getStatusFilter() {
+        return m_statusFilter.getFilter();
+    }

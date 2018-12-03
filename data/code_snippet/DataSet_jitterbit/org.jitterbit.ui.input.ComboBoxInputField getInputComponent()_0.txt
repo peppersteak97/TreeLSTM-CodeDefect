@@ -1,0 +1,3 @@
+    public JComboBox getInputComponent() {
+        return (JComboBox) super.getInputComponent();
+    }

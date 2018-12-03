@@ -1,0 +1,34 @@
+  public void testEscapeDollarQuoted() throws IOException {
+    BalancingStreamTokenizer tok = make("abc \\${def ghi} 123\n\\\\${xxx yyy}456 `abc def` 789", '\\');
+    tok.defaultThreeQuoteDollarCurlySetup();
+    String s = tok.getNextToken();
+    assertEquals("abc", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("${def", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("ghi}", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("123", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("\\", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("${xxx yyy}", s);
+    assertEquals(BalancingStreamTokenizer.Token.QUOTED, tok.token());
+    s = tok.getNextToken();
+    assertEquals("456", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("`abc def`", s);
+    assertEquals(BalancingStreamTokenizer.Token.QUOTED, tok.token());
+    s = tok.getNextToken();
+    assertEquals("789", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals(null, s);
+    assertEquals(BalancingStreamTokenizer.Token.END, tok.token());
+  }

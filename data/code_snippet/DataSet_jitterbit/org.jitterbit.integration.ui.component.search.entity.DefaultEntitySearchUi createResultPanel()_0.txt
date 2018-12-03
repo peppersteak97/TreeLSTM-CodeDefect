@@ -1,0 +1,17 @@
+    private IUiProvider createResultPanel() {
+        JLabel results = createResultCaption();
+        m_listModel = new DefaultListModel();
+        m_resultList = new ResultList(this, m_listModel);
+        JComponent listUi = m_resultList.getDisplayer();
+        results.setLabelFor(listUi);
+
+        JScrollPane scroll = ComponentFactories.scrollFactory().newScrollPane(listUi);
+        scroll.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        OneColumnPanel p = new OneColumnPanel();
+        p.setOpaque(false, false);
+        p.add(results);
+        p.setFillOut();
+        p.add(scroll);
+        return p;
+    }

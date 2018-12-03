@@ -1,0 +1,4 @@
+  final void delete() {
+    _fromNode.removeOut(this);
+    _toNode.removeIn(this);
+  }

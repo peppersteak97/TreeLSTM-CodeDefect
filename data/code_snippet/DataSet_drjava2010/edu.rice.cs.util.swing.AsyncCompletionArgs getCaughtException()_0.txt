@@ -1,0 +1,3 @@
+  public Exception getCaughtException() {
+    return _caughtException;
+  }

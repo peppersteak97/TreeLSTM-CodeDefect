@@ -1,0 +1,10 @@
+    private void setInitialHttpsState() {
+        Object o = m_serverComboBox.getSelectedItem();
+        if (o instanceof String) {
+            ServerManager mgr = ServerManager.getManager();
+            m_httpsBox.setSelected(mgr.isUsingHttps((String) o));
+        }
+        else {
+            m_httpsBox.setSelected(false);
+        }
+    }

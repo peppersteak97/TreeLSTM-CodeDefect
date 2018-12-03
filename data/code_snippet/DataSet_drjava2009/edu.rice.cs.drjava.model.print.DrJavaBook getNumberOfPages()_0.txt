@@ -1,0 +1,1 @@
+  public int getNumberOfPages() { return _pagePrinters.size(); }

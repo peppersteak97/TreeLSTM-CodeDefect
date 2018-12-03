@@ -1,0 +1,6 @@
+    protected final JComponent getDisplayer() {
+        if (m_displayer == null) {
+            m_displayer = createDisplayerComponent();
+        }
+        return m_displayer;
+    }

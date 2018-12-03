@@ -1,0 +1,8 @@
+    public List<User> getAllUsers() {
+        synchronized (m_lock) {
+            if (m_users == null) {
+                m_users = new ArrayList<User>();
+            }
+            return new ArrayList<User>(m_users);
+        }
+    }

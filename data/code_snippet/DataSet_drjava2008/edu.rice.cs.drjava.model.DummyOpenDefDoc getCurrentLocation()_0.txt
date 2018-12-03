@@ -1,0 +1,1 @@
+  public int getCurrentLocation() { throw new UnsupportedOperationException("Dummy method"); }

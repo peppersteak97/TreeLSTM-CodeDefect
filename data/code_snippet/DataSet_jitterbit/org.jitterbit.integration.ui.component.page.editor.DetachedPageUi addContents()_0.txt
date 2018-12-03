@@ -1,0 +1,4 @@
+    private void addContents() {
+        IComponentDecor decor = ComponentDecorFactory.centerBorder(m_page);
+        m_pageWindow.setContentPane(decor.getUi());
+    }

@@ -1,0 +1,30 @@
+  public void testTokenizeArguments() {
+    _assertTokenized("a b c",
+                     new String[]{"a","b","c"});
+    _assertTokenized("\"a b c\"",
+                     new String[]{"a b c"});
+
+    _assertTokenized("\"a b\"c d",
+                     new String[]{"a bc","d"});
+
+    _assertTokenized("'a b'c d",
+                     new String[]{"a bc","d"});
+
+    _assertTokenized("a b\"c d\"",
+                     new String[]{"a","bc d"});
+
+    _assertTokenized("a b'c d'",
+                     new String[]{"a","bc d"});
+
+    _assertTokenized("a b'c d'\"e f\" g \"hi \"",
+                     new String[]{"a","bc de f","g","hi "});
+
+    _assertTokenized("c:\\\\file.txt",
+                     new String[]{"c:\\file.txt"});
+
+    _assertTokenized("/home/user/file",
+                     new String[]{"/home/user/file"});
+
+    _assertTokenized("\"asdf",
+                     new String[]{"asdf"});
+  }

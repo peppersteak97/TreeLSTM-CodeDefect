@@ -1,0 +1,8 @@
+    public static void writeRosterFile() {
+        NceConsistRoster.instance().makeBackupFile(defaultNceConsistRosterFilename());
+        try {
+            NceConsistRoster.instance().writeFile(defaultNceConsistRosterFilename());
+        } catch (Exception e) {
+            log.error("Exception while writing the new ConsistRoster file, may not be complete: "+e);
+        }
+    }

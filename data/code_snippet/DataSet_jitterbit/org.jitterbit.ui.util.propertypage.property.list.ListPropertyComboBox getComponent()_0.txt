@@ -1,0 +1,3 @@
+	public JComponent getComponent() {
+		return m_comboBox;
+	}

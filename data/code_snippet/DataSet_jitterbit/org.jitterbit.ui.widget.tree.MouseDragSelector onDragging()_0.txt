@@ -1,0 +1,34 @@
+	protected void onDragging() {
+		Rectangle dA = getDraggingArea();
+		for (int i = 0, n = m_tree.getRowCount(); i < n; ++i) {
+			TreePath path = m_tree.getPathForRow(i);
+			if (path == null) {
+            }
+			IKongaTreeNode node = (IKongaTreeNode)path.getLastPathComponent();
+			Rectangle rA = m_tree.getRowBounds(i);
+			if (rA != null && rA.intersects(dA)) {
+				if( m_selectedWhenStart.contains(node) ) {
+					if( isControlDown() ) {
+						m_tree.getSelectionModel().removeSelectionPath(path);
+						continue;
+					}
+					m_selectedWhenStart.remove(node);
+				}
+				m_tree.makePathSelected(m_tree.getPathForRow(i), true);
+			}
+			else {
+				if (m_selectedWhenStart.contains(node)) {
+					if (isControlDown()) {
+						m_tree.makePathSelected(path, true);
+                    }
+					else if (!isShiftDown()) {
+						m_tree.getSelectionModel().removeSelectionPath(path);
+                    }
+				}
+				else {
+					m_tree.getSelectionModel().removeSelectionPath(path);
+				}
+				
+			}
+		}
+	}

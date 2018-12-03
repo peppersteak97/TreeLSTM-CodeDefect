@@ -1,0 +1,12 @@
+    private void createRefreshButton() {
+        m_refreshButton = ComponentFactories.buttonFactory().newButton();
+        ILabelDecorator decorator = LabelDecorators.REFRESH_BUTTON;
+        LabelDecorators.decorate(m_refreshButton, decorator);
+        m_refreshButton.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                onRecordsRequested();
+            }
+        });
+        addControl(m_refreshButton, 0);
+    }

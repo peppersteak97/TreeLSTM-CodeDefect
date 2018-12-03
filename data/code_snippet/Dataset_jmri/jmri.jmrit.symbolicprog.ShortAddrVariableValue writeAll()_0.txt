@@ -1,0 +1,5 @@
+    public void writeAll() {
+        if (getReadOnly()) log.error("unexpected writeAll operation when readOnly is set");
+        updateCvForAddrChange();
+        ((CvValue)_cvVector.elementAt(getCvNum())).write(_status);
+    }

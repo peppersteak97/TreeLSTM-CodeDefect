@@ -1,0 +1,20 @@
+    public void dispose()
+    {
+        // check for any special disposing in InternalFrames
+        controlPanel.destroy();
+        functionPanel.destroy();
+        // dispose of this last because it will release and destroy throttle.
+        addressPanel.destroy();
+        
+        if (powerMgr!=null) powerMgr.removePropertyChangeListener(this);
+        
+        // Handle disposing of the throttle
+        if (throttle != null)
+            {
+                DccLocoAddress l = (DccLocoAddress) throttle.getLocoAddress();
+                InstanceManager.throttleManagerInstance().
+                    cancelThrottleRequest(l.getNumber(), this);
+            }
+        
+        super.dispose();
+    }

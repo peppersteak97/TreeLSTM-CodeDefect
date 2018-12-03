@@ -1,0 +1,80 @@
+    void createModel() {
+        m = new BeanTableDataModel() {
+
+        	static public final int DIRECTIONCOL = NUMCOLUMN;
+
+        	public String getValue(String name) {
+        		if (name == null) {
+        			super.log.warn("requested getValue(null)");
+        			return "(no name)";
+        		}
+        		Block b = InstanceManager.blockManagerInstance().getBySystemName(name);
+        		if (b == null) {
+        			super.log.debug("requested getValue(\""+name+"\"), Block doesn't exist");
+        			return "(no Block)";
+        		}
+        		Object m = b.getValue();
+            	if (m!=null)
+                	return m.toString();
+                else
+                	return "";
+            }
+            public Manager getManager() { return InstanceManager.blockManagerInstance(); }
+            public NamedBean getBySystemName(String name) { return InstanceManager.blockManagerInstance().getBySystemName(name);}
+            public NamedBean getByUserName(String name) { return InstanceManager.blockManagerInstance().getByUserName(name);}
+
+            public void clickOn(NamedBean t) {
+            }
+
+    		public int getColumnCount(){ 
+    		    return DIRECTIONCOL+1;
+     		}
+
+    		public Object getValueAt(int row, int col) {
+	   			if (col==DIRECTIONCOL) {
+            		Block b = (Block)getBySystemName((String)sysNameList.get(row));
+                    if (b == null) {
+                        super.log.debug("requested getValueAt(\""+row+"\"), Block doesn't exist");
+                        return "(no Block)";
+                    }
+					return jmri.Path.decodeDirection(b.getDirection());
+    			} else return super.getValueAt(row, col);
+			}    		
+
+    		public void setValueAt(Object value, int row, int col) {
+        		if (col==VALUECOL) {
+            		Block b = (Block)getBySystemName((String)sysNameList.get(row));
+					b.setValue(value);
+            		fireTableRowsUpdated(row,row);
+        		} else super.setValueAt(value, row, col);
+    		}
+
+	   		public String getColumnName(int col) {
+        		if (col==DIRECTIONCOL) return "Direction";
+        		if (col==VALUECOL) return "Value";
+        		return super.getColumnName(col);
+        	}
+
+    		public Class getColumnClass(int col) {
+    			if (col==DIRECTIONCOL) return String.class;
+    			else return super.getColumnClass(col);
+		    }
+
+    		public int getPreferredWidth(int col) {
+    			if (col==DIRECTIONCOL) return new JTextField(7).getPreferredSize().width;
+    			else return super.getPreferredWidth(col);
+		    }
+
+    		public void configValueColumn(JTable table) {
+		    }
+
+			boolean matchPropertyName(java.beans.PropertyChangeEvent e) {
+			    return true;
+			}
+
+			public JButton configureButton() {
+				super.log.error("configureButton should not have been called");
+				return null;
+			}
+        };
+    }

@@ -1,0 +1,7 @@
+    private void publishMenus() {
+        JMenuBar mb = new JMenuBar();
+        for (JMenu m : m_appWin.getMenuManager().getJMenus()) {
+            mb.add(m);
+        }
+        m_frame.setJMenuBar(mb);
+    }

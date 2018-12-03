@@ -1,0 +1,3 @@
+    public byte[] getBytes() {
+        return m_id.getBytes();
+    }

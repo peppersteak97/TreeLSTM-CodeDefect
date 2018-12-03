@@ -1,0 +1,3 @@
+		for( KongaObject ewO : m_bag.keySet() ) {
+		    ret.addAll( m_bag.get(ewO) );
+		}

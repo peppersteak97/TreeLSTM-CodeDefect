@@ -1,0 +1,3 @@
+  public void clearRegions() {
+    for (R r: getRegions()) removeRegion(r);
+  }

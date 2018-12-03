@@ -1,0 +1,13 @@
+  public Enumeration<Register> enumerateVolatileConditionRegisters() {
+    return new Enumeration<Register>() {
+      private int idx = 0;
+
+      public Register nextElement() {
+        return reg[FIRST_CONDITION + CR_NUMS[idx++]];
+      }
+
+      public boolean hasMoreElements() {
+        return idx < CR_NUMS.length;
+      }
+    };
+  }

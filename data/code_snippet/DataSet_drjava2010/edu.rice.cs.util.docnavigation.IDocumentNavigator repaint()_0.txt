@@ -1,0 +1,2 @@
+  /** The standard swing repaint() method. */
+  public void repaint();

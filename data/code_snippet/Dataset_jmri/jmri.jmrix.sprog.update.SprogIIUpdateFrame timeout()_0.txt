@@ -1,0 +1,32 @@
+  synchronized protected void timeout() {
+    if (bootState == CRSENT) {
+      if (log.isDebugEnabled()) {
+        log.debug("timeout in CRSENT - assuming boot mode");
+      }
+      requestBoot();
+    }
+    else if (bootState == VERREQSENT) {
+      log.error("timeout in VERREQSENT!");
+      JOptionPane.showMessageDialog(this, "Unable to connect to bootloader",
+                                    "Fatal Error", JOptionPane.ERROR_MESSAGE);
+      statusBar.setText("Fatal error - unable to connect");
+      bootState = IDLE;
+      tc.setSprogState(SprogTrafficController.NORMAL);
+    }
+    else if (bootState == WRITESENT) {
+      log.error("timeout in WRITESENT!");
+      JOptionPane.showMessageDialog(this, "Timeout during write",
+                                    "Fatal Error", JOptionPane.ERROR_MESSAGE);
+      statusBar.setText("Fatal error - unable to write");
+      bootState = IDLE;
+      tc.setSprogState(SprogTrafficController.NORMAL);
+    }
+    else if (bootState == NULLWRITE) {
+      if (hexFile.read() > 0) {
+        sendWrite();
+      }
+      else {
+        doneWriting();
+      }
+    }
+  }

@@ -1,0 +1,26 @@
+  private void loadSettings(){
+    if (!settingsLoaded) {
+        settingsLoaded = true;
+        Properties settings = new Properties();
+
+        String settingsFileName = jmri.jmrit.XmlFile.prefsDir() + SETTINGS_FILE_NAME;
+
+        try {
+            java.io.InputStream settingsStream = new FileInputStream(settingsFileName);
+            settings.load( settingsStream );
+            settingsStream.close();
+            
+            String val = settings.getProperty( AUTO_START_KEY, "0" );
+            autoStart = (val.equals("1"));
+            val = settings.getProperty( PORT_NUMBER_KEY, "1234" );
+            portNumber = Integer.parseInt( val, 10 );
+        }
+        catch (FileNotFoundException ex) {
+            log.debug( "Server: loadSettings file not found");
+        }
+        catch (IOException ex) {
+            log.debug( "Server: loadSettings exception: ", ex );
+        }
+        updateServerStateListener();
+     }
+  }

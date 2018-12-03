@@ -1,0 +1,13 @@
+    public InterchangeProjectId getProjectID() {
+        String s = m_properties.getProperty(PROJECT_ID);
+        InterchangeProjectId id = null;
+        if (s != null && s.length() > 0) {
+            try {
+                id = InterchangeProjectId.fromString(s);
+            }
+            catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+        return id;
+    }

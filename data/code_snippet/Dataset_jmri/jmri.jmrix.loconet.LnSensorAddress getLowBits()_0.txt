@@ -1,0 +1,1 @@
+    public int getLowBits() 	{ return _low; }

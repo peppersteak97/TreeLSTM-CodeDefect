@@ -1,0 +1,26 @@
+  public void testMultiLineStarInsertFirstLine() throws BadLocationException {
+    String text =
+      "/**\n" +
+      "comments here blah blah\n" +
+      " */";
+    
+    String noStarAdded =
+      "/**\n" +
+      " comments here blah blah\n" +
+      " */";
+    
+    String starAdded =
+      "/**\n" +
+      " * comments here blah blah\n" +
+      " */";
+    
+    _doc.insertString(0, text, null);
+    _assertContents(text, _doc);
+    _doc.gotoLine(2);
+    /* First test that indentation caused not by an enter press inserts no star */
+    safeIndentLine(Indenter.IndentReason.OTHER);
+    _assertContents(noStarAdded, _doc);
+    /* Now test that indentation caused by an enter press does insert a star */
+    safeIndentLine(Indenter.IndentReason.ENTER_KEY_PRESS);
+    _assertContents(starAdded, _doc);
+  }

@@ -1,0 +1,1 @@
+    public int decoderType() 	{ return stat&LnConstants.DEC_MODE_MASK;}

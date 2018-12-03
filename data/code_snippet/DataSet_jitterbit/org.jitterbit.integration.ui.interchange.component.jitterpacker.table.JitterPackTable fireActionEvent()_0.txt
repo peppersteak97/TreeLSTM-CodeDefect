@@ -1,0 +1,12 @@
+    private void fireActionEvent() {
+        if (m_actionListeners.isEmpty()) {
+            return;
+        }
+        final ActionEvent evt = new ActionEvent(this, 
+        m_actionListeners.visitAll(new ListenerVisitor<ActionListener>() {
+
+            public void accept(ActionListener listener) {
+                listener.actionPerformed(evt);
+            }
+        });
+    }

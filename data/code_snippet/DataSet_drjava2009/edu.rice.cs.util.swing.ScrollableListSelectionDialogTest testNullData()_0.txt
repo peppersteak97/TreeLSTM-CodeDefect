@@ -1,0 +1,13 @@
+  public void testNullData() {
+    try {
+      new  ScrollableListSelectionDialog(null, TITLE, LEADER, DATA, DESC);
+    } catch (IllegalArgumentException e) {
+      fail("Data was non-null, so it should have been accepted.");
+    }
+    
+    try {
+      new  ScrollableListSelectionDialog(null, TITLE, LEADER, null, DESC);
+      fail("Data was null, so it shouldn't have been accepted.");
+    } catch (IllegalArgumentException e) {
+    }
+  }

@@ -1,0 +1,4 @@
+    protected final void createTitlePanel() {
+        m_titlePanel = new TitlePanel();
+        m_titlePanel.setIcon(m_titleIcon);
+    }

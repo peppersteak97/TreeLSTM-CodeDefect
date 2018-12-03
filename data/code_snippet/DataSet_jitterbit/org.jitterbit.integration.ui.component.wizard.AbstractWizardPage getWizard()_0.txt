@@ -1,0 +1,3 @@
+    public Wizard getWizard() {
+        return m_wizard;
+    }

@@ -1,0 +1,11 @@
+    protected JButton createCancelButton() {
+        Action action = new AbstractAction(UiResourceBundle.getString("Cancel")) {  
+
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        };
+        JButton btn = getButton(action, m_buttonSize);
+        m_btnCancel = btn;
+        return btn;
+    }

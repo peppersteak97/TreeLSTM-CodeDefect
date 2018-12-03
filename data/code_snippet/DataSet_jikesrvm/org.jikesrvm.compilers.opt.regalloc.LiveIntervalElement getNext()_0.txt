@@ -1,0 +1,1 @@
+  public LiveIntervalElement getNext() { return next; }

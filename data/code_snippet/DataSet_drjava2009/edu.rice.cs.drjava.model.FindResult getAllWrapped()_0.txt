@@ -1,0 +1,1 @@
+  public boolean getAllWrapped() { return _allWrapped; }

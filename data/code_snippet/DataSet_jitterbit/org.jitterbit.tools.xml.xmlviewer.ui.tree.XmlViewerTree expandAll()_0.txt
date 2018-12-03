@@ -1,0 +1,4 @@
+    public void expandAll() {
+        TreeNode root = (TreeNode)getModel().getRoot();
+        expandAll(new TreePath(root), true);
+    }

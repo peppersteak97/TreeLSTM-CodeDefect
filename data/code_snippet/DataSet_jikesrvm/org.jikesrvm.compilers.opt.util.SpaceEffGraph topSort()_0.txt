@@ -1,0 +1,11 @@
+  public void topSort() {
+    initTopSort();
+    for (SpaceEffGraphNode n = firstNode(); n != null; n = n.getNext()) {
+      if (n.firstInEdge() == null) { 
+        n.setDfsVisited();
+        n.setOnStack();
+        dfs(n);
+        addTopSortNode(n);
+      }
+    }
+  }

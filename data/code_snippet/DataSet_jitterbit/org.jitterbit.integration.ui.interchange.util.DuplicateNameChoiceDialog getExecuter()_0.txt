@@ -1,0 +1,3 @@
+    IMoveExecuter getExecuter() {
+        return m_moveExecuter;
+    }

@@ -1,0 +1,3 @@
+    public String getZipCode() {
+        return m_sZipCode;
+    }

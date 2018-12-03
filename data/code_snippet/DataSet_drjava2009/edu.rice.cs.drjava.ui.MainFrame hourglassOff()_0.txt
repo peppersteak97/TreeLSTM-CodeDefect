@@ -1,0 +1,9 @@
+  public void hourglassOff() { 
+    assert EventQueue.isDispatchThread();
+    _hourglassNestLevel--;
+    if (_hourglassNestLevel == 0) {
+      getGlassPane().setVisible(false);
+      _currentDefPane.setEditable(true);
+      setAllowKeyEvents(true);
+    }
+  }

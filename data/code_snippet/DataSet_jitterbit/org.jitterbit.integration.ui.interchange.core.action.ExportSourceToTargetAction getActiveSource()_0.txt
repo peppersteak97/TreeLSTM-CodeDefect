@@ -1,0 +1,10 @@
+    private ISourceUi getActiveSource() {
+        List<IIntegrationEntityUiDelegate> activeObjects = getActiveObjects(IIntegrationEntityUiDelegate.class);
+        if (activeObjects.size() == 1) {
+            Object o = activeObjects.get(0);
+            if (o instanceof ISourceUi) {
+                return (ISourceUi) o;
+            }
+        }
+        return null;
+    }

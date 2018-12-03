@@ -1,0 +1,73 @@
+    private static void customizeEntities() throws IntrospectionException {
+        BeanInfo info = null;
+        BeanDescriptor desc = null;
+
+        info = Introspector.getBeanInfo(IntegrationId.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(FolderId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(Folder.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(SourceId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(Source.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(TargetId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(Target.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(TransformationId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(Transformation.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(ScheduleId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(Schedule.class);
+        desc = info.getBeanDescriptor();
+
+
+        info = Introspector.getBeanInfo(ProjectId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(AccountProject.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(GroupId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(Group.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(UserId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(User.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(ProcessMessageId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(ProcessMessage.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(TargetMessageId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(TargetMessage.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(EmailMessageId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(EmailMessage.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(TextDocumentId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(TextDocument.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(TradingPartnerId.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(TradingPartner.class);
+        desc = info.getBeanDescriptor();
+    }

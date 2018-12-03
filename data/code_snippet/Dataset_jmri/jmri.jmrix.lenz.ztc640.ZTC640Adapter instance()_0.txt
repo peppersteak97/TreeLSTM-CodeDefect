@@ -1,0 +1,4 @@
+    static public ZTC640Adapter instance() {
+        if (mInstance == null) mInstance = new ZTC640Adapter();
+        return mInstance;
+    }

@@ -1,0 +1,3 @@
+    protected Color getPageBackground() {
+        return IntegrationUiStyleSheet.WebServiceWizPage.getBackground();
+    }

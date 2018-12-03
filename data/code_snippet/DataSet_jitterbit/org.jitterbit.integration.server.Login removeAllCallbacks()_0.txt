@@ -1,0 +1,8 @@
+    public static void removeAllCallbacks() {
+        synchronized (LOCK) {
+            if (s_state == LOGGING_IN) {
+                throw new IllegalStateException(
+            }
+            s_optionalCallbacks = null;
+        }
+    }

@@ -1,0 +1,5 @@
+    IBoundProperty[] getBoundPropertyControls() {
+        return new IBoundProperty[] {
+            BoundPropertyControlFactory.newNameControl(m_name),
+        };
+    }

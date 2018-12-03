@@ -1,0 +1,16 @@
+    protected void startIdentifyDecoder() {
+        final CombinedLocoSelPane me = this;
+        IdentifyDecoder id = new IdentifyDecoder() {
+                private CombinedLocoSelPane who = me;
+                protected void done(int mfg, int model, int productID) {
+                    who.selectDecoder(mfg, model, productID);
+                }
+                protected void message(String m) {
+                    if (_statusLabel != null) _statusLabel.setText(m);
+                }
+                protected void error() {
+                    iddecoder.setSelected(false);
+                }
+            };
+        id.start();
+    }

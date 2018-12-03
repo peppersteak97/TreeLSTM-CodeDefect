@@ -1,0 +1,3 @@
+    public TextInputField getLoginField() {
+        return m_login;
+    }

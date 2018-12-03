@@ -1,0 +1,3 @@
+    public synchronized long getTimerValueMs() {
+    	return (System.currentTimeMillis() - m_startTime);
+    }

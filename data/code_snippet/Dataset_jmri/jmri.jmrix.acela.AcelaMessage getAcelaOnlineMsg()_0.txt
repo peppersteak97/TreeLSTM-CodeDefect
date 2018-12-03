@@ -1,0 +1,5 @@
+    static public AcelaMessage getAcelaOnlineMsg() {
+        AcelaMessage m = new AcelaMessage(1);
+        m.setBinary(true);
+        return m;
+    }

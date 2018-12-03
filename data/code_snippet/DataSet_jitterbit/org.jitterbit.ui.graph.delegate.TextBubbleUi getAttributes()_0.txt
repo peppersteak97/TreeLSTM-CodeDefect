@@ -1,0 +1,8 @@
+	public Map<String, Object> getAttributes() {
+		Map<String, Object> map = super.getAttributes();
+		map.put(ATTRIBUTE_X, new Integer(m_displayData.getLocation().x));
+		map.put(ATTRIBUTE_Y, new Integer(m_displayData.getLocation().y));
+		map.put(ATTRIBUTE_W, new Integer(m_displayData.getSize().width));
+		map.put(ATTRIBUTE_H, new Integer(m_displayData.getSize().height));
+		return map;
+	}

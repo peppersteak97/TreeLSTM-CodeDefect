@@ -1,0 +1,3 @@
+	public int getPrecedence() {
+		return m_iPrecedence;
+	}

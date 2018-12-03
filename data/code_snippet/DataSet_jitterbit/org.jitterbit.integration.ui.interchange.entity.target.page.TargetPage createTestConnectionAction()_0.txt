@@ -1,0 +1,7 @@
+    private ActiveObjectPageAction createTestConnectionAction() {
+        ActiveObjectPageAction a = new TestConnectionAction(getObject(), getView());
+        if (m_currentLocationType != null) {
+            a.setEnabled(canConnectionBeTested(m_currentLocationType));
+        }
+        return a;
+    }

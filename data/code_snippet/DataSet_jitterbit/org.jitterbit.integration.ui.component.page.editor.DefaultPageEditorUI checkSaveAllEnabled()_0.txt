@@ -1,0 +1,6 @@
+    private void checkSaveAllEnabled() {
+        IApplicationWindow window = m_editor.getAppWin();
+        IApplicationAction saveAll = WindowActionFactory.SAVE_ALL.get(window);
+        boolean enabled = isAtLeastOnePageDirty();
+        saveAll.setEnabled(enabled);
+    }

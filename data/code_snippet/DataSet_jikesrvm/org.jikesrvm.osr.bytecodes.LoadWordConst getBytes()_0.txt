@@ -1,0 +1,5 @@
+  public byte[] getBytes() {
+    byte[] codes = initBytes(bsize, PSEUDO_LoadWordConst);
+    word2bytes(codes, 2, wbits);
+    return codes;
+  }

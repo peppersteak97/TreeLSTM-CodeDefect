@@ -1,0 +1,25 @@
+    public void setPowerIcons() {
+        if (powerMgr==null) return;
+        try {
+            if (powerMgr.getPower()==PowerManager.ON) {
+                powerLight.setIcon(powerOnIcon);
+                powerLight.setToolTipText("Layout Power On.  Click light to turn off, or use Power menu");
+            }
+            else if (powerMgr.getPower()==PowerManager.OFF) {
+                powerLight.setIcon(powerOffIcon);
+                powerLight.setToolTipText("Layout Power Off.  Click light to turn on, or use Power menu");
+            }
+            else if (powerMgr.getPower()==PowerManager.UNKNOWN) {
+                powerLight.setIcon(powerXIcon);
+                powerLight.setToolTipText("Layout Power state unknown.  Click light to turn off, or use Power menu");
+            }
+            else {
+                powerLight.setIcon(powerXIcon);
+                powerLight.setToolTipText("Layout Power state unknown.  Click light to turn off, or use Power menu");
+                log.error("Unexpected state value: +"+powerMgr.getPower());
+            }
+        } catch (JmriException ex) {
+            powerLight.setIcon(powerXIcon);
+            powerLight.setToolTipText("Layout Power state unknown.  Click light to turn off, or use Power menu");
+        }
+    }

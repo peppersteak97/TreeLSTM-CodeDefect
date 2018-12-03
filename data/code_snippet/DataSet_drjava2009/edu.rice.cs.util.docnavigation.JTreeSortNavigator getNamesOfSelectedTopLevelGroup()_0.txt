@@ -1,0 +1,27 @@
+  public java.util.Set<String> getNamesOfSelectedTopLevelGroup() throws GroupNotSelectedException {
+    assert (EventQueue.isDispatchThread() || Utilities.TEST_MODE);
+    
+    HashSet<String> names = new HashSet<String>();
+    LinkedList<GroupNode<ItemT>> roots = new LinkedList<GroupNode<ItemT>>(_roots);
+    
+    TreePath[] ps = getSelectionPaths();
+    if (ps != null) {
+      for(TreePath p: ps) {
+        if (p.getLastPathComponent() instanceof DefaultMutableTreeNode) {
+          DefaultMutableTreeNode n = (DefaultMutableTreeNode) p.getLastPathComponent();
+          
+          for(GroupNode<ItemT> gn: roots) {
+            if (gn.isNodeDescendant(n)) {
+              names.add(gn.getData());
+              roots.remove(gn);
+              break;
+            }
+          }
+        }
+      }
+    }
+    
+    if (names.isEmpty()) { throw new GroupNotSelectedException("there is no top level group for the root of the tree"); }
+    
+    return names;
+  }

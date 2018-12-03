@@ -1,0 +1,5 @@
+    public void prepareForRemoval() {
+        tearDownEventHub();
+        getWindow().getActiveObjectManager().removeActiveObjectProvider(this);
+        m_pageSaver = null;
+    }

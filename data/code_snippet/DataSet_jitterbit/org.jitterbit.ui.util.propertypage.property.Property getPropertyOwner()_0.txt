@@ -1,0 +1,3 @@
+	public Object getPropertyOwner() {
+		return m_propertyOwner;
+	}

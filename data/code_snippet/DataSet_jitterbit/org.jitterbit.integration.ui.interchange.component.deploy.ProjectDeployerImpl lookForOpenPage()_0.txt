@@ -1,0 +1,8 @@
+    private DeployPage lookForOpenPage() {
+        for (IPage p : m_view.getOpenPages()) {
+            if (p.getId().equals(m_pageId)) {
+                return (DeployPage) p;
+            }
+        }
+        return null;
+    }

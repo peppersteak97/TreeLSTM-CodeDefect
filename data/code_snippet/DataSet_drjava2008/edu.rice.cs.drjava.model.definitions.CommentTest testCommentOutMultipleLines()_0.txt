@@ -1,0 +1,12 @@
+  public void testCommentOutMultipleLines() throws BadLocationException {
+    String text =
+      "Here is some abritrary text that should be commented.\n" +
+      "various */ obnoxious characters.\n";
+
+    String commented =
+
+    doc.insertString(0, text, null);
+    _assertContents("Sample text is inserted improperly.", text, doc);
+    doc.commentLines(0, doc.getLength());
+    _assertContents("These lines should be wing-commented!", commented, doc);
+  }

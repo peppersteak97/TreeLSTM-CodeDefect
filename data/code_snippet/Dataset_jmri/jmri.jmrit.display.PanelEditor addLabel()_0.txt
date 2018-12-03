@@ -1,0 +1,9 @@
+    void addLabel() {
+        PositionableLabel l = new PositionableLabel(nextLabel.getText());
+        setNextLocation(l);
+        l.setSize(l.getPreferredSize().width, l.getPreferredSize().height);
+        l.setDisplayLevel(LABELS);
+        putLabel(l);
+        l.setPositionable(true);
+        moveToFront(l);
+    }

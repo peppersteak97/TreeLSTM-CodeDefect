@@ -1,0 +1,5 @@
+    void doReadingFromTimeFields() {
+        Reading r = getReadingFromTimeFields();
+
+        Distributor.instance().submitReading(r);
+    }

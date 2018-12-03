@@ -1,0 +1,8 @@
+  public static synchronized Server getInstance(){
+    if( self == null ){
+      self = new Server();
+      if( self.getAutoStart() )
+        self.enable();
+    }
+    return self ;
+  }

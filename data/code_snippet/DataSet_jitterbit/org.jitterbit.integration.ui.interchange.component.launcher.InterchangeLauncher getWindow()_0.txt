@@ -1,0 +1,3 @@
+    public IApplicationWindow getWindow() {
+        return IntegrationUi.getUi().getAppWin();
+    }

@@ -1,0 +1,3 @@
+  public void allocateRegister() {
+    flags = (flags & ~SPILLED) | (ALLOCATED | TOUCHED);
+  }

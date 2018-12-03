@@ -1,0 +1,5 @@
+    protected AbstractMRMessage newMessage() { 
+        log.debug("New GridConnectMessage created");
+        GridConnectMessage msg = new GridConnectMessage();
+        return msg;
+    }

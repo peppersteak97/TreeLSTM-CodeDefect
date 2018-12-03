@@ -1,0 +1,11 @@
+            public IIntegrationLink getLink() {
+                TargetId tgtId = m_tf.getTargetId();
+                if (tgtId != null) {
+                    Target tgt = (Target) m_dataLookup.getInstance(tgtId);
+                    if (tgt != null) {
+                        return new TransformationTargetLink(tgt, m_tf);
+                    }
+                    logMissingLink(m_tf, EntityType.Target, tgtId);
+                }
+                return null;
+            }

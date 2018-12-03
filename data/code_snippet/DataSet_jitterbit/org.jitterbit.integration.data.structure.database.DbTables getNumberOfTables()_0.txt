@@ -1,0 +1,7 @@
+    public int getNumberOfTables() {
+        int tables = 0;
+        if (m_tables != null && m_tables.trim().length() > 0) {
+            tables = m_tables.split(TABLE_SEPARATOR).length;
+        }
+        return tables;
+    }

@@ -1,0 +1,3 @@
+    private static JButton createButton() {
+        return ComponentFactories.toolbarButtonFactory().newButton();
+    }

@@ -1,0 +1,4 @@
+    private void createExtensionCheck() {
+        m_extensionCheck = ComponentFactories.checkBoxFactory().newCheckBox(
+                        PackageResources.Searcher.getExtensionCheckText(), true);
+    }

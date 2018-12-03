@@ -1,0 +1,1 @@
+  public boolean isGuardOutput() { return (scratch & GUARD_OUTPUT) != 0; }

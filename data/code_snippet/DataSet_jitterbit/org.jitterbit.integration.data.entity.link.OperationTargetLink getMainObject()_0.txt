@@ -1,0 +1,3 @@
+    public Target getMainObject() {
+        return (Target) super.getMainObject();
+    }

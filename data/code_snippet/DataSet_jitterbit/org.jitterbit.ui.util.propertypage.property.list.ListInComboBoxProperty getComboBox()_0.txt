@@ -1,0 +1,3 @@
+	protected ListPropertyComboBox getComboBox() {
+		return (ListPropertyComboBox)getComponentHolder();
+	}

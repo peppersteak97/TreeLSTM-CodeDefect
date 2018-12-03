@@ -1,0 +1,3 @@
+    public GroupId getID() {
+        return (GroupId) super.getID();
+    }

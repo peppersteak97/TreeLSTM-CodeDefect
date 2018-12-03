@@ -1,0 +1,12 @@
+    private void createControlPanel() {
+        IDeployLauncher launcher = new InternalLauncher();
+        InterchangeProject project = m_view.getDataModelUi().getDataModel();
+        IDeployOption o1 = new DeployEverythingOption(project, launcher);
+        IDeployOption o2 = new DeployDirtyItemsOption(project, launcher);
+        IDeployOption o3 = new DeployIndividualItemsOption(
+                        this, 
+                        InterchangeViewUtils.getManagedProject(m_view),
+                        launcher, 
+                        m_treePanel);
+        m_controlPanel = new DeployControlPanel(KongaListUtils.asList(o1, o2, o3), o2);
+    }

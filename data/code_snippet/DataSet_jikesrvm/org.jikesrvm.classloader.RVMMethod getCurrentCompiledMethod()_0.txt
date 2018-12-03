@@ -1,0 +1,3 @@
+  public final synchronized CompiledMethod getCurrentCompiledMethod() {
+    return currentCompiledMethod;
+  }

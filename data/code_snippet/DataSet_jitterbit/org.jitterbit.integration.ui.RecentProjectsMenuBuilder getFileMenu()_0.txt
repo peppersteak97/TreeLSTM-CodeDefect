@@ -1,0 +1,3 @@
+    private IMenu getFileMenu() {
+        return m_menuManager.getMenu(ApplicationWindowMenus.FILE);
+    }

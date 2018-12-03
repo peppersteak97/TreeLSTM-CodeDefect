@@ -1,0 +1,3 @@
+	public Dimension getMinimumSize() {
+		return m_bFixedSize ? getPreferredSize() : super.getMinimumSize();
+	}

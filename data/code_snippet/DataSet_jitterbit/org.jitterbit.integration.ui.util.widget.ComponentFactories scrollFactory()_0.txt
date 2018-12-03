@@ -1,0 +1,3 @@
+    public static IScrollPaneFactory scrollFactory() {
+        return SCROLL_FACTORY;
+    }

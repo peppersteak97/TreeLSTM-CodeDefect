@@ -1,0 +1,4 @@
+    static public EliteAdapter instance() {
+        if (mInstance == null) mInstance = new EliteAdapter();
+        return mInstance;
+    }

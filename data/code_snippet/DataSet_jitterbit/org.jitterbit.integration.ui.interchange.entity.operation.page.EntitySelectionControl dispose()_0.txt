@@ -1,0 +1,5 @@
+    void dispose() {
+        m_controls.dispose();
+        m_actionListeners.removeAll();
+        m_comboBox.removeActionListener(m_comboListener);
+    }

@@ -1,0 +1,5 @@
+    protected void setColor() {
+        for (int i = 0; i<v.size(); i++) {
+            ((JRadioButton)(v.elementAt(i))).setBackground(_var._value.getBackground());
+        }
+    }

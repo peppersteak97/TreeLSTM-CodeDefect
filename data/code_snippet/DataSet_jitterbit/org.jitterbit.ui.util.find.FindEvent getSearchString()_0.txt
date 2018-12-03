@@ -1,0 +1,3 @@
+    public String getSearchString() {
+        return m_sSearchString;
+    }

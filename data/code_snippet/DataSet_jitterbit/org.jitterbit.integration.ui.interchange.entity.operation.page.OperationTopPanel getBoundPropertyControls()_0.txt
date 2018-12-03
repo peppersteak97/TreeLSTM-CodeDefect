@@ -1,0 +1,8 @@
+    IBoundProperty[] getBoundPropertyControls() {
+        return new IBoundProperty[] {
+            BoundPropertyControlFactory.newNameControl(m_name),
+            BoundPropertyControlFactory.newDescriptionControl(m_description),
+            BoundPropertyControlFactory.newComboControl(Operation.OPERATION_TYPE_ID, 
+                    m_operationTypeBox),
+        };
+    }

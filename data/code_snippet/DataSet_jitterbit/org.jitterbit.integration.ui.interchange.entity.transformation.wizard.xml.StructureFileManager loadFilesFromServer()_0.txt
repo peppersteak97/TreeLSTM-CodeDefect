@@ -1,0 +1,14 @@
+    void loadFilesFromServer() {
+        IUiJobManager jobMgr = IntegrationUi.getUi().getJobManager();
+        if (m_fileInfoDownloadJobId != null) {
+            jobMgr.cancelJob(m_fileInfoDownloadJobId);
+        }
+        FileInfoDownloadJob p = new FileInfoDownloadJob(this, m_page);
+        m_fileInfoDownloadJobId = jobMgr.submitForParallellProcessing(p);
+        try {
+            p.waitUntilDone();
+        }
+        catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
+    }

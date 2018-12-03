@@ -1,0 +1,4 @@
+    protected Element initStore() {
+        Element root = new Element("layout-config");
+        return root;
+    }

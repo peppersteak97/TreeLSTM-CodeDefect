@@ -1,0 +1,3 @@
+  boolean representsParameter() {
+    return (label instanceof ValueGraphParamLabel);
+  }

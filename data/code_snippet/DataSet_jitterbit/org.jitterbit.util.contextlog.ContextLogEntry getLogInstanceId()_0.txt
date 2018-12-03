@@ -1,0 +1,3 @@
+	public KongaID getLogInstanceId() {
+		return m_LogInstanceId;
+	}

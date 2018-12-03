@@ -1,0 +1,5 @@
+    private void createGlobalWarningsArea() {
+        m_globalWarningsArea = ComponentFactories.textFactory().newTextArea(8, 40);
+        m_globalWarningsArea.setEditable(false);
+        m_globalWarningsArea.setText(getGlobalWarningsText());
+    }

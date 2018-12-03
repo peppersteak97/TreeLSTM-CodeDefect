@@ -1,0 +1,5 @@
+    private void createFixedWidthComponents() {
+        m_docTypeLabel = ComponentFactories.textFactory().newTextField(
+                        RESOURCES.getString("Label.ComplexFixed"), 20);
+        m_docTypeLabel.setEditable(false);
+    }

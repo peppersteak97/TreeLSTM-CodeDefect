@@ -1,0 +1,13 @@
+    void selectLoco(){
+		String rosterEntryTitle = rosterBox.getSelectedItem().toString();
+		if (rosterEntryTitle == "")
+			return;
+		RosterEntry entry = Roster.instance().entryFromTitle(rosterEntryTitle);
+		String rn = entry.getRoadNumber();
+		if (rn.equals("")) 
+			rn = entry.getDccAddress();
+		if (rn != null){
+			LocoIcon l = addLocoIcon(rn);
+			l.setRosterEntry(entry);
+		}
+     }

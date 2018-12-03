@@ -1,0 +1,3 @@
+    public EmailMessageId getID() {
+        return (EmailMessageId) super.getID();
+    }

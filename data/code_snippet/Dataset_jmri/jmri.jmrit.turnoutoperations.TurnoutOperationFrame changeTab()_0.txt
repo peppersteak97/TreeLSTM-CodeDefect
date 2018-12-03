@@ -1,0 +1,10 @@
+	private void changeTab() {
+		currentConfig = (TurnoutOperationConfig)tabPane.getSelectedComponent();
+		if (currentConfig == null) {
+			currentOperation = null;
+			previousSelectionName = "";
+		} else {
+			currentOperation = currentConfig.getOperation();
+			previousSelectionName = currentOperation.getName();
+		}
+	}

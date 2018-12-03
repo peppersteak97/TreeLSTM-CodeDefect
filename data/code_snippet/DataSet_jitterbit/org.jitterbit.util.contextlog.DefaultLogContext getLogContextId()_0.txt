@@ -1,0 +1,3 @@
+    public LogContextEnum getLogContextId() {
+        return m_logContextId;
+    }

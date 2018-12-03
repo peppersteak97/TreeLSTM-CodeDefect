@@ -1,0 +1,4 @@
+    private void installMemberListKeyBindings() {
+        KeyBindingInstaller installer = new KeyBindingInstaller(m_memberList);
+        installer.install();
+    }

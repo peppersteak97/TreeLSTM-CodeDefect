@@ -1,0 +1,10 @@
+            public IIntegrationLink getLink() {
+                EmailMessageId msgId = m_location.getMessageId();
+                if (msgId != null) {
+                    EmailMessage msg = (EmailMessage) m_dataLookup.getInstance(msgId);
+                    if (msg != null) {
+                        return new TargetEmailMessageLink(msg, m_target);
+                    }
+                }
+                return null;
+            }

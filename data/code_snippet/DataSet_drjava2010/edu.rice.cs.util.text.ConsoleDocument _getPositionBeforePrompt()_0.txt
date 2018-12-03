@@ -1,0 +1,7 @@
+  private int _getPositionBeforePrompt() {
+    int len = _document.getLength();
+    if (_document.hasPrompt()) {
+      int promptStart = _promptPos - _prompt.length();
+    }
+    return len;
+  }

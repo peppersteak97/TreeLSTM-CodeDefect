@@ -1,0 +1,13 @@
+  void _saveAllOld() {
+    hourglassOn();
+    File file = _currentProjFile;
+    try {
+      if (_model.isProjectActive()) {
+        if (file.getName().indexOf(".") == -1) file = new File (file.getAbsolutePath() + OLD_PROJECT_FILE_EXTENSION);
+        _model.exportOldProject(file, gatherProjectDocInfo());
+      }
+      _model.saveAllFiles(_saveSelector);
+    }
+    catch (IOException ioe) { _showIOError(ioe); }
+    finally { hourglassOff(); }
+  }

@@ -1,0 +1,14 @@
+  public void testSetNodeFromEmpty() throws Exception {
+    XMLConfig xc = new XMLConfig();
+    xc.set("foo/bar", "abc");
+    
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                             "  <bar>abc</bar>"+NL+"</foo>"+NL), xc.toString());
+    assertEquals("abc", xc.get("foo/bar"));
+    
+    xc.set("foo/fum", "def");
+    
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                             "  <bar>abc</bar>"+NL+"  <fum>def</fum>"+NL+"</foo>"+NL), xc.toString());
+    assertEquals("def", xc.get("foo/fum"));
+  }

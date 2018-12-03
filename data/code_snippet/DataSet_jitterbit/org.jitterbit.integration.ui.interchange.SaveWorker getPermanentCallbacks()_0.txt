@@ -1,0 +1,10 @@
+    private List<ICallbackResult> getPermanentCallbacks() {
+        List<ICallbackResult> copiedList = null;
+        synchronized (m_permanentEntityCallbackLock) {
+            if (m_permanentEntityCallbacks == null) {
+                return null;
+            }
+            copiedList = new ArrayList<ICallbackResult>(m_permanentEntityCallbacks);
+        }
+        return copiedList;
+    }

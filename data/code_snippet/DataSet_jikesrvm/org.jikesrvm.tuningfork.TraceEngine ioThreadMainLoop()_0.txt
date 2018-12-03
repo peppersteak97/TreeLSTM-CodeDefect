@@ -1,0 +1,21 @@
+  private void ioThreadMainLoop() {
+    state = State.RUNNING_FILE;
+    while (true) {
+      try {
+        Thread.sleep(IO_INTERVAL_MS);
+      } catch (InterruptedException e) {
+      }
+      boolean shouldShutDown = state == State.SHUTTING_DOWN;
+      synchronized(this) {
+        if (shouldShutDown) {
+          shutdownAllFeedlets();
+        }
+      }
+      writeMetaChunks();
+      writeEventChunks();
+      if (shouldShutDown) {
+        state = State.SHUT_DOWN;
+        return;
+      }
+    }
+  }

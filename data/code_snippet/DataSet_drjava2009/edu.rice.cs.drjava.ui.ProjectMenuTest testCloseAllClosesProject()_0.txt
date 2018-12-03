@@ -1,0 +1,22 @@
+  public void testCloseAllClosesProject()  throws MalformedProjectFileException, IOException {
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        try { _model.openProject(_projFile); }
+        catch(Exception e) { throw new UnexpectedException(e); }
+      } 
+    });
+    Utilities.clearEventQueue();
+    
+    assertTrue("Project should have been opened", _model.isProjectActive());
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        try { _frame.closeAll(); }
+        catch(Exception e) { throw new UnexpectedException(e); }
+      } 
+    });
+    Utilities.clearEventQueue();
+    
+    assertFalse("Project should have been closed", _model.isProjectActive());
+  }

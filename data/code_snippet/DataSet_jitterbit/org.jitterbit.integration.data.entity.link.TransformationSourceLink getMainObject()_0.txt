@@ -1,0 +1,3 @@
+    public Source getMainObject() {
+        return (Source) super.getMainObject();
+    }

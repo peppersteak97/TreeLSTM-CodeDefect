@@ -1,0 +1,7 @@
+    public void interrupt() {
+        Thread t = threadVar.get();
+        if (t != null) {
+            t.interrupt();
+        }
+        threadVar.clear();
+    }

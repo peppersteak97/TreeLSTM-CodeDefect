@@ -1,0 +1,3 @@
+  public LanguageLevelStackTraceMapper getLLSTM(){
+    return _model.getCompilerModel().getLLSTM();
+  }

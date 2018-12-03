@@ -1,0 +1,3 @@
+  public String getName() {
+    return "Linear Scan Composite Phase";
+  }

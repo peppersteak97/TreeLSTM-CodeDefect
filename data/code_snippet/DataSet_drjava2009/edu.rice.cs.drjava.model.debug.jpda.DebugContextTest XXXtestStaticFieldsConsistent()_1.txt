@@ -1,0 +1,59 @@
+  public void XXXtestStaticFieldsConsistent() throws Exception {
+    debug.logStart();
+    _log.log("----testStaticFieldsConsistent----");
+    StepTestListener debugListener = new StepTestListener();
+    _debugger.addListener(debugListener);
+
+    OpenDefinitionsDocument doc = _startupDebugger("DrJavaDebugStaticField.java", CLASS_WITH_STATIC_FIELD);
+
+    _debugger.toggleBreakpoint(doc,CLASS_WITH_STATIC_FIELD.indexOf("System.out.println"),true);
+    
+    Utilities.clearEventQueue();
+    debugListener.assertRegionAddedCount(1);
+
+    synchronized(_notifierLock) {
+      interpretIgnoreResult("java DrJavaDebugStaticField");
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+
+    @SuppressWarnings("unused") DebugThreadData threadA = new JPDAThreadData(_debugger.getCurrentThread());
+    DebugThreadData threadB = new JPDAThreadData(_debugger.getThreadAt(1));
+
+    debugListener.assertCurrThreadResumedCount(0);
+    debugListener.assertCurrThreadDiedCount(0);
+    assertEquals("x has correct value at start", "0", interpret("DrJavaDebugStaticField.x"));
+    assertEquals("assigning x succeeds", "5", interpret("DrJavaDebugStaticField.x = 5"));
+    assertEquals("assignment reflected in this", "5", interpret("this.x"));
+
+    synchronized(_notifierLock) {
+      _asyncStep(Debugger.StepType.STEP_OVER);
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    debugListener.assertBreakpointReachedCount(2);
+    debugListener.assertCurrThreadDiedCount(0);
+    assertInteractionsContains("x == 5");
+    assertEquals("x retains correct value after step", "5", interpret("DrJavaDebugStaticField.x"));
+    assertEquals("this has correct value for x after step", "5", interpret("this.x"));
+
+    synchronized(_notifierLock) {
+      _asyncStep(Debugger.StepType.STEP_OVER);
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    debugListener.assertBreakpointReachedCount(2);
+    debugListener.assertCurrThreadDiedCount(0);
+    assertEquals("x has correct value after increment", "6", interpret("DrJavaDebugStaticField.x"));
+    assertEquals("this has correct value for x after increment", "6", interpret("this.x"));
+
+    synchronized(_notifierLock) {
+      _asyncDoSetCurrentThread(threadB);
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    interpret("");
+    assertInteractionsContains("The current thread has changed.");
+    assertEquals("x has correct value in other thread", "6", interpret("DrJavaDebugStaticField.x"));
+    assertEquals("this has correct value for x in other thread", "6", interpret("this.x"));
+
+    _shutdownAndWaitForInteractionEnded();
+    _debugger.removeListener(debugListener);
+    debug.logEnd();
+  }

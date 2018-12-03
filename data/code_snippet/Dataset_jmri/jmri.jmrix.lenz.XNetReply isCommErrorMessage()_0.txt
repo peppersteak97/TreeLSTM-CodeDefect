@@ -1,0 +1,8 @@
+    public boolean isCommErrorMessage() {
+	return (this.getElement(0)==XNetConstants.LI_MESSAGE_RESPONSE_HEADER &&
+               ((this.getElement(1)==XNetConstants.LI_MESSAGE_RESPONSE_UNKNOWN_DATA_ERROR ||
+                 this.getElement(1)==XNetConstants.LI_MESSAGE_RESPONSE_CS_DATA_ERROR ||
+                 this.getElement(1)==XNetConstants.LI_MESSAGE_RESPONSE_PC_DATA_ERROR ||
+                 this.getElement(1)==XNetConstants.LI_MESSAGE_RESPONSE_BUFFER_OVERFLOW ||
+                 this.getElement(1)==XNetConstants.LI_MESSAGE_RESPONSE_TIMESLOT_ERROR)));
+    }

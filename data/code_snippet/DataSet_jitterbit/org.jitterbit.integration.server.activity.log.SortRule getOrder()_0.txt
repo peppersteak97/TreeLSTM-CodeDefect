@@ -1,0 +1,3 @@
+    public SortOrder getOrder() {
+        return m_sortOrder;
+    }

@@ -1,0 +1,3 @@
+    public String getCommandMessage() {
+        return m_commandMessage;
+    }

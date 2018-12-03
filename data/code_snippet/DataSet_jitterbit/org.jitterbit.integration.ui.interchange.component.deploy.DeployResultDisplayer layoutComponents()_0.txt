@@ -1,0 +1,16 @@
+    private void layoutComponents() {
+        m_contentPanel = new OneColumnPanel();
+        m_contentPanel.setFill(OneColumnPanel.NONE);
+        m_contentPanel.setWeightX(1.0);
+        Insets labelInsets = new Insets(2, 2, 2, 2);
+        Insets compInsets = new Insets(1, 2, 7, 2);
+        StyleSheetTextClass captionSsc = IntegrationUiStyleSheet.DefaultBold;
+
+        if (m_globalWarningsArea != null) {
+            layoutGlobalWarnings(captionSsc, labelInsets, compInsets);
+        }        
+        if (m_entityList != null) {
+            layoutEntityList(captionSsc, labelInsets, compInsets);
+        }
+        m_contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    }

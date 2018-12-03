@@ -1,0 +1,127 @@
+	public void init(){
+		setLayout(null);
+		setResizable(false);
+		setBackground(m_clrLightBgd);
+		Insets insets=getInsets();
+		m_southPanel=new JPanel();
+		boolean isDetail=false;
+		if(m_errStr!=null && m_errStr.indexOf("For detailed information please check the file <a href=")>0){
+			isDetail=true;
+			int detailInfoBegin=m_errStr.indexOf("For detailed information please check the file <a href=");
+			int detailUrlBegin=m_errStr.indexOf("<a href=");
+			m_detailURL=m_errStr.substring(detailUrlBegin,m_errStr.length());
+			System.out.println("m_detailURL= "+m_detailURL);
+			m_errStr=m_errStr.substring(0,detailInfoBegin)+"\nFor detailed information please click the \"Detail\" buttom below.";
+		}
+		TextArea textArea= new TextArea(m_errStr,10, 80, TextArea.SCROLLBARS_BOTH);
+		textArea.setEditable(false);
+		setFont(m_font11Plain);
+		FontMetrics fm=getFontMetrics(m_font11Plain);
+		JLabel promptLabel=null;
+		int height=0,maxStringWidth=0,width=0;
+		if(m_errStr!=null){
+			StringTokenizer tk=new StringTokenizer(m_errStr,"\n",false);
+			try {
+				width=fm.stringWidth(m_errStr);
+			}
+			catch(Exception e){
+				width=100;
+			}
+		
+			final int minWidth=250,maxWidth=550,minHeight=100,maxHeight=450;
+			String str;
+			while(tk.hasMoreTokens()){
+				str=tk.nextToken();
+				width=fm.stringWidth(str);
+				maxStringWidth=width>maxStringWidth?width:maxStringWidth;
+				height+=m_font11Plain.getSize();
+			}
+			if(fm.stringWidth(m_promptStr)>maxStringWidth){
+				maxStringWidth=fm.stringWidth(m_promptStr);
+			}
+			maxStringWidth+=m_font11Plain.getSize();
+			if(height>maxHeight){
+				height=maxHeight;
+				maxStringWidth+=20;
+			}
+			height=(height>minHeight)?height:minHeight;
+			if(maxStringWidth>maxWidth){
+				maxStringWidth=maxWidth;
+				height+=20;
+			}
+			if(maxStringWidth<minWidth)
+				maxStringWidth=minWidth;
+			textArea.setBounds(insets.left+20,insets.top+30,maxStringWidth,height);
+		
+			promptLabel=new JLabel(m_promptStr,JLabel.CENTER);
+			promptLabel.setBounds(insets.left+20,insets.top+30+height,maxStringWidth,m_font11Plain.getSize());
+			add(textArea);
+			add(promptLabel);
+			m_southPanel.setBounds(insets.left+10,insets.top+30+height+m_font11Plain.getSize(),maxStringWidth,m_font11Plain.getSize()+20);
+		}
+		if(isDetail==true){
+			m_btnDetail = createAndAddSouthPanelButton("&Detail");
+		}	
+		if((m_flg&f_OK)!=0){
+			m_btnOK = createAndAddSouthPanelButton("&OK");
+		}
+		if((m_flg&f_OK1)!=0){
+			m_btnOK1 = createAndAddSouthPanelButton("&OK");
+		}
+		if((m_flg&f_Cancel)!=0){
+			m_btnCancel = createAndAddSouthPanelButton("&Cancel");
+		}
+		if((m_flg&f_Done)!=0){
+			m_btnNo = createAndAddSouthPanelButton("&Done");
+		}
+		if((m_flg&f_Yes)!=0){
+			m_btnYes = createAndAddSouthPanelButton("&Yes");
+		}
+		if((m_flg&f_No)!=0){
+			m_btnNo = createAndAddSouthPanelButton("&No");
+		}
+		if((m_flg&f_Yes1)!=0){
+			m_btnYes1 = createAndAddSouthPanelButton("&Yes");
+		}
+		if((m_flg&f_No1)!=0){
+			m_btnNo1 = createAndAddSouthPanelButton("&No");
+		}
+		if((m_flg&f_Yes2)!=0){
+			m_btnYes2 = createAndAddSouthPanelButton("&Yes");
+		}
+		if((m_flg&f_No2)!=0){
+			m_btnNo2 = createAndAddSouthPanelButton("&No");
+		}
+		if((m_flg&f_No3)!=0){
+			m_btnNo3 = createAndAddSouthPanelButton("&No");
+		}
+		if((m_flg&f_Yes4)!=0){
+			m_btnYes4 = createAndAddSouthPanelButton("&Yes");
+		}
+		if((m_flg&f_No4)!=0){
+			m_btnNo4 = createAndAddSouthPanelButton("&No");
+		}
+		if((m_flg&f_Yes5)!=0){
+			m_btnYes5 = createAndAddSouthPanelButton("&Yes");
+		}
+		if((m_flg&f_No5)!=0){
+			m_btnNo5 = createAndAddSouthPanelButton("&No");
+		}
+		if((m_flg&f_Yes6)!=0){
+			m_btnYes6 = createAndAddSouthPanelButton("&Yes");
+		}
+		if((m_flg&f_No6)!=0){
+			m_btnNo6 = createAndAddSouthPanelButton("&No");
+		}
+		if(promptLabel!=null&&(m_flg&f_Check)!=0){
+			m_check=new Checkbox(promptLabel.getText(),false);
+			m_check.addItemListener(this);
+			m_check.setBounds(insets.left+20,insets.top+30+height,maxStringWidth+40,m_font11Plain.getSize());
+			remove(promptLabel);
+			add(m_check);
+		}
+		setSize(insets.left+maxStringWidth+40,insets.top+30+height+m_font11Plain.getSize()*4+insets.bottom+35);
+		setLocation(300,300);		
+		add(m_southPanel);
+		textArea.addKeyListener(this);
+	}

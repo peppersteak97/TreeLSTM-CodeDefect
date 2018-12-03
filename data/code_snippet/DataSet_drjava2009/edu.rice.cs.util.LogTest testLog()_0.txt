@@ -1,0 +1,41 @@
+  public void testLog() throws IOException {
+    File file1 = IOUtil.createAndMarkTempFile("logtest001",".txt");
+    
+    Date earlier = new Date();
+    
+    Log log1 = new Log(file1, true);
+    log1.log("Message 1");
+    log1.log("Message 2");
+    log1.log("Message 3");
+    
+    BufferedReader fin = new BufferedReader(new FileReader(file1));
+    Date now = new Date();
+    
+    String s0 = fin.readLine();
+    Date time0 = parse(s0);
+    assertTrue("Log not opened after 'earlier' and before 'now'", withinTolerance(earlier, time0, now));
+    
+    String log1OpenMsg = "Log '" + file1.getName() + "' opened: ";
+    assertEquals("Incorrect log open message", log1OpenMsg , getStringAfterDate(s0).substring(0, log1OpenMsg.length()));
+    
+    String s1 = fin.readLine();
+    Date time1 = parse(s1);
+    assertTrue("Date of message 1 not after 'earlier' and before 'now'", withinTolerance(earlier, time1, now));
+    assertTrue("Date of message 1 not after 'log opened' and before 'now'", withinTolerance(time0, time1, now));
+    assertEquals("Log message 1", "Message 1", getStringAfterDate(s1));
+    
+    String s2 = fin.readLine();
+    Date time2 = parse(s2);
+    assertTrue("Date of message 2 not after 'earlier' and before 'now'", withinTolerance(earlier, time2, now));
+    assertTrue("Date of message 2 not after 'message 1' and before 'now'", withinTolerance(time1, time2, now));
+    assertEquals("Log message 2", "Message 2", getStringAfterDate(s2));
+    
+    String s3 = fin.readLine();
+    Date time3 = parse(s3);
+    assertTrue("Date of message 3 not after 'earlier' and before 'now'", withinTolerance(earlier, time3, now));
+    assertTrue("Date of message 3 not after 'message 2' and before 'now'", withinTolerance(time2, time3, now));
+    assertEquals("Log message 3", "Message 3", getStringAfterDate(s3));
+    
+    assertEquals("End of log expected", null, fin.readLine());
+    fin.close();
+  }

@@ -1,0 +1,47 @@
+    private void initUi() {
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout( new BoxLayout(mainPanel, BoxLayout.Y_AXIS) );
+        
+        BrowserObjectType selectedType = null;
+        if( m_objectTypes.contains(BrowserObjectType.TABLE) )
+            selectedType = BrowserObjectType.TABLE;
+        else if( m_objectTypes.contains(BrowserObjectType.VIEW) )
+            selectedType = BrowserObjectType.VIEW;
+        else
+            selectedType = BrowserObjectType.STORED_PROCEDURE;
+        
+        if( m_objectTypes.size() > 1 ) {
+            mainPanel.add( new ComboPanel(m_objectTypes, selectedType) );
+            mainPanel.add( Box.createVerticalStrut(5) );
+        }
+        if( m_scriptType == ScriptType.SQL ) {
+            m_sqlScriptTypePanel = new SqlScriptTypePanel();
+            mainPanel.add( m_sqlScriptTypePanel );
+            m_sqlOptionsPanel = new SqlOptionsPanel( new CreateGrantScriptAction() );
+            mainPanel.add( m_sqlOptionsPanel );
+        }
+        else {
+            m_cppScriptTypePanel = new CppScriptTypePanel();
+            mainPanel.add( m_cppScriptTypePanel );
+            m_cppOptionsPanel = new CppOptionsPanel();
+            mainPanel.add( m_cppOptionsPanel );
+        }
+        
+        m_tablePanel = new TablePanel();
+        mainPanel.add( m_tablePanel );
+        
+        if( selectedType == BrowserObjectType.TABLE )
+            onShowTables();
+        else if( selectedType == BrowserObjectType.VIEW )
+            onShowViews();
+        else
+            onShowStoredProcedures();
+        
+        Container cp = getContentPane();
+        cp.setLayout( new BorderLayout(0, 10) );
+        cp.add( mainPanel, BorderLayout.CENTER );
+        cp.add( new ButtonPanel(), BorderLayout.SOUTH );
+        
+        pack();
+        WindowUtils.centerWindowOnScreen(this);
+    }

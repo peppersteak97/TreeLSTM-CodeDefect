@@ -1,0 +1,4 @@
+    private void executeImpl() {
+        IPage page = retrievePage();
+        displayPage(page);    	
+    }

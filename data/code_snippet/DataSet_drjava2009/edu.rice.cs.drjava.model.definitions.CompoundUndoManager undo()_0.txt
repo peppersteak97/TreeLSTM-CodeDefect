@@ -1,0 +1,4 @@
+  public /* synchronized */ void undo() {
+    endCompoundEdit();
+    super.undo();
+  }

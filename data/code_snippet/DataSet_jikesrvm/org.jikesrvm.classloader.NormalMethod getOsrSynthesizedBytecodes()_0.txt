@@ -1,0 +1,8 @@
+  public BytecodeStream getOsrSynthesizedBytecodes() {
+    byte[] bytecodes;
+    synchronized(synthesizedBytecodes) {
+      bytecodes = synthesizedBytecodes.get(this);
+      if (VM.VerifyAssertions) VM._assert(bytecodes != null);
+    }
+    return new BytecodeStream(this, bytecodes);
+  }

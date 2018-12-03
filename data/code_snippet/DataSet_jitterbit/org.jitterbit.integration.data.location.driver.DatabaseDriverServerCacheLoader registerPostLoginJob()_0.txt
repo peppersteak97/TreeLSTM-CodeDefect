@@ -1,0 +1,4 @@
+    private static void registerPostLoginJob() {
+        IPostLoginJobManager jobMgr = ServerManager.getManager().getPostLoginJobManager();
+        jobMgr.addPostLoginJob(new DriverCacheRefresher());
+    }

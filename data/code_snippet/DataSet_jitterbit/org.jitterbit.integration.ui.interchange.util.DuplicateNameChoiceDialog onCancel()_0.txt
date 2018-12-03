@@ -1,0 +1,4 @@
+    protected void onCancel() {
+        m_moveExecuter = m_doNothingExecuter;
+        super.onCancel();
+    }

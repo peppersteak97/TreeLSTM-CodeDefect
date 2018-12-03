@@ -1,0 +1,7 @@
+    private void installUndoRedo() {
+        if (m_undoSender != null) {
+            m_undoSender.dispose();
+        }
+        m_undoSender = new DefaultUndoableEditSender(m_textPane);
+        m_undoSender.addUndoableEditListener(m_page);
+    }

@@ -1,0 +1,3 @@
+  public OpenDefinitionsDocument getDocument() {
+    return _document;
+  }

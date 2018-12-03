@@ -1,0 +1,5 @@
+  private void fireConsoleInputStarted() {
+    for(ConsoleStateListener listener : _consoleStateListeners) {
+      listener.consoleInputStarted(this);
+    }
+  }

@@ -1,0 +1,5 @@
+    private void createEveryHMBox() {
+        HM_Item[] boxItems = { m_minutesItem, m_hoursItem };
+        m_everyHMBox = ComponentFactories.comboBoxFactory().newComboBox(boxItems);
+        m_everyHMBox.addActionListener(this);
+    }

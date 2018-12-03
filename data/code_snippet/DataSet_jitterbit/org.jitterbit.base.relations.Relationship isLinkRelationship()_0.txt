@@ -1,0 +1,3 @@
+	public boolean isLinkRelationship() {
+		return m_type == Type.LINK;
+	}

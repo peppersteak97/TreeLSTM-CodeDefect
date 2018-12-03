@@ -1,0 +1,5 @@
+    private StackTraceElement getStackTraceElement() {
+        Thread t = Thread.currentThread();
+        StackTraceElement[] trace = t.getStackTrace();
+        return trace[4 + m_clientDepth];
+    }

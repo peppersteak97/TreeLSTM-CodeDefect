@@ -1,0 +1,12 @@
+	private void prepareNewVersion() {
+		if (m_current != m_last) {
+			ChangeEntry e = m_last;
+			while (e != null && e != m_current) {
+				ChangeEntry prev = e.getPrevious();
+				e.clear();
+				e = prev;
+			}
+			if (e != null)
+				e.setNext(null);
+		}
+	}

@@ -1,0 +1,3 @@
+    private JButton createSaveButton() {
+        return ComponentFactories.buttonFactory().newButton(new SaveAction());
+    }

@@ -1,0 +1,4 @@
+    public boolean isPartOfHostedWebServiceImplementation() {
+        return (getInputStructure() instanceof WebServiceRequestStructure) ||
+            (getOutputStructure() instanceof WebServiceResponseStructure);
+    }

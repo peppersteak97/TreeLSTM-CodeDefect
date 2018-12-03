@@ -1,0 +1,12 @@
+    private JLabel createVersionNumberLabel() {
+        IVersion v = Versions.CURRENT;
+        String version = (v != null) ? v.toString() : "[not available]";
+        JLabel label = new JLabel(version, JLabel.RIGHT);
+        label.setOpaque(true);
+        label.setBackground(Color.WHITE);
+        label.setForeground(BLUE);
+        Font font = label.getFont();
+        Font bold = font.deriveFont(Font.BOLD);
+        label.setFont(bold);
+        return label;
+    }

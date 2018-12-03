@@ -1,0 +1,10 @@
+    protected List<IIntegrationEntityUiDelegate> getItemsToDelete() {
+        List<IRootFolderUi> active = getActiveObjects(IRootFolderUi.class);
+        if (active.size() != 1) {
+            return null;
+        }
+        List<IIntegrationEntityUiDelegate> toDelete = 
+            new ArrayList<IIntegrationEntityUiDelegate>();
+        populateItemList(toDelete, active.get(0));
+        return toDelete;
+    }

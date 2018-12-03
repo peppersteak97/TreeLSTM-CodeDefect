@@ -1,0 +1,3 @@
+    public IValidationViewContext getValidationContext() {
+        return m_validationContext;
+    }

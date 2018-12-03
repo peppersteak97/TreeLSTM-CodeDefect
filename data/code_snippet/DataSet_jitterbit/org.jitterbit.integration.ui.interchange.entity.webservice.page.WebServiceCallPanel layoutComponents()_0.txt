@@ -1,0 +1,39 @@
+    private void layoutComponents() {
+        JPanel pnl = new JPanel(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+
+        gbc.insets = new Insets(5, 5, 15, 5);
+        pnl.add(InputFieldFactory.getCapsule(m_nameField), gbc);
+
+        gbc.insets = new Insets(5, 5, 5, 15);
+        gbc.fill = GridBagConstraints.VERTICAL;
+
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        JComponent dd = getDropDownPanel(m_detailsPanel.getUi(), 
+                                         PackageResources.DetailsDropDown.TITLE);
+        pnl.add(dd, gbc);
+
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        dd = getDropDownPanel(m_securityPanel.getUi(), 
+                              PackageResources.SecurityDropDown.TITLE);
+        pnl.add(dd, gbc);
+
+        gbc.gridx = 1;
+        dd = getDropDownPanel(m_restrictionsPanel.getUi(), 
+                              PackageResources.RestrictionsDropDown.TITLE);
+        pnl.add(dd, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+        ComponentDecorFactory.gridBag(pnl, gbc, m_structuresPanel);
+
+        setLayout(new FlowLayout(FlowLayout.LEFT));
+        add(pnl);
+    }

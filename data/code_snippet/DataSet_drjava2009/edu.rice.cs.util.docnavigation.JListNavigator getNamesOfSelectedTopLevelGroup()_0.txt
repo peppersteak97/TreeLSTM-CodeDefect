@@ -1,0 +1,3 @@
+  public java.util.Set<String> getNamesOfSelectedTopLevelGroup() throws GroupNotSelectedException{
+    throw new GroupNotSelectedException("A top level group is not selected");
+  }

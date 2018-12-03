@@ -1,0 +1,19 @@
+    private int getCurrentPosition() {
+        int currentPos = m_text.getCaretPosition();
+        String currentSelection = m_text.getSelectedText();
+        if (currentSelection != null && currentSelection.length() > 0) {
+            if (!m_event.isCaseSensitive()) {
+                currentSelection = currentSelection.toLowerCase();
+            }
+            int indexInSelection = currentSelection.indexOf(m_event.getEffectiveSearchString());
+            if( indexInSelection >= 0 ) {
+                if( m_event.getDirection() == SearchDirection.UP ) {
+                    currentPos = m_text.getSelectionStart() - 1;
+                }
+                else {
+                    currentPos = m_text.getSelectionEnd() + 1;
+                }
+            }
+        }
+        return currentPos;
+    }

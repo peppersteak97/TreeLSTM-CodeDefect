@@ -1,0 +1,11 @@
+    void remove() {
+        Point p = this.getLocation();
+        int w = this.getWidth();
+        int h = this.getHeight();
+        Container parent = this.getParent();
+        parent.remove(this);
+        parent.validate();
+        parent.repaint(p.x,p.y,w,h);
+
+        active = false;
+    }

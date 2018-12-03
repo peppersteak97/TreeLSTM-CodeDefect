@@ -1,0 +1,9 @@
+    private IUiProvider createUi() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setInsets(FIELD_INSETS);
+        p.setFillNone();
+        p.add(ComponentFactories.buttonFactory().newButton(m_refreshAction));
+        p.setFillOut();
+        p.add(m_wsdlList);
+        return p;
+    }

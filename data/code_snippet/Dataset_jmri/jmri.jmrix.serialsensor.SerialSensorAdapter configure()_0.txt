@@ -1,0 +1,3 @@
+    public void configure() {
+        log.debug("Configure doesnt do anything here");
+    }

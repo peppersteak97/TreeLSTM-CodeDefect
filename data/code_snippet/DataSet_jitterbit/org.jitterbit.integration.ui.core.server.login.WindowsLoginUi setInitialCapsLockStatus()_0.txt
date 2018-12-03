@@ -1,0 +1,10 @@
+	private void setInitialCapsLockStatus() {
+		boolean capsLockOn = false;
+		try {
+			capsLockOn = Toolkit.getDefaultToolkit().getLockingKeyState(
+					KeyEvent.VK_CAPS_LOCK);
+		} catch (UnsupportedOperationException ex) {
+			capsLockOn = false;
+		}
+		m_capsLockWarning.setVisible(capsLockOn);
+	}

@@ -1,0 +1,16 @@
+    private IApplicationAction createActions() {
+        IApplicationAction defaultAction = null;
+        m_actionMap = new HashMap<IApplicationAction, EntityType>();
+        EntityTypeMetaData entityMetaData = EntityTypeMetaData.getInstance();
+        for (EntityType type : entityMetaData.getSupportedEntityTypes()) {
+            InterchangeActionFactory f = InterchangeActionFactory.getNewEntityFactory(type);
+            IApplicationAction a = f.get(m_view);
+            if (a != null) {
+                m_actionMap.put(a, type);
+                if (type == DEFAULT_TYPE) {
+                    defaultAction = a;
+                }
+            }
+        }
+        return defaultAction;
+    }

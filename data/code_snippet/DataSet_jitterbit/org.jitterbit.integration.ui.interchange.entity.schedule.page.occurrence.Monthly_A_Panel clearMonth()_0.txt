@@ -1,0 +1,3 @@
+    public void clearMonth() {
+        m_month.clearValue();
+    }

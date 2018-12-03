@@ -1,0 +1,11 @@
+    protected void onAddNew() {
+        m_tableModel.addRow(m_tableModel.createNewObject());
+        m_ui.clearSelection();
+        int newRowIndex = m_ui.getRowCount() - 1;
+        m_ui.scrollRectToVisible(m_ui.getCellRect(newRowIndex, 0, false));
+        int columnToEdit = getColumnToEditWhenNewRowAdded();
+        if (m_ui.editCellAt(newRowIndex, columnToEdit)) {
+            m_ui.changeSelection(newRowIndex, columnToEdit, false, false);
+        }
+        m_ui.requestFocusInWindow();
+    }

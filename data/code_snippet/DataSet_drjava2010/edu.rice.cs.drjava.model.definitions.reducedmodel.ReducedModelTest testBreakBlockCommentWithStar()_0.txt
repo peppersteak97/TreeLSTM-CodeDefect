@@ -1,0 +1,21 @@
+  public void testBreakBlockCommentWithStar() {
+    model1.insertChar('/');
+    model1.insertChar('*');
+    model1.insertChar('/');
+    model1.insertChar('/');
+    insertGap(model1, 2);
+    model1.insertChar('/');
+    insertGap(model1, 2);
+    model1.move(-8);
+    model1.insertChar('*');
+    model1.move(-2);
+    assertEquals("#4.0", "/*", model1.currentToken().getType());
+    assertEquals("#4.3", FREE, model1.currentToken().getState());
+    model1.move(2);
+    assertEquals("#4.1", "*/", model1.currentToken().getType());
+    assertEquals("#4.3", INSIDE_BLOCK_COMMENT, model1.getStateAtCurrent());
+    assertEquals("4.4", FREE, model1.currentToken().getState());
+    model1.move(2);
+    assertEquals("#4.2", "/", model1.currentToken().getType());
+    assertEquals("4.5", FREE, model1.currentToken().getState());
+  }

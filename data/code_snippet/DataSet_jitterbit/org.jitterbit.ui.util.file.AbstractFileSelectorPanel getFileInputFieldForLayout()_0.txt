@@ -1,0 +1,3 @@
+    protected InputField getFileInputFieldForLayout() {
+        return m_textField;
+    }

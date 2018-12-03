@@ -1,0 +1,47 @@
+  public void XXXtestDebugSourcepath() throws Exception {
+    debug.logStart();
+    _log.log("----testDebugSourcePath----");
+    final StepTestListener debugListener = new StepTestListener();
+    _debugger.addListener(debugListener);
+
+    final OpenDefinitionsDocument doc = _startupDebugger("DrJavaDebugClass.java", DEBUG_CLASS);
+    final Vector<File> path = new Vector<File>();
+
+    _debugger.toggleBreakpoint(doc,DEBUG_CLASS.indexOf("bar();"),true);
+
+    synchronized(_notifierLock) {
+      interpretIgnoreResult("new DrJavaDebugClass().foo()");
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+
+    synchronized(_notifierLock) {
+      _asyncStep(Debugger.StepType.STEP_INTO);
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+
+    _model.closeFile(doc);
+    Utilities.clearEventQueue();
+    debugListener.assertRegionRemovedCount(1);
+
+    synchronized(_notifierLock) {
+      _asyncStep(Debugger.StepType.STEP_OVER);
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+
+      Utilities.invokeAndWait(new Runnable() { 
+        public void run() { 
+          DrJava.getConfig().setSetting(OptionConstants.DEBUG_SOURCEPATH, path);
+        }
+      });
+
+    synchronized(_notifierLock) {
+      _asyncStep(Debugger.StepType.STEP_OVER);
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    
+    _log.log("Shutting down testDebugSourcePath");
+
+    _shutdownAndWaitForInteractionEnded();
+    _debugger.removeListener(debugListener);
+    debug.logEnd();
+  }

@@ -1,0 +1,11 @@
+        if (isOwner()) {
+            if (m_allowed == null) {
+                m_allowed = EnumSet.of(Permission.READ);
+            }
+            else if (!m_allowed.contains(Permission.READ)) {
+                m_allowed.add(Permission.READ);
+            }
+            if (isDenied(Permission.READ)) {
+                m_denied.remove(Permission.READ);
+            }
+        }

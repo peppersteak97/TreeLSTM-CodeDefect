@@ -1,0 +1,1 @@
+    public int getPri() { return _pri; }

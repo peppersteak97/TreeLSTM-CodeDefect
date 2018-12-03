@@ -1,0 +1,5 @@
+    private void createDefaultCheck() {
+        boolean useDefault = m_serverField.getText().trim().indexOf(':') == -1;
+        m_defaultCheck.addActionListener(this);
+        m_defaultCheck.addItemListener(this);
+    }

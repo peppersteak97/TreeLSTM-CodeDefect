@@ -1,0 +1,3 @@
+    WebServiceOperationInfo getSelectedOperation() {
+        return m_operationCombo.getSelectedOperation();
+    }

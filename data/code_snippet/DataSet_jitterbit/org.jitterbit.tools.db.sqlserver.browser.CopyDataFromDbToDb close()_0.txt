@@ -1,0 +1,4 @@
+    public void close() {
+        if( m_connections != null )
+            m_connections.closeAll();
+    }

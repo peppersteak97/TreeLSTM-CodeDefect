@@ -1,0 +1,2 @@
+  public ArrayList<DebugWatchData> getWatches() throws DebugException;
+  

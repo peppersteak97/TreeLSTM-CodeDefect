@@ -1,0 +1,1 @@
+  public Enumeration<BasicBlock> basicBlocks() { return new NodeEnumeration<BasicBlock>(this); }

@@ -1,0 +1,4 @@
+    private void createCaption() {
+        m_caption = IntegrationUiStyleSheet.DefaultText.makeJLabel(
+                        PackageResources.CacheUi.DriverList.EMPTY_CAPTION);
+    }

@@ -1,0 +1,7 @@
+  public int getMaxBasicBlockNumber() {
+    if (cfg == null) {
+      return -1;
+    } else {
+      return cfg.numberOfNodes();
+    }
+  }

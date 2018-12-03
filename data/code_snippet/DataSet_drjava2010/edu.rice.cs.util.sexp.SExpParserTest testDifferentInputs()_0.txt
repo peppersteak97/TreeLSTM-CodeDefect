@@ -1,0 +1,17 @@
+  public void testDifferentInputs() throws SExpParseException, IOException{
+    String text = "()";
+    File f = _fillTempFile("temp1",text);
+    char[] ca = new char[text.length()];
+    text.getChars(0, text.length(), ca, 0);
+    Reader r = new CharArrayReader(ca);
+    
+    SExp sa1 = SExpParser.parse(text).get(0);
+    SExp sa2 = SExpParser.parse(f).get(0);
+    SExp sa3 = SExpParser.parse(r).get(0);
+    
+    SExp ans = Empty.ONLY;
+    
+    assertEquals("the 1st parse wasn't right", ans, sa1);
+    assertEquals("the 2nd parse wasn't right", ans, sa2);
+    assertEquals("the 3rd parse wasn't right", ans, sa3);
+  }

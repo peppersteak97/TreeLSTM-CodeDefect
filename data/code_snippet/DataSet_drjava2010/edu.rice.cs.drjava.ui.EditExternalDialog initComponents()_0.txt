@@ -1,0 +1,112 @@
+  private void initComponents() {
+    super.getContentPane().setLayout(new GridLayout(1,1));
+
+    JPanel mainPanel = new JPanel();
+    mainPanel.setLayout(new BorderLayout());
+    
+    Action editAction = new AbstractAction("Edit") {
+      public void actionPerformed(ActionEvent e) {
+        _edit();
+      }
+    };
+    _editButton = new JButton(editAction);
+    Action removeAction = new AbstractAction("Remove") {
+      public void actionPerformed(ActionEvent e) {
+        _remove();
+      }
+    };
+    _removeButton = new JButton(removeAction);
+
+    _dropDownButton = new DropDownButton();
+    _upAction = new AbstractAction("Move Up") {
+      public void actionPerformed(ActionEvent e) {
+        _up();
+      }
+    };
+    _downAction = new AbstractAction("Move Down") {
+      public void actionPerformed(ActionEvent e) {
+        _down();
+      }
+    };
+    
+    _importAction = new AbstractAction("Import...") {
+      public void actionPerformed(ActionEvent e) {
+        _import();
+      }
+    };
+    _exportAction = new AbstractAction("Export...") {
+      public void actionPerformed(ActionEvent e) {
+        _export();
+      }
+    };
+    
+    _importButton = new JButton(_importAction);
+    _exportButton = new JButton(_exportAction);
+    _upButton = new JButton(_upAction);
+    _downButton = new JButton(_downAction);
+
+    _dropDownButton.getPopupMenu().add(_importAction);
+    _dropDownButton.getPopupMenu().add(_exportAction);
+    
+    _dropDownButton.setIcon(new ImageIcon(getClass().getResource("/edu/rice/cs/drjava/ui/icons/Down16.gif")));
+
+    Action okAction = new AbstractAction("OK") {
+      public void actionPerformed(ActionEvent e) {
+        _ok();
+      }
+    };
+    _okButton = new JButton(okAction);
+    
+    JPanel bottom = new JPanel();
+    bottom.setBorder(new EmptyBorder(5, 5, 5, 5));
+    bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
+    bottom.add(Box.createHorizontalGlue());
+    bottom.add(_editButton);
+    bottom.add(_removeButton);
+    bottom.add(_upButton);
+    bottom.add(_downButton);
+    bottom.add(_dropDownButton);
+    bottom.add(_okButton);
+    bottom.add(Box.createHorizontalGlue());
+    mainPanel.add(bottom, BorderLayout.SOUTH);
+
+    _list = new JList();
+    _list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    _list.addListSelectionListener(new ListSelectionListener() {
+      public void valueChanged(ListSelectionEvent e) {
+        _upButton.setEnabled(_list.getSelectedIndex() > 0);
+        _upAction.setEnabled(_list.getSelectedIndex() > 0);
+        _downButton.setEnabled(_list.getSelectedIndex()<_list.getModel().getSize());
+        _downAction.setEnabled(_list.getSelectedIndex()<_list.getModel().getSize());
+      }
+    });
+    JScrollPane sp = new JScrollPane(_list);
+    sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+    mainPanel.add(sp, BorderLayout.CENTER);
+    updateList(0);
+    
+    super.getContentPane().add(mainPanel);
+    super.setResizable(false);
+    
+    setSize(FRAME_WIDTH, FRAME_HEIGHT);
+    edu.rice.cs.util.swing.Utilities.setPopupLoc(this, _mainFrame);
+    
+    _importChooser = new JFileChooser() {
+      public void setCurrentDirectory(File dir) {
+        super.setCurrentDirectory(dir);
+        setDialogTitle("Import:  " + getCurrentDirectory());
+      }
+    };
+    _importChooser.setPreferredSize(new Dimension(650, 410));
+    _importChooser.setFileFilter(_extProcFilter);
+    _importChooser.setMultiSelectionEnabled(false);
+
+    _exportChooser = new JFileChooser() {
+      public void setCurrentDirectory(File dir) {
+        super.setCurrentDirectory(dir);
+        setDialogTitle("Export:  " + getCurrentDirectory());
+      }
+    };
+    _exportChooser.setPreferredSize(new Dimension(650, 410));
+    _exportChooser.setFileFilter(_saveExtProcFilter);
+  }

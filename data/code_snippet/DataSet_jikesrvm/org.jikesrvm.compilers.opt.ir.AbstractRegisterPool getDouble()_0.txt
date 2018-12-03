@@ -1,0 +1,6 @@
+  public Register getDouble() {
+    Register reg;
+    reg = makeNewReg();
+    reg.setDouble();
+    return reg;
+  }

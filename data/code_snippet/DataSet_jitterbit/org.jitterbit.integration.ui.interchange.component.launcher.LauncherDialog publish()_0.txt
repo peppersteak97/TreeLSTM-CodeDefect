@@ -1,0 +1,6 @@
+    public static synchronized void publish() {
+        Dialog dlg = createDialog();
+        setLauncherDecor(dlg);
+        setupLaunchListener(dlg);
+        dlg.showOnEventThread();
+    }

@@ -1,0 +1,3 @@
+  protected EditorKit createDefaultEditorKit() {
+    return EDITOR_KIT;
+  }

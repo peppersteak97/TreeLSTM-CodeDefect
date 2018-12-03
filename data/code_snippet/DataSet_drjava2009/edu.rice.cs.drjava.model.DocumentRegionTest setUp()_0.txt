@@ -1,0 +1,6 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    String user = System.getProperty("user.name");
+    _tempDir = IOUtil.createAndMarkTempDirectory("DrJava-test-" + user, "");
+    _doc = _model.newFile(_tempDir);    
+  }  

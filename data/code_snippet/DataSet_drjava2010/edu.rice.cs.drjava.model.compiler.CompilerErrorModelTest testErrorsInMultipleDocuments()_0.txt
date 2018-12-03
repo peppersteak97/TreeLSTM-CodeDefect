@@ -1,0 +1,28 @@
+  public void testErrorsInMultipleDocuments() throws IOException, OperationCanceledException {
+    files = new File[] { 
+      new File("/tmp/nowhere1"),
+      new File("/tmp/nowhere2") 
+    };
+    texts = new String[] { 
+      "kfgkasjg\n" + "faijskgisgj\n" + "sifjsidgjsd\n",
+      "isdjfdi\n" + "jfa" 
+    };
+    getter = new TestDocGetter(files, texts);
+    
+    errors = new DJError[] { 
+      new DJError(files[1], 0, 0, "Test error with File", false),
+      new DJError(files[0], 0, 0, "Test error with File", false) 
+    };
+    model = new CompilerErrorModel(errors, getter);
+    model.getErrorAtOffset(getter.getDocumentForFile(files[0]), 25);
+    String temp = texts[0];
+    texts[0] = texts[1];
+    texts[1] = temp;
+    getter = new TestDocGetter(files, texts);
+    errors = new DJError[] { 
+      new DJError(files[0], 0, 0, "Test error with File", false),
+      new DJError(files[1], 2, 0, "Test error with File", false)
+    };
+    model = new CompilerErrorModel(errors, getter);
+    model.getErrorAtOffset(getter.getDocumentForFile(files[0]), 10);
+  }

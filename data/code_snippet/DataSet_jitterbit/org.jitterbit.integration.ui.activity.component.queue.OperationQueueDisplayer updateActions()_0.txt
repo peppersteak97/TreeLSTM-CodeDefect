@@ -1,0 +1,5 @@
+    private void updateActions() {
+        m_selectAllAction.setTableModel(m_tableModel);
+        m_unselectAllAction.setTableModel(m_tableModel);
+        m_deleteAction.setTableModel(m_tableModel);
+    }

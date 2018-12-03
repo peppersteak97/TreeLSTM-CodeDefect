@@ -1,0 +1,3 @@
+  void debuggerClearAllBreakpoints() {
+    _model.getBreakpointManager().clearRegions();
+  }

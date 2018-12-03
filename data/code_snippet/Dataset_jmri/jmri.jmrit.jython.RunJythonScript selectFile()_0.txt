@@ -1,0 +1,18 @@
+    File selectFile() {
+        if (fci==null) {
+            fci = new JFileChooser(System.getProperty("user.dir")+java.io.File.separator+"jython");
+            jmri.util.FileChooserFilter filt = new jmri.util.FileChooserFilter("Python script files");
+            filt.addExtension("py");
+            fci.setFileFilter(filt);
+            fci.setDialogTitle("Find desired script file");
+        } else {
+            fci.rescanCurrentDirectory();
+        }
+
+        int retVal = fci.showOpenDialog(null);
+        if (retVal == JFileChooser.APPROVE_OPTION) {
+            File file = fci.getSelectedFile();
+            return file;
+        }
+        return null;
+    }

@@ -1,0 +1,5 @@
+  public void test7() throws BadLocationException {
+  helperCommentTest("/* This \nis a comment block\n * That is already closed \n */",
+                      9, 12,
+                      "/* This \n * is a comment block\n */\n * That is already closed \n */");
+  }

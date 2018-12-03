@@ -1,0 +1,7 @@
+    List<IFunction> getFunctions() {
+        List<IFunction> li = new ArrayList<IFunction>(m_entries.size());
+        for (FunctionEntry entry : m_entries) {
+            li.add(entry.getFunction());
+        }
+        return li;
+    }

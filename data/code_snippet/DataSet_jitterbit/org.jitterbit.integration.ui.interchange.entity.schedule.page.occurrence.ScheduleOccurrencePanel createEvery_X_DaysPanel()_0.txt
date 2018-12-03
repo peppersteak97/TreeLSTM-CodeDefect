@@ -1,0 +1,9 @@
+    private void createEvery_X_DaysPanel() {
+        ResourceBundle res = SchedulePage.getResources();
+        m_every_X_days_panel = new Every_X_Panel(
+                        "Days", 
+                        res.getString("Label.Every"), 
+                        res.getString("Label.Days"), 
+                        ScheduleOccurrence.EVERY_X_DAYS_MIN,
+                        ScheduleOccurrence.EVERY_X_DAYS_MAX);
+    }

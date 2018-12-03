@@ -1,0 +1,3 @@
+	public Object getAffectedObject() {
+		return m_liAffectedObjects.get(0);
+	}

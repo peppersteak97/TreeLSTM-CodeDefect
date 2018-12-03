@@ -1,0 +1,9 @@
+    private void writeRowClassPublicFields() {
+        for( Column c : getValidColumns() ) {
+            addLine("\t" + SqlToCppTypeConverter.getCppType(c) + 
+                    " " + CppUtils.getColumnMemberName(c) + ";");
+            addLine("\tbool " + CppUtils.getIsColumnNullMemberName(c) + ";");
+            addLine("\tbool " + CppUtils.getIsColumnDirtyMemberName(c) + ";");
+            addLine();
+        }
+    }

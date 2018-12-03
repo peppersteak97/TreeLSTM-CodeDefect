@@ -1,0 +1,7 @@
+  public void testSecondLineMisindented() throws javax.swing.text.BadLocationException {
+    _setDocText("  foo\n bar");
+    _doc.setCurrentLocation(9);
+    makeAction("abc").testIndentLine(_doc, Indenter.IndentReason.OTHER);
+    assertEquals(14, _doc.getLength());
+    assertEquals("  foo\n  abcbar", _doc.getText());
+  }

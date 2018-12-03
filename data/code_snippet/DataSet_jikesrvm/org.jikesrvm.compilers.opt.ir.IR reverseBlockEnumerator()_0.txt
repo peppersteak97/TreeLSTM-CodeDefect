@@ -1,0 +1,3 @@
+  public BasicBlockEnumeration reverseBlockEnumerator() {
+    return IREnumeration.reverseBE(this);
+  }

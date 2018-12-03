@@ -1,0 +1,5 @@
+  private File _getMainFile() {
+    File mainFile = _model.getMainClassContainingFile();
+    if (mainFile != null) return mainFile;
+    return FileOps.NULL_FILE;
+  }

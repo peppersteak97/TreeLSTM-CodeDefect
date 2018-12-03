@@ -1,0 +1,5 @@
+    public OperationType getOperationType() {
+        int typeId = getIntProperty(OPERATION_TYPE_ID, -1);
+        return (typeId >= 0) ? OperationType.fromId(typeId) : 
+            OperationType.getDefaultType();
+    }

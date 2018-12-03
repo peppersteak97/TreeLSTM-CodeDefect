@@ -1,0 +1,6 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 37 * hash + m_type.hashCode();
+        hash = 37 * hash + m_id.hashCode();
+        return hash;
+    }

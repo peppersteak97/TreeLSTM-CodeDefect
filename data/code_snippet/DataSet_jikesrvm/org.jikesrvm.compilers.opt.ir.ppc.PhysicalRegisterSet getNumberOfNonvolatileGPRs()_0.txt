@@ -1,0 +1,3 @@
+  public static int getNumberOfNonvolatileGPRs() {
+    return NUM_NONVOLATILE_GPRS;
+  }

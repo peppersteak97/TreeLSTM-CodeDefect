@@ -1,0 +1,4 @@
+    static public TreeModel instance() {
+        if (instanceValue == null) instanceValue = new TreeModel();
+        return instanceValue;
+    }

@@ -1,0 +1,9 @@
+    public void displayLastFile() {
+        IRecentFileStore recentFiles = getRecentFiles();
+        if (recentFiles != null) {
+            IFileUi fileUi = recentFiles.latestFile();
+            if (fileUi != null) {
+                setSelectedFile(fileUi.getFile());
+            }
+        }
+    }

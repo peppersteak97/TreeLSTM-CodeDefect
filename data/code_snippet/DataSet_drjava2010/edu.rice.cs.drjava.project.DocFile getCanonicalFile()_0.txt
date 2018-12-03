@@ -1,0 +1,3 @@
+  public DocFile getCanonicalFile() throws IOException {
+    return new DocFile(super.getCanonicalFile(), _sel, _scroll, _active, _package);
+  }

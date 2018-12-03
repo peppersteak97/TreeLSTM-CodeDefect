@@ -1,0 +1,9 @@
+    void close() {
+        UiUtils.runOnEventThread(new Runnable() {
+            
+            public void run() {
+                m_pageWindow.removeWindowListener(m_windowListener);
+                m_pageWindow.dispose();
+            }
+        });
+    }

@@ -1,0 +1,3 @@
+  public Enumeration<Register> enumerateNonvolatileGPRsBackwards() {
+    return new ReverseEnumerator<Register>(enumerateNonvolatileGPRs());
+  }

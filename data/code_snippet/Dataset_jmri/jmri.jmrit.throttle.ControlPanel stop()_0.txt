@@ -1,0 +1,8 @@
+    public void stop()
+    {
+        if(this.throttle==null) return;
+        speedSlider.setValue(0);
+        if(speedSpinner!=null)
+            JSpinnerUtil.setValue(speedSpinner, new Integer(0));
+        throttle.setSpeedSetting(-1);
+    }

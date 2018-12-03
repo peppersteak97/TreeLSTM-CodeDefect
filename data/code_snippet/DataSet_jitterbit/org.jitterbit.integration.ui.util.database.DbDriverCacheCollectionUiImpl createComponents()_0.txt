@@ -1,0 +1,6 @@
+    private void createComponents() {
+        createCaption();
+        createServerCombo();
+        createDriverList();
+        createRefreshAction();
+    }

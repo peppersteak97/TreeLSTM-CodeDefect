@@ -1,0 +1,9 @@
+  final Annotation[] getDeclaredAnnotationsInternal() {
+    if (!VM.runningVM) {
+      return toAnnotations(declaredAnnotationDatas);
+    }
+    if (null == declaredAnnotations) {
+      declaredAnnotations = toAnnotations(declaredAnnotationDatas);
+    }
+    return declaredAnnotations;
+  }

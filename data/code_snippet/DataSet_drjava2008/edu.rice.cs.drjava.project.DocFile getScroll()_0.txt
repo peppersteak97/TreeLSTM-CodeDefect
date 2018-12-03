@@ -1,0 +1,1 @@
+  public Pair<Integer,Integer> getScroll() { return _scroll; }

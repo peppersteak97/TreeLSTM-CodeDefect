@@ -1,0 +1,4 @@
+    static public AcelaLightManager instance() {
+        if (_instance == null) _instance = new AcelaLightManager();
+        return _instance;
+    }

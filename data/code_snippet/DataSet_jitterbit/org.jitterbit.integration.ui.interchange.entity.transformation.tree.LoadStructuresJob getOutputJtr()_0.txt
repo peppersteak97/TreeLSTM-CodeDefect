@@ -1,0 +1,5 @@
+        if (getOutputJtr() == null && m_invoker.isAskingForOutputStructure()) {
+            retrieveOutputStructure();
+            success = m_outputCallback.wasSuccessful();
+            addOutputStructureToCache = success;
+        }

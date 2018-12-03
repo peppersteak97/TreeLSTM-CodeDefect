@@ -1,0 +1,6 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 37*hash + m_parentObject.hashCode();
+        hash = 37*hash + m_childObject.hashCode();
+        return hash;
+    }

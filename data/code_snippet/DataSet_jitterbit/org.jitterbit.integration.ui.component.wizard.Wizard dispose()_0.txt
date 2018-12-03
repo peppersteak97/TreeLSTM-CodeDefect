@@ -1,0 +1,12 @@
+    public void dispose() {
+        for (IWizardPage page : m_allVisitedPages.keySet()) {
+            if (page.getWindow() != null) {
+                page.removeFromWindow(true);
+            }
+        }
+        m_applicablePages.clear();
+        m_allVisitedPages.clear();
+        m_listeners.clear();
+        m_currentPage = null;
+        m_window = null;
+    }

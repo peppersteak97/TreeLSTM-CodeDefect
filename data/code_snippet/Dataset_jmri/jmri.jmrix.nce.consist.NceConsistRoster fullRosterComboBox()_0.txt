@@ -1,0 +1,3 @@
+    public JComboBox fullRosterComboBox() {
+        return matchingComboBox(null, null, null, null, null, null, null, null, null, null);
+    }

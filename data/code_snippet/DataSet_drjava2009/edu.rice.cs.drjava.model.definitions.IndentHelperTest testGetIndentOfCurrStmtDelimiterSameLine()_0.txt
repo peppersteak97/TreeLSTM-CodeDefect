@@ -1,0 +1,9 @@
+  public void testGetIndentOfCurrStmtDelimiterSameLine() 
+    throws BadLocationException {
+    
+      _setDocText("bar(); foo();\n");
+      assertEquals("prev delimiter on same line, no indent", 0, _getIndentOfCurrStmt(6));
+      
+      _setDocText("  bar(); foo();\n");
+      assertEquals("prev delimiter on same line, indent two spaces", 2, _getIndentOfCurrStmt(8));
+  }

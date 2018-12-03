@@ -1,0 +1,1 @@
+  public boolean isExceptionMS() { return (scratch & EXCEPTION_MS) != 0; }

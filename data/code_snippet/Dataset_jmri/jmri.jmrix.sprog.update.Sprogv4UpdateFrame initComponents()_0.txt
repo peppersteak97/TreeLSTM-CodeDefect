@@ -1,0 +1,8 @@
+    public void initComponents() throws Exception {
+        super.initComponents();
+
+        setSprogModeButton.setVisible(false);
+
+
+        addHelpMenu("package.jmri.jmrix.sprog.update.Sprogv4UpdateFrame", true);
+    }

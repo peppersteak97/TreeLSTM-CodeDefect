@@ -1,0 +1,7 @@
+    public static void customize() throws IntrospectionException  {
+        customizeEntities();
+        customizeOperations();
+        customizeWebServiceCalls();
+        customizeLocations();
+        customizeStructures();
+    }

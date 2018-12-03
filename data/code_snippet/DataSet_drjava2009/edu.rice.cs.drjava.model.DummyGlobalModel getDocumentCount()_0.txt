@@ -1,0 +1,3 @@
+  public int getDocumentCount() {
+    throw new UnsupportedOperationException("Tried to call getDocumentCount on a Dummy");
+  }

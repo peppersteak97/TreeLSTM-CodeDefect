@@ -1,0 +1,8 @@
+    private void createPropertiesObject() {
+        if (m_file.exists()) {
+            m_properties = readPropertiesFromFile(m_file);
+        }
+        else {
+            m_properties = new Properties();
+        }
+    }

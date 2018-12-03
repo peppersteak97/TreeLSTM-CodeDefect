@@ -1,0 +1,5 @@
+    public String getCurrentProtocolInfo() {
+        int current = modeBox.getSelectedIndex();
+        if (current==0) return "(none)";
+        return classList[current].getInfo();
+    }

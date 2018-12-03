@@ -1,0 +1,12 @@
+    public IOperationLogEntry getSelectedLogEntry() {
+        IOperationLogEntry entry = null;
+        int viewIndex = getSelectedRow();
+        if (viewIndex >= 0) {
+            int modelIndex = getTableSorter().getModelIndex(viewIndex);
+            if (modelIndex >= 0) {
+                entry = ((OperationLogTableModel) getUnderlyingModel())
+                                .getLogEntry(modelIndex);
+            }
+        }
+        return entry;
+    }

@@ -1,0 +1,6 @@
+    public Mx1Message resetModeMsg() {
+        Mx1Message m = new Mx1Message(3);
+        m.setElement(0, 0x53);
+        m.setElement(1, 0x45);
+        return m;
+    }

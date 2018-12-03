@@ -1,0 +1,4 @@
+    private void disposeUndoRedo() {
+        m_undoRedoSupportManager.dispose();
+        m_undoRedoSupportManager.removeAll();
+    }

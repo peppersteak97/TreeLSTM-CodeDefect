@@ -1,0 +1,10 @@
+  public boolean closedBraceImmediatelyLeft() {
+    if (_cursor.atStart() || _cursor.atFirstItem()) return false;
+    else {
+      int offset = getBlockOffset();
+      assert offset == getBlockOffset();
+
+      boolean isLeft = (offset == 0 && current().isClosed() && _isCurrentBraceMatchable());
+      return isLeft;
+    }
+  }

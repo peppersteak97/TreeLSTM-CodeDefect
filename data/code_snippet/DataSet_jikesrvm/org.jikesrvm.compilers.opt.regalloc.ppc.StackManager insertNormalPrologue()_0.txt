@@ -1,0 +1,57 @@
+  public final void insertNormalPrologue() {
+    PhysicalRegisterSet phys = ir.regpool.getPhysicalRegisterSet();
+    Register FP = phys.getFP();
+    Register TR = phys.getTR();
+    Register TSR = phys.getTSR();
+    Register R0 = phys.getTemp();
+    Register S0 = phys.getGPR(FIRST_SCRATCH_GPR);
+    Register S1 = phys.getGPR(LAST_SCRATCH_GPR);
+    boolean interruptible = ir.method.isInterruptible();
+    boolean stackOverflow = interruptible;
+    boolean yp = hasPrologueYieldpoint();
+
+    int frameFixedSize = getFrameFixedSize();
+    ir.compiledMethod.setFrameFixedSize(frameFixedSize);
+
+    if (frameFixedSize >= STACK_SIZE_GUARD || ir.compiledMethod.isSaveVolatile()) {
+      insertExceptionalPrologue();
+      return;
+    }
+
+    Instruction ptr = ir.firstInstructionInCodeOrder().nextInstructionInCodeOrder();
+    if (VM.VerifyAssertions) VM._assert(ptr.getOpcode() == IR_PROLOGUE_opcode);
+
+
+    if (yp) {
+      Offset offset = Entrypoints.takeYieldpointField.getOffset();
+      if (VM.VerifyAssertions) VM._assert(Bits.fits(offset, 16));
+    }
+
+
+    if (stackOverflow) {
+      Offset offset = Entrypoints.stackLimitField.getOffset();
+      if (VM.VerifyAssertions) VM._assert(Bits.fits(offset, 16));
+    }
+
+    saveNonVolatiles(ptr);
+
+    if (yp) {
+    }
+    int cmid = ir.compiledMethod.getId();
+    if (cmid <= 0x7fff) {
+    } else {
+    }
+    ptr.insertBefore(MIR_Store.create(PPC_STAddr,
+                                      A(R0),
+                                      A(FP),
+
+    if (stackOverflow) {
+      MIR_Trap.mutate(ptr,
+                      PPC_TAddr,
+                      PowerPCTrapOperand.GREATER(),
+                      A(S0),
+                      A(FP),
+    } else {
+      ptr.remove();
+    }
+  }

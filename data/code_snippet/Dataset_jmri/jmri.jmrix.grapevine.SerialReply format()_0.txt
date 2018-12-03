@@ -1,0 +1,18 @@
+    public String format() {
+        int b1 = -1;
+        int b2 = -1;
+        int b3 = -1;
+        int b4 = -1;
+        switch (getNumDataElements()) {
+        case 4:
+            b4 = getElement(3)&0xff;
+        case 3:
+            b3 = getElement(2)&0xff;
+        case 2:
+            b2 = getElement(1)&0xff;
+        case 1:
+            b1 = getElement(0)&0xff;
+        }
+        
+        return SerialMessage.staticFormat(b1, b2, b3, b4);
+    }

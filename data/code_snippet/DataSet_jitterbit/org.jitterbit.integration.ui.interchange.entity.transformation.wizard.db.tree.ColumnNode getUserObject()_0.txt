@@ -1,0 +1,3 @@
+    public DatabaseColumn getUserObject() {
+        return (DatabaseColumn) super.getUserObject();
+    }

@@ -1,0 +1,3 @@
+  public OperandEnumeration getPureDefs() {
+    return new OEDefsOnly(this, 0, getNumberOfPureDefs() - 1);
+  }

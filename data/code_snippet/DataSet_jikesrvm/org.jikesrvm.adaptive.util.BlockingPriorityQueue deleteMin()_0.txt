@@ -1,0 +1,13 @@
+  public final synchronized Object deleteMin() {
+    while (isEmpty()) {
+      try {
+        callback.aboutToWait();
+        wait();
+        callback.doneWaiting();
+      } catch (InterruptedException e) {
+        VM.sysWrite("Interrupted Exception occurred!\n");
+      }
+    }
+
+    return super.deleteMin();
+  }

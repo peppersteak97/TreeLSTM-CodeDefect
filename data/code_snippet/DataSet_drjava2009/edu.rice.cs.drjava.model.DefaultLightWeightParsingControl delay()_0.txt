@@ -1,0 +1,4 @@
+  public void delay() {
+    _lastDelay = System.currentTimeMillis();
+    _beginUpdates = _lastDelay + (DrJava.getConfig().getSetting(OptionConstants.DIALOG_LIGHTWEIGHT_PARSING_DELAY).intValue());
+  }

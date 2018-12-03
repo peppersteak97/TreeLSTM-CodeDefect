@@ -1,0 +1,10 @@
+    public boolean getPassiveMode() {
+        String mode = getProperty(PROPERTY_PASSIVE_MODE, 
+        if (mode.equals("0")) { 
+            return false;
+        }
+        else if (mode.equals("1")) { 
+            return true;
+        }
+        return DEFAULT_PASSIVE_MODE;
+    }

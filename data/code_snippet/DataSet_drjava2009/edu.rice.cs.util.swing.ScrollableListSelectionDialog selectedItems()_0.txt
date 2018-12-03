@@ -1,0 +1,16 @@
+  public java.util.List<String> selectedItems() {
+    final java.util.List<String> results = new ArrayList<String>();
+    
+    synchronized(selectedItems) {
+      /* This entire loop is synchronized so that we get a consistent
+       * view of the selected items. It is also faster.
+       */
+      for (int i = 0; i < dataAsStrings.size(); ++i) {
+        if (selectedItems.get(i)) {
+          results.add(dataAsStrings.get(i));
+        }
+      }
+    }
+    
+    return Collections.unmodifiableList(results);
+  }

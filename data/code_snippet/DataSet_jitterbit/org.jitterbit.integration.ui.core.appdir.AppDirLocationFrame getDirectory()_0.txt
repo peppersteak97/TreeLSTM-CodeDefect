@@ -1,0 +1,20 @@
+    static File getDirectory() {
+        CountDownLatch latch = new CountDownLatch(1);
+        final AppDirLocationFrame frame = new AppDirLocationFrame(latch);
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+                frame.toFront();
+            }
+        });
+        
+        try {
+            latch.await();
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return frame.m_directory;
+    }

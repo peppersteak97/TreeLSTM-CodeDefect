@@ -1,0 +1,6 @@
+    protected QsiTrafficController controller() {
+        if (_controller == null) {
+            _controller = QsiTrafficController.instance();
+        }
+        return _controller;
+    }

@@ -1,0 +1,3 @@
+  public final ConditionOperand asCondition() {
+    return (ConditionOperand) this;
+  }

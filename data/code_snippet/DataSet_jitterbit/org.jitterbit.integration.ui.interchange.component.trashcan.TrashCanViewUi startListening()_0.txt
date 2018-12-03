@@ -1,0 +1,4 @@
+    private void startListening() {
+        m_projectListener = new ProjectListener();
+        m_view.getDataModelUi().addInterchangeProjectUiListener(m_projectListener);
+    }

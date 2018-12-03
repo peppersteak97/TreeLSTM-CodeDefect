@@ -1,0 +1,7 @@
+  public void show() {
+    MainFrame.setPopupLoc(_dialog, _dialog.getOwner());
+    _textArea.setCaretPosition(0);
+    _textScroll.getHorizontalScrollBar().setValue(_textScroll.getHorizontalScrollBar().getMinimum());
+    _textScroll.getVerticalScrollBar().setValue(_textScroll.getVerticalScrollBar().getMinimum());
+    _dialog.setVisible(true);
+  }

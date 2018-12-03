@@ -1,0 +1,5 @@
+    private void createGroupList() {
+        m_groupList = new GroupsList();
+        m_groupList.setEnabled(false);
+        installGroupListKeyBindings();
+    }

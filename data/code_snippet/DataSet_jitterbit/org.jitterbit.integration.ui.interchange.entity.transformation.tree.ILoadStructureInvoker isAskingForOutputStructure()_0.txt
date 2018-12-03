@@ -1,0 +1,1 @@
+     *            This may be <tt>null</tt> if {@link #isAskingForOutputStructure()} returns

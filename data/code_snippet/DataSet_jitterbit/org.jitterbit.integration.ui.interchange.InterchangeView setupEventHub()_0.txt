@@ -1,0 +1,18 @@
+    protected void setupEventHub() {
+        super.setupEventHub();
+
+        EventHub hub = getEventHub();
+
+        if (m_actionRequestHandler == null) {
+            m_actionRequestHandler = new InterchangeEventRequestHandler(this);
+        }
+        hub.addActionRequestHandler(m_actionRequestHandler);
+        
+        InterchangeTree tree = getTree();
+        if (tree != null) {
+            tree.addUiDelegateEventListener(hub);
+            hub.addPropertyChangeListener(IntegrationEntity.PROPERTY_NAME, tree);
+            hub.addPropertyChangeListener(IntegrationEntity.DEPLOY_DIRTY_PROPERTY, tree);
+            hub.addDistributedEventListener(tree);
+        }
+    }

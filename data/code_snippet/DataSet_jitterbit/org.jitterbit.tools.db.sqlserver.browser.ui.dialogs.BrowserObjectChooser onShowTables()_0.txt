@@ -1,0 +1,30 @@
+    private void onShowTables() {
+        if( m_currentType != BrowserObjectType.TABLE ) {
+            if( m_tableLock.isTrue() ) {
+	            m_tablePanel.displayItems(m_liTableItems);
+	            m_currentType = BrowserObjectType.TABLE;
+            }
+            else {
+                m_waitMgr.startWait();
+                new SwingWorker() {
+                    
+                    @Override
+                    public Object construct() {
+                        try {
+                            m_tableLock.waitUntilTrue();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+                    
+                    @Override
+                    public void finished() {
+        	            m_tablePanel.displayItems(m_liTableItems);
+        	            m_waitMgr.stopWait();
+        	            m_currentType = BrowserObjectType.TABLE;
+                    }
+                }.start();
+            }
+        }
+    }

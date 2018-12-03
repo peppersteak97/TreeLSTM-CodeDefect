@@ -1,0 +1,4 @@
+  protected void setUp() throws Exception {
+    super.setUp();
+    _model = new ReducedModelControl();
+  }

@@ -1,0 +1,5 @@
+    public void close() throws IOException {
+        if (m_writer != null) {
+            m_writer.close();
+        }
+    }

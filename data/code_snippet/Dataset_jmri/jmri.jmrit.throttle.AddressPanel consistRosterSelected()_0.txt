@@ -1,0 +1,28 @@
+	private void consistRosterSelected() {
+		if (!(conRosterBox.getSelectedItem() instanceof NullComboBoxConsist)) {
+			String rosterEntryTitle = conRosterBox.getSelectedItem().toString();
+			NceConsistRosterEntry cre = NceConsistRoster.instance()
+					.entryFromTitle(rosterEntryTitle);
+
+			DccLocoAddress a = new DccLocoAddress(Integer.parseInt(cre
+					.getLoco1DccAddress()), cre.isLoco1LongAddress());
+			addrSelector.setAddress(a);
+			consistAddress = null;
+			int cA = 0;
+			try {
+				cA = Integer.parseInt(cre.getConsistNumber());
+			} catch (NumberFormatException e) {
+
+			}
+			if (0 < cA && cA < 128) {
+				consistAddress = new DccLocoAddress(cA, false);
+			} else {
+				log.warn("consist number missing " + cre.getLoco1DccAddress());
+				JOptionPane.showMessageDialog(this,
+						rb.getString("ConsistNumberHasNotBeenAssigned"),
+						rb.getString("NeedsConsistNumber"),
+						JOptionPane.ERROR_MESSAGE);
+			}
+			changeOfAddress();
+		}
+	}

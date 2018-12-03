@@ -1,0 +1,19 @@
+  public JPanel _buildDirectoryPanel() {
+    DirectoryChooser dirChooser = new DirectoryChooser(this);
+    File bd = _getBuildDir();
+    if (bd == null || bd == FileOps.NULL_FILE) bd = _getProjRoot();
+    dirChooser.setSelectedFile(bd);
+    dirChooser.setDialogTitle("Select Build Directory");
+    dirChooser.setApproveButtonText("Select");
+    _buildDirSelector = new DirectorySelectorComponent(this, dirChooser, 20, 12f, false) {
+      protected void _chooseFile() {
+        _mainFrame.removeModalWindowAdapter(ProjectPropertiesFrame.this);
+        super._chooseFile();
+        _mainFrame.installModalWindowAdapter(ProjectPropertiesFrame.this, LambdaUtil.NO_OP, CANCEL);
+      }
+    };
+
+    _buildDirSelector.getFileField().getDocument().addDocumentListener(_applyListener);
+
+    return _buildDirSelector;
+  }

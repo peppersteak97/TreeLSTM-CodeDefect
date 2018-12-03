@@ -1,0 +1,3 @@
+    protected StyleSheetTextClass clone() throws CloneNotSupportedException {
+        return (StyleSheetTextClass) super.clone();
+    }

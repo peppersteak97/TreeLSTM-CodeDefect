@@ -1,0 +1,12 @@
+  public Instruction prevInstructionInCodeOrder() {
+    if (prev == null) {
+      BasicBlock nBlock = Label.getBlock(this).block.prevBasicBlockInCodeOrder();
+      if (nBlock == null) {
+        return null;
+      } else {
+        return nBlock.lastInstruction();
+      }
+    } else {
+      return prev;
+    }
+  }

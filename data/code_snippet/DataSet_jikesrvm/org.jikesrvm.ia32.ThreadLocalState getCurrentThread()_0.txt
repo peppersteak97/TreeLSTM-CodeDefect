@@ -1,0 +1,3 @@
+  public static RVMThread getCurrentThread() {
+    return Magic.getESIAsThread();
+  }

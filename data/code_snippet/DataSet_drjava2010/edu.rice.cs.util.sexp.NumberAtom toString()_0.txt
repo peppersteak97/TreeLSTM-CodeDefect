@@ -1,0 +1,8 @@
+  public String toString(){ 
+    if (_hasDecimals) {
+      return "" + doubleValue();
+    }
+    else {
+      return "" + intValue();
+    }
+  }

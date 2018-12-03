@@ -1,0 +1,1 @@
+  public void waitForInterpreter() { _jvm.ensureInterpreterConnected(); }

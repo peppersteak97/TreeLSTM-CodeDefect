@@ -1,0 +1,4 @@
+  private void updateTextField() {
+    _textField.setText(_pim.getMask());
+    _textField.setCaretPosition(_pim.getMask().length());
+  }

@@ -1,0 +1,5 @@
+  public String toString() {
+    ByteArrayOutputStream os = new ByteArrayOutputStream();
+    save(os);
+    return os.toString();
+  }

@@ -1,0 +1,3 @@
+	protected void init() {
+		QsiTrafficController.instance().addQsiListener(this);
+	}

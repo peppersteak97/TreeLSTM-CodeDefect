@@ -1,0 +1,6 @@
+    private void createComponents() {
+        OneColumnPanel inner = createInnerPanel();
+        createAndAddStatusLabel(inner);
+        createAndAddReportArea(inner);
+        m_panel = createOuterPanel(inner);
+    }

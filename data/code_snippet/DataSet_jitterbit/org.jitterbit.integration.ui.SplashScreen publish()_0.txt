@@ -1,0 +1,10 @@
+    public static void publish() {
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                INSTANCE.setVisible(true);
+                INSTANCE.toFront();
+                INSTANCE.setInFront(true);
+            }
+        });
+    }

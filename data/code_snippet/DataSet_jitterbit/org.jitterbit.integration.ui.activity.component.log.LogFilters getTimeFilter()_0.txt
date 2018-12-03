@@ -1,0 +1,3 @@
+    TimeWindowFilter getTimeFilter() {
+        return m_timeWindowFilter.getFilter();
+    }

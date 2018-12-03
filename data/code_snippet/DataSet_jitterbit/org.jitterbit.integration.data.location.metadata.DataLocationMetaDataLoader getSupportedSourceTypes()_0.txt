@@ -1,0 +1,3 @@
+    EnumSet<DataLocationType> getSupportedSourceTypes() {
+        return m_sourceTypes;
+    }

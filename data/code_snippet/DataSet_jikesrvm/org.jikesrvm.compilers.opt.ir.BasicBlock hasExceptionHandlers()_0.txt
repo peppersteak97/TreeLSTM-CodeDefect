@@ -1,0 +1,15 @@
+    if (hasExceptionHandlers()) {
+      VM.sysWrite("\tIn scope exception handlers: ");
+      e2 = getExceptionHandlers();
+      if (e2.hasMoreElements()) {
+        bb2 = e2.next();
+        VM.sysWrite(bb2.toString());
+        while (e2.hasMoreElements()) {
+          bb2 = e2.next();
+          VM.sysWrite(", " + bb2.toString());
+        }
+      } else {
+        VM.sysWrite("<none>");
+      }
+      VM.sysWrite("\n");
+    }

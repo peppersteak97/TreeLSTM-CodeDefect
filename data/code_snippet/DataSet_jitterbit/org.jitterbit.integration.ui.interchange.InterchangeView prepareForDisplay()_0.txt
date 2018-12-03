@@ -1,0 +1,52 @@
+    public boolean prepareForDisplay() {
+        if (m_dataModelUi == null) {
+            IUiWorker w = IntegrationUi.getUi().getUiWorker();
+            w.submitForParallell(new IUiWorker.ISafeRunnable() {
+                
+                public void run() {
+                    LauncherDialog.publish();
+                }
+            });
+            return false;
+        }
+        try {
+            InterchangeActionsMetaData.initialize();
+        }
+        catch (ViewActionsMetaDataException e) {
+            ErrorLogger.getDefaultLogger().logAndShow(this, 
+                            PackageResources.CONFIGURATION_ERROR, e);
+        }
+
+        if (!super.prepareForDisplay()) {
+            return false;
+        }
+
+        setupEventHub();
+        
+        m_menuManager.addTopLevelExtensionsToWindow();
+        m_menuManager.addMenuLevelExtensionsToWindow();
+
+        m_toolBarManager.addTopLevelExtensionsToWindow();
+        m_toolBarManager.addToolBarLevelExtensionsToWindow();
+
+        m_transformationTestCenter.startup();
+
+        m_pageManager.prepareForDisplay();
+
+        if (!m_uiState.isRestored()) {
+            m_uiState.restoreState(m_dataModelUi);
+        }
+
+        m_popupMenuManager = new DefaultPopupMenuManager();
+        m_popupMenuManager.initialize(new InterchangePopupMenuInitializer(this));
+
+        getWindow().getWindowSection(IApplicationWindow.WEST).addContent(m_treeContent);
+        
+        IPageEditor pageEditor = getWindow().getPageEditor(); 
+        pageEditor.addActiveObjectProviderListener(this);
+        pageEditor.addPageEditorListener(this);
+        
+        m_transientEntityManager.startUp(getEventHub(), m_saveWorker, pageEditor);
+        
+        return true;
+    }

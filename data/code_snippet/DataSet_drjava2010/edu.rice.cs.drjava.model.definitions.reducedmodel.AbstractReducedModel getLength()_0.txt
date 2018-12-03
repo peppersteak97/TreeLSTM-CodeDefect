@@ -1,0 +1,12 @@
+  public int getLength() {
+    TokenList.Iterator it = _tokens.getIterator();
+    it.next();
+    if (it.atEnd()) return 0;
+    int len = 0;
+    while (! it.atEnd()) {
+      len += it.current().getSize();
+      it.next();
+    }
+    it.dispose();
+    return len;
+  }

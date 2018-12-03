@@ -1,0 +1,10 @@
+    private JComponent getNorthComponent() {
+        JPanel north = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = IntegrationUiStyleSheet.getLeftConstraints();
+        north.add(caption, gbc);
+        north.add(suggestedFilesExplanation, gbc);
+        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        p.add(north);
+        p.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        return p;
+    }

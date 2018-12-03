@@ -1,0 +1,16 @@
+  public void testInsideComment() {
+    assertEquals("#0.0", FREE, model0.getStateAtCurrent());
+    model0.insertChar('/');
+    model0.insertChar('*');
+    assertEquals("#0.1", INSIDE_BLOCK_COMMENT, model0.getStateAtCurrent());
+    model1.insertChar('/');
+    model1.insertChar('/');
+    assertEquals("#0.2", INSIDE_LINE_COMMENT, model1.getStateAtCurrent());
+    model1.insertChar('(');
+    assertEquals("#0.3", INSIDE_LINE_COMMENT, model1.getStateAtCurrent());
+    model1.insertChar('\n');
+    assertEquals("#0.4", FREE, model1.getStateAtCurrent());
+    model0.insertChar('*');
+    model0.insertChar('/');
+    assertEquals("#0.4", FREE, model0.getStateAtCurrent());
+  }

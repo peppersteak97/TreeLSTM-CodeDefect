@@ -1,0 +1,1 @@
+	public int getType1() {return type1;}

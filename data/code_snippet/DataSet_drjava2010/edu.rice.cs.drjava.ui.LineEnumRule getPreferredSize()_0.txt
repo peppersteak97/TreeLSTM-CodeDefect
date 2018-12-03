@@ -1,0 +1,3 @@
+  public Dimension getPreferredSize() {
+    return new Dimension(SIZE, (int)_pane.getPreferredSize().getHeight());
+  }

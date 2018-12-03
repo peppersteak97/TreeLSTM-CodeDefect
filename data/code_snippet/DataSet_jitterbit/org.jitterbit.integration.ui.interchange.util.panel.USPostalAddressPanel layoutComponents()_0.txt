@@ -1,0 +1,4 @@
+    private void layoutComponents() {
+        InputField[] cols = { m_address_1, m_address_2, m_city, m_state, m_zip };
+        InputFieldLayoutUtils.layoutOneColumn(this, cols, true, false);
+    }

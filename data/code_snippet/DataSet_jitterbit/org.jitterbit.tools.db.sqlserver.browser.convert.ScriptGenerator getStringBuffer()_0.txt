@@ -1,0 +1,3 @@
+    protected final StringBuffer getStringBuffer() {
+        return m_sbScript;
+    }

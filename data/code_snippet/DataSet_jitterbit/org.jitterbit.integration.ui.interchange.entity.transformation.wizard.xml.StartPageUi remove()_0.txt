@@ -1,0 +1,3 @@
+    void remove() {
+        m_focusManager.unregister();
+    }

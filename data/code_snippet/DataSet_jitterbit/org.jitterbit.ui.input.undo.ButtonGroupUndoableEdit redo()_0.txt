@@ -1,0 +1,6 @@
+    public void redo() throws CannotRedoException {
+        super.redo();
+        m_buttonGroup.setSendUndoEvents(false);
+        m_buttonGroup.setSelected(m_newSelection, true);
+        m_buttonGroup.setSendUndoEvents(true);
+    }

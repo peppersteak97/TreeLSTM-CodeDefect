@@ -1,0 +1,28 @@
+  public boolean onMatch() {
+    
+/* assert Utilities.TEST_MODE || EventQueue.isDispatchThread(); */
+    
+    String findWord = _findWord;
+    int wordLen, off;
+    
+    if(_current == -1) return false;
+    
+    wordLen = findWord.length();
+    if (_isForward) off = getCurrentOffset() - wordLen;
+    else off = getCurrentOffset();
+    
+    if (off < 0) return false;
+    
+    String matchSpace;
+    try {
+      if (off + wordLen > _doc.getLength()) return false;
+      matchSpace = _doc.getText(off, wordLen);
+    }
+    catch (BadLocationException e) { throw new UnexpectedException(e); }
+    
+    if (!_matchCase) {
+      matchSpace = matchSpace.toLowerCase();
+      findWord = findWord.toLowerCase();
+    }
+    return matchSpace.equals(findWord);
+  }

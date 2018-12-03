@@ -1,0 +1,16 @@
+    private void store() throws DataCacheException {
+        try {
+            File file = createFile();
+            String[] lines = new String[3*m_driverDescriptions.size()];
+            int n = 0;
+            for (DatabaseDriverDescription d : m_driverDescriptions) {
+                lines[n++] = d.getName();
+                lines[n++] = d.getBeginQuote();
+                lines[n++] = d.getEndQuote();
+            }
+            KongaIoUtils.createAndWrite(file, lines, true);
+        }
+        catch (Exception ex) {
+            throw new DataCacheException(
+        }
+    }

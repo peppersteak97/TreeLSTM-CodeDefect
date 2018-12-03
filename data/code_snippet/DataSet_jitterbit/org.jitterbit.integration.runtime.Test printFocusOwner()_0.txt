@@ -1,0 +1,3 @@
+    static void printFocusOwner() {
+        KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+    }

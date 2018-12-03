@@ -1,0 +1,4 @@
+    private JComponent createCaption() {
+        return IntegrationUiStyleSheet.AdminHint.makeJLabel(
+                        PackageResources.SelectPage.CAPTION);
+    }

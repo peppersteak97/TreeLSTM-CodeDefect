@@ -1,0 +1,4 @@
+    public int getID() {
+        return getHexDigit(1)*256
+                    + getHexDigit(2)*16 + getHexDigit(3);
+    }

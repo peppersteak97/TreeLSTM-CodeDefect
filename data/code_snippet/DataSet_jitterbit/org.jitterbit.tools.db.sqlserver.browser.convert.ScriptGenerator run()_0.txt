@@ -1,0 +1,9 @@
+    public void run() {
+        try {
+            m_sbScript = new StringBuffer();
+            generateScript();
+        }
+        finally {
+            m_lock.setValue(true);
+        }
+    }

@@ -1,0 +1,13 @@
+	public Element getXml() {
+		Element me = new Element("AddressPanel");
+		Element window = new Element("window");
+		WindowPreferences wp = new WindowPreferences();
+		java.util.ArrayList children = new java.util.ArrayList(1);
+		children.add(wp.getPreferences(this));
+		children.add((new jmri.configurexml.LocoAddressXml())
+				.store(addrSelector.getAddress()));
+		children.add((new jmri.configurexml.LocoAddressXml())
+				.store(consistAddress));
+		me.setContent(children);
+		return me;
+	}

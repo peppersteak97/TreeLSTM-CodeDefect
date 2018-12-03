@@ -1,0 +1,4 @@
+  public void dispose() {
+    _model.dispose();
+    super.dispose();
+  }

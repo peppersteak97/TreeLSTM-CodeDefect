@@ -1,0 +1,10 @@
+    public void prepare() {
+        root = new Element("rpsfile");
+        doc = newDocument(root, dtdLocation+"rpsfile.dtd");
+
+        java.util.Map m = new java.util.HashMap();
+        m.put("type", "text/xsl");
+        ProcessingInstruction p = new ProcessingInstruction("xml-stylesheet", m);
+        doc.addContent(0,p);
+        
+    }

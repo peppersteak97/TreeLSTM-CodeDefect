@@ -1,0 +1,7 @@
+    private IPage getPageToDisplay() {
+        IPage page = findOpenPage();
+        if (page == null) {
+            page = createNewPage();
+        }
+        return page;
+    }

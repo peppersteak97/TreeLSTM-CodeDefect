@@ -1,0 +1,3 @@
+  public boolean isTestTabSelected() {
+    return _tabbedPane.getSelectedComponent() == _junitErrorPanel;
+  }

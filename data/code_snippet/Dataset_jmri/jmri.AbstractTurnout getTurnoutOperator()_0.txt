@@ -1,0 +1,16 @@
+	protected TurnoutOperator getTurnoutOperator() {
+		TurnoutOperator to = null;
+		if (!inhibitOperation) {
+			if (myTurnoutOperation != null) {
+				to = myTurnoutOperation.getOperator(this);
+			} else {
+				TurnoutOperation toper = TurnoutOperationManager.getInstance()
+						.getMatchingOperation(this,
+								getFeedbackModeForOperation());
+				if (toper != null) {
+					to = toper.getOperator(this);
+				}
+			}
+		}
+		return to;
+	}

@@ -1,0 +1,3 @@
+  public final Iterator<T> iterator() {
+    return stack.iterator();
+  }

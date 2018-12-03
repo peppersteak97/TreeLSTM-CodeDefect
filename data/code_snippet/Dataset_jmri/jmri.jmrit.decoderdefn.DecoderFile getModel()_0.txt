@@ -1,0 +1,1 @@
+    public String getModel()     { return _model; }

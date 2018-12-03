@@ -1,0 +1,5 @@
+    private void validatePath() {
+        String path = m_location.getPath();
+        if (path == null || path.trim().length() == 0) {
+        }
+    }

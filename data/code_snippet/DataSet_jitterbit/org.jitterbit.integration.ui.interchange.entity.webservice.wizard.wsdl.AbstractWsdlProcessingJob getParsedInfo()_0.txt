@@ -1,0 +1,3 @@
+    public final WebServiceInfo getParsedInfo() {
+        return m_parsedInfo;
+    }

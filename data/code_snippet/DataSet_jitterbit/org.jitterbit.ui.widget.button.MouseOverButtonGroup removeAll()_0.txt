@@ -1,0 +1,6 @@
+    public synchronized void removeAll() {
+        for (Iterator<MouseOverButton> it = m_buttons.iterator(); it.hasNext();) {
+            onButtonRemoved(it.next());
+            it.remove();
+        }
+    }

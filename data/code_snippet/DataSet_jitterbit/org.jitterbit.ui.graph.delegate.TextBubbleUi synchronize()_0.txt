@@ -1,0 +1,4 @@
+	public void synchronize() {
+		synchronizeDisplayData();
+		super.synchronize();
+	}

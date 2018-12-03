@@ -1,0 +1,3 @@
+  public Debugger getDebugger() {
+    throw new UnsupportedOperationException("Tried to call getDebugger on a Dummy");
+  }

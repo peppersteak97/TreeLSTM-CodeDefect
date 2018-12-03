@@ -1,0 +1,8 @@
+    public JComponent getDisplayer() {
+        JPanel displayer = new JPanel(new BorderLayout());
+        displayer.setOpaque(m_isOpaque);
+        displayer.add(m_sourceList.getDisplayer(), BorderLayout.WEST);
+        addButtons(displayer, BorderLayout.CENTER);
+        displayer.add(m_targetList.getDisplayer(), BorderLayout.EAST);
+        return displayer;
+    }

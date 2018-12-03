@@ -1,0 +1,7 @@
+    private IPage createImportPage() {
+        IImportJitterPackUi importUi = new ImportJitterPackUi(m_view.getWindow());
+        importUi.setFileExaminer(getFileExaminer());
+        IPage page = new ImportJitterPackPage(importUi, new UnpackCallbackImpl());
+        m_currentPageId = page.getId();
+        return page;
+    }

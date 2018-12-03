@@ -1,0 +1,5 @@
+  public int absOffset() {
+    int offset = _rmc.absOffset();
+    assert offset == _rmb.absOffset();
+    return offset; 
+  }

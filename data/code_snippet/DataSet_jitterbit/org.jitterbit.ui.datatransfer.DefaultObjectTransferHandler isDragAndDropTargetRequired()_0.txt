@@ -1,0 +1,3 @@
+	public boolean isDragAndDropTargetRequired() {
+		return m_bDragAndDropTargetRequired;
+	}

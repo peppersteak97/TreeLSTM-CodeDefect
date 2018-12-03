@@ -1,0 +1,3 @@
+    public int getNodeAddress() {
+        return (nodeAddress);
+    }

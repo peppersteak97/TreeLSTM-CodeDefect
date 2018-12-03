@@ -1,0 +1,17 @@
+    private IServerXsdFileSelector createServerXsdFileSelector() {
+        IExceptionHandler<Exception> errorHandler = new IExceptionHandler<Exception>() {
+
+            public void caught(Exception ex) {
+            }
+        };
+        ServerXsdFileSelector p = new ServerXsdFileSelector(m_refreshAction, errorHandler);
+        p.addListListener(new ListListener());
+        p.setListDoubleClickJob(new Runnable() {
+            
+            public void run() {
+                m_page.moveNextImpl();
+            }
+        });
+        m_serverXsdSelectorCapsule = new JPanel(new GridBagLayout());
+        return p;
+    }

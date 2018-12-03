@@ -1,0 +1,12 @@
+    private void layoutComponents() {
+        TwoColumnPanel p = new TwoColumnPanel();
+        p.setLeftAnchor(TwoColumnPanel.WEST);
+        p.setRightFill(TwoColumnPanel.HORIZONTAL);
+        layoutInputField(p, m_webServiceUrlField);
+        layoutWsSelectionControl(p);
+        layoutFirstTransformationControl(p);
+        layoutSecondTransformationControl(p);
+        p.setOpaque(false, false);
+        InvisiblePanel.convert(getUi());
+        p.addToParent(getUi(), null);
+    }

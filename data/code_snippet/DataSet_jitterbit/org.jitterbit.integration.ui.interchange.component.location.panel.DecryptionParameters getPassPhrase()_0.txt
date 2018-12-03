@@ -1,0 +1,3 @@
+    public String getPassPhrase() {
+        return m_data.getSecond();
+    }

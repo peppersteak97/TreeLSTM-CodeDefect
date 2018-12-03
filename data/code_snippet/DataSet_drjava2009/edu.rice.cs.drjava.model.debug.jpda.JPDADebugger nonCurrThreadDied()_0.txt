@@ -1,0 +1,3 @@
+  void nonCurrThreadDied() {
+    EventQueue.invokeLater(new Runnable() { public void run() { _notifier.nonCurrThreadDied(); } }); 
+  }

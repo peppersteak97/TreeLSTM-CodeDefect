@@ -1,0 +1,9 @@
+    public String[] validOption2() {
+        String[] retval = new String[commandStationNames.length+2];
+        retval[0] = "PR3 standalone programmer";
+        for (int i=0; i<commandStationNames.length; i++) {
+            retval[i+1] = commandStationNames[i];
+        }
+        retval[retval.length-1] = "Stand-alone LocoNet";
+        return retval;
+    }

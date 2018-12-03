@@ -1,0 +1,1 @@
+    public int getCvNum() { return _cvNum; }

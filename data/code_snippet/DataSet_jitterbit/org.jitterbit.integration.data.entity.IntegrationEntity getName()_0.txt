@@ -1,0 +1,16 @@
+    public final String getName() {
+        String name = super.getName();
+        if (name != null && name.length() > 0)
+            return name;
+
+        name = getProperty(getNameKey());
+        if (name != null && name.length() > 0) {
+            try {
+                setName(name);
+            }
+            catch (IllegalNameException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return name;
+    }

@@ -1,0 +1,7 @@
+    private Border getDisplayerBorder() {
+        Border b1 = BorderFactory.createEmptyBorder(10, 15, 10, 15);
+        Border b2 = BorderFactory.createEtchedBorder();
+        Border b3 = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+        Border b4 = BorderFactory.createCompoundBorder(b1, b2);
+        return BorderFactory.createCompoundBorder(b4, b3);
+    }

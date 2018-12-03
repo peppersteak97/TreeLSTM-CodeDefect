@@ -1,0 +1,3 @@
+    public Group getDataObject() {
+        return (Group)getKongaObject();
+    }

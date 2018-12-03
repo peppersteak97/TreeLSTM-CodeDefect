@@ -1,0 +1,7 @@
+    private void executeImpl() {
+        IJitterPackerUi packerUi = getPackerFactory().create();
+        packerUi.unpack(m_importUi.getJitterPackToImport(), 
+                        m_importUi.getPackingParameters(),
+                        m_importUi.getDestinationFolder(), 
+                        m_unpackCallback);
+    }

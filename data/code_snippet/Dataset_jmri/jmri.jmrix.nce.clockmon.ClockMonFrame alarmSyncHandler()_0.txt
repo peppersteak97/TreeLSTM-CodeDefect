@@ -1,0 +1,19 @@
+    private void alarmSyncHandler(){
+        if (clockMode == SYNCMODE_INTERNAL_MASTER) {
+            internalSyncRunStateCounter = 1;
+            internalSyncRunStates();
+        }
+        if (clockMode == SYNCMODE_NCE_MASTER) {
+            if (nceSyncRunStateCounter == 0) {
+                nceSyncRunStateCounter = 1;
+                nceSyncRunStates();
+            }
+        }
+        if (clockMode == SYNCMODE_OFF) {
+            alarmSyncUpdate.stop();
+        }
+        if (alarmDisplayStateCounter == 0){
+            alarmDisplayStateCounter = 1;
+            alarmDisplayStates();
+        }
+    }

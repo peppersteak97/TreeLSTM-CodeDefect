@@ -1,0 +1,5 @@
+    static public SprogMessage getEnableMain() {
+        SprogMessage m = new SprogMessage(1);
+        m.setOpCode('+');
+        return m;
+    }

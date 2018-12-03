@@ -1,0 +1,7 @@
+  public NormalMethod getRootMethod() {
+    InlineSequence parent = this;
+    while (parent.caller != null) {
+      parent = parent.caller;
+    }
+    return parent.method;
+  }

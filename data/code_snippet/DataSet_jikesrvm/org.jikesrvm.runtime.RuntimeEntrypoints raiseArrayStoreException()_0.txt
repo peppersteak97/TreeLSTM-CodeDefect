@@ -1,0 +1,3 @@
+  public static void raiseArrayStoreException() {
+    throw new java.lang.ArrayStoreException();
+  }

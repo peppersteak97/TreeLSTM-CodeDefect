@@ -1,0 +1,4 @@
+    public String getWatchedSignal2() {
+        if (watchedSignal2 == null) return null;
+        return watchedSignal2.getSystemName();
+    }

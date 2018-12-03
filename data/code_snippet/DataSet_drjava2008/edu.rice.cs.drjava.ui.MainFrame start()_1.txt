@@ -1,0 +1,14 @@
+  public void start() {
+    
+    EventQueue.invokeLater(new Runnable() { 
+      public void run() { 
+        setVisible(true);
+        _compilerErrorPanel.setVisible(true);
+        showTab(_compilerErrorPanel, true); 
+        /* The following two step sequence was laboriously developed by trial and error; without it the _tabbedPane
+         * does not display properly. */
+        _tabbedPane.invalidate();
+        _tabbedPane.repaint();
+      } 
+    });
+  }

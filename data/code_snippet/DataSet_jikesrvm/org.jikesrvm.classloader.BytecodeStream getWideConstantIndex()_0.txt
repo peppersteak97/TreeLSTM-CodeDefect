@@ -1,0 +1,6 @@
+  public final int getWideConstantIndex() {
+    if (VM.VerifyAssertions) {
+      VM._assert(opcode == JBC_ldc_w || opcode == JBC_ldc2_w);
+    }
+    return readUnsignedShort();
+  }

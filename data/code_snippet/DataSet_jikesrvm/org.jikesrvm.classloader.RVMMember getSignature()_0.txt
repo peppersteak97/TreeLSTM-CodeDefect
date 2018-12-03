@@ -1,0 +1,3 @@
+  public final Atom getSignature() {
+    return signature;
+  }

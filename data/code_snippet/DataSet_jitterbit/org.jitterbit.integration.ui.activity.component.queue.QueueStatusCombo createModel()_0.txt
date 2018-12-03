@@ -1,0 +1,8 @@
+    private static ComboBoxModel createModel() {
+        List<Object> items = new ArrayList<Object>();
+        items.add(ALL_ITEM);
+        for (QueueStatus s : QueueStatus.values()) {
+            items.add(new StatusItem(s));
+        }
+        return new DefaultComboBoxModel(items.toArray());
+    }

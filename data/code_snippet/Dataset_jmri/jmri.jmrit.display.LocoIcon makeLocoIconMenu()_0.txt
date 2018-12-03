@@ -1,0 +1,9 @@
+    JMenu makeLocoIconMenu(){
+    	JMenu iconMenu = new JMenu("Loco color");
+    	locoButtonGroup = new ButtonGroup();
+    	addLocoMenuEntry(iconMenu, "White");
+    	addLocoMenuEntry(iconMenu, "Green");
+    	addLocoMenuEntry(iconMenu, "Gray");
+    	addLocoMenuEntry(iconMenu, "Red");
+    	return iconMenu;
+    }

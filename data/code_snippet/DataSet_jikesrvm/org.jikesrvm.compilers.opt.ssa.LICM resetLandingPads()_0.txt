@@ -1,0 +1,4 @@
+  private void resetLandingPads() {
+    BasicBlockEnumeration e = ir.getBasicBlocks();
+    while (e.hasMoreElements()) e.next().clearLandingPad();
+  }

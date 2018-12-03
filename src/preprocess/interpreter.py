@@ -12,6 +12,7 @@ class Interpreter:
         for i in range(0, len(all_files)):
             if '.txt' in all_files[i]:
                 self._file_list.append(all_files[i])
+        print(self._file_list)
         # 文件数量
         self._file_num = len(self._file_list)
         # 方法名
@@ -89,14 +90,8 @@ class Interpreter:
         return self._hash_tree
 
 
-'''
-if __name__ == '__main__':
-    inter = Interpreter("data")
-    inter.file_iterator()
-    print(inter.hash_code)
-    print(inter.hash_tree)
-    print(inter.ret_vec)
-'''
+
+
 
 
 

@@ -1,0 +1,3 @@
+  public static void clearEventQueue() {
+    Utilities.invokeAndWait(new Runnable() { public void run() { } });
+  }

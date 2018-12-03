@@ -1,0 +1,3 @@
+    public TextDocument getDisplayedObject() {
+        return document;
+    }

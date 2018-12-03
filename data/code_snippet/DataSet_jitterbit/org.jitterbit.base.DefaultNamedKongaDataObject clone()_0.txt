@@ -1,0 +1,5 @@
+    protected DefaultNamedKongaDataObject clone() throws CloneNotSupportedException {
+        DefaultNamedKongaDataObject clone = (DefaultNamedKongaDataObject) super.clone();
+        clone.m_name = new Name(m_name);
+        return clone;
+    }

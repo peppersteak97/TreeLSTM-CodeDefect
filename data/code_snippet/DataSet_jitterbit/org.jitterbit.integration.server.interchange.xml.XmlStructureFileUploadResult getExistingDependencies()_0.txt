@@ -1,0 +1,3 @@
+	public List<XmlStructureFile> getExistingDependencies() {
+		return m_ExistingDependencies;
+	}

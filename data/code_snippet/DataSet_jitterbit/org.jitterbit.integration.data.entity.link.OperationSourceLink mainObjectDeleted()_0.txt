@@ -1,0 +1,4 @@
+    protected void mainObjectDeleted() {
+        getDependantObject().setSource(null);
+        super.mainObjectDeleted();
+    }

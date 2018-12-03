@@ -1,0 +1,6 @@
+  private void cancelButtonPressed() {
+    _buttonPressed = JOptionPane.CANCEL_OPTION;
+    _lastState = new FrameState(ClipboardHistoryFrame.this);
+    setVisible(false);
+    _cancelAction.value(null);
+  }

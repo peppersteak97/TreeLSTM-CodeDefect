@@ -1,0 +1,5 @@
+    if (isEmpty()) {
+      return null;
+    } else {
+      return start.getNext();
+    }

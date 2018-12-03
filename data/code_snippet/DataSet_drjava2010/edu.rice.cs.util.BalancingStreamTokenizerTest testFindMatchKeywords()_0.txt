@@ -1,0 +1,10 @@
+  public void testFindMatchKeywords() throws IOException{
+    BalancingStreamTokenizer tok = make("abc");
+    tok.defaultThreeQuoteDollarCurlySetup();
+    tok.addKeyword("apple");
+    tok.addKeyword("alabama");
+    tok.addKeyword("anthem");
+    String s = tok.getNextToken();
+    assertEquals("abc", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+  }

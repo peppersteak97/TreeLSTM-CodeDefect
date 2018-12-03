@@ -1,0 +1,7 @@
+    private List<File> queueFirstFile() {
+        List<File> files = new ArrayList<File>();
+        File f = new File(m_firstFile);
+        files.add(f);
+        m_queuedFiles.add(new File(f.getName()));
+        return files;
+    }

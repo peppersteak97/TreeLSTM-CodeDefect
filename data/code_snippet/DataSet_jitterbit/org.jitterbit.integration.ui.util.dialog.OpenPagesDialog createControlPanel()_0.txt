@@ -1,0 +1,4 @@
+    private void createControlPanel() {
+        createActions();
+        getContentPane().add(createButtons(), BorderLayout.EAST);
+    }

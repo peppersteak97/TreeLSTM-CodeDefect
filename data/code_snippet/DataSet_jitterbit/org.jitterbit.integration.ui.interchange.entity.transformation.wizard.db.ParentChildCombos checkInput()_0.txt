@@ -1,0 +1,18 @@
+    void checkInput() throws RelationshipException {
+        if (m_selectedParent == null) {
+            throw new RelationshipException(
+                    PackageResources.RelationshipDefinitionPage.Errors.MISSING_PARENT_TABLE);
+        }
+        if (m_selectedChild == null) {
+            throw new RelationshipException(
+                    PackageResources.RelationshipDefinitionPage.Errors.MISSING_CHILD_TABLE);
+        }
+        if (m_selectedParentField == null) {
+            throw new RelationshipException(
+                    PackageResources.RelationshipDefinitionPage.Errors.MISSING_PARENT_FIELD);
+        }
+        if (m_selectedChildField == null) {
+            throw new RelationshipException(
+                    PackageResources.RelationshipDefinitionPage.Errors.MISSING_CHILD_FIELD);
+        }
+    }

@@ -1,0 +1,5 @@
+    public String toString() {
+        if (m_location == null)
+            return super.toString();
+        return super.toString() + m_location.toString();
+    }

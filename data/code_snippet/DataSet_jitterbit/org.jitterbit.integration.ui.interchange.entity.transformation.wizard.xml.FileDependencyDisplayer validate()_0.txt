@@ -1,0 +1,9 @@
+    public boolean validate() {
+        boolean valid = true;
+        for (RequiredFileCapsule fc : fileCapsules) {
+            if (!fc.validate()) {
+                valid = false;
+            }
+        }
+        return valid;
+    }

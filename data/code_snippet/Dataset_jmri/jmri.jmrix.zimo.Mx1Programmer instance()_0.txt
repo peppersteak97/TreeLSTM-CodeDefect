@@ -1,0 +1,4 @@
+	static public final Mx1Programmer instance() {
+		if (self == null) self = new Mx1Programmer();
+		return self;
+		}

@@ -1,0 +1,83 @@
+    public void editButtonActionPerformed() {
+        nodeAddress = readNodeAddress();
+        if (nodeAddress < 0) return;
+        curNode = (SerialNode) SerialTrafficController.instance().getNodeFromAddress(nodeAddress);
+        if (curNode == null) {
+            statusText1.setText(rb.getString("Error4"));
+            statusText1.setVisible(true);
+            errorInStatus1 = true;
+            resetNotes2();
+            return;
+        }
+        nodeAddrStatic.setText(Integer.toString(nodeAddress));
+        nodeAddrField.setVisible(false);
+        nodeAddrStatic.setVisible(true);     
+        nodeType = curNode.getNodeType();
+        if (nodeType==SerialNode.SMINI) {
+            nodeTypeBox.setSelectedItem("SMINI");
+        }
+        else if (nodeType==SerialNode.USIC_SUSIC) {
+            nodeTypeBox.setSelectedItem("USIC_SUSIC");
+        }
+        if (nodeType==SerialNode.USIC_SUSIC) {
+            bitsPerCard = curNode.getNumBitsPerCard();
+            if (bitsPerCard==24) {
+                cardSizeBox.setSelectedItem(rb.getString("CardSize24"));
+            }
+            if (bitsPerCard==32) {
+                cardSizeBox.setSelectedItem(rb.getString("CardSize32"));
+            }
+        }
+        else if (nodeType==SerialNode.SMINI) {
+            bitsPerCard = 24;
+            cardSizeBox.setSelectedItem(rb.getString("CardSize24"));
+            num2LSearchLights = 0;
+            for (int i=0;i<48;i++) {
+                if ( curNode.isSearchLightBit(i) ) {
+                    searchlightBits[i] = true;
+                    searchlightBits[i+1] = true;
+                    firstSearchlight[i] = true;
+                    firstSearchlight[i+1] = false;
+                    num2LSearchLights ++;
+                    i ++;
+                }
+                else {
+                    searchlightBits[i] = false;
+                    firstSearchlight[i] = false;
+                }
+            }
+        }
+        receiveDelay = curNode.getTransmissionDelay();
+        receiveDelayField.setText(Integer.toString(receiveDelay));
+        pulseWidth = curNode.getPulseWidth();
+        pulseWidthField.setText(Integer.toString(pulseWidth));
+        for (int i=0;i<64;i++) {
+            if (curNode.isOutputCard(i)) {
+                cardType[i] = rb.getString("CardTypeOutput");
+            }
+            else if (curNode.isInputCard(i)) {
+                cardType[i] = rb.getString("CardTypeInput");
+            }
+            else {
+                cardType[i] = rb.getString("CardTypeNone");
+            }
+        }
+        panel2.setVisible(false);
+        panel2a.setVisible(false);
+        if (nodeType==SerialNode.USIC_SUSIC) {
+            panel2.setVisible(true);
+        }
+        else if (nodeType==SerialNode.SMINI) {
+            panel2a.setVisible(true);
+        }
+        editMode = true;
+        addButton.setVisible(false);
+        editButton.setVisible(false);
+        deleteButton.setVisible(false);
+        doneButton.setVisible(false);
+        updateButton.setVisible(true);
+        cancelButton.setVisible(true); 
+        statusText1.setText(editStatus1);
+        statusText2.setText(editStatus2);
+        statusText3.setText(editStatus3);
+    }

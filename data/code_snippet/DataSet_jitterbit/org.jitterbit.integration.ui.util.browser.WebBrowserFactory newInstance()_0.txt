@@ -1,0 +1,21 @@
+    public static WebBrowserFactory newInstance() throws UnsupportedPlatformException {
+        if (SystemUtils.IS_OS_WINDOWS) {
+            return new WebBrowserFactory() {
+
+                @Override
+                public IWebBrowser createBrowser() {
+                    return new WindowsWebBrowser();
+                }
+            };
+        }
+        if (SystemUtils.IS_OS_LINUX) {
+            return new WebBrowserFactory() {
+
+                @Override
+                public IWebBrowser createBrowser() {
+                    return new LinuxWebBrowser();
+                }
+            };
+        }
+        throw new UnsupportedPlatformException();
+    }

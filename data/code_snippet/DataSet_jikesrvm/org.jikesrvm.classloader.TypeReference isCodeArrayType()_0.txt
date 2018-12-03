@@ -1,0 +1,3 @@
+  public boolean isCodeArrayType() {
+    return this == CodeArray;
+  }

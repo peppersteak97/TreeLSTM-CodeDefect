@@ -1,0 +1,1 @@
+  public boolean isEscapedSingleQuote() { return _type == ESCAPED_SINGLE_QUOTE_TYPE; }

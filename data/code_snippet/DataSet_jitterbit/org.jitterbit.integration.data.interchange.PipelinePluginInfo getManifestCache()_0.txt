@@ -1,0 +1,3 @@
+    public IPipelinePluginManifestCache getManifestCache() {
+        return m_manifestCache;
+    }

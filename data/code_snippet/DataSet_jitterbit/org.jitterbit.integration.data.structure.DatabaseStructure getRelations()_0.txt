@@ -1,0 +1,3 @@
+    public DbTranRelations getRelations() {
+        return m_relations.getCopy();
+    }

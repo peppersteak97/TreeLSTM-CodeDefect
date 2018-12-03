@@ -1,0 +1,10 @@
+  public synchronized void waitAndClose() {
+    while (!open) {
+      try {
+        wait();
+      } catch (InterruptedException e) {
+        throw new Error(e);
+      }
+    }
+    open=false;
+  }

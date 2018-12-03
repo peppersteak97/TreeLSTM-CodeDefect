@@ -1,0 +1,6 @@
+  public byte parseForTypeCode() throws IllegalArgumentException {
+    if (VM.VerifyAssertions) {
+      VM._assert(val.length > 0);
+    }
+    return val[0];
+  }

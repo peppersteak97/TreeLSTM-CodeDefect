@@ -1,0 +1,15 @@
+    protected void onDelete() {
+        super.onDelete();
+        if (m_recalculateAction != null) {
+            if (getModel().getRowCount() > 0) {
+                m_recalculateAction.setEnabled(true);
+                if (RECALCULATE_ON_DELETE) {
+                    m_recalculateAction.actionPerformed(new ActionEvent(this,
+                                    ActionEvent.ACTION_PERFORMED, "recalculate"));
+                }
+            }
+            else {
+                m_recalculateAction.setEnabled(false);
+            }
+        }
+    }

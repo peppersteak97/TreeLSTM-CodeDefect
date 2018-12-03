@@ -1,0 +1,171 @@
+  public String getNextToken() throws IOException {
+    StringBuilder buf = new StringBuilder();
+    int c = nextToken();
+    while (c!=-1) {
+      _isEscape = ((_escape != null) && (((char)c) == _escape));
+      
+      if (_state.whitespace.contains(c)) {
+        if (_wasEscape) {
+          buf.append(String.valueOf((char)c));
+          _wasEscape = false;
+        }
+        else {
+          if (buf.length() > 0) {
+            _token = Token.NORMAL;
+            return buf.toString();
+          }
+        }
+        c = nextToken();
+        continue;
+      }
+
+      if (!_wasEscape) {
+        String temp;
+        temp = findMatch(c, _state.quotes, new Lambda<String,String>() {
+          public String value(String in) {
+            for(int i=in.length()-1; i > 0; --i) {
+              pushToken(in.charAt(i));
+            }
+            return null;
+          }
+        });
+        if (temp != null) {
+          if (buf.length() > 0) {
+            for(int i=temp.length()-1; i>=0; --i) {
+              pushToken(temp.charAt(i));
+            }
+            _token = Token.NORMAL;
+            return buf.toString();
+          }
+          String begin = temp;
+          Stack<String> quoteStack = new Stack<String>();
+          quoteStack.add(begin);
+          StringBuilder quoteBuf = new StringBuilder(unescape(begin));
+          
+          pushState();
+          _state = new State();
+          _state.whitespace.clear();
+          _state.keywords.clear();
+          _state.keywords.addAll(_stateStack.peek().quotes);
+          _state.keywords.addAll(_stateStack.peek().quoteEnds);
+          _state.quotes.clear();
+          _state.quoteEnds.clear();
+          _state.quotePairs.clear();
+          
+          while(quoteStack.size() > 0) {
+            String s = getNextToken();
+            if (s == null) { break; }
+            if (_stateStack.peek().quoteEnds.contains(s)) {
+              String top = quoteStack.peek();
+              if (_stateStack.peek().quotePairs.get(top).equals(s)) {
+                quoteBuf.append(unescape(s));
+                quoteStack.pop();
+              }
+              else {
+                if (_stateStack.peek().quotes.contains(s)) {
+                  quoteBuf.append(unescape(s));
+                  quoteStack.add(s);
+                }
+                else {
+                  quoteBuf.append(s);
+                  break;
+                }
+              }
+            }
+            else if (_stateStack.peek().quotes.contains(s)) {
+              quoteBuf.append(unescape(s));
+              quoteStack.add(s);
+            }
+            else {
+              quoteBuf.append(s);
+            }
+          }
+          
+          popState();
+          _token = Token.QUOTED;
+          return quoteBuf.toString();
+        }
+      }
+      
+      if (!_wasEscape) {
+        String temp = findMatch(c, _state.keywords, new Lambda<String,String>() {
+          public String value(String in) {
+            for(int i=in.length()-1; i > 0; --i) {
+              pushToken(in.charAt(i));
+            }
+            return null;
+          }
+        });
+        if (temp != null) {
+          if (buf.length() > 0) {
+            for(int i=temp.length()-1; i>=0; --i) {
+              pushToken(temp.charAt(i));
+            }
+            _token = Token.NORMAL;
+            return buf.toString();
+          }
+          _token = Token.KEYWORD;
+          return unescape(temp);
+        }
+      }
+
+      if (_isEscape) {
+        if (_wasEscape) {
+          buf.append(String.valueOf(_escape));
+          _isEscape = _wasEscape = false;
+        }
+        else {
+          int cnext = nextToken();
+          if ((cnext!=(int)_escape) && (!_state.whitespace.contains(cnext))) {
+            String temp = findMatch(cnext, _state.quotes, new Lambda<String,String>() {
+              public String value(String in) { 
+                for(int i=in.length()-1; i > 0; --i) {
+                  pushToken(in.charAt(i));
+                }
+                return null;
+              }
+            });
+            if (temp != null) {
+              for(int i=temp.length()-1; i > 0; --i) {
+                pushToken(temp.charAt(i));
+              }
+            }
+            else {
+              temp = findMatch(cnext, _state.keywords, new Lambda<String,String>() {
+                public String value(String in) {
+                  for(int i=in.length()-1; i > 0; --i) {
+                    pushToken(in.charAt(i));
+                  }
+                  return null;
+                }
+              });
+              if (temp != null) {
+                for(int i=temp.length()-1; i > 0; --i) {
+                  pushToken(temp.charAt(i));
+                }
+              }
+              else {
+                buf.append(String.valueOf(_escape));
+                _isEscape = _wasEscape = false;
+              }
+            }
+          }
+          pushToken(cnext);
+        }
+      }
+      else {
+        buf.append(String.valueOf((char)c));
+      }
+      _wasEscape = _isEscape;
+      c = nextToken();
+    }
+    if (_wasEscape) {
+      buf.append(String.valueOf(_escape));
+    }
+    if (buf.length() > 0) {
+      _token = Token.NORMAL;
+      return buf.toString();
+    }
+    _token = Token.END;
+    return null;
+  }

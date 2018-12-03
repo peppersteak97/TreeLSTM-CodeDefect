@@ -1,0 +1,3 @@
+    public IPageEditor getSource() {
+        return (IPageEditor) super.getSource();
+    }

@@ -1,0 +1,6 @@
+    public void requestFocus() {
+        JComponent c = getComponentToFocus();
+        if (c != null) {
+            c.requestFocusInWindow();
+        }
+    }

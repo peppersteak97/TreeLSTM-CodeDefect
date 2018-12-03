@@ -1,0 +1,14 @@
+    public synchronized void switchOn() {
+        if (m_isOn) {
+            return;
+        }
+        if (m_logger == null) {
+            createLogger();
+        }
+        m_isOn = true;
+        m_manager.addInterchangeProjectManagerListener(this);
+        IManagedProject p = m_manager.getCurrentProject();
+        if (p != null) {
+            p.getProject().addInterchangeProjectListener(this);
+        }
+    }

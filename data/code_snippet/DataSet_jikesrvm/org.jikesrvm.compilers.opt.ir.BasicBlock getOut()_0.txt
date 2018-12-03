@@ -1,0 +1,3 @@
+  public final OutEdgeEnum getOut() {
+    return new OutEdgeEnum(this);
+  }

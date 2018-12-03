@@ -1,0 +1,3 @@
+    public IPrimaryKeys[] getSelectedKeys() {
+        return primaryKeyDefiner.getPrimaryKeys();
+    }

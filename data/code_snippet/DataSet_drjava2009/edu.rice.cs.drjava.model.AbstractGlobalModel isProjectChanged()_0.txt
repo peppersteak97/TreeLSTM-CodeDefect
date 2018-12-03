@@ -1,0 +1,1 @@
+    public boolean isProjectChanged() { return _isProjectChanged; }

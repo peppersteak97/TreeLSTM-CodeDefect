@@ -1,0 +1,4 @@
+  protected final void FLIP_BOOLCMP() {
+    if (VM.VerifyAssertions) VM._assert(cc != null);
+    cc = cc.flipCode();
+  }

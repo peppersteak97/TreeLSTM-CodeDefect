@@ -1,0 +1,7 @@
+    private void updateActions() {
+        boolean enabled = m_pageEditor.getNumberOfPages() > 1;
+        m_nextPageAction.setEnabled(enabled);
+        m_nextPageKeyAction.setEnabled(enabled);
+        m_previousPageAction.setEnabled(enabled);
+        m_previousPageKeyAction.setEnabled(enabled);
+    }

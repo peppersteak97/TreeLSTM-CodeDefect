@@ -1,0 +1,5 @@
+  private void _updateBasedOnCurrentState() {
+    TokenList.Iterator copyCursor = _cursor.copy();
+    copyCursor.updateBasedOnCurrentState();
+    copyCursor.dispose();
+  }

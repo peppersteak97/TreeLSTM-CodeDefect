@@ -1,0 +1,86 @@
+  public void textCompoundUndoManager() throws BadLocationException {
+    String text =
+      "public class foo {\n" +
+      "int bar;\n" +
+      "}";
+    
+    String indented =
+      "public class foo {\n" +
+      "  int bar;\n" +
+      "}";
+    CompoundUndoManager undoManager = _doc.getUndoManager();
+    
+    _doc.addUndoableEditListener(undoManager);
+    DrJava.getConfig().setSetting(OptionConstants.INDENT_LEVEL,Integer.valueOf(2));
+    Utilities.clearEventQueue();
+    
+    int key = undoManager.startCompoundEdit();
+    assertEquals("Should have returned the correct key.", 0, key);
+    
+    _doc.insertString(0, text, null);
+    assertEquals("Should have inserted the text properly.", text, _doc.getText());
+    
+    undoManager.startCompoundEdit();
+    
+    indentLines(0, _doc.getLength());
+    assertEquals("Should have indented correctly.", indented,  _doc.getText());
+    
+    undoManager.undo();
+    assertEquals("Should have undone correctly.", "",  _doc.getText());
+    
+    
+    String commented =
+    
+    key = _doc.getUndoManager().startCompoundEdit();
+    assertEquals("Should have returned the correct key.", 2, key);
+    
+    _doc.insertString(0, text, null);
+    assertEquals("Should have inserted the text properly.", text,
+                 _doc.getText());
+    
+    indentLines(0, _doc.getLength());
+    assertEquals("Should have indented correctly.", indented,
+                 _doc.getText());
+    
+    undoManager.startCompoundEdit();
+    _doc.commentLines(0, _doc.getLength());
+    assertEquals("Should have commented correctly.", commented,
+                 _doc.getText());
+    
+    _doc.getUndoManager().undo();
+    assertEquals("Should have undone the commenting.", indented,
+                 _doc.getText());
+    
+    _doc.getUndoManager().undo();
+    assertEquals("Should have undone the indenting and inserting.", "",
+                 _doc.getText());
+    
+    
+    key = _doc.getUndoManager().startCompoundEdit();
+    assertEquals("Should have returned the correct key.", 4, key);
+    
+    _doc.insertString(0, text, null);
+    assertEquals("Should have inserted the text properly.", text,
+                 _doc.getText());
+    
+    indentLines(0, _doc.getLength());
+    assertEquals("Should have indented correctly.", indented,
+                 _doc.getText());
+    
+    try {
+      _doc.getUndoManager().endCompoundEdit(key + 2);
+    }
+    catch (IllegalStateException e) {
+      assertEquals("Should have printed the correct error message.",
+                   "Improperly nested compound edits.", e.getMessage());
+    }
+    
+    undoManager.startCompoundEdit();
+    indentLines(0, _doc.getLength());
+    assertEquals("Should have indented correctly.", indented, _doc.getText());
+    
+    
+    
+    _doc.getUndoManager().undo();
+    assertEquals("Should have undone the indenting and inserting.", "", _doc.getText());
+  }

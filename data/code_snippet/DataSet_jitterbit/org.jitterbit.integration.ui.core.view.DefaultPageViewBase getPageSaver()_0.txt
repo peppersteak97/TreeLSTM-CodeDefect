@@ -1,0 +1,9 @@
+    public final synchronized IPageSaver getPageSaver() {
+        if (m_pageSaver == null) {
+            if (m_window != null) {
+                IPageEditor editor = m_window.getPageEditor();
+                m_pageSaver = PageSaverFactory.getFactory().newSaver(editor);
+            }
+        }
+        return m_pageSaver;
+    }

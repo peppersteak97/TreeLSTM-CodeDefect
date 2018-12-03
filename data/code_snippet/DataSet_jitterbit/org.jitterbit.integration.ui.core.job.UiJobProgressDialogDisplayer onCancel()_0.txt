@@ -1,0 +1,4 @@
+    protected void onCancel() {
+        IntegrationUi.getUi().getJobManager().cancelJob(m_jobID);
+        super.onCancel();
+    }

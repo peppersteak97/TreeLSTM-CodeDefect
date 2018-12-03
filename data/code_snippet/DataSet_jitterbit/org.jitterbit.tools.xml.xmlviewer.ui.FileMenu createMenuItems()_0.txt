@@ -1,0 +1,16 @@
+    public void createMenuItems() {
+        add( new JMenuItem(m_openAction) );
+        add( new JMenuItem(m_saveAction) );
+        add( new JMenuItem(m_saveAsAction) );
+        add( new JMenuItem(m_saveAllAction) );
+        addSeparator();
+        add( new JMenuItem(m_closeAllAction) );
+        addSeparator();
+        List<JMenuItem> liRecentFiles = m_openAndSaveManager.getRecentFileMenuItems();
+        if( liRecentFiles != null && !liRecentFiles.isEmpty() ) {
+            for( JMenuItem item : liRecentFiles )
+                add(item);
+            addSeparator();
+        }
+        add( new JMenuItem(m_exitAction) );
+    }

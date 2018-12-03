@@ -1,0 +1,9 @@
+    private JComponent getCenterComponent() {
+        OneColumnPanel col = new OneColumnPanel();
+        col.setWeightX(1.0);
+        col.setInsets(5, 5, 10, 5);
+        for (FileDependencyDisplayer dd : displayers) {
+            col.add(dd);
+        }
+        return ComponentDecorFactory.northBorder(col).getUi();
+    }

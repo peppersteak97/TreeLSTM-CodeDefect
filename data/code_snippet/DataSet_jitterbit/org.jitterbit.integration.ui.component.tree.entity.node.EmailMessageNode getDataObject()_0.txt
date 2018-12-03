@@ -1,0 +1,3 @@
+    public EmailMessage getDataObject() {
+        return (EmailMessage) getKongaObject();
+    }

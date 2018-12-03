@@ -1,0 +1,3 @@
+		if(isSimpleDoc()) {
+			m_textStructure=new SimpleTextStructure(getName(), isFixedField(), lines);
+        }

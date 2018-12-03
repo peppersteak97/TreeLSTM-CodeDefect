@@ -1,0 +1,3 @@
+    public List<EntityDescriptor> getExpandedOnStartUp() {
+        return m_expandedOnStartup;
+    }

@@ -1,0 +1,1 @@
+  public int getMaximumSize() { return _maxSize; }

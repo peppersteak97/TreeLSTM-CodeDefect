@@ -1,0 +1,13 @@
+    private void installTableController() {
+        DefaultComponentController<JTable> ctrl = new DefaultComponentController<JTable>();
+        ctrl.registerAction(KeyUtils.DELETE, m_removeAction);
+        ctrl.registerAction(KeyUtils.ENTER, new AbstractAction() {
+
+            public void actionPerformed(ActionEvent e) {
+                fireActionEvent();
+            }
+        });
+        ctrl.addMouseEventHandler(MouseEvent.MOUSE_CLICKED, getTableMouseClickHandler());
+        ctrl.setPopupMenuRequestHandler(getTablePopupMenuHandler());
+        ctrl.install(m_table);
+    }

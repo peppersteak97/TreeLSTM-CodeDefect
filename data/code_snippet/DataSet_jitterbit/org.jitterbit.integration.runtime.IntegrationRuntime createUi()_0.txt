@@ -1,0 +1,3 @@
+    private void createUi() {
+        IntegrationUi.getUi().initialize();
+    }

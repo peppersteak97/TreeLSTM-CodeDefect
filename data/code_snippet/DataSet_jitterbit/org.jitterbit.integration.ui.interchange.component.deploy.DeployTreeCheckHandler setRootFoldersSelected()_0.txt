@@ -1,0 +1,4 @@
+    private void setRootFoldersSelected() {
+        ICheckBoxNode root = m_tree.getRootNode();
+        root.setSelected(hasSelectedChild(root));
+    }

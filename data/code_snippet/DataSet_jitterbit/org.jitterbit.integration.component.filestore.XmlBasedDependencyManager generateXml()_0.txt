@@ -1,0 +1,9 @@
+    private String generateXml() {
+        XmlStringBuilder builder = new XmlStringBuilder();
+        builder.addElement(ROOT);
+        for (String mainPath : m_links.keySet()) {
+            addFileToXml(mainPath, builder);
+        }
+        builder.closeElement();
+        return builder.getXml();
+    }

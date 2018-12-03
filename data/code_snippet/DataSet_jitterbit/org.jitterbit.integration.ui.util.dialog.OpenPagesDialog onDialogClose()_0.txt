@@ -1,0 +1,4 @@
+    protected void onDialogClose() {
+        m_pageEditor.removePageEditorListener(m_editorListener);
+        super.onDialogClose();
+    }

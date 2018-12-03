@@ -1,0 +1,17 @@
+    private synchronized void retrieveTreeData() {
+        if (isRetrievingInfo()) {
+            return;
+        }
+        int childCount = m_root.getChildCount();
+        if (childCount > 1) {
+            return;
+        }
+        if (childCount == 1 && m_root.getChildAt(0) != m_waitNode) {
+            return;
+        }
+        m_waitNodeUpdater = new Timer(250, new WaitNodeUpdater());
+        m_waitNodeUpdater.setRepeats(true);
+        m_waitNodeUpdater.start();
+        IntegrationUi.getUi().getJobManager().submitForParallellProcessing(
+                        m_nodeRetrieverFactory.create(this));
+    }

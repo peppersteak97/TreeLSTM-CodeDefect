@@ -1,0 +1,6 @@
+    static public EasyDccMessage getKillMain() {
+        EasyDccMessage m = new EasyDccMessage(1);
+        m.setBinary(false);
+        m.setOpCode('K');
+        return m;
+    }

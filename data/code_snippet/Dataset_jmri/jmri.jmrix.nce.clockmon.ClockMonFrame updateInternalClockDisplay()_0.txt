@@ -1,0 +1,27 @@
+    private void updateInternalClockDisplay() {
+        String txt = "";
+        Date now = internalClock.getTime();
+        if (internalClock.getRun()) {
+            txt = rb.getString("TagRunning");
+        } else {
+            txt = rb.getString("TagStopped");
+        }
+        txt = txt + " " + 
+            (now.getHours() / 10) + (now.getHours() - ((now.getHours() / 10) * 10)) + 
+            rb.getString("LabelTimeSep") +
+            (now.getMinutes() / 10) + (now.getMinutes() - ((now.getMinutes() / 10) * 10)) + 
+            rb.getString("LabelTimeSep") +
+            (now.getSeconds() / 10) + (now.getSeconds() - ((now.getSeconds() / 10) * 10));
+        txt = txt + " " + 
+            rb.getString("LabelRatio") + " " + 
+            threeDigits.format(internalClock.getRate()) + rb.getString("LabelToOne");
+        if (clockMode == SYNCMODE_INTERNAL_MASTER) {
+            txt = txt + " " + rb.getString("TagIsInternalMaster");
+            double intTime = getIntTime();
+            double nceTime = getNceTime();
+            double diffTime = nceTime - intTime;
+            txt = txt + " " + rb.getString("ClockError");
+            txt = txt + " " + threeDigits.format(diffTime);
+        }
+        internalDisplayStatus.setText(txt);
+    }

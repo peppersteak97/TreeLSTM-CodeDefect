@@ -1,0 +1,6 @@
+    private synchronized TextPageFactory getTextPageFactory() {
+        if (m_textPageFactory == null) {
+            m_textPageFactory = TextPageFactory.newInstance();
+        }
+        return m_textPageFactory;
+    }

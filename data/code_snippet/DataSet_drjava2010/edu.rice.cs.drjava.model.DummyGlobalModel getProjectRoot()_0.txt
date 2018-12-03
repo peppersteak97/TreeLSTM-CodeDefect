@@ -1,0 +1,3 @@
+  public File getProjectRoot() {
+    throw new UnsupportedOperationException("Tried to call getProjectRoot on a Dummy");
+  }

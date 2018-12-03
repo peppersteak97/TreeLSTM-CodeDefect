@@ -1,0 +1,3 @@
+    public IToolBarManager getVerticalToolBarManager() {
+        return m_verticalToolBarManager;
+    }

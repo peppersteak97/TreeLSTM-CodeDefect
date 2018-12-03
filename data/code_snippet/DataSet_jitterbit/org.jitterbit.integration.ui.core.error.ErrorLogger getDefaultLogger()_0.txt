@@ -1,0 +1,3 @@
+    public static ErrorLogger getDefaultLogger() {
+        return DEFAULT_LOGGER;
+    }

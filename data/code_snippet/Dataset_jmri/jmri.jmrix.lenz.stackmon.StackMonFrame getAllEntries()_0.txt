@@ -1,0 +1,5 @@
+    private void getAllEntries() {
+       stackModel.clearData();
+       _getAll = true;
+       getNextEntry();
+    }

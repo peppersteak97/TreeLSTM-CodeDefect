@@ -1,0 +1,15 @@
+	public NceMessage NceAiuPoll() {
+
+		if (NceMessage.getCommandOptions() <= NceMessage.OPTION_1999)
+			return null;
+		
+		if (NceUSB.getUsbSystem() != NceUSB.USB_SYSTEM_NONE)
+			return null;
+		
+
+		byte[] bl = NceBinaryCommand.accMemoryRead1(MEM_AIU);
+		NceMessage m = NceMessage.createBinaryMessage(bl, REPLY_LEN);
+		EXPECT_REPLY = true;
+		return m;
+
+	}

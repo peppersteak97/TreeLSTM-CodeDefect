@@ -1,0 +1,4 @@
+    static public Class[] classList() {
+        if (classes==null) loadArrays();
+        return classes;
+    }

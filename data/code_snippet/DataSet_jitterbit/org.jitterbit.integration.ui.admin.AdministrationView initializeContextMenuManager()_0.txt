@@ -1,0 +1,4 @@
+    private void initializeContextMenuManager() {
+        m_popupMenuManager = new DefaultPopupMenuManager();
+        m_popupMenuManager.initialize(new AdminPopupMenuInitializer(this));
+    }

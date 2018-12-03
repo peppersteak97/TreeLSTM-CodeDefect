@@ -1,0 +1,7 @@
+	public void enableArithmeticOperators() {
+		enableOperator(new AdditionOperator(m_operations));
+		enableOperator(new SubtractionOperator(m_operations));
+		enableOperator(new MultiplicationOperator(m_operations));
+		enableOperator(new DivisionOperator(m_operations));
+		enableOperator(new ModulusOperator(m_operations));
+	}

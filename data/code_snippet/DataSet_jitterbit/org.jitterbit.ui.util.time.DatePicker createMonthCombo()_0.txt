@@ -1,0 +1,11 @@
+    private void createMonthCombo() {
+        List<String> months = new ArrayList<String>();
+        for (String s : new DateFormatSymbols().getMonths()) {
+            if (s != null && s.trim().length() > 0) {
+                months.add(s);
+            }
+        }
+        m_monthCombo = new JComboBox(months.toArray());
+        m_monthCombo.setSelectedIndex(m_calendar.get(Calendar.MONTH));
+        m_monthCombo.addActionListener(m_daysPanelUpdater);
+    }

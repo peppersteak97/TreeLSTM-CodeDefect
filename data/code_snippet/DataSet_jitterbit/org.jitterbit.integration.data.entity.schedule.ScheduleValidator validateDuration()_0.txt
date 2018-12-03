@@ -1,0 +1,4 @@
+    private void validateDuration() {
+        if (!m_schedule.getDuration().isValid()) {
+        }
+    }

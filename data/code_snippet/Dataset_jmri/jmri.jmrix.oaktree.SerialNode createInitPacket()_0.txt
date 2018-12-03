@@ -1,0 +1,3 @@
+    public AbstractMRMessage createInitPacket() {
+        return null;
+    }

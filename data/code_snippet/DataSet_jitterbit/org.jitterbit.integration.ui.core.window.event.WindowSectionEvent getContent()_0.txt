@@ -1,0 +1,3 @@
+    public IWindowSectionContent getContent() {
+        return m_content;
+    }

@@ -1,0 +1,15 @@
+    private void fireSelectionChanged() {
+        EnumSet<EntityType> currentSelection = getSelection();
+        if (currentSelection.equals(m_previousSelection)) {
+            return;
+        }
+        final EntityTypeSelectionEvent e = new EntityTypeSelectionEvent(this,
+                        m_previousSelection, currentSelection);
+        m_previousSelection = currentSelection;
+        m_selectionListeners.visitAll(new ListenerVisitor<IEntityTypeSelectionListener>() {
+
+            public void accept(IEntityTypeSelectionListener listener) {
+                listener.selectionChanged(e);
+            }
+        });
+    }

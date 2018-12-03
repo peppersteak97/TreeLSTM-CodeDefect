@@ -1,0 +1,4 @@
+  private void upOneFrame() {
+    boolean ok = upOneFrameInternal(true);
+    if (VM.VerifyAssertions) VM._assert(ok, "tried to browse off stack");
+  }

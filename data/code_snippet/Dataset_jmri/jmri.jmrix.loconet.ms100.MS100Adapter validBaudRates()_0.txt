@@ -1,0 +1,3 @@
+    public String[] validBaudRates() {
+        return new String[]{"fixed at 16600 baud"};
+    }

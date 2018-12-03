@@ -1,0 +1,15 @@
+  public int[] getPredecessors() {
+    int[] preds;
+    preds = new int[predcount];
+    if (predcount >= 1) {
+      preds[0] = pred1;
+    }
+    if (predcount > 1) {
+      preds[1] = pred2;
+    }
+    for (int i = 0; i < predcount - 2; i++) {
+      preds[i + 2] = restPredecessors[i];
+    }
+    return preds;
+
+  }

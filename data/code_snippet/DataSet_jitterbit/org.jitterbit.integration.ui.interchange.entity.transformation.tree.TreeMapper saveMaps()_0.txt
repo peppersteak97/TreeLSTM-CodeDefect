@@ -1,0 +1,4 @@
+	public void saveMaps() throws CheckingException {
+        m_Transformation.setMapList(getCurrentMappings());
+        saveDirtyTreeStructures();
+    }

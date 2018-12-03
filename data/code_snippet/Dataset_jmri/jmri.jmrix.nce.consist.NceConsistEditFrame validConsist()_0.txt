@@ -1,0 +1,5 @@
+		if (!validConsist()) {
+			consistSearchPrevious = false;
+			consistSearchNext = false;
+			return cN;
+		}

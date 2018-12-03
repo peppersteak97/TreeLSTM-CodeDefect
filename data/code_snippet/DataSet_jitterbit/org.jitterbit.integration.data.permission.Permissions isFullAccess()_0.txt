@@ -1,0 +1,3 @@
+    public boolean isFullAccess() {
+        return (m_allowed != null && Permission.isFullAccess(m_allowed));
+    }

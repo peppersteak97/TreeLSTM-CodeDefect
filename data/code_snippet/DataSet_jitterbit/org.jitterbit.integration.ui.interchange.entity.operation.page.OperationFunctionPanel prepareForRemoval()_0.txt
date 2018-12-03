@@ -1,0 +1,5 @@
+    void prepareForRemoval() {
+        m_functionChainPanel.prepareForRemoval();
+        m_sourceBox.dispose();
+        m_targetBox.dispose();
+    }

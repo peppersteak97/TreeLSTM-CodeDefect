@@ -1,0 +1,3 @@
+  final void clearOut() {
+    _outEdgeStart = _outEdgeEnd = null;
+  }

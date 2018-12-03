@@ -1,0 +1,19 @@
+    protected void init() {
+	if(log.isDebugEnabled()) log.debug("Init called");
+        float CSSoftwareVersion = XNetTrafficController.instance()
+                                       .getCommandStation()
+                                       .getCommandStationSoftwareVersion();
+        int CSType = XNetTrafficController.instance()
+                                          .getCommandStation()
+                                          .getCommandStationType();
+
+        /* First, we load things that should work on all systems */
+        jmri.InstanceManager.setPowerManager(new jmri.jmrix.lenz.XNetPowerManager());
+        jmri.InstanceManager.setThrottleManager(new jmri.jmrix.lenz.hornbyelite.EliteXNetThrottleManager());
+            
+	if (log.isDebugEnabled()) log.debug("Command Station is Hornby Elite (manually identified).");
+        jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.lenz.hornbyelite.EliteXNetTurnoutManager());
+        jmri.InstanceManager.setProgrammerManager(new jmri.jmrix.lenz.XNetProgrammerManager(jmri.jmrix.lenz.hornbyelite.EliteXNetProgrammer.instance()));
+
+	if(log.isDebugEnabled()) log.debug("XPressNet Initilization Complete");
+    }

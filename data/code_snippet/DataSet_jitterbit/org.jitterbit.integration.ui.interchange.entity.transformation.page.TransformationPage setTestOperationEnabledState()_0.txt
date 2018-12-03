@@ -1,0 +1,5 @@
+    private void setTestOperationEnabledState() {
+        IApplicationAction a = InterchangeActionFactory.TEST_OPERATION.get(getView());
+        Transformation tf = getObject().getDataObject();
+        a.setEnabled(TransformationTestCenter.isOperationTestable(tf));
+    }

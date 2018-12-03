@@ -1,0 +1,7 @@
+  public final RVMMember resolveMember() {
+    if (isFieldReference()) {
+      return this.asFieldReference().resolve();
+    } else {
+      return this.asMethodReference().resolve();
+    }
+  }

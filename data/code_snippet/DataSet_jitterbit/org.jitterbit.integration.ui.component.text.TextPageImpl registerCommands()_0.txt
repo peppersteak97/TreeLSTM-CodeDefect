@@ -1,0 +1,4 @@
+    private void registerCommands() {
+        addCommand(IPageCommand.SAVE, new Saver());
+        addCommand(IPageCommand.SAVE_AS, new SaveAs());
+    }

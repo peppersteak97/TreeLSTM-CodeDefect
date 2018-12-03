@@ -1,0 +1,12 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append(LINE_BREAK);
+        sb.append(getAllSubFolders().size());
+        sb.append(LINE_BREAK);
+        sb.append(getNumberOfSubFoldersRecursively());
+        sb.append(LINE_BREAK);
+        sb.append(getAllItems().size());
+        sb.append(LINE_BREAK);
+        sb.append(getNumberOfItemsRecursively());
+        return sb.toString();
+    }

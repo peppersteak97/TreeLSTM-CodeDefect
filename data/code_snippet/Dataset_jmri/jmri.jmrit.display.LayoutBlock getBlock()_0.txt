@@ -1,0 +1,1 @@
+	public jmri.Block getBlock() {return block;}

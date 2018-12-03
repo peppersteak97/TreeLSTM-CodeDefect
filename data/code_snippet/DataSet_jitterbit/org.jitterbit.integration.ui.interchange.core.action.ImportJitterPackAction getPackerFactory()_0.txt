@@ -1,0 +1,6 @@
+    private JitterPackerUiFactory getPackerFactory() {
+        if (m_packerFactory == null) {
+            m_packerFactory = JitterPackerUiFactory.newInstance();
+        }
+        return m_packerFactory;
+    }

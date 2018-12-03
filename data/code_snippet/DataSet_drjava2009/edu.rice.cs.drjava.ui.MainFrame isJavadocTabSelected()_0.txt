@@ -1,0 +1,3 @@
+  public boolean isJavadocTabSelected() {
+    return _tabbedPane.getSelectedComponent() == _javadocErrorPanel;
+  }

@@ -1,0 +1,15 @@
+  private static ArchitectureSpecific.CodeArray generateSaveVolatilesInstructions() {
+    Assembler asm = new ArchitectureSpecific.Assembler(0);
+
+    for (int i = FIRST_VOLATILE_FPR; i <= LAST_VOLATILE_FPR; ++i) {
+      asm.emitSTFD(i, i << LOG_BYTES_IN_DOUBLE, S1);
+    }
+
+    for (int i = FIRST_VOLATILE_GPR; i <= LAST_VOLATILE_GPR; ++i) {
+      asm.emitSTAddr(i, i << LOG_BYTES_IN_ADDRESS, S1);
+    }
+
+    asm.emitBCLR();
+
+    return asm.makeMachineCode().getInstructions();
+  }

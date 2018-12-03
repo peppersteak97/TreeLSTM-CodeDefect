@@ -1,0 +1,10 @@
+    protected void run() {
+        Transformation tf = getActiveTransformation();
+        if (tf == null) {
+            ApplicationMessageEvent.postErrorMessage(this, "No transformation selected",
+                            new ApplicationMessageEvent.LifeTime(1000L));
+            failed("No transformation selected");
+            return;
+        }
+        getTestCenter().viewSourceFile(tf);
+    }

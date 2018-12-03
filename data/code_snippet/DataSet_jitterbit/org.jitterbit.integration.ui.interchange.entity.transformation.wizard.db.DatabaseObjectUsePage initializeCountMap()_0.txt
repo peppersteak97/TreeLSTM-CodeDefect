@@ -1,0 +1,6 @@
+    private void initializeCountMap() {
+        m_mapItemCount = new HashMap<DatabaseObject, Integer>();
+        for (DatabaseObject item : m_incomingObjects) {
+            m_mapItemCount.put(item, new Integer(1));
+        }
+    }

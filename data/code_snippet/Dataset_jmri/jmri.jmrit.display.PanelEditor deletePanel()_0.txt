@@ -1,0 +1,10 @@
+	public void deletePanel() {
+		int selectedValue = JOptionPane.showOptionDialog(frame,
+				rb.getString("QuestionA")+"\n"+rb.getString("QuestionB"),
+				rb.getString("DeleteVerifyTitle"),JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,null,
+				new Object[]{rb.getString("ButtonYesDelete"),rb.getString("ButtonNoCancel")},
+				rb.getString("ButtonNoCancel"));
+		
+		dispose();
+	}

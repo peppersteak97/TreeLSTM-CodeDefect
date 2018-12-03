@@ -1,0 +1,9 @@
+    public static synchronized void pushBack() {
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                INSTANCE.toBack();
+                INSTANCE.setInFront(false);
+            }
+        });
+    }

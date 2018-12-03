@@ -1,0 +1,17 @@
+  public Enumeration<TypeOperand> getExceptionTypes() {
+    return new Enumeration<TypeOperand>() {
+      private int idx = 0;
+
+      public boolean hasMoreElements() {
+        return idx != exceptionTypes.length;
+      }
+
+      public TypeOperand nextElement() {
+        try {
+          return exceptionTypes[idx++];
+        } catch (ArrayIndexOutOfBoundsException e) {
+          throw new java.util.NoSuchElementException("ExceptionHandlerBasicBlock.getExceptionTypes");
+        }
+      }
+    };
+  }

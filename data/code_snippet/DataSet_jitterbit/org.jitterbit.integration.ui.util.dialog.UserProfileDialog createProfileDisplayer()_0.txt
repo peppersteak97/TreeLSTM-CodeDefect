@@ -1,0 +1,4 @@
+    private void createProfileDisplayer() {
+        m_profilePanel = new UserProfilePanel();
+        ContainerDecor.decorate(m_profilePanel, m_displayArea, PROFILE_PANEL);
+    }

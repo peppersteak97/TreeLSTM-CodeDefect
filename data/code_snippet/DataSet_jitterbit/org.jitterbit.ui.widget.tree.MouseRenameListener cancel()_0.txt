@@ -1,0 +1,8 @@
+	public void cancel() {
+		if (m_timer != null) {
+			m_timer.cancel();
+			m_timer = null;
+		}
+		m_isActive = false;
+		m_currentNode = null;
+	}

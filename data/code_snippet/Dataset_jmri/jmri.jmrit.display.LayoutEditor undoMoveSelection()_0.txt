@@ -1,0 +1,48 @@
+	void undoMoveSelection() {
+		if (canUndoMoveSelection) {
+			for (int i = 0; i<contents.size(); i++) {
+				Component c = (Component)contents.get(i);
+				Point2D upperLeft = c.getLocation();
+				if (undoRect.contains(upperLeft)) {
+					int xNew = (int)(upperLeft.getX()+undoDeltaX);
+					int yNew = (int)(upperLeft.getY()+undoDeltaY);
+					c.setLocation(xNew,yNew);
+				}
+ 			}
+			for (int i = 0; i<turnoutList.size();i++) {
+				LayoutTurnout t = (LayoutTurnout)turnoutList.get(i);
+				Point2D center = t.getCoordsCenter();
+				if (undoRect.contains(center)) {
+					t.setCoordsCenter(new Point2D.Double(center.getX()+undoDeltaX,
+															center.getY()+undoDeltaY));
+				}
+			}
+			for (int i = 0; i<xingList.size();i++) {
+				LevelXing x = (LevelXing)xingList.get(i);
+				Point2D center = x.getCoordsCenter();
+				if (undoRect.contains(center)) {
+					x.setCoordsCenter(new Point2D.Double(center.getX()+undoDeltaX,
+																center.getY()+undoDeltaY));
+				}
+			}
+			for (int i = 0; i<turntableList.size();i++) {
+				LayoutTurntable x = (LayoutTurntable)turntableList.get(i);
+				Point2D center = x.getCoordsCenter();
+				if (undoRect.contains(center)) {
+					x.setCoordsCenter(new Point2D.Double(center.getX()+undoDeltaX,
+																center.getY()+undoDeltaY));
+				}
+			}
+			for (int i = 0; i<pointList.size();i++) {
+				PositionablePoint p = (PositionablePoint)pointList.get(i);
+				Point2D coord = p.getCoords();
+				if (undoRect.contains(coord)) {
+					p.setCoords(new Point2D.Double(coord.getX()+undoDeltaX,
+																coord.getY()+undoDeltaY));
+				}
+			}
+			repaint();
+			canUndoMoveSelection = false;
+		}
+		return;
+	}

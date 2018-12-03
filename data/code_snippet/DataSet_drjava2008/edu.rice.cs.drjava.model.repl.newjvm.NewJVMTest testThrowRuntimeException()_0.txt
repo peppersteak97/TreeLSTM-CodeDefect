@@ -1,0 +1,9 @@
+  public void testThrowRuntimeException() throws Throwable {
+    debug.logStart();
+    _log.log("NewJVMTest.testThrowRuntimeException executing");
+    
+    _jvm.interpret("throw new RuntimeException();");
+    assertTrue("exception message", _jvm.exceptionMsgBuf.startsWith("java.lang.RuntimeException"));
+
+    debug.logEnd();
+  }

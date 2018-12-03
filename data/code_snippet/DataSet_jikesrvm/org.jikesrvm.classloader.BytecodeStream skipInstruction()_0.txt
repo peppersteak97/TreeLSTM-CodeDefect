@@ -1,0 +1,10 @@
+  public final void skipInstruction() {
+    if (VM.VerifyAssertions) VM._assert(bcIndex <= bcLength);
+    int len = JBC_length[opcode] - 1;
+    if (wide) len += len;
+    if (len >= 0) {
+      bcIndex += len;
+    } else {
+      skipSpecialInstruction(opcode);
+    }
+  }

@@ -1,0 +1,3 @@
+  public LiveSetElement getNext() {
+    return next;
+  }

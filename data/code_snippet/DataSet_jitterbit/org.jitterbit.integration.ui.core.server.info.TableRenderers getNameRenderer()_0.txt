@@ -1,0 +1,22 @@
+    public static TableCellRenderer getNameRenderer() {
+        return new DefaultTableCellRenderer() {
+
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(
+                                table, value, isSelected, hasFocus, row, column);
+                if (value instanceof ServerName) {
+                    if (((ServerName) value).isConnected()) {
+                        setIcon(CURRENT_SERVER_ICON);
+                    }
+                    else {
+                        setIcon(PackageResources.Table.SERVER_ICON);
+                    }
+                }
+                else {
+                    setIcon(null);
+                }
+                return this;
+            }
+        };
+    }

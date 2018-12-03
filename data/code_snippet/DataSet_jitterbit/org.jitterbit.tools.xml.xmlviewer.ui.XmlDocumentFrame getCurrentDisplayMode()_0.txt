@@ -1,0 +1,3 @@
+	public int getCurrentDisplayMode() {
+	    return m_currentMode;
+	}

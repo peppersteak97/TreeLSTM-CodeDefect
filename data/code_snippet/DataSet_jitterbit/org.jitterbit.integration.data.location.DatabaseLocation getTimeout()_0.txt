@@ -1,0 +1,8 @@
+    public int getTimeout() {
+        try {
+            return Integer.parseInt(getProperty(TIMEOUT_PROPERTY));
+        }
+        catch (NumberFormatException e) {
+            return DEFAULT_TIMEOUT;
+        }
+    }

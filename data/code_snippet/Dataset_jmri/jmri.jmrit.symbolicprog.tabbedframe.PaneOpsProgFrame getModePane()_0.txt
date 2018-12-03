@@ -1,0 +1,5 @@
+    JPanel getModePane() { 
+        if (modePane == null) 
+            modePane = new JPanel();
+        return modePane;
+    }

@@ -1,0 +1,13 @@
+    public static synchronized void initialize() throws EntityTypeMetaDataXmlException {
+        if (s_instance == null) {
+            try {
+                s_instance = new EntityTypeMetaData();
+                s_instance.loadData();
+                s_initializationLatch.countDown();
+            }
+            catch (EntityTypeMetaDataXmlException ex) {
+                s_instance = null;
+                throw ex;
+            }
+        }
+    }

@@ -1,0 +1,32 @@
+  public void testCompileResetsInteractions() throws BadLocationException, IOException, InterruptedException,
+    EditDocumentException {
+    
+    
+    OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    final File file = new File(_tempDir, "DrJavaTestFoo.java");
+    saveFile(doc, new FileSelector(file));
+    
+    interpret("0");
+    
+    CompileShouldSucceedListener listener = new CompileShouldSucceedListener();
+    _model.setResetAfterCompile(true);
+    _model.addListener(listener);
+     Utilities.invokeLater(new Runnable() { 
+      public void run() { 
+        try { _model.getCompilerModel().compileAll(); } 
+        catch(Exception e) { throw new UnexpectedException(e); }
+      }
+    });
+    listener.waitCompileDone();
+    
+    if (_model.getCompilerModel().getNumErrors() > 0) {
+      fail("compile failed: " + getCompilerErrorString());
+    }
+    listener.waitResetDone();
+    _log.log("reset confirmed");
+    assertCompileErrorsPresent("compile should succeed", false);
+    listener.checkCompileOccurred();
+    
+    _model.removeListener(listener);
+    _log.log("testCompileResetsInteractions complete");
+  }

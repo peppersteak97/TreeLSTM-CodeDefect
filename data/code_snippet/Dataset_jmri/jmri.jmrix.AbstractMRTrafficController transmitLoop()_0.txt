@@ -1,0 +1,106 @@
+    private void transmitLoop() {
+        log.debug("transmitLoop starts");
+        
+        while(true) {
+            AbstractMRMessage m = null;
+            AbstractMRListener l = null;
+            synchronized(selfLock) {
+                if (msgQueue.size()!=0) {
+                    m = (AbstractMRMessage)msgQueue.getFirst();
+                    msgQueue.removeFirst();
+                    l = (AbstractMRListener)listenerQueue.getFirst();
+                    listenerQueue.removeFirst();
+                    mCurrentState = WAITMSGREPLYSTATE;
+                    log.debug("transmit loop has something to do: "+m);
+                }  
+            }
+            if (m!=null) {
+                if (log.isDebugEnabled()) log.debug("Start msg, state ="+mCurrentMode);
+                if (m.getNeededMode()!=mCurrentMode) {
+                    AbstractMRMessage modeMsg;
+                    if (m.getNeededMode() == PROGRAMINGMODE ) {
+                        modeMsg = enterProgMode();
+                        mCurrentState = WAITREPLYINPROGMODESTATE;
+                        log.debug("Enter Programming Mode");
+                    } else { 
+                        modeMsg = enterNormalMode();
+                        mCurrentState = WAITREPLYINNORMMODESTATE;
+                        log.debug("Enter Normal Mode");
+                    }
+                    if(modeMsg!=null) {
+                        forwardToPort(modeMsg, null);
+                        try {
+                            synchronized(xmtRunnable) {
+                                xmtRunnable.wait(modeMsg.getTimeout());
+                            }
+                        } catch (InterruptedException e) { log.error("transmitLoop interrupted"); }
+                        if (mCurrentState != OKSENDMSGSTATE)
+                            handleTimeout(modeMsg);
+                        mCurrentState = WAITMSGREPLYSTATE;
+                    }
+                }
+                forwardToPort(m, l);
+                
+                if (m.replyExpected()) {
+                    try {
+                        synchronized(xmtRunnable) {  
+                        }
+                    } catch (InterruptedException e) { log.error("transmitLoop interrupted"); }
+                    checkReplyInDispatch();
+                    if (mCurrentState == WAITMSGREPLYSTATE) {
+                        handleTimeout(m);
+                    } else {
+                        resetTimeout(m);
+                    }
+                } 
+            } else {
+                if (mCurrentState!=IDLESTATE) log.debug("Setting IDLESTATE");
+                mCurrentState =IDLESTATE;
+                try {
+                    synchronized(xmtRunnable) {
+                        xmtRunnable.wait(mWaitBeforePoll);
+                    }
+                } catch (InterruptedException e) { log.error("transmitLoop interrupted"); }
+                if (mCurrentState!=NOTIFIEDSTATE && mCurrentState!=IDLESTATE)
+                    log.error("left timeout in unexpected state: "+mCurrentState);
+                if (mCurrentState == IDLESTATE) {
+                    if (mCurrentMode == PROGRAMINGMODE && programmerIdle() ) {
+                        log.debug("timeout causes leaving programming mode");
+                        mCurrentState = WAITREPLYINNORMMODESTATE;
+                        AbstractMRMessage msg = enterNormalMode();
+                        if (msg!=null) {
+                            forwardToPort(msg, null);
+                            try {
+                                synchronized(xmtRunnable) {
+                                    xmtRunnable.wait(msg.getTimeout());
+                                }
+                            } catch (InterruptedException e) { log.error("interrupted while leaving programming mode"); }
+                            if (mCurrentState == WAITREPLYINNORMMODESTATE){
+                                handleTimeout (msg);
+                                mCurrentMode = NORMALMODE;
+                            }
+                        }
+                    } else if (mCurrentMode == NORMALMODE) {
+                        AbstractMRMessage msg = pollMessage();
+                        if (msg != null) {
+                            log.debug("Sending poll");
+                            mCurrentState = WAITMSGREPLYSTATE;
+                            forwardToPort(msg, pollReplyHandler());
+                            try {
+                                synchronized(xmtRunnable) {
+                                    xmtRunnable.wait(msg.getTimeout());
+                                }
+                            } catch (InterruptedException e) { log.error("interrupted while waiting poll reply"); }
+                            checkReplyInDispatch();
+                            if (mCurrentState == WAITMSGREPLYSTATE) {
+                                handleTimeout(msg);
+                            } else {
+                                resetTimeout(msg);
+                            }
+                        } else {
+                        }
+                    }
+                }
+            }
+        }   
+    }

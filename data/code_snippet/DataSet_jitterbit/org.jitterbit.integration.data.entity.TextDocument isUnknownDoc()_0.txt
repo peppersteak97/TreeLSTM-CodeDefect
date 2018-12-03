@@ -1,0 +1,3 @@
+	public boolean isUnknownDoc(){
+		return (getDocType() == c_unknown_doc);
+	}

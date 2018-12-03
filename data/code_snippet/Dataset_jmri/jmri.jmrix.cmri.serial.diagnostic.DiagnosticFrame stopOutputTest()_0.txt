@@ -1,0 +1,10 @@
+    protected void stopOutputTest() {
+        if (testRunning && outTest) {
+            outTimer.stop();
+            statusText1.setText("Output Test stopped after "+
+                                    Integer.toString(numIterations)+" Cycles");
+            statusText1.setVisible(true);
+            statusText2.setText("  ");
+            statusText2.setVisible(true);
+        }
+    }

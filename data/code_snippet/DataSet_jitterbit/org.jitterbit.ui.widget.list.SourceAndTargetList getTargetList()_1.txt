@@ -1,0 +1,3 @@
+    public final TitledList getTargetList() {
+        return m_targetList;
+    }

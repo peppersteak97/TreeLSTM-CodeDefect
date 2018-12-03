@@ -1,0 +1,1 @@
+  public boolean getAutoRefreshStatus() { throw new UnsupportedOperationException("Tried to call getAutoRefreshStatus on a Dummy"); }

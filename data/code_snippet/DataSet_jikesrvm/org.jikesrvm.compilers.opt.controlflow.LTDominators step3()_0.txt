@@ -1,0 +1,8 @@
+  private void step3() {
+    for (int i = 2; i <= DFSCounter; i++) {
+      BasicBlock block = vertex[i];
+      if (getDom(block) != vertex[getSemi(block)]) {
+        LTDominatorInfo.getInfo(block).setDominator(getDom(getDom(block)));
+      }
+    }
+  }

@@ -1,0 +1,3 @@
+	protected KongaBubbleDisplayData getDisplayData() {
+		return m_displayData;
+	}

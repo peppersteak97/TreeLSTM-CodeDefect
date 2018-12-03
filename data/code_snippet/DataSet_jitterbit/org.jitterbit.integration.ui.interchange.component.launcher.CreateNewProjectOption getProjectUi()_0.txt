@@ -1,0 +1,12 @@
+    public InterchangeProjectUi getProjectUi() {
+        String projectName = getNewProjectName();
+        File rootDir = new File(getNewProjectLocation(), projectName);
+        try {
+            return InterchangeProjectFactory.createNewProject(projectName, rootDir);
+        }
+        catch (InterchangeProjectFactoryException ex) {
+            ErrorLogger.getDefaultLogger().logAndShow(this, 
+                            PackageResources.Errors.CREATE_PROJECT_FAILED, ex);
+        }
+        return null;
+    }

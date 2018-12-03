@@ -1,0 +1,15 @@
+    private void createUploadPanel() {
+        m_uploadFilePanel = new XsdUploadPanel();
+        m_uploadFilePanel.addFieldChangeListener(new IInputChangeListener() {
+
+            public void inputChanged(InputChangeEvent e) {
+                validateInput();
+            }
+        });
+        m_uploadFilePanel.addFieldActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                m_page.moveNextImpl();
+            }
+        });
+        m_uploadFilePanelCapsule = new JPanel(new GridBagLayout());
+    }

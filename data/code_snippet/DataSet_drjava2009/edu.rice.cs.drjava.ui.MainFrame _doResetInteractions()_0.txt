@@ -1,0 +1,10 @@
+  private void _doResetInteractions() {
+    _tabbedPane.setSelectedIndex(INTERACTIONS_TAB);
+    updateStatusField("Resetting Interactions");
+    new Thread(new Runnable() { 
+      public void run() {
+        _model.resetInteractions(_model.getWorkingDirectory(), true);
+        _closeSystemInAction.setEnabled(true);
+      }
+    }).start();
+  }

@@ -1,0 +1,12 @@
+    private void mapKeyStrokes() {
+        InputMap im = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap am = getRootPane().getActionMap();
+
+        am.put("FindNext", new AbstractAction() { 
+
+            public void actionPerformed(ActionEvent e) {
+                if (m_btnNext.isEnabled())
+                    m_btnNext.doClick();
+            }
+        });
+    }

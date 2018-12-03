@@ -1,0 +1,105 @@
+	public void initComponents() {
+		getContentPane().setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
+
+		JPanel pane0 = new JPanel();
+		pane0.setLayout(new FlowLayout());
+		pane0.add(new JLabel("XPressNet Address: "));
+		pane0.add(addrBox);
+		pane0.add(setAddr);
+		pane0.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
+		getContentPane().add(pane0);
+
+		JPanel pane1 = new JPanel();
+		pane1.setLayout(new FlowLayout());
+		pane1.add(new JLabel("Zero Button Causes: "));
+		pane1.add(zeroEmergencyOff);
+		pane1.add(zeroEmergencyStop);
+		pane1.add(setZero);
+		pane1.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
+		getContentPane().add(pane1);
+
+		JPanel pane2 = new JPanel();
+		pane2.setLayout(new FlowLayout());
+		pane2.add(new JLabel("Momentary Function Durration: "));
+		pane2.add(functionBox);
+		pane2.add(setFunction);
+		pane2.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
+		getContentPane().add(pane2);
+
+		getContentPane().add(xpaReset);
+
+
+		setAddr.setText("Set Address");
+		setAddr.setVisible(true);
+
+		setAddr.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				setAddrActionPerformed(e);
+			}
+		});
+
+        	addrBox.setVisible(true);   
+        	addrBox.setToolTipText("Select the XpressNet address");
+        	for (int i=0; i<validXNetAddresses.length;i++)
+        	{
+           		addrBox.addItem(validXNetAddresses[i]);
+        	}
+        	addrBox.setSelectedIndex(0);
+
+		zeroEmergencyOff.setText("Emergency Off");
+		zeroEmergencyOff.setSelected(true);
+
+		zeroEmergencyOff.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				zeroEmergencyOffActionPerformed(e);
+			}
+		});
+
+		zeroEmergencyStop.setText("Emergency Stop");
+		zeroEmergencyStop.setSelected(false);
+
+		zeroEmergencyStop.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				zeroEmergencyStopActionPerformed(e);
+			}
+		});
+		
+
+		setZero.setText("Set Zero Function");
+
+		setZero.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				setZeroActionPerformed(e);
+			}
+		});
+
+
+		setFunction.setText("Set Durration");
+		setFunction.setVisible(true);
+
+		setFunction.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				setFunctionActionPerformed(e);
+			}
+		});
+        
+        	functionBox.setVisible(true);
+        	functionBox.setToolTipText("Select the durration of momentary Functions");
+        	for (int i=0; i<validTimes.length;i++)
+        	{
+           		functionBox.addItem(validTimes[i]);
+        	}
+        	functionBox.setSelectedIndex(0);
+
+		xpaReset.setText("Reset XPA");
+		xpaReset.setVisible(true);
+
+		xpaReset.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				xpaResetActionPerformed(e);
+			}
+		});
+		
+
+		pack();
+	}

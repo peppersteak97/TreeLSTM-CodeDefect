@@ -1,0 +1,23 @@
+    private void buildActiveAIUs() {
+    	activeAIUMax = 0;
+    	for (int a=MINAIU; a<=MAXAIU; ++a) {
+    		if (aiuArray[a] != null) {
+    			activeAIUs[activeAIUMax++] = a;
+    		}
+    	}
+    	lastMessageReceived = Long.MIN_VALUE;
+    	if (activeAIUMax>0) {
+    		if (pollThread==null) {
+    			pollThread = new Thread(new Runnable()
+    					{ public void run() { pollManager(); }});
+    			pollThread.setName("NCE Sensor Poll");
+    			pollThread.start();
+    		} else {
+    			synchronized (this) {
+    				if (awaitingDelay) {		
+    					notify();
+    				}
+    			}
+    		}
+    	}
+    }

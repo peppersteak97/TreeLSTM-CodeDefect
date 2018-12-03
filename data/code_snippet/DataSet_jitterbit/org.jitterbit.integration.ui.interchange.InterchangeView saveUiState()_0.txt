@@ -1,0 +1,3 @@
+    public void saveUiState() {
+        m_uiState.saveState(m_dataModelUi);
+    }

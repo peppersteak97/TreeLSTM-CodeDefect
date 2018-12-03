@@ -1,0 +1,8 @@
+  public static synchronized CompiledMethod createHardwareTrapCompiledMethod() {
+    int id = currentCompiledMethodId + 1;
+    ensureCapacity(id);
+    currentCompiledMethodId++;
+    CompiledMethod cm = new HardwareTrapCompiledMethod(id, null);
+    setCompiledMethod(id, cm);
+    return cm;
+  }

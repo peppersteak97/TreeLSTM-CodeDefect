@@ -1,0 +1,3 @@
+    public IMappingTreeStructure getBuiltStructure() {
+        return new StructureImpl(m_lines);
+    }

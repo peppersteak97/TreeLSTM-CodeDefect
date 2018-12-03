@@ -1,0 +1,3 @@
+    protected void mainObjectDeleted() {
+        super.mainObjectDeleted();
+    }

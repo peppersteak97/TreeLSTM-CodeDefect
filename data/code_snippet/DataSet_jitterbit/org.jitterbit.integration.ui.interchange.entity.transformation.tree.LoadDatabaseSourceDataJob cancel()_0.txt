@@ -1,0 +1,8 @@
+    public boolean cancel() {
+        boolean b = super.cancel();
+        if (b && !m_cancelHasBeenHandled) {
+            setStatus(Resources.UiJobStrings.CANCELLED);
+            cancelled();
+        }
+        return b;
+    }

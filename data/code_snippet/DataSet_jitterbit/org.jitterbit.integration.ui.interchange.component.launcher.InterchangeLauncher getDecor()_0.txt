@@ -1,0 +1,3 @@
+    IUiDecor getDecor() {
+    	return m_decor;
+    }

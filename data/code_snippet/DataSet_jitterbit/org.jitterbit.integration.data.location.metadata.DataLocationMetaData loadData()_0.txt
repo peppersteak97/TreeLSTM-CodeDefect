@@ -1,0 +1,4 @@
+    private void loadData() throws DataLocationMetaDataXmlException {
+        m_dataLoader = new DataLocationMetaDataLoader();
+        m_dataLoader.load();
+    }

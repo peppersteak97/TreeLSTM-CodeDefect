@@ -1,0 +1,10 @@
+    void addClock(){
+        AnalogClock2Display l = new AnalogClock2Display(this);
+        l.setOpaque(false);
+        l.update();
+        l.setDisplayLevel(CLOCK);
+        setNextLocation(l);
+        putClock(l);
+        l.setPositionable(true);
+        moveToFront(l);
+    }

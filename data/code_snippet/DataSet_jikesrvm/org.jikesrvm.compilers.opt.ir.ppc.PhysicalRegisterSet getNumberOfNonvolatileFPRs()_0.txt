@@ -1,0 +1,3 @@
+  public static int getNumberOfNonvolatileFPRs() {
+    return NUM_NONVOLATILE_FPRS;
+  }

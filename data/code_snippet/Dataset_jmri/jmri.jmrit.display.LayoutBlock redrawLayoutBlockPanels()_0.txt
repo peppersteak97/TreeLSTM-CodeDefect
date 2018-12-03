@@ -1,0 +1,7 @@
+	public void redrawLayoutBlockPanels() {
+		if (panels.size()>0) {
+			for (int i=0;i<panels.size();i++) {
+				((LayoutEditor)panels.get(i)).redrawPanel();
+			}
+		}
+	}

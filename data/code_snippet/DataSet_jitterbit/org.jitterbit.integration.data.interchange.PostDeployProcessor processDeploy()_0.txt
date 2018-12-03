@@ -1,0 +1,19 @@
+    private void processDeploy() throws InterchangeSavingException {
+        
+        setServerPropertiesOnProject(m_currentProject.getProject(), m_serverInfo);
+        try {
+            processProjectRename();
+        }
+        catch (IllegalNameException e) {
+            e.printStackTrace();
+        }
+        
+        IPostDeployProcessingManager mgr = createManager(m_serverInfo.getGuid());
+        for (RootFolder f : m_currentProject.getProject().getAllRootFolders()) {
+            postDeployProcessingImpl(f, mgr);
+        }
+        deleteCurrentProjectFiles();
+        m_manager.getPermissionFileManager().clearDirtyItems();
+        updateProject();
+        m_currentProject.saveToDisk();
+    }

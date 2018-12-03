@@ -1,0 +1,3 @@
+    public KongaTree getObject() {
+        return m_treePanel.getTree();
+    }

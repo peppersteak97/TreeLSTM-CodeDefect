@@ -1,0 +1,11 @@
+    private static void customizeWebServiceCalls() throws IntrospectionException {
+        BeanInfo info = Introspector.getBeanInfo(WebServiceCallId.class);
+        BeanDescriptor desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(WebServiceCall.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(CallRestrictions.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(WsdlFile.class);
+        desc = info.getBeanDescriptor();
+
+    }

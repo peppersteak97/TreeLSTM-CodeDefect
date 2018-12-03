@@ -1,0 +1,3 @@
+  private boolean _getAutoRefreshStatus() {
+    return _model.getAutoRefreshStatus();
+  }

@@ -1,0 +1,12 @@
+    JComponent newTree() {
+        topNode = new DefaultMutableTreeNode("file");
+        tree = new JTree(topNode);
+        tree.setMinimumSize(new Dimension(250,600));
+        tree.setPreferredSize(new Dimension(250,600));
+        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);        
+
+        tree.addTreeSelectionListener(this);
+        
+        JScrollPane treeView = new JScrollPane(tree);
+        return treeView;
+    }

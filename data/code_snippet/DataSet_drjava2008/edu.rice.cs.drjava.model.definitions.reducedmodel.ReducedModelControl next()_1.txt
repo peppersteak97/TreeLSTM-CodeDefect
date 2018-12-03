@@ -1,0 +1,10 @@
+  void next() {
+    if (_rmc._cursor.atStart()) {
+      _rmc.next();
+      _rmb.next();
+      return;
+    }
+    int size = getSize(_rmb.current(), _rmc.current());
+    _rmc.move(size - _offset);
+    _rmb.move(size - _offset);
+  }

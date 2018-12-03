@@ -1,0 +1,3 @@
+  protected void setFrameRequired() {
+    frameRequired = true;
+  }

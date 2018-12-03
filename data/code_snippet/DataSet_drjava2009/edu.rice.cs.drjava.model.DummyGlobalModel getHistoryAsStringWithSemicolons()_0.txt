@@ -1,0 +1,3 @@
+  public String getHistoryAsStringWithSemicolons() {
+    throw new UnsupportedOperationException("Tried to call getHistoryAsStringWithSemicolons on a Dummy");
+  }

@@ -1,0 +1,5 @@
+  public boolean mayBeVolatile() {
+    if (!isFieldAccess()) return false;
+    RVMField f = fieldRef.peekResolvedField();
+    return f == null || f.isVolatile();
+  }

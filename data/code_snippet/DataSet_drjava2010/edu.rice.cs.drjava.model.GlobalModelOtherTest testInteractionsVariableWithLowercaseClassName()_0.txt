@@ -1,0 +1,12 @@
+  public void testInteractionsVariableWithLowercaseClassName() throws BadLocationException, EditDocumentException,
+    IOException, InterruptedException {
+    debug.logStart();
+    
+    OpenDefinitionsDocument doc1 = setupDocument("public class DrJavaTestClass {}");
+    File file1 = makeCanonical(new File(_tempDir, "DrJavaTestClass.java"));
+    doCompile(doc1, file1);
+    
+    assertEquals("interactions result", "", interpret("Object drJavaTestClass = new DrJavaTestClass();"));
+    _log.log("testInteractionsVariableWithLowercaseClassName() completed");
+    debug.logEnd();
+  }

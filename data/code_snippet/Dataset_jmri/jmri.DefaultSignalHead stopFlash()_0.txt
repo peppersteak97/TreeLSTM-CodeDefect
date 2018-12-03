@@ -1,0 +1,4 @@
+    protected void stopFlash() {
+        if (timer!=null) timer.stop();
+        mFlashOn = true;
+    }

@@ -1,0 +1,8 @@
+    private void createComponents() {
+        m_downloadProcess = new DownloadUserProfileJob(this);
+        CardLayout cl = new CardLayout();
+        m_displayArea = new JPanel(cl);
+        createDownloadDisplayer();
+        createProfileDisplayer();
+        cl.show(m_displayArea, DOWNLOAD_PROCESS_PANEL);
+    }

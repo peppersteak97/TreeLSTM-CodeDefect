@@ -1,0 +1,3 @@
+  public int getNumValues() {
+    return _choices.size();
+  }

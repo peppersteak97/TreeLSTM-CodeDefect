@@ -1,0 +1,8 @@
+    protected void newVarButtonPerformed()  {
+        String name = newVarName.getText();
+        int CV = Integer.valueOf(newVarCv.getText()).intValue();
+        String mask = newVarMask.getText();
+
+        variableModel.newDecVariableValue(name, CV, mask, false, false, false, false);
+        variableModel.configDone();
+    }

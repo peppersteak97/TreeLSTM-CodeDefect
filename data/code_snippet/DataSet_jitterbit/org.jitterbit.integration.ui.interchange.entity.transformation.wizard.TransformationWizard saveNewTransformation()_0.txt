@@ -1,0 +1,13 @@
+    private void saveNewTransformation() {
+        try {
+            IProjectPersistor persistor = m_view.getProjectPersistor();
+            persistor.saveIntegrationEntity(m_newTransformation);
+            fireWizardCompleted(m_newTransformation);
+            dispose();
+        }
+        catch (InterchangeSavingException ex) {
+            m_newTransformation.delete();
+            fireWizardFailed(ex);
+            dispose();
+        }
+    }

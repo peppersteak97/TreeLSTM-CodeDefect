@@ -1,0 +1,6 @@
+    private void layoutComponents() {
+        setLayout(new BorderLayout());
+        add(createNamePanel(), BorderLayout.NORTH);
+        add(m_treeMapper, BorderLayout.CENTER);
+        setOpaque(false);
+    }

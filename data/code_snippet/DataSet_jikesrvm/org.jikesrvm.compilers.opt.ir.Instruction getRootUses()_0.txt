@@ -1,0 +1,3 @@
+  public OperandEnumeration getRootUses() {
+    return new ROE(this, getNumberOfPureDefs(), getNumberOfOperands() - 1);
+  }

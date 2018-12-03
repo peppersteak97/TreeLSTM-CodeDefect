@@ -1,0 +1,10 @@
+    private void onShow() {
+        if (m_windowIsShowing) {
+            return;
+        }
+        m_popupWindow = createPopupWindow();
+        m_popupWindow.addWindowListener(m_popupWindowListener);
+
+        m_popupWindow.setLocation(calculatePopupPosition());
+        m_popupWindow.setVisible(true);
+    }

@@ -1,0 +1,13 @@
+  public void testEmptyInput() throws IOException {
+    InputStreamRedirector isr = new InputStreamRedirector() {
+      protected String _getInput() {
+        return "";
+      }
+    };
+    try {
+      isr.read();
+      fail("Should have thrown IOException on empty input!");
+    }
+    catch (IOException ioe) {
+    }
+  }

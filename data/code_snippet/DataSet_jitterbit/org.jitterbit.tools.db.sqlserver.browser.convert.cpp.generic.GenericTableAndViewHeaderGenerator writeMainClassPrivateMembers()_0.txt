@@ -1,0 +1,5 @@
+    private void writeMainClassPrivateMembers() {
+        addLine();
+        addLine("\tstd::string m_stUpdateFilter;");
+        addLine();
+    }

@@ -1,0 +1,3 @@
+    public DataStructureType getSourceStructureType() {
+        return m_ui.getSourceStructureType();
+    }

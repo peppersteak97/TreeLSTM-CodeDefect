@@ -1,0 +1,8 @@
+    private XsdFileStore getFileStore() {
+        if (m_fileStore == null) {
+            IManagedProject project = getManagedProject();
+            IFileStore fs = project.getFileStore();
+            m_fileStore = new XsdFileStore(fs);
+        }
+        return m_fileStore;
+    }

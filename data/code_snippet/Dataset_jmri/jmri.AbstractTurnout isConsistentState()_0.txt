@@ -1,0 +1,4 @@
+	public boolean isConsistentState() {
+		return _commandedState == _knownState
+				&& (_commandedState == CLOSED || _commandedState == THROWN);
+	}

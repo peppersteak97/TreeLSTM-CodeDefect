@@ -1,0 +1,5 @@
+    private void writeIsEOFImpl() {
+        addLine("\tbool IsEOF() {");
+        addLine("\t\treturn m_dtlRecSet.IsEOF();");
+        addLine("\t}");
+    }

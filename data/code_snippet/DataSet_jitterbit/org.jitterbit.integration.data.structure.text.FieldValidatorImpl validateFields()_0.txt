@@ -1,0 +1,13 @@
+    private Collection<IValidationIssue> validateFields() {
+        Set<String> usedNames = new HashSet<String>();
+        Set<String> duplicateNames = new HashSet<String>();
+        List<String> invalidNames = new ArrayList<String>();
+        List<Integer> missingNames = new ArrayList<Integer>();
+        collectProblems(usedNames, duplicateNames, invalidNames, missingNames);
+
+        List<IValidationIssue> issues = new ArrayList<IValidationIssue>();
+        if (!duplicateNames.isEmpty() || !invalidNames.isEmpty() || !missingNames.isEmpty()) {
+            issues.addAll(getIssues(duplicateNames, invalidNames, missingNames));
+        }
+        return issues;
+    }

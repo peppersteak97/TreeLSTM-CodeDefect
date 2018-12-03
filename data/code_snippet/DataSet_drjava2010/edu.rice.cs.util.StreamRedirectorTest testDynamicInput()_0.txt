@@ -1,0 +1,13 @@
+  public void testDynamicInput() throws IOException {
+    InputStreamRedirector isr = new InputStreamRedirector() {
+      int x = -1;
+      protected String _getInput() {
+        x++;
+        return x + "\n";
+      }
+    };
+    BufferedReader br = new BufferedReader(new InputStreamReader(isr));
+    assertEquals("First read", "0", br.readLine());
+    assertEquals("Second read", "1", br.readLine());
+    assertEquals("Third read", "2", br.readLine());
+  }

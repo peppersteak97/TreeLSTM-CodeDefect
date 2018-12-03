@@ -1,0 +1,3 @@
+    public static BlockArrowRouteFactory getInstance() {
+        return s_instance;
+    }

@@ -1,0 +1,24 @@
+  public void translateCMPL() {
+    switch (value) {
+      case EQUAL:
+        value = CMPL_EQUAL;
+        break;
+      case NOT_EQUAL:
+        value = CMPL_NOT_EQUAL;
+        break;
+      case LESS:
+        value = CMPL_LESS;
+        break;
+      case GREATER_EQUAL:
+        value = CMPL_GREATER_EQUAL;
+        break;
+      case GREATER:
+        value = CMPL_GREATER;
+        break;
+      case LESS_EQUAL:
+        value = CMPL_LESS_EQUAL;
+        break;
+      default:
+        throw new OptimizingCompilerException("invalid condition " + this);
+    }
+  }

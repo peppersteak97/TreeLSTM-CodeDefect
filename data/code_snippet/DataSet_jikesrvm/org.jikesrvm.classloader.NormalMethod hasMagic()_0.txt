@@ -1,0 +1,3 @@
+  public boolean hasMagic() {
+    return (summaryFlags & HAS_MAGIC) != 0;
+  }

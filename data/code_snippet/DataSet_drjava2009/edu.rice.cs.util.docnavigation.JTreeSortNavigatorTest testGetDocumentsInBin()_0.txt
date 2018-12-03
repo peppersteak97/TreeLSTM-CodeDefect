@@ -1,0 +1,35 @@
+  public void testGetDocumentsInBin() {
+    Iterator<DummyINavigatorItem> items = tree.getDocumentsInBin(SOURCE_BIN_NAME).iterator();
+    DummyINavigatorItem d;
+    assertTrue(SOURCE_BIN_NAME + " bin should not have 0 items", items.hasNext());
+    d = items.next();
+    assertEquals("Wrong item 1", i1, d);
+    assertTrue(SOURCE_BIN_NAME + " bin should not have 1 item", items.hasNext());
+    d = items.next();
+    assertEquals("Wrong item 2", i2, d);
+    assertTrue(SOURCE_BIN_NAME + " bin should not have 2 items", items.hasNext());
+    d = items.next();
+    assertEquals("Wrong item 3", i3, d);
+    assertTrue(SOURCE_BIN_NAME + " bin should not have 3 items", items.hasNext());
+    d = items.next();
+    assertEquals("Wrong item 4", i4, d);
+    assertFalse(SOURCE_BIN_NAME + " bin should not have 4 items", items.hasNext());
+    
+    items = tree.getDocumentsInBin(EXTERNAL_BIN_NAME).iterator();
+    assertTrue(EXTERNAL_BIN_NAME + " bin should not have 0 items", items.hasNext());
+    d = items.next();
+    assertEquals("Wrong item 1", auxi1, d);
+    assertTrue(EXTERNAL_BIN_NAME + " bin should not have 1 item", items.hasNext());
+    d = items.next();
+    assertEquals("Wrong item 2", auxi2, d);
+    assertTrue(EXTERNAL_BIN_NAME + " bin should not have 2 items", items.hasNext());
+    d = items.next();
+    assertEquals("Wrong item 3", auxi3, d);
+    assertTrue(EXTERNAL_BIN_NAME + " bin should not have 3 items", items.hasNext());
+    d = items.next();
+    assertEquals("Wrong item 4", auxi4, d);
+    assertTrue(EXTERNAL_BIN_NAME + " bin should not have 4 items", items.hasNext());
+    d = items.next();
+    assertEquals("Wrong item 5", auxi5, d);
+    assertFalse(EXTERNAL_BIN_NAME + " bin should not have 5 items", items.hasNext());
+  }

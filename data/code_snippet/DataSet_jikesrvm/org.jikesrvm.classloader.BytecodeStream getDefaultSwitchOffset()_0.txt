@@ -1,0 +1,6 @@
+  public final int getDefaultSwitchOffset() {
+    if (VM.VerifyAssertions) {
+      VM._assert(opcode == JBC_tableswitch || opcode == JBC_lookupswitch);
+    }
+    return readSignedInt();
+  }

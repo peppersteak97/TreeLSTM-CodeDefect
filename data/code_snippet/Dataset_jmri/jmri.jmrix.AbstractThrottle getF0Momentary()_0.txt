@@ -1,0 +1,3 @@
+    public boolean getF0Momentary() {
+        return f0Momentary;
+    }

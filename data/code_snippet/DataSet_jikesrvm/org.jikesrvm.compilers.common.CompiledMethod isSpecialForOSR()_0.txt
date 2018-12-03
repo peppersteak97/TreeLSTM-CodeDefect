@@ -1,0 +1,3 @@
+  public boolean isSpecialForOSR() {
+    return (flags & SPECIAL_FOR_OSR) != 0;
+  }

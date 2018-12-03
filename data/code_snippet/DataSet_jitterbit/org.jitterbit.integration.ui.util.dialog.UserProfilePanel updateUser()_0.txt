@@ -1,0 +1,9 @@
+    void updateUser() throws IllegalNameException {
+        if (m_user == null) {
+            return;
+        }
+        m_user.setFirstName(m_firstNameField.getText());
+        m_user.setLastName(m_lastNameField.getText());
+        m_user.setDescription(m_descriptionArea.getText());
+        m_user.setEmail(m_emailField.getText());
+    }

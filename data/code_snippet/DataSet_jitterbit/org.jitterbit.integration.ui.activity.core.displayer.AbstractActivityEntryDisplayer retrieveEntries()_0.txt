@@ -1,0 +1,1 @@
+     * entries, that is done by an explicit call to {@link #retrieveEntries()}.

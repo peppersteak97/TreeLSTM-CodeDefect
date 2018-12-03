@@ -1,0 +1,10 @@
+    private void executeImpl() {
+        ICallbackResult callback = new PackerCallback();
+        if (checkFile()) {
+            IJitterPackerUi packerUi = getPackerFactory().create();
+            packerUi.pack(m_exportUi, callback);
+        }
+        else {
+            callback.cancelled(null);
+        }
+    }

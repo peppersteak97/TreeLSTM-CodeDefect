@@ -1,0 +1,13 @@
+    public void setRoute() {
+        if ((mNumOutputTurnouts>0) 
+                || (mNumOutputSensors>0)
+                || (soundFilename != null)
+                || (scriptFilename != null)
+            ) {
+			if (!busy) {
+				setRouteBusy();
+				SetRouteThread thread = new SetRouteThread(this);
+				thread.start();
+			}
+        }
+    }

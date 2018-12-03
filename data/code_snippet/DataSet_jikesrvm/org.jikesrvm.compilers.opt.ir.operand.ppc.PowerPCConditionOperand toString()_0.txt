@@ -1,0 +1,43 @@
+  public String toString() {
+    String result = "ppc ";
+    if ((value & 0x1C0) == 0) {
+      result = result + "--ctr!=0 && ";
+    }
+    if ((value & 0x1C0) == 0x40) {
+      result = result + "--ctr==0 && ";
+    }
+    String temp = null;
+    if ((value & 0x300) == 0x100) {             
+      switch (value & 0x3) {
+        case 0:
+          temp = "<";
+          break;
+        case 1:
+          temp = ">";
+          break;
+        case 2:
+          temp = "==";
+          break;
+        case 3:
+          temp = "overflow";
+          break;
+      }
+    }
+    if ((value & 0x300) == 0x000) {             
+      switch (value & 0x3) {
+        case 0:
+          temp = ">=";
+          break;
+        case 1:
+          temp = "<=";
+          break;
+        case 2:
+          temp = "!=";
+          break;
+        case 3:
+          temp = "not_overflow";
+          break;
+      }
+    }
+    return result + temp;
+  }

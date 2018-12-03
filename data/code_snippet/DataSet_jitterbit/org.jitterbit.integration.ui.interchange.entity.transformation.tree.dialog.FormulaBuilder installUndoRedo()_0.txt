@@ -1,0 +1,11 @@
+    private void installUndoRedo() {
+        if (m_undoRedoController != null) {
+            m_undoRedoController.dispose();
+        }
+        m_undoRedoController = TextUndoRedoControllerFactory.getFactory().newController(
+                        (JComponent) getContentPane());
+        m_undoActionDecorator = new UndoRedoActionDecorator(m_buttonUndo);
+        m_undoRedoController.decorateUndoAction(m_undoActionDecorator);
+        m_redoActionDecorator = new UndoRedoActionDecorator(m_buttonRedo);
+        m_undoRedoController.decorateRedoAction(m_redoActionDecorator);
+    }

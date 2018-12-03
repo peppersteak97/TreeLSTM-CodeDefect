@@ -1,0 +1,4 @@
+    public void dispose() {
+        LnTrafficController.instance().removeLocoNetListener(~0, this);
+        super.dispose();
+    }

@@ -1,0 +1,9 @@
+  public void testInterpretJavaSingleQuotedArgs() {
+    _log.log("testInterpretJavaSingleQuotedArgs started");
+    _assertMainTransformation("java Foo 'asdf'", "Foo.main(new String[]{\"asdf\"});");
+    
+    _assertMainTransformation("java Foo 'a b c'", "Foo.main(new String[]{\"a b c\"});");
+    
+    _assertMainTransformation("java Foo 'a b'c", "Foo.main(new String[]{\"a bc\"});");
+     _log.log("testInterpretJavaSingleQuotedArgs ended");
+  }

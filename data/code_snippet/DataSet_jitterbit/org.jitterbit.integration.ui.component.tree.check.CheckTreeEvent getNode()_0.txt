@@ -1,0 +1,3 @@
+    public ICheckBoxNode getNode() {
+        return m_node;
+    }

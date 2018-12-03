@@ -1,0 +1,3 @@
+  public boolean hasSwitch() {
+    return (summaryFlags & HAS_SWITCH) != 0;
+  }

@@ -1,0 +1,14 @@
+        f = new BeanTableFrame(m, helpTarget()){
+            /**
+             * Include an "add" button
+             */
+            void extras() {
+                JButton addButton = new JButton(this.rb.getString("ButtonAdd"));
+                addToBottomBox(addButton);
+                addButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        addPressed(e);
+                    }
+                });
+            }
+        };

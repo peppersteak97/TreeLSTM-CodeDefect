@@ -1,0 +1,4 @@
+    public boolean getIsForward()
+    {
+        return isForward;
+    }

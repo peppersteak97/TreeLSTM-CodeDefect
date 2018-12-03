@@ -1,0 +1,3 @@
+    public List<ConversionError> getErrors() {
+        return new ArrayList<ConversionError>(m_liErrors);
+    }

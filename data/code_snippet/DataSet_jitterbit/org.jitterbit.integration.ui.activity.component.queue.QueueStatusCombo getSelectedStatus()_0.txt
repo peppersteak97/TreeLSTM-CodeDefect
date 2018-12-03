@@ -1,0 +1,4 @@
+    public QueueStatus getSelectedStatus() {
+        Object o = m_combo.getSelectedItem();
+        return (o instanceof StatusItem) ? ((StatusItem) o).m_status : null;
+    }

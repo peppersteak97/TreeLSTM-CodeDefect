@@ -1,0 +1,3 @@
+  public DefaultInteractionsModel getInteractionsModel() {
+    throw new UnsupportedOperationException("Tried to call getInteractionsModel on a Dummy");
+  }

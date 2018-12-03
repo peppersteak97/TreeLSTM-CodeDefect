@@ -1,0 +1,6 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 37 * hash + ((m_allowed == null) ? 0 : m_allowed.hashCode());
+        hash = 37 * hash + ((m_denied == null) ? 0 : m_denied.hashCode());
+        return hash;
+    }

@@ -1,0 +1,3 @@
+	public Set<KongaObject> keySet() {
+		return m_map.keySet();
+	}

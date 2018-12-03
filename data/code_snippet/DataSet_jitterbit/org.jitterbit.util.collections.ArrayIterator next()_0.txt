@@ -1,0 +1,6 @@
+    public T next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+        return m_items[m_currentIndex++];
+    }

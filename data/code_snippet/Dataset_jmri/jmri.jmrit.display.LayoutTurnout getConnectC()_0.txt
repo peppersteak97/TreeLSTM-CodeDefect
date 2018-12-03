@@ -1,0 +1,1 @@
+	public Object getConnectC() {return connectC;}

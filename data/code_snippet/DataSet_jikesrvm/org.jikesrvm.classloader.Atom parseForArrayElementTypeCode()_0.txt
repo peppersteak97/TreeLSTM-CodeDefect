@@ -1,0 +1,7 @@
+  public byte parseForArrayElementTypeCode() {
+    if (VM.VerifyAssertions) {
+      VM._assert(val.length > 1, "An array descriptor has at least two characters");
+      VM._assert(val[0] == '[', "An array descriptor must start with '['");
+    }
+    return val[1];
+  }

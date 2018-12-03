@@ -1,0 +1,3 @@
+	public void synchronizeDisplayData() {
+		m_displayData.setDisplayData(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+	}

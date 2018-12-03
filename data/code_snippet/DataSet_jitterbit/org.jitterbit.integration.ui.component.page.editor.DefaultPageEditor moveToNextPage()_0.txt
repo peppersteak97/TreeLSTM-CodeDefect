@@ -1,0 +1,4 @@
+    public void moveToNextPage() {
+        activate();
+        m_navigationManager.switchToNextPage();
+    }

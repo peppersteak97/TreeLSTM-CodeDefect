@@ -1,0 +1,7 @@
+    public boolean sortChildren() {
+        if (getChildCount() >= 2) {
+            Collections.sort(super.children, getNodeComparator());
+            return true;
+        }
+        return false;
+    }

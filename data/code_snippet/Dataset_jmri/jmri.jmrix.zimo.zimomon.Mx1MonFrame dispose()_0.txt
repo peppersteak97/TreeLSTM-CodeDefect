@@ -1,0 +1,9 @@
+	public void dispose() {
+
+
+		Mx1TrafficController.instance().removeMx1Listener(~0,this);
+
+
+		super.dispose();
+
+	}

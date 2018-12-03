@@ -1,0 +1,4 @@
+    protected IPopupMenuItem createItem() {
+        Action a = InterchangeActionFactory.RUN_OPERATION.get(m_view);
+        return new Item(a);
+    }

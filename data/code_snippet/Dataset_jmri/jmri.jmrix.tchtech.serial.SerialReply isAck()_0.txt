@@ -1,0 +1,1 @@
+    public boolean isAck()  { return getElement(1)==0x2E;} //R for RX Ackn

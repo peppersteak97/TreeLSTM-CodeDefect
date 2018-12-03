@@ -1,0 +1,12 @@
+  public void tearDown() throws Exception {
+    _log.log("Tearing down " + this);
+    _model.dispose();
+
+    /*boolean ret =*/ IOUtil.deleteOnExitRecursively(_tempDir);
+
+    _tempDir = null;
+    _model = null;
+
+    super.tearDown();
+    _log.log("Completed tear down of " + this);
+  }

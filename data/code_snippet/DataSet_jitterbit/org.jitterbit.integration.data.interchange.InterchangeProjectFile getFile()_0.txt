@@ -1,0 +1,3 @@
+    public File getFile() {
+        return new File(m_parentFolder, m_projectName + FILE_EXTENSION);
+    }

@@ -1,0 +1,5 @@
+    static public LogixManager logixManagerInstance()  {
+        if (instance().logixManager != null) return instance().logixManager;
+        instance().logixManager = new DefaultLogixManager();
+        return instance().logixManager;
+    }

@@ -1,0 +1,6 @@
+    private void createMainPanel() {
+        setMainPanel(TransformationWizard.getUtils().createPageMainPanel(
+                getMainCaption(),
+                getSubCaption(),
+                createInputDisplay()));
+    }

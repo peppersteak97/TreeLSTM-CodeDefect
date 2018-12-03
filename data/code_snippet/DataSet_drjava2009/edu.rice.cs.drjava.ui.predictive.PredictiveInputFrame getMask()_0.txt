@@ -1,0 +1,3 @@
+  public String getMask() {
+    return _textField.getText();
+  }

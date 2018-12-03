@@ -1,0 +1,1 @@
+	public int getInterval() { return interval; };

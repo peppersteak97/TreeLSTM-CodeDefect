@@ -1,0 +1,11 @@
+  public int getNumberOfDefs() {
+    if (operator.hasVarDefs()) {
+      int numOps = operator.getNumberOfFixedPureDefs();
+      for (; numOps < ops.length; numOps++) {
+        if (ops[numOps] == null) break;
+      }
+      return numOps;
+    } else {
+      return operator.getNumberOfDefs();
+    }
+  }

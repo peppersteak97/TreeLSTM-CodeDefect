@@ -1,0 +1,1 @@
+  public TokenList.Iterator makeCopyCursor() { return _cursor.copy(); }

@@ -1,0 +1,16 @@
+    JMenu makeFontColorMenu() {
+        JMenu colorMenu = new JMenu("Font color");
+        colorButtonGroup = new ButtonGroup();
+        addColorMenuEntry(colorMenu, "Black", Color.black);
+        addColorMenuEntry(colorMenu, "Dark Gray",Color.darkGray);
+        addColorMenuEntry(colorMenu, "Gray",Color.gray);
+        addColorMenuEntry(colorMenu, "Light Gray",Color.lightGray);
+        addColorMenuEntry(colorMenu, "White",Color.white);
+        addColorMenuEntry(colorMenu, "Red",Color.red);
+        addColorMenuEntry(colorMenu, "Orange",Color.orange);
+        addColorMenuEntry(colorMenu, "Yellow",Color.yellow);
+        addColorMenuEntry(colorMenu, "Green",Color.green);
+        addColorMenuEntry(colorMenu, "Blue",Color.blue);
+        addColorMenuEntry(colorMenu, "Magenta",Color.magenta);
+        return colorMenu;
+    }

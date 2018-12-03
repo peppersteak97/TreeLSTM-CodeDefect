@@ -1,0 +1,13 @@
+    public IExportableProperty[] getSelection() {
+        List<IExportableProperty> props = null;
+        for (Map.Entry<JCheckBox, IExportableProperty> e : m_checkBoxes.entrySet()) {
+            if (e.getKey().isSelected()) {
+                if (props == null) {
+                    props = new ArrayList<IExportableProperty>();
+                }
+                props.add(e.getValue());
+            }
+        }
+        return (props == null) ? EMPTY_SELECTION : 
+            props.toArray(new IExportableProperty[props.size()]);
+    }

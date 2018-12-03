@@ -1,0 +1,17 @@
+  public void textUndoOrRedoSetsUnmodifiedState() throws BadLocationException {
+    _doc.addUndoableEditListener(_doc.getUndoManager());
+    _doc.insertString(0, "This is text", null);
+    assertTrue("Document should be modified.", _doc.isModifiedSinceSave());
+    _doc.getUndoManager().undo();
+    _doc.updateModifiedSinceSave();
+    assertFalse("Document should no longer be modified after undo.", _doc.isModifiedSinceSave());
+    _doc.insertString(0, "This is text", null);
+    _doc.resetModification();
+    assertFalse("Document should not be modified after \"save\".", _doc.isModifiedSinceSave());
+    _doc.getUndoManager().undo();
+    _doc.updateModifiedSinceSave();
+    assertTrue("Document should be modified after undo.", _doc.isModifiedSinceSave());
+    _doc.getUndoManager().redo();
+    _doc.updateModifiedSinceSave();
+    assertFalse("Document should no longer be modified after redo.", _doc.isModifiedSinceSave());
+  }

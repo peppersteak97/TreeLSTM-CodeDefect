@@ -1,0 +1,81 @@
+    EntityIconRepository createIconRepository() {
+        EntityIconRepository r = EntityIconRepository.createRepository();
+        for (EntityType type : m_validItemIcons.keySet()) {
+            Map<EntityIconRepository.Size, EntityIcon> icons =
+                m_validItemIcons.get(type);
+            for (EntityIconRepository.Size size : icons.keySet()) {
+                r.putIcon(type, 
+                          EntityIconRepository.Level.ITEM,
+                          EntityIconRepository.Category.VALID, 
+                          size, 
+                          icons.get(size).getIcon());
+            }
+        }
+        for (EntityType type : m_invalidItemIcons.keySet()) {
+            Map<EntityIconRepository.Size, EntityIcon> icons =
+                m_invalidItemIcons.get(type);
+            for (EntityIconRepository.Size size : icons.keySet()) {
+                r.putIcon(type, 
+                          EntityIconRepository.Level.ITEM,
+                          EntityIconRepository.Category.INVALID, 
+                          size, 
+                          icons.get(size).getIcon());
+            }
+        }
+        for (EntityType type : m_warningItemIcons.keySet()) {
+            Map<EntityIconRepository.Size, EntityIcon> icons =
+                m_warningItemIcons.get(type);
+            for (EntityIconRepository.Size size : icons.keySet()) {
+                r.putIcon(type, 
+                          EntityIconRepository.Level.ITEM,
+                          EntityIconRepository.Category.WARNING, 
+                          size, 
+                          icons.get(size).getIcon());
+            }
+        }
+        for (EntityType type : m_newItemIcons.keySet()) {
+            Map<EntityIconRepository.Size, EntityIcon> icons =
+                m_newItemIcons.get(type);
+            for (EntityIconRepository.Size size : icons.keySet()) {
+                r.putIcon(type, 
+                          EntityIconRepository.Level.ITEM,
+                          EntityIconRepository.Category.NEW, 
+                          size, 
+                          icons.get(size).getIcon());
+            }
+        }
+        for (EntityType type : m_validRootIcons.keySet()) {
+            Map<EntityIconRepository.Size, EntityIcon> icons =
+                m_validRootIcons.get(type);
+            for (EntityIconRepository.Size size : icons.keySet()) {
+                r.putIcon(type, 
+                          EntityIconRepository.Level.ROOT,
+                          EntityIconRepository.Category.VALID, 
+                          size, 
+                          icons.get(size).getIcon());
+            }
+        }
+        for (EntityType type : m_invalidRootIcons.keySet()) {
+            Map<EntityIconRepository.Size, EntityIcon> icons =
+                m_invalidRootIcons.get(type);
+            for (EntityIconRepository.Size size : icons.keySet()) {
+                r.putIcon(type, 
+                          EntityIconRepository.Level.ROOT,
+                          EntityIconRepository.Category.INVALID, 
+                          size, 
+                          icons.get(size).getIcon());
+            }
+        }
+        for (EntityType type : m_warningRootIcons.keySet()) {
+            Map<EntityIconRepository.Size, EntityIcon> icons =
+                m_warningRootIcons.get(type);
+            for (EntityIconRepository.Size size : icons.keySet()) {
+                r.putIcon(type, 
+                          EntityIconRepository.Level.ROOT,
+                          EntityIconRepository.Category.WARNING, 
+                          size, 
+                          icons.get(size).getIcon());
+            }
+        }
+        return r;
+    }

@@ -1,0 +1,21 @@
+    private void retrieveInputStructure() throws InterruptedException {
+        setStatus(PackageResources.LoadStructures.RETRIEVING_INPUT);
+        m_inputCallback = new Callback(true);
+        IUiWorker worker = IntegrationUi.getUi().getUiWorker();
+        Future<?> inputFuture = worker.submitForParallell(new Runnable() {
+
+            public void run() {
+                m_invoker.getTransformation().getInputStructure().getMappingStructure(false, m_inputCallback);
+            }
+        });
+        if (isCancelled()) {
+            return;
+        }
+        try {
+            inputFuture.get();
+        }
+        catch (ExecutionException e) {
+            m_inputCallback.failed(e.getCause());
+        }
+        m_inputCallback.waitUntilDone();
+    }

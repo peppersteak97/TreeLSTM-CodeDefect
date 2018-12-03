@@ -1,0 +1,7 @@
+    IPage getActivePage() {
+        if (m_activeDetachedPage != null) {
+            return m_activeDetachedPage;
+        }
+        int index = m_tabPane.getSelectedIndex();
+        return isValidIndex(index) ? m_pagesInTabPane.get(index) : null;
+    }

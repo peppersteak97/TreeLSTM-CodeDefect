@@ -1,0 +1,12 @@
+    public void onInvalidProject() {
+        for (Map.Entry<JRadioButton, IOptionSelector<IDeployOption>> e : m_optionMap.entrySet()) {
+            JRadioButton btn = e.getKey();
+            if (e.getValue().getOption().requiresValidProject()) {
+                btn.setEnabled(false);
+            }
+            else {
+                btn.setEnabled(true);
+                btn.setSelected(true);
+            }
+        }
+    }

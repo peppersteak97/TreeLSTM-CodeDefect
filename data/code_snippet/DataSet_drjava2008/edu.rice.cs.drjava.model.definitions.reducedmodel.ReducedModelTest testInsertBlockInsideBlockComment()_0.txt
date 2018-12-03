@@ -1,0 +1,15 @@
+  public void testInsertBlockInsideBlockComment() {
+    model1.insertChar('/');
+    model1.insertChar('*');
+    model1.insertChar('/');
+    model1.insertChar('*');
+    model1.insertChar('/');
+    model1.move(-2);
+    model1.insertChar('*');
+    model1.move(-1);
+    assertEquals("1.1", INSIDE_BLOCK_COMMENT, model1.currentToken().getState());
+    assertEquals("1.3", "*", model1.currentToken().getType());
+    model1.move(1);
+    assertEquals("1.0", FREE, model1.currentToken().getState());
+    assertEquals("1.2", "*/", model1.currentToken().getType());
+  }

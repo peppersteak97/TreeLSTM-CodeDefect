@@ -1,0 +1,5 @@
+  public final boolean hasNonReturningOsr() {
+    if (isEmpty()) return false;
+    Instruction s = lastRealInstruction();
+    return OsrPoint.conforms(s);
+  }

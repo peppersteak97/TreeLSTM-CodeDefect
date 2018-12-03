@@ -1,0 +1,24 @@
+  public static void init() {
+    if (Controller.options.COMPILER_DNA_FILE_NAME.length() != 0) {
+      readDNA(Controller.options.COMPILER_DNA_FILE_NAME);
+      initializeCompilerRatioArrays();
+    }
+
+    for (int i = 0; i < compilationRates.length; i++) {
+      AOSLogging.logger.reportCompilationRate(i, compilationRates[i]);
+    }
+    for (int i = 0; i < speedupRates.length; i++) {
+      AOSLogging.logger.reportSpeedupRate(i, speedupRates[i]);
+    }
+
+    int maxProfitableCompiler = 0;
+    for (int compiler = 1; compiler < numCompilers; compiler++) {
+      if (compilationRates[compiler] > compilationRates[compiler - 1] ||
+          speedupRates[compiler] > speedupRates[compiler - 1]) {
+        maxProfitableCompiler = compiler;
+      }
+    }
+    int maxOptLevel = getOptLevel(maxProfitableCompiler);
+    Controller.options.DERIVED_MAX_OPT_LEVEL = Math.min(maxOptLevel,Controller.options.MAX_OPT_LEVEL);
+    Controller.options.DERIVED_FILTER_OPT_LEVEL = Controller.options.DERIVED_MAX_OPT_LEVEL;
+  }

@@ -1,0 +1,3 @@
+    public int getMajorVersion() {
+        return getMajorVersionImpl(m_versionNumber);
+    }

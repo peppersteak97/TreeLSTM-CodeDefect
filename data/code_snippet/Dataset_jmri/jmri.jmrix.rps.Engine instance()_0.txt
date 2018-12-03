@@ -1,0 +1,7 @@
+    static public Engine instance() {
+        if (_instance == null) {
+            _instance = new Engine();
+            _instance.loadValues();
+        }
+        return _instance;
+    }

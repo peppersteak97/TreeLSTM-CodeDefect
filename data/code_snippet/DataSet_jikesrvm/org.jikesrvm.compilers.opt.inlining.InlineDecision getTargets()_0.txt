@@ -1,0 +1,3 @@
+  public RVMMethod[] getTargets() {
+    return targets;
+  }

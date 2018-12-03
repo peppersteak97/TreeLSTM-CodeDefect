@@ -1,0 +1,11 @@
+    void reset() {
+        m_parentBox.setSelectedItem(SELECT_ITEM);
+        m_childBox.setSelectedItem(SELECT_ITEM);
+        m_parentFieldBox.setSelectedItem(SELECT_ITEM);
+        m_childFieldBox.setSelectedItem(SELECT_ITEM);
+        
+        m_parentBox.setEnabled(true);
+        m_childBox.setEnabled(true);
+        m_parentFieldBox.setEnabled(true);
+        m_childFieldBox.setEnabled(true);
+    }

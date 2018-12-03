@@ -1,0 +1,5 @@
+  private void initDebugFrame() {
+    if (DrJava.getConfig().getSetting(DIALOG_DEBUGFRAME_STORE_POSITION).booleanValue()) {
+      _debugFrame.setFrameState(DrJava.getConfig().getSetting(DIALOG_DEBUGFRAME_STATE));  
+    }
+  }

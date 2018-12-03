@@ -1,0 +1,14 @@
+    void updateRunningButton() {
+    	boolean running = clock.getRun();
+        if (running) {
+            clockStatus.setText(rb.getString("ClockRunning"));
+            startButton.setVisible(false);
+            stopButton.setVisible(true);
+        }
+        else {
+            clockStatus.setText(rb.getString("ClockStopped"));
+            startButton.setVisible(true);
+            stopButton.setVisible(false);
+        }
+        clockStatus.setVisible(true);
+	}

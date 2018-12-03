@@ -1,0 +1,3 @@
+    SchedulePriority getPriority() {
+        return (SchedulePriority) m_priority.getSelectedItem();
+    }

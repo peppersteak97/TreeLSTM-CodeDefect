@@ -1,0 +1,12 @@
+    private JComponent createButtons() {
+        ButtonFactory bf = new ButtonFactory();
+        Box box = Box.createVerticalBox();
+        box.setOpaque(false);
+        box.setBorder(COMPONENT_BORDER);
+        box.add(bf.createButton(m_setActivePageAction));
+        box.add(Box.createVerticalStrut(5));
+        box.add(bf.createButton(m_closePagesAction));
+        box.add(Box.createVerticalGlue());
+        bf.done();
+        return box;
+    }

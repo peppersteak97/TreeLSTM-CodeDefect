@@ -1,0 +1,4 @@
+	public void removeMappings(){
+		m_reverseTable.clear();
+		m_table.clear();
+	}

@@ -1,0 +1,14 @@
+    public IDatabaseObjectSearchParameters getSearchParameters() {
+        final String searchString = getSearchString();
+        final EnumSet<DatabaseObjectType> types = getSelectedTypes();
+        return new IDatabaseObjectSearchParameters() {
+
+            public String getSearchString() {
+                return searchString;
+            }
+
+            public EnumSet<DatabaseObjectType> getTypes() {
+                return types;
+            }
+        };
+    }

@@ -1,0 +1,39 @@
+  public void testClearLine() throws BadLocationException, UnsupportedFlavorException, IOException {
+    final DefinitionsPane pane = _frame.getCurrentDefPane();
+    final OpenDefinitionsDocument doc = pane.getOpenDefDocument();
+    final String clipString = "***Clipboard***";
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        
+        try { 
+          doc.insertString(0, "abcdefg", null);
+          pane.setCaretPosition(5);
+          
+          
+          _frame.validate();
+          
+          Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
+          
+          clip.setContents(new StringSelection(clipString), _frame);
+          Transferable contents = clip.getContents(_frame);
+          
+          pane.setCaretPosition(2);
+          _frame.validate();
+          
+          _frame._clearLineAction.actionPerformed(new ActionEvent(pane, 0, "Clear Line"));
+          _frame.validate();
+          
+          contents = clip.getContents(null);
+          _data = (String) contents.getTransferData(DataFlavor.stringFlavor);
+        }
+        catch(Throwable t) { listenerFail(t.getMessage()); }
+      }
+    });
+    Utilities.clearEventQueue();
+    
+    assertEquals("Clipboard contents should be unchanged after Clear Line.", clipString, _data);
+    
+    assertEquals("Current line of text should be truncated by Clear Line.", "ab", doc.getText());
+    _log.log("testClearLine completed");
+  }

@@ -1,0 +1,3 @@
+  public String getCompilerName() {
+    return "baseline compiler";
+  }

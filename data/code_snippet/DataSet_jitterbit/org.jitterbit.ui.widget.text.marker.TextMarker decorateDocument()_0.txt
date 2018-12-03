@@ -1,0 +1,3 @@
+    private void decorateDocument() {
+        decorateDocument(0);
+    }

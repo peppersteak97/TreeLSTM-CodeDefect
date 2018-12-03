@@ -1,0 +1,3 @@
+  public List<OpenDefinitionsDocument> getOutOfSyncDocuments() {
+    throw new UnsupportedOperationException("Tried to call getOutOfSyncDocuments on a Dummy");
+  }

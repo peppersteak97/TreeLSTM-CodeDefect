@@ -1,0 +1,6 @@
+  protected final void emit_isub() {
+    popInt(T0);
+    popInt(T1);
+    asm.emitSUBFC(T2, T0, T1);
+    pushInt(T2);
+  }

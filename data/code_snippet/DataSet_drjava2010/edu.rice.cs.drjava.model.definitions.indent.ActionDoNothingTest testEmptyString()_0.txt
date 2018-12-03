@@ -1,0 +1,8 @@
+  public void testEmptyString() throws BadLocationException {
+    IndentRuleAction rule = new ActionDoNothing();
+    String text = "";
+    
+    _setDocText(text);
+    rule.testIndentLine(_doc, 0, Indenter.IndentReason.OTHER);
+    _assertContents(text);
+  }

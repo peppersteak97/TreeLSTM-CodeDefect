@@ -1,0 +1,84 @@
+  private void initComponents() {
+    super.getContentPane().setLayout(new GridLayout(1,1));
+    
+    Action okAction = new AbstractAction("Select") {
+      public void actionPerformed(ActionEvent e) {
+        _okCommand();
+      }
+    };
+    _okBtn = new JButton(okAction);
+    
+    Action cancelAction = new AbstractAction("Cancel") {
+      public void actionPerformed(ActionEvent e) {
+        _cancelCommand();
+      }
+    };
+    _cancelBtn = new JButton(cancelAction);
+    
+    JPanel buttons = new JPanel();
+    buttons.add(_okBtn);
+    buttons.add(_cancelBtn);
+    
+    _helpPane = new JTextPane();
+    _helpPane.setToolTipText("Description of the variable.");
+    _helpPane.setEditable(false);
+    _helpPane.setPreferredSize(new Dimension(500,150));
+    _helpPane.setBorder(new javax.swing.border.EmptyBorder(0,10,0,10));
+    JScrollPane helpPaneSP = new JScrollPane(_helpPane);
+    helpPaneSP.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+      
+    _varValueField = new JTextField();
+    updatePanes();
+    _tabbedPane.addChangeListener(new ChangeListener() {
+      public void stateChanged(ChangeEvent e) {
+        if (_tabbedPane.getSelectedIndex()<0) { return; }
+        String category = _tabbedPane.getTitleAt(_tabbedPane.getSelectedIndex());
+        Map<String, DrJavaProperty> properties = PropertyMaps.TEMPLATE.getProperties(category);
+        String key = _varTableModel.get(category).getValueAt(_varTable.get(category).getSelectedRow(),0).toString();
+        DrJavaProperty value = properties.get(key);
+        _varValueField.setText(value.toString());
+        _helpPane.setText(value.getHelp());
+        _helpPane.setCaretPosition(0);
+        _selected = Pair.make(key, value);
+      }
+    });
+    
+    JPanel main = new JPanel(new BorderLayout());
+    
+    JPanel bottom = new JPanel(new BorderLayout());
+    bottom.add(_varValueField, BorderLayout.CENTER);    
+    bottom.add(buttons, BorderLayout.SOUTH);
+    main.add(bottom, BorderLayout.SOUTH);
+
+    GridBagLayout gridbag = new GridBagLayout();
+    GridBagConstraints c = new GridBagConstraints();
+    JPanel top = new JPanel(gridbag);
+    Insets insets = new Insets(0, 10, 5, 10);
+    
+    c.fill = GridBagConstraints.BOTH;
+    c.weightx = 1.0;
+    c.weighty = 3.0;
+    c.gridwidth = GridBagConstraints.REMAINDER;
+    gridbag.setConstraints(_tabbedPane, c);
+    top.add(_tabbedPane);
+
+    c.fill = GridBagConstraints.BOTH;
+    c.weighty = 1.0;
+    c.insets = insets;
+    gridbag.setConstraints(helpPaneSP, c);
+    top.add(helpPaneSP);
+    main.add(top, BorderLayout.CENTER);
+    
+    _tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+    
+    _tabbedPane.addFocusListener(new FocusAdapter() {
+      public void focusLost(FocusEvent e) {
+        if (e.getOppositeComponent() == _varValueField) {
+          _tabbedPane.getSelectedComponent().requestFocus();
+        }
+      }
+    });
+    
+    super.getContentPane().add(main);
+    super.setResizable(false);
+  }

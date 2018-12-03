@@ -1,0 +1,8 @@
+    protected Component[] getAdditionalComponents() {
+        if (MANUAL_MODE_SUPPORTED) {
+            String label = PackageResources.SourceStartPage.Labels.WRITE_SQL;
+            m_writeSQL = ComponentFactories.checkBoxFactory().newCheckBox(label);
+            return new Component[] { m_writeSQL };
+        }
+        return super.getAdditionalComponents();
+    }

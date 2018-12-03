@@ -1,0 +1,16 @@
+    static public NceMessage getEnableMain() {
+    	if (NceUSB.getUsbSystem() != NceUSB.USB_SYSTEM_NONE){
+    		log.error("attempt to send unsupported binary command ENABLE_MAIN_CMD to NCE USB");
+			return null;
+    	}
+        NceMessage m = new NceMessage(1);
+        if (getCommandOptions() >= OPTION_1999) {
+            m.setBinary(true);
+            m.setReplyLen(1);
+            m.setOpCode(ENABLE_MAIN_CMD);
+        } else {
+            m.setBinary(false);
+            m.setOpCode('E');
+        }
+        return m;
+    }

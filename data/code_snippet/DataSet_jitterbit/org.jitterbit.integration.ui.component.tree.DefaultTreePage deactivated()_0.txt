@@ -1,0 +1,3 @@
+    protected void deactivated() {
+        m_treePanel.deactivated();
+    }

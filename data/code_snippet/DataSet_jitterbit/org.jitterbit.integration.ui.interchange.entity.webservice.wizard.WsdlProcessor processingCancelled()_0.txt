@@ -1,0 +1,3 @@
+    public void processingCancelled() {
+        m_latch.countDown();
+    }

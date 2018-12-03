@@ -1,0 +1,18 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append(LINE_BREAK);
+
+        DataStructure ds = getInputStructure();
+        sb.append(LINE_BREAK);
+
+        ds = getOutputStructure();
+        sb.append(LINE_BREAK);
+        sb.append(LINE_BREAK);
+        for (String mapString : m_lstMaps) {
+            sb.append(mapString);
+            sb.append(LINE_BREAK);
+        }
+        sb.append(LINE_BREAK);
+
+        return sb.toString();
+    }

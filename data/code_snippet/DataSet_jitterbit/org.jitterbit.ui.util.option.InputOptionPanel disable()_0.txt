@@ -1,0 +1,6 @@
+    public void disable() {
+         for (JRadioButton b : m_buttons) {
+             b.setSelected(false);
+             b.setEnabled(false);
+         }
+    }

@@ -1,0 +1,11 @@
+    public void update() {
+        if (m_dottedText == null) {
+            return;
+        }
+        ++m_dotCount;
+        if (m_dotCount > m_maxDots) {
+            m_dottedText = new StringBuilder(m_text);
+            m_dotCount = 1;
+        }
+        m_label.setText(m_dottedText.toString());
+    }

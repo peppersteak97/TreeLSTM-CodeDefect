@@ -1,0 +1,5 @@
+    protected final Icon getIconImpl() {
+        return EntityTypeMetaData.getInstance().getIconRepository().getIcon(
+                        m_uiDelegate.getDataObject().getEntityType(),
+                        EntityIconRepository.Size.SMALL);
+    }

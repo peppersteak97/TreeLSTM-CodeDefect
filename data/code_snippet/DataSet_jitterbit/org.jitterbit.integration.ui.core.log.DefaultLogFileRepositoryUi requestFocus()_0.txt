@@ -1,0 +1,3 @@
+    public void requestFocus() {
+        m_tree.requestFocus();
+    }

@@ -1,0 +1,7 @@
+  public PhysicalRegisterEnumeration enumerateNonvolatileGPRs() {
+    Register[] r = new Register[NUM_NONVOLATILE_GPRS];
+    for (int i = 0; i < NUM_NONVOLATILE_GPRS; i++) {
+      r[i] = getGPR(NONVOLATILE_GPRS[i]);
+    }
+    return new PhysicalRegisterEnumeration(r);
+  }

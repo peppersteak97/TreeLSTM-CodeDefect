@@ -1,0 +1,65 @@
+    org.jdom.Element store() {
+        org.jdom.Element e = new org.jdom.Element("consist");
+        e.setAttribute("id", getId());
+        e.setAttribute("consistNumber",getConsistNumber());
+        e.setAttribute("roadNumber",getRoadNumber());
+        e.setAttribute("roadName",getRoadName());
+        e.setAttribute("model",getModel());
+        e.setAttribute("comment",getComment());
+        
+        org.jdom.Element loco1 = new org.jdom.Element("loco");
+        loco1.setAttribute("locoName","lead");
+        loco1.setAttribute("dccLocoAddress",getLoco1DccAddress());
+        loco1.setAttribute("longAddress",isLoco1LongAddress()?"yes":"no");
+        loco1.setAttribute("locoDir",getLoco1Direction());
+        e.addContent(loco1);
+        
+        org.jdom.Element loco2 = new org.jdom.Element("loco");
+        loco2.setAttribute("locoName","rear");
+        loco2.setAttribute("dccLocoAddress",getLoco2DccAddress());
+        loco2.setAttribute("longAddress",isLoco2LongAddress()?"yes":"no");
+        loco2.setAttribute("locoDir",getLoco2Direction());
+        e.addContent(loco2);
+         
+        if (!getLoco3DccAddress().equals("")){
+        	org.jdom.Element loco3 = new org.jdom.Element("loco");
+        	loco3.setAttribute("locoName","mid");
+        	loco3.setAttribute("locoMidNumber","1");
+        	loco3.setAttribute("dccLocoAddress",getLoco3DccAddress());
+        	loco3.setAttribute("longAddress",isLoco3LongAddress()?"yes":"no");
+        	loco3.setAttribute("locoDir",getLoco3Direction());
+        	e.addContent(loco3);
+        }
+
+        if (!getLoco4DccAddress().equals("")){
+        	org.jdom.Element loco4 = new org.jdom.Element("loco");
+        	loco4.setAttribute("locoName","mid");
+        	loco4.setAttribute("locoMidNumber","2");
+        	loco4.setAttribute("dccLocoAddress",getLoco4DccAddress());
+        	loco4.setAttribute("longAddress",isLoco4LongAddress()?"yes":"no");
+        	loco4.setAttribute("locoDir",getLoco4Direction());
+        	e.addContent(loco4);
+        }
+
+        if (!getLoco5DccAddress().equals("")){
+        	org.jdom.Element loco5 = new org.jdom.Element("loco");
+        	loco5.setAttribute("locoName","mid");
+        	loco5.setAttribute("locoMidNumber","3");
+        	loco5.setAttribute("dccLocoAddress",getLoco5DccAddress());
+        	loco5.setAttribute("longAddress",isLoco5LongAddress()?"yes":"no");
+        	loco5.setAttribute("locoDir",getLoco5Direction());
+        	e.addContent(loco5);
+        }
+
+        if (!getLoco6DccAddress().equals("")){
+        	org.jdom.Element loco6 = new org.jdom.Element("loco");
+        	loco6.setAttribute("locoName","mid");
+        	loco6.setAttribute("locoMidNumber","4");
+        	loco6.setAttribute("dccLocoAddress",getLoco6DccAddress());
+        	loco6.setAttribute("longAddress",isLoco6LongAddress()?"yes":"no");
+        	loco6.setAttribute("locoDir",getLoco6Direction());
+        	e.addContent(loco6);
+        }
+
+        return e;
+    }

@@ -1,0 +1,152 @@
+	void makeEditLogixWindow() {
+		fixedSystemName.setText(curLogix.getSystemName());
+		editUserName.setText(curLogix.getUserName());
+		if (conditionalTableModel != null) {
+			conditionalTableModel.fireTableStructureChanged();
+		}
+		inEditMode = true;
+		if (editLogixFrame == null) {
+			editLogixFrame = new JmriJFrame(rbx.getString("TitleEditLogix"));
+			editLogixFrame.addHelpMenu(
+					"package.jmri.jmrit.beantable.LogixAddEdit", true);
+			editLogixFrame.setLocation(100, 30);
+			Container contentPane = editLogixFrame.getContentPane();
+			contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+			JPanel panel1 = new JPanel();
+			panel1.setLayout(new FlowLayout());
+			JLabel systemNameLabel = new JLabel(rbx
+					.getString("LogixSystemName"));
+			panel1.add(systemNameLabel);
+			panel1.add(fixedSystemName);
+			contentPane.add(panel1);
+			JPanel panel2 = new JPanel();
+			panel2.setLayout(new FlowLayout());
+			JLabel userNameLabel = new JLabel(rbx.getString("LogixUserName"));
+			panel2.add(userNameLabel);
+			panel2.add(editUserName);
+			editUserName.setToolTipText(rbx.getString("LogixUserNameHint2"));
+			contentPane.add(panel2);
+			JPanel pctSpace = new JPanel();
+			pctSpace.setLayout(new FlowLayout());
+			pctSpace.add(new JLabel("   "));
+			contentPane.add(pctSpace);
+			JPanel pTitle = new JPanel();
+			pTitle.setLayout(new FlowLayout());
+			pTitle.add(new JLabel(rbx.getString("ConditionalTableTitle") + " "
+					+ Logix.MAX_CONDITIONALS + " )"));
+			contentPane.add(pTitle);
+			pct = new JPanel();
+			conditionalTableModel = new ConditionalTableModel();
+			JTable conditionalTable = new JTable(conditionalTableModel);
+			conditionalTable.setRowSelectionAllowed(false);
+			conditionalTable
+					.setPreferredScrollableViewportSize(new java.awt.Dimension(
+							530, 250));
+			TableColumnModel conditionalColumnModel = conditionalTable
+					.getColumnModel();
+			TableColumn sNameColumn = conditionalColumnModel
+					.getColumn(ConditionalTableModel.SNAME_COLUMN);
+			sNameColumn.setResizable(true);
+			sNameColumn.setMinWidth(100);
+			sNameColumn.setMaxWidth(130);
+			TableColumn uNameColumn = conditionalColumnModel
+					.getColumn(ConditionalTableModel.UNAME_COLUMN);
+			uNameColumn.setResizable(true);
+			uNameColumn.setMinWidth(210);
+			uNameColumn.setMaxWidth(260);
+			TableColumn stateColumn = conditionalColumnModel
+					.getColumn(ConditionalTableModel.STATE_COLUMN);
+			stateColumn.setResizable(false);
+			stateColumn.setMinWidth(90);
+			stateColumn.setMaxWidth(100);
+			TableColumn buttonColumn = conditionalColumnModel
+					.getColumn(ConditionalTableModel.BUTTON_COLUMN);
+			ButtonRenderer buttonRenderer = new ButtonRenderer();
+			conditionalTable.setDefaultRenderer(JButton.class, buttonRenderer);
+			TableCellEditor buttonEditor = new ButtonEditor(new JButton());
+			conditionalTable.setDefaultEditor(JButton.class, buttonEditor);
+			JButton testButton = new JButton("XXXXX");
+			conditionalTable.setRowHeight(testButton.getPreferredSize().height);
+			buttonColumn.setPreferredWidth(testButton.getPreferredSize().width);
+			buttonColumn.setResizable(false);
+			JScrollPane conditionalTableScrollPane = new JScrollPane(
+					conditionalTable);
+			pct.add(conditionalTableScrollPane, BorderLayout.CENTER);
+			contentPane.add(pct);
+			pct.setVisible(true);
+			JPanel panel4 = new JPanel();
+			panel4.setLayout(new BoxLayout(panel4, BoxLayout.Y_AXIS));
+			JPanel panel41 = new JPanel();
+			panel41.setLayout(new FlowLayout());
+			panel41.add(status);
+			panel4.add(panel41);
+			JPanel panel42 = new JPanel();
+			panel42.setLayout(new FlowLayout());
+			panel42.add(newConditionalButton = new JButton(rbx
+					.getString("NewConditionalButton")));
+			newConditionalButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					newConditionalPressed(e);
+				}
+			});
+			newConditionalButton.setToolTipText(rbx
+					.getString("NewConditionalButtonHint"));
+			panel42.add(reorderButton = new JButton(rbx
+					.getString("ReorderButton")));
+			reorderButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					reorderPressed(e);
+				}
+			});
+			reorderButton.setToolTipText(rbx.getString("ReorderButtonHint"));
+			panel42.add(calculateButton = new JButton(rbx
+					.getString("CalculateButton")));
+			calculateButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					calculatePressed(e);
+				}
+			});
+			calculateButton
+					.setToolTipText(rbx.getString("CalculateButtonHint"));
+			panel4.add(panel42);
+			Border panel4Border = BorderFactory.createEtchedBorder();
+			panel4.setBorder(panel4Border);
+			contentPane.add(panel4);
+			JPanel panel5 = new JPanel();
+			panel5.setLayout(new FlowLayout());
+			panel5.add(done = new JButton(rbx.getString("DoneButton")));
+			done.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					donePressed(e);
+				}
+			});
+			done.setToolTipText(rbx.getString("DoneButtonHint"));
+			panel5
+					.add(delete = new JButton(rbx
+							.getString("DeleteLogixButton")));
+			delete.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					deletePressed(e);
+				}
+			});
+			delete.setToolTipText(rbx.getString("DeleteLogixButtonHint"));
+			contentPane.add(panel5);
+		}
+
+		if (!reminderActive) {
+			editLogixFrame
+					.addWindowListener(new java.awt.event.WindowAdapter() {
+						public void windowClosing(java.awt.event.WindowEvent e) {
+							if (inEditMode) {
+								donePressed(null);
+							} else {
+								editLogixFrame.setVisible(false);
+								f.setVisible(true);
+							}
+						}
+					});
+			reminderActive = true;
+		}
+		editLogixFrame.pack();
+		editLogixFrame.setVisible(true);
+	}

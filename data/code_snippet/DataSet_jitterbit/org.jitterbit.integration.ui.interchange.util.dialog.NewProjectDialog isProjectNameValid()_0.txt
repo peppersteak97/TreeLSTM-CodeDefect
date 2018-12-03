@@ -1,0 +1,10 @@
+    private boolean isProjectNameValid() {
+        try {
+            INameValidator validator = NameValidatorStore.getInstance().get(IntegrationEntity.class);
+            validator.validateName(m_currentProjectName);
+            return true;
+        }
+        catch (IllegalNameException e) {
+            return false;
+        }
+    }

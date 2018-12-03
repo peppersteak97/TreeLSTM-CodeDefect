@@ -1,0 +1,3 @@
+	public List<IKongaUiDelegate> getUiDelegates() {
+		return m_liUiDelegates;
+	}

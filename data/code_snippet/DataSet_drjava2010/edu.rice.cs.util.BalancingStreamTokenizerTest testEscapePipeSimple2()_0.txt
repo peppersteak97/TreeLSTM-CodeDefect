@@ -1,0 +1,22 @@
+  public void testEscapePipeSimple2() throws IOException {
+    BalancingStreamTokenizer tok = make("abc def|| ghi 123\n456", '|');
+    tok.defaultWhitespaceSetup();
+    String s = tok.getNextToken();
+    assertEquals("abc", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("def|", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("ghi", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("123", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("456", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals(null, s);
+    assertEquals(BalancingStreamTokenizer.Token.END, tok.token());
+  }

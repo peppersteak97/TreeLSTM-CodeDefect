@@ -1,0 +1,149 @@
+    public void initComponents() throws Exception {
+        super.initComponents();
+
+        msg = new SprogMessage(1);
+        msg.setOpCode( (int) ' ');
+        nextLine("cmd: \""+msg+"\"\n", "");
+        tc.sendSprogMessage(msg, this);
+        state = CRSENT;
+        startShortTimer();
+        
+        super.jScrollPane1.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createEtchedBorder(), "Command History"));
+        
+        entryField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                enterButtonActionPerformed(e);
+            }
+        });
+        
+        /*
+         * Command panel
+         */
+        JPanel cmdPane1 = new JPanel();
+        cmdPane1.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createEtchedBorder(), "Send Command"));
+        cmdPane1.setLayout(new FlowLayout());
+        
+        cmdLabel.setText("Command:");
+        cmdLabel.setVisible(true);
+        
+        sendButton.setText("Send");
+        sendButton.setVisible(true);
+        sendButton.setToolTipText("Send packet");
+        
+        cmdTextField.setText("");
+        cmdTextField.setToolTipText("Enter a SPROG command");
+        cmdTextField.setMaximumSize(
+                new Dimension(cmdTextField.getMaximumSize().width,
+                cmdTextField.getPreferredSize().height)
+                );
+        
+        cmdTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                sendButtonActionPerformed(e);
+            }
+        });
+        
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                sendButtonActionPerformed(e);
+            }
+        });
+        
+        cmdPane1.add(cmdLabel);
+        cmdPane1.add(cmdTextField);
+        cmdPane1.add(sendButton);
+        
+        getContentPane().add(cmdPane1);
+ 
+        /*
+         * Address Panel
+         */
+        JPanel speedPanel = new JPanel();
+        speedPanel.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createEtchedBorder(), "Speed Step Mode for SPROG Throttle"));
+        speedPanel.add(speed14Button);
+        speedPanel.add(speed28Button);
+        speedPanel.add(speed128Button);
+        speedGroup.add(speed14Button);
+        speedGroup.add(speed28Button);
+        speedGroup.add(speed128Button);
+        speed14Button.setToolTipText("Set 14 speed steps for SPROG throttle");
+        speed28Button.setToolTipText("Set 28 speed steps for SPROG throttle");
+        speed128Button.setToolTipText("Set 128 speed steps for SPROG throttle");
+       
+        getContentPane().add(speedPanel);
+        
+        /*
+         * Configuration panel
+         */
+        JPanel configPanel = new JPanel();
+        configPanel.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createEtchedBorder(), "Configuration"));
+        configPanel.setLayout(new FlowLayout());
+        
+        currentLabel.setText("Current Limit (mA):");
+        currentLabel.setVisible(true);
+        
+        currentTextField.setText("");
+        currentTextField.setEnabled(false);
+        currentTextField.setToolTipText("Enter new current limit in milliAmps (less than 1000)");
+        currentTextField.setMaximumSize(
+                new Dimension(currentTextField.getMaximumSize().width,
+                currentTextField.getPreferredSize().height
+                )
+                );
+         
+        currentTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                validateCurrent();
+            }
+        });
+        
+        ztcCheckBox.setText("Set ZTC mode");
+        ztcCheckBox.setVisible(true);
+        ztcCheckBox.setToolTipText("Use this when programming older ZTC decoders");
+
+        blueCheckBox.setText("Set Blueline mode");
+        blueCheckBox.setVisible(true);
+        blueCheckBox.setEnabled(false);
+        blueCheckBox.setToolTipText("Use this when programming blueline decoders - programming will be slower");
+
+        unlockCheckBox.setText("Unlock firmware");
+        unlockCheckBox.setVisible(true);
+        unlockCheckBox.setEnabled(false);
+        unlockCheckBox.setToolTipText("Use this only if you are about to update the SPROG firmware");
+
+        configPanel.add(currentLabel);
+        configPanel.add(currentTextField);
+        configPanel.add(ztcCheckBox);
+        configPanel.add(blueCheckBox);
+        configPanel.add(unlockCheckBox);
+        
+        getContentPane().add(configPanel);
+
+        /*
+         * Status Panel
+         */
+        JPanel statusPanel = new JPanel();
+        statusPanel.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createEtchedBorder(), "Save/Load Configuration"));
+        statusPanel.setLayout(new FlowLayout());
+        
+        saveButton.setText("Save");
+        saveButton.setVisible(true);
+        saveButton.setToolTipText("Save SPROG configuration (in the SPROG EEPROM)");
+        
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                saveButtonActionPerformed(e);
+            }
+        });
+        
+        statusPanel.add(saveButton);
+       
+        getContentPane().add(statusPanel);
+
+        pack();
+}

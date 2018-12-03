@@ -1,0 +1,31 @@
+  protected void _addDocumentStyles() {
+    _interactionsDJDocument.setDocStyle(ConsoleDocument.DEFAULT_STYLE, _defaultStyle);
+    DrJava.getConfig().addOptionListener(OptionConstants.DEFINITIONS_NORMAL_COLOR,
+                                         new OptionListener<Color>() {
+      public void optionChanged(OptionEvent<Color> oe) {
+        setDefaultFont(oe.value);
+      }
+    });
+
+    _systemOutStyle.addAttributes(_defaultStyle);
+    _systemOutStyle.addAttribute(StyleConstants.Foreground,
+                                 DrJava.getConfig().getSetting(OptionConstants.SYSTEM_OUT_COLOR));
+    _interactionsDJDocument.setDocStyle(ConsoleDocument.SYSTEM_OUT_STYLE, _systemOutStyle);
+    DrJava.getConfig().addOptionListener(OptionConstants.SYSTEM_OUT_COLOR,
+                                         new OptionListener<Color>() {
+      public void optionChanged(OptionEvent<Color> oe) {
+        _systemOutStyle.addAttribute(StyleConstants.Foreground, oe.value);
+      }
+    });
+
+    _systemErrStyle.addAttributes(_defaultStyle);
+    _systemErrStyle.addAttribute(StyleConstants.Foreground,
+                                 DrJava.getConfig().getSetting(OptionConstants.SYSTEM_ERR_COLOR));
+    _interactionsDJDocument.setDocStyle(ConsoleDocument.SYSTEM_ERR_STYLE, _systemErrStyle);
+    DrJava.getConfig().addOptionListener(OptionConstants.SYSTEM_ERR_COLOR,
+                                         new OptionListener<Color>() {
+      public void optionChanged(OptionEvent<Color> oe) {
+        _systemErrStyle.addAttribute(StyleConstants.Foreground, oe.value);
+      }
+    });
+  }

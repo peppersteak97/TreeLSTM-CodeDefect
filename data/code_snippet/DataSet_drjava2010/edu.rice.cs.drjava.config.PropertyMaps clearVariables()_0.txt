@@ -1,0 +1,3 @@
+  public void clearVariables() {
+    _props.remove(VARIABLES_CATEGORY);
+  }

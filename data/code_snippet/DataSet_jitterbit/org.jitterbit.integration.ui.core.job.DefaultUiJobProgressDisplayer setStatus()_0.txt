@@ -1,0 +1,8 @@
+    private void setStatus() {
+        String shortStatus = m_job.getStatus(IUiJob.DetailLevel.SHORT);
+        if (!areEqual(shortStatus, m_lastShortStatus)) {
+            m_lastShortStatus = shortStatus;
+            m_shortStatusLabel.setText(shortStatus);
+        }
+        m_shortStatusLabel.update();
+    }

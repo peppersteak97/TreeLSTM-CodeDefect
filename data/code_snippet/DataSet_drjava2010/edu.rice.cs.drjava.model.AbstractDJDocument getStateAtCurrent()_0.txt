@@ -1,0 +1,4 @@
+  public ReducedModelState getStateAtCurrent() { 
+/* */ assert Utilities.TEST_MODE || EventQueue.isDispatchThread();
+    return _reduced.getStateAtCurrent(); 
+  }

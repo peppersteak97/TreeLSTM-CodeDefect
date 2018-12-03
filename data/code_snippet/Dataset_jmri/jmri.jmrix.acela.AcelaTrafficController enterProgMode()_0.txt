@@ -1,0 +1,4 @@
+    protected AbstractMRMessage enterProgMode() {
+        log.warn("enterProgMode does NOT make sense for Acela serial");
+        return null;
+    }

@@ -1,0 +1,2 @@
+  public File getFile() throws FileMovedException;
+

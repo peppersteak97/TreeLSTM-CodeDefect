@@ -1,0 +1,6 @@
+    synchronized protected void sendFunctionStatusInformationRequest()
+    {
+          if(log.isDebugEnabled())
+		log.debug("Momentary function request not supported by Elite.");
+          return;
+    }

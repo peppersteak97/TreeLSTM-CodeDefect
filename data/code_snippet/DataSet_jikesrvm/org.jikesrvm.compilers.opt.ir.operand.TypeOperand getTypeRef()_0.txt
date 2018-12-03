@@ -1,0 +1,3 @@
+  public TypeReference getTypeRef() {
+    return typeRef;
+  }

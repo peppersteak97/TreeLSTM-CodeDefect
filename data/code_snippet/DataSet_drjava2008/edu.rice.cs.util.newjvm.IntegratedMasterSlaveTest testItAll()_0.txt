@@ -1,0 +1,4 @@
+  public void testItAll() throws Exception {
+    for (int i = 0; i < 2; i++) _testMaster.runTestSequence();
+    _log.log("testItAll completed");
+  }

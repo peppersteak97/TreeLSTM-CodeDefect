@@ -1,0 +1,19 @@
+    public void configure() {
+        SRCPTrafficController.instance().connectPort(this);
+
+        jmri.InstanceManager.setProgrammerManager(
+                new SRCPProgrammerManager(
+                    new SRCPProgrammer()));
+
+        jmri.InstanceManager.setPowerManager(new jmri.jmrix.srcp.SRCPPowerManager());
+
+        jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.srcp.SRCPTurnoutManager());
+
+		jmri.InstanceManager.setThrottleManager(new jmri.jmrix.srcp.SRCPThrottleManager());
+
+
+        jmri.InstanceManager.setCommandStation(new jmri.jmrix.srcp.SRCPCommandStation());
+
+        SRCPTrafficController.instance().sendSRCPMessage(new SRCPMessage("GO\n"), null);
+        jmri.jmrix.srcp.ActiveFlag.setActive();
+    }

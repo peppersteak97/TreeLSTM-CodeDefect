@@ -1,0 +1,4 @@
+  protected void notifyChangeListeners() {
+      ChangeListener[] listeners = _changeListeners.toArray(new ChangeListener[_changeListeners.size()]);
+    for (ChangeListener l: listeners)  l.value(OptionComponent.this); 
+  }

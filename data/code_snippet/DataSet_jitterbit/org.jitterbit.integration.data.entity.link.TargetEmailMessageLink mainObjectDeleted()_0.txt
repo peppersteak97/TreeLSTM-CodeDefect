@@ -1,0 +1,7 @@
+    protected void mainObjectDeleted() {
+        DataLocation loc = getDependantObject().getLocation();
+        if (loc instanceof SmtpLocation) {
+            ((SmtpLocation) loc).setMessage((EmailMessage) null);
+        }
+        super.mainObjectDeleted();
+    }

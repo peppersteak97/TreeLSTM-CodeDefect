@@ -1,0 +1,10 @@
+     public int doRepeat() {
+       if (repeat > 0) {
+         log.debug("Slot "+slot+"repeats");
+         repeat--;
+         if (repeat == 0) {
+           log.debug("Clear slot "+slot+"due to repeats exhausted");
+         }
+       }
+       return repeat;
+     }

@@ -1,0 +1,3 @@
+  public int replaceAll() { 
+    return replaceAll(_searchAllDocuments, _searchSelectionOnly); 
+  }

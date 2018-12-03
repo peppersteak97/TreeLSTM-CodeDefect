@@ -1,0 +1,3 @@
+    public SortField getField() {
+        return m_field;
+    }

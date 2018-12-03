@@ -1,0 +1,6 @@
+    private void createUserDisplayer() {
+        m_userCaption = RendererUtils.getUserCaptionLabel(
+                        IntegrationUiStyleSheet.TopPanelCaptionText); 
+        m_userLabel = IntegrationUiStyleSheet.TopPanelPlainText.makeJLabel(
+                PackageResources.ConnectionStatus.NONE);
+    }

@@ -1,0 +1,6 @@
+  protected final void emit_imul() {
+    asm.emitPOP_Reg(T0);
+    asm.emitPOP_Reg(T1);
+    asm.emitIMUL2_Reg_Reg(T0, T1);
+    asm.emitPUSH_Reg(T0);
+  }

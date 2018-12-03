@@ -1,0 +1,32 @@
+  public void testCompileAllDifferentSourceRoots() throws BadLocationException, IOException, InterruptedException {
+    File aDir = new File(_tempDir, "a");
+    File bDir = new File(_tempDir, "b");
+    aDir.mkdir();
+    bDir.mkdir();
+    OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    final File file = new File(aDir, "DrJavaTestFoo.java");
+    saveFile(doc, new FileSelector(file));
+    OpenDefinitionsDocument doc2 = setupDocument(BAR_TEXT);
+    final File file2 = new File(bDir, "DrJavaTestBar.java");
+    saveFile(doc2, new FileSelector(file2));
+    
+    CompileShouldSucceedListener listener = new CompileShouldSucceedListener();
+    _model.addListener(listener);
+    _model.getCompilerModel().compileAll();
+    
+    Utilities.clearEventQueue();
+    
+    if (_model.getCompilerModel().getNumErrors() > 0) {
+      fail("compile failed: " + getCompilerErrorString());
+    }
+    assertCompileErrorsPresent(_name(), false);
+    listener.checkCompileOccurred();
+
+    File compiled = classForJava(file, "DrJavaTestFoo");
+    assertTrue(_name() + "Foo Class file doesn't exist after compile",
+               compiled.exists());
+    File compiled2 = classForJava(file2, "DrJavaTestBar");
+    assertTrue(_name() + "Bar Class file doesn't exist after compile",
+               compiled2.exists());
+    _model.removeListener(listener);
+  }

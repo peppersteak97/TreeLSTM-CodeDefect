@@ -1,0 +1,3 @@
+    protected boolean programmerIdle() { 
+	  return !(XNetProgrammer.instance().programmerBusy());
+	}

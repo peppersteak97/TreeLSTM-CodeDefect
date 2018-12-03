@@ -1,0 +1,11 @@
+    protected void activated() {
+        super.activated();
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                if (m_currentLocationType != null) {
+                    updateTestConnectionAction(m_currentLocationType);
+                }
+            }
+        });
+    }

@@ -1,0 +1,3 @@
+	public Class getOwnerClass() {
+		return isOwnerRelationship() ? m_clsPrimary : null;
+	}

@@ -1,0 +1,5 @@
+  protected final void emit_fmul() {
+    popFloat(F0);
+    popFloat(F1);
+    pushFloat(F0);
+  }

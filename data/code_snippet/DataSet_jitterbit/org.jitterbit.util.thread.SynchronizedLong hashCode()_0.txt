@@ -1,0 +1,3 @@
+	public synchronized int hashCode() {
+		return (int)m_lValue;
+	}

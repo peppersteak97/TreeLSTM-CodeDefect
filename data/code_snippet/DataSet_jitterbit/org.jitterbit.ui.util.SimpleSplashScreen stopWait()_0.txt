@@ -1,0 +1,4 @@
+	public void stopWait() {
+		m_updateLabelTimer.stop();
+		dispose();
+	}

@@ -1,0 +1,16 @@
+    public void receiveLoop() {
+        log.debug("receiveLoop starts");
+        while (true) {   
+            try {
+                handleOneIncomingReply();
+            }
+            catch (java.io.IOException e) {
+                reportReceiveLoopException(e);
+                break;
+            }
+            catch (Exception e1) {
+                log.error("Exception in receive loop: "+e1);
+                e1.printStackTrace();
+            }
+        }
+    }

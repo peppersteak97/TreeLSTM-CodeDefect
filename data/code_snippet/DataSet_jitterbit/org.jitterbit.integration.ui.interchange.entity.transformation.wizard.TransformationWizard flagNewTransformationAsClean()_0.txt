@@ -1,0 +1,11 @@
+    private void flagNewTransformationAsClean() {
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                IPage page = m_view.getPageForDisplayedObject(m_newTransformationUi);
+                if (page instanceof GenericPage) {
+                    ((GenericPage) page).setClean();
+                }
+            }
+        });
+    }

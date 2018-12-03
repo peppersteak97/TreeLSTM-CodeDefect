@@ -1,0 +1,3 @@
+  final boolean getInsertPEIDeps() {
+    return insertPEIDeps;
+  }

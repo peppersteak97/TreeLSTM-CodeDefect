@@ -1,0 +1,4 @@
+    static public LnMessageManager instance() {
+        if (mInstance == null) mInstance = new LnMessageManager();
+        return mInstance;
+    }

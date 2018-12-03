@@ -1,0 +1,13 @@
+    private Long getCallDelay() {
+        Long delay = null;
+        String callDelay = m_delayField.getValue().trim();
+        if (callDelay.length() > 0) {
+            try {
+                delay = Long.valueOf(callDelay);
+            }
+            catch (NumberFormatException ex) {
+                throw new IllegalStateException(ex);
+            }
+        }
+        return delay;
+    }

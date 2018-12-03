@@ -1,0 +1,15 @@
+    private JComponent getButtons() {
+        IButtonFactory factory = ComponentFactories.buttonFactory();
+        Box b = Box.createHorizontalBox();
+        b.add(Box.createHorizontalGlue());
+        b.add(factory.newButton(m_editAction));
+        if (m_createNewAction != null) {
+            b.add(Box.createHorizontalStrut(5));
+            b.add(factory.newButton(m_createNewAction));
+        }
+        if (m_removeAction != null) {
+            b.add(Box.createHorizontalStrut(5));
+            b.add(factory.newButton(m_removeAction));
+        }
+        return b;
+    }

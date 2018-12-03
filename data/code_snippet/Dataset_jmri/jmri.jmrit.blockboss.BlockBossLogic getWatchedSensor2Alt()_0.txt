@@ -1,0 +1,4 @@
+    public String getWatchedSensor2Alt() {
+        if (watchedSensor2Alt == null) return null;
+        return watchedSensor2Alt.getSystemName();
+    }

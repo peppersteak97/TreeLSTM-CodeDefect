@@ -1,0 +1,8 @@
+	public Color getBlockColor() {
+		if (getOccupancy() == OCCUPIED) {
+			return blockOccupiedColor;
+		}
+		else {
+			return blockTrackColor;
+		}
+	}

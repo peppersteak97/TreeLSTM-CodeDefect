@@ -1,0 +1,3 @@
+    public TransformationId getID() {
+        return (TransformationId) super.getID();
+    }

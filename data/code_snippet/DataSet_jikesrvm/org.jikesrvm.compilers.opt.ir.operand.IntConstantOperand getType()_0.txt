@@ -1,0 +1,11 @@
+  public TypeReference getType() {
+    if ((value == 0) || (value == 1)) {
+      return TypeReference.Boolean;
+    } else if (-128 <= value && value <= 127) {
+      return TypeReference.Byte;
+    } else if (-32768 <= value && value <= 32767) {
+      return TypeReference.Short;
+    } else {
+      return TypeReference.Int;
+    }
+  }

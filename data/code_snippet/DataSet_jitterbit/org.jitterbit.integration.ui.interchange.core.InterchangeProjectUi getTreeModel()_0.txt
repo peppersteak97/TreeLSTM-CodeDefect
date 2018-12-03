@@ -1,0 +1,3 @@
+    public InterchangeTreeModel getTreeModel() {
+        return m_treeModel;
+    }

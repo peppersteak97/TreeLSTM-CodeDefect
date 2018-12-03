@@ -1,0 +1,3 @@
+    ICheckBoxNode getRootNode() {
+        return (ICheckBoxNode) m_tree.getRootNode();
+    }

@@ -1,0 +1,3 @@
+    public Enumeration<IKongaTreeNode> children() {
+        return new EnumImpl(super.children());
+    }

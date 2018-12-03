@@ -1,0 +1,24 @@
+    private void setItems() {
+        if (m_mode == SNAPSHOT) {
+            Object[] arComboItems = null;
+            int nStartIndex = 0;
+            if (m_includeNoneItem) {
+                arComboItems = new Object[m_allItems.size() + 1];
+                arComboItems[0] = NONE_COMBO_ITEM;
+                nStartIndex = 1;
+            }
+            else {
+                arComboItems = new Object[m_allItems.size()];
+            }
+            for (int n = 0; n < m_allItems.size(); ++n) {
+                arComboItems[n + nStartIndex] = m_allItems.get(n);
+            }
+
+            setModel(new DefaultComboBoxModel(arComboItems));
+        }
+        else {
+            m_dynamicModel = new DynamicEntityComboBoxModel(this, m_allItems,
+                            m_includeNoneItem);
+            setModel(m_dynamicModel);
+        }
+    }

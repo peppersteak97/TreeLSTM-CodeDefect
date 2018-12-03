@@ -1,0 +1,4 @@
+    static public Message getKillMain() {
+        log.error("getKillMain doesnt have a reasonable implementation yet");
+        return null;
+    }

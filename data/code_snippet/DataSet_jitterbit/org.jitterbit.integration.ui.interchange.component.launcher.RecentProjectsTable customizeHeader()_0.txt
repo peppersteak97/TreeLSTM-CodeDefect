@@ -1,0 +1,5 @@
+    private void customizeHeader() {
+        JTableHeader header = getTableHeader();
+        header.setReorderingAllowed(false);
+        header.setDefaultRenderer(IntegrationUiStyleSheet.getGreenTableHeaderRenderer());
+    }

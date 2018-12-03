@@ -1,0 +1,1 @@
+  protected Object getValue() { return _value; }

@@ -1,0 +1,4 @@
+    public boolean getScrollableTracksViewportWidth() {
+        return m_scrollableTracksViewportWidth ? true : 
+            super.getScrollableTracksViewportWidth();
+    }

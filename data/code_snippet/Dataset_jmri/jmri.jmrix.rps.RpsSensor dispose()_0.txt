@@ -1,0 +1,3 @@
+    public void dispose() {
+        Model.instance().removeRegion(region);
+    }

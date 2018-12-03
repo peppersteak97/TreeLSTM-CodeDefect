@@ -1,0 +1,17 @@
+    public String toString() {
+        String out = "[ConsistRosterEntry: "
+        	+_id+" "
+        	+" "+_consistNumber
+            +" "+_roadName
+            +" "+_roadNumber
+            +" "+_model
+            +" "+_loco1DccAddress
+            +" "+_loco2DccAddress
+            +" "+_loco3DccAddress
+            +" "+_loco4DccAddress
+            +" "+_loco5DccAddress
+            +" "+_loco6DccAddress
+            +" "+_comment
+            +"]";
+        return out;
+    }

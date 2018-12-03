@@ -1,0 +1,9 @@
+  public void testCannotWriteInARead() {
+    try {
+      _lock.startRead();
+      _lock.startWrite();
+      fail("Should have caused an IllegalStateException!");
+    }
+    catch (IllegalStateException ise) {
+    }
+  }

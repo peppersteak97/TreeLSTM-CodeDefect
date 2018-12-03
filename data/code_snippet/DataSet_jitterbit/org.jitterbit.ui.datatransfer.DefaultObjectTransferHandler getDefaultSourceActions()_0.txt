@@ -1,0 +1,3 @@
+	public int getDefaultSourceActions() {
+		return m_defaultSourceActions;
+	}

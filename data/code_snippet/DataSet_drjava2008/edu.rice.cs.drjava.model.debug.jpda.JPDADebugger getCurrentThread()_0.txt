@@ -1,0 +1,3 @@
+  ThreadReference getCurrentThread() {
+    return _suspendedThreads.peek();
+  }

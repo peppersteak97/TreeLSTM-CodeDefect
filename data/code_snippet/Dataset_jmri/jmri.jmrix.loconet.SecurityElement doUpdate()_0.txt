@@ -1,0 +1,17 @@
+    void doUpdate() {
+        if (calculates) {
+            if (debug) log.debug("SE "+mNumber+" starts. Neighbor speeds: "
+                             +newSpeedLimitFromA+","+newSpeedLimitFromB
+                             +","+newSpeedLimitFromC
+                             +" res: "+newDirection);
+
+            makeReservationsHere();
+            doCalculateBaseSpeed();
+            adjustForReservations();
+            adjustForAuxState();
+
+            sendUpdate();
+
+            firePropertyChange("SecurityElement", null, this);
+        }
+    }

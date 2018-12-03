@@ -1,0 +1,6 @@
+    private static synchronized ReferenceQueue<AbstractButton> getRefQueue() {
+        if (s_refQueue == null) {
+            s_refQueue = new ReferenceQueue<AbstractButton>();
+        }
+        return s_refQueue;
+    }

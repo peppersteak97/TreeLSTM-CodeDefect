@@ -1,0 +1,3 @@
+    public InterchangeProjectId getID() {
+        return (InterchangeProjectId) super.getID();
+    }

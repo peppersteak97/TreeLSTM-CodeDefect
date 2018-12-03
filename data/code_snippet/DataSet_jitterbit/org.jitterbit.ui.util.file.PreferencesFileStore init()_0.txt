@@ -1,0 +1,12 @@
+    private void init() {
+        m_files = new LinkedHashSet<IFileUi>();
+        String keyName = m_key.keyName();
+        for (int n = 0; n < m_historySize; ++n) {
+            File f = m_preferences.getFile(getIndexedKeyName(keyName, n), null);
+            if (f == null) {
+                break;
+            }
+            IFileUi fileUi = m_fileUiFactory.fromFile(f, null);
+            m_files.add(fileUi);
+        }
+    }

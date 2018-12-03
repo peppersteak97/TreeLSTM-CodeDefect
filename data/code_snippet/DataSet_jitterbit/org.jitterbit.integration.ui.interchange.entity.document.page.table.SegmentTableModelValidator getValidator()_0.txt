@@ -1,0 +1,9 @@
+    protected ITextStructureValidator getValidator() {
+        TextValidatorFactory factory = new TextValidatorFactory();
+        return factory.createSegmentValidator(new Iterable<Segment>() {
+
+            public Iterator<Segment> iterator() {
+                return m_model.getSegmentIterator();
+            }
+        });
+    }

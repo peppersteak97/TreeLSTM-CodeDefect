@@ -1,0 +1,4 @@
+    public IWsdlProcessingJob getProcessingJob() {
+        WsdlFile file = getSelectedFile();
+        return (file == null) ? null : new ProcessExistingWsdlFile(file);
+    }

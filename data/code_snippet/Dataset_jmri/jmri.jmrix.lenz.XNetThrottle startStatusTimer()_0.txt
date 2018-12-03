@@ -1,0 +1,15 @@
+    protected void startStatusTimer() {
+        if(statTimer==null) {
+            statTimer = new javax.swing.Timer(statTimeoutValue,new java.awt.event.ActionListener() { 
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        /* If the timer times out, just send a status 
+                           request message */
+                        sendStatusInformationRequest();
+                    }
+                });                           
+        }
+        statTimer.stop();
+        statTimer.setInitialDelay(statTimeoutValue);
+        statTimer.setRepeats(true);
+        statTimer.start();   
+    }

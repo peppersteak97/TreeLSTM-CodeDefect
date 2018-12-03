@@ -1,0 +1,33 @@
+  public void testExceptionsDelegate() throws Exception {
+    XMLConfig xcParent = new XMLConfig(new StringReader(
+                                                        "<?xml version=\"1.0\" encoding=\"UTF-8\"?><foo a=\"foo.a\">\n"
+                                                          + "  <bar>abc</bar>\n"
+                                                          + "  <fum fee=\"xyz\">def</fum>\n"
+                                                          + "</foo>"));
+    XMLConfig xc = new XMLConfig(xcParent, xcParent.getNodes("foo").get(0));    
+    
+    try {
+      xc.get("");
+      fail("Should throw 'no node' exception");
+    }
+    catch (RuntimeException e) {
+    }
+    try {
+      xc.get("xyz");
+      fail("Should throw 'no node' exception");
+    }
+    catch (RuntimeException e) {
+    }
+    try {
+      xc.get(".xyz");
+      fail("Should throw 'no node' exception");
+    }
+    catch (RuntimeException e) {
+    }
+    try {
+      xc.get(".b");
+      fail("Should throw 'no attribute' exception");
+    }
+    catch (RuntimeException e) {
+    }
+  }

@@ -1,0 +1,9 @@
+  public void testJavaAPIFragmentLineNumStrategy() {
+    final String base = edu.rice.cs.drjava.DrJava.
+      getConfig().getSetting(edu.rice.cs.drjava.config.OptionConstants.JAVADOC_1_5_LINK) + "/";
+    final String suffix = "/allclasses-1.5.html";
+    Set<edu.rice.cs.drjava.ui.MainFrame.JavaAPIListEntry> l = edu.rice.cs.drjava.ui.MainFrame._generateJavaAPISet(base,
+                                                                                                                  stripPrefix,
+                                                                                                                  suffix);
+    assertTrue(l.size() > 0);
+  }

@@ -1,0 +1,5 @@
+    private void writeGetWhereClauseImpl() {
+        addLine("\t" + CppUtils.STRING + " GetWhereClause() const {");
+        addLine("\t\treturn m_dtlRecSet.GetWhereClause();");
+        addLine("\t}");
+    }

@@ -1,0 +1,13 @@
+  public void testPosInParenPhrase() throws BadLocationException {
+
+      _setDocText("(;)");
+      assertEquals("';' in parent phrase", true, _inParenPhrase(1));
+      
+      _setDocText("abcdefghijk");
+      _doc.setCurrentLocation(3);
+      int reducedModelPos = _doc.getReduced().absOffset();
+      _inParenPhrase(8);
+      assertEquals("Check that position in reduced model is unaffected after call to posInParenPhrase",
+                   reducedModelPos,
+                   _doc.getReduced().absOffset());   
+    }

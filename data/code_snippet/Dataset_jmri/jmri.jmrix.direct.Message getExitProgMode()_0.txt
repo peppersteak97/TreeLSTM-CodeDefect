@@ -1,0 +1,4 @@
+    static public Message getExitProgMode() {
+        log.error("getExitProgMode doesnt have a reasonable implementation yet");
+        return null;
+    }

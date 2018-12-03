@@ -1,0 +1,7 @@
+    private synchronized List<FileDependency> getRemainingDependencies() {
+        List<FileDependency> deps = new ArrayList<FileDependency>();
+        for (Map.Entry<ParentFile, List<File>> entry : m_dependencies.entrySet()) {
+            deps.add(new FileDependency(entry.getKey(), entry.getValue()));
+        }
+        return deps;
+    }

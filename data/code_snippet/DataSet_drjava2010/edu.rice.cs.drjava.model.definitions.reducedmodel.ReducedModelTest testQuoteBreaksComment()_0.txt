@@ -1,0 +1,33 @@
+  public void testQuoteBreaksComment() {
+    model1.insertChar('/');
+    model1.insertChar('*');
+    model1.insertChar('*');
+    model1.insertChar('/');
+    model1.move(-2);
+    model1.insertChar('\"');
+    model1.move(-1);
+    model1.move(-2);
+    assertEquals("#1.1", FREE, model1.currentToken().getState());
+    model1.move(2);
+    assertEquals("#1.1", INSIDE_BLOCK_COMMENT, model1.getStateAtCurrent());
+    assertEquals("#1.2", INSIDE_BLOCK_COMMENT, model1.currentToken().getState());
+    model1.move(1);
+    assertEquals("#1.2", FREE, model1.currentToken().getState());
+    model1.move(-3);
+    model1.insertChar('\"');
+    model1.move(-1);
+    assertEquals("#2.2", FREE, model1.currentToken().getState());
+    model1.move(1);
+    assertEquals("#2.0", INSIDE_DOUBLE_QUOTE, model1.getStateAtCurrent());
+    assertEquals("#2.1", INSIDE_DOUBLE_QUOTE, model1.currentToken().getState());
+    assertEquals("#2.3", "/", model1.currentToken().getType());
+    model1.move(1);
+    assertEquals("#2.4", "*", model1.currentToken().getType());
+    model1.move(2);
+    assertEquals("#5.0", FREE, model1.getStateAtCurrent());
+    assertEquals("#5.1", FREE, model1.currentToken().getState());
+    assertEquals("#5.3", "*", model1.currentToken().getType());
+    model1.move(1);
+    assertEquals("#5.4", "/", model1.currentToken().getType());
+    assertEquals("#5.5", FREE, model1.currentToken().getState());
+  }

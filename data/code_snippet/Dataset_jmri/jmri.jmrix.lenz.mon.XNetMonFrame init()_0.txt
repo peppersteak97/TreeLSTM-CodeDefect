@@ -1,0 +1,3 @@
+	protected void init() {
+		XNetTrafficController.instance().addXNetListener(~0, this);
+	}

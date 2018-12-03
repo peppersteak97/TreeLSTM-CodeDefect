@@ -1,0 +1,5 @@
+    IntegrationEntity getSelectedEntity() {
+        IIntegrationEntityUiDelegate uiDel = 
+            (IIntegrationEntityUiDelegate) m_comboBox.getSelectedEntity();
+        return (uiDel == null) ? null : uiDel.getDataObject();
+    }

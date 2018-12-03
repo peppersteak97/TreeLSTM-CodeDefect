@@ -1,0 +1,3 @@
+    protected Component getTarget() {
+        return m_target;
+    }

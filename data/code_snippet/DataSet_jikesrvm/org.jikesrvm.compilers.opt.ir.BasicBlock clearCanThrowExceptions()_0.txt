@@ -1,0 +1,3 @@
+  public final void clearCanThrowExceptions() {
+    flags &= ~CAN_THROW_EXCEPTIONS;
+  }

@@ -1,0 +1,7 @@
+    public SimpleTextStructure clone() throws CloneNotSupportedException {
+        SimpleTextStructure clone = (SimpleTextStructure)super.clone();
+        if( m_segment != null ) {
+            clone.m_segment = new Segment(m_segment);
+        }
+        return clone;
+    }

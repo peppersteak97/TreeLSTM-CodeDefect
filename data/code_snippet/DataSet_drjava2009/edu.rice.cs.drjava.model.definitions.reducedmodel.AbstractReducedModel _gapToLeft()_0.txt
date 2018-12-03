@@ -1,0 +1,3 @@
+      if (_gapToLeft()) {
+        _augmentGapToLeft(length);
+      }

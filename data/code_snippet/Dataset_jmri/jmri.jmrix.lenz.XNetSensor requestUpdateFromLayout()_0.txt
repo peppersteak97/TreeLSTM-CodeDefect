@@ -1,0 +1,6 @@
+    public void requestUpdateFromLayout() {
+       XNetMessage msg = XNetMessage.getFeedbackRequestMsg(baseaddress,
+                                                          (nibble==0x00));
+       msg.setElement(1,baseaddress);
+       XNetTrafficController.instance().sendXNetMessage(msg, this);
+    }

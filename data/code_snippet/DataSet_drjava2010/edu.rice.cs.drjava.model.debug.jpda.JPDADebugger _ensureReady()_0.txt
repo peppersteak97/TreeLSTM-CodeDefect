@@ -1,0 +1,9 @@
+  private void _ensureReady() throws DebugException {
+    if (! isReady()) throw new IllegalStateException("Debugger is not active.");
+    
+    if (_eventHandlerError != null) {
+      Throwable t = _eventHandlerError;
+      _eventHandlerError = null;
+      throw new DebugException("Error in Debugger Event Handler: " + t);
+    }
+  }

@@ -1,0 +1,3 @@
+    public int getEndPosition() {
+        return m_endPos;
+    }

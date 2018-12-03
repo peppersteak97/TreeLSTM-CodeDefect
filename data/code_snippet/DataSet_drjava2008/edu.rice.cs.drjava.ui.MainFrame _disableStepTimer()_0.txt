@@ -1,0 +1,3 @@
+  private void _disableStepTimer() {
+    synchronized(_debugStepTimer) { if (_debugStepTimer.isRunning()) _debugStepTimer.stop(); }
+  }

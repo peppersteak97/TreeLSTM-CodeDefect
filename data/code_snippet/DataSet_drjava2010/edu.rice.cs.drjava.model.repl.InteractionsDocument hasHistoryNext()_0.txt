@@ -1,0 +1,1 @@
+  public boolean hasHistoryNext() { return _history.hasNext(); }

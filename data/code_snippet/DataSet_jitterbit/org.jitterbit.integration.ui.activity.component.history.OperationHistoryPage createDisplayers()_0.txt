@@ -1,0 +1,11 @@
+    private void createDisplayers() {
+        m_operationHistoryDisplayer = new OperationHistoryDisplayer(getWindow());
+        m_operationHistoryDisplayer.getNavigationControl().addControl(
+                        m_operationHelpButton, Integer.MAX_VALUE - 1);
+        m_operationHistoryDisplayer.setDisplayedSubject(getObject());
+        m_sourceHistoryDisplayer = new SourceHistoryDisplayer(getWindow());
+        m_sourceHistoryDisplayer.getNavigationControl().addControl(
+                        m_sourceHelpButton, Integer.MAX_VALUE - 1);
+        m_sourceHistoryDisplayer.setDisplayedSubject(getObject());
+        createDisplayPanel();
+    }

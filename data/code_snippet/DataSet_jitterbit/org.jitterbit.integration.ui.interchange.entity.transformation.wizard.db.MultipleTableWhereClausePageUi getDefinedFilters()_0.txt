@@ -1,0 +1,7 @@
+    public DbTranFilters getDefinedFilters() {
+        DbTranFilters filters = new DbTranFilters();
+        for (Table t : m_tables) {
+            t.addDefinedFilters(filters);
+        }
+        return filters;
+    }

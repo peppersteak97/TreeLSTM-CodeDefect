@@ -1,0 +1,8 @@
+  public void writeOld() throws IOException {
+    FileWriter fw = null;
+    try {
+      fw = new FileWriter(_projectFile);
+      writeOld(fw);
+    }
+    finally { if (fw != null) fw.close(); }
+  }

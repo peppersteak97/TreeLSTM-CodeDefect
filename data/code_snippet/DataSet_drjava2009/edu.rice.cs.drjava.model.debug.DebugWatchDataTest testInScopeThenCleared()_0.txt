@@ -1,0 +1,24 @@
+  public void testInScopeThenCleared() {
+    DebugWatchData data = new DebugWatchData("foo");
+
+    data.setValue(Integer.valueOf(7));
+    data.setType("java.lang.Integer");
+    assertEquals("should have a value", "7", data.getValue());
+    assertEquals("should have a type", "java.lang.Integer", data.getType());
+    assertTrue("should be changed", data.isChanged());
+    
+    data.hideValueAndType();
+    assertEquals("should have no value after hide",
+                 "", data.getValue());
+    assertEquals("should have no type after hide",
+                 "", data.getType());
+    assertTrue("should not be changed after hide", !data.isChanged());
+    
+    data.setValue(Integer.valueOf(7));
+    assertTrue("should not be changed after setting same value",
+               !data.isChanged());
+    
+    data.setValue(Integer.valueOf(8));
+    assertTrue("should be changed after setting different value",
+               data.isChanged());
+  }

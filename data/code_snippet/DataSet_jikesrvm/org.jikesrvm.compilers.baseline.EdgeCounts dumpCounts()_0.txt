@@ -1,0 +1,3 @@
+  public static void dumpCounts() {
+    dumpCounts(BaselineCompiler.options.PROFILE_EDGE_COUNTER_FILE);
+  }

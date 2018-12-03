@@ -1,0 +1,8 @@
+    protected IntegrationDataPanel createDataPanel() {
+        SchedulePanel p = new SchedulePanel(getObject().getDataObject());
+        IntegrationEntityPageModel model = getPageModel();
+        for (IBoundProperty c : p.getBoundPropertyControls()) {
+            model.bindProperty(c);
+        }
+        return p;
+    }

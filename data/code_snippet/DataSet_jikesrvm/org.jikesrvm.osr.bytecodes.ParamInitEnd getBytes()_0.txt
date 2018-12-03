@@ -1,0 +1,3 @@
+  public byte[] getBytes() {
+    return initBytes(2, PSEUDO_ParamInitEnd);
+  }

@@ -1,0 +1,5 @@
+  public JViewport getDefViewport() {
+    OpenDefinitionsDocument doc = _model.getActiveDocument();
+    JScrollPane defScroll = _defScrollPanes.get(doc);
+    return defScroll.getViewport();
+  }

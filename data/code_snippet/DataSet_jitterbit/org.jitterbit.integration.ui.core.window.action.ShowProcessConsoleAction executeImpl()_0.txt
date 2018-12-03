@@ -1,0 +1,9 @@
+    private void executeImpl() {
+        try {
+            IWindowSectionContentDisplayer displayer = getDisplayer();
+            displayer.displayInWindow(getWindow(), IApplicationWindow.SOUTH);
+        }
+        finally {
+            succeeded(null);
+        }
+    }

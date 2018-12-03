@@ -1,0 +1,3 @@
+  public boolean isWordType() {
+    return this == Word || this == Offset || this == Address || this == Extent;
+  }

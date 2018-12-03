@@ -1,0 +1,111 @@
+    protected void runWraparoundTest() {
+        statusText1.setText("Running Wraparound Test");
+        statusText1.setVisible(true);
+        
+        wrapTimer = new Timer(100,new ActionListener() {
+            public void actionPerformed(ActionEvent evnt) 
+            {
+                if (testRunning && !testSuspended) {
+                    if (waitingOnInput) {
+                        count --;
+                        if (count==0) {
+                            statusText2.setText("Time Out Error - no response after 5 seconds.");
+                            statusText2.setVisible(true);
+                        }
+                    }
+                    else {
+                        if (needInputTest) {
+                            needInputTest = false;
+                            boolean comparisonError = false;
+                            int j = 0;
+                            for (int i = begInByte;i<=endInByte;i++,j++) {
+                                if (inBytes[i] != wrapBytes[j]) {
+                                    comparisonError = true;
+                                }
+                            }
+                            if (comparisonError) {
+                                statusText1.setText
+                                    ("Test Suspended for Error - Stop or Continue?");
+                                statusText1.setVisible(true);
+                                String st = "Compare Error - Out Bytes (hex):";
+                                for (int i = begOutByte;i<=endOutByte;i++) {
+                                    st += " " + Integer.toHexString(((int)outBytes[i])&0x000000ff);
+                                }
+                                st += "    In Bytes (hex):";
+                                for (int i = begInByte;i<=endInByte;i++) {
+                                    st += " " + Integer.toHexString(((int)inBytes[i])&0x000000ff);
+                                }
+                                statusText2.setText(st);
+                                statusText2.setVisible(true);
+                                numErrors ++;
+                                testSuspended = true;
+                                return;
+                            }
+                        }
+
+                        outBytes[curOutByte] = (byte) curOutValue;
+                        if (isMICRO)
+                        if (isPICO)
+                        if (isMEGA){
+                            if (curOutByte > 2) {
+                                outBytes[curOutByte-3] = (byte) curOutValue;
+                            }
+                            else {
+                                outBytes[curOutByte+3] = (byte) curOutValue;
+                            }
+                        }
+                        SerialMessage m = createOutPacket();
+                        m.setTimeout(50 + filterDelay);
+                        SerialTrafficController.instance().sendSerialMessage(m,curFrame);
+
+                        short[] outBitPattern = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};
+                        String[] portID = {"A","B","C","D"};
+                        String st = "Port: "+portID[curOutByte-begOutByte]+",  Pattern: ";
+                        for (int j = 0;j < 8;j++) {
+                            if ( (curOutValue&outBitPattern[j]) != 0 ) {
+                                st = st + " X";
+                            }
+                            else {
+                                st = st + " O";
+                            }
+                        }    
+                        statusText2.setText(st);
+                        statusText2.setVisible(true);
+
+                        int k = 0;
+                        for (int i = begOutByte;i<=endOutByte;i++, k++) {
+                            wrapBytes[k] = outBytes[i];
+                        }
+                        waitingOnInput = true;
+                        needInputTest = true;
+                        count = 50;
+                        SerialTrafficController.instance().sendSerialMessage(
+                                        SerialMessage.getPoll(na),curFrame);
+
+                        curOutValue ++;
+                        if (curOutValue>255) {
+                            curOutValue = 0;
+                            outBytes[curOutByte] = 0;
+                            if (isMICRO)
+                            if (isPICO)
+                            if (isMEGA){
+                                if (curOutByte>2) {
+                                    outBytes[curOutByte-3] = 0;
+                                }
+                                else {
+                                    outBytes[curOutByte+3] = 0;
+                                }
+                            }
+                            curOutByte ++;
+                            if (curOutByte>endOutByte) {
+                                curOutByte = begOutByte;
+                                numIterations ++;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        wrapTimer.start();
+    }    

@@ -1,0 +1,83 @@
+    public SerialMessage createInitPacket() {
+        int nInitBytes = 2;
+        byte[] initBytes = new byte [20];
+        int code = 0;
+        else if (nodeType==TERA) {
+            else
+        }
+
+        if (nodeType==MICRO) {
+            initBytes[1] = (byte)num2LSearchLights;
+            if (num2LSearchLights>0) {
+                for (int i=0,j=0;i<4;i++,j+=8) {
+                    code = locSearchLightBits[j];
+                    code = code + (locSearchLightBits[j+1]*2);
+                    code = code + (locSearchLightBits[j+2]*4);
+                    code = code + (locSearchLightBits[j+3]*8);
+                    code = code + (locSearchLightBits[j+4]*16);
+                    code = code + (locSearchLightBits[j+5]*32);
+                    code = code + (locSearchLightBits[j+6]*64);
+                    code = code + (locSearchLightBits[j+7]*128);
+                    initBytes[nInitBytes] = (byte)code;
+                    nInitBytes ++;
+                }
+            }
+        }
+         
+        if (nodeType==TERA) {
+            int numCards = numInputCards() + numOutputCards();
+            int numFours = numCards/4;
+            initBytes[1] = (byte)numFours;
+            for (int i=0,j=0;i<numFours;i++,j+=4) {
+                code = cardTypeLocation[j];
+                code = code + (cardTypeLocation[j+1] * 4);
+                code = code + (cardTypeLocation[j+2] * 16);
+                code = code + (cardTypeLocation[j+3] * 64);
+                initBytes[nInitBytes] = (byte)code;
+                nInitBytes ++;
+            }
+        }
+        else if (nodeType==PICO) {
+            initBytes[1] = (byte)num2LSearchLights;
+            if (num2LSearchLights>0) {
+                for (int i=0,j=0;i<2;i++,j+=8) {
+                    code = locSearchLightBits[j];
+                    code = code + (locSearchLightBits[j+1]*2);
+                    code = code + (locSearchLightBits[j+2]*4);
+                    code = code + (locSearchLightBits[j+3]*8);
+                    code = code + (locSearchLightBits[j+4]*16);
+                    code = code + (locSearchLightBits[j+5]*32);
+                    code = code + (locSearchLightBits[j+6]*64);
+                    code = code + (locSearchLightBits[j+7]*128);
+                    initBytes[nInitBytes] = (byte)code;
+                    nInitBytes ++;
+                }
+            }
+        }
+        else if (nodeType==MEGA) {
+            initBytes[1] = (byte)num2LSearchLights;
+            if (num2LSearchLights>0) {
+                for (int i=0,j=0;i<12;i++,j+=8) {
+                    code = locSearchLightBits[j];
+                    code = code + (locSearchLightBits[j+1]*2);
+                    code = code + (locSearchLightBits[j+2]*4);
+                    code = code + (locSearchLightBits[j+3]*8);
+                    code = code + (locSearchLightBits[j+4]*16);
+                    code = code + (locSearchLightBits[j+5]*32);
+                    code = code + (locSearchLightBits[j+6]*64);
+                    code = code + (locSearchLightBits[j+7]*128);
+                    initBytes[nInitBytes] = (byte)code;
+                    nInitBytes ++;
+                }
+            }
+        }
+        
+
+       SerialMessage m = new SerialMessage(nInitBytes + 2);
+       int k = 2;
+       for (int i=0; i<nInitBytes; i++) {
+            m.setElement(k, initBytes[i]);
+            k ++;
+       }
+       return m;  
+    } 

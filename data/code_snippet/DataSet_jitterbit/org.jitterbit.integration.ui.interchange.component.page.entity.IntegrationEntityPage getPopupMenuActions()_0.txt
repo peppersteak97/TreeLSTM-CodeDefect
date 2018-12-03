@@ -1,0 +1,20 @@
+    protected Action[] getPopupMenuActions() {
+        InterchangeView view = getView();
+        IApplicationWindow window = view.getWindow();
+        List<Action> actions = new ArrayList<Action>();
+        actions.add(WindowActionFactory.SAVE.get(window));
+        actions.add(WindowActionFactory.CLOSE_PAGE.get(window));
+        actions.add(WindowActionFactory.CLOSE_OTHER_PAGES.get(window));
+        if (!TreeAndPageSelectionSynchronization.isEnabled()) {
+            actions.add(InterchangeActionFactory.LOCATE_PAGE_IN_TREE.get(view));
+        }
+        actions.add(InterchangeActionFactory.CREATE_ENTITY_COPY.get(view));
+        actions.add(null);
+        actions.add(InterchangeActionFactory.VIEW_ADDITIONAL_ENTITY_DETAILS.get(view));
+        actions.add(InterchangeActionFactory.VIEW_ENTITY_XML.get(view));
+        /*
+        actions.add(null);
+        actions.add(WindowActionFactory.DETACH_PAGE.get(window));
+        */
+        return actions.toArray(new Action[actions.size()]);
+    }

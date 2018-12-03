@@ -1,0 +1,4 @@
+  public int getHorizontalScroll() {
+    if (getDocument() == NULL_DOCUMENT) return _savedHScroll;
+    else return _scrollPane.getHorizontalScrollBar().getValue();
+  }

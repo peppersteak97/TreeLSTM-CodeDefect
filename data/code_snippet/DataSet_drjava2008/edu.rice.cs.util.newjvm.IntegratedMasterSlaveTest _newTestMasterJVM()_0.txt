@@ -1,0 +1,4 @@
+  private TestMasterJVM _newTestMasterJVM()  { 
+    try { return new TestMasterJVM(); }
+    catch(RemoteException e) { throw new UnexpectedException(e); }
+  }

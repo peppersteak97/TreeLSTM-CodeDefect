@@ -1,0 +1,11 @@
+  public static synchronized JNIEnvironment allocateEnvironment() {
+    JNIEnvironment env;
+    if (pool != null) {
+      env = pool;
+      pool = pool.next;
+    } else {
+      env = new JNIEnvironment();
+    }
+    env.initializeState();
+    return env;
+  }

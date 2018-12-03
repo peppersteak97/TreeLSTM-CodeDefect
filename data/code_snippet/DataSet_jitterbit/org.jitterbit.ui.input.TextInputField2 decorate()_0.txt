@@ -1,0 +1,8 @@
+    private void decorate() {
+        if (isActive()) {
+            boolean isValid = isInputValid(getValue());
+            getInputComponent().setBackground(
+                            isValid ? m_validBackground : m_invalidBackground);
+            setToolTipText(isValid);
+        }
+    }

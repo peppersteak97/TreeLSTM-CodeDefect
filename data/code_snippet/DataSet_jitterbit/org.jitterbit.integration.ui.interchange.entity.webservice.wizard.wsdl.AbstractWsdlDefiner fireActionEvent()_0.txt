@@ -1,0 +1,9 @@
+    protected final void fireActionEvent() {
+        ActionEvent evt = null;
+        for (ActionListener lst : m_actionListeners) {
+            if (evt == null) {
+                evt = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "active_select");
+            }
+            lst.actionPerformed(evt);
+        }
+    }

@@ -1,0 +1,4 @@
+  private void _pageSetup() {
+    PrinterJob job = PrinterJob.getPrinterJob();
+    _model.setPageFormat(job.pageDialog(_model.getPageFormat()));
+  }

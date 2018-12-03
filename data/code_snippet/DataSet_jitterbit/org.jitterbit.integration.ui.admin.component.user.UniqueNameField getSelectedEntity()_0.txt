@@ -1,0 +1,1 @@
+     * If {@link #getSelectedEntity()} returns null, this method returns

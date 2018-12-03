@@ -1,0 +1,9 @@
+  private void _notify() {
+    synchronized(_notifyObject) {
+      _notifyCount--;
+      if (_notifyCount <= 0) {
+        _notifyObject.notify();
+        _notifyCount = 0;
+      }
+    }
+  }

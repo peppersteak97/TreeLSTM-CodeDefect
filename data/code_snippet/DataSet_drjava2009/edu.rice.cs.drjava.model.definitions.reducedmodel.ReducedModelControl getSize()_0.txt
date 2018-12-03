@@ -1,0 +1,3 @@
+  int getSize() {
+    return getSize(_rmb.current(),_rmc.current());
+  }

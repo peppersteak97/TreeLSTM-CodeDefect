@@ -1,0 +1,8 @@
+	public void addEmptyRow() {
+		EmptyTableRow row = new EmptyTableRow(getColumnMetaData());
+		m_rows.add(row);
+		m_underlyingObjects.add(row.getUnderlyingObject());
+		++m_numberOfRows;
+		int index = m_rows.size() - 1;
+		fireRowsInserted(index, index);
+	}

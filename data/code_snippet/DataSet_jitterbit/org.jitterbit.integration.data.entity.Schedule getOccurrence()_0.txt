@@ -1,0 +1,3 @@
+    public ScheduleOccurrence getOccurrence() {
+        return new ScheduleOccurrence(getData());
+    }

@@ -1,0 +1,3 @@
+    public List<ConversionWarning> getWarnings() {
+        return new ArrayList<ConversionWarning>( m_liWarnings );
+    }

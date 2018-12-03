@@ -1,0 +1,3 @@
+    public RootFolder getDataObject() {
+        return (RootFolder)super.getDataObject();
+    }

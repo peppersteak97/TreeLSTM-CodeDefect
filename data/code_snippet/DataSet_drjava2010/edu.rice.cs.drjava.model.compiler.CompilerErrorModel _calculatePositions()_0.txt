@@ -1,0 +1,69 @@
+  private void _calculatePositions() {
+    try {
+      int curError = 0;
+      
+      while ((curError < _numErrors)) {
+        curError = nextErrorWithLine(curError);
+        if (curError >= _numErrors) {break;} 
+        
+        File file = _errors[curError].file();
+        OpenDefinitionsDocument document;
+        try { document = _model.getDocumentForFile(file); }
+        catch (Exception e) {
+          if ((e instanceof IOException) || (e instanceof OperationCanceledException)) {
+            do { curError++;} 
+            while ((curError < _numErrors) && (_errors[curError].file().equals(file)));
+            
+            continue;
+          }
+          else throw new UnexpectedException(e);
+        }
+        if (curError >= _numErrors) break;
+        
+        final int fileStartIndex = curError;
+        final int defsLength = document.getLength();
+        final String defsText = document.getText(0, defsLength);
+        int curLine = 0;
+        
+          boolean didNotAdvance = false;
+          if (_errors[curError].lineNumber() != curLine) {
+            didNotAdvance = true;
+          }
+          else {
+            while ((curError < _numErrors) &&
+                   (_errors[curError].lineNumber() == curLine)) {
+              _positions[curError] = document.createPosition(offset + _errors[curError].startColumn());
+              curError++;
+            }
+          }
+          
+          if (curError < _numErrors) {
+            int curErrorLine = _errors[curError].lineNumber();
+            int nextNewline = 0;
+            while ((curLine != curErrorLine)
+                     && (nextNewline != -1)
+                     && (file.equals(_errors[curError].file()))) {
+              nextNewline = defsText.indexOf(newLine, offset);
+              if (nextNewline == -1) nextNewline = defsText.indexOf("\n", offset);
+              if (nextNewline != -1) {
+                curLine++;
+                offset = nextNewline + 1;
+              }
+              else {
+                if (didNotAdvance) {
+                  _positions[curError] = null;
+                  curError++;
+                }
+              }
+            }
+          }
+        }
+        
+        int fileEndIndex = curError;
+        if (fileEndIndex != fileStartIndex) {
+          try { file = file.getCanonicalFile(); }
+          catch (IOException ioe) { /* Oh well, store it as is */ }
+          _filesToIndexes.put(file, new StartAndEndIndex(fileStartIndex, fileEndIndex));
+        }
+      }
+    }

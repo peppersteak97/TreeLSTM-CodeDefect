@@ -1,0 +1,5 @@
+    private void layoutComponents() {
+        setLayout(new BoxLayout(getUi(), BoxLayout.LINE_AXIS));
+        add(m_day);
+        add(m_month);
+    }

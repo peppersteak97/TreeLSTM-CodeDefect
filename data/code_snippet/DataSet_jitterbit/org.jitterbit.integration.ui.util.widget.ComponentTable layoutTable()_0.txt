@@ -1,0 +1,9 @@
+    public void layoutTable() {
+        m_tablePanel = new JPanel();
+        m_tablePanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+
+        createHeaders(gbc);
+        createRows(gbc);
+    }

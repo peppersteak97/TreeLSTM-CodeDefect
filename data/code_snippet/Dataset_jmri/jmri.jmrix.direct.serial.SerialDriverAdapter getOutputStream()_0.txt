@@ -1,0 +1,4 @@
+    public DataOutputStream getOutputStream() {
+        if (!opened) log.error("getOutputStream called before load(), stream not available");
+        return new DataOutputStream(serialOutStream);
+    }

@@ -1,0 +1,4 @@
+    private void init() {
+        String id = ActivityMenus.OPERATIONS;
+        m_menuMap.put(id, new OperationsMenu(id, m_appWin));
+    }

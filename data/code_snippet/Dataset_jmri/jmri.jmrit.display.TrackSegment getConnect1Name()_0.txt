@@ -1,0 +1,1 @@
+	public String getConnect1Name() {return getConnectName(connect1,type1);}

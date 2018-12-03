@@ -1,0 +1,8 @@
+  protected void _chooseFile() {
+    
+    int returnValue = _chooser.showDialog(_file);
+    if (returnValue == DirectoryChooser.APPROVE_OPTION) {
+      File chosen = _chooser.getSelectedDirectory();
+      if (chosen != null) setFileField(chosen);
+    }
+  }

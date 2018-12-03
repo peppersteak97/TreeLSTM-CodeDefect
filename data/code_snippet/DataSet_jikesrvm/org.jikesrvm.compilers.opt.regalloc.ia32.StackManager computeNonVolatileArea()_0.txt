@@ -1,0 +1,62 @@
+  public void computeNonVolatileArea() {
+    PhysicalRegisterSet phys = ir.regpool.getPhysicalRegisterSet();
+
+    if (ir.compiledMethod.isSaveVolatile()) {
+      int numGprNv = PhysicalRegisterSet.getNumberOfNonvolatileGPRs();
+      ir.compiledMethod.setNumberOfNonvolatileGPRs((short) numGprNv);
+
+      frameSize += numGprNv * WORDSIZE;
+      frameSize = align(frameSize, STACKFRAME_ALIGNMENT);
+
+      ir.compiledMethod.setNumberOfNonvolatileFPRs((short) 0);
+
+      setFrameRequired();
+
+      if (ArchConstants.SSE2_FULL) {
+        for(int i=0; i < 8; i++) {
+          fsaveLocation = allocateNewSpillLocation(DOUBLE_REG);
+        }
+      } else {
+        for (int i = 0; i < 27; i++) {
+          fsaveLocation = allocateNewSpillLocation(INT_REG);
+        }
+      }
+
+      int i = 0;
+      for (Enumeration<Register> e = phys.enumerateVolatileGPRs(); e.hasMoreElements(); i++) {
+        e.nextElement();
+        saveVolatileGPRLocation[i] = allocateNewSpillLocation(INT_REG);
+      }
+
+      i = 0;
+      for (Enumeration<Register> e = phys.enumerateNonvolatileGPRs(); e.hasMoreElements(); i++) {
+        e.nextElement();
+        nonVolatileGPRLocation[i] = allocateNewSpillLocation(INT_REG);
+      }
+
+      int gprOffset = getNonvolatileGPROffset(0);
+      ir.compiledMethod.setUnsignedNonVolatileOffset(gprOffset);
+
+    } else {
+      int numGprNv = 0;
+      int i = 0;
+      for (Enumeration<Register> e = phys.enumerateNonvolatileGPRs(); e.hasMoreElements();) {
+        Register r = e.nextElement();
+        if (r.isTouched()) {
+          nonVolatileGPRLocation[i++] = allocateNewSpillLocation(INT_REG);
+          numGprNv++;
+        }
+      }
+      ir.compiledMethod.setNumberOfNonvolatileGPRs((short) numGprNv);
+      if (numGprNv > 0) {
+        int gprOffset = getNonvolatileGPROffset(0);
+        ir.compiledMethod.setUnsignedNonVolatileOffset(gprOffset);
+        setFrameRequired();
+      } else {
+        ir.compiledMethod.setUnsignedNonVolatileOffset(0);
+      }
+
+      ir.compiledMethod.setNumberOfNonvolatileFPRs((short) 0);
+
+    }
+  }

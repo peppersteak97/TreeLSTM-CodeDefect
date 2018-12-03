@@ -1,0 +1,6 @@
+    protected void initNodes() {
+        for (int i=0; i<=MAXNODE; i++) {
+            nodeArray[i] = null;
+            mustInit[i] = true;
+        }
+    }

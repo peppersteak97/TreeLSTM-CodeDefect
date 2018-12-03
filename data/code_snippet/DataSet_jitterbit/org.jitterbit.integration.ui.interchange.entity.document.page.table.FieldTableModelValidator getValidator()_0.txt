@@ -1,0 +1,9 @@
+    protected ITextStructureValidator getValidator() {
+        TextValidatorFactory factory = new TextValidatorFactory();
+        return factory.createFieldValidator(new Iterable<Field>() {
+
+            public Iterator<Field> iterator() {
+                return m_model.getFieldIterator();
+            }
+        });
+    }

@@ -1,0 +1,4 @@
+    public void activate() {
+        m_treePanel.activated();
+        setInitialSelectionState();
+    }

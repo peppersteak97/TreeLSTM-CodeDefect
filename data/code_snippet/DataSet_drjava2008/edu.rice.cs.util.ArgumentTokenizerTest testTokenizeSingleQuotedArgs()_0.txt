@@ -1,0 +1,8 @@
+  public void testTokenizeSingleQuotedArgs() {
+    _assertTokenized("'asdf'",
+                     new String[]{"asdf"});
+    _assertTokenized("'a b c'",
+                     new String[]{"a b c"});
+    _assertTokenized("'\\'",
+                     new String[]{"\\"});
+  }

@@ -1,0 +1,3 @@
+    public String getSegmentTerminator() {
+        return m_segmentTerminator;
+    }

@@ -1,0 +1,3 @@
+  private void _commentLines() {
+      _mainFrame.commentLines();
+  }

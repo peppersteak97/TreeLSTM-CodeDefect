@@ -1,0 +1,26 @@
+  public void testGetSourceRootDefaultPackage() throws BadLocationException, IOException {
+    debug.logStart();
+    
+    Iterable<File> roots = _model.getSourceRootSet();
+    assertEquals("number of source roots", 0, IterUtil.sizeOf(roots));
+    
+    File baseTempDir = tempDirectory();
+    
+    File subdir = makeCanonical(new File(baseTempDir, "a"));
+    subdir = makeCanonical(new File(subdir, "b"));
+    subdir = makeCanonical(new File(subdir, "c"));
+    subdir.mkdirs();
+    
+    File fooFile = makeCanonical(new File(subdir, "DrJavaTestFoo.java"));
+    OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    saveFileAs(doc, new FileSelector(fooFile));
+    
+    _model.addListener(new TestListener());
+    
+    roots = _model.getSourceRootSet();
+    assertEquals("number of source roots", 1, IterUtil.sizeOf(roots));
+    assertEquals("source root", subdir, IterUtil.first(roots));
+    
+    _log.log("testGetSourceRootDefaultPackage() completed");
+    debug.logEnd();
+  }

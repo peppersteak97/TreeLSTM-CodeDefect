@@ -1,0 +1,3 @@
+    public void removeAllRows() {
+        m_tableModel.deleteAll();
+    }

@@ -1,0 +1,5 @@
+  public OperandEnumeration getUses() {
+    int numOps = getNumberOfOperands() - 1;
+    int defsEnd = operator.hasVarDefs() ? numOps : operator.getNumberOfPureDefs() - 1;
+    return new OE(this, 0, numOps, defsEnd);
+  }

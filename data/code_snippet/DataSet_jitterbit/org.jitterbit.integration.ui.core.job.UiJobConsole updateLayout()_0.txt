@@ -1,0 +1,14 @@
+    private void updateLayout() {
+        m_displayer.removeAll();
+        IUiDecor decor = new IUiDecor() {
+
+            public void display(Component display) {
+                m_displayer.add(display);
+            }
+        };
+        for (JobSnapshot snapshot : m_jobSnapshots) {
+            snapshot.decorate(decor);
+        }
+        m_displayer.validate();
+        m_displayer.repaint();
+    }

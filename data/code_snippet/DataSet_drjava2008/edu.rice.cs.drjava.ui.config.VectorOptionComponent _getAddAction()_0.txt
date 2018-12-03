@@ -1,0 +1,15 @@
+    _addButton = new JButton(_getAddAction());
+    _removeButton = new JButton(new AbstractAction("Remove") {
+      public void actionPerformed(ActionEvent ae) {
+        if (!_list.isSelectionEmpty()) {
+          int index = _list.getSelectedIndex();
+          _listModel.remove(index);
+            _list.setSelectedIndex(index - 1);
+            notifyChangeListeners();
+          }
+          else {
+            _list.setSelectedIndex(index);
+            notifyChangeListeners();
+          }
+        }
+      }

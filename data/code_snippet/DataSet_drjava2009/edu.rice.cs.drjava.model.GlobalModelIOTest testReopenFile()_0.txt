@@ -1,0 +1,47 @@
+  public void testReopenFile() throws BadLocationException, IOException {
+    final File tempFile = writeToNewTempFile(BAR_TEXT);
+    
+    TestListener listener = new TestFileIOListener(tempFile);
+    
+    _model.addListener(listener);
+    try {
+      OpenDefinitionsDocument doc = _model.openFile(new FileSelector(tempFile));
+      listener.assertOpenCount(1);
+      assertModified(false, doc);
+      assertContents(BAR_TEXT, doc);
+    }
+    catch (AlreadyOpenException aoe) {
+      fail("File was already open!");
+    }
+    catch (OperationCanceledException oce) {
+      fail("Open was unexpectedly canceled!");
+    }
+    
+    try {
+      _model.openFile(new FileSelector(tempFile));
+      fail("file should already be open");
+    }
+    catch (AlreadyOpenException aoe) {
+      listener.assertOpenCount(1);
+      listener.assertCloseCount(1);  
+    }
+    catch (OperationCanceledException oce) {
+      fail("Open was unexpectedly canceled!");
+    }
+    
+    try {
+      File parent = tempFile.getParentFile();
+      String dotSlash = "." + System.getProperty("file.separator");
+      parent = new File(parent, dotSlash);
+      File sameFile = new File(parent, tempFile.getName());
+      _model.openFile(new FileSelector(sameFile));
+      fail("file should already be open");
+    }
+    catch (AlreadyOpenException aoe) {
+      listener.assertOpenCount(1);
+    }
+    catch (OperationCanceledException oce) {
+      fail("Open was unexpectedly canceled!");
+    }
+    _log.log("testReopenFile completed");
+  }

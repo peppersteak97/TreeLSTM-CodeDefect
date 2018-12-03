@@ -1,0 +1,30 @@
+    private void writeHeader() {
+    	addCopyrightNotice();
+        addLine("#include <assert.h>");
+        addLine();
+        addLine("#include <dtl/DTL.h>");
+        addLine();
+        addLine("#include <konga/Db/DbUtils/DbException.h>");
+        addLine();
+        addLine("#include <konga/Db/DtlDbUtils/DtlDbConnection.h>");
+        addLine();
+        try {
+            for( Table t : getTables() ) {
+                addLine("#include <konga/Db/Dtl" + getLibraryName() + "/Dtl" + t.getName() + ".h>");
+            }
+            for( View v : getViews() ) {
+                addLine("#include <konga/Db/Dtl" + getLibraryName() + "/Dtl" + v.getName() + ".h>");
+            }
+        } 
+        catch (SqlServerBrowserException e) {
+            e.printStackTrace();
+            logError(getDatabase(), null, e.toString());
+        }
+        addLine();
+        addLine("#include \"" + getFactoryName() + ".h\"");
+        addLine();
+        addLine("using namespace konga;");
+        addLine("using namespace " + getNamespace() + ";");
+        addLine("using namespace dtl;");
+        addLine();
+    }

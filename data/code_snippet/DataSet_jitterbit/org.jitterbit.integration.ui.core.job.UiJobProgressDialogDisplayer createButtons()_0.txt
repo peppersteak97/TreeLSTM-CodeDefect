@@ -1,0 +1,7 @@
+    private void createButtons() {
+        setFixedButtonSize(false);
+        m_buttonPanel = getButtonPanel(OK_CANCEL, 10);
+        getOKButton().setText(PackageResources.ProgressDialog.RUN_IN_BACKGROUND);
+        UiUtils.setOpaqueRecursively(m_buttonPanel, false);
+        m_buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    }

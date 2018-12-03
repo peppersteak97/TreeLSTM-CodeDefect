@@ -1,0 +1,6 @@
+    while (i.hasNext()) {
+      next = i.next();
+      if (f.isElement(next)) {
+        return;
+      }
+    }

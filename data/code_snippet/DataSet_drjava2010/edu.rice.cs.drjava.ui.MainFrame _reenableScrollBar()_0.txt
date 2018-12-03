@@ -1,0 +1,26 @@
+  private void _reenableScrollBar() {
+    JScrollPane scroll = _defScrollPanes.get(_model.getActiveDocument());
+    if (scroll == null)
+      throw new UnexpectedException(new Exception("Current definitions scroll pane not found."));
+    
+    JScrollBar oldbar = scroll.getVerticalScrollBar();
+    JScrollBar newbar = scroll.createVerticalScrollBar();
+    newbar.setMinimum(oldbar.getMinimum());
+    newbar.setMaximum(oldbar.getMaximum());
+    newbar.setValue(oldbar.getValue());
+    newbar.setVisibleAmount(oldbar.getVisibleAmount());
+    newbar.setEnabled(true);
+    newbar.revalidate();
+    scroll.setVerticalScrollBar(newbar);
+    
+    oldbar = scroll.getHorizontalScrollBar();
+    newbar = scroll.createHorizontalScrollBar();
+    newbar.setMinimum(oldbar.getMinimum());
+    newbar.setMaximum(oldbar.getMaximum());
+    newbar.setValue(oldbar.getValue());
+    newbar.setVisibleAmount(oldbar.getVisibleAmount());
+    newbar.setEnabled(true);
+    newbar.revalidate();
+    scroll.setHorizontalScrollBar(newbar);
+    scroll.revalidate();
+  }

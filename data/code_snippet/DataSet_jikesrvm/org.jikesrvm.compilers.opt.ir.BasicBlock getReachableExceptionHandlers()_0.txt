@@ -1,0 +1,18 @@
+  public final BasicBlockEnumeration getReachableExceptionHandlers() {
+    if (hasExceptionHandlers()) {
+      int count = 0;
+      for (BasicBlockEnumeration inScope = getExceptionHandlers(); inScope.hasMoreElements(); inScope.next()) {
+        count++;
+      }
+
+      ComputedBBEnum ans = new ComputedBBEnum(count);
+
+      for (BasicBlockEnumeration inScope = getExceptionHandlers(); inScope.hasMoreElements();) {
+        BasicBlock cand = inScope.next();
+        if (pointsOut(cand)) ans.addPossiblyDuplicateElement(cand);
+      }
+      return ans;
+    } else {
+      return BasicBlockEnumeration.Empty;
+    }
+  }

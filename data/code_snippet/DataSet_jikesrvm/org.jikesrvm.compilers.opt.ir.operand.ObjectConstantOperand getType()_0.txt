@@ -1,0 +1,15 @@
+  public TypeReference getType() {
+    if (VM.runningVM) {
+      return java.lang.JikesRVMSupport.getTypeForClass(value.getClass()).getTypeRef();
+    } else {
+      Class<?> rc = value.getClass();
+      String className = rc.getName();
+      Atom classAtom = Atom.findOrCreateAsciiAtom(className.replace('.', '/'));
+      if (className.startsWith("[")) {
+        return TypeReference.findOrCreate(BootstrapClassLoader.getBootstrapClassLoader(), classAtom);
+      } else {
+        Atom classDescriptor = classAtom.descriptorFromClassName();
+        return TypeReference.findOrCreate(BootstrapClassLoader.getBootstrapClassLoader(), classDescriptor);
+      }
+    }
+  }

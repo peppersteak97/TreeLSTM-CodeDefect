@@ -1,0 +1,3 @@
+    public List<? extends IIntegrationLink> getLinks() {
+        return m_links;
+    }

@@ -1,0 +1,7 @@
+			if (canLoad()){
+				consistStatus.setText(OKAY);
+			} else {
+				consistStatus.setText(ERROR);
+				saveLoadButton.setEnabled(false);
+				return;
+			}

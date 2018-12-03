@@ -1,0 +1,10 @@
+    private PopupMenuButton createPopupMenuButton() {
+        PopupMenuButton b = new PopupMenuButton(
+                        "", 
+                        Resources.getCommonIcon("ArrowDown.16"), 
+                        getDropdownMenuActions(),
+                        PopupMenuActionPopulators.DEFAULT);
+        b.setToolTipText(Resources.CommonStrings.getString("Menu"));
+        IntegrationUiStyleSheet.configureButtonForToolBar(b);
+        return b;
+    }

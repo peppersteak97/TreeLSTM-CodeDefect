@@ -1,0 +1,1 @@
+ * returned from its {@link #locations()} method. To ensure that the current set

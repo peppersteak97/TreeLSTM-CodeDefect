@@ -1,0 +1,3 @@
+    public SignalHead getSignalHead() {
+        return mHead;
+    }

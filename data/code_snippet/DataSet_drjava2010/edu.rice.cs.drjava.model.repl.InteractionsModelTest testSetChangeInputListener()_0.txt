@@ -1,0 +1,25 @@
+  public void testSetChangeInputListener() {
+    _log.log("testSetChangeInputListener started");
+    InputListener listener1 = new InputListener() {
+      public String getConsoleInput() { return "input1"; }
+    };
+    
+    InputListener listener2 = new InputListener() {
+      public String getConsoleInput() { return "input2"; }
+    };
+    
+    try {
+      _model.getConsoleInput();
+      fail("Should not have allowed getting input before a listener is installed!");
+    }
+    catch (IllegalStateException ise) {
+      assertEquals("Should have thrown the correct exception.",
+                   "No input listener installed!", ise.getMessage());
+    }
+    
+    _model.setInputListener(listener1);
+    assertEquals("First input listener should return correct input", "input1", _model.getConsoleInput());
+    _model.changeInputListener(listener1, listener2);
+    assertEquals("Second input listener should return correct input", "input2", _model.getConsoleInput());
+    _log.log("testSetChangeInputListener ended");
+  }

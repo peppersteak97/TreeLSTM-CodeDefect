@@ -1,0 +1,13 @@
+    private synchronized void sendOffMessage() {
+            if(log.isDebugEnabled()) log.debug("Sending off message for light " + mAddress + " commanded state= " +mState);
+            XNetMessage msg =  XNetMessage.getTurnoutCommandMsg(mAddress,
+                                                  mState==ON,
+                                                  mState==OFF,
+                                                  false);
+            XNetTrafficController.instance().sendXNetMessage(msg, this);
+            
+            synchronized(this) {
+               mOldState=mState; 
+               InternalState = OFFSENT;
+            }
+    }

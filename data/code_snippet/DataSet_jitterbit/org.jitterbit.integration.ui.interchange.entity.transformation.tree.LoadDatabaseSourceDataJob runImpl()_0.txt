@@ -1,0 +1,17 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus(PackageResources.LoadSource.SEND_DATA_TO_SERVER);
+        
+        Runnable task = new Runnable() {
+            
+            public void run() {
+                IntegrationServer server = IntegrationServer.getInstance();
+                ITreeMapperInfoProvider call = server.getServerCall(ITreeMapperInfoProvider.class);
+                call.loadSourceDataTree(m_whereClause, m_transformation.getID(), LoadDatabaseSourceDataJob.this);
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallellAndWait(task, this);
+    }

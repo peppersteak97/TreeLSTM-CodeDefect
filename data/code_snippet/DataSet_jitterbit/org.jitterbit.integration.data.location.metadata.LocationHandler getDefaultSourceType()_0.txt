@@ -1,0 +1,3 @@
+    DataLocationType getDefaultSourceType() {
+        return m_defaultSourceLocationType;
+    }

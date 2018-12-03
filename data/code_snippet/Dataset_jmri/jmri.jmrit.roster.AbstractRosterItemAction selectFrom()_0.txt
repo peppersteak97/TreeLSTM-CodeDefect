@@ -1,0 +1,2 @@
+        if (!selectFrom()) return;
+        // select the "to" entry/file

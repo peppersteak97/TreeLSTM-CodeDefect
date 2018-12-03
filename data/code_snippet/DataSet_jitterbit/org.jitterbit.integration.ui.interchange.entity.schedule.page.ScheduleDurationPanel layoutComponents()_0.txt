@@ -1,0 +1,28 @@
+    private void layoutComponents() {
+        setLayout(new GridBagLayout());
+        GridBagConstraints left = IntegrationUiStyleSheet.getLeftConstraints();
+
+        left.gridwidth = 3;
+        add(m_caption, left);
+        
+        left.gridwidth = 2;
+        JComponent capsule = InputFieldFactory.getCapsule(m_startDate,
+                        InputFieldFactory.HORIZONTAL_LABEL_LEFT);
+        add(capsule, left);
+
+        left.gridwidth = 1;
+        add(m_endDateActivator, left);
+
+        GridBagConstraints middle = left;
+        middle.gridx = 1;
+        middle.gridy = 2;
+        capsule = InputFieldFactory.getCapsule(m_endDate,
+                        InputFieldFactory.HORIZONTAL_LABEL_LEFT);
+        add(capsule, middle);
+
+        GridBagConstraints right = IntegrationUiStyleSheet.getRightConstraints(2);
+        right.gridy = 1;
+        add(m_startDateButton, right);
+        right.gridy = 2;
+        add(m_endDateButton, right);
+    }

@@ -1,0 +1,3 @@
+  protected final Offset getEdgeCounterOffset() {
+    return Offset.fromIntZeroExtend(method.getId() << LOG_BYTES_IN_ADDRESS);
+  }

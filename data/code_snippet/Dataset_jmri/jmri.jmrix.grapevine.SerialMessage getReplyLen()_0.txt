@@ -1,0 +1,1 @@
+    public int getReplyLen() { return replyLen; }

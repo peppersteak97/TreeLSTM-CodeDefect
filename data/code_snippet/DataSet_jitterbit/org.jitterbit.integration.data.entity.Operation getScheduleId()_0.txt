@@ -1,0 +1,11 @@
+    public ScheduleId getScheduleId() {
+        String id = getProperty(SCHEDULE);
+        if (id != null && id.length() > 0) {
+            try {
+                return new ScheduleId(id);
+            }
+            catch (IllegalArgumentException e) {
+            }
+        }
+        return null;
+    }

@@ -1,0 +1,1 @@
+  public boolean isLineComment() { return _type == LINE_CMT_TYPE; }

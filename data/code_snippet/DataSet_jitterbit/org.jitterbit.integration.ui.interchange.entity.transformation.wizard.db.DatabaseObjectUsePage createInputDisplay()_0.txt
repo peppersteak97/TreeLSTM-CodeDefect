@@ -1,0 +1,9 @@
+    private JComponent createInputDisplay() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setFillOut();
+        p.add(m_useUi);
+        p.setOpaque(false, false);
+        JComponent p2 = InvisiblePanel.newPanel();
+        p.addToParent(p2, null);
+        return p2;
+    }

@@ -1,0 +1,4 @@
+    protected void displayedEntityNameChanged() {
+        m_operationHistoryDisplayer.getNavigationControl().setDisplayedSubject(getObject());
+        m_sourceHistoryDisplayer.getNavigationControl().setDisplayedSubject(getObject());
+    }

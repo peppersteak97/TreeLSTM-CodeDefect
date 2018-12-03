@@ -1,0 +1,4 @@
+    public int getNumTransmitters() { 
+        if (transmitters == null) return 0;
+        return transmitters.size();
+    }

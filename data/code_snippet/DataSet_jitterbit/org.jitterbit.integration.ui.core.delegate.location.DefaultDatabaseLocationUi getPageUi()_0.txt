@@ -1,0 +1,3 @@
+    public IDataLocationPageUi getPageUi() {
+        return new DatabaseLocationPageUi(getDataObject());
+    }

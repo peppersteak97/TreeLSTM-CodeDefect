@@ -1,0 +1,5 @@
+  protected Component makeLeftPanel() {
+    _textArea = new JTextArea();
+    _textArea.setEditable(false);
+    return _textArea;
+  }

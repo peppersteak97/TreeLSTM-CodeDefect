@@ -1,0 +1,9 @@
+    protected List<JButton> getButtons() {
+        List<JButton> btns = new ArrayList<JButton>();
+        btns.add(getLoginButton());
+        if (INCLUDE_USER_PROFILE) {
+            btns.add(getUserProfileButton());
+        }
+        addExtensionsToButtonList(btns, ToolBarExtensionPoint.EXTENSION_POINT_1);
+        return btns;
+    }

@@ -1,0 +1,9 @@
+  public void testStaticInput() throws IOException {
+    InputStreamRedirector isr = new InputStreamRedirector() {
+      protected String _getInput() {
+        return "Hello World!\n";
+      }
+    };
+    BufferedReader br = new BufferedReader(new InputStreamReader(isr));
+    assertEquals("First read", "Hello World!", br.readLine());
+  }

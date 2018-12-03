@@ -1,0 +1,3 @@
+    public int[] validBaudNumber() {
+        return new int[]{9600, 19200, 38400, 57600};
+    }

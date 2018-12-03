@@ -1,0 +1,31 @@
+  public final int getNumberOfNormalOut() {
+    int count = 0;
+    boolean countValid = true;
+    for (SpaceEffGraphEdge e = _outEdgeStart; e != null; e = e.getNextOut()) {
+      BasicBlock bb = (BasicBlock) e.toNode();
+      if (!bb.isExceptionHandlerBasicBlock()) {
+        count++;
+      } else if (bb.isExceptionHandlerWithNormalIn()) {
+        countValid = false;
+        break;
+      }
+    }
+    if (countValid) {
+      return count;
+    } else {
+      HashSet<BasicBlock> setOfTargets = new HashSet<BasicBlock>();
+      for (SpaceEffGraphEdge e = _outEdgeStart; e != null; e = e.getNextOut()) {
+        BasicBlock bb = (BasicBlock) e.toNode();
+        if (!bb.isExceptionHandlerBasicBlock()) {
+          setOfTargets.add(bb);
+        }
+      }
+      for (InstructionEnumeration e = enumerateBranchInstructions(); e.hasMoreElements();) {
+        BasicBlockEnumeration targets = e.next().getBranchTargets();
+        while (targets.hasMoreElements()) {
+          setOfTargets.add(targets.nextElement());
+        }
+      }
+      return setOfTargets.size();
+    }
+  }

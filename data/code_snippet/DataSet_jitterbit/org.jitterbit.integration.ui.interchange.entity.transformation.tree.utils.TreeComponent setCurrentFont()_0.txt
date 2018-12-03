@@ -1,0 +1,6 @@
+    private void setCurrentFont(){
+        m_font12Bold=StagingPanel.m_font12Bold;
+        m_font11Bold=StagingPanel.m_font11Bold;
+        m_font11Plain=StagingPanel.m_font11Plain;
+        m_font11Italic=StagingPanel.m_font11Italic;
+    }

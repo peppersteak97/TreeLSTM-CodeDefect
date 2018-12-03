@@ -1,0 +1,4 @@
+    private void createCustomLocationField() {
+        m_customLocationField = new FixedSizeTextField(30);
+        m_customLocationField.setEnabled(false);
+    }

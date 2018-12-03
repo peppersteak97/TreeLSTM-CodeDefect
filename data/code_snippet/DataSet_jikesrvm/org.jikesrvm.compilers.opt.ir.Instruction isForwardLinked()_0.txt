@@ -1,0 +1,4 @@
+  private void isForwardLinked() {
+    VM._assert(prev == null || prev.next == this, "is_forward_linked: failure (1)");
+    VM._assert(next.prev == this, "is_forward_linked (2)");
+  }

@@ -1,0 +1,16 @@
+    public CvValue[] usesCVs() {
+        Iterator i = variables.iterator();
+        while (i.hasNext()) {
+            VariableValue v = (VariableValue) i.next();
+            CvValue[] cvs = v.usesCVs();
+            for (int k=0; k<cvs.length; k++)
+                cvSet.add(cvs[k]);
+        }
+        CvValue[] retval = new CvValue[cvSet.size()];
+        Iterator j = cvSet.iterator();
+        int index = 0;
+        while (j.hasNext()) {
+            retval[index++] = (CvValue)j.next();
+        }
+        return retval;
+    }

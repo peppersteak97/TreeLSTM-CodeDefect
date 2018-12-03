@@ -1,0 +1,3 @@
+  public boolean isLOWER_EQUAL() {
+    return value == LOWER_EQUAL;
+  }

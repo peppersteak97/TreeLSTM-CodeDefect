@@ -1,0 +1,8 @@
+	private void dispatchAddress() {
+		throttle.dispatch();
+		if (consistThrottle != null) {
+			consistThrottle.dispatch();
+			consistThrottle = null;
+		}
+		notifyListenersOfThrottleRelease();
+	}

@@ -1,0 +1,6 @@
+  Register remove() {
+    Register Prev = prev, Next = next;
+    if (Prev != null) Prev.next = Next;
+    if (Next != null) Next.prev = Prev;
+    return Next;
+  }

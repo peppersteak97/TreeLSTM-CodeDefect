@@ -1,0 +1,9 @@
+    private void sanityCheckOfStructure() {
+        if (!m_document.isUnknownDoc()) {
+            TextStructure ts = m_document.getDataStructure();
+            if ( !(ts instanceof ComplexTextStructure) ) {
+                throw new IllegalArgumentException("document does not have "
+                                + "a complex structure.");
+            }
+        }
+    }

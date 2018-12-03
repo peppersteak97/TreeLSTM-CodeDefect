@@ -1,0 +1,6 @@
+    public final JToolBar createJToolBar() {
+        JToolBar tb = new JToolBar(getOrientation());
+        tb.setRollover(true);
+        populate(tb);
+        return tb;
+    }

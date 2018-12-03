@@ -1,0 +1,1 @@
+  public boolean getSearchAllDocuments() { return _searchAllDocuments; }

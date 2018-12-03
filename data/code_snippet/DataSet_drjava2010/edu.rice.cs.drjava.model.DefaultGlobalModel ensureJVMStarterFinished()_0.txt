@@ -1,0 +1,3 @@
+  public void ensureJVMStarterFinished() {
+    catch (InterruptedException e) { throw new UnexpectedException(e); }
+  }

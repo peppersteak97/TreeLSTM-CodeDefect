@@ -1,0 +1,4 @@
+    static public EasyDccTurnoutManager instance() {
+        if (_instance == null) _instance = new EasyDccTurnoutManager();
+        return _instance;
+    }

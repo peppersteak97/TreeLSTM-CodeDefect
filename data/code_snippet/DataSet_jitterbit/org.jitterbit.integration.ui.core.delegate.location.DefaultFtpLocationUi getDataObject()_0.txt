@@ -1,0 +1,3 @@
+    public FtpLocation getDataObject() {
+        return (FtpLocation)super.getDataObject();
+    }

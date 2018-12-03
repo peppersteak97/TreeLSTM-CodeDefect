@@ -1,0 +1,12 @@
+  public RVMType resolve() throws NoClassDefFoundError, IllegalArgumentException {
+    /*
+    * Lock the classloader instead of this to avoid conflicting locking order.
+    * Suppose we locked this, then one thread could call resolve(), locking this,
+    * call classloader.loadClass(), trying to lock the classloader. Meanwhile,
+    * another thread could call loadClass(), locking the classloader, then
+    * try to resolve() the TypeReference, resulting in a deadlock
+    */
+    synchronized (classloader) {
+      return resolveInternal();
+    }
+  }

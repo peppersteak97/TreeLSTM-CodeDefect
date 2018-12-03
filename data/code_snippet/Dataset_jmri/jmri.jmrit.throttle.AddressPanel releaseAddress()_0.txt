@@ -1,0 +1,8 @@
+	private void releaseAddress() {
+		throttle.release();
+		if (consistThrottle != null) {
+			consistThrottle.release();
+			consistThrottle = null;
+		}
+		notifyListenersOfThrottleRelease();
+	}

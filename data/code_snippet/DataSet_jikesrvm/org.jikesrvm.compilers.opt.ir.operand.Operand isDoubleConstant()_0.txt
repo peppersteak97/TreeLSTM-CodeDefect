@@ -1,0 +1,3 @@
+  public final boolean isDoubleConstant() {
+    return this instanceof DoubleConstantOperand;
+  }

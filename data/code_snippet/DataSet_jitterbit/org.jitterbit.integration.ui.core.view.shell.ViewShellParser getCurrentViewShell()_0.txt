@@ -1,0 +1,3 @@
+    ViewShell getCurrentViewShell() {
+        return m_currentViewShell;
+    }

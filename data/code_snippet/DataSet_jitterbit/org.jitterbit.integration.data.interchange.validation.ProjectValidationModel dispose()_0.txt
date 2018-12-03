@@ -1,0 +1,3 @@
+    public void dispose() {
+        m_project.getProject().removeInterchangeProjectListener(this);
+    }

@@ -1,0 +1,3 @@
+    void enableAddUser() {
+        m_userListPanel.enableAddUser();
+    }

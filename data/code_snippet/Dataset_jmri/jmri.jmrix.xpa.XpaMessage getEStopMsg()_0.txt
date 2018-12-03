@@ -1,0 +1,4 @@
+    static XpaMessage getEStopMsg(){
+	XpaMessage m=new XpaMessage("ATDT0;");
+	return m;
+    }

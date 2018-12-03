@@ -1,0 +1,3 @@
+    protected final InterchangeView getView() {
+        return m_view;
+    }

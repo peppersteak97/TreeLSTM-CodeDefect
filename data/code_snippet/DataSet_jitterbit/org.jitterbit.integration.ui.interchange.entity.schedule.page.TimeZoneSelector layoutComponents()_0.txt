@@ -1,0 +1,11 @@
+    private void layoutComponents() {
+        InputPanel controls = new InputPanel();
+        InputField[] fields = { m_timeZones, getDateTimeDisplayerAsInputField() };
+        InputFieldLayoutUtils.layoutOneColumn(controls, fields, false, false);
+        
+        setLayout(new BorderLayout(0, 5));
+        add(m_caption, BorderLayout.NORTH);
+        add(controls, BorderLayout.CENTER);
+        
+        UiUtils.setOpaqueRecursively(this, false);
+    }

@@ -1,0 +1,75 @@
+  public String toString() {
+    StringBuilder buf = new StringBuilder("(");
+
+    if (kind == LOCAL) {
+      buf.append('L');
+    } else {
+      buf.append('S');
+    }
+    buf.append((int)num);
+    buf.append(",");
+
+    char t = 'V';
+    switch (tcode) {
+      case INT:
+        t = 'I';
+        break;
+      case FLOAT:
+        t = 'F';
+        break;
+      case LONG:
+        t = 'J';
+        break;
+      case DOUBLE:
+        t = 'D';
+        break;
+      case RET_ADDR:
+        t = 'R';
+        break;
+      case REF:
+        t = 'L';
+        break;
+      case WORD:
+        t = 'W';
+        break;
+    }
+
+    buf.append(t);
+    buf.append(",");
+
+    switch (tcode) {
+      case REF:
+        if (ref == null) {
+          buf.append("null");
+        } else {
+          buf.append(VM.addressAsHexString(Magic.objectAsAddress(ref)));
+          buf.append(" ");
+        }
+        break;
+      case WORD:
+        buf.append("0x");
+        if (VM.BuildFor32Addr) {
+          buf.append(Integer.toHexString((int) (value & 0x0FFFFFFFFL)));
+        } else {
+          buf.append(Long.toHexString(value));
+        }
+        buf.append(" ");
+        break;
+      case FLOAT:
+        buf.append(Magic.intBitsAsFloat((int) (value & 0x0FFFFFFFF)));
+        break;
+      case LONG:
+        buf.append(value);
+        break;
+      case DOUBLE:
+        buf.append(Magic.longBitsAsDouble(value));
+        break;
+      default:
+        buf.append((int) (value & 0x0FFFFFFFF));
+        break;
+    }
+
+    buf.append(")");
+
+    return buf.toString();
+  }

@@ -1,0 +1,3 @@
+  public int upper16() {
+    return Bits.upper16(value);
+  }

@@ -1,0 +1,6 @@
+    private void createMainPanel() {
+        JPanel pnl = new JPanel(new BorderLayout());
+        pnl.add(createNorthComponent(), BorderLayout.NORTH);
+        m_loginUi.decorate(createUiDecor(pnl));
+        setMainPanel(pnl);
+    }

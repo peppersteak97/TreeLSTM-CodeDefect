@@ -1,0 +1,22 @@
+    private void alarmSyncStart(){
+        Date now = internalClock.getTime();
+        if (alarmSyncUpdate == null){
+            alarmSyncInit();
+        }
+        int delay = 60 * 1000;
+        if (clockMode == SYNCMODE_INTERNAL_MASTER) {
+            if (syncInterval - 3 - now.getSeconds() <= 0) {
+            } else {
+                delay = (int)((syncInterval - now.getSeconds()) * 1000 / internalClock.getRate());
+            }
+        }
+        if (clockMode == SYNCMODE_NCE_MASTER) {
+            delay = (int) 10 * 1000;
+        }
+        alarmSyncUpdate.setDelay(delay);
+        alarmSyncUpdate.setInitialDelay(delay);
+        alarmSyncUpdate.start();
+        if (log.isDebugEnabled() && false) {
+            log.debug("alarmSyncStart delay: " + delay + " @ " + now);
+        }
+    }

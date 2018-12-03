@@ -1,0 +1,10 @@
+  private void _junit() {
+    new Thread("Run JUnit on Current Document") {
+      public void run() {
+        _disableJUnitActions();
+        try { _model.getJUnitModel().junitDocs(_model.getDocumentNavigator().getSelectedDocuments()); }
+        catch(UnexpectedException e) { _junitInterrupted(e); }
+        catch(Exception e) { _junitInterrupted(new UnexpectedException(e)); }
+      }
+    }.start();
+  }

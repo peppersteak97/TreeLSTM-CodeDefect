@@ -1,0 +1,3 @@
+    protected boolean updateDisplayAfterApply() {
+        return m_bUpdateDisplayAfterApply;
+    }

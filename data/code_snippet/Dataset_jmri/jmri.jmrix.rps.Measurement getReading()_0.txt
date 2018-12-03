@@ -1,0 +1,3 @@
+    public Reading getReading() {
+        return r;
+    }

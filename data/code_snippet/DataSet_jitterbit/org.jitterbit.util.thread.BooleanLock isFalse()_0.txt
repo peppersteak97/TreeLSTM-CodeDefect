@@ -1,0 +1,3 @@
+    public synchronized boolean isFalse() {
+        return !m_bValue;
+    }

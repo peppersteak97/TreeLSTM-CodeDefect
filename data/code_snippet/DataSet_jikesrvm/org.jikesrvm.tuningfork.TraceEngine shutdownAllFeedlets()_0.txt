@@ -1,0 +1,6 @@
+  private synchronized void shutdownAllFeedlets() {
+    for (Feedlet f : activeFeedlets) {
+      shutdownFeedlet(f);
+    }
+    activeFeedlets.removeAll();
+  }

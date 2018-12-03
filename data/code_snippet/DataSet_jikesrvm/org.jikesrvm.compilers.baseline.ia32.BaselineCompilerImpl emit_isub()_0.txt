@@ -1,0 +1,4 @@
+  protected final void emit_isub() {
+    asm.emitPOP_Reg(T0);
+    asm.emitSUB_RegInd_Reg(SP, T0);
+  }

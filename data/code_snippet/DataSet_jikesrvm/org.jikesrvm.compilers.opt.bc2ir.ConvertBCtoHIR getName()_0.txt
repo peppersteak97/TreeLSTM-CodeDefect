@@ -1,0 +1,3 @@
+  public String getName() {
+    return "Generate HIR";
+  }

@@ -1,0 +1,3 @@
+    protected final boolean isSelectionEmpty() {
+        return (m_selection == null) || m_selection.isEmpty();
+    }

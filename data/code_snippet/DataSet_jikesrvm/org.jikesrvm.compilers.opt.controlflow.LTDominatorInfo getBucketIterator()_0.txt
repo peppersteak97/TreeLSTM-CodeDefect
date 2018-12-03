@@ -1,0 +1,3 @@
+  public Iterator<BasicBlock> getBucketIterator() {
+    return bucket.iterator();
+  }

@@ -1,0 +1,3 @@
+    public void initComponents() {
+      addHelpMenu("package.jmri.jmrix.sprog.sprogslotmon.SprogSlotMonFrame", true);
+    }

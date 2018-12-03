@@ -1,0 +1,18 @@
+    public final SortOrder getSortOrder() {
+        SortOrder order = null;
+        KongaTableSorter tableSorter = getTable().getTableSorter();
+        if (tableSorter.isSorting()) {
+            for (int col = 0, cols = getTableModel().getColumnCount(); col < cols; ++col) {
+                int sortStatus = tableSorter.getSortingStatus(col);
+                if (sortStatus == KongaTableSorter.ASCENDING) {
+                    order = SortOrder.ASCENDING;
+                    break;
+                }
+                else if (sortStatus == KongaTableSorter.DESCENDING) {
+                    order = SortOrder.DESCENDING;
+                    break;
+                }
+            }
+        }
+        return order;
+    }

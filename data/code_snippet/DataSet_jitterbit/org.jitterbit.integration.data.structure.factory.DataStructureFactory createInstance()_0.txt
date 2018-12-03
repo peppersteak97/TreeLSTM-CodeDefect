@@ -1,0 +1,22 @@
+    private static DataStructureFactory createInstance() {
+        try {
+            Class<? extends DataStructureFactory> clazz = getImplementingClass();
+            return clazz.newInstance();
+        }
+        catch (ClassCastException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }

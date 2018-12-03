@@ -1,0 +1,18 @@
+    void getSystemInfo() {
+        /* First, we need to send a request for the Command Station
+        hardware and software version */
+	XNetMessage msg=XNetTrafficController.instance()
+                                             .getCommandStation()
+                                             .getCSVersionRequestMessage();
+        XNetTrafficController.instance().sendXNetMessage(msg,this);
+       	XNetMessage msg2=new XNetMessage(2);
+	/* Second, we send a request for the Interface hardware and
+	software version */
+	msg2.setElement(0,XNetConstants.LI_VERSION_REQUEST);
+        XNetTrafficController.instance().sendXNetMessage(msg2,this);
+	/* Finally, we send a request for the Command Station Status*/
+	XNetMessage msg3=XNetTrafficController.instance()
+                                             .getCommandStation()
+                                             .getCSStatusRequestMessage();
+        XNetTrafficController.instance().sendXNetMessage(msg3,this);
+    }

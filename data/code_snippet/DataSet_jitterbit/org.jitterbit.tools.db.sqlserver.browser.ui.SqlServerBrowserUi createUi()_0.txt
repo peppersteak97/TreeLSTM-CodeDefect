@@ -1,0 +1,18 @@
+    private void createUi() {
+        PopupMenuManager popupMenuMgr = new PopupMenuManager();
+        UiResources.set( UiResources.POPUPMENU_MANAGER, popupMenuMgr );
+        
+        m_frame = new MainFrame();
+        
+        BrowserUiListener browserUiLst = new BrowserUiListenerImpl();
+        popupMenuMgr.initialize( new SqlServerBrowserPopupManagerInitializer(m_frame, browserUiLst) );
+
+        m_treeUi = new SqlServerBrowserTreeUi(m_browser);
+        m_treeUi.addBrowserUiListener(browserUiLst);
+        m_listUi = new SqlServerBrowserListUi();
+        
+        m_frame.getContentPane().add( new MainPanel() );
+        m_frame.pack();
+        m_frame.setSize(800, 500);
+        WindowUtils.centerWindowOnScreen(m_frame);
+    }

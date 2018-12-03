@@ -1,0 +1,6 @@
+  protected final void emit_imul() {
+    popInt(T1);
+    popInt(T0);
+    asm.emitMULLW(T1, T0, T1);
+    pushInt(T1);
+  }

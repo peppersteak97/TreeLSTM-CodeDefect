@@ -1,0 +1,8 @@
+    public IDeployOption getActiveOption() {
+        for (IOptionSelector<IDeployOption> selector : m_optionSelectors) {
+            if (selector.isSelected()) {
+                return selector.getOption();
+            }
+        }
+        return null;
+    }

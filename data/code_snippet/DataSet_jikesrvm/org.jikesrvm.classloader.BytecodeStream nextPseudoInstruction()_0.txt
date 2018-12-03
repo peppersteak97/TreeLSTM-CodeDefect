@@ -1,0 +1,4 @@
+  public final int nextPseudoInstruction() {
+    if (VM.VerifyAssertions) VM._assert(opcode == JBC_impdep1);
+    return readUnsignedByte();
+  }

@@ -1,0 +1,1 @@
+  public long getTimestamp() { throw new UnsupportedOperationException("Dummy method"); }

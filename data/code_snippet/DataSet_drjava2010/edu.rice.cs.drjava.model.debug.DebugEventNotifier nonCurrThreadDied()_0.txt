@@ -1,0 +1,9 @@
+  public void nonCurrThreadDied() {
+    assert EventQueue.isDispatchThread();
+    _lock.startRead();
+    try {
+      int size = _listeners.size();
+      for (int i = 0; i < size; i++) _listeners.get(i).nonCurrThreadDied();
+    }
+    finally { _lock.endRead(); }
+  }

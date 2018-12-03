@@ -1,0 +1,7 @@
+  protected Action _getAddAction() {
+    return new AbstractAction("Add") {
+      public void actionPerformed(ActionEvent ae) {
+        chooseKeyStroke();
+      }
+    };
+  }

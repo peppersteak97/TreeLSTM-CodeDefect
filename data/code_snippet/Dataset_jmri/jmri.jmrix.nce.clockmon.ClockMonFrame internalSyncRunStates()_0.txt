@@ -1,0 +1,102 @@
+    private void internalSyncRunStates() {
+        double intTime = 0;
+        double nceTime = 0;
+        double diffTime = 0;
+        Date now = internalClock.getTime();
+        if (log.isDebugEnabled() && internalSyncRunStateCounter != 0 && false){
+            log.debug("internalSyncRunStates: " + internalSyncRunStateCounter + " @ " + now);
+        }
+        int priorState = internalSyncRunStateCounter;
+        do {
+	        priorState = internalSyncRunStateCounter;
+	        switch (internalSyncRunStateCounter) {
+	        case -1:
+	        	internalSyncInitStateCounter = -1;
+	        	internalSyncInitStates();
+	        	break;
+	        case 1:
+	        	internalClockStatusCheck();
+	            issueReadOnlyRequest();
+	            internalSyncRunStateCounter++;
+	            break;
+	        case 2:
+	        	if (!waitingForCmdRead){
+	        		internalSyncRunStateCounter++;
+	        	}
+	        	break;
+	        case 3:
+	            nceTime = getNceTime();
+	            intTime = getIntTime();
+	            diffTime = intTime - nceTime;
+	            if (log.isDebugEnabled() && false) {
+                    log.debug("syncStates2 begin. NCE: " +
+    					(nceLastHour / 10) + (nceLastHour - ((nceLastHour / 10) * 10)) +
+    					rb.getString("LabelTimeSep") +
+    					(nceLastMinute / 10) + (nceLastMinute - ((nceLastMinute / 10) * 10)) +
+    					rb.getString("LabelTimeSep") +
+    					(nceLastSecond / 10) + (nceLastSecond - ((nceLastSecond / 10) * 10)) +
+    					" Internal: " +
+    					(now.getHours() / 10) + (now.getHours() - ((now.getHours() / 10) * 10)) + 
+    					rb.getString("LabelTimeSep") +
+    					(now.getMinutes() / 10) + (now.getMinutes() - ((now.getMinutes() / 10) * 10)) + 
+    					rb.getString("LabelTimeSep") +
+    					(now.getSeconds() / 10) + (now.getSeconds() - ((now.getSeconds() / 10) * 10)) +
+    					" diff: " +
+    					diffTime);
+	            }
+	            while (priorDiffs.size() >= MAX_ERROR_ARRAY) {
+	                priorDiffs.remove(0);
+	            }
+	            priorDiffs.add(new Double(diffTime));
+	            recomputeInternalSync();
+	            issueClockSet(
+	                      now.getHours(),
+	                      now.getMinutes(),
+	                      (int) syncInterval
+	                      );
+	            internalSyncRunStateCounter++;
+	            break;
+	        case 4:
+	        	if (!waitingForCmdTime){
+	        		internalSyncRunStateCounter++;
+	        	}
+	        	break;
+	        case 5:
+	            issueReadOnlyRequest();
+	            internalSyncRunStateCounter++;
+	            break;
+	        case 6:
+	        	if (!waitingForCmdRead){
+	        		internalSyncRunStateCounter++;
+	        	}
+	        	break;
+	        case 7:
+	            intTime = now.getSeconds();
+	            diffTime = TARGET_SYNC_DELAY - intTime;
+	            while (priorOffsetErrors.size() >= MAX_ERROR_ARRAY) {
+	                priorOffsetErrors.remove(0);
+	            }
+	            priorOffsetErrors.add(new Double(diffTime));
+	            recomputeOffset();
+	            if (log.isDebugEnabled() && false) {
+	                log.debug("syncState compute offset. NCE: " +
+	                          (nceLastHour / 10) + (nceLastHour - ((nceLastHour / 10) * 10)) +
+	                          rb.getString("LabelTimeSep") +
+	                          (nceLastMinute / 10) + (nceLastMinute - ((nceLastMinute / 10) * 10)) +
+	                          rb.getString("LabelTimeSep") +
+	                          (nceLastSecond / 10) + (nceLastSecond - ((nceLastSecond / 10) * 10)) +
+	                          " Internal: " +
+	                          (now.getHours() / 10) + (now.getHours() - ((now.getHours() / 10) * 10)) + 
+	                          rb.getString("LabelTimeSep") +
+	                          (now.getMinutes() / 10) + (now.getMinutes() - ((now.getMinutes() / 10) * 10)) + 
+	                          rb.getString("LabelTimeSep") +
+	                          (now.getSeconds() / 10) + (now.getSeconds() - ((now.getSeconds() / 10) * 10)));
+	            }
+	            internalSyncRunStateCounter = 0;
+	            break;
+	        default:
+	        	internalSyncRunStateCounter = 0;
+	            break;
+	        }
+        } while (priorState != internalSyncRunStateCounter);
+    }

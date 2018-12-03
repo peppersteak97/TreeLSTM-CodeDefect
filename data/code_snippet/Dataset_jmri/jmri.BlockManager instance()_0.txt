@@ -1,0 +1,6 @@
+    static public BlockManager instance() {
+        if (_instance == null) {
+            _instance = new BlockManager();
+        }
+        return (_instance);
+    }

@@ -1,0 +1,3 @@
+    protected void generateScript() {
+        getStringBuffer().append( ((StoredProcedure)getObject()).getSqlScript() );
+    }

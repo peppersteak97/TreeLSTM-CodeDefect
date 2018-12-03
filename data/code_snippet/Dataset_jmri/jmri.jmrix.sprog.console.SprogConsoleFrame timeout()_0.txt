@@ -1,0 +1,5 @@
+    synchronized protected void timeout() {
+        JOptionPane.showMessageDialog(null, "Timeout talking to SPROG",
+                    "Timeout", JOptionPane.ERROR_MESSAGE);
+        state = IDLE;
+    }

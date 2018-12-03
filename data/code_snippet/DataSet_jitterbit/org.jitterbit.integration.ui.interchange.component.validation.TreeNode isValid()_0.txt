@@ -1,0 +1,3 @@
+    boolean isValid() {
+        return (m_status == ValidationStatus.VALID);
+    }

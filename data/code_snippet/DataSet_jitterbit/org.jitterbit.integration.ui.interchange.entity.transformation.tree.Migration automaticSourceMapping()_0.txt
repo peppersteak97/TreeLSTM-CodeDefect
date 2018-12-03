@@ -1,0 +1,16 @@
+	private void automaticSourceMapping(){
+		boolean isMatched=false;
+		for(TreeComponent.Node oldNode:m_oldSourceTree.m_root.m_children){
+			for(TreeComponent.Node newNode:m_newSourceTree.m_root.m_children){
+				if(oldNode.m_deName.equalsIgnoreCase(newNode.m_deName)){
+					addSourceMapPair(oldNode,newNode,0);
+					isMatched=true;
+					break;
+				}
+			}
+		}
+		if(isMatched){
+			m_newSourceTree.repaint();
+			m_oldSourceTree.repaint();
+		}
+	}

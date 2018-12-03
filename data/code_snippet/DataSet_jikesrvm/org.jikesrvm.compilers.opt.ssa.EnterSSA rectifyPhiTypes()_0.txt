@@ -1,0 +1,30 @@
+  private void rectifyPhiTypes() {
+    if (DEBUG) System.out.println("Rectify phi types.");
+    removeAllUnreachablePhis(scalarPhis);
+    while (!scalarPhis.isEmpty()) {
+      boolean didSomething = false;
+      for (Iterator<Instruction> i = scalarPhis.iterator(); i.hasNext();) {
+        Instruction phi = i.next();
+        phi.scratch = NO_NULL_TYPE;
+        if (DEBUG) System.out.println("PHI: " + phi);
+        TypeReference meet = meetPhiType(phi);
+        if (DEBUG) System.out.println("MEET: " + meet);
+        if (meet != null) {
+          didSomething = true;
+          if (phi.scratch == NO_NULL_TYPE) i.remove();
+          RegisterOperand result = (RegisterOperand) Phi.getResult(phi);
+          result.setType(meet);
+          for (Enumeration<RegisterOperand> e = DefUse.uses(result.getRegister()); e.hasMoreElements();) {
+            RegisterOperand rop = e.nextElement();
+            if (rop.getType() != meet) {
+              rop.clearPreciseType();
+              rop.setType(meet);
+            }
+          }
+        }
+      }
+      if (!didSomething) {
+        return;
+      }
+    }
+  }

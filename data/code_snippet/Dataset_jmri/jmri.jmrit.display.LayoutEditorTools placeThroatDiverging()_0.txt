@@ -1,0 +1,24 @@
+	private void placeThroatDiverging() {
+		if (testIcon == null)
+			testIcon = signalIconEditor.getIcon(0);
+		if( layoutTurnoutHorizontal && layoutTurnoutThroatLeft ) {
+			setSignalHeadOnPanel(2,throatDivergingField.getText().trim(),
+				(int)(layoutTurnout.getCoordsA().getX()-4-(2*testIcon.getIconWidth())),
+				(int)(layoutTurnout.getCoordsA().getY()+4) );
+		}
+		else if( layoutTurnoutHorizontal && (!layoutTurnoutThroatLeft) ) {
+			setSignalHeadOnPanel(0,throatDivergingField.getText().trim(),
+				(int)(layoutTurnout.getCoordsA().getX()+4+testIcon.getIconWidth()),
+				(int)(layoutTurnout.getCoordsA().getY()-4-testIcon.getIconHeight()));
+		}
+		else if( layoutTurnoutVertical && layoutTurnoutThroatUp ) {
+			setSignalHeadOnPanel(1,throatDivergingField.getText().trim(),
+				(int)(layoutTurnout.getCoordsA().getX()-4-testIcon.getIconWidth()),
+				(int)(layoutTurnout.getCoordsA().getY()-4-(2*testIcon.getIconHeight())));
+		}
+		else if( layoutTurnoutVertical && (!layoutTurnoutThroatUp) ) {
+			setSignalHeadOnPanel(3,throatDivergingField.getText().trim(),
+				(int)(layoutTurnout.getCoordsA().getX()+4),
+				(int)(layoutTurnout.getCoordsA().getY()+4+testIcon.getIconHeight()));
+		}
+	}

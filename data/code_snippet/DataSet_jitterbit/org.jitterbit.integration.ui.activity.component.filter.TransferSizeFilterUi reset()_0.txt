@@ -1,0 +1,9 @@
+    public void reset() {
+        m_operatorCombo.setSelectedItem(m_comparisonOp);
+        m_sizeUnitCombo.setSelectedItem(m_sizeUnit);
+        if (m_value >= 0) {
+            m_valueField.setValue(m_value);
+        }
+        else {
+        }
+    }

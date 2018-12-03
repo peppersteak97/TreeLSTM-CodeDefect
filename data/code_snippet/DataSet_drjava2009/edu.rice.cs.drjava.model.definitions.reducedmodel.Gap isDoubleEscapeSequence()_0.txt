@@ -1,0 +1,1 @@
+  public boolean isDoubleEscapeSequence() { return false; }

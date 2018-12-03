@@ -1,0 +1,6 @@
+    static public EasyDccMessage getExitProgMode() {
+        EasyDccMessage m = new EasyDccMessage(1);
+        m.setBinary(false);
+        m.setOpCode('X');
+        return m;
+    }

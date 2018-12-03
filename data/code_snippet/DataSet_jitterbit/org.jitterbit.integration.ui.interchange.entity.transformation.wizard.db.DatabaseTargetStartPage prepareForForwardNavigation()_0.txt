@@ -1,0 +1,4 @@
+    public boolean prepareForForwardNavigation() {
+        return DriverSanityChecker.isDriverValid(
+                        getDatabaseLocation(), SourceTarget.Target);
+    }

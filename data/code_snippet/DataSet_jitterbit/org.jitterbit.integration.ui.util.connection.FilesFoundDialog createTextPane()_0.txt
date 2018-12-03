@@ -1,0 +1,7 @@
+    private void createTextPane() {
+        m_textPane = createTextPaneComponent();
+        StyledDocument doc = customizeStyledDocument(m_textPane);
+        int lines = addFileEntries(doc);
+        padWithEmptyLines(doc, lines);
+        m_textPane.setCaretPosition(0);
+    }

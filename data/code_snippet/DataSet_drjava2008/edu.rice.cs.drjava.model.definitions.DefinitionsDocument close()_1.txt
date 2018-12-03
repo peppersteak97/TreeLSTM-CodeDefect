@@ -1,0 +1,7 @@
+  public void close() {
+    _removeIndenter();
+    synchronized(_closedListeners) {
+      for (DocumentClosedListener l: _closedListeners)  { l.close(); }
+      _closedListeners.clear();
+    }
+  }

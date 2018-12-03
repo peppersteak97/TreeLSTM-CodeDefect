@@ -1,0 +1,6 @@
+  public int getNumberOfTargets() {
+    if (targets == null) {
+      return 0;
+    }
+    return targets.length;
+  }

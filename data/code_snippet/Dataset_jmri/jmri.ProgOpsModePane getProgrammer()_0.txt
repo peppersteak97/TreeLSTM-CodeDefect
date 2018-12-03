@@ -1,0 +1,21 @@
+    public Programmer getProgrammer() {
+		if (InstanceManager.programmerManagerInstance() != null) {
+			int address;
+			try {
+				address = Integer.parseInt(mAddrField.getText());
+			} catch (java.lang.NumberFormatException e) {
+				log.error("loco address not correct");
+				return null;
+			}
+			boolean longAddr = mLongAddrCheck.isSelected();
+			log.debug("ops programmer for address " + address
+					+ ", long address " + longAddr);
+			Programmer p = InstanceManager.programmerManagerInstance()
+					.getOpsModeProgrammer(longAddr, address);
+			p.setMode(getMode());
+			return p;
+		} else {
+			log.warn("request for ops mode programmer with no ProgrammerManager configured");
+			return null;
+		}
+	}

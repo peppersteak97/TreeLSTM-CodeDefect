@@ -1,0 +1,3 @@
+    void showFeedbackChanged() {
+        showFeedback = showFeedbackBox.isSelected();
+    }

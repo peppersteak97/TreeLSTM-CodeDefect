@@ -1,0 +1,4 @@
+  public void test1() {
+    try { helpTestStylesListContentAndReset(); }
+    catch(Throwable t) { t.printStackTrace(); }
+  }

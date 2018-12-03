@@ -1,0 +1,112 @@
+	void createModel() {
+		m = new BeanTableDataModel() {
+			static public final int ENABLECOL = 2;
+			static public final int EDITCOL = NUMCOLUMN;
+			protected String enabledString = rb.getString("ColumnHeadEnabled");
+			public int getColumnCount() {
+				return NUMCOLUMN + 1;
+			}
+
+			public String getColumnName(int col) {
+				if (col == EDITCOL)
+				if (col == ENABLECOL)
+					return enabledString;
+				else
+					return super.getColumnName(col);
+			}
+
+			public Class getColumnClass(int col) {
+				if (col == EDITCOL)
+					return JButton.class;
+				if (col == ENABLECOL)
+					return Boolean.class;
+				else
+					return super.getColumnClass(col);
+			}
+
+			public int getPreferredWidth(int col) {
+				if (col == SYSNAMECOL)
+					return new JTextField(8).getPreferredSize().width;
+				if (col == USERNAMECOL)
+					return new JTextField(17).getPreferredSize().width;
+				if (col == EDITCOL)
+					return new JTextField(6).getPreferredSize().width;
+				if (col == ENABLECOL)
+					return new JTextField(5).getPreferredSize().width;
+				else
+					return super.getPreferredWidth(col);
+			}
+
+			public boolean isCellEditable(int row, int col) {
+				if (col == EDITCOL)
+					return true;
+				if (col == ENABLECOL)
+					return true;
+				else
+					return super.isCellEditable(row, col);
+			}
+
+			public Object getValueAt(int row, int col) {
+				if (col == EDITCOL) {
+					return rb.getString("ButtonEdit");
+				} else if (col == ENABLECOL) {
+					return new Boolean(
+							((Logix) getBySystemName((String) getValueAt(row,
+									SYSNAMECOL))).getEnabled());
+				} else
+					return super.getValueAt(row, col);
+			}
+
+			public void setValueAt(Object value, int row, int col) {
+				if (col == EDITCOL) {
+					String sName = (String) getValueAt(row, SYSNAMECOL);
+					editPressed(sName);
+				} else if (col == ENABLECOL) {
+					Logix x = (Logix) getBySystemName((String) getValueAt(row,
+							SYSNAMECOL));
+					boolean v = x.getEnabled();
+					x.setEnabled(!v);
+				} else
+					super.setValueAt(value, row, col);
+			}
+
+			/**
+			 * Delete the bean after all the checking has been done.
+			 * <P>
+			 * Deactivate the Logix and remove it's conditionals
+			 */
+			void doDelete(NamedBean bean) {
+				Logix l = (Logix) bean;
+				l.deActivateLogix();
+				logixManager.deleteLogix(l);
+			}
+
+			boolean matchPropertyName(java.beans.PropertyChangeEvent e) {
+				if (e.getPropertyName().equals(enabledString))
+					return true;
+				else
+					return super.matchPropertyName(e);
+			}
+
+			public Manager getManager() {
+				return InstanceManager.logixManagerInstance();
+			}
+
+			public NamedBean getBySystemName(String name) {
+				return InstanceManager.logixManagerInstance().getBySystemName(
+						name);
+			}
+			
+			public NamedBean getByUserName(String name) {
+				return InstanceManager.logixManagerInstance().getByUserName(
+						name);
+			}
+
+			public void clickOn(NamedBean t) {
+			}
+
+			public String getValue(String s) {
+				return "";
+			}
+		};
+	}

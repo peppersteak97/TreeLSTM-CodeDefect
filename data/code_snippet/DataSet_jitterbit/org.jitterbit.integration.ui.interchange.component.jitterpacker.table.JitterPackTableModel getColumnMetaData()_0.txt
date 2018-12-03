@@ -1,0 +1,3 @@
+    public TableColumnMetaData[] getColumnMetaData() {
+        return m_isSmall ? COLUMNS_SMALL : COLUMNS_LARGE;
+    }

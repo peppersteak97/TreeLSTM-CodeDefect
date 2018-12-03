@@ -1,0 +1,20 @@
+    protected JButton[] getToolBarButtons() {
+        m_dropdownMenuButton = createPopupMenuButton();
+        JButton expand = createToolBarButton(Resources.getCommonIcon("ExpandTree.16"));
+        expand.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                m_tree.expandAll();
+            }
+        });
+
+        JButton collapse = createToolBarButton(Resources.getCommonIcon("CollapseTree.16"));
+        collapse.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                m_tree.collapseAll();
+            }
+        });
+
+        return new JButton[] { m_dropdownMenuButton, expand, collapse, };
+    }

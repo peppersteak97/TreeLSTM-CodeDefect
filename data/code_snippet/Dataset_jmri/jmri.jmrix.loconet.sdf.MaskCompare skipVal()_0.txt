@@ -1,0 +1,3 @@
+    String skipVal() {
+        return "(skip = "+skip+")";
+    }

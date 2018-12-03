@@ -1,0 +1,8 @@
+    public int getIgnoreLast() {
+        try {
+            return Integer.parseInt(m_ignoreLast.getValue());
+        }
+        catch (NumberFormatException e) {
+            return 0;
+        }
+    }

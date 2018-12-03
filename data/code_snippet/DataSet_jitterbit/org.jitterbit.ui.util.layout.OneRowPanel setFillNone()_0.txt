@@ -1,0 +1,3 @@
+    public OneRowPanel setFillNone() {
+        return (OneRowPanel) super.setFillNone();
+    }

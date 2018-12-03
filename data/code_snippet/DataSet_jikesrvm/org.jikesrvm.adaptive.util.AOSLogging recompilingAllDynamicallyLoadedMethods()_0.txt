@@ -1,0 +1,7 @@
+  public void recompilingAllDynamicallyLoadedMethods() {
+    if (Controller.options.LOGGING_LEVEL >= 1) {
+      synchronized (log) {
+        log.println(getTime() + " Recompiling all dynamically loaded methods");
+      }
+    }
+  }

@@ -1,0 +1,9 @@
+  private void shrinkManager() {
+    if (_maxSize > 0) {
+      int size = _pastRegions.size() + _futureRegions.size();
+      int diff = size - _maxSize;
+      for (int i = 0; i < diff; ++i) {
+        remove(((_pastRegions.size()>_futureRegions.size())?_pastRegions:_futureRegions).get(0));
+      }
+    }
+  }

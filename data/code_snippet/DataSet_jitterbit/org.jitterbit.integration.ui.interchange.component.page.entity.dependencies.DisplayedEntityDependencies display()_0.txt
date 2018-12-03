@@ -1,0 +1,9 @@
+    private void display() {
+
+        m_dependentObjects = getDependentObjects(m_displayedEntity);
+        IUiProvider displayer = m_dependentObjects.isEmpty() ? 
+                        new InactiveDisplayer() : 
+                            new ActiveDisplayer(m_pageDisplayer, m_dependentObjects);
+
+        new DisplayerDialog(displayer).setVisible(true);
+    }

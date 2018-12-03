@@ -1,0 +1,3 @@
+  public void testInitialPosition() {
+    assertEquals("Initial caret not in the correct position.", _pane.getCaretPosition(), _doc.getPromptPos());
+  }

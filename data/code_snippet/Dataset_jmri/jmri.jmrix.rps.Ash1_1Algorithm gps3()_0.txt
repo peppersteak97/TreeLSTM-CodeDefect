@@ -1,0 +1,3 @@
+        if (gps3() == 0)				{//    Solve for each set
+          if ((w = wgt()) > 0.0)		{
+            Ww += w;  Xw += w*x0;  Yw += w*y0;  Zw += w*z0;}}}}}

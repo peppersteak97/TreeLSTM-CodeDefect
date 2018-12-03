@@ -1,0 +1,3 @@
+    public String keyName() {
+        return m_name;
+    }

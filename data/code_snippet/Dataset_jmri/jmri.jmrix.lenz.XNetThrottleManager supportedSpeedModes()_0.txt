@@ -1,0 +1,6 @@
+    public int supportedSpeedModes() {
+        return( jmri.DccThrottle.SpeedStepMode128 | 
+		jmri.DccThrottle.SpeedStepMode28 |
+		jmri.DccThrottle.SpeedStepMode27 | 
+		jmri.DccThrottle.SpeedStepMode14 );
+    }

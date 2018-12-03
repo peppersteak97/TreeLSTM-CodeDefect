@@ -1,0 +1,14 @@
+    protected DocumentContentChangeListener createDocumentListener() {
+        final DocumentContentChangeListener defaultListener = 
+            super.createDocumentListener();
+        return new DocumentContentChangeListener() {
+
+            @Override
+            public void contentChanged(DocumentEvent e) {
+                if (m_decorateDynamically) {
+                    decorate();
+                }
+                defaultListener.contentChanged(e);
+            }
+        };
+    }

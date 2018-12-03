@@ -1,0 +1,6 @@
+    protected final List<Table> getTables() throws SqlServerBrowserException {
+        if( m_liTables == null ) {
+            m_liTables = getDatabase().getTables( (DatabaseConnections)UiResources.get(UiResources.DATABASE_CONNECTIONS) );
+        }
+        return m_liTables;
+    }

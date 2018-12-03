@@ -1,0 +1,4 @@
+  protected final void emit_i2b() {
+    popByteAsInt(T0);
+    pushInt(T0);
+  }

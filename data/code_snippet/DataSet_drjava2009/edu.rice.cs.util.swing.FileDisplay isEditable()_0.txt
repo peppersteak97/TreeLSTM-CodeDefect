@@ -1,0 +1,1 @@
+  public boolean isEditable() { return (_isNew || (_file.canWrite() && _rep.equals(_file.getName()))); }

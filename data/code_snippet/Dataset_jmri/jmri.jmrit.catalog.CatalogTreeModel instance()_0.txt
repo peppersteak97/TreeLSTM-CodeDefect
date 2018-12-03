@@ -1,0 +1,4 @@
+    static public CatalogTreeModel instance() {
+        if (instanceValue == null) instanceValue = new CatalogTreeModel();
+        return instanceValue;
+    }

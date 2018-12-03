@@ -1,0 +1,1 @@
+  public int distance() { return _distance; }

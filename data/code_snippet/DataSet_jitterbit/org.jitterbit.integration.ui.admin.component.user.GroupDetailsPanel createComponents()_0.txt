@@ -1,0 +1,5 @@
+    private void createComponents() {
+        m_nameField = new NameField(20);
+        m_descriptionArea = new DescriptionField(4, 30);
+        registerTextListener(m_nameField.getInputComponent(), m_descriptionArea);
+    }

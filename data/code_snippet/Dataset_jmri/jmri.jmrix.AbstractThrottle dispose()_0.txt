@@ -1,0 +1,5 @@
+    public void dispose() {
+        if (!active) log.error("Dispose called when not active");
+
+        active = false;
+    }

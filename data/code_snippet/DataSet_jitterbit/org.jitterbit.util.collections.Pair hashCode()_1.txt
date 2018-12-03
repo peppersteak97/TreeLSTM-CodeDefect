@@ -1,0 +1,6 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 31 * hash + ((m_first == null) ? 0 : m_first.hashCode());
+        hash = 31 * hash + ((m_second == null) ? 0 : m_second.hashCode());
+        return hash;
+    }

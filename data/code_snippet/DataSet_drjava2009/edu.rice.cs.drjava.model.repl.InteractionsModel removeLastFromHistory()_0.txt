@@ -1,0 +1,3 @@
+  public String removeLastFromHistory() {
+    return _document.removeLastFromHistory();
+  }

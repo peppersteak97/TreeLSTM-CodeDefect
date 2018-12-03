@@ -1,0 +1,23 @@
+  public void testSaveAsExistsAndOpen() throws BadLocationException, IOException {
+    
+    final File file1 = tempFile(1);
+    final OpenDefinitionsDocument doc1 = _model.getDocumentForFile(file1);
+    changeDocumentText(FOO_TEXT,doc1);
+    saveFileAs(doc1, new FileSelector(file1));
+    
+    final File file2 = tempFile(2);
+    final OpenDefinitionsDocument doc2 = _model.getDocumentForFile(file2);
+    changeDocumentText(BAR_TEXT, doc2);
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() { 
+        try { 
+          doc2.saveFileAs(new WarningFileSelector(file1));
+          fail("Did not warn of open file as expected");
+        }
+        catch (Exception e) { /* Good behavior for file saving ... */ }
+      }
+    });
+    
+    _log.log("testSaveAsExistsAndOpen completed");
+  }

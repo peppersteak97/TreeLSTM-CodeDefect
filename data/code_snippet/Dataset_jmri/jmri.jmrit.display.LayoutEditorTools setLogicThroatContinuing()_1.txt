@@ -1,0 +1,95 @@
+	private void setLogicThroatContinuing() {
+		TrackSegment track = (TrackSegment)layoutTurnout.getConnectB();
+		if (track==null) {
+			JOptionPane.showMessageDialog(setSignalsFrame,
+					rb.getString("InfoMessage7"),"",JOptionPane.INFORMATION_MESSAGE);			
+			return;
+		}
+		LayoutBlock block = track.getLayoutBlock();
+		if (block==null) {
+			JOptionPane.showMessageDialog(setSignalsFrame,
+					rb.getString("InfoMessage6"),"",JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		Sensor occupancy = block.getOccupancySensor();
+		if (occupancy==null) {
+			JOptionPane.showMessageDialog(setSignalsFrame,
+				java.text.MessageFormat.format(rb.getString("InfoMessage4"),
+					new String[]{block.getUserName()}), 
+						null,JOptionPane.INFORMATION_MESSAGE);						
+			return;
+		}
+		SignalHead nextHead = getNextSignalFromObject(track,
+													(Object)layoutTurnout);
+		if ( (nextHead==null) && (!reachedEndBumper()) ) {
+			JOptionPane.showMessageDialog(setSignalsFrame,
+				java.text.MessageFormat.format(rb.getString("InfoMessage5"),
+					new String[]{block.getUserName()}), 
+						null,JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		if (throatDivergingHead!=null) {
+			if (!initializeBlockBossLogic(throatContinuingField.getText().trim())) return;
+			logic.setMode(BlockBossLogic.TRAILINGMAIN);
+			logic.setTurnout(turnout.getSystemName());
+			logic.setSensor1(occupancy.getSystemName());
+			if (nextHead!=null) {
+				logic.setWatchedSignal1(nextHead.getSystemName(),false);
+			}
+			if (auxSignal!=null) {
+				logic.setWatchedSignal1Alt(auxSignal.getSystemName());
+			}
+			finalizeBlockBossLogic();
+			return;
+		}
+		SignalHead savedAuxSignal = auxSignal;
+		TrackSegment track2 = (TrackSegment)layoutTurnout.getConnectC();
+		if (track2==null) {
+			JOptionPane.showMessageDialog(setSignalsFrame,
+					rb.getString("InfoMessage7"),"",JOptionPane.INFORMATION_MESSAGE);			
+			return;
+		}
+		LayoutBlock block2 = track2.getLayoutBlock();
+		if (block2==null) {
+			JOptionPane.showMessageDialog(setSignalsFrame,
+					rb.getString("InfoMessage6"),"",JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		Sensor occupancy2 = block2.getOccupancySensor();
+		if (occupancy2==null) {
+			JOptionPane.showMessageDialog(setSignalsFrame,
+				java.text.MessageFormat.format(rb.getString("InfoMessage4"),
+					new String[]{block2.getUserName()}), 
+						null,JOptionPane.INFORMATION_MESSAGE);						
+			return;
+		}
+		SignalHead nextHead2 = getNextSignalFromObject(track2,
+													(Object)layoutTurnout);
+		if ( (nextHead2==null) && (!reachedEndBumper()) ) {
+			JOptionPane.showMessageDialog(setSignalsFrame,
+				java.text.MessageFormat.format(rb.getString("InfoMessage5"),
+					new String[]{block2.getUserName()}), 
+						null,JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		if (!initializeBlockBossLogic(throatContinuingField.getText().trim())) return;
+		logic.setMode(BlockBossLogic.FACING);
+		logic.setTurnout(turnout.getSystemName());
+		logic.setWatchedSensor1(occupancy.getSystemName());
+		logic.setWatchedSensor2(occupancy2.getSystemName());
+		if (nextHead!=null) {
+			logic.setWatchedSignal1(nextHead.getSystemName(),false);
+		}
+		if (savedAuxSignal!=null) {
+			logic.setWatchedSignal1Alt(savedAuxSignal.getSystemName());
+		}
+		if (nextHead2!=null) {
+			logic.setWatchedSignal2(nextHead2.getSystemName());
+		}
+		if (auxSignal!=null) {
+			logic.setWatchedSignal2Alt(auxSignal.getSystemName());
+		}		
+		if (!layoutTurnout.isMainlineC())
+			logic.setLimitSpeed2(true);
+		finalizeBlockBossLogic();
+	}

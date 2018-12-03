@@ -1,0 +1,12 @@
+    private void createSystemSourcesUi() {
+        RootFolder folder = m_dataModel.getRootFolder(EntityType.SystemSource);
+        if (folder != null) {
+            IRootFolderUi folderUi = m_mapRootFolderUis.get(EntityType.SystemSource);
+            if (folderUi != null && folderUi.getUiChildren().isEmpty()) {
+                for (SystemSource source : SystemSource.getSystemSources()) {
+                    SourceBaseUi baseUi = new SourceBaseUi(source);
+                    baseUi.setUiParent(folderUi);
+                }
+            }
+        }
+    }

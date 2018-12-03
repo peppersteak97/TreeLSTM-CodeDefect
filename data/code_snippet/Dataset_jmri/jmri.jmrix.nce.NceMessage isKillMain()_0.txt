@@ -1,0 +1,6 @@
+    public boolean isKillMain() {
+        if (isBinary()) 
+            return getOpCode() == KILL_MAIN_CMD;
+        else
+            return getOpCode() == 'K';
+    }

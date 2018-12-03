@@ -1,0 +1,9 @@
+  public boolean isPureCall() {
+    if (operator.isCall()) {
+      MethodOperand methOp = Call.getMethod(this);
+      if (methOp != null && methOp.hasPreciseTarget() && methOp.getTarget().isPure()) {
+        return true;
+      }
+    }
+    return false;
+  }

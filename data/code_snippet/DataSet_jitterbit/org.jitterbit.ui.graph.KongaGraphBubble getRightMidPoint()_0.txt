@@ -1,0 +1,3 @@
+	public Point getRightMidPoint() {
+		return m_rect.getRightMidPoint();
+	}

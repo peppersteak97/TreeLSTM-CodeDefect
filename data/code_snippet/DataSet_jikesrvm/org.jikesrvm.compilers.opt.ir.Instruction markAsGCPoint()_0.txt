@@ -1,0 +1,4 @@
+  public void markAsGCPoint() {
+    if (VM.VerifyAssertions) VM._assert(getOpcode() > MIR_START_opcode);
+    operatorInfo |= (OI_GC_VALID | OI_GC);
+  }

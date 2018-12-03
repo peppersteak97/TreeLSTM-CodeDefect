@@ -1,0 +1,8 @@
+    private void saveAllFolders() throws XmlSavingException {
+        for (RootFolder rootFolder : m_project.getAllRootFolders()) {
+            EntityType rootType = rootFolder.getItemType();
+            for (IntegrationEntity e : rootFolder.getAllChildren()) {
+                checkFolder(rootType, e);
+            }
+        }
+    }

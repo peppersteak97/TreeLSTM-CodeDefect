@@ -1,0 +1,18 @@
+    private void textValueChanged() {	
+		String str=m_textfield.getText();
+		char c=0;
+		int pos=0,l=str.length();
+		if(l>0)c=str.charAt(0);
+		if(c=='_')pos++;
+		for(;pos<l;pos++)if(Character.isDigit(str.charAt(pos))==false)break;
+		if(pos<l) {
+			EventQueue.invokeLater(new Runnable() {
+
+				public void run() {
+					restoreSavedString();
+				}
+			});
+			return;
+		}
+		m_strSaved=str;
+	}

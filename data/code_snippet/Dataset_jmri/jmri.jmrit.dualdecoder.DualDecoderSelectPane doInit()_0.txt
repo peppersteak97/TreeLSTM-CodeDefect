@@ -1,0 +1,5 @@
+    void doInit() {
+        mode = INIT;
+        state = FIRSTCV16;
+        writeCV16(1);
+    }

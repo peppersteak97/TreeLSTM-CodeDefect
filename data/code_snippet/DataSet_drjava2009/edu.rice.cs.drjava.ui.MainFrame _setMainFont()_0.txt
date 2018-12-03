@@ -1,0 +1,25 @@
+  private void _setMainFont() {
+    
+    Font f = DrJava.getConfig().getSetting(FONT_MAIN);
+    
+    for (JScrollPane scroll: _defScrollPanes.values()) {
+      if (scroll != null) {
+        DefinitionsPane pane = (DefinitionsPane) scroll.getViewport().getView();
+        pane.setFont(f);
+        if (DrJava.getConfig().getSetting(LINEENUM_ENABLED).booleanValue()) {
+          scroll.setRowHeaderView(new LineEnumRule(pane));
+        }
+      }
+    }
+    
+    _interactionsPane.setFont(f);
+    _interactionsController.setDefaultFont(f);
+    
+    _consolePane.setFont(f);
+    _consoleController.setDefaultFont(f);
+    
+    _findReplace.setFieldFont(f);
+    _compilerErrorPanel.setListFont(f);
+    _junitErrorPanel.setListFont(f);
+    _javadocErrorPanel.setListFont(f);
+  }

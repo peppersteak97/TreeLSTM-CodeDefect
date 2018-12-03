@@ -1,0 +1,5 @@
+    private static JComponent createSplitPaneCanvas() {
+        JPanel p = new JPanel();
+        p.setMinimumSize(new Dimension(1, 1));
+        return p;
+    }

@@ -1,0 +1,19 @@
+    private void customizeControls() {
+        final JPanel p = new JPanel() {
+
+            @Override
+            public Dimension getMaximumSize() {
+                return getPreferredSize();
+            }
+        };
+        InvisiblePanel.convert(p);
+        IUiDecor decor = new IUiDecor() {
+
+            public void display(Component display) {
+                p.add(display);
+            }
+        };
+        m_filters.decorateLauncher(decor);
+        addControl(p, 10);
+        addSpace(10, 1);
+    }

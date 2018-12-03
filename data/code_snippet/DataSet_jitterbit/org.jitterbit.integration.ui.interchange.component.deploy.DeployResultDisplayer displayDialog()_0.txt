@@ -1,0 +1,3 @@
+    private void displayDialog() {
+        m_dialog.showOnEventThread();
+    }

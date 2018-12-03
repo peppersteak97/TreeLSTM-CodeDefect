@@ -1,0 +1,10 @@
+    public RootFolder getRootFolder() {
+        IntegrationEntity parent = getParent();
+        while (parent != null) {
+            if (parent instanceof RootFolder) {
+                return (RootFolder) parent;
+            }
+            parent = parent.getParent();
+        }
+        return null;
+    }

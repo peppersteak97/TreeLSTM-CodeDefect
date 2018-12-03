@@ -1,0 +1,3 @@
+    public Border getTitleBorder() {
+        return m_titleBorder;
+    }

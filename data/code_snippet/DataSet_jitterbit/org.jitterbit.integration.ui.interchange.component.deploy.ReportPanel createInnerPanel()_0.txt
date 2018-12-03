@@ -1,0 +1,8 @@
+    private OneColumnPanel createInnerPanel() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setInsets(2, 0, 4, 0);
+        p.setFill(OneColumnPanel.NONE);
+        p.setBackground(Color.WHITE);
+        p.setBorder(BorderUtils.getEmptyPaddedLineBorder(null, new Insets(5, 5, 5, 5)));
+        return p;
+    }

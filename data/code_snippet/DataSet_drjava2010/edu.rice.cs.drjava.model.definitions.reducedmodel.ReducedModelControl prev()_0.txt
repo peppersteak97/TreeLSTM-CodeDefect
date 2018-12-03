@@ -1,0 +1,47 @@
+  void prev() {
+    int size;
+    if (_rmc._cursor.atEnd()) {
+      _rmc.prev();
+      _rmb.prev();
+      if (_rmc._cursor.atStart()) {
+      }
+      
+      if (_rmc.current().getSize() < _rmb.current().getSize()) {
+        size = -_rmc.current().getSize();
+      }
+      else {
+        size = -_rmb.current().getSize();
+      }
+      _rmc.next();
+      _rmb.next();
+      move(size);
+    }
+    else if (_rmb.getBlockOffset() < _rmc.getBlockOffset()) {
+      _rmb.prev();
+      size = _rmb.current().getSize() + _rmb.getBlockOffset();
+      _rmb.next();
+      if (size < _rmc.getBlockOffset()) {
+        move(-size);
+      }
+      else {
+        move(-_rmc.getBlockOffset());
+      }
+    }
+    else if (_rmb.getBlockOffset() == _rmc.getBlockOffset()) {
+      _rmb.prev();
+      _rmc.prev();
+      _rmb.setBlockOffset(0);
+      _rmc.setBlockOffset(0);
+    }
+    else {
+      _rmc.prev();
+      size = _rmc.current().getSize() + _rmc.getBlockOffset();
+      _rmc.next();
+      if (size < _rmb.getBlockOffset()) {
+        move(-size);
+      }
+      else {
+        move(-_rmb.getBlockOffset());
+      }
+    }
+  }

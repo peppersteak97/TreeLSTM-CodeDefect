@@ -1,0 +1,3 @@
+    protected final TransformationTestCenter getTestCenter() {
+        return m_view.getTransformationTestCenter();
+    }

@@ -1,0 +1,3 @@
+    public JComponent getInputComponent() {
+        return m_input;
+    }

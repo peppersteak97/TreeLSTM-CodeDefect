@@ -1,0 +1,18 @@
+    private String getTablesString() {
+        StringBuilder sb = new StringBuilder();
+        for (DatabaseObject dbObj : m_mapItemCount.keySet()) {
+            String name = dbObj.getName();
+            String escapedName = escapeTableName(name);
+            sb.append(escapedName);
+
+            for (String alias : m_aliasGenerator.getAllAliases(dbObj)) {
+                sb.append(DbTables.TABLE_SEPARATOR);
+                sb.append(escapedName);
+                sb.append(" ");
+                sb.append(escapeTableName(alias));
+            }
+
+            sb.append(DbTables.TABLE_SEPARATOR);
+        }
+        return sb.toString();
+    }

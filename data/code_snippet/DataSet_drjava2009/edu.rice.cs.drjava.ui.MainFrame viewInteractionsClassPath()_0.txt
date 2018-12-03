@@ -1,0 +1,4 @@
+  public void viewInteractionsClassPath() {
+    String cp = IterUtil.multilineToString(_model.getInteractionsClassPath());
+    new DrJavaScrollableDialog(this, "Interactions Classpath", "Current Interpreter Classpath", cp).show();
+  }

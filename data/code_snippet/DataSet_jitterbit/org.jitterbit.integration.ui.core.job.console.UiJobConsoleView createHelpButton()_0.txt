@@ -1,0 +1,4 @@
+    private JButton createHelpButton() {
+        m_helpButton = IntegrationUiHelp.getHelp().createAndConfigureStaticHelpButton(HELP_ID);
+        return IntegrationUiStyleSheet.configureButtonForToolBar(m_helpButton);
+    }

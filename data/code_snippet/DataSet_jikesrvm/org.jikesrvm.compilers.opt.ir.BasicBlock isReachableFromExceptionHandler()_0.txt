@@ -1,0 +1,3 @@
+  public final boolean isReachableFromExceptionHandler() {
+    return (flags & REACHABLE_FROM_EXCEPTION_HANDLER) != 0;
+  }

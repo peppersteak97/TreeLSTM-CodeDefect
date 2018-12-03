@@ -1,0 +1,10 @@
+    String getNameString() {
+        String name;
+        if (sensor == null) name = rb.getString("NotConnected");
+        else if (sensor.getUserName()!=null) {
+            name = sensor.getUserName();
+            if (sensor.getSystemName()!=null) name = name+" ("+sensor.getSystemName()+")";
+        } else
+            name = sensor.getSystemName();
+        return name;
+    }

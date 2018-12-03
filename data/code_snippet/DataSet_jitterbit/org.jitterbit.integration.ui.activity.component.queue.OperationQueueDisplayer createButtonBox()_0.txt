@@ -1,0 +1,12 @@
+    private JComponent createButtonBox() {
+        Box buttons = Box.createHorizontalBox();
+        IButtonFactory factory = ComponentFactories.buttonFactory();
+        buttons.add(factory.newButton(m_selectAllAction));
+        buttons.add(Box.createHorizontalStrut(5));
+        buttons.add(factory.newButton(m_unselectAllAction));
+        buttons.add(Box.createHorizontalStrut(25));
+        buttons.add(factory.newButton(m_deleteAction));
+        buttons.add(Box.createHorizontalGlue());
+        buttons.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        return buttons;
+    }

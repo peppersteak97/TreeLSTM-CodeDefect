@@ -1,0 +1,3 @@
+  public Iterable<File> getInteractionsClassPath() {
+    return _jvm.getClassPath().unwrap(IterUtil.<File>empty());
+  }

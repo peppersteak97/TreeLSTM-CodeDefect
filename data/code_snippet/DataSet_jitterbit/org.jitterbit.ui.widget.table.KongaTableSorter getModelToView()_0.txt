@@ -1,0 +1,10 @@
+    private int[] getModelToView() {
+        if (m_modelToView == null) {
+            int n = getViewToModel().length;
+            m_modelToView = new int[n];
+            for (int i = 0; i < n; i++) {
+                m_modelToView[getModelIndex(i)] = i;
+            }
+        }
+        return m_modelToView;
+    }

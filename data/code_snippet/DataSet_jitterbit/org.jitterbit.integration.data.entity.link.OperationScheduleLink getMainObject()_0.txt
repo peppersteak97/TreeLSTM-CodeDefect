@@ -1,0 +1,3 @@
+    public Schedule getMainObject() {
+        return (Schedule) super.getMainObject();
+    }

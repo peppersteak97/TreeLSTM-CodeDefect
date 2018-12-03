@@ -1,0 +1,13 @@
+    private JPanel createDisplayer() {
+        OneColumnPanel displayer = new OneColumnPanel(OneColumnPanel.WEST, 
+                        OneColumnPanel.NONE);
+        displayer.setInsets(5, 5, 25, 5);
+        displayer.add(m_statusPanel);
+        displayer.setFill(OneColumnPanel.HORIZONTAL);
+        displayer.add(m_actionPanel);
+        
+        JPanel p = InvisiblePanel.newPanel();
+        displayer.addToParent(p, null);
+        UiUtils.setOpaqueRecursivelySkipDefaults(p, false);
+        return p;
+    }

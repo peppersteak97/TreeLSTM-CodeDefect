@@ -1,0 +1,13 @@
+  public java.util.List<File> getSelectedFolders() {
+    assert (EventQueue.isDispatchThread() || Utilities.TEST_MODE);
+    ArrayList<File> l = new ArrayList<File>();
+    TreePath[] ps = getSelectionPaths();
+    if (ps == null) { return l; }
+    for(TreePath p: ps) {
+      TreeNode n = (TreeNode) p.getLastPathComponent();
+      if (n instanceof FileNode<?>) {
+        l.add(((FileNode<?>)n).getData());
+      }
+    }
+    return l;
+  }

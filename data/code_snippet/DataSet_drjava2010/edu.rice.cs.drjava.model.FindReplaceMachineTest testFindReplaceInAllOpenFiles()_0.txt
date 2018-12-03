@@ -1,0 +1,31 @@
+  public void testFindReplaceInAllOpenFiles() throws BadLocationException {
+    _doc.insertString(0, EVIL_TEXT, null);
+    _docPrev.insertString(0, EVIL_TEXT_PREV, null);
+    _docNext.insertString(0, EVIL_TEXT_NEXT, null);
+    _initFrm(40);
+    _frm.setFindWord("evil");
+    _frm.setMatchCase(false);
+    _frm.setSearchBackwards(false);
+    _frm.setSearchAllDocuments(true);
+    _testFindNextSucceeds(_frm, 12, 12, _docNext);
+    _testFindNextSucceeds(_frm, 12, 29, _docNext);
+    _testFindNextSucceeds(_frm, 12, 48, _docNext);
+    _testFindNextSucceeds(_frm, 12, 12, _docPrev);
+    _testFindNextSucceeds(_frm, 12, 29, _docPrev);
+    _testFindNextSucceeds(_frm, 12, 48, _docPrev);
+    _testFindNextSucceeds(_frm, 12, 12, _doc);
+    _testFindNextSucceeds(_frm, 12, 25, _doc);
+    _testFindNextSucceeds(_frm, 12, 40, _doc);
+    _testFindNextSucceeds(_frm, 12, 12, _docNext);
+    _frm.setLastFindWord();
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 36, 36, _doc);
+    _testFindNextSucceeds(_frm, 36, 21, _doc);
+    _testFindNextSucceeds(_frm, 36, 8, _doc);
+    _testFindNextSucceeds(_frm, 44, 44, _docPrev);
+    _frm.setReplaceWord("monkey");
+    replaceAll();
+    assertEquals("revised text", "Hear no monkey, see no monkey, speak no monkey.", _doc.getText());
+    assertEquals("revised text", "Hear no monkeyprev, see no monkeyprev, speak no monkeyprev.", _docPrev.getText());
+    assertEquals("revised text", "Hear no monkeynext, see no monkeynext, speak no monkeynext.", _docNext.getText());
+  }

@@ -1,0 +1,4 @@
+        if (getTree() == null) {
+            m_treeContent = InterchangeTreeFactory.newTree(this,
+            m_tree = m_treeContent.getTree();
+        }

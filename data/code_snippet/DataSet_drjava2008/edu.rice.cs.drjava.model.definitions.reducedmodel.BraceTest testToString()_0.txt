@@ -1,0 +1,4 @@
+  public void testToString() {
+    assertEquals("Brace<(>", lparen.toString());
+    assertEquals("Brace<)>", rparen.toString());
+  }

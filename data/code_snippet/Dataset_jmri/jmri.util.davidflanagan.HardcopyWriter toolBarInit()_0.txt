@@ -1,0 +1,30 @@
+    protected void toolBarInit(){
+        previousButton = new JButton("Previous Page");
+        previewToolBar.add(previousButton);
+        previousButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent actionEvent) {
+                pagenum--;
+                displayPage();
+            }
+        });        
+        nextButton = new JButton("Next Page");
+        previewToolBar.add(nextButton);
+        nextButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent actionEvent) {
+                pagenum++;
+                displayPage();
+            }
+        });
+        previewToolBar.add(new JLabel("    Page "));
+        previewToolBar.add(pageCount);
+        previewToolBar.add(new JLabel(" of "));
+        previewToolBar.add(totalPages);
+        closeButton = new JButton(" Close ");
+        previewToolBar.add(closeButton);
+        closeButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent actionEvent) {
+                page.dispose();
+                previewFrame.dispose();
+            }
+        });
+    }

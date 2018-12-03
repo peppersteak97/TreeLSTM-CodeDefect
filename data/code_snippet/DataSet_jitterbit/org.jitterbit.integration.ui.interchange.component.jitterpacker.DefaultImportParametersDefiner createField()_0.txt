@@ -1,0 +1,4 @@
+    private void createField() {
+        m_pwdField = new Field();
+        m_pwdField.setEnabled(false);
+    }

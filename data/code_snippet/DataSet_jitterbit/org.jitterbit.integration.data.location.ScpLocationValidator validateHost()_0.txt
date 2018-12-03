@@ -1,0 +1,5 @@
+    private void validateHost() {
+        String host = m_location.getHost();
+        if (host == null || host.trim().length() == 0) {
+        }
+    }

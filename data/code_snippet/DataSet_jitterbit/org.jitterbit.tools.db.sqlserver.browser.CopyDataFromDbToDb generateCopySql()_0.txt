@@ -1,0 +1,86 @@
+    void generateCopySql(){
+    	if(m_db==null)return;
+        File sql_file=new File(SAMBA_PATH,m_db.getName()+".sql");
+		try {
+			DatabaseMetaData md=m_connections.getMetaData(m_db);
+			ResultSet rsTables;
+			rsTables=md.getTables(null,null,null,null);
+			List<String> listOfTables=new ArrayList<String>();
+			while(rsTables.next()){
+				String table_type=rsTables.getString("TABLE_TYPE");
+				if(table_type.equalsIgnoreCase(TABLE))
+					listOfTables.add(rsTables.getString("TABLE_NAME"));
+			}
+	        BufferedWriter w=new BufferedWriter(new FileWriter(sql_file));
+			for( String sTableName : listOfTables ) {
+				if(sTableName.equalsIgnoreCase("dtproperties"))continue;
+				System.out.println("Table: "+sTableName+" ");
+				File out=new File(SAMBA_PATH, sTableName+EXT_LABEL);
+		        BufferedWriter w1=new BufferedWriter(new FileWriter(out));
+		        w.write("DELETE FROM "+sTableName+";");
+		        w.newLine();
+				w.write("COPY "+sTableName);
+				ResultSet rs=md.getColumns(null,null,sTableName,null);
+				String columns="";
+				List<Integer> datatypes=new ArrayList<Integer>();
+				while(rs.next()){
+					String sColumnName=rs.getString("COLUMN_NAME");
+					System.out.println("\t"+sColumnName+"=");
+					String sSqlType=rs.getString("TYPE_NAME");
+					int datatype=rs.getInt("DATA_TYPE");
+					if(sColumnName.equalsIgnoreCase("InsertTime")){
+						datatype=-1;
+					}
+					else if(sColumnName.equalsIgnoreCase("ModTime")){
+						datatype=-2;
+					}
+					else if(sColumnName.equalsIgnoreCase("msrepl_tran_version")){
+						datatype=-3;
+					}
+					else if(!SqlToCppTypeConverter.isTypeSupported(sSqlType)){
+						datatype=-104;
+					}
+					if(datatype>=0){
+						if(columns.length()>0)columns+=",";
+						columns+=sColumnName;
+					}
+					datatypes.add(new Integer(datatype));
+				}
+				w.write("("+columns+")");
+				w.newLine();
+				w.write("FROM '"+LINUX_DIR+sTableName+EXT_LABEL+"'");
+				w.write(" DELIMITER AS '\t' NULL AS '"+NULL_DATA+"'");
+				w.write(";");
+				w.newLine();
+				w.newLine();
+				int n=datatypes.size();
+				rs=m_connections.executeQuery("SELECT * FROM "+sTableName, m_db);
+				for(int k=1;rs.next();k++){
+					boolean line_started=false;
+					for(int i=1;i<=n;i++){
+						int datatype=datatypes.get(i-1).intValue();
+						if(line_started)w1.write(FIELD_DELIMITER);
+						String sValue=escape_escape(rs.getString(i));
+						if(rs.wasNull()){
+							sValue=NULL_DATA;
+						}
+						w1.write(sValue);
+						line_started=true;
+						
+						
+						
+					}
+					w1.newLine();
+				}
+				w1.close();
+			}
+			w.close();
+			System.out.println();
+		} catch (IOException e) {
+			e.printStackTrace();			
+		} catch (SQLException e) {
+			e.printStackTrace();			
+		} catch (SqlServerBrowserException e) {
+			e.printStackTrace();
+		}
+    }

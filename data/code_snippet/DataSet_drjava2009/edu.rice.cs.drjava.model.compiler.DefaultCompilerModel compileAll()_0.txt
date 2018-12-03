@@ -1,0 +1,4 @@
+  public void compileAll() throws IOException {
+    if (_prepareForCompile()) { _doCompile(_model.getOpenDefinitionsDocuments()); }
+    else _notifier.compileAborted(new UnexpectedException("Some modified open files are unsaved"));
+  }

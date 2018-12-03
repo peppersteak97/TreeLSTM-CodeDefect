@@ -1,0 +1,10 @@
+    private void updatePermissionsPanelWithNewEntity() {
+        IntegrationEntity selectedUserOrGroup = m_usersPanel.getSelectedUserOrGroup();
+        if ((m_displayedEntity == null) || (selectedUserOrGroup == null)) {
+            m_permissionsPanel.clear();
+        }
+        else {
+            m_permissionsPanel.update(selectedUserOrGroup, 
+                            m_cache.getPermissions(selectedUserOrGroup));
+        }
+    }

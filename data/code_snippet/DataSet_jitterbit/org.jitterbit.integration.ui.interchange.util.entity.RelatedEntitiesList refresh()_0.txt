@@ -1,0 +1,10 @@
+    public final void refresh() {
+        removeRenameListener();
+        List<? extends IntegrationEntity> deps = m_relationsFactory.getRelatedEntities();
+        DefaultListModel m = new DefaultListModel();
+        for (IntegrationEntity e : deps) {
+            m.addElement(e.getUi());
+        }
+        m_list.setModel(m);
+        addRenameListener();
+    }

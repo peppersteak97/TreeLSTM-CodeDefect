@@ -1,0 +1,8 @@
+    private JComponent createOptionPanel() {
+        m_displayOptionPanel = new MultipleOptionsPanel<IDisplayOption>(
+                        m_displayOptions, 
+                        m_displayOptions,
+                        Orientation.HORIZONTAL,
+                        ComponentFactories.checkBoxFactory());
+        return ComponentDecorFactory.invisible(m_displayOptionPanel).getUi();
+    }

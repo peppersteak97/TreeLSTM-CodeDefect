@@ -1,0 +1,4 @@
+  protected final void emit_fconst_1() {
+    asm.emitLFStoc(F0, Entrypoints.oneFloatField.getOffset(), T0);
+    pushFloat(F0);
+  }

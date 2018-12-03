@@ -1,0 +1,200 @@
+  private void _ok() {
+    _saveSettings();
+    
+    File jarOut = _jarFileSelector.getFileFromField();
+    if (jarOut == null) {
+      JOptionPane.showMessageDialog(JarOptionsDialog.this,
+                                    "You must specify an output file",
+                                    "Error: No File Specified",
+                                    JOptionPane.ERROR_MESSAGE);
+      return;
+    }
+    else if (jarOut.exists()) {
+      if (JOptionPane.showConfirmDialog(JarOptionsDialog.this,
+                                        "Are you sure you want to overwrite the file '" + jarOut.getPath() + "'?",
+                                        "Overwrite file?",
+                                        JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
+        return;
+      }
+    }
+    
+    setEnabled(false);
+    _processingFrame = new ProcessingFrame(this, "Creating Jar File", "Processing, please wait.");
+    _processingFrame.setVisible(true);
+    SwingWorker worker = new SwingWorker() {
+      boolean _success = false;
+      
+      /**
+       * Takes input of a file which is a directory and compresses all the class files in it
+       * into a jar file
+       *
+       * @param dir     the File object representing the directory
+       * @param jarFile the JarBuilder that the data should be written to
+       * @return true on success, false on failure
+       */
+      private boolean jarBuildDirectory(File dir, JarBuilder jarFile) throws IOException {
+        java.io.FileFilter classFilter = new java.io.FileFilter() {
+          public boolean accept(File f) {
+            return f.isDirectory() || f.getName().endsWith(".class");
+          }
+        };
+        
+        File[] files = dir.listFiles(classFilter);
+          for (int i = 0; i < files.length; i++) {
+            if (files[i].isDirectory()) {
+              jarFile.addDirectoryRecursive(files[i], files[i].getName(), classFilter);
+            }
+            else {
+              jarFile.addFile(files[i], "", files[i].getName());
+            }
+          }
+        }
+        return true;
+      }
+      
+      /**
+       * Takes the model and the jar and writes all the sources to the jar
+       *
+       * @param model the GlobalModel that the files are to come out of
+       * @param jar   the JarBuilder that the data should be written to
+       * @return true on success, false on failure
+       */
+      private boolean jarSources(GlobalModel model, JarBuilder jar) {
+        List<OpenDefinitionsDocument> srcs = model.getProjectDocuments();
+        
+        Iterator<OpenDefinitionsDocument> iter = srcs.iterator();
+        while (iter.hasNext()) {
+          OpenDefinitionsDocument doc = iter.next();
+          if (doc.inProject() && ! doc.isAuxiliaryFile()) {
+            try {
+              jar.addFile(doc.getFile(), packageNameToPath(doc.getPackageName()), doc.getFileName());
+            }
+            catch (IOException e) {
+              e.printStackTrace();
+              throw new UnexpectedException(e);
+            }
+          }
+        }
+        return true;
+      }
+      
+      /** Helper function to convert a package name to its path form
+        * @param packageName the name of the package
+        * @return the String which is should be the directory that it should be contained within
+        */
+      private String packageNameToPath(String packageName) {
+        return packageName.replaceAll("\\.", System.getProperty("file.separator").replaceAll("\\\\", "\\\\\\\\"));
+      }
+      /** The method to perform the work
+        * @return null
+        */
+      public Object construct() {
+        try {
+          File jarOut = _jarFileSelector.getFileFromField();
+          
+          if (_jarClasses.isSelected() && _jarSources.isSelected()) {
+            JarBuilder mainJar = null;
+            if (_makeExecutable.isSelected()) {
+              ManifestWriter mw = new ManifestWriter();
+              mw.setMainClass(_mainClassField.getText());
+              mainJar = new JarBuilder(jarOut, mw.getManifest());
+            }
+            else {
+              mainJar = new JarBuilder(jarOut);
+            }
+            
+            jarBuildDirectory(_model.getBuildDirectory(), mainJar);
+            
+            File sourceJarFile = File.createTempFile(_model.getBuildDirectory().getName(), ".jar");
+            JarBuilder sourceJar = new JarBuilder(sourceJarFile);
+            jarSources(_model, sourceJar);
+            sourceJar.close();
+            mainJar.addFile(sourceJarFile, "", "source.jar");
+            
+            mainJar.close();
+          }
+          else if (_jarClasses.isSelected()) {
+            JarBuilder jb;
+            if (_makeExecutable.isSelected()) {
+              ManifestWriter mw = new ManifestWriter();
+              mw.setMainClass(_mainClassField.getText());
+              jb = new JarBuilder(jarOut, mw.getManifest());
+            }
+            else {
+              jb = new JarBuilder(jarOut);
+            }
+            jarBuildDirectory(_model.getBuildDirectory(), jb);
+            jb.close();
+          }
+          else {
+            JarBuilder jb = new JarBuilder(jarOut);
+            jarSources(_model, jb);
+            jb.close();
+          }
+          _success = true;
+        }
+        catch (Exception e) {
+          e.printStackTrace();
+        }
+        return null;
+      }
+      public void finished() {
+        _processingFrame.setVisible(false);
+        _processingFrame.dispose();
+        JarOptionsDialog.this.setEnabled(true);
+        if (_success) {
+          if (_jarClasses.isSelected() && _makeExecutable.isSelected()) {
+            Object[] options = { "OK", "Run" };
+            int res = JOptionPane.showOptionDialog(JarOptionsDialog.this, "Jar file successfully written to '"+_jarFileSelector.getFileFromField().getName()+"'",
+                                                   "Jar Creation Successful", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                                                   null, options, options[0]);
+            JarOptionsDialog.this.setVisible(false);
+            if (1==res) {
+              SwingWorker jarRunner = new SwingWorker() {
+                public Object construct() {
+                  try {
+                                                            _jarFileSelector.getFileFromField().getParentFile());
+                    
+                    StreamRedirectThread errThread = new StreamRedirectThread("error reader", jarFileProcess.getErrorStream(), System.err);
+                    StreamRedirectThread outThread = new StreamRedirectThread("output reader", jarFileProcess.getInputStream(), System.out);
+                    errThread.start();
+                    outThread.start();
+                    boolean notDead = true;
+                    while(notDead) {
+                      try {
+                        errThread.join();
+                        outThread.join();
+                        notDead = false;
+                      }
+                      catch (InterruptedException exc) {
+                      }
+                    }
+                    jarFileProcess.waitFor();
+                    JOptionPane.showMessageDialog(JarOptionsDialog.this,"Execution of jar file terminated (exit value = "+
+                                                  jarFileProcess.exitValue()+")", "Execution terminated.",
+                                                  JOptionPane.INFORMATION_MESSAGE);
+                  }
+                  catch(Exception e) {
+                    JOptionPane.showMessageDialog(JarOptionsDialog.this, "An error occured while running the jar file: \n"+e, "Error", JOptionPane.ERROR_MESSAGE);
+                  }
+                  finally {
+                    JarOptionsDialog.this.setVisible(false);
+                  }
+                  return null;
+                }
+              };
+              jarRunner.start();
+            }
+          }
+          else {
+            JOptionPane.showMessageDialog(JarOptionsDialog.this, "Jar file successfully written to '" + _jarFileSelector.getFileFromField().getName() + "'", "Jar Creation Successful", JOptionPane.INFORMATION_MESSAGE);
+            JarOptionsDialog.this.setVisible(false);
+          }
+        }
+        else {
+          JOptionPane.showMessageDialog(JarOptionsDialog.this, "An error occured while creating the jar file. This could be because the file that you are writing to or the file you are reading from could not be opened.", "Error: File Access", JOptionPane.ERROR_MESSAGE);
+          JarOptionsDialog.this.setVisible(false);
+        }
+        _model.refreshActiveDocument();
+      }
+    };

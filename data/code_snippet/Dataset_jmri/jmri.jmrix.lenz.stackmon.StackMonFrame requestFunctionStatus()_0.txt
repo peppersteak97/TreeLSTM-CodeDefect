@@ -1,0 +1,10 @@
+    private void requestFunctionStatus()
+    {
+	int address=0;
+	if(!adrTextField.getText().equals(""))
+        {
+	   address=Integer.parseInt(adrTextField.getText());
+	   XNetMessage msg = XNetMessage.getLocomotiveFunctionStatusMsg(address);
+	   XNetTrafficController.instance().sendXNetMessage(msg,this);
+        }
+    }

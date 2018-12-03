@@ -1,0 +1,3 @@
+    public IWizardPage getNextPage() {
+        return new ProjectDestinationPage(getWizard(), m_projectDisplayer.getSelectedProject());
+    }

@@ -1,0 +1,5 @@
+    private void validateUrl() {
+        String url = m_wsCall.getProperty(WebServiceCall.WEB_SERVICE_URL).trim();
+        if ((url == null) || (url.length() == 0)) {
+        }
+    }

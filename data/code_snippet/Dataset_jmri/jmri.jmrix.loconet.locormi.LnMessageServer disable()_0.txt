@@ -1,0 +1,11 @@
+  public synchronized void disable()
+  {
+    try
+    {
+      Naming.unbind( serviceName ) ;
+    }
+    catch( Exception ex )
+    {
+      log.fatal( "Exception during disable: " + ex );
+    }
+  }

@@ -1,0 +1,3 @@
+	public List<IKongaTreeNode> getSourceNodes() {
+		return m_sourceNodes;
+	}

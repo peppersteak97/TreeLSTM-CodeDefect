@@ -1,0 +1,3 @@
+	public Rectangle getBounds() { 
+		return m_rect.getBounds(); 
+	}

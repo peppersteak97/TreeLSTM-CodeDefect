@@ -1,0 +1,3 @@
+    public LocoIOModeList getLocoIOModeList() {
+        return validmodes;
+    }

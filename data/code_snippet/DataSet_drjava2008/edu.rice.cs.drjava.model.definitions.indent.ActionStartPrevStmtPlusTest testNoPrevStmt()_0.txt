@@ -1,0 +1,12 @@
+  public void testNoPrevStmt() throws BadLocationException {
+    IndentRuleAction rule1 = new ActionStartPrevStmtPlus(0, true);
+    IndentRuleAction rule2 = new ActionStartPrevStmtPlus(2, true);
+
+    _setDocText("foo();\n");
+    rule1.testIndentLine(_doc, 2, Indenter.IndentReason.OTHER);
+    assertEquals("no prev stmt, no suffix", "foo();\n", _doc.getText());
+    
+    _setDocText("foo();\n");
+    rule2.testIndentLine(_doc, 2, Indenter.IndentReason.OTHER);
+    assertEquals("no prev stmt, suffix two spaces", "  foo();\n", _doc.getText());
+  }

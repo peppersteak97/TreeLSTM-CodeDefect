@@ -1,0 +1,5 @@
+    public void requestFocus() {
+        if (m_selectorsPanel != null) {
+            m_selectorsPanel.requestFocus();
+        }
+    }

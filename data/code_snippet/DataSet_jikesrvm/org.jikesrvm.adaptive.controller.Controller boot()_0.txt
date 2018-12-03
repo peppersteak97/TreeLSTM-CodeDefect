@@ -1,0 +1,33 @@
+  public static void boot() {
+    enabled = true;
+
+    controllerInputQueue = new BlockingPriorityQueue(new BlockingPriorityQueue.CallBack() {
+      public void aboutToWait() { controllerThread.aboutToWait(); }
+      public void doneWaiting() { controllerThread.doneWaiting(); }
+    });
+
+    compilationQueue = new BlockingPriorityQueue();
+
+    recompilationStrategy = new MultiLevelAdaptiveModel();
+
+    RuntimeMeasurements.boot();
+
+    AdaptiveInlining.boot(options);
+
+    Instrumentation.boot(options);
+
+    AOSDatabase.boot(options);
+
+    CounterBasedSampling.boot(options);
+
+    createControllerThread();
+
+    Controller controller = new Controller();
+    Callbacks.addExitMonitor(controller);
+
+    if (!options.DISABLE_RECOMPILE_ALL_METHODS) {
+      Callbacks.addRecompileAllDynamicallyLoadedMethodsMonitor(controller);
+    }
+
+    booted = true;
+  }

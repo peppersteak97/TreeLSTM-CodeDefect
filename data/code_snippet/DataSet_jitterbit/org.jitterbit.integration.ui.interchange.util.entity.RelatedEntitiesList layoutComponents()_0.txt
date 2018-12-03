@@ -1,0 +1,10 @@
+    private void layoutComponents() {
+        JPanel p = new JPanel(new BorderLayout(0, 10));
+        if (m_label != null) {
+            p.add(m_label, BorderLayout.NORTH);
+        }
+        p.add(ComponentFactories.scrollFactory().newScrollPane(m_list), BorderLayout.CENTER);
+        p.add(getButtons(), BorderLayout.SOUTH);
+        p.setOpaque(false);
+        m_displayer = p;
+    }

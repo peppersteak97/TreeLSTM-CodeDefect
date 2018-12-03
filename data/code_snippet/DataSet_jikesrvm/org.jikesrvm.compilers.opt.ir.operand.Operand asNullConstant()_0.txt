@@ -1,0 +1,3 @@
+  public final NullConstantOperand asNullConstant() {
+    return (NullConstantOperand) this;
+  }

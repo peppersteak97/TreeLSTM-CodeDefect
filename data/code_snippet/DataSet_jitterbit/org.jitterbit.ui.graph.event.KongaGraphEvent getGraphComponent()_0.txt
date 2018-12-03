@@ -1,0 +1,4 @@
+	public KongaGraphComponent getGraphComponent() {
+		return (m_liGraphComponents != null && !m_liGraphComponents.isEmpty()) ?
+				m_liGraphComponents.get(0) : null;
+	}

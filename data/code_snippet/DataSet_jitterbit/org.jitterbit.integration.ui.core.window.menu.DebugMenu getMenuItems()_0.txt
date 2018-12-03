@@ -1,0 +1,8 @@
+    protected List<JMenuItem> getMenuItems() {
+        List<JMenuItem> items = new ArrayList<JMenuItem>();
+        IApplicationAction a = WindowActionFactory.LAUNCH_UI_DEBUGGER.get(getWindow());
+        items.add(MenuItemFactory.createMenuItem(a, WindowActionDictionary.DICTIONARY));
+        items.add(null);
+        addExtensionItems(items, MenuExtensionPoint.EXTENSION_POINT_1);
+        return items;
+    }

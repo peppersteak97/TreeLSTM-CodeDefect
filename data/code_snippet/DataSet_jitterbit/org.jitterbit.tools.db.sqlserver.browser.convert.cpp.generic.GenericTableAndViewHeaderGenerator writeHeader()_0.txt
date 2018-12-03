@@ -1,0 +1,18 @@
+    private void writeHeader() {
+        String macro = getDefinedMacro();
+        addCopyrightNotice();
+        addLine("#ifndef " + macro);
+        addLine("#define " + macro);
+        addLine();
+        addLine("#ifdef WIN32");
+        addLine("\t#include <windows.h>");
+        addLine("#endif");
+        for( String sInclude : m_setIncludes ) {
+            addLine("#include " + sInclude);    
+        }
+        addLine();
+        addLine("#include <konga/Db/DbUtils/DbConnection.h>");
+        addLine("#include <konga/Db/DbUtils/DbRecordSet.h>");
+        addLine("#include <konga/Db/DbUtils/DbNullException.h>");
+        addLine();
+    }

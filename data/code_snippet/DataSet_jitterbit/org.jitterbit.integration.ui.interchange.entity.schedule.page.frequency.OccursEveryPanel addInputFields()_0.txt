@@ -1,0 +1,6 @@
+    private void addInputFields() {
+        addInputField(m_everyNum, m_everyNum, m_everyNum);
+        addInputField(new ComboBoxInputField("", m_everyHMBox, null));
+        addInputField(new TimeOfTheDayInputField("", m_startTime));
+        addInputField(new TimeOfTheDayInputField("", m_endTime));
+    }

@@ -1,0 +1,3 @@
+  public static BranchProfileOperand always() {
+    return new BranchProfileOperand(ALWAYS);
+  }

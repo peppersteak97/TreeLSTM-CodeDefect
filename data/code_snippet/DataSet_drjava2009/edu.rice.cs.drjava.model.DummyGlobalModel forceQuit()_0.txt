@@ -1,0 +1,3 @@
+  public void forceQuit() {
+    throw new UnsupportedOperationException("Tried to call forceQuit on a Dummy");
+  }

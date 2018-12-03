@@ -1,0 +1,8 @@
+    public void layoutComponents() {
+        if (m_st == SourceTarget.Source) {
+            layoutForSource();
+        }
+        else {
+            layoutForTarget();
+        }
+    }

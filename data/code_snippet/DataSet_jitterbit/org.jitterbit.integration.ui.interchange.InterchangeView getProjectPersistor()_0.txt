@@ -1,0 +1,3 @@
+    public IProjectPersistor getProjectPersistor() {
+        return m_projectPersistor;
+    }

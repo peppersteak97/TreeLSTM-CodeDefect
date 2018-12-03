@@ -1,0 +1,7 @@
+    public String toString() {
+        if (!isValidPosition()) {
+            return "Measurement id="+getID()+" invalid position";
+        }
+        return "Measurement id="+getID()+" position= "
+                    +truncate(x)+", "+truncate(y)+", "+truncate(z);
+    }

@@ -1,0 +1,17 @@
+	protected LayoutEditor getMaxConnectedPanel() {
+		LayoutEditor panel = null;
+		if ( (block!=null) && (panels.size()>0) ) {
+			panel = (LayoutEditor)panels.get(0);
+			ArrayList c = panel.auxTools.getConnectivityList(_instance);
+			if (panels.size()>1) {
+				for (int i = 1;i < panels.size();i++) {
+					if (c.size()<((LayoutEditor)panels.get(i)).auxTools.
+										getConnectivityList(_instance).size()) {
+						panel = (LayoutEditor)panels.get(i);
+						c = panel.auxTools.getConnectivityList(_instance);
+					}
+				}
+			}
+		}
+		return panel;
+	}

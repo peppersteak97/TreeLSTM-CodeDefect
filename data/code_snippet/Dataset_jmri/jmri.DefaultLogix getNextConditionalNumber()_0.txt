@@ -1,0 +1,4 @@
+	public int getNextConditionalNumber() {
+		mNextConditionalNumber ++;
+		return (mNextConditionalNumber);
+	}

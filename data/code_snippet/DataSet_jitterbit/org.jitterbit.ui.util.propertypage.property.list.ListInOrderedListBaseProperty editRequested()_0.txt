@@ -1,0 +1,3 @@
+		protected void editRequested() {
+			ListInOrderedListBaseProperty.this.editRequested();
+		}

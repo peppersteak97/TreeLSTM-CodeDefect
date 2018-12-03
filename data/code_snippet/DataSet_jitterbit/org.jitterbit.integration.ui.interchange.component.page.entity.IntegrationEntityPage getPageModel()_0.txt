@@ -1,0 +1,3 @@
+    public final IntegrationEntityPageModel getPageModel() {
+        return m_model;
+    }

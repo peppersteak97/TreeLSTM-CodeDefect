@@ -1,0 +1,3 @@
+      if (!_cursor.atStart() && !_cursor.atEnd() && (tmp == _cursor.current())) {
+        val.append(PTR_CHAR).append(_cursor.getBlockOffset());
+      }

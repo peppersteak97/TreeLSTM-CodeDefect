@@ -1,0 +1,9 @@
+  public String toString() {
+    if (isPhysical()) {
+      return PhysicalRegisterSet.getName(number);
+    }
+
+    String s = isLocal() ? "l" : "t";
+    s = s + getNumber() + (spansBasicBlock() ? "p" : "") + (isSSA() ? "s" : "") + typeName();
+    return s;
+  }

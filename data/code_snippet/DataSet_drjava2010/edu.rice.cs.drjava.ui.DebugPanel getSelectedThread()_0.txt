@@ -1,0 +1,6 @@
+  public DebugThreadData getSelectedThread() {
+    int row = _threadTable.getSelectedRow();
+    if (row == -1) {
+    }
+    return _threads.get(row);
+  }

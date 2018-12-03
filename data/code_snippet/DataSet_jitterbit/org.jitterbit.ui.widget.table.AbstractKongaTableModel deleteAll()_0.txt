@@ -1,0 +1,9 @@
+	public void deleteAll() {
+	    if (getRowCount() > 0) {
+            int firstRow = 0, lastRow = getRowCount() - 1;
+            m_rows.clear();
+            m_underlyingObjects.clear();
+            m_numberOfRows = 0;
+            fireRowsDeleted(firstRow, lastRow);
+        }
+	}

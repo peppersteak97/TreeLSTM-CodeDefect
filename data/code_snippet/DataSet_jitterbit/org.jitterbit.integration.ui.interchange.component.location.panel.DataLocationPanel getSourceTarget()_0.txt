@@ -1,0 +1,3 @@
+    public final SourceTarget getSourceTarget() {
+        return m_sourceTarget;
+    }

@@ -1,0 +1,4 @@
+  public void tearDown() throws Exception {
+    _doc = null;
+    super.tearDown();
+  }

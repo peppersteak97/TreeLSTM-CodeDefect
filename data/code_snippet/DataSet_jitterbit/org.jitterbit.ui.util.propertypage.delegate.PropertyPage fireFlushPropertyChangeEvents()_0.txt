@@ -1,0 +1,7 @@
+	void fireFlushPropertyChangeEvents() {
+		if( m_liPropertyPageListeners != null ) {
+			for( Iterator<IPropertyPageListener> it = m_liPropertyPageListeners.iterator(); it.hasNext(); ) {
+				it.next().flushPropertyChangeEvents();
+			}
+		}
+	}

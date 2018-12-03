@@ -1,0 +1,10 @@
+    void populateTextArea() {
+        Object obj = m_page.getObject();
+        if (obj instanceof String) {
+            m_textPane.setText((String) obj);
+        }
+        else if (obj instanceof File) {
+            populateTextAreaFromFile(m_textPane, (File) obj);
+        }
+        m_textPane.setCaretPosition(0);
+    }

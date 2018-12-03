@@ -1,0 +1,10 @@
+  public void commentLines() {
+    OpenDefinitionsDocument openDoc = _model.getActiveDocument();
+    int caretPos = _currentDefPane.getCaretPosition();
+    openDoc.setCurrentLocation(caretPos);
+    int start = _currentDefPane.getSelectionStart();
+    int end = _currentDefPane.getSelectionEnd();
+    int newEnd = openDoc.commentLines(start, end);
+    _currentDefPane.setCaretPosition(start+2);
+    if (start != end) _currentDefPane.moveCaretPosition(newEnd);
+  }

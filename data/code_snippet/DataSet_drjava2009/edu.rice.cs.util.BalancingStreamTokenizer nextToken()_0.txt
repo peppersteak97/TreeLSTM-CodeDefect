@@ -1,0 +1,8 @@
+  protected int nextToken() throws IOException {
+    if (_pushed.empty()) {
+      return _reader.read();
+    }
+    else {
+      return _pushed.pop();
+    }
+  }

@@ -1,0 +1,1 @@
+  public boolean inProjectPath() { return false; }

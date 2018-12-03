@@ -1,0 +1,3 @@
+    public String getTypeName() {
+        return m_sTypeName;
+    }

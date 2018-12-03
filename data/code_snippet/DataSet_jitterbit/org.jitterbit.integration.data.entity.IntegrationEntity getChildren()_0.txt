@@ -1,0 +1,6 @@
+    private EntityChildren getChildren() {
+        if (m_children == null) {
+            m_children = new EntityChildren(this);
+        }
+        return m_children;
+    }

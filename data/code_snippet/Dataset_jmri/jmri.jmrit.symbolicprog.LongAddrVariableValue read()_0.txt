@@ -1,0 +1,2 @@
+        if (log.isDebugEnabled()) log.debug("longAddr read() invoked");
+        setToRead(false);

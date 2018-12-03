@@ -1,0 +1,43 @@
+  public void testGlassPaneEditableState() {
+    SingleDisplayModel model = _frame.getModel();
+    
+    final OpenDefinitionsDocument doc1 = model.newFile();
+    final OpenDefinitionsDocument doc2 = model.newFile();
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() {
+        
+        _pane1 = _frame._createDefScrollPane(doc1);
+        _pane2 = _frame._createDefScrollPane(doc2);
+        
+        _defPane1 = (DefinitionsPane) _pane1.getViewport().getView();
+        _defPane2 = (DefinitionsPane) _pane2.getViewport().getView();
+        
+        _frame._switchDefScrollPane();
+      }
+    });
+    
+    
+    assertTrue("Start: defPane1", _defPane1.isEditable());
+    assertTrue("Start: defPane2", _defPane2.isEditable());
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() { _frame.hourglassOn(); } });
+    Utilities.clearEventQueue();
+    
+    assertTrue("Glass on: defPane1", _defPane1.isEditable());
+    assertTrue("Glass on: defPane2",(! _defPane2.isEditable()));
+    model.setActiveDocument(doc1);
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() { _frame._switchDefScrollPane(); } });
+    Utilities.clearEventQueue();
+    
+    assertTrue("Doc Switch: defPane1",(! _defPane1.isEditable()));
+    assertTrue("Doc Switch: defPane2", _defPane2.isEditable());
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() { _frame.hourglassOff(); } });
+    Utilities.clearEventQueue();
+    
+    assertTrue("End: defPane1", _defPane1.isEditable());
+    assertTrue("End: defPane2", _defPane2.isEditable());
+    _log.log("testGlassPaneEditableState completed");
+  }

@@ -1,0 +1,12 @@
+    private void createComponents() {
+        String label = getComboBoxLabel();
+
+        m_entityBoxControls = new EntityComboBoxWithControls(
+                        getWizard().getView(), m_entityType, m_entityFilter, false);
+        JComboBox combo = m_entityBoxControls.getComboBox();
+        combo.setPrototypeDisplayValue("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        
+        m_entityBox = new ComboBoxInputField(label, combo,
+                        IntegrationUiStyleSheet.InputLabelText.makeJLabel(label));
+        m_entityBox.setSelectedItem(null);
+    }

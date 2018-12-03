@@ -1,0 +1,9 @@
+    private DatabaseStructure getDatabaseStructure() {
+        DatabaseStructure s = new DatabaseStructure(m_dbLocation);
+        s.setDbTables(m_incomingStructure.getDbTables());
+        SqlScript sql = new SqlScript();
+        sql.setPrimaryKeysEntry(m_dbObject);
+        sql.setSqlStatement(m_dbObject, m_dbLocation.getDriver(), m_ui.getWhereClause());
+        s.setSqlScript(sql);
+        return s;
+    }

@@ -1,0 +1,12 @@
+    public IWizardPage getNextPage() {
+        if (isLastPage()) {
+            return null;
+        }
+        
+        CacheKey key = new CacheKey(m_relationships);
+        IWizardPage page = getCachedNextPage(key);
+        if (page == null) {
+            page = createNewNextPage(key);
+        }
+        return page;
+    }

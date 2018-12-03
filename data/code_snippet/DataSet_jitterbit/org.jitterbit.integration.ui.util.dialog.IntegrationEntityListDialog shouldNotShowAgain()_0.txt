@@ -1,0 +1,3 @@
+    public boolean shouldNotShowAgain() {
+        return m_doNotShowAgainOption != null && m_doNotShowAgainOption.isSelected();
+    }

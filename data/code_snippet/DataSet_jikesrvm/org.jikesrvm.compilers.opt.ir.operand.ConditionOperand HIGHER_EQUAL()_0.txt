@@ -1,0 +1,3 @@
+  public static ConditionOperand HIGHER_EQUAL() {
+    return new ConditionOperand(HIGHER_EQUAL);
+  }

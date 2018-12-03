@@ -1,0 +1,15 @@
+    void initialize() throws ViewManagerException {
+        try {
+            ViewShellParser shellParser = new ViewShellParser(this);
+            for (ViewShell shell : shellParser.getShells()) {
+                m_viewShells.add(shell);
+                m_viewIdToShell.put(shell.getID(), shell);
+            }
+        }
+        catch (KongaSaxParserException ex) {
+            throw new ViewManagerException(
+        }
+        finally {
+            m_viewLoaderLock.release();
+        }
+    }

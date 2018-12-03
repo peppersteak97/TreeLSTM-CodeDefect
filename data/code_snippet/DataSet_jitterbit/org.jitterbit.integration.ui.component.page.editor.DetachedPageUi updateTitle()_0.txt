@@ -1,0 +1,8 @@
+    void updateTitle() {
+        UiUtils.runOnEventThread(new Runnable() {
+            
+            public void run() {
+                m_pageWindow.setTitle(m_page.getTitle());
+            }
+        });
+    }

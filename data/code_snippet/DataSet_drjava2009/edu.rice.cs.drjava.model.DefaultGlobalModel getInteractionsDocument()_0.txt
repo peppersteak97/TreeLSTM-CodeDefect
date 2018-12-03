@@ -1,0 +1,1 @@
+  public InteractionsDocument getInteractionsDocument() { return _interactionsModel.getDocument(); }

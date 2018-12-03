@@ -1,0 +1,66 @@
+  public synchronized void XXXtestStepIntoOverBreakpoint() throws Exception {
+    debug.logStart();
+    _log.log("----testStepIntoOverBreakpoint----");
+    StepTestListener debugListener = new StepTestListener();
+    _debugger.addListener(debugListener);
+
+    OpenDefinitionsDocument doc = _startupDebugger("DrJavaDebugClass.java", DEBUG_CLASS);
+
+    _debugger.toggleBreakpoint(doc,DEBUG_CLASS.indexOf("Foo Line 1"), 3,true);
+    _debugger.toggleBreakpoint(doc,DEBUG_CLASS.indexOf("bar();\n"), 4,true);
+    
+    Utilities.clearEventQueue();
+    debugListener.assertRegionAddedCount(2);
+
+    synchronized(_notifierLock) {
+      interpretIgnoreResult("new DrJavaDebugClass().foo()");
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+
+
+    debugListener.assertCurrThreadResumedCount(0);
+    debugListener.assertCurrThreadDiedCount(0);
+    assertInteractionsDoesNotContain("Foo Line 1");
+
+    synchronized(_notifierLock) {
+      _asyncStep(Debugger.StepType.STEP_OVER);
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    debugListener.assertBreakpointReachedCount(1);
+    debugListener.assertCurrThreadDiedCount(0);
+    assertInteractionsContains("Foo Line 1");
+
+    synchronized(_notifierLock) {
+      _asyncStep(Debugger.StepType.STEP_OVER);
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+
+    debugListener.assertCurrThreadDiedCount(0);
+    debugListener.assertBreakpointReachedCount(1);
+
+    InterpretListener interpretListener = new InterpretListener();
+    _model.addListener(interpretListener);
+    synchronized(_notifierLock) {
+      _asyncResume();
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    interpretListener.assertInteractionEndCount(1);
+    _model.removeListener(interpretListener);
+
+    debugListener.assertBreakpointReachedCount(1);
+    debugListener.assertThreadLocationUpdatedCount(3);
+    debugListener.assertCurrThreadSuspendedCount(3);
+
+    _model.closeFile(doc);
+    Utilities.clearEventQueue();
+
+
+    synchronized(_notifierLock) {
+      _debugger.shutdown();
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+
+    _log.log("Completed testStepIntoOverBreakpoint");
+    _debugger.removeListener(debugListener);
+    debug.logEnd();
+  }

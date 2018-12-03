@@ -1,0 +1,36 @@
+    public void setRateButtonActionPerformed() {
+        double rate = 1.0;
+        try {
+            rate = Double.valueOf(factorField.getText()).doubleValue();
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this,(rb.getString("ParseRateError")+"\n"+e),
+                    rb.getString("ErrorTitle"),JOptionPane.ERROR_MESSAGE);
+            log.error("Exception when parsing Rate Field: "+e);
+            return;
+        }
+		if (rate < 0.0) {
+            JOptionPane.showMessageDialog(this,rb.getString("NegativeRateError"),
+                    rb.getString("ErrorTitle"),JOptionPane.ERROR_MESSAGE);
+			factorField.setText(threeDigits.format(clock.userGetRate()));
+			return;
+		}
+		if (InstanceManager.clockControlInstance().requiresIntegerRate()) {
+			double frac = rate-(double)((int)rate);
+			if (frac > 0.001) {
+				JOptionPane.showMessageDialog(this,rb.getString("NonIntegerError"),
+                    rb.getString("ErrorTitle"),JOptionPane.ERROR_MESSAGE);
+				factorField.setText(threeDigits.format(clock.userGetRate()));
+				return;
+			}
+		}
+        try {
+            clock.userSetRate(rate);
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this,(rb.getString("SetRateError")+"\n"+e),
+                    rb.getString("ErrorTitle"),JOptionPane.ERROR_MESSAGE);
+            log.error("Exception when setting timebase rate: "+e);
+        }
+		changed = true;
+    }

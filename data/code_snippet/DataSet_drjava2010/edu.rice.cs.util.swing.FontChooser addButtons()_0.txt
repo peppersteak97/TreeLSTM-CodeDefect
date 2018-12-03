@@ -1,0 +1,22 @@
+  private void addButtons() {
+    _okButton = new JButton("OK");
+    _okButton.setMargin(new Insets(0, 0, 0, 0));
+    _cancelButton = new JButton("Cancel");
+    _cancelButton.setMargin(new Insets(0, 0, 0, 0));
+    _okButton.setFont(new Font(" ", 1, 11));
+    _cancelButton.setFont(new Font(" ", 1, 12));
+    getContentPane().add(_okButton);
+    getContentPane().add(_cancelButton);
+    _okButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        setVisible(false);
+        _clickedOK = true;
+      }
+    });
+    _cancelButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        setVisible(false);
+        _clickedOK = false;
+      }
+    });
+  }

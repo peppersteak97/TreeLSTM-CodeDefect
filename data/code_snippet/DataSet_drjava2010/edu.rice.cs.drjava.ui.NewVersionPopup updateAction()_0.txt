@@ -1,0 +1,167 @@
+  protected void updateAction() {
+    JPanel cp = new JPanel(new BorderLayout(5,5));
+    cp.setBorder(new EmptyBorder(5,5,5,5));
+    setContentPane(cp);
+    cp.add(new JOptionPane("Waiting for www.sourceforge.net ...",JOptionPane.INFORMATION_MESSAGE,
+                           JOptionPane.DEFAULT_OPTION,null,
+                           new Object[0]), BorderLayout.CENTER);
+    JProgressBar pb = new JProgressBar(0,100);
+    pb.setIndeterminate(true);
+    cp.add(pb, BorderLayout.SOUTH);
+    validate();
+    
+    new Thread(new Runnable() {
+      public void run() {
+        ArrayList<File> toCleanUp = new ArrayList<File>();
+        
+        try {
+          LOG.log("updateAction");
+          
+          final File targetFile = getTargetFile();
+          LOG.log("\ttargetFile = "+targetFile);
+          if ((targetFile == null) || (targetFile.getParentFile() == null)) {
+            abortUpdate("Could not determine where DrJava is located on this computer.", true);
+            return;
+          }
+          
+          String fileName = _newestVersionString;
+          final int lastDotPos = fileName.length();
+          if (targetFile.toString().endsWith(".jar")) { fileName += ".jar"; }
+          else if (targetFile.toString().endsWith(".exe")) { fileName += ".exe"; }
+          else if (targetFile.toString().endsWith(".app")) { fileName += "-osx.tar.gz"; }
+          else { abortUpdate("Could not determine the file type to download.", true); return; }
+          LOG.log("\tfileName = "+fileName);
+          
+          File destFile = FileOps.generateNewFileName(targetFile.getParentFile(),
+                                                      fileName.substring(0,lastDotPos),
+                                                      fileName.substring(lastDotPos));
+          toCleanUp.add(destFile);
+          LOG.log("Downloading to "+destFile);
+          
+          File macTempDir = null;
+          File macTarFile = null;
+          if (fileName.endsWith("-osx.tar.gz")) {
+            macTarFile = new File("/usr/bin/tar");
+            LOG.log("Searching for "+macTarFile);
+            if (!macTarFile.exists()) {
+              String path = System.getenv("PATH");
+              for(String p: path.split(System.getProperty("path.separator"))) {
+                macTarFile = new File(p, "tar");
+                LOG.log("Searching for "+macTarFile);
+                if (macTarFile.exists()) break;
+              }
+              if (!macTarFile.exists()) { abortUpdate("Could not find tar on this computer.", true); return; }
+            }
+            
+            macTempDir = FileOps.generateNewFileName(destFile.getParentFile(), _newestVersionString);
+          }
+          
+          final File tempClassFile = File.createTempFile("drjavarestart-",".jar");
+          toCleanUp.add(tempClassFile);
+          BufferedOutputStream tempClassOut = new BufferedOutputStream(new FileOutputStream(tempClassFile));
+          BufferedInputStream tempClassIn = new BufferedInputStream(new FileInputStream(getDrJavaFile()));
+          edu.rice.cs.plt.io.IOUtil.copyInputStream(tempClassIn, tempClassOut);
+          tempClassIn.close();
+          tempClassOut.close();
+          LOG.log("Copied drjava.jar to "+tempClassFile);
+          
+          URL fileURL = new URL(getAutomaticDownloadURL()+fileName);
+          LOG.log("fileURL = "+fileURL);
+          
+          URLConnection uc = fileURL.openConnection();
+          final int length = uc.getContentLength();
+          InputStream in = uc.getInputStream();
+          ProgressMonitorInputStream pin = new ProgressMonitorInputStream(_mainFrame, "Downloading "+fileName+" ...", in);
+          ProgressMonitor pm = pin.getProgressMonitor();
+          pm.setMaximum(length);
+          pm.setMillisToDecideToPopup(0);
+          pm.setMillisToPopup(0);
+          closeAction();
+          
+          BufferedInputStream bin = new BufferedInputStream(pin);
+          BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(destFile));
+          edu.rice.cs.plt.io.IOUtil.copyInputStream(bin,bout);
+          bin.close();
+          bout.close();
+          if ((!destFile.exists()) || (destFile.length() != length)) {
+            abortUpdate("Could not download update."); return;
+          }
+          
+          LOG.log("Downloaded to "+destFile);
+          
+          if (fileName.endsWith("-osx.tar.gz")) {
+            macTempDir.mkdirs();
+            toCleanUp.add(macTempDir);
+            Process p = new ProcessBuilder()
+              .command(macTarFile.getAbsolutePath(), "xfz", destFile.getAbsolutePath())
+              .directory(macTempDir)
+              .redirectErrorStream(true)
+              .start();
+            boolean waiting = false;
+            do {
+              try {
+                p.waitFor();
+                waiting = false;
+              }
+              catch(InterruptedException ie) { abortUpdate("Installation was interrupted."); return; }
+            } while(waiting);
+            if (p.exitValue() != 0) { abortUpdate("Unpacking with tar failed."); return; }
+            destFile.delete();
+            destFile = new File(macTempDir, "DrJava.app");
+            if (!destFile.exists() ||
+                !new File(destFile,"Contents/Resources/Java/drjava.jar").exists()) {
+              abortUpdate("Downloaded file contained unexpected files."); return;
+            }
+          }
+          else {
+            JarFile jf = new JarFile(destFile);
+          }
+          
+          toCleanUp.clear();
+          
+          final File finalDestFile = destFile;
+          Thread restart = new Thread() {
+            public void run() {
+              try {
+                LOG.log("Restarting...");
+                Process p = JVMBuilder.DEFAULT.classPath(tempClassFile).start(DrJavaRestart.class.getName(),
+                                                                              finalDestFile.getAbsolutePath(),
+                                                                              targetFile.getAbsolutePath(),
+                                                                              tempClassFile.getAbsolutePath());
+              }
+              catch(Exception e) {
+                LOG.log("Exception in shutdown hook: "+e);
+                tempClassFile.delete();
+                JOptionPane.showMessageDialog(null, 
+                                              "A new version of DrJava was downloaded. However,\n"+
+                                              "it could not be started automatically.\n\n"+
+                                              "The new copy is now installed at:\n"+
+                                              finalDestFile.getAbsolutePath()+"\n\n"+
+                                              "The old copy is still installed at:\n"+
+                                              targetFile.getAbsolutePath()+"\n\n"+
+                                              "Please start DrJava manually.",
+                                              "Error Updating DrJava", JOptionPane.ERROR_MESSAGE);
+              }
+            }
+          };
+          Runtime.getRuntime().addShutdownHook(restart);
+          Utilities.invokeAndWait(new Runnable() { public void run() { _mainFrame.quit(); } });
+          Runtime.getRuntime().removeShutdownHook(restart);
+          tempClassFile.delete();
+          JOptionPane.showMessageDialog(_mainFrame, 
+                                        "A new version of DrJava was downloaded. However, you chose\n"+
+                                        "not to restart DrJava, so the old version was not automatically\n"+
+                                        "replaced.\n\n"+
+                                        "The new copy is now installed at:\n"+
+                                        finalDestFile.getAbsolutePath()+"\n\n"+
+                                        "The old copy is still installed at:\n"+
+                                        targetFile.getAbsolutePath());
+        }
+        catch(InterruptedIOException iie) { /* aborted by user */ return; }
+        catch(IOException e) { abortUpdate("Error installing update:\n"+e.getMessage()); return; }
+        finally {
+          for(File f: toCleanUp) { edu.rice.cs.plt.io.IOUtil.deleteRecursively(f); }
+        }
+      }
+    }).start();
+  }

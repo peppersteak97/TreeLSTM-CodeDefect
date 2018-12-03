@@ -1,0 +1,9 @@
+    private void createAndShowUi() {
+        createUi();
+        if (m_startupFileInputArgumentHandler.isEmpty()) {
+            publishOpeningScreen();
+        }
+        else {
+            m_startupFileInputArgumentHandler.process(this);
+        }
+    }

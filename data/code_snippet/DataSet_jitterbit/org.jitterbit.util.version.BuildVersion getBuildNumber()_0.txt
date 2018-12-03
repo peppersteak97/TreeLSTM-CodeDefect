@@ -1,0 +1,3 @@
+    public int getBuildNumber() {
+        return getBuildLevelImpl(m_versionNumber);
+    }

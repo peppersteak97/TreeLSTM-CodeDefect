@@ -1,0 +1,7 @@
+    protected void deactivated() {
+        if (!m_isActive) {
+            return;
+        }
+        m_isActive = false;
+        m_treePage.deactivated();
+    }

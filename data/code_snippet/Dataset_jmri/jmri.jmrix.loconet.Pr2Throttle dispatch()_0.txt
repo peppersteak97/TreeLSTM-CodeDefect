@@ -1,0 +1,3 @@
+    public void dispatch() {
+        dispose();
+    }

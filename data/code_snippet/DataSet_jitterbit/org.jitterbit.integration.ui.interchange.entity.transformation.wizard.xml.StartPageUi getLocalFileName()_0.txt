@@ -1,0 +1,3 @@
+    String getLocalFileName() {
+        return m_uploadFilePanel.getLocalFileName();
+    }

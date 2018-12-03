@@ -1,0 +1,6 @@
+    protected void activated() {
+        if (!m_isActive) {
+            m_view.setActive(true);
+            m_isActive = true;
+        }
+    }

@@ -1,0 +1,9 @@
+    protected final void writeSkippedColumns() {
+        if( !m_setSkippedColumns.isEmpty() ) {
+            addLine("\t/*");
+            addLine("\t* The following columns were skipped: ");
+            for( Column c : m_setSkippedColumns )
+                addLine("\t*\t" + c.getName());
+            addLine("\t*/");
+        }
+    }

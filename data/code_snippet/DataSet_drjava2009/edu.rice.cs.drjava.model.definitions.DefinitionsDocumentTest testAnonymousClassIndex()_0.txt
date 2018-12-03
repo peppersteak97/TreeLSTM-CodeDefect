@@ -1,0 +1,38 @@
+  public void testAnonymousClassIndex() throws BadLocationException, ClassNameNotFoundException {
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        try {
+          _doc.insertString(0, NESTED_CLASSES_TEXT, null);
+          
+          String substr;
+          int exp, act;
+          substr = "{ /*Test$4*/";
+          exp = 4;
+          act = _doc._getAnonymousInnerClassIndex(NESTED_CLASSES_TEXT.indexOf(substr)); 
+          assertEquals("index at " + substr + " exp=`" + exp + "`, act=`" + act + "`", exp, act);
+          
+          substr = "{ /*Test$5*/";
+          exp = 5;
+          act = _doc._getAnonymousInnerClassIndex(NESTED_CLASSES_TEXT.indexOf(substr)); 
+          assertEquals("index at " + substr + " exp=`" + exp + "`, act=`" + act + "`", exp, act);
+          
+          substr = "{ /*Test$6*/";
+          exp = 6;
+          act = _doc._getAnonymousInnerClassIndex(NESTED_CLASSES_TEXT.indexOf(substr)); 
+          assertEquals("index at " + substr + " exp=`" + exp + "`, act=`" + act + "`", exp, act);
+          
+          substr = "{ /*Test$7*/";
+          exp = 7;
+          act = _doc._getAnonymousInnerClassIndex(NESTED_CLASSES_TEXT.indexOf(substr)); 
+          assertEquals("index at " + substr + " exp=`" + exp + "`, act=`" + act + "`", exp, act);
+          
+          substr = "{ /*Test$8*/";
+          exp = 8;
+          act = _doc._getAnonymousInnerClassIndex(NESTED_CLASSES_TEXT.indexOf(substr)); 
+          assertEquals("index at " + substr + " exp=`" + exp + "`, act=`" + act + "`", exp, act);
+        }
+        catch(BadLocationException e) { throw new UnexpectedException(e); }
+        catch(ClassNameNotFoundException e) { throw new UnexpectedException(e); }
+      }
+    });
+  }

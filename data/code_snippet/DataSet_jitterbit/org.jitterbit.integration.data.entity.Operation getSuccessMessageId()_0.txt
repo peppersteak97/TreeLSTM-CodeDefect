@@ -1,0 +1,11 @@
+    public EmailMessageId getSuccessMessageId() {
+        String id = getProperty(SUCCESS_MESSAGE);
+        if (id != null && id.length() > 0) {
+            try {
+                return new EmailMessageId(id);
+            }
+            catch (IllegalArgumentException e) {
+            }
+        }
+        return null;
+    }

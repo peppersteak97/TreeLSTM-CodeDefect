@@ -1,0 +1,11 @@
+    void resetLV102Settings() {
+	voltBox.setSelectedIndex(23);
+	eLineBox.setSelectedIndex(3);
+	railComBox.setSelectedIndex(2);
+	railComModeBox.setSelectedIndex(2);
+	synchronized(CurrentStatus) {
+	   CurrentStatus.setText(rb.getString("LV102StatusOK"));
+	   if(log.isDebugEnabled()) 
+		log.debug("Current Status: " + rb.getString("LV102StatusOK"));
+	}
+    }

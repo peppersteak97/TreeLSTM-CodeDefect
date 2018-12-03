@@ -1,0 +1,10 @@
+    private void layoutComponents() {
+        JPanel p = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = getInitialConstraints();
+        p.add(m_switch, gbc);
+        for (Map.Entry<Key, JTextField> e : m_fields.entrySet()) {
+            p.add(e.getValue(), gbc);
+        }
+        UiUtils.setOpaqueRecursivelySkipDefaults(p, false);
+        m_displayer = p;
+    }

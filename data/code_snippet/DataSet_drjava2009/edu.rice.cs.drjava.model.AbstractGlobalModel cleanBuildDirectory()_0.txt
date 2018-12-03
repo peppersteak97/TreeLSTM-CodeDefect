@@ -1,0 +1,4 @@
+    public void cleanBuildDirectory() {
+      File dir = this.getBuildDirectory ();
+      _notifier.executeAsyncTask(_findFilesToCleanTask, dir, false, true);
+    }

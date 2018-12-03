@@ -1,0 +1,26 @@
+    public void startPoll() {
+        for (int i = 0; i<128; i++) scanSeen[i] = false;
+
+        status.setText(rb.getString("StatusStart"));
+        
+        timer = new javax.swing.Timer(50, new java.awt.event.ActionListener() {
+                int node = 1;
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    SerialTrafficController.instance().sendSerialMessage(SerialMessage.getPoll(node), null);
+                    node++;
+                    if (node>=128) {
+                        timer.stop();
+                        timer = null;
+                        if (status.getText().equals(rb.getString("StatusStart"))) 
+                            status.setText(rb.getString("StatusFail"));
+                        else
+                            status.setText(rb.getString("StatusOK"));
+                    }
+                }
+            });
+        timer.setInitialDelay(50);
+        timer.setRepeats(true);
+        timer.start();
+               
+        nodesModel.fireTableDataChanged();
+    }

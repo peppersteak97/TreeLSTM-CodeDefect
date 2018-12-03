@@ -1,0 +1,7 @@
+    private void getPreviousEntry(){	
+	int address=0;
+	if(!adrTextField.getText().equals(""))
+	   address=Integer.parseInt(adrTextField.getText());
+	XNetMessage msg = XNetMessage.getNextAddressOnStackMsg(address,false);
+	XNetTrafficController.instance().sendXNetMessage(msg,this);
+    }

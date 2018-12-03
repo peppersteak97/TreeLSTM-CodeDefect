@@ -1,0 +1,3 @@
+  public static ConditionOperand NOT_EQUAL() {
+    return new ConditionOperand(NOT_EQUAL);
+  }

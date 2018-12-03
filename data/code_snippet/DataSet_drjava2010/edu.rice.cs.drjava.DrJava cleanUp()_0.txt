@@ -1,0 +1,6 @@
+  public static void cleanUp() {
+    _log.log("cleanUp. _filesToOpen: "+_filesToOpen);
+    _filesToOpen.clear();
+    _log.log("\t_filesToOpen cleared");
+    _jvmArgs.clear();
+  }

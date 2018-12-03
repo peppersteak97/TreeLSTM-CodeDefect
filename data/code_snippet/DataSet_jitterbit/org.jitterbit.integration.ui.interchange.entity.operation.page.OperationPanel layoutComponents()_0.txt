@@ -1,0 +1,20 @@
+    private void layoutComponents() {
+        setLayout(new BoxLayout(getUi(), BoxLayout.PAGE_AXIS));
+        add(getSubComponentPanel(m_topPanel));
+        add(getSubComponentPanel(m_functionPanelHolder));
+        add(Box.createVerticalStrut(20));
+        add(getSubComponentPanel(m_schedulePanel));
+        add(Box.createVerticalStrut(20));
+        add(getSubComponentPanel(m_optionsPanel));
+        add(Box.createVerticalStrut(30));
+        add(getSubComponentPanel(getDropDownPanel(
+                        m_onSuccessPanel,
+                        PackageResources.Titles.SUCCESS, 
+                        PackageResources.Icons.SUCCESS)));
+        add(Box.createVerticalStrut(20));
+        add(getSubComponentPanel(getDropDownPanel(
+                        m_onFailurePanel, 
+                        PackageResources.Titles.FAILURE, 
+                        PackageResources.Icons.FAILURE)));
+        add(Box.createVerticalGlue());
+    }

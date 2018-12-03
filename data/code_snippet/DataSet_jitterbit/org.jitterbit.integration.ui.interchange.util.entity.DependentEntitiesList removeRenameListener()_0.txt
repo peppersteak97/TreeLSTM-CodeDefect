@@ -1,0 +1,9 @@
+    private void removeRenameListener() {
+        for (int n = 0; n < m_list.getModel().getSize(); ++n) {
+            Object o = m_list.getModel().getElementAt(n);
+            if (o instanceof IIntegrationEntityUiDelegate) {
+                ((IIntegrationEntityUiDelegate) o).getDataObject().removePropertyChangeListener(
+                                IntegrationEntity.PROPERTY_NAME, m_renameListener);
+            }
+        }
+    }

@@ -1,0 +1,13 @@
+    private void createTable() {
+        IKongaRowTableModel model = new KnownServersTableModel();
+        int visibleRows = 6;
+        m_serverTable = ComponentFactories.tableFactory().newSortedTable(
+                        model, visibleRows);
+        m_serverTable.setSortingStatus(KnownServersTableModel.LATEST_LOGIN.getIndex(),
+                        KongaTableSorter.DESCENDING);
+        m_serverTable.getSelectionModel().addListSelectionListener(
+                        new TableSelectionListener());
+        setComparators();
+        customizeTableSorter();
+        setTableRenderers();
+    }

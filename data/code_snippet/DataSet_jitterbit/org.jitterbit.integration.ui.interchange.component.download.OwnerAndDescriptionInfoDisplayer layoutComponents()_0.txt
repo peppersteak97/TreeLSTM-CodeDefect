@@ -1,0 +1,23 @@
+    private void layoutComponents() {
+        m_displayer = new JPanel(new GridBagLayout());
+        
+        Insets insets = new Insets(5, 2, 5, 2);
+        GridBagConstraints left = new GridBagConstraints();
+        left.gridx = 0;
+        left.anchor = GridBagConstraints.NORTHWEST;
+        left.insets = insets;
+        GridBagConstraints right = new GridBagConstraints();
+        right.anchor = GridBagConstraints.NORTHWEST;
+        right.gridx = 1;
+        right.insets = insets;
+        StyleSheetTextClass ssc = IntegrationUiStyleSheet.InputLabelText;
+
+        m_displayer.add(ssc.makeJLabel(PackageResources.Labels.OWNER), left);
+        m_displayer.add(m_ownerField, right);
+
+        m_displayer.add(ssc.makeJLabel(PackageResources.Labels.DESCRIPTION), left);
+        right.fill = GridBagConstraints.VERTICAL;
+        right.weighty = 1.0;
+        m_displayer.add(ComponentFactories.scrollFactory().newScrollPane(
+                        m_descriptionArea), right);
+    }

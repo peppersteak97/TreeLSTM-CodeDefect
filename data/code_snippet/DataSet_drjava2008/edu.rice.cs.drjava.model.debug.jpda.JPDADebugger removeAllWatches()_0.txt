@@ -1,0 +1,6 @@
+  public /* synchronized */ void removeAllWatches() throws DebugException {
+    assert EventQueue.isDispatchThread();
+    while (_watches.size() > 0) {
+      removeWatch( _watches.get(0).getName());
+    }
+  }

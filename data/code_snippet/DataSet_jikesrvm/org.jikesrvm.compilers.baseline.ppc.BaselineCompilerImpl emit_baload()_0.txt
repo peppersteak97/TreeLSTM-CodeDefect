@@ -1,0 +1,5 @@
+  protected final void emit_baload() {
+    genBoundsCheck();
+    asm.emitEXTSB(T2, T2);
+    pushInt(T2);
+  }

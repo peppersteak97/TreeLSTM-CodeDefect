@@ -1,0 +1,12 @@
+  public void testCloseFiles() throws BadLocationException {
+    SDTestListener listener = new SDTestListener() {
+      public synchronized boolean canAbandonFile(OpenDefinitionsDocument doc) {
+        canAbandonCount++;
+      }
+      public synchronized void newFileCreated(OpenDefinitionsDocument doc) { newCount++; }
+      public synchronized void fileClosed(OpenDefinitionsDocument doc) { closeCount++; }
+      public synchronized void activeDocumentChanged(OpenDefinitionsDocument doc) { switchCount++; }
+        interpreterReadyCount++;
+        synchronized(_readyLock) { _readyLock.notify(); }
+      }
+    };

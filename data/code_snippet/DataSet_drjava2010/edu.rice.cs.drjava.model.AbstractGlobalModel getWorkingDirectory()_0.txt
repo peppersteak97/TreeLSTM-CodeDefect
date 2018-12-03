@@ -1,0 +1,13 @@
+    public File getWorkingDirectory() {
+      try {
+        if (_workDir == null || _workDir == FileOps.NULL_FILE) {
+          File parentDir = _projectFile.getParentFile();
+          if (parentDir != null) {
+          }
+          else return new File(System.getProperty("user.dir"));
+        }
+        return _workDir.getCanonicalFile();
+      }
+      catch(IOException e) { /* fall through */ }
+      return _workDir.getAbsoluteFile();
+    }

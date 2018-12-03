@@ -1,0 +1,24 @@
+    private void initUi() {
+        Container cp = getContentPane();
+        cp.setLayout( new BorderLayout() );
+        Border emptyBorder = new EmptyBorder(10, 10, 10, 10);
+        
+        
+        JPanel resultPanel = new JPanel();
+        resultPanel.add( getMessageLabel() );
+        resultPanel.setBorder(emptyBorder);
+        cp.add(resultPanel, BorderLayout.NORTH);
+        
+        if( m_liWarnings.size() > 0 || m_liErrors.size() > 0 ) {
+            JPanel messagePanel = new ConversionResultsDisplayer(m_liWarnings, m_liErrors).getPanel();
+            messagePanel.setBorder(emptyBorder);
+            cp.add(messagePanel, BorderLayout.CENTER);
+        }
+        
+        JPanel buttonPanel = getButtonPanel(KongaDialog.CLOSE_ONLY, -1, 0, -1);
+        buttonPanel.setBorder(new EmptyBorder(10, 10, 20, 10));
+        cp.add(buttonPanel, BorderLayout.SOUTH);
+        
+        pack();
+        WindowUtils.centerWindowOnScreen(this);
+    }

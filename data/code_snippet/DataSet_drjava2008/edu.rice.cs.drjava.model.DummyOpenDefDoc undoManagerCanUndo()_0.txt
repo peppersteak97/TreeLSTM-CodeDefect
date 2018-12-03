@@ -1,0 +1,1 @@
+  public boolean undoManagerCanUndo() { throw new UnsupportedOperationException("Dummy method"); }

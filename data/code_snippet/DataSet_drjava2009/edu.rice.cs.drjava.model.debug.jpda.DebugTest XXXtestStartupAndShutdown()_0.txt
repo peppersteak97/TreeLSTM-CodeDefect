@@ -1,0 +1,80 @@
+  public void XXXtestStartupAndShutdown() throws DebugException, InterruptedException {
+    _log.log("----testStartupAndShutdown----");
+    DebugTestListener debugListener = new DebugStartAndStopListener();
+    _debugger.addListener(debugListener);
+    
+    synchronized(_notifierLock) {
+      _debugger.startUp();
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    debugListener.assertDebuggerShutdownCount(0);
+    
+    assertTrue("Debug Manager should be ready", _debugger.isReady());
+    assertNotNull("EventRequestManager should not be null after startUp", _debugger.getEventRequestManager());
+    assertNotNull("PendingRequestManager should not be null after startUp", _debugger.getPendingRequestManager());
+    
+    synchronized(_notifierLock) {
+      _debugger.shutdown();
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    debugListener.assertDebuggerStartedCount(1);
+    
+    synchronized(_notifierLock) {
+      _debugger.startUp();
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    debugListener.assertDebuggerShutdownCount(1);
+    
+    InterpretListener resetListener = new InterpretListener() {
+      public void interactionStarted() {
+        _log.log("interactionStarted called in resetListener");
+        interactionStartCount++;
+      }
+      public void interactionEnded() {
+        _log.log("interactionEnded called in resetListener");
+        interactionEndCount++;
+      }
+      public void interpreterChanged(boolean inProgress) {
+        _log.log("interpreterChanged called in resetListener");
+        interpreterChangedCount++;
+      }
+      public void interpreterResetting() {
+        _log.log("interpreterResetting called in resetListener");
+        interpreterResettingCount++;
+      }
+      public void interpreterReady(File wd) {
+        synchronized(_notifierLock) {
+          interpreterReadyCount++;
+          _log.log("interpreterReady " + interpreterReadyCount);
+          _notifyLock();
+        }
+      }
+      public void consoleReset() { consoleResetCount++; }
+    };
+    
+    _setPendingNotifies(2);
+    
+    
+    _model.resetInteractions(FileOps.NULL_FILE);
+    
+    synchronized(_notifierLock) { while (_pendingNotifies > 0) _notifierLock.wait(); }
+    
+    _model.removeListener(resetListener);
+    
+    debugListener.assertDebuggerStartedCount(2);
+    
+    
+    synchronized(_notifierLock) {
+      _debugger.startUp();
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    debugListener.assertDebuggerShutdownCount(2);
+    
+    synchronized(_notifierLock) {
+      _debugger.shutdown();
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    debugListener.assertDebuggerStartedCount(3);
+    
+    _debugger.removeListener(debugListener);
+  }

@@ -1,0 +1,7 @@
+    private void createStartDateField() {
+        ResourceBundle res = SchedulePage.getResources();
+        JLabel label = InputLabelText.makeJLabel(res.getString("Label.StartingAt") + " ");
+        m_startDate = new DateInputField(res.getString("Label.StartDate"), DATE_FORMAT,
+                        InputFieldFactory.getTextField(8, true), label);
+        m_startDate.getInputComponent().setEditable(false);
+    }

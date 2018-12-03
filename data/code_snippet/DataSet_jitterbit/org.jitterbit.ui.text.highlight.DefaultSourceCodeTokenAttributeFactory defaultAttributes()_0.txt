@@ -1,0 +1,3 @@
+    private static SimpleAttributeSet defaultAttributes() {
+        return new SimpleAttributeSet();
+    }

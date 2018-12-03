@@ -1,0 +1,4 @@
+    public void redoEdit() {
+        super.redoEdit();
+        ++m_availableUndos;
+    }

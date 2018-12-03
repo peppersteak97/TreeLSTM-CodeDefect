@@ -1,0 +1,10 @@
+    private void fireFinalDriverSelectionWasMade() {
+        final DbDriverCacheCollectionUiEvent evt = new DbDriverCacheCollectionUiEvent(
+                        this, m_selectedServer, m_selectedDriver);
+        m_listeners.visitAll(new ListenerVisitor<IDbDriverCacheCollectionUiListener>() {
+
+            public void accept(IDbDriverCacheCollectionUiListener listener) {
+                listener.finalDriverSelectionWasMade(evt);
+            }
+        });
+    }

@@ -1,0 +1,3 @@
+    TreeMapper getTreeMapper() {
+        return m_treeMapper;
+    }

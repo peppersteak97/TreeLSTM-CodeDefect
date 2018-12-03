@@ -1,0 +1,3 @@
+    private static String getJitterbitFolderName() {
+        return SystemUtils.IS_OS_LINUX ? LINUX_FOLDER_NAME : WINDOWS_FOLDER_NAME;
+    }

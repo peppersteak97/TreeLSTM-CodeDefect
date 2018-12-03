@@ -1,0 +1,4 @@
+      if (isDebuggerReady()) {
+        debugger.shutdown();
+        _breakpointsPanel._close();
+      }

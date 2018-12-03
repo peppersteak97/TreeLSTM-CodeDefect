@@ -1,0 +1,3 @@
+  public final StackLocationOperand asStackLocation() {
+    return (StackLocationOperand) this;
+  }

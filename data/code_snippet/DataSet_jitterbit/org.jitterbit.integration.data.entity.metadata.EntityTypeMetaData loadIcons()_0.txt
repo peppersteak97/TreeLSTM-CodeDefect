@@ -1,0 +1,3 @@
+    private void loadIcons() {
+        m_iconRepository = m_xmlLoader.createIconRepository();
+    }

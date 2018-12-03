@@ -1,0 +1,4 @@
+    public void postJitterpackImportProcessing() {
+        super.postJitterpackImportProcessing();
+        setDeployDirty(true);
+    }

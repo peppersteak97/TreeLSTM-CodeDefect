@@ -1,0 +1,21 @@
+    public void configure() {
+        SprogTrafficController.instance().connectPort(this);
+
+        jmri.InstanceManager.setProgrammerManager(new SprogProgrammerManager(new SprogProgrammer(), SprogProgrammerManager.SERVICE));
+
+        jmri.InstanceManager.setPowerManager(new jmri.jmrix.sprog.SprogPowerManager());
+
+        jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.sprog.SprogTurnoutManager());
+
+        jmri.InstanceManager.setCommandStation(new jmri.jmrix.sprog.SprogCommandStation());
+
+        jmri.InstanceManager.setSensorManager(new jmri.managers.InternalSensorManager());
+
+        sinkThread = new Thread(SprogTrafficController.instance());
+        sinkThread.start();
+
+        jmri.InstanceManager.setThrottleManager(new jmri.jmrix.sprog.SprogThrottleManager());
+
+        jmri.jmrix.sprog.ActiveFlag.setActive();
+
+    }

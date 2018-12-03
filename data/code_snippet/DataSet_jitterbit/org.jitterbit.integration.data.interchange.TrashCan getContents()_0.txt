@@ -1,0 +1,11 @@
+    Collection<IntegrationEntity> getContents() {
+        List<IntegrationEntity> entities = new ArrayList<IntegrationEntity>();
+        synchronized (m_dataStoreLock) {
+            for (IntegrationData data : m_dataStore.getAllInstances()) {
+                if (data instanceof IntegrationEntity) {
+                    entities.add((IntegrationEntity) data);
+                }
+            }
+        }
+        return entities;
+    }

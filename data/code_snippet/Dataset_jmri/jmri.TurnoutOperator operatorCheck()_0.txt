@@ -1,0 +1,5 @@
+	protected void operatorCheck() throws TurnoutOperatorException {
+		if (myTurnout.getCurrentOperator()!= this) {
+			throw new TurnoutOperatorException();
+		}
+	}

@@ -1,0 +1,18 @@
+	public void startThreads() {
+		int priority = Thread.currentThread().getPriority();
+		log.debug("startThreads current priority = "+priority+
+					" max available = "+Thread.MAX_PRIORITY+
+					" default = "+Thread.NORM_PRIORITY+
+					" min available = "+Thread.MIN_PRIORITY);
+
+		int xmtpriority = (Thread.MAX_PRIORITY-1>priority ? Thread.MAX_PRIORITY-1 : Thread.MAX_PRIORITY);
+		Thread xmtThread = new Thread(xmtHandler, "XNet transmit handler");
+		log.debug("Xmt thread starts at priority "+xmtpriority);
+		xmtThread.setPriority(Thread.MAX_PRIORITY-1);
+		xmtThread.start();
+
+		Thread rcvThread = new Thread(rcvHandler, "XNet receive handler");
+		rcvThread.setPriority(Thread.MAX_PRIORITY);
+		rcvThread.start();
+
+	}

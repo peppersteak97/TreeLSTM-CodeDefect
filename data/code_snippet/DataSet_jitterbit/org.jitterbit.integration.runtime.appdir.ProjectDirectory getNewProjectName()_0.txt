@@ -1,0 +1,7 @@
+    public static String getNewProjectName() {
+        if (s_directory == null) {
+            throw new IllegalStateException(
+                "The ProjectDirectory has not been initialized properly.");
+        }
+        return getNewProjectName(s_directory);
+    }

@@ -1,0 +1,21 @@
+  public void testDeleteAndMergeTwoGaps() {
+    insertGap(model1, 5);
+    model1.insertChar('/');
+    assertEquals("#1.0", 6, model1.absOffset());
+    model1.insertChar('*');
+    assertEquals("#2.0", 7, model1.absOffset());
+    insertGap(model1, 6);
+    assertEquals("#3.0", 13, model1.absOffset());
+    model1.move(-9);
+    assertEquals("#4.0", 4, model1.absOffset());
+    assertTrue("#4.1", model1.currentToken().isGap());
+    assertEquals("#4.2", 5, model1.currentToken().getSize());
+    model1.move(2);
+    assertEquals("#5.0", 6, model1.absOffset());
+    assertEquals("#5.2", "/*", model1.currentToken().getType());
+    model1.move(-2);
+    model1.delete(5);
+    assertEquals("#6.0", 4, model1.absOffset());
+    assertTrue("#6.1", model1.currentToken().isGap());
+    assertEquals("#6.2", 8, model1.currentToken().getSize());
+  }

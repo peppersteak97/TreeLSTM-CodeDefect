@@ -1,0 +1,1 @@
+  public Iterator getIterator() { return new Iterator(); }

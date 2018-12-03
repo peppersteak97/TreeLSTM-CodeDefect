@@ -1,0 +1,15 @@
+  public void testLineContainsColon() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionLineContains(':', null, null);
+
+    _setDocText("return test ? x : y;\n}\n");
+    _doc.setCurrentLocation(0);
+    assertTrue("colon in text (after startdoc)",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+    _setDocText("foo();\nreturn test ? x : y;\n}\n");
+    _doc.setCurrentLocation(10);
+    assertTrue("colon in text (after newline)",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+    _doc.setCurrentLocation(25);
+    assertTrue("colon in text (after colon on line)",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+  }    

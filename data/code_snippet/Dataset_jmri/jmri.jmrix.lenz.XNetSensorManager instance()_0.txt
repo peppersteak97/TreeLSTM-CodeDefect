@@ -1,0 +1,4 @@
+    static public XNetSensorManager instance() {
+        if (mInstance == null) new XNetSensorManager();
+        return mInstance;
+    }

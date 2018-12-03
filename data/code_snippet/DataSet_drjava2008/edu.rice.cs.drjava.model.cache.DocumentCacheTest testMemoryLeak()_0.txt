@@ -1,0 +1,40 @@
+  public void testMemoryLeak() throws InterruptedException, IOException {
+    _memLeakCounter=0;
+    FinalizationListener<DefinitionsDocument> fl = new FinalizationListener<DefinitionsDocument>() {
+      public void finalized(FinalizationEvent<DefinitionsDocument> fe) {
+        _memLeakCounter++;
+      }
+    };
+    
+    
+    
+    OpenDefinitionsDocument doc1 = openFile(tempFile(1));
+    OpenDefinitionsDocument doc2 = openFile(tempFile(2));
+    OpenDefinitionsDocument doc3 = openFile(tempFile(3));
+    OpenDefinitionsDocument doc4 = openFile(tempFile(4));
+    OpenDefinitionsDocument doc5 = openFile(tempFile(5));
+    
+    doc1.addFinalizationListener(fl);
+    doc2.addFinalizationListener(fl);
+    doc3.addFinalizationListener(fl);
+    doc4.addFinalizationListener(fl);
+    
+    assertEquals("There should be 4 in the QUEUE", 4, _cache.getNumInCache());
+    System.gc();
+    Thread.sleep(100);
+    
+    
+    assertFalse("doc1 should be the one that's not ready", _adapterTable.get(doc1).isReady());
+    assertEquals("One doc should have been collected", 1, _memLeakCounter);
+    
+    
+    List<FinalizationListener<DefinitionsDocument>> list = doc1.getFinalizationListeners();
+    assertEquals("There should only be one finalization listener", 1, list.size());
+    assertEquals("The finalization listener should be fl", fl, list.get(0));
+    
+    
+    System.gc();
+    Thread.sleep(100);
+    assertEquals("several docs should have been collected", 6, _memLeakCounter);
+    
+  }

@@ -1,0 +1,7 @@
+  public static void init() {
+    BootRecord.the_boot_record.hardwareTrapMethodId = CompiledMethods.createHardwareTrapCompiledMethod().getId();
+    BootRecord.the_boot_record.deliverHardwareExceptionOffset =
+        Entrypoints.deliverHardwareExceptionMethod.getOffset();
+
+    BootRecord.the_boot_record.debugRequestedOffset = Entrypoints.debugRequestedField.getOffset();
+  }

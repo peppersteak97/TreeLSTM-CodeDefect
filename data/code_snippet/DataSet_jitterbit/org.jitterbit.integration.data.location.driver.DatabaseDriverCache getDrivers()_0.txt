@@ -1,0 +1,8 @@
+    public Collection<DatabaseDriverDescription> getDrivers() throws DataCacheException {
+        if (!m_hasBeenLoaded) {
+            load();
+        }
+        List<DatabaseDriverDescription> drivers = 
+            new ArrayList<DatabaseDriverDescription>(m_driverDescriptions);
+        return drivers;
+    }

@@ -1,0 +1,3 @@
+    private void initializePageManager() {
+        m_pageManager.prepareForDisplay();
+    }

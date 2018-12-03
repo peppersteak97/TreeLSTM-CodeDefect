@@ -1,0 +1,11 @@
+    private static void registerWithServer() {
+        IntegrationServer server = IntegrationServer.getInstance();
+        IServerCallFactory<IInterchangeProjectDownloader> callFactory =
+            new IServerCallFactory<IInterchangeProjectDownloader>() {
+
+                public IInterchangeProjectDownloader get() {
+                    return new CheckoutInterchangeProjectWsImpl();
+                }
+        };
+        server.registerCallFactory(IInterchangeProjectDownloader.class, callFactory);
+    }

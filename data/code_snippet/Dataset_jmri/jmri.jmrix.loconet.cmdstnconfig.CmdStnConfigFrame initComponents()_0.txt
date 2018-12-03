@@ -1,0 +1,119 @@
+  public void initComponents() {
+
+    String name = "<unchanged>";
+    try {
+        name = SlotManager.instance().getCommandStationType();
+        name = name.substring(0, name.indexOf(' '));
+        log.debug("match /"+name+"/");
+        rb = ResourceBundle.getBundle("jmri.jmrix.loconet.cmdstnconfig."+name+"options");
+    } catch (Exception e) {
+        log.warn("Failed to find properties for /"+name+"/ command station type");
+        rb = ResourceBundle.getBundle("jmri.jmrix.loconet.cmdstnconfig.Defaultoptions");
+    }
+
+    try {
+        CONFIG_SLOT = Integer.parseInt(rb.getString("CONFIG_SLOT"));
+        MIN_OPTION =  Integer.parseInt(rb.getString("MIN_OPTION"));
+        MAX_OPTION =  Integer.parseInt(rb.getString("MAX_OPTION"));
+        LabelT = rb.getString("LabelT");
+        LabelC = rb.getString("LabelC");
+        LabelTop = rb.getString("LabelTop");
+        read = rb.getString("ButtonRead");
+        write = rb.getString("ButtonWrite");
+    } catch (Exception e) {
+        log.error("Failed to load values from /"+name+"/ properties");
+    }
+
+    log.debug("Constants: "+CONFIG_SLOT+" "+MIN_OPTION+" "+MAX_OPTION);
+
+    setTitle(LabelTop);
+
+    getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+    {
+      readButton = new JButton(read);
+      writeButton = new JButton(write);
+
+      JPanel pane = new JPanel();
+      pane.setLayout(new FlowLayout());
+      pane.add(readButton);
+      pane.add(writeButton);
+      getContentPane().add(pane);
+      
+      optionBox = new JCheckBox(rb.getString("CheckBoxReserved"));
+      getContentPane().add(optionBox);
+
+      getContentPane().add(new JLabel(rb.getString("HeadingText")));
+      
+      JPanel options = new JPanel();
+      GridBagConstraints gc = new GridBagConstraints();
+      GridBagLayout gl = new GridBagLayout();
+      gc.gridy = 0;
+      gc.ipady = 0;
+      
+      options.setLayout(gl);
+      for (int i = MIN_OPTION; i<=MAX_OPTION; i++) {
+        JPanel p2 = new JPanel();
+        p2.setLayout(new FlowLayout());
+        ButtonGroup g = new ButtonGroup();
+        JRadioButton c = new JRadioButton(LabelC);
+        JRadioButton t = new JRadioButton(LabelT);
+        g.add(c);
+        g.add(t);
+
+        p2.add(t);
+        p2.add(c);
+
+        closedButtons[i-MIN_OPTION] = c;
+        thrownButtons[i-MIN_OPTION] = t;
+        gc.weightx = 1.0;
+        gc.gridx = 0;
+        gc.anchor = GridBagConstraints.CENTER;
+        gl.setConstraints(p2, gc);
+        options.add(p2);
+        gc.gridx = 1;
+        gc.weightx = GridBagConstraints.REMAINDER;
+        gc.anchor = GridBagConstraints.WEST;
+        String label;
+        try {
+            label = rb.getString("Option"+i);
+            isReserved[i-MIN_OPTION] = false;
+        } catch (java.util.MissingResourceException e) {
+            label = ""+i+": "+rb.getString("Reserved");
+            isReserved[i-MIN_OPTION] = true;
+        }
+        JLabel l = new JLabel(label);
+        labels[i-MIN_OPTION] = l;
+        gl.setConstraints(l, gc);
+        options.add(l);
+        gc.gridy++;
+      }
+      JScrollPane js = new JScrollPane(options);
+      js.setVerticalScrollBarPolicy(js.VERTICAL_SCROLLBAR_AS_NEEDED);
+      js.setHorizontalScrollBarPolicy(js.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+      getContentPane().add(js);
+      
+    }
+
+    optionBox.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent e) {
+        updateVisibility(optionBox.isSelected());
+      }
+    });
+    readButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent e) {
+        readButtonActionPerformed(e);
+      }
+    });
+    writeButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent e) {
+        writeButtonActionPerformed(e);
+      }
+    });
+
+    updateVisibility(optionBox.isSelected());
+    
+    addHelpMenu("package.jmri.jmrix.loconet.cmdstnconfig.CmdStnConfigFrame", true);
+
+    pack();
+  }

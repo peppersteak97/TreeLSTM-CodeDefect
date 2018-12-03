@@ -1,0 +1,20 @@
+  public void testMoveMethods(){
+    
+    History his = new History(0);
+    
+    try{
+      his.movePrevious("3");
+      fail("Should not have moved previous, empty history");
+    }
+    catch(ArrayIndexOutOfBoundsException e){
+      
+    }
+    
+    try{ 
+      his.moveNext("3");
+      fail("Should not have moved next, empty history");
+    }
+    catch(ArrayIndexOutOfBoundsException e){
+      
+    }
+  }

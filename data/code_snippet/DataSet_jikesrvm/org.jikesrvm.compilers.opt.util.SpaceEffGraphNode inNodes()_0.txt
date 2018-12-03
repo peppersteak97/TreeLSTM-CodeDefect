@@ -1,0 +1,3 @@
+  public final GraphNodeEnumeration inNodes() {
+    return new InNodeEnumeration(this);
+  }

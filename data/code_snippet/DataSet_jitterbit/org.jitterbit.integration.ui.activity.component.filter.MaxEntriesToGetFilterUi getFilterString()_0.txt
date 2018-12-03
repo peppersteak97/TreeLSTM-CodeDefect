@@ -1,0 +1,4 @@
+    public String getFilterString() {
+        return PackageResources.MaxEntriesFilter.getFilterString(
+                        m_filter.getMaxEntriesToGet());
+    }

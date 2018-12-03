@@ -1,0 +1,6 @@
+	public List<IGraphUiDelegate> getUiChildrenOriginal() {
+		if( m_liUiChildren == null ) {
+			m_liUiChildren = new ArrayList<IGraphUiDelegate>();
+		}
+		return m_liUiChildren;
+	}

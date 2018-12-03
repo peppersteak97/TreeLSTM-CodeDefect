@@ -1,0 +1,3 @@
+  public boolean isShadowed() {
+    return getStateAtCurrent() != FREE /* || curToken.isLineComment() || curToken.isBlockCommentStart() */; 
+  }

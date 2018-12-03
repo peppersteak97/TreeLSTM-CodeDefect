@@ -1,0 +1,13 @@
+    protected void prepareForRemoval() {
+        m_model.removePageModelListener(this);
+        m_model.prepareForRemoval();
+        if (m_validator != null) {
+            m_validator.dispose();
+        }
+        getDetailsPanel().dispose();
+        getDetailsPanel().removeInputChangeListener(this);
+        getDetailsPanel().removeUndoableEditListener(this);
+        if (m_optionsButton != null) {
+            m_optionsButton.dispose();
+        }
+    }

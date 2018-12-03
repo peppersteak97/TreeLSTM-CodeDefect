@@ -1,0 +1,5 @@
+  public String toString() {
+    final StringBuilder val = new StringBuilder("Brace<");
+    val.append(getType());
+    return val.append('>').toString();
+  }

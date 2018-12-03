@@ -1,0 +1,23 @@
+  void _gotoFileUnderCursor() {
+    OpenDefinitionsDocument odd = getCurrentDefPane().getOpenDefDocument();
+    String mask = "";
+    int loc = getCurrentDefPane().getCaretPosition();
+    String s = odd.getText();
+    int start = loc;
+    while(start>0) {
+      if (! Character.isJavaIdentifierPart(s.charAt(start-1))) { break; }
+      --start;
+    }
+    while((start<s.length()) && (!Character.isJavaIdentifierStart(s.charAt(start))) && (start<loc)) {
+      ++start;
+    }
+    int end = loc-1;
+    while(end<s.length()-1) {
+      if (! Character.isJavaIdentifierPart(s.charAt(end+1))) { break; }
+      ++end;
+    }
+    if ((start>=0) && (end<s.length())) {
+      mask = s.substring(start, end + 1);
+    }
+    gotoFileMatchingMask(mask);
+  }

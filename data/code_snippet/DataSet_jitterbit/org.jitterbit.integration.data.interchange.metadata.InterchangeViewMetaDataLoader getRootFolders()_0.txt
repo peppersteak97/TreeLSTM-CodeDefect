@@ -1,0 +1,8 @@
+    public List<RootFolder> getRootFolders() {
+        List<RootFolder> roots = new ArrayList<RootFolder>();
+        for (RootFolder orig : m_mapRootFolders.values()) {
+            RootFolder rf = new RootFolder(orig.getName(), orig.getItemType());
+            roots.add(rf);
+        }
+        return roots;
+    }

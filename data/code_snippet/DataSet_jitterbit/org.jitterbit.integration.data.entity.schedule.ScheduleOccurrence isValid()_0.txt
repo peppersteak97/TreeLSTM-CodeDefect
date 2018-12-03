@@ -1,0 +1,49 @@
+    public boolean isValid() {
+        switch (getType()) {
+        case DAILY: {
+            int days = get_Every_X_Days();
+            if (days < EVERY_X_DAYS_MIN || days > EVERY_X_DAYS_MAX) {
+                return false;
+            }
+            break;
+        }
+        case WEEKLY: {
+            int days = get_Every_X_Weeks();
+            if (days < EVERY_X_WEEKS_MIN || days > EVERY_X_WEEKS_MAX) {
+                return false;
+            }
+            DayOfTheWeek[] weekdays = get_Weekly_On_These_Days();
+            if (weekdays == null || weekdays.length == 0) {
+                return false;
+            }
+            break;
+        }
+        case MONTHLY: {
+            if (getMonthlyType() == 0) {
+                int day = get_Monthly_Day_In_Month();
+                if (day < 1 || day > 31) {
+                    return false;
+                }
+                int month = get_Monthly_of_Every_X_Months();
+                if (month < 1 || month > 12) {
+                    return false;
+                }
+            }
+            else {
+                int num = get_Monthly_B_Num();
+                if (num < 1 || num > 5) {
+                    return false;
+                }
+                if (get_Monthly_B_Day_Of_The_Week() == null) {
+                    return false;
+                }
+                int month = get_Monthly_B_Every_X_Month();
+                if (month < 1 || month > 12) {
+                    return false;
+                }
+            }
+            break;
+        }
+        }
+        return true;
+    }

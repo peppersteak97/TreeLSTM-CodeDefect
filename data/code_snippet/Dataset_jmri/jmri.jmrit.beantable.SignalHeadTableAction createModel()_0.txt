@@ -1,0 +1,93 @@
+    void createModel() {
+        m = new BeanTableDataModel() {
+		    static public final int LITCOL = NUMCOLUMN;
+		    static public final int HELDCOL = LITCOL+1;
+    		public int getColumnCount( ){ return NUMCOLUMN+2;}
+    		public String getColumnName(int col) {
+    			if (col==LITCOL) return "Lit";
+    			else if (col==HELDCOL) return "Held";
+    			else return super.getColumnName(col);
+		    }
+    		public Class getColumnClass(int col) {
+    			if (col==LITCOL) return Boolean.class;
+    			else if (col==HELDCOL) return Boolean.class;
+    			else return super.getColumnClass(col);
+		    }
+    		public int getPreferredWidth(int col) {
+    			if (col==LITCOL) return new JTextField(4).getPreferredSize().width;
+    			else if (col==HELDCOL) return new JTextField(4).getPreferredSize().width;
+    			else return super.getPreferredWidth(col);
+		    }
+    		public boolean isCellEditable(int row, int col) {
+    			if (col==LITCOL) return true;
+    			else if (col==HELDCOL) return true;
+    			else return super.isCellEditable(row,col);
+			}
+    		public Object getValueAt(int row, int col) {
+    		    String name = (String)sysNameList.get(row);
+                SignalHead s = InstanceManager.signalHeadManagerInstance().getBySystemName(name);
+    			if (col==LITCOL) {
+    				boolean val = s.getLit();
+					return new Boolean(val);
+    			}
+    			else if (col==HELDCOL) {
+    				boolean val = s.getHeld();
+					return new Boolean(val);
+    			}
+				else return super.getValueAt(row, col);
+			}
+    		public void setValueAt(Object value, int row, int col) {
+    			String name = (String)sysNameList.get(row);
+                SignalHead s = InstanceManager.signalHeadManagerInstance().getBySystemName(name);
+    			if (col==LITCOL) {
+    				boolean b = ((Boolean)value).booleanValue();
+    				s.setLit(b);
+    			}
+    			else if (col==HELDCOL) {
+    				boolean b = ((Boolean)value).booleanValue();
+    				s.setHeld(b);
+    			}
+    			else super.setValueAt(value, row, col);
+    		}
+
+            public String getValue(String name) {
+                SignalHead s = InstanceManager.signalHeadManagerInstance().getBySystemName(name);
+                int val = s.getAppearance();
+                switch (val) {
+                case SignalHead.RED: return rbean.getString("SignalHeadStateRed");
+                case SignalHead.YELLOW: return rbean.getString("SignalHeadStateYellow");
+                case SignalHead.GREEN: return rbean.getString("SignalHeadStateGreen");
+                case SignalHead.FLASHRED: return rbean.getString("SignalHeadStateFlashingRed");
+                case SignalHead.FLASHYELLOW: return rbean.getString("SignalHeadStateFlashingYellow");
+                case SignalHead.FLASHGREEN: return rbean.getString("SignalHeadStateFlashingGreen");
+                case SignalHead.DARK: return rbean.getString("SignalHeadStateDark");
+                default: return "Unexpected value: "+val;
+                }
+            }
+            public Manager getManager() { return InstanceManager.signalHeadManagerInstance(); }
+            public NamedBean getBySystemName(String name) { return InstanceManager.signalHeadManagerInstance().getBySystemName(name);}
+            public NamedBean getByUserName(String name) { return InstanceManager.signalHeadManagerInstance().getByUserName(name);}
+            public void clickOn(NamedBean t) {
+                int oldState = ((SignalHead)t).getAppearance();
+                int newState;
+                switch (oldState) {
+                case SignalHead.RED: newState = SignalHead.YELLOW; break;
+                case SignalHead.YELLOW: newState = SignalHead.GREEN; break;
+                case SignalHead.GREEN: newState = SignalHead.FLASHRED; break;
+                case SignalHead.FLASHRED: newState = SignalHead.FLASHYELLOW; break;
+                case SignalHead.FLASHYELLOW: newState = SignalHead.FLASHGREEN; break;
+                case SignalHead.FLASHGREEN: newState = SignalHead.DARK; break;
+                case SignalHead.DARK: newState = SignalHead.RED; break;
+                default: newState = SignalHead.DARK; this.log.warn("Unexpected state "+oldState+" becomes DARK");break;
+                }
+               ((SignalHead)t).setAppearance(newState);
+            }
+            public JButton configureButton() {
+                return new JButton(rbean.getString("SignalHeadStateYellow"));
+            }
+            public boolean matchPropertyName(java.beans.PropertyChangeEvent e) {
+		        if (e.getPropertyName().indexOf("Lit")>=0 || e.getPropertyName().indexOf("Held")>=0) return true;
+                else return super.matchPropertyName(e);
+            }
+        };
+    }

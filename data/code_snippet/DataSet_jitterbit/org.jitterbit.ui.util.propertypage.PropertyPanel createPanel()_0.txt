@@ -1,0 +1,27 @@
+	private void createPanel() {
+		if( m_properties.numberOfProperties() == 0 ) {
+			return;
+		}
+
+		Property[] arProps = m_properties.toArray();
+		for( int i = 0; i < arProps.length; ++i ) {
+			IPropertyComponentHolder componentHolder = arProps[i].getComponentHolder();
+			JComponent displayer = componentHolder.getComponent();
+			
+			if( arProps[i] instanceof IValueChangedNotifier )
+				((IValueChangedNotifier)arProps[i]).addListenerToBeNotified(this);
+			
+			if( componentHolder instanceof IListPropertyEventSender )
+				((IListPropertyEventSender)componentHolder).addListPropertyListener(this);
+			
+			if( !arProps[i].isPartOfPropertyGroup() ) {
+				String sLabel = null;
+				if( displayer instanceof JCheckBox )
+				else if( arProps[i] instanceof PropertyGroup )
+					sLabel = ((PropertyGroup)arProps[i]).getGroupLabel();
+				else
+					sLabel = arProps[i].getLabel();
+				addComponents( new JLabel(sLabel), displayer );
+			}
+		}
+	}

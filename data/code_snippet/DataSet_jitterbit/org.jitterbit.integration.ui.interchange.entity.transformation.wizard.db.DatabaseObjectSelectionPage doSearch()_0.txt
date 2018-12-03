@@ -1,0 +1,13 @@
+    void doSearch() {
+        startWait();
+        IUiJobManager jobMgr = IntegrationUi.getUi().getJobManager();
+        if (m_currentSearchProcessID != null) {
+            jobMgr.cancelJob(m_currentSearchProcessID);
+        }
+        m_currentSearchProcessID = jobMgr.submitForParallellProcessing(
+                        new SearchJob(this, 
+                                      m_dbLocation,
+                                      m_sourceId,
+                                      m_targetId,
+                                      m_objectSearcher.getSearchParameters()));
+    }

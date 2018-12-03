@@ -1,0 +1,10 @@
+    protected void onDialogClose() {
+        try {
+            super.onDialogClose();
+        }
+        finally {
+            if (m_latch != null) {
+                m_latch.countDown();
+            }
+        }
+    }

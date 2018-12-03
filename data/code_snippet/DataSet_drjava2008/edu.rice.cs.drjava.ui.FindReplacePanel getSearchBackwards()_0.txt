@@ -1,0 +1,2 @@
+//    if (! _machine.getSearchBackwards()) from = position - _machine.getFindWord().length();
+  

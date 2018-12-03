@@ -1,0 +1,175 @@
+	private void updateBlockConnectivity() {
+		int sz = cList.size();
+		boolean[] found = new boolean[sz];
+		for (int i=0;i<sz;i++) {found[i]=false;}
+		LayoutBlock blk1 = null;
+		LayoutBlock blk2 = null;
+		LayoutConnectivity c = null;
+		Point2D p1;
+		Point2D p2;
+		if (layoutEditor.pointList.size()>0) {
+			PositionablePoint p = null;
+			TrackSegment ts1 = null;
+			TrackSegment ts2 = null;
+			for (int i = 0; i<layoutEditor.pointList.size(); i++) {
+				p = (PositionablePoint)layoutEditor.pointList.get(i);
+				if (p.getType() == PositionablePoint.ANCHOR) {
+					ts1 = p.getConnect1();
+					ts2 = p.getConnect2();
+					if ( (ts1!=null) && (ts2!=null) ) {
+						blk1 = ts1.getLayoutBlock();
+						blk2 = ts2.getLayoutBlock();
+						if ( (blk1!=null) && (blk2!=null) && (blk1!=blk2) ) {
+							c = new LayoutConnectivity(blk1,blk2);
+							if (ts1.getConnect1()==p) p1 = layoutEditor.getCoords(
+																ts1.getConnect2(),ts1.getType2());
+							else p1 = layoutEditor.getCoords(ts1.getConnect1(),ts1.getType1());
+							if (ts2.getConnect1()==p) p2 = layoutEditor.getCoords(
+																ts2.getConnect2(),ts2.getType2());
+							else p2 = layoutEditor.getCoords(ts2.getConnect1(),ts2.getType1());
+							c.setDirection(computeDirection(p1,p2));
+							c.setConnections(ts1,(Object)ts2,LayoutEditor.TRACK);
+							checkConnectivity(c,found);
+						}
+					}
+				}
+			}
+		}
+		if (layoutEditor.trackList.size()>0) {
+			LayoutTurnout lt = null;
+			int type = 0;
+			LevelXing lx = null;
+			TrackSegment ts = null;
+			for (int i = 0; i<layoutEditor.trackList.size(); i++) {
+				ts = (TrackSegment)layoutEditor.trackList.get(i);
+				blk1 = ts.getLayoutBlock();
+				if (blk1!=null) {
+					if ( (ts.getType1()>=LayoutEditor.TURNOUT_A) &&
+												(ts.getType1()<=LayoutEditor.LEVEL_XING_D) ) {
+						if (ts.getType1()<=LayoutEditor.TURNOUT_D) {
+							lt = (LayoutTurnout)ts.getConnect1();
+							type = ts.getType1();
+							blk2 = lt.getLayoutBlock();
+							if (lt.getTurnoutType()>LayoutTurnout.WYE_TURNOUT) {
+								if ( (type==LayoutEditor.TURNOUT_B) && (lt.getLayoutBlockB()!=null) )
+									blk2 = lt.getLayoutBlockB();
+								if ( (type==LayoutEditor.TURNOUT_C) && (lt.getLayoutBlockC()!=null) )
+									blk2 = lt.getLayoutBlockC();
+								if ( (type==LayoutEditor.TURNOUT_D) && (lt.getLayoutBlockD()!=null) )
+									blk2 = lt.getLayoutBlockD();
+							}
+							if ((blk2!=null) && (blk1!=blk2)) {
+								c = new LayoutConnectivity(blk1,blk2);
+								c.setConnections(ts,(Object)lt,type);
+								c.setDirection(computeDirection(layoutEditor.getCoords(ts.getConnect2(),
+										ts.getType2()),layoutEditor.getCoords(ts.getConnect1(),type)));
+								checkConnectivity(c,found);
+							}
+						}
+						else {
+							lx = (LevelXing)ts.getConnect1();
+							type = ts.getType1();
+							if ( (type==LayoutEditor.LEVEL_XING_A) || (type==LayoutEditor.LEVEL_XING_C) ) {
+								blk2 = lx.getLayoutBlockAC();
+							}
+							else {
+								blk2 = lx.getLayoutBlockBD();
+							}
+							if ((blk2!=null) && (blk1!=blk2)) {
+								c = new LayoutConnectivity(blk1,blk2);
+								c.setConnections(ts,(Object)lx,type);
+								c.setDirection(computeDirection(layoutEditor.getCoords(ts.getConnect2(),
+										ts.getType2()),layoutEditor.getCoords(ts.getConnect1(),type)));
+								checkConnectivity(c,found);
+							}
+						}
+					}
+					if ( (ts.getType2()>=LayoutEditor.TURNOUT_A) &&
+												(ts.getType2()<=LayoutEditor.LEVEL_XING_D) ) {
+						if (ts.getType2()<=LayoutEditor.TURNOUT_D) {
+							lt = (LayoutTurnout)ts.getConnect2();
+							type = ts.getType2();
+							blk2 = lt.getLayoutBlock();
+							if (lt.getTurnoutType()>LayoutTurnout.WYE_TURNOUT) {
+								if ( (type==LayoutEditor.TURNOUT_B) && (lt.getLayoutBlockB()!=null) )
+									blk2 = lt.getLayoutBlockB();
+								if ( (type==LayoutEditor.TURNOUT_C) && (lt.getLayoutBlockC()!=null) )
+									blk2 = lt.getLayoutBlockC();
+								if ( (type==LayoutEditor.TURNOUT_D) && (lt.getLayoutBlockD()!=null) )
+									blk2 = lt.getLayoutBlockD();
+							}
+							if ((blk2!=null) && (blk1!=blk2)) {
+								c = new LayoutConnectivity(blk1,blk2);
+								c.setConnections(ts,(Object)lt,type);
+								c.setDirection(computeDirection(layoutEditor.getCoords(ts.getConnect1(),
+										ts.getType1()),layoutEditor.getCoords(ts.getConnect2(),type)));
+								checkConnectivity(c,found);
+							}
+						}
+						else {
+							lx = (LevelXing)ts.getConnect2();
+							type = ts.getType2();
+							if ( (type==LayoutEditor.LEVEL_XING_A) || (type==LayoutEditor.LEVEL_XING_C) ) {
+								blk2 = lx.getLayoutBlockAC();
+							}
+							else {
+								blk2 = lx.getLayoutBlockBD();
+							}
+							if ((blk2!=null) && (blk1!=blk2)) {
+								c = new LayoutConnectivity(blk1,blk2);
+								c.setConnections(ts,(Object)lx,type);
+								c.setDirection(computeDirection(layoutEditor.getCoords(ts.getConnect1(),
+										ts.getType1()),layoutEditor.getCoords(ts.getConnect2(),type)));
+								checkConnectivity(c,found);
+							}
+						}
+					}
+				}
+			}
+		}
+		if (layoutEditor.turnoutList.size()>0) {
+			LayoutTurnout lt = null;
+			for (int i = 0;i<layoutEditor.turnoutList.size();i++) {
+				lt = (LayoutTurnout)layoutEditor.turnoutList.get(i);
+				if ( (lt.getTurnoutType()>=LayoutTurnout.DOUBLE_XOVER) && 
+						(lt.getLayoutBlock()!=null) ) {
+					if ( (lt.getLayoutBlockB()!=null) || (lt.getLayoutBlockC()!=null) ||
+									(lt.getLayoutBlockD()!=null) ) {
+						if ((lt.getLayoutBlockB()!=null) && (lt.getLayoutBlock()!=lt.getLayoutBlockB())) {
+							c = new LayoutConnectivity(lt.getLayoutBlock(),lt.getLayoutBlockB());
+							c.setXoverBoundary(lt,LayoutConnectivity.XOVER_BOUNDARY_AB);
+							c.setDirection(computeDirection(lt.getCoordsA(),lt.getCoordsB()));
+							checkConnectivity(c,found);
+						}
+						if ((lt.getTurnoutType()!=LayoutTurnout.LH_XOVER) && (lt.getLayoutBlockC()!=null) && 
+													(lt.getLayoutBlock()!=lt.getLayoutBlockC())) {
+							c = new LayoutConnectivity(lt.getLayoutBlock(),lt.getLayoutBlockC());
+							c.setXoverBoundary(lt,LayoutConnectivity.XOVER_BOUNDARY_AC);
+							c.setDirection(computeDirection(lt.getCoordsA(),lt.getCoordsC()));
+							checkConnectivity(c,found);
+						}
+						if ((lt.getLayoutBlockC()!=null) && (lt.getLayoutBlockD()!=null) && 
+													(lt.getLayoutBlockC()!=lt.getLayoutBlockD())) {
+							c = new LayoutConnectivity(lt.getLayoutBlockC(),lt.getLayoutBlockD());
+							c.setXoverBoundary(lt,LayoutConnectivity.XOVER_BOUNDARY_CD);
+							c.setDirection(computeDirection(lt.getCoordsC(),lt.getCoordsD()));
+							checkConnectivity(c,found);
+						}
+						if ((lt.getTurnoutType()!=LayoutTurnout.RH_XOVER) && (lt.getLayoutBlockB()!=null) && 
+								(lt.getLayoutBlockD()!=null) && (lt.getLayoutBlockB()!=lt.getLayoutBlockD())) {
+							c = new LayoutConnectivity(lt.getLayoutBlockB(),lt.getLayoutBlockD());
+							c.setXoverBoundary(lt,LayoutConnectivity.XOVER_BOUNDARY_BD);
+							c.setDirection(computeDirection(lt.getCoordsB(),lt.getCoordsD()));
+							checkConnectivity(c,found);
+						}
+					}
+				}
+			}		
+		}
+		for (int i = sz-1;i>=0;i--) {
+			if (!found[i]) {
+				cList.remove(i);
+			}
+		}
+		blockConnectivityChanged = false;
+	}

@@ -1,0 +1,7 @@
+  public final int getRealRegNumber() {
+    if (VM.VerifyAssertions) {
+      VM._assert(!isSpill(), "RegSpillListElement asked for a Real Reg, when it had a spill");
+    }
+
+    return -value;
+  }

@@ -1,0 +1,28 @@
+    public void createScript() throws IOException {
+        File f = new File(m_directory, "grant_all.sql");
+        BufferedWriter w = null;
+        String sToUser = " TO " + m_sUser + ";";
+        try {
+            w = new BufferedWriter( new FileWriter(f) );
+            for( Table t : m_liTables ) {
+                w.write("GRANT ALL ON " + t.getName() + sToUser);
+                w.newLine();
+                if( t.hasAutoIncrementColumns() ) {
+                    for( Column c : t.getColumns() ) {
+                        if( c.isAutoIncrement() ) {
+                            w.write("GRANT ALL ON " + 
+                                    PostgreSqlUtils.getSequenceName(t, c) + sToUser);
+                            w.newLine();
+                        }
+                    }
+                }
+            }
+            for( View v : m_liViews ) {
+                w.write("GRANT ALL ON " + v.getName() + sToUser);
+                w.newLine();
+            }
+        }
+        finally {
+            KongaIoUtils.close(w);
+        }
+    }

@@ -1,0 +1,10 @@
+	protected JButton createCloseButton() {
+        Action action = new AbstractAction(UiResourceBundle.getString("Close")) {   
+            public void actionPerformed(ActionEvent e) {
+                onClose();
+            }
+        };
+        JButton btn = getButton(action, m_buttonSize);
+		m_btnClose = btn;
+		return btn;
+	}

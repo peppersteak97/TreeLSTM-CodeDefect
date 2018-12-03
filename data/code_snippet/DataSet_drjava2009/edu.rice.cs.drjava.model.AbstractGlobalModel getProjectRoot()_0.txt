@@ -1,0 +1,1 @@
+    public boolean inProjectPath(File f) { return IOUtil.isMember(f, getProjectRoot()); }

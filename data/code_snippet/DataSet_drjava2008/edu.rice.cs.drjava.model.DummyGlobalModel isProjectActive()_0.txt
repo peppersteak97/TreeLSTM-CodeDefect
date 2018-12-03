@@ -1,0 +1,3 @@
+  public boolean isProjectActive() {
+    throw new UnsupportedOperationException("Tried to call isProjectActive on a Dummy");
+  }

@@ -1,0 +1,9 @@
+    public static NewProjectLoaderFactory newInstance() {
+        return new NewProjectLoaderFactory() {
+
+            @Override
+            public INewProjectLoader newLoader(InterchangeView view) {
+                return new DialogBasedNewProjectLoader();
+            }
+        };
+    }

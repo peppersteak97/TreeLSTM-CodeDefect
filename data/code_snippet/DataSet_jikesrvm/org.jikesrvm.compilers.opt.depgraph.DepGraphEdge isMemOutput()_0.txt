@@ -1,0 +1,1 @@
+  public boolean isMemOutput() { return (scratch & MEM_OUTPUT) != 0; }

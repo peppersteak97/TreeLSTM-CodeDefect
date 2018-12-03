@@ -1,0 +1,9 @@
+    public void run() {
+        try {
+            m_ui.getViewManager().showView(m_viewID);
+        }
+        catch (ViewLoadingException ex) {
+                    new Object[] { m_viewID });
+            ErrorLogger.getDefaultLogger().logAndShow(this, msg, ex);
+        }
+    }

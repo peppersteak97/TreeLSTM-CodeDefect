@@ -1,0 +1,53 @@
+    private void writeEditImpl() {
+        addLine("void " + getMainClassName() + "::Edit()");
+        addLine("{");
+        
+        addLine("\tm_stUpdateFilter = \"WHERE (\";");
+        boolean bPKsExist = false;
+        for( Column c : getValidColumns() ) {
+            if( c.isPrimaryKey() ) {
+                bPKsExist = true;
+                break;
+            }
+        }
+        int nCount = 0;
+        for( Column c : getValidColumns() ) {
+            if( !bPKsExist || c.isPrimaryKey() ) {
+                if( c.isPrimaryKey() ) {
+                    if( nCount > 0 ) {
+                        addLine("\tm_stUpdateFilter += \" AND " + c.getName() + "=\";");
+                    }
+                    else {
+                        addLine("\tm_stUpdateFilter += \"" + c.getName() + "=\";");
+                    }
+                    addLine("\tm_stUpdateFilter += " + CppUtils.getColumnValue(c) + ";");
+                }
+                else {
+                    addLine("\tif( Is" + c.getName() + "Null() )");
+                    addLine("\t{");
+                    if( nCount > 0 ) {
+                        addLine("\t\tm_stUpdateFilter += \" AND " + c.getName() + " IS NULL\";");
+                    }
+                    else {
+                        addLine("\t\tm_stUpdateFilter += \"" + c.getName() + " IS NULL\";");
+                    }
+                    addLine("\t}");
+                    addLine("\telse");
+                    addLine("\t{");
+                    if( nCount > 0 ) {
+                        addLine("\t\tm_stUpdateFilter += \" AND " + c.getName() + "=\";");
+                    }
+                    else {
+                        addLine("\t\tm_stUpdateFilter += \"" + c.getName() + "=\";");
+                    }
+                    addLine("\t\tm_stUpdateFilter += " + CppUtils.getColumnValue(c) + ";");
+                    addLine("\t}");
+                }
+                ++nCount;
+            }
+        }
+        addLine("\tm_stUpdateFilter += \")\";");
+        addLine("\tm_row.SetDirty(false);");
+        addLine("}");
+        addLine();
+    }

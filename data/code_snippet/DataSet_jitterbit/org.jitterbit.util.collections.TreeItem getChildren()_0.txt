@@ -1,0 +1,3 @@
+	public List<TreeItem<T>> getChildren(){
+		return new ArrayList<TreeItem<T>>(m_children);
+	}

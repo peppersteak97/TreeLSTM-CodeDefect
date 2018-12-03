@@ -1,0 +1,36 @@
+  public void testDefaultSelection() {
+    ScrollableListSelectionDialog dialog =
+      new  ScrollableListSelectionDialog(null, TITLE, LEADER, DATA, DESC);
+    java.util.List<String> selectedItems = dialog.selectedItems();
+    
+    assertEquals(DATA.size(), selectedItems.size());
+    for (int i = 0; i < DATA.size(); ++i) {
+      assertEquals(DATA.get(i), selectedItems.get(i));
+    }
+    
+    dialog =
+      new ScrollableListSelectionDialog(null,
+                                        TITLE,
+                                        LEADER,
+                                        DATA,
+                                        DESC, 
+                                        ScrollableListSelectionDialog.SelectionState.SELECTED,
+                                        JOptionPane.PLAIN_MESSAGE);
+    selectedItems = dialog.selectedItems();
+    
+    assertEquals(DATA.size(), selectedItems.size());
+    for (int i = 0; i < DATA.size(); ++i) {
+      assertEquals(DATA.get(i), selectedItems.get(i));
+    }
+    
+        dialog =
+      new ScrollableListSelectionDialog(null,
+                                        TITLE,
+                                        LEADER,
+                                        DATA,
+                                        DESC, 
+                                        ScrollableListSelectionDialog.SelectionState.UNSELECTED,
+                                        JOptionPane.PLAIN_MESSAGE);
+    selectedItems = dialog.selectedItems();
+    assertEquals(0, selectedItems.size());
+  }

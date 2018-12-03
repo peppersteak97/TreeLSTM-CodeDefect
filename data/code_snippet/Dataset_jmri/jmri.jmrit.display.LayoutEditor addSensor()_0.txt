@@ -1,0 +1,22 @@
+    void addSensor() {
+		if ((nextSensor.getText()).trim().length()<=0) {
+			JOptionPane.showMessageDialog(targetPanel,rb.getString("Error10"),
+						rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+        LayoutSensorIcon l = new LayoutSensorIcon();
+        l.setActiveIcon(sensorIconEditor.getIcon(0));
+        l.setInactiveIcon(sensorIconEditor.getIcon(1));
+        l.setInconsistentIcon(sensorIconEditor.getIcon(2));
+        l.setUnknownIcon(sensorIconEditor.getIcon(3));
+		l.setSensor(nextSensor.getText().trim());
+		Sensor xSensor = l.getSensor();
+		if (xSensor != null) {
+			if ( (xSensor.getUserName()==null) || 
+					(!(xSensor.getUserName().equals(nextSensor.getText().trim()))) ) 
+				nextSensor.setText(xSensor.getSystemName());
+		}
+        setNextLocation(l);
+		setDirty(true);
+        putSensor(l);
+    }

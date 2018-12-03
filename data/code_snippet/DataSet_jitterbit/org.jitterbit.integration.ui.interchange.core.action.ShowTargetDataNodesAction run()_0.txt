@@ -1,0 +1,10 @@
+    protected void run() {
+        boolean success = getTestCenter().toggleShowDataNodesOnlyForTarget();
+        if (success) {
+            setSelected(!isSelected());
+            succeeded(null);
+        }
+        else {
+            failed(null);
+        }
+    }

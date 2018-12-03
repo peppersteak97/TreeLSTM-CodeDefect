@@ -1,0 +1,1 @@
+    public boolean isInit() { return (getElement(1)==0x49); }

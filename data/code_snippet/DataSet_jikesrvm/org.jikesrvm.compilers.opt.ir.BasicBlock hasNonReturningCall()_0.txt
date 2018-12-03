@@ -1,0 +1,13 @@
+  public final boolean hasNonReturningCall() {
+    if (isEmpty()) return false;
+    Instruction s = lastRealInstruction();
+
+    if (Call.conforms(s)) {
+      MethodOperand methodOp = Call.getMethod(s);
+      if (methodOp != null && methodOp.isNonReturningCall()) {
+        return true;
+      }
+    }
+
+    return false;
+  }

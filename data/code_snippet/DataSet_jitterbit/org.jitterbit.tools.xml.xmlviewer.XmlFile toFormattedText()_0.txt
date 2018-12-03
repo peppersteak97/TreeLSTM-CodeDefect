@@ -1,0 +1,20 @@
+	public String toFormattedText() {
+
+		XMLSerializer serializer = new XMLSerializer(new OutputFormat(m_domDocument, "UTF-8", true));
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		serializer.setOutputByteStream(out);
+		try {
+			serializer.serialize(m_domDocument);
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		String s = out.toString(); 
+		try {
+			out.close();
+		} 
+		catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		return s;
+	}

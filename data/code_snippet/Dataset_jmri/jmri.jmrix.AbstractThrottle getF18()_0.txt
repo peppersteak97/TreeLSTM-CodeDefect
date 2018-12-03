@@ -1,0 +1,3 @@
+    public boolean getF18() {
+        return f18;
+    }

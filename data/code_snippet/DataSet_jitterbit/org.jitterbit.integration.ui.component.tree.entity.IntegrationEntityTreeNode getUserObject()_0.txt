@@ -1,0 +1,3 @@
+    public IntegrationEntity getUserObject() {
+        return (IntegrationEntity) super.getUserObject();
+    }

@@ -1,0 +1,9 @@
+    private void onSameSourceAndTargetDocument() {
+        IIntegrationLink link = m_documentLinkFactory.getInputAndOutputLink();
+        if (link != null) {
+            m_links.add(link);
+            TextDocument doc = (TextDocument) link.getMainObject();
+            m_inputStructure = doc.getDataStructure();
+            m_outputStructure = doc.getDataStructure();
+        }
+    }

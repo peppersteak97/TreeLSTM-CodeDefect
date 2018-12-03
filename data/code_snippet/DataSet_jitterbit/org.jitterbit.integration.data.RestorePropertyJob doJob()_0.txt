@@ -1,0 +1,3 @@
+    public void doJob() {
+        m_instance.setProperty(m_propertyName, m_value);
+    }

@@ -1,0 +1,13 @@
+    private DefaultKongaSaxParser createParser() {
+        DefaultKongaSaxParser parser = new DefaultKongaSaxParser();
+        IEndElementHandlerFactory f = new IEndElementHandlerFactory() {
+
+            private IEndElementHandler  m_handler = new MappingElementHandler();
+            
+            public IEndElementHandler getHandler() {
+                return m_handler;
+            }
+        };
+        parser.addEndElementHandlerFactory(MappingsXmlConstants.MAPPING, f);
+        return parser;
+    }

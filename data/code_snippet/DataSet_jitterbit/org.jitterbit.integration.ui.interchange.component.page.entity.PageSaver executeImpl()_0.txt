@@ -1,0 +1,30 @@
+    private void executeImpl() {
+        if (!m_page.isDirty()) {
+            m_result = IPageCommand.SUCCESS;
+            return;
+        }
+        try {
+            m_page.getPageModel().setBlockPropertyChangeEvents(true);
+            m_page.setCommandEnabled(IPageCommand.RESET, false);
+            m_page.getDetailsPanel().apply();
+            m_page.runAllSaveJobs();
+            m_page.setClean();
+            m_page.getView().getProjectPersistor().saveIntegrationEntity(
+                    m_page.getObject().getDataObject());
+            m_result = IPageCommand.SUCCESS;
+        }
+        catch (ApplyAbortedException ex) {
+            m_result = IPageCommand.ERROR;
+        }
+        catch (IntegrationDataPanelException ex) {
+            ErrorLogger.getDefaultLogger().logAndShow(this, ex.getMessage(), ex);
+            m_message = PackageResources.Saver.INVALID_INPUT;
+            m_result = IPageCommand.ERROR;
+        }
+        catch (InterchangeSavingException ex) {
+        }
+        finally {
+            m_page.setCommandEnabled(IPageCommand.RESET, true);
+            m_page.getPageModel().setBlockPropertyChangeEvents(false);
+        }
+    }

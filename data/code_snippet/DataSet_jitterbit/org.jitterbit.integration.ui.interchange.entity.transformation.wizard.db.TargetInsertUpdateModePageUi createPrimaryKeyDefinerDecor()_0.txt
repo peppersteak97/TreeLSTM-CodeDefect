@@ -1,0 +1,5 @@
+    private JComponent createPrimaryKeyDefinerDecor() {
+        JPanel p = InvisiblePanel.newPanel(primaryKeyDefiner);
+        p.setOpaque(false);
+        return p;
+    }

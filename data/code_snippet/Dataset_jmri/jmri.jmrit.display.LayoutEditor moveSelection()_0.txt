@@ -1,0 +1,64 @@
+	protected void moveSelection() {
+		if (!selectionActive || (selectionWidth==0.0) || (selectionHeight==0.0) ) {
+			JOptionPane.showMessageDialog(this,rb.getString("Error12"),
+					rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		if (moveSelectionOpen) {
+			moveSelectionFrame.setVisible(true);
+			return;
+		}
+		if (moveSelectionFrame == null) {
+            moveSelectionFrame = new JmriJFrame( rb.getString("TranslateSelection") );
+            moveSelectionFrame.addHelpMenu("package.jmri.jmrit.display.TranslateSelection", true);
+            moveSelectionFrame.setLocation(70,30);
+            Container theContentPane = moveSelectionFrame.getContentPane();        
+            theContentPane.setLayout(new BoxLayout(theContentPane, BoxLayout.Y_AXIS));
+            JPanel panel31 = new JPanel(); 
+            panel31.setLayout(new FlowLayout());
+			JLabel xMoveLabel = new JLabel( rb.getString("XTranslateLabel"));
+            panel31.add(xMoveLabel);
+            panel31.add(xMoveField);
+            xMoveField.setToolTipText( rb.getString("XTranslateHint") );
+            theContentPane.add(panel31);
+            JPanel panel32 = new JPanel(); 
+            panel32.setLayout(new FlowLayout());
+			JLabel yMoveLabel = new JLabel( rb.getString("YTranslateLabel"));
+            panel32.add(yMoveLabel);
+            panel32.add(yMoveField);
+            yMoveField.setToolTipText( rb.getString("YTranslateHint") );
+            theContentPane.add(panel32);
+            JPanel panel33 = new JPanel(); 
+            panel33.setLayout(new FlowLayout());
+			JLabel message1Label = new JLabel( rb.getString("Message3Label"));
+            panel33.add(message1Label);
+            theContentPane.add(panel33);			
+            JPanel panel5 = new JPanel();
+            panel5.setLayout(new FlowLayout());
+            panel5.add(moveSelectionDone = new JButton(rb.getString("MoveSelection")));
+            moveSelectionDone.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    moveSelectionDonePressed(e);
+                }
+            });
+            moveSelectionDone.setToolTipText( rb.getString("MoveSelectionHint") );
+            panel5.add(moveSelectionCancel = new JButton(rb.getString("Cancel")));
+            moveSelectionCancel.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    moveSelectionCancelPressed(e);
+                }
+            });
+            moveSelectionCancel.setToolTipText( rb.getString("CancelHint") );
+            theContentPane.add(panel5);
+		}
+		xMoveField.setText("0");
+		yMoveField.setText("0");
+		moveSelectionFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+				public void windowClosing(java.awt.event.WindowEvent e) {
+					moveSelectionCancelPressed(null);
+				}
+			});
+        moveSelectionFrame.pack();
+        moveSelectionFrame.setVisible(true);	
+		moveSelectionOpen = true;
+	}	

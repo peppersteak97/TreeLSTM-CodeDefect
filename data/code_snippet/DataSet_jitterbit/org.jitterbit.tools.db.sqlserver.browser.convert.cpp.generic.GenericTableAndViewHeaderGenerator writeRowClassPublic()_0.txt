@@ -1,0 +1,10 @@
+    private void writeRowClassPublic() {
+        addLine("public:");
+        writeRowClassCTOR();
+        writeRowClassCopy();
+        writeRowClassCopyPKs();
+        writeRowClassSetDirty();
+        writeRowClassIsDirty();
+        writeRowClassPublicFields();
+        addLine();
+    }

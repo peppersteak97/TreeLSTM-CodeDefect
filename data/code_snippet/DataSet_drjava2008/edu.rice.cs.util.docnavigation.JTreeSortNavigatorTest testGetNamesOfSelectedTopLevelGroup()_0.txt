@@ -1,0 +1,112 @@
+  public void testGetNamesOfSelectedTopLevelGroup() {
+    java.util.Set<String> s = null;
+    
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 3, 4 });
+    try {
+      s = tree.getNamesOfSelectedTopLevelGroup();
+    }
+    catch(GroupNotSelectedException e) {
+      fail("getNamesOfSelectedTopLevelGroup threw " + e);
+    }
+    assertEquals("Only one top-level group should be selected", 1, s.size());
+    assertTrue("Wrong top-level group", s.contains(SOURCE_BIN_NAME));
+
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 3, 4, 6, 7 });
+    try {
+      s = tree.getNamesOfSelectedTopLevelGroup();
+    }
+    catch(GroupNotSelectedException e) {
+      fail("getNamesOfSelectedTopLevelGroup threw " + e);
+    }
+    assertEquals("Only one top-level group should be selected", 1, s.size());
+    assertTrue("Wrong top-level group", s.contains(SOURCE_BIN_NAME));
+
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 1, 2, 3, 4, 5, 6, 7 });
+    try {
+      s = tree.getNamesOfSelectedTopLevelGroup();
+    }
+    catch(GroupNotSelectedException e) {
+      fail("getNamesOfSelectedTopLevelGroup threw " + e);
+    }
+    assertEquals("Only one top-level group should be selected", 1, s.size());
+    assertTrue("Wrong top-level group", s.contains(SOURCE_BIN_NAME));
+
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 1, 2, 3, 5, 6 });
+    try {
+      s = tree.getNamesOfSelectedTopLevelGroup();
+    }
+    catch(GroupNotSelectedException e) {
+      fail("getNamesOfSelectedTopLevelGroup threw " + e);
+    }
+    assertEquals("Only one top-level group should be selected", 1, s.size());
+    assertTrue("Wrong top-level group", s.contains(SOURCE_BIN_NAME));
+    
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 10, 11 });
+    try {
+      s = tree.getNamesOfSelectedTopLevelGroup();
+    }
+    catch(GroupNotSelectedException e) {
+      fail("getNamesOfSelectedTopLevelGroup threw " + e);
+    }
+    assertEquals("Only one top-level group should be selected", 1, s.size());
+    assertEquals("Wrong top-level group 1", EXTERNAL_BIN_NAME, s.toArray()[0]);
+
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 10, 11, 13, 14, 15 });
+    try {
+      s = tree.getNamesOfSelectedTopLevelGroup();
+    }
+    catch(GroupNotSelectedException e) {
+      fail("getNamesOfSelectedTopLevelGroup threw " + e);
+    }
+    assertEquals("Only one top-level group should be selected", 1, s.size());
+    assertEquals("Wrong top-level group 1", EXTERNAL_BIN_NAME, s.toArray()[0]);
+
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 8, 9, 10, 11, 12, 13, 14, 15 });
+    try {
+      s = tree.getNamesOfSelectedTopLevelGroup();
+    }
+    catch(GroupNotSelectedException e) {
+      fail("getNamesOfSelectedTopLevelGroup threw " + e);
+    }
+    assertEquals("Only one top-level group should be selected", 1, s.size());
+    assertEquals("Wrong top-level group 1", EXTERNAL_BIN_NAME, s.toArray()[0]);
+
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 8, 9, 10, 12, 13 });
+    try {
+      s = tree.getNamesOfSelectedTopLevelGroup();
+    }
+    catch(GroupNotSelectedException e) {
+      fail("getNamesOfSelectedTopLevelGroup threw " + e);
+    }
+    assertEquals("Only one top-level group should be selected", 1, s.size());
+    assertEquals("Wrong top-level group 1", EXTERNAL_BIN_NAME, s.toArray()[0]);
+    
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 3, 13 });
+    try {
+      s = tree.getNamesOfSelectedTopLevelGroup();
+    }
+    catch(GroupNotSelectedException e) {
+      fail("getNamesOfSelectedTopLevelGroup threw " + e);
+    }
+    assertEquals("Two top-level groups should be selected", 2, s.size());
+    assertTrue("Wrong top-level group", s.contains(SOURCE_BIN_NAME));
+    assertTrue("Wrong top-level group", s.contains(EXTERNAL_BIN_NAME));
+    
+    tree.clearSelection();
+    try {
+      s = tree.getNamesOfSelectedTopLevelGroup();
+      fail("Didn't through");
+    }
+    catch(Exception e) {
+      assertEquals("Exception isn't a GroupNotSelectedException", GroupNotSelectedException.class, e.getClass());
+    }
+  }

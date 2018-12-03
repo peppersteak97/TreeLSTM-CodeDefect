@@ -1,0 +1,33 @@
+  public void setUp() throws Exception {
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        try {
+
+          _base = new File(System.getProperty("java.io.tmpdir")).getCanonicalFile();
+          _parent = IOUtil.createAndMarkTempDirectory("proj", "", _base);
+          _srcDir = new File(_parent, "src");
+          
+          _auxFile = File.createTempFile("aux", ".java").getCanonicalFile();
+          _projFile = new File(_parent, "test.pjt");
+          
+          _file1 = new File(_srcDir, "test1.java");
+          _file2 = new File(_srcDir, "test2.java");
+          
+          
+          _projFileText =
+            ";; DrJava project file.  Written with build: 20040623-1933\n" +
+            "(source ;; comment\n" +
+            "   (file (name \"src/test1.java\")(select 32 32))" +
+            "   (file (name \"src/test2.java\")(select 32 32)))";
+          
+          IOUtil.writeStringToFile(_projFile, _projFileText);
+          
+          _frame = new MainFrame();
+          _frame.pack();
+          _model = _frame.getModel();
+          _model.ensureJVMStarterFinished();
+        }
+        catch(Exception e) { throw new UnexpectedException(e); }
+      }
+    });
+  }

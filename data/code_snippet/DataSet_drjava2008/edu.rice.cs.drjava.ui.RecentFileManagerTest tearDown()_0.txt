@@ -1,0 +1,7 @@
+  public void tearDown() throws Exception {
+    _menu = null;
+    _rfm = null;
+    IOUtil.deleteRecursively(_tempDir);
+    _tempDir = null;
+    super.tearDown();
+  }

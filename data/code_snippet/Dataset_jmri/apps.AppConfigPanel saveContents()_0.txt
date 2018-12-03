@@ -1,0 +1,13 @@
+    protected void saveContents() {
+        InstanceManager.configureManagerInstance().removePrefItems();
+        for (int i = 0; i<clist.size(); i++) {
+            InstanceManager.configureManagerInstance().registerPref(clist.get(i));
+        }
+        XmlFile.ensurePrefsPresent(XmlFile.prefsDir());
+        File file = new File(mConfigFilename);
+        if (!file.isAbsolute()) {
+            file = new File(XmlFile.prefsDir()+mConfigFilename);
+        }
+
+        InstanceManager.configureManagerInstance().storePrefs(file);
+    }

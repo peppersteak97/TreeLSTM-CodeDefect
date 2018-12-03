@@ -1,0 +1,112 @@
+  private void processExit() throws NonRegularLoopException {
+    if (header != exit) {
+      checkInEdgesAreInLoop(exit);
+    }
+    BasicBlockEnumeration exitBlock_outEdges = exit.getOut();
+    boolean exits = false;
+    while (exitBlock_outEdges.hasMoreElements()) {
+      BasicBlock curExitBlockOutEdgeBB = exitBlock_outEdges.next();
+      if (isInLoop(curExitBlockOutEdgeBB)) {
+      } else {
+        exits = true;
+        successor = curExitBlockOutEdgeBB;
+        if (successor == header) {
+          throw new NonRegularLoopException("Unimplemented condition - see LoopUnrolling.java : 240");
+        }
+      }
+    } 
+    if (!exits) {
+      throw new NonRegularLoopException(
+          "Exit block (containing back edge to header) doesn't have an out of loop out edge.");
+    } else {
+      ifCmpInstr = exit.firstBranchInstruction();
+      if (ifCmpInstr == null) {
+        throw new NonRegularLoopException("Exit block branch doesn't have a (1st) branching instruction.");
+      } else if (ifCmpInstr.operator.opcode != INT_IFCMP_opcode) {
+        throw new NonRegularLoopException("branch is int_ifcmp but " + ifCmpInstr.operator + "\n");
+      } else {
+        carriedLoopIterator = follow(IfCmp.getVal1(ifCmpInstr));
+        terminalIteratorValue = follow(IfCmp.getVal2(ifCmpInstr));
+        condition = (ConditionOperand) IfCmp.getCond(ifCmpInstr).copy();
+        {
+          boolean iteratorInvariant = isLoopInvariant(carriedLoopIterator, loop, header);
+          boolean terminalValueInvariant = isLoopInvariant(terminalIteratorValue, loop, header);
+          if (iteratorInvariant) {
+            if (terminalValueInvariant) {
+              throw new NonRegularLoopException(
+                  "Exit block condition values are both invariant (single or infinite loop):\n" +
+                  "Loop = " +
+                  loop.toString() +
+                  "\nIterator = " +
+                  carriedLoopIterator +
+                  "\nTerminal = " +
+                  terminalIteratorValue);
+            } else {
+              Operand temp = terminalIteratorValue;
+              terminalIteratorValue = carriedLoopIterator;
+              carriedLoopIterator = temp;
+            }
+          } else {
+            if (terminalValueInvariant) {
+            } else {
+              throw new NonRegularLoopException("Exit block condition values are both variant.");
+            }
+          }
+        }
+        if (Label.getBlock(IfCmp.getTarget(ifCmpInstr).target).block != header) {
+          throw new NonRegularLoopException("Target of exit block branch isn't the loop header.");
+        }
+        RegisterOperandEnumeration iteratorDefs =
+            DefUse.defs(((RegisterOperand) carriedLoopIterator).getRegister());
+        while (iteratorDefs.hasMoreElements()) {
+          Operand curDef = follow(iteratorDefs.next());
+          if (isInLoop(curDef.instruction.getBasicBlock())) {
+            if ((iteratorInstr == null) || (iteratorInstr == curDef.instruction)) {
+              iteratorInstr = curDef.instruction;
+            } else {
+              throw new NonRegularLoopException("Multiple definitions of the iterator.");
+            }
+          }
+        }
+        if (iteratorInstr == null) {
+          throw new NonRegularLoopException("No iterator definition found.");
+        } else
+        if ((iteratorInstr.operator.opcode != INT_ADD_opcode) && (iteratorInstr.operator.opcode != INT_SUB_opcode)) {
+          throw new NonRegularLoopException("Unrecognized iterator operator " + iteratorInstr.operator);
+        } else {
+          Operand iteratorUse = follow(Binary.getVal1(iteratorInstr));
+          if (!carriedLoopIterator.similar(iteratorUse)) {
+            Instruction phiInstr = iteratorUse.instruction;
+            if (!Phi.conforms(phiInstr)) {
+              throw new NonRegularLoopException("Iterator (" +
+                                                iteratorUse +
+                                                ") not using a phi instruction but " +
+                                                phiInstr);
+            }
+            strideValue = follow(Binary.getVal2(iteratorInstr));
+            initialIteratorValue = follow(Phi.getValue(phiInstr, 0));
+            phiLoopIterator = iteratorUse;
+            if (initialIteratorValue instanceof BasicBlockOperand) {
+              throw new Error("BasicBlock mess up!");
+            }
+            if (initialIteratorValue == iteratorUse) {
+              initialIteratorValue = follow(Phi.getValue(phiInstr, 1));
+            }
+            if (initialIteratorValue instanceof BasicBlockOperand) {
+              throw new Error("BasicBlock mess up!2");
+            }
+          } else {
+            throw new NonRegularLoopException("Iterator modifies (uses and defines) operand " +
+                                              iteratorUse +
+                                              " and is therefore not in SSA form.");
+          }
+          if (!isLoopInvariant(initialIteratorValue, loop, header)) {
+            throw new NonRegularLoopException("Initial iterator not constant or defined outside the loop - " +
+                                              initialIteratorValue);
+          } else if (!(strideValue instanceof ConstantOperand)) {
+            throw new NonRegularLoopException("Stride not constant - " + strideValue);
+          }
+        }
+      }
+    }
+  }

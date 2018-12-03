@@ -1,0 +1,7 @@
+    static public SerialTrafficController instance() {
+        if (self == null) {
+            if (log.isDebugEnabled()) log.debug("Creating default SerialTrafficController instance");
+            self = new SerialTrafficController();
+        }
+        return self;
+    }

@@ -1,0 +1,1 @@
+  public void clearType() { flags &= ~TYPE_MASK; }

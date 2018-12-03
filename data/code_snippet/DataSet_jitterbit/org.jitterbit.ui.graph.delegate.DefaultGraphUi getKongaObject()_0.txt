@@ -1,0 +1,3 @@
+	public KongaObject getKongaObject() {
+		return getBaseUiDelegate().getKongaObject();
+	}

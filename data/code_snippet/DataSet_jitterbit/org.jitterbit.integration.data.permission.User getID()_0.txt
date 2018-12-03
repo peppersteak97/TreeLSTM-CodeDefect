@@ -1,0 +1,3 @@
+    public UserId getID() {
+        return (UserId) super.getID();
+    }

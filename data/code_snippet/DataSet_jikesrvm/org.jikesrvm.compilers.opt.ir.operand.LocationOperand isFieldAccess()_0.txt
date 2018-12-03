@@ -1,0 +1,1 @@
+  public boolean isFieldAccess() { return type == FIELD_ACCESS; }

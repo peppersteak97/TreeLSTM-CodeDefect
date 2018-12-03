@@ -1,0 +1,6 @@
+    private void createMonthly_A_Panel() {
+        ResourceBundle res = SchedulePage.getResources();
+        m_monthly_A_panel = new Monthly_A_Panel(
+                res.getString("Label.Day"), 
+                res.getString("Label.Month"));
+    }

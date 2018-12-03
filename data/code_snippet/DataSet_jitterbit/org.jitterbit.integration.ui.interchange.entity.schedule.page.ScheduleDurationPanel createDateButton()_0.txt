@@ -1,0 +1,6 @@
+    private JButton createDateButton() {
+        JButton b = ComponentFactories.toolbarButtonFactory().newButton(
+                null, CALENDAR_ICON);
+        b.addActionListener(this);
+        return b;
+    }

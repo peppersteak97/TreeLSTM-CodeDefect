@@ -1,0 +1,4 @@
+    public void undo() throws CannotUndoException {
+        super.undo();
+        undoOrRedo(m_previousValue);
+    }

@@ -1,0 +1,3 @@
+  public TypeReference getType() {
+    return TypeReference.CodeArray;
+  }

@@ -1,0 +1,4 @@
+    private void layoutComponents() {
+        Ui ui = new Ui();
+        wrap(ui.m_columns);
+    }

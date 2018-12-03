@@ -1,0 +1,4 @@
+    private boolean functionTargetMatches() {
+        IFunction fcn = functions.get(functions.size() - 1);
+        return fcn != null && fcn.canSendOutputTo(target);
+    }

@@ -1,0 +1,12 @@
+    private synchronized void sendOffMessage() {
+	    if(log.isDebugEnabled()) log.debug("Sending off message for turnout " + mNumber + " commanded state= " +getCommandedState());
+            XNetMessage msg =  XNetMessage.getTurnoutCommandMsg(mNumber,
+                                                  getCommandedState()==CLOSED,
+                                                  getCommandedState()==THROWN,
+                                                  false );
+            XNetTrafficController.instance().sendXNetMessage(msg, this);
+            synchronized(this) {
+	       newKnownState(getCommandedState());
+	       InternalState = OFFSENT;
+            }
+    }

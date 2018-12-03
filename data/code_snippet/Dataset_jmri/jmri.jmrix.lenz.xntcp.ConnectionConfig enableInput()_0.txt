@@ -1,0 +1,14 @@
+	private void enableInput() {
+		String choice = (String)portBox.getSelectedItem();
+		manualInput = choice.equals("Manual");
+		ipField.setEnabled(manualInput);
+		portField.setEnabled(manualInput);
+		adapter.setPort(choice);
+		if(manualInput) {
+			adapter.configureOption1(ipField.getText());
+			adapter.configureOption2(portField.getText());
+		} else {
+			adapter.configureOption1("");
+			adapter.configureOption2("");
+		}
+	}

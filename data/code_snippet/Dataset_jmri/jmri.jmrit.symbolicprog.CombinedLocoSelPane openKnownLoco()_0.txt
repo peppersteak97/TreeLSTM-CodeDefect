@@ -1,0 +1,10 @@
+    protected void openKnownLoco() {
+
+        RosterEntry re = Roster.instance().entryFromTitle((String)locoBox.getSelectedItem());
+        if (re == null) log.error("RosterEntry is null during open; that shouldnt be possible");
+
+        if (log.isDebugEnabled()) log.debug("loco file: "
+                                            +Roster.instance().fileFromTitle((String)locoBox.getSelectedItem()));
+
+        startProgrammer(null, re, (String)programmerBox.getSelectedItem());
+    }

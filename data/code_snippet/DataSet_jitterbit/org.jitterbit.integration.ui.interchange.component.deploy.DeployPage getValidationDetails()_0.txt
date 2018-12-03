@@ -1,0 +1,21 @@
+    private void getValidationDetails() {
+        Runnable job = new Runnable() {
+
+            public void run() {
+                IManagedProject project = InterchangeViewUtils.getManagedProject(m_view);
+                IProjectValidator validator = new ProjectValidator();
+                IEntityCollectionValidationResult result = validator.validate(project);
+                if (!result.isEverythingOk()) {
+                    m_treePanel.displayValidationErrorsInTree(result);
+                }
+            }
+        };
+        new GuiWorkerThread(job) {
+
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                ErrorLogger.getDefaultLogger().logAndShow(DeployPage.this,
+                                PackageResources.DeployPage.Messages.VALIDATION_FAILED, e);
+            }
+        }.start();
+    }

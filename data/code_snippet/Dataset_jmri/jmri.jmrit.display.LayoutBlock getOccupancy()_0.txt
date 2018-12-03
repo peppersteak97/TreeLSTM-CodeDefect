@@ -1,0 +1,3 @@
+		if (getOccupancy() == OCCUPIED) {
+			return blockOccupiedColor;
+		}

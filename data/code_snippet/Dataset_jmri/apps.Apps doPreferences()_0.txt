@@ -1,0 +1,11 @@
+    protected void doPreferences() {
+        if (prefsFrame == null) {
+            prefsFrame = new JmriJFrame(rb.getString("MenuItemPreferences"));
+            prefsFrame.getContentPane().setLayout(new BoxLayout(prefsFrame.getContentPane(), BoxLayout.X_AXIS));
+            prefs = new AppConfigPanel(configFilename, 2);
+            prefsFrame.getContentPane().add(prefs);
+            setPrefsFrameHelp(prefsFrame, "package.apps.AppConfigPanel");
+            prefsFrame.pack();
+        }
+        prefsFrame.setVisible(true);
+    }

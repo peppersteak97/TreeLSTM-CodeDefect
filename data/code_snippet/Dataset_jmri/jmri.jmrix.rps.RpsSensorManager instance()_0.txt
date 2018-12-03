@@ -1,0 +1,5 @@
+    static public RpsSensorManager instance() {
+        if (_instance == null)
+            _instance = new RpsSensorManager();
+        return _instance;
+    }

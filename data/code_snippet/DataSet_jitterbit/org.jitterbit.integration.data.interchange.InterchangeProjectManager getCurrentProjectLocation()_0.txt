@@ -1,0 +1,3 @@
+    public File getCurrentProjectLocation() {
+        return (m_currentProject == null) ? null : m_currentProject.getLocation();
+    }

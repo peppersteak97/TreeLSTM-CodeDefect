@@ -1,0 +1,11 @@
+	public Dimension getPreferredSize() {
+        Dimension size = null;
+        if (m_iUserDefinedHeight <= 0) {
+            size = super.getPreferredSize();
+        }
+        else {
+            Dimension dim = super.getPreferredSize();
+            size = new Dimension(dim.width, getHeightToUse());
+        }
+        return size;
+	}

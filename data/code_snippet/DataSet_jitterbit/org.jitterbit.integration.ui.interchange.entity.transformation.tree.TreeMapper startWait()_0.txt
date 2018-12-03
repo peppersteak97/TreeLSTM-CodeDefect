@@ -1,0 +1,13 @@
+    public void startWait() {
+        Runnable job = new Runnable() {
+            
+            public void run() {
+                m_container.startWait();
+                Cursor cur = Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
+                setCursor(cur);
+                m_sourceTreeComponent.setCursor(cur);
+                m_targetTreeComponent.setCursor(cur);
+            }
+        };
+        UiUtils.runOnEventThread(job);
+    }

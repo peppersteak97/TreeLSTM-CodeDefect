@@ -1,0 +1,11 @@
+    private FieldTable createTable() {
+        FieldTable table = m_isFixedwidth ? 
+                        createFixedWidthTable() : createDelimitedTable();
+        table.addPropertyChangeListener(FieldTable.TABLE_CONTENT_PROPERTY, new PropertyChangeListener() {
+
+            public void propertyChange(PropertyChangeEvent evt) {
+                m_hasChanged = true;
+            }
+        });
+        return table;
+    }

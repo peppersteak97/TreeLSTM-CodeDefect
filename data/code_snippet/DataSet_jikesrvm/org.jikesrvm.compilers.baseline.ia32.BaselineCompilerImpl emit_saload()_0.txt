@@ -1,0 +1,7 @@
+  protected final void emit_saload() {
+    if (VM.BuildFor32Addr) {
+      asm.emitMOVSX_Reg_RegIdx_Word(T1, S0, T0, Assembler.SHORT, NO_SLOT);
+    } else {
+      asm.emitMOVSXQ_Reg_RegIdx_Word(T1, S0, T0, Assembler.SHORT, NO_SLOT);
+    }
+  }

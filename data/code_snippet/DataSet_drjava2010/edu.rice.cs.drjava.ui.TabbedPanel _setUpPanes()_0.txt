@@ -1,0 +1,11 @@
+  private void _setUpPanes() {
+    this.setFocusCycleRoot(true);
+    this.setLayout(new BorderLayout());
+
+    _mainPanel = new JPanel();
+    _closePanel = new JPanel(new BorderLayout());
+    _closeButton = new CommonCloseButton(_closeListener);
+    _closePanel.add(_closeButton, BorderLayout.NORTH);
+    add(_closePanel, BorderLayout.EAST);
+    add(_mainPanel, BorderLayout.CENTER);
+  }

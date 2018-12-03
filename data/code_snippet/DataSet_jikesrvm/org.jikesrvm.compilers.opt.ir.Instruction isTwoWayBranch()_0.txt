@@ -1,0 +1,3 @@
+  public boolean isTwoWayBranch() {
+    return (isConditionalBranch() && !IfCmp2.conforms(this) && !MIR_CondBranch2.conforms(this));
+  }

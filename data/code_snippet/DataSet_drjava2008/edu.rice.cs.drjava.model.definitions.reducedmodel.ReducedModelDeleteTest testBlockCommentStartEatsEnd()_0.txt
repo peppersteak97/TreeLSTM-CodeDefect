@@ -1,0 +1,32 @@
+  public void testBlockCommentStartEatsEnd() {
+    model1.insertChar('/');
+    assertEquals("#0.0", 1, model1.absOffset());
+    assertEquals("#0.1", FREE, model1.getStateAtCurrent());
+    model1.insertChar('*');
+    assertEquals("#1.0", 2, model1.absOffset());
+    assertEquals("#1.1", INSIDE_BLOCK_COMMENT, model1.getStateAtCurrent());
+    insertGap(model1, 2);
+    assertEquals("#2.0", 4, model1.absOffset());
+    assertEquals("#2.1", INSIDE_BLOCK_COMMENT, model1.getStateAtCurrent());
+    model1.insertChar('*');
+    assertEquals("#3.0", 5, model1.absOffset());
+    assertEquals("#3.1", INSIDE_BLOCK_COMMENT, model1.getStateAtCurrent());
+    model1.insertChar('/');
+    assertEquals("#4.0", 6, model1.absOffset());
+    assertEquals("#4.1", FREE, model1.getStateAtCurrent());
+    model1.move(-5);
+    assertEquals("#4.0", 1, model1.absOffset());
+    assertEquals("#4.1", "/*", model1.currentToken().getType());
+    assertEquals("#4.1", FREE, model1.getStateAtCurrent());
+    model1.delete(3);
+    assertEquals("#5.0", 1, model1.absOffset());
+    assertEquals("#5.1", "/*", model1.currentToken().getType());
+    model1.move(1);
+    assertEquals("#6.0", 2, model1.absOffset());
+    assertEquals("#6.1", "/", model1.currentToken().getType());
+    assertEquals("#6.2", INSIDE_BLOCK_COMMENT, model1.getStateAtCurrent());
+    assertEquals("#6.3", INSIDE_BLOCK_COMMENT, model1.currentToken().getState());
+    model1.move(1);
+    assertEquals("#7.0", 3, model1.absOffset());
+    assertEquals("#7.1", INSIDE_BLOCK_COMMENT, model1.getStateAtCurrent());
+  }

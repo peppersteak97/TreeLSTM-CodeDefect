@@ -1,0 +1,3 @@
+	public List<T> getData(){
+		return m_obj;
+	}

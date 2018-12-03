@@ -1,0 +1,14 @@
+    synchronized void resetLZ100CS() {
+      resetCSButton.setEnabled(false);
+      status.setText(rb.getString("LZ100StatusReset"));
+
+      XNetMessage msgon=new XNetMessage(6);
+      msgon.setElement(0,XNetConstants.LOCO_OPER_REQ);
+      msgon.setElement(1,XNetConstants.LOCO_SET_FUNC_GROUP1);
+      msgon.setElement(4,0x08);
+
+      resetMode = ONSENT;
+      sendCount = 25;
+
+      XNetTrafficController.instance().sendXNetMessage(msgon,this);
+    }

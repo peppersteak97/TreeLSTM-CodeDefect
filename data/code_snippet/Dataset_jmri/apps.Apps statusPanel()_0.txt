@@ -1,0 +1,27 @@
+    protected JPanel statusPanel() {
+        JPanel pane1 = new JPanel();
+        pane1.setLayout(new BoxLayout(pane1, BoxLayout.X_AXIS));
+        log.debug("Fetch main logo: "+logo()+" "+ClassLoader.getSystemResource(logo()));
+        pane1.add(new JLabel(new ImageIcon(ClassLoader.getSystemResource(logo()),"JMRI logo"), JLabel.LEFT));
+
+        log.debug("start labels");
+        JPanel pane2 = new JPanel();
+        
+        JComponent l;
+        
+        pane2.setLayout(new BoxLayout(pane2, BoxLayout.Y_AXIS));
+        pane2.add(new JLabel(line1()));
+        pane2.add(new JLabel(line2()));
+        pane2.add(new JLabel(line3()));
+        
+        ConnectionStatus.instance().addPropertyChangeListener(this);
+        buildLine4(pane2);
+        buildLine5(pane2);
+        buildLine5a(pane2);
+        buildLine5b(pane2);
+
+        pane2.add(new JLabel(line6()));
+        pane2.add(new JLabel(line7()));
+        pane1.add(pane2);
+        return pane1;
+    }

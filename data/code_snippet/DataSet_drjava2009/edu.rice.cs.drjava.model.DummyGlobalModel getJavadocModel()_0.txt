@@ -1,0 +1,3 @@
+  public JavadocModel getJavadocModel() {
+    throw new UnsupportedOperationException("Tried to call getJavadocModel on a Dummy");
+  }

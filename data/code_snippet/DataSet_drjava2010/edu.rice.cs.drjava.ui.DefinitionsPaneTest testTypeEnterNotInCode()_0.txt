@@ -1,0 +1,25 @@
+  public void testTypeEnterNotInCode() throws BadLocationException, InterruptedException, InvocationTargetException {
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        
+        final DefinitionsPane defPane = _frame.getCurrentDefPane();
+        final OpenDefinitionsDocument doc = defPane.getOpenDefDocument();
+        try { 
+          _assertDocumentEmpty(doc, "before testing");
+          doc.insertString(0, "/**", null);
+          defPane.setCaretPosition(3);
+          int enter = KeyEvent.VK_ENTER;
+          defPane.processKeyEvent(new KeyEvent(defPane, PRESSED, (new Date()).getTime(), 0, enter, UNDEFINED));
+          defPane.processKeyEvent(new KeyEvent(defPane, RELEASED, (new Date()).getTime(), 0, enter, UNDEFINED));
+          _frame.validate();
+        }
+        catch(Throwable t) { listenerFail(t); }
+        
+        _log.log("Completed processing of keyEvents");
+        
+        _assertDocumentContents(doc, "/**\n * ", "Enter should indent in a comment");
+        _log.log("testTypeEnterNotInCode completed");
+      }
+    });
+  }

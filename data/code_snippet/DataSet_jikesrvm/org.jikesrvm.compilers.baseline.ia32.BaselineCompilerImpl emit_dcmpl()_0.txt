@@ -1,0 +1,7 @@
+  protected final void emit_dcmpl() {
+    if (SSE2_BASE) {
+    } else {
+    }
+    if (!SSE2_BASE) {
+    }
+  }

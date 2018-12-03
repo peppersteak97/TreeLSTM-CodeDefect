@@ -1,0 +1,12 @@
+    public void start() {
+        IWizardPage startPage = shouldLoginPageBeUsed() ?
+                        new LoginPage(this) : new SelectProjectPage(this);
+        start(m_window, startPage);
+        m_displayPage = new DownloadProjectWizardPage(startPage);
+        UiUtils.runOnEventThread(new Runnable() {
+            
+            public void run() {
+                m_pageDisplayer.displayPage(m_displayPage);
+            }
+        });
+    }

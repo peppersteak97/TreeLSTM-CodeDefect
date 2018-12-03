@@ -1,0 +1,12 @@
+  public File getMasterWorkingDirectory() {
+    File file;
+    try {
+      file = FileOps.getValidDirectory(DrJava.getConfig().getSetting(LAST_DIRECTORY));
+    }
+    catch (RuntimeException e) {
+      DrJava.getConfig().setSetting(LAST_DIRECTORY, FileOps.NULL_FILE);
+      file = FileOps.getValidDirectory(new File(System.getProperty("user.home", ".")));
+    }
+    DrJava.getConfig().setSetting(LAST_DIRECTORY, file);
+    return file;
+  }

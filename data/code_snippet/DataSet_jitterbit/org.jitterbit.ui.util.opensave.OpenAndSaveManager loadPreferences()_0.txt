@@ -1,0 +1,23 @@
+	private void loadPreferences() {
+        if (s_uiPreferences != null) {
+            m_nRecentFileListMaxLength = s_uiPreferences.getInt(
+                            PREF_RECENT_FILE_LIST_LENGTH, m_nRecentFileListMaxLength);
+            for (int i = 0; i < m_nRecentFileListMaxLength; ++i) {
+                File f = s_uiPreferences.getFile(PREF_RECENT_FILE + i, null);
+                if (f != null) {
+                    m_liRecentFiles.add(new RecentFileMenuItem(f));
+                    ++m_nRecentFiles;
+                }
+            }
+            int n = 1;
+            for (RecentFileMenuItem f : m_liRecentFiles) {
+                if (n == 10) {
+                    break;
+                }
+                f.setMnemonic(48 + n);
+                ++n;
+            }
+            File file = s_uiPreferences.getFile(PREF_CURRENT_DIR, null);
+            m_fileChooser.setCurrentDirectory(file);
+        }
+	}

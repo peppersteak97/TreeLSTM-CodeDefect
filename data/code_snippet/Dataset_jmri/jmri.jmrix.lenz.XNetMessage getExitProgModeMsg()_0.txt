@@ -1,0 +1,8 @@
+    public static XNetMessage getExitProgModeMsg() {
+        XNetMessage m = new XNetMessage(3);
+	m.setNeededMode(jmri.jmrix.AbstractMRTrafficController.PROGRAMINGMODE);
+        m.setElement(0, XNetConstants.CS_REQUEST);
+        m.setElement(1, XNetConstants.RESUME_OPS);
+	m.setParity();
+        return m;
+    }

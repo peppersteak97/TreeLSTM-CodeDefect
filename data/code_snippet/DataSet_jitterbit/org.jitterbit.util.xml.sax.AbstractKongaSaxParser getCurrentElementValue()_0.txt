@@ -1,0 +1,3 @@
+    public String getCurrentElementValue() {
+        return m_currentElementValue.trim();
+    }

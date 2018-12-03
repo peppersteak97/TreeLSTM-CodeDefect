@@ -1,0 +1,7 @@
+  public Atom parseForArrayElementDescriptor() {
+    if (VM.VerifyAssertions) {
+      VM._assert(val.length > 1, "An array descriptor has at least two characters");
+      VM._assert(val[0] == '[', "An array descriptor must start with '['");
+    }
+    return findOrCreate(val, 1, val.length - 1, toUnicodeStringInternal());
+  }

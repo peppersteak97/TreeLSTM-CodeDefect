@@ -1,0 +1,4 @@
+    private void createUserListPanel() {
+        m_userListPanel = new UserListPanel(m_page, this);
+        m_userListPanel.addChangeListener(m_inputSiteListener);
+    }

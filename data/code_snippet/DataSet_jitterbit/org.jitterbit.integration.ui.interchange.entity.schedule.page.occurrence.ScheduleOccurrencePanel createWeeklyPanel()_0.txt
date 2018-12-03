@@ -1,0 +1,4 @@
+    private void createWeeklyPanel() {
+        m_weeklyPanel = new WeeklyPanel(m_every_X_weeks_panel,
+                m_dayOfTheWeekCheckBoxPanel);
+    }

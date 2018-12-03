@@ -1,0 +1,7 @@
+    public IWizardPage getNextPage() {
+        if (m_currentPage == null) {
+            throw new IllegalArgumentException("No current page is currently"
+                            + " displayed by this wizard.");
+        }
+        return m_currentPage.getNextPage();
+    }

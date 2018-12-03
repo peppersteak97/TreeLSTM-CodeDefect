@@ -1,0 +1,3 @@
+  public InteractionsDJDocument getSwingConsoleDocument() {
+    throw new UnsupportedOperationException("Tried to call getSwingConsoleDocument on a Dummy");
+  }

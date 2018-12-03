@@ -1,0 +1,5 @@
+    public void validateProjectName() throws IllegalNameException {
+        INameValidator validator = 
+            NameValidatorStore.getInstance().get(IntegrationEntity.class);
+        validator.validateName(m_newProjectName.getText());
+    }

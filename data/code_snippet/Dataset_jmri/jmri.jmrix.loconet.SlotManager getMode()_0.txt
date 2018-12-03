@@ -1,0 +1,1 @@
+    public int getMode() { return _mode; }

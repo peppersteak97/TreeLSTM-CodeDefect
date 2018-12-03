@@ -1,0 +1,3 @@
+	public String getOwnerUserName() {
+		return m_sOwnerUserName;
+	}

@@ -1,0 +1,65 @@
+  public void xtestStylesListContentAndReset() throws EditDocumentException, InterruptedException {
+    /* The banner and the prompt are inserted in the styles list when the document is constructed; the corresponding
+       offsets are computed in the tests below. 
+     */
+    
+    final Object _restartLock = new Object();
+    
+    assertEquals("StylesList before insert should contain 2 pairs", 2, _adapter.getStyles().length);
+    
+    int blen = _model.getStartUpBanner().length();
+    
+    /** Elt1, Elt2 are first two elements pushed on the StylesList stack */
+    String styleElt1 = "((0, " + blen + "), object.return.style)";
+    String styleElt2 = "((" + blen + ", " + (blen + 2) + "), default)";
+
+    assertEquals("The first element pushed on StylesList before insertion should be", styleElt1,
+                 _adapter.getStyles()[1].toString());
+    assertEquals("The second element pushed on StylesList before insertion should be", styleElt2,
+                 _adapter.getStyles()[0].toString());
+    
+    _doc.append("5", InteractionsDocument.NUMBER_RETURN_STYLE);
+    
+    /* Third element pushed StylesList stack before reset */
+    String styleElt3 = "((" + (blen + 2) + ", " + (blen + 3) + "), number.return.style)";
+
+    assertEquals("StylesList before reset should contain 3 pairs", 3, _adapter.getStyles().length);
+    
+    assertEquals("The first element pushed on StylesList before reset should be", styleElt1,
+                 _adapter.getStyles()[2].toString());
+    assertEquals("The second element pushed on StylesList before reset should be", styleElt2,
+                 _adapter.getStyles()[1].toString());
+    assertEquals("The last element pushed on StylesList before reset should be", styleElt3,
+                 _adapter.getStyles()[0].toString());
+    
+    
+    /* Reset interactions and wait until it completes */
+
+    InteractionsListener restartCommand = new DummyInteractionsListener() {
+      public void interpreterReady(File wd) {
+        synchronized(_restartLock) {
+          _interpreterRestarted = true;
+          _restartLock.notify();
+        }
+      }};
+    _model.addListener(restartCommand);
+                                   
+    _model.setWaitingForFirstInterpreter(false);
+    
+    synchronized(_restartLock) { _interpreterRestarted = false; }
+      
+    File f = _model.getWorkingDirectory();
+    _model.resetInterpreter(f);
+    
+
+    synchronized(_restartLock) { while (! _interpreterRestarted) _restartLock.wait(); }
+    _model.removeListener(restartCommand);
+    
+   
+    assertEquals("StylesList after reset should contain 2 pairs", 2, _adapter.getStyles().length);
+    
+    assertEquals("The first element pushed on StylesList after reset should be", styleElt1,
+                 _adapter.getStyles()[1].toString());
+    assertEquals("The second element pushed on StylesList after reset should be", styleElt2,
+                 _adapter.getStyles()[0].toString());
+  }

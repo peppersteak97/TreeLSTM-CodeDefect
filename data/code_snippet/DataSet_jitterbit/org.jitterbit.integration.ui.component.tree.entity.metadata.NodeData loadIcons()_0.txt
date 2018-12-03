@@ -1,0 +1,8 @@
+    void loadIcons() {
+        for (NodeType nodeType : m_mapIcons.keySet()) {
+            Map<NodeStatus, NodeIcon> map = m_mapIcons.get(nodeType);
+            for (NodeIcon nodeIcon : map.values()) {
+                nodeIcon.loadIcon();
+            }
+        }
+    }

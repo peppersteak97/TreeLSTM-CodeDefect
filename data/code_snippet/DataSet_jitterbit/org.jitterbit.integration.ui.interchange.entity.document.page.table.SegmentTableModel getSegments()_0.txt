@@ -1,0 +1,8 @@
+    public Vector<Segment> getSegments() {
+        int rows = getRowCount();
+        Vector<Segment> segments = new Vector<Segment>(rows);
+        for (int row = 0; row < rows; ++row) {
+            segments.add(getSegment(row));
+        }
+        return segments;
+    }

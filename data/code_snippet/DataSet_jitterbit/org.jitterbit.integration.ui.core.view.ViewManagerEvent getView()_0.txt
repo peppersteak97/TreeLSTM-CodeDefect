@@ -1,0 +1,3 @@
+    public IView getView() {
+        return m_view;
+    }

@@ -1,0 +1,4 @@
+    public Programmer getServiceModeProgrammer() {
+        if (log.isDebugEnabled()) log.debug("return default service-mode programmer");
+        return mProgrammer;
+    }

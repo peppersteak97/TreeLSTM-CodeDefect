@@ -1,0 +1,42 @@
+    private void adjustComponentSize(){
+        m_size=getSize();
+        int buttonWidth=75;
+
+        int w=m_size.width-6,h=m_size.height-45;
+        if(w<200)w=200;
+        if(h<323)h=323;
+        if(m_textAreaHeight<220)m_textAreaHeight=220;
+        if(m_textAreaHeight>(h-m_buttonPanelHeight-m_lowerButtonSpace-50))
+           m_textAreaHeight=h-m_buttonPanelHeight-m_lowerButtonSpace-50;
+        if(m_scrollWidth<40)m_scrollWidth=40;
+        else if(m_scrollWidth>(w-40))m_scrollWidth=w-50;
+        m_scrollHeight=h-m_textAreaHeight-m_buttonPanelHeight-m_lowerButtonSpace;
+        m_textAreaScrollPane.setBounds(2,2,w-95,m_textAreaHeight);
+        for(int i=0;i<16;i++){
+            int x=24*(i%3);
+            int y=23*(i/3);
+            m_button[i].setBounds(w-80+x,6+y,23,22);
+        }
+        m_fcnTreeComponent.m_scroll.setBounds(2,m_textAreaHeight+m_buttonPanelHeight,m_scrollWidth,m_scrollHeight);
+        m_expressionTreeComponent.m_scroll.setBounds(m_scrollWidth+5,m_textAreaHeight+m_buttonPanelHeight,w-m_scrollWidth-7,m_scrollHeight);
+        
+        m_btnHelp1.setBounds(w-290,h-m_lowerButtonSpace+5,buttonWidth,19);      
+        m_btnOk.setBounds(w-180,h-m_lowerButtonSpace+5,buttonWidth,19);
+        m_btnCancel.setBounds(w-95,h-m_lowerButtonSpace+5,buttonWidth,19);
+        m_buttonClearInExpBld.setBounds(w-84,173,buttonWidth,19);
+        m_buttonTestInExpBld.setBounds( w-84,195,buttonWidth,19);
+        m_expCompFcnButton.setBounds(2,m_textAreaHeight+10,ButtonPanel.g_buttonWidth-35,24);
+        m_fcnSearchBtn.setBounds(2+ButtonPanel.g_buttonWidth-35, m_textAreaHeight+10,ButtonPanel.g_buttonWidth-35,24);
+        m_sourceDESearchBtn.setBounds(w-36-(ButtonPanel.g_buttonWidth-35),m_textAreaHeight+10,ButtonPanel.g_buttonWidth-35,24);
+        m_expCompSourceDEButton.setBounds(w-36,m_textAreaHeight+10,ButtonPanel.g_buttonWidth-35,24);
+        m_buttonEnter1.setBounds(2+(ButtonPanel.g_buttonWidth-35)*2,m_textAreaHeight+10,ButtonPanel.g_buttonWidth-27,24);
+        m_btnHelp.setBounds(2+(ButtonPanel.g_buttonWidth-35)*3+14,m_textAreaHeight+14,ButtonPanel.g_buttonWidth-27,22);
+        m_buttonEnter2.setBounds(w-36-(ButtonPanel.g_buttonWidth-30)*2,m_textAreaHeight+10,ButtonPanel.g_buttonWidth-27,24);
+        m_buttonUndo.setBounds(w-74,146,TreeMapper.m_imgUndo.getWidth(this),TreeMapper.m_imgUndo.getHeight(this));
+        m_buttonRedo.setBounds(w-73+TreeMapper.m_imgUndo.getWidth(this),146,TreeMapper.m_imgRedo.getWidth(this),TreeMapper.m_imgRedo.getHeight(this));
+        if(m_frameIconified){
+            setLocation(20,20);
+            m_frameIconified=false;
+        }
+        validate();
+    }

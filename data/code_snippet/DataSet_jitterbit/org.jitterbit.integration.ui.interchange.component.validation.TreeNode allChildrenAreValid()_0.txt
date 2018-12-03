@@ -1,0 +1,9 @@
+    boolean allChildrenAreValid() {
+        for (int n = 0; n < getChildCount(); ++n) {
+            TreeNode child = (TreeNode) getChildAt(n);
+            if (!child.isValid() || !child.allChildrenAreValid()) {
+                return false;
+            }
+        }
+        return true;
+    }

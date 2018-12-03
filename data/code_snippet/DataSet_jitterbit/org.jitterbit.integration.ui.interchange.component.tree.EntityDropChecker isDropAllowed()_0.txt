@@ -1,0 +1,19 @@
+    public boolean isDropAllowed() {
+        if (m_targetNode instanceof IFolderUi) {
+            if (((IFolderUi) m_targetNode).getDataObject().getItemType() == 
+                        m_firstDragged.getDataObject().getEntityType()) {
+                return true;
+            }
+        }
+        else {
+            Class<?> targetClass = m_targetNode.getDataObject().getClass();
+            List<Class<?>> ownerClasses = ClassRelations.getOwnerClasses(
+                            m_firstDragged.getDataObject().getClass());
+            for (Class<?> ownerClass : ownerClasses) {
+                if (ownerClass.isAssignableFrom(targetClass)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }

@@ -1,0 +1,10 @@
+    int selectNextPoll() {
+        int startindex = pollIndex;
+        while (++pollIndex < getNumTransmitters()) {
+            if (getTransmitter(pollIndex).isPolled()) return pollIndex;
+        } 
+        while (++pollIndex <= startindex) {
+            if (getTransmitter(pollIndex).isPolled()) return pollIndex;
+        } 
+        return -1;
+    }

@@ -1,0 +1,43 @@
+  public CompiledMethod doRecompile() {
+    CompilationPlan cp = getCompPlan();
+
+    setTimeInitiated(Controller.controllerClock);
+    AOSLogging.logger.recompilationStarted(cp);
+
+    if (cp.options.PRINT_METHOD) {
+      VM.sysWrite("-oc:O" + cp.options.getOptLevel() + " \n");
+    }
+
+    int newCMID = RuntimeCompiler.recompileWithOpt(cp);
+    int prevCMID = getPrevCMID();
+
+    if (Controller.options.sampling()) {
+      double expectedSpeedup = getExpectedSpeedup();
+      double oldNumSamples = Controller.methodSamples.getData(prevCMID);
+      double newNumSamples = oldNumSamples / expectedSpeedup;
+      Controller.methodSamples.reset(prevCMID);
+      if (newCMID > -1) {
+        Controller.methodSamples.augmentData(newCMID, newNumSamples);
+      }
+    }
+
+    if (newCMID != -1) {
+      setStatus(ControllerPlan.COMPLETED);
+    } else {
+      setStatus(ControllerPlan.ABORTED_COMPILATION_ERROR);
+    }
+
+    setCMID(newCMID);
+    setTimeCompleted(Controller.controllerClock);
+    CompiledMethod cm = newCMID == -1 ? null : CompiledMethods.getCompiledMethod(newCMID);
+    if (newCMID == -1) {
+      AOSLogging.logger.recompilationAborted(cp);
+    } else {
+      AOSLogging.logger.recompilationCompleted(cp);
+      AOSLogging.logger.recordCompileTime(cm, getExpectedCompilationTime());
+    }
+    if (Controller.options.ENABLE_ADVICE_GENERATION && (newCMID != -1)) {
+      AOSGenerator.reCompilationWithOpt(cp);
+    }
+    return cm;
+  }

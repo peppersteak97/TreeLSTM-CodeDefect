@@ -1,0 +1,3 @@
+	public Point getBottomMidPoint() {
+		return m_rect.getBottomMidPoint();
+	}

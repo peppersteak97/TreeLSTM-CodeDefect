@@ -1,0 +1,3 @@
+    public File getProjectLocation() {
+        return m_newProjectLocationDisplayer.getProjectLocation();
+    }

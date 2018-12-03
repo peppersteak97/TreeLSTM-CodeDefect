@@ -1,0 +1,3 @@
+    public final ITargetFilter getTargetFilter() {
+        return m_targetFilter;
+    }

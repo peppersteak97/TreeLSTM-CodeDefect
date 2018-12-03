@@ -1,0 +1,10 @@
+  public Object getAnnotationDefault() {
+    synchronized(annotationDefaults) {
+      Object value = annotationDefaults.get(this);
+      if (value instanceof TypeReference || value instanceof Object[]) {
+        value = RVMAnnotation.firstUse(value);
+        annotationDefaults.put(this, value);
+      }
+      return value;
+    }
+  }

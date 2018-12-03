@@ -1,0 +1,18 @@
+  private void updateFontColor() {
+    Font  mainFont = DrJava.getConfig().getSetting(OptionConstants.FONT_MAIN);
+    Color backColor = DrJava.getConfig().getSetting(OptionConstants.DEFINITIONS_BACKGROUND_COLOR);
+    Color fontColor = DrJava.getConfig().getSetting(OptionConstants.DEFINITIONS_NORMAL_COLOR);
+    /* make it bigger */
+    Font titleFont = mainFont.deriveFont((float) (mainFont.getSize() + 3));
+    _antiAliasText = DrJava.getConfig().getSetting(OptionConstants.TEXT_ANTIALIAS).booleanValue();
+    
+    _label.setForeground(fontColor);
+    _panel.setBackground(backColor);
+    _label.setFont(titleFont);
+    _textpane.setForeground(fontColor);
+    _textpane.setFont(mainFont);;
+    _textpane.setBackground(backColor);
+    _scroller.setBackground(backColor);
+    _scroller.setBorder(new EmptyBorder(0,0,0,0));
+    _panel.setBorder(new LineBorder(fontColor, 1));
+  }

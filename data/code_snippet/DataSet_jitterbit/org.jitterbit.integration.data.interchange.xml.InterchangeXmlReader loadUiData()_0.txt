@@ -1,0 +1,14 @@
+    public void loadUiData() {
+        String filename = m_projectFile.getProperty(InterchangeProjectFile.UI_STATE_INFO);
+        File uiFile = new File(m_rootDirectory, filename);
+        if (!uiFile.exists()) {
+            return;
+        }
+        InterchangeProjectUiSaxParser parser = new InterchangeProjectUiSaxParser(this);
+        try {
+            parser.loadUiData(uiFile.toURI().toURL());
+        }
+        catch (Exception e) {
+            ApplicationMessageEvent.postErrorMessage(this,
+        }
+    }

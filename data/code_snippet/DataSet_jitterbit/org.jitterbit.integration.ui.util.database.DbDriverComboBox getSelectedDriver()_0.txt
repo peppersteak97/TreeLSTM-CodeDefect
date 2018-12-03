@@ -1,0 +1,7 @@
+    public DatabaseDriverDescription getSelectedDriver() {
+        Object selected = m_comboBox.getSelectedItem();
+        if (selected != null) {
+            return ((ComboItem) selected).getDriver();
+        }
+        return null;
+    }

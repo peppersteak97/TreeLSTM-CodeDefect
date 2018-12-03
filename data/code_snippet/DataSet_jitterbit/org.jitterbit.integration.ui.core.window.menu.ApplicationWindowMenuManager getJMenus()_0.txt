@@ -1,0 +1,45 @@
+    public List<JMenu> getJMenus() {
+        m_jmenuMap.clear();
+        List<JMenu> menus = new ArrayList<JMenu>();
+
+        JMenu jm = getMenu(ApplicationWindowMenus.FILE).createJMenu(m_dictionary);
+        menus.add(jm);
+        m_jmenuMap.put(ApplicationWindowMenus.FILE, jm);
+
+        jm = getMenu(ApplicationWindowMenus.EDIT).createJMenu(m_dictionary);
+        menus.add(jm);
+        m_jmenuMap.put(ApplicationWindowMenus.EDIT, jm);
+
+        jm = getMenu(ApplicationWindowMenus.VIEW).createJMenu(m_dictionary);
+        menus.add(jm);
+        m_jmenuMap.put(ApplicationWindowMenus.VIEW, jm);
+
+        jm = getMenu(ApplicationWindowMenus.ACTIONS).createJMenu(m_dictionary);
+        menus.add(jm);
+        m_jmenuMap.put(ApplicationWindowMenus.ACTIONS, jm);
+        
+        for (MenuExtensionPoint p : MenuExtensionPoint.values()) {
+            Extension ext = m_extensions.get(p);
+            if (ext != null) {
+                jm = ext.getJMenu();
+                menus.add(jm);
+                m_jmenuMap.put(ext.getMenuID(), jm);
+            }
+        }
+
+        jm = getMenu(ApplicationWindowMenus.WINDOWS).createJMenu(m_dictionary);
+        menus.add(jm);
+        m_jmenuMap.put(ApplicationWindowMenus.WINDOWS, jm);
+
+        jm = getMenu(ApplicationWindowMenus.HELP).createJMenu(m_dictionary);
+        menus.add(jm);
+        m_jmenuMap.put(ApplicationWindowMenus.HELP, jm);
+
+        if (DebugMode.INCLUDE_MENU) {
+            jm = getMenu(ApplicationWindowMenus.DEBUG).createJMenu(m_dictionary);
+            menus.add(jm);
+            m_jmenuMap.put(ApplicationWindowMenus.DEBUG, jm);
+        }
+
+        return menus;
+    }

@@ -1,0 +1,5 @@
+    private JLabel createBoundedIconLabel() {
+        JLabel label = createIconLabel();
+        label.setBounds(0, 0, ICON.getIconWidth(), ICON.getIconHeight());
+        return label;
+    }

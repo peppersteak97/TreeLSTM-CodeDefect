@@ -1,0 +1,3 @@
+    public int getNumberOfThreadsInWork() {
+        return m_workers.length - m_idleWorkers.size();
+    }

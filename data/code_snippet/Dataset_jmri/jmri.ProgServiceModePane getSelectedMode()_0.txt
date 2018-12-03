@@ -1,0 +1,14 @@
+    private int getSelectedMode() {
+        if (pagedButton.isSelected())
+            return jmri.Programmer.PAGEMODE;
+        else if (directBitButton.isSelected())
+            return jmri.Programmer.DIRECTBITMODE;
+        else if (directByteButton.isSelected())
+            return jmri.Programmer.DIRECTBYTEMODE;
+        else if (registerButton.isSelected())
+            return jmri.Programmer.REGISTERMODE;
+        else if (addressButton.isSelected())
+            return jmri.Programmer.ADDRESSMODE;
+        else
+            return 0;
+    }

@@ -1,0 +1,8 @@
+    double getVSound() {
+        try {
+            return Double.valueOf(vs.getText()).doubleValue();
+        } catch (Exception e) {
+            vs.setText("0.0344");
+            return 0.0344;
+        }
+    }

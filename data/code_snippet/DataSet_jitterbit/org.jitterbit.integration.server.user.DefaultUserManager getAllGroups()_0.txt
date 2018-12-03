@@ -1,0 +1,8 @@
+    public List<Group> getAllGroups() {
+        synchronized (m_lock) {
+            if (m_groups == null) {
+                m_groups = new ArrayList<Group>();
+            }
+            return new ArrayList<Group>(m_groups);
+        }
+    }

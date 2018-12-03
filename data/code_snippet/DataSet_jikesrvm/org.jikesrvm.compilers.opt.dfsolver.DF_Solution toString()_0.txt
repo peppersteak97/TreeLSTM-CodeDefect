@@ -1,0 +1,7 @@
+  public String toString() {
+    String result = "";
+    for (DF_LatticeCell cell : values()) {
+      result = result + cell + "\n";
+    }
+    return result;
+  }

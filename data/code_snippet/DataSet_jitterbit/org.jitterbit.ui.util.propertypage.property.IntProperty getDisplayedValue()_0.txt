@@ -1,0 +1,18 @@
+	public Object getDisplayedValue() {
+        Integer value = null;
+		try {
+		    String s = ((Displayer)getComponentHolder()).getText();
+		    if( StringUtils.isBlank(s) ) {
+		        m_bUpdateDisplayAfterApply = true;
+		        value = new Integer(0);
+		    }
+		    else {
+		        m_bUpdateDisplayAfterApply = false;
+		        value = new Integer(s);
+		    }
+		} 
+		catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+        return value;
+	}

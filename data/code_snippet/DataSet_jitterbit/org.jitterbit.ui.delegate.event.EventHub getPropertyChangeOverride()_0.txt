@@ -1,0 +1,3 @@
+    protected final PropertyChangeListener getPropertyChangeOverride() {
+        return m_propertyChangeOverride;
+    }

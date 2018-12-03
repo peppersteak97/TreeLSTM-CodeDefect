@@ -1,0 +1,3 @@
+  public OpenDefinitionsDocument newFile() {
+    throw new UnsupportedOperationException("Tried to call newFile on a Dummy");
+  }

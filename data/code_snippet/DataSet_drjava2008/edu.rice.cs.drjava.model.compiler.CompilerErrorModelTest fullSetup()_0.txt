@@ -1,0 +1,24 @@
+  private void fullSetup() {
+    setupDocs();
+    errors = new CompilerError[] { 
+      new CompilerError(files[0], "Test error with File (no line)", false),
+      new CompilerError(files[4], 3, 0, "Test error with File", false),
+      new CompilerError(files[2], "Test warning with File (no line)", true),
+      new CompilerError(files[4], "Test warning with File (no line)", true),
+      new CompilerError(files[2], 3, 0, "Test warning with File", true),
+      new CompilerError(files[4], 1, 0, "Test warning with File", true),
+      new CompilerError(files[1], "Test warning with File (no line)", true),
+      new CompilerError(files[1], "Test error with File (no line)", false),
+      new CompilerError(files[2], "Test error with File (no line)", false),
+      new CompilerError(files[3], "Test error with File (no line)", false),
+      new CompilerError(files[3], 3, 0, "Test error with File", false),
+      new CompilerError(files[4], "Test error with File (no line)", false),
+      new CompilerError(files[0], 2, 0, "Test error with File", false),
+      new CompilerError(files[2], 2, 0, "Test warning with File", true),
+      new CompilerError(files[0], 1, 0, "Test error with File", false) 
+    };
+        
+    CompilerError[] copy = new CompilerError[errors.length];
+    for (int i = 0; i < errors.length; i++) copy[i] = errors[i];
+    model = new CompilerErrorModel(copy, getter);
+  }

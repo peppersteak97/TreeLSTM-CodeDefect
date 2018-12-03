@@ -1,0 +1,8 @@
+     public byte[] getPayload() {
+       byte [] p;
+       p = new byte[length];
+       for (int i=0; i<length; i++) {
+         p[i] = payload[i];
+       }
+       return p;
+     }

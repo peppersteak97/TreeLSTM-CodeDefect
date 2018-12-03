@@ -1,0 +1,3 @@
+    public boolean getF10() {
+        return f10;
+    }

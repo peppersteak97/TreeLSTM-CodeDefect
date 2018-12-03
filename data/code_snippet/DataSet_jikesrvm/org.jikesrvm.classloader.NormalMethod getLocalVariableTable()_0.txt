@@ -1,0 +1,3 @@
+  public LocalVariableTable getLocalVariableTable() {
+    return localVariableTables.get(this);
+  }

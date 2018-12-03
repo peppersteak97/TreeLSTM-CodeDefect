@@ -1,0 +1,11 @@
+  public String toString() {
+    StringBuilder buf = new StringBuilder("");
+    buf.append("(").append(symbolicReg).append(", ");
+    if (isSpill()) {
+      buf.append("Sp: ").append(getSpill());
+    } else {
+      buf.append("Reg: ").append(getRealRegNumber());
+    }
+    buf.append(")  ");
+    return buf.toString();
+  }

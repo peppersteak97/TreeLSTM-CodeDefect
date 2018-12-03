@@ -1,0 +1,6 @@
+  public void textGetLine4() throws BadLocationException {
+    final String s = "a\nb\nc\n";
+    _doc.insertString(0, s, null);
+    _doc.gotoLine(8);
+    assertEquals("#0.0", 4, _doc.getCurrentLine());
+  }

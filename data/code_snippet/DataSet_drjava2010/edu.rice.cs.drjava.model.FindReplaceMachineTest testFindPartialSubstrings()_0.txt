@@ -1,0 +1,14 @@
+  public void testFindPartialSubstrings() throws BadLocationException {
+    _doc.insertString(0, "ooAooAoo", null);
+    _initFrm(0);
+    _frm.setFindWord("ooAo");
+    _frm.setMatchCase(false);
+    _frm.setSearchBackwards(false);
+    _testFindNextSucceeds(_frm, 0, 4);
+    _testFindNextSucceeds(_frm, 0, 4);
+    
+    _initFrm(8);
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 8, 3);
+    _testFindNextSucceeds(_frm, 8, 3);
+  }

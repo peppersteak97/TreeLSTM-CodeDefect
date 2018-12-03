@@ -1,0 +1,4 @@
+    private void validateMessage() {
+        if (m_location.getMessageId() == null) {
+        }
+    }

@@ -1,0 +1,23 @@
+    protected final void checkColumns() {
+        for( Column c : getColumnOwner().getColumns() ) {
+            if( !SqlToCppTypeConverter.isTypeSupported(c.getTypeName()) ) {
+		        logWarning( getObject(), c, "Not included in script: Unsupported data type: '" + 
+		                c.getTypeName() +"'.");
+                m_setColumnsWithWarning.add(c);
+                m_setSkippedColumns.add(c);
+		    }
+            else {
+                String sCppType = SqlToCppTypeConverter.getCppType(c);
+                if( sCppType.length() == 0 ) {
+                    String sMsg = "Don't know how to convert the SQL Server datatype '";
+                    sMsg += c.getTypeName();
+                    sMsg += "' to a C++ type.";
+                    logWarning( getObject(), c, sMsg );
+                    m_setColumnsWithWarning.add(c);
+                    m_setSkippedColumns.add(c);
+                    continue;
+                }
+                m_liValidColumns.add(c);
+            }
+        }
+    }

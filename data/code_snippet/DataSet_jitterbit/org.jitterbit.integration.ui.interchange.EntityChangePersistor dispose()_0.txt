@@ -1,0 +1,4 @@
+    private void dispose() {
+        m_entity.removePropertyChangeListener(m_entityListener);
+        m_rollbackData.clear();
+    }

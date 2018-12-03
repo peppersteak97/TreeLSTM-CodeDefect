@@ -1,0 +1,1 @@
+     * KeyPressChecker can be reused by calling the {@link #register()} method.

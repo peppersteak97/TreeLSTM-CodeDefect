@@ -1,0 +1,52 @@
+    void update() {
+        if (currentNode.getController() != null) {
+            controllerName.setText(currentNode.getController().getName());
+            controllerType.setText(currentNode.getController().getType().toString());
+        } else {
+            controllerName.setText("");
+            controllerType.setText("");
+        }
+        if (currentNode.getComponent() != null) {
+            componentName.setText(currentNode.getComponent().getName());
+            componentId.setText(currentNode.getComponent().getIdentifier().toString());
+            if (currentNode.getComponent().isAnalog()) {
+                componentAnalog.setText("Yes");
+                componentValue.setText(""+currentNode.getValue());
+                componentRelative.setText(currentNode.getComponent().isRelative()?"Yes":"No");
+            } else {
+                componentAnalog.setText("No");
+                componentRelative.setText("");
+                componentValue.setText((currentNode.getValue() > 0.0) ? "Yes" : "No");
+            }
+            if ( (currentNode.getAttachedSensor()!=null) && (!currentNode.getAttachedSensor().equals(""))) {
+                sensorName.setText(currentNode.getAttachedSensor());
+                sensorName.setEditable(false);
+                sensorBox.setSelected(true);
+            } else {
+                sensorName.setText("");
+                sensorName.setEditable(true);
+                sensorBox.setSelected(false);
+            }
+            if ( (currentNode.getAttachedMemory()!=null) && (!currentNode.getAttachedMemory().equals(""))) {
+                memoryName.setText(currentNode.getAttachedMemory());
+                memoryName.setEditable(false);
+                memoryBox.setSelected(true);
+            } else {
+                memoryName.setText("");
+                memoryName.setEditable(true);
+                memoryBox.setSelected(false);
+            }
+        } else {
+            componentName.setText("");
+            componentId.setText("");
+            componentAnalog.setText("No");
+            componentRelative.setText("No");
+            componentValue.setText("");
+            sensorName.setText("");
+            sensorName.setEditable(true);
+            sensorBox.setSelected(false);
+            memoryName.setText("");
+            memoryName.setEditable(true);
+            memoryBox.setSelected(false);
+        }
+    }

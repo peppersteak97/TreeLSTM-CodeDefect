@@ -1,0 +1,21 @@
+  public void testIndentSwitch() throws BadLocationException {
+    String text =
+      "switch (x) {\n" +
+      "case 1:\n" +
+      "foo();\n" +
+      "break;\n" +
+      "case 2: case 3:\n" +
+      "case 4: case 5:\n" +
+      "bar();\n" +
+      "break;\n" +
+      "}\n";
+    
+    String indented =
+      "switch (x) {\n" +
+    
+    
+    _doc.insertString(0, text, null);
+    _assertContents(text, _doc);
+    safeIndentLines(0, _doc.getLength());
+    _assertContents(indented, _doc);
+  }

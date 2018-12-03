@@ -1,0 +1,4 @@
+    void validate() {
+        collectRequiredObjects();
+        m_validator.validate(m_entity, true, new IndicatorUpdator());
+    }

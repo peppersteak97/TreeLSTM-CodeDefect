@@ -1,0 +1,4 @@
+    public void dispose() {
+        mRunButton.setSelected(false);
+        super.dispose();
+    }

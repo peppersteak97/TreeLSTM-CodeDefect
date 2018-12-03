@@ -1,0 +1,6 @@
+  protected final void emit_fadd() {
+    popFloat(F0);
+    popFloat(F1);
+    asm.emitFADDS(F0, F1, F0);
+    pushFloat(F0);
+  }

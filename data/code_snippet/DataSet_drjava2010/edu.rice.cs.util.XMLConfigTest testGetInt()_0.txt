@@ -1,0 +1,44 @@
+  public void testGetInt() throws Exception {
+    XMLConfig xc = 
+      new XMLConfig(new StringReader(
+                                     "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><concutest>\n"
+                                       +" <name type=\"only\" value=\"5\"/>\n"
+                                       +" <class name=\"sample.threadCheck.ThreadCheckSample4\"/>\n"
+                                       +"</concutest>"));    
+    
+    int n = xc.getInt("concutest/name.value");
+    Assert.assertEquals("Found expected value", 5, n);
+    try{
+      xc.getInt("concutest/class.name");
+      Assert.fail("Should have thrown exception");
+    }
+    catch(IllegalArgumentException e){}
+    
+    try{
+      xc.getInt("doesNotExitPath/subPath");
+      Assert.fail("Should have thrown exception");
+    }catch(XMLConfig.XMLConfigException e){}
+    
+    n = xc.getInt("name.value", xc.getNodes("concutest").get(0));
+    Assert.assertEquals("Found expected value", 5, n);
+    try{
+      xc.getInt("class.name", xc.getNodes("concutest").get(0));
+      Assert.fail("Should have thrown exception");
+    }
+    catch(IllegalArgumentException e){}
+    
+    try{
+      xc.getInt("doesNotExitPath/subPath", xc.getNodes("concutest").get(0));
+      Assert.fail("Should have thrown exception");
+    }catch(XMLConfig.XMLConfigException e){}
+    
+    n = xc.getInt("concutest/name.value", 10);
+    Assert.assertEquals("Found expected value", 5, n);
+    n = xc.getInt("doesNotExitPath/subPath", 10);
+    Assert.assertEquals("Found expected value", 10, n);
+    
+    n = xc.getInt("name.value", xc.getNodes("concutest").get(0), 10);
+    Assert.assertEquals("Found expected value", 5, n);
+    n = xc.getInt("doesNotExitPath/subPath", xc.getNodes("concutest").get(0), 10);
+    Assert.assertEquals("Found expected value", 10, n);
+  }

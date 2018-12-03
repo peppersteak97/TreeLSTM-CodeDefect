@@ -1,0 +1,5 @@
+    private JButton createDownloadButton() {
+        m_downloadAction = new DownloadAction(
+                        this, m_userManager, m_userPanel, m_groupPanel);
+        return newToolBarButton(m_downloadAction);
+    }

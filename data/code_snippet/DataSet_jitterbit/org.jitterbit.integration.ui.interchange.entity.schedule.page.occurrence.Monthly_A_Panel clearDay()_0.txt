@@ -1,0 +1,3 @@
+    public void clearDay() {
+        m_day.clearValue();
+    }

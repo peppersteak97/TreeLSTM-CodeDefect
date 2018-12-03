@@ -1,0 +1,5 @@
+    private void createMonthlyPanel() {
+        createMonthly_A_Panel();
+        createMonthly_B_Panel();
+        m_monthlyPanel = new MonthlyPanel(m_monthly_A_panel, m_monthly_B_panel);
+    }

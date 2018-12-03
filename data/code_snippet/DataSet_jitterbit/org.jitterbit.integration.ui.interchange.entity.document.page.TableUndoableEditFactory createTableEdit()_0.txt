@@ -1,0 +1,12 @@
+    UndoableEdit createTableEdit() throws IOException {
+        final ByteArrayOutputStream newState = new ByteArrayOutputStream();
+        try {
+            m_table.writeState(new ObjectOutputStream(newState));
+        }
+        finally {
+            newState.close();
+        }
+        ByteArrayOutputStream previous = m_previousState;
+        m_previousState = newState;
+        return new Edit(m_inputPanel, m_table, previous, newState);
+    }

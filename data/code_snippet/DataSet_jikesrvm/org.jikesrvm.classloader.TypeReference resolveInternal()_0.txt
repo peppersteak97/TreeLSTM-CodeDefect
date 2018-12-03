@@ -1,0 +1,44 @@
+  private RVMType resolveInternal() throws NoClassDefFoundError, IllegalArgumentException {
+    if (type != null) return type;
+    if (isClassType()) {
+      RVMType ans;
+      if (VM.runningVM) {
+        Class<?> klass;
+        String myName = name.classNameFromDescriptor();
+        try {
+          klass = classloader.loadClass(myName);
+        } catch (ClassNotFoundException cnf) {
+          NoClassDefFoundError ncdfe =
+              new NoClassDefFoundError("Could not find the class " + myName + ":\n\t" + cnf.getMessage());
+          throw ncdfe;
+        }
+
+        ans = java.lang.JikesRVMSupport.getTypeForClass(klass);
+      } else {
+        ans = ((BootstrapClassLoader) classloader).loadVMClass(name.classNameFromDescriptor());
+      }
+      if (VM.VerifyAssertions) {
+        VM._assert(type == null || type == ans);
+      }
+      setType(ans);
+    } else if (isArrayType()) {
+      if (isUnboxedArrayType()) {
+        setType(getArrayElementType().getArrayTypeForElementType().resolve());
+      } else {
+        RVMType elementType = getArrayElementType().resolve();
+        if (elementType.getClassLoader() != classloader) {
+          TypeReference canonical = TypeReference.findOrCreate(elementType.getClassLoader(), name);
+          setType(canonical.resolve());
+        } else {
+          setType(new RVMArray(this, elementType));
+        }
+      }
+    } else {
+      if (isUnboxedType()) {
+        setType(UnboxedType.createUnboxedType(this));
+      } else {
+        setType(Primitive.createPrimitive(this));
+      }
+    }
+    return type;
+  }

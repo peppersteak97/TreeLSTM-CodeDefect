@@ -1,0 +1,11 @@
+    private JComponent getComponentToFocus() {
+        String server = getServerName();
+        if (server.length() == 0) {
+            return m_serverComboBox;
+        }
+        String user = getUserName();
+        if (user.length() == 0) {
+            return m_userNameField;
+        }
+        return m_pwdField;
+    }

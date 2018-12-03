@@ -1,0 +1,13 @@
+    public void initComponents() throws Exception {
+
+        setTitle(rb.getString("WindowTitle"));
+
+        Container contentPane = getContentPane();        
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+
+        contentPane.add(new TreePanel());
+        
+        addHelpMenu("package.jmri.jmrix.jinput.treecontrol.TreeFrame", true);
+        
+        pack();
+    }

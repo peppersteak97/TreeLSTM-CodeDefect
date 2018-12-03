@@ -1,0 +1,13 @@
+    private void saveNewWebServiceCall() {
+        try {
+            IProjectPersistor persistor = m_view.getProjectPersistor();
+            persistor.saveIntegrationEntity(m_newWebServiceCall);
+            fireWizardCompleted(m_newWebServiceCall);
+            dispose();
+        }
+        catch (InterchangeSavingException ex) {
+            m_newWebServiceCall.delete();
+            fireWizardFailed(ex);
+            dispose();
+        }
+    }

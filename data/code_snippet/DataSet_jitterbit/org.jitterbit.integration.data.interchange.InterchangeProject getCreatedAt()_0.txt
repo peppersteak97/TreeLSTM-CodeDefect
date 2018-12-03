@@ -1,0 +1,9 @@
+    public Date getCreatedAt() {
+        String dateString = getProperty(PROPERTY_CREATED_AT);
+        try {
+            return new Date(Long.parseLong(dateString));
+        }
+        catch (NumberFormatException e) {
+            return null;
+        }
+    }

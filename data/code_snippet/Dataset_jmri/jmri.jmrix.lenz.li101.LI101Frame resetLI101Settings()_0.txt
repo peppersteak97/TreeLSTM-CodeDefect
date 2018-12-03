@@ -1,0 +1,4 @@
+    void resetLI101Settings() {
+	addrBox.setSelectedIndex(30);
+	speedBox.setSelectedIndex(0);
+    }

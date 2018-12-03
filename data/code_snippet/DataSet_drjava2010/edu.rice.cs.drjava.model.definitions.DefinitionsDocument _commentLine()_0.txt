@@ -1,0 +1,3 @@
+  private void _commentLine() {
+    catch (BadLocationException e) { throw new UnexpectedException(e); }
+  }

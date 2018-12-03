@@ -1,0 +1,6 @@
+    private void createTimeOfTheDayControl() {
+        if (m_timeOfTheDayControl == null) {
+            m_timeOfTheDayControl = new TimeOfTheDayControl();
+            m_timeOfTheDayControl.setDate(m_initialDate);
+        }
+    }

@@ -1,0 +1,12 @@
+    protected void onWizardDone() {
+        if (m_aborted) {
+            return;
+        }
+        IntegrationUi.getUi().startWait();
+        try {
+            onWizardDoneImpl();
+        }
+        finally {
+            IntegrationUi.getUi().stopWait();
+        }
+    }

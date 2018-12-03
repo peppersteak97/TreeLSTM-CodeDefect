@@ -1,0 +1,7 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    _menu = new JMenu();
+    _rfm = new RecentFileManager(0, _menu, null, OptionConstants.RECENT_FILES);
+    String user = System.getProperty("user.name");
+    _tempDir = IOUtil.createAndMarkTempDirectory("DrJava-test-" + user, "");
+  }

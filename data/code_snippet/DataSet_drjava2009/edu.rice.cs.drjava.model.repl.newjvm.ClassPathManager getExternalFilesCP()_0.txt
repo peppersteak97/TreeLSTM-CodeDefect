@@ -1,0 +1,1 @@
+  public synchronized Iterable<File> getExternalFilesCP() { return IterUtil.snapshot(_externalFilesCP); }

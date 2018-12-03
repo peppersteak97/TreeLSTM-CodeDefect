@@ -1,0 +1,4 @@
+    public void stopWait() {
+        getWizard().stopWait();
+        UiUtils.setEnabledRecursively(getMainPanel(), true);
+    }

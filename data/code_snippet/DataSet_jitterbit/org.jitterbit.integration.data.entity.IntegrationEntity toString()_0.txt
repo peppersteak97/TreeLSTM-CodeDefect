@@ -1,0 +1,9 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder(m_entityType.getDisplayName());
+        sb.append(getID().toString());
+        sb.append(getName());
+        sb.append(hasBeenDeployed());
+        IntegrationEntity parent = getParent();
+        sb.append(super.toString());
+        return sb.toString();
+    }

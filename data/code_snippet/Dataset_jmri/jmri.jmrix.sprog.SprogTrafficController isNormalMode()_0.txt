@@ -1,0 +1,1 @@
+        public boolean isNormalMode() {return sprogState == NORMAL; }

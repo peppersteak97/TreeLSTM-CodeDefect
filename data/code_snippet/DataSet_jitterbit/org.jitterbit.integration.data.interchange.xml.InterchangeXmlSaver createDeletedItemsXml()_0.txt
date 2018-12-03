@@ -1,0 +1,14 @@
+    private String createDeletedItemsXml() {
+        XmlStringBuilder builder = new XmlStringBuilder();
+        builder.addElement(XmlConstants.Elements.DELETED_ITEMS);
+        for (EntityType type : EntityTypeMetaData.getInstance().getSupportedEntityTypes()) {
+            List<IntegrationId> deleted = m_project.getDeletedItemsOfType(type);
+            for (IntegrationId id : deleted) {
+                builder.addElement(type.toString());
+                builder.addAttribute(XmlConstants.Attributes.ID, id.toString());
+                builder.closeElement();
+            }
+        }
+        builder.closeElement();
+        return builder.getXml();
+    }

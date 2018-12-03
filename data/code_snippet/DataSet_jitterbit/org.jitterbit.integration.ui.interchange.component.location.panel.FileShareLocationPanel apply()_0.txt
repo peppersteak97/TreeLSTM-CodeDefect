@@ -1,0 +1,12 @@
+    public void apply() throws IntegrationDataPanelException {
+        FileShareLocation loc = getDisplayedObject();
+        loc.setPath(getPath());
+        loc.setLogin(getLogin());
+        loc.setPassword(getPassword());
+        loc.setFileFilter(getFileFilter());
+        if (getSourceTarget() == SourceTarget.Source) {
+            loc.setRenameFileTo(getRenameFileTo());
+            loc.setIgnoreFirstLines(getIgnoreFirstLines());
+            loc.setIgnoreLastLines(getIgnoreLastLines());
+        }
+    }

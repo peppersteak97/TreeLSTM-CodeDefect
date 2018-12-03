@@ -1,0 +1,8 @@
+  public void testGetName()
+  {
+    BooleanOption bo1 = new BooleanOption("enable JUnit",null);
+    BooleanOption bo2 = new BooleanOption("use menu icons",null);
+    
+    assertEquals("enable JUnit", bo1.getName());
+    assertEquals("use menu icons",   bo2.getName());
+  }

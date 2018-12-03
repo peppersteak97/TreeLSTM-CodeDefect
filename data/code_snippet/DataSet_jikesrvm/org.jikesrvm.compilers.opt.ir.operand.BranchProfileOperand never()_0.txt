@@ -1,0 +1,3 @@
+  public static BranchProfileOperand never() {
+    return new BranchProfileOperand(NEVER);
+  }

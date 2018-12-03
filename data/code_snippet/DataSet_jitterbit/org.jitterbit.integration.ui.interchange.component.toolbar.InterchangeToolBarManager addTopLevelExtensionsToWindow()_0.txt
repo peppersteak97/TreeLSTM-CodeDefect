@@ -1,0 +1,7 @@
+    public void addTopLevelExtensionsToWindow() {
+        if (m_useVerticalToolBars) {
+            m_appWinToolBarManagerVertical.addExtension(
+                            ToolBarExtensionPoint.EXTENSION_POINT_1, 
+                            m_toolBarMap.get(InterchangeToolBars.NEW_ENTITY));
+        }
+    }

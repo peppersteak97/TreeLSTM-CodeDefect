@@ -1,0 +1,7 @@
+  public void prev() {
+    if (_docs.size() > 0) {
+      _current--;
+      if (_current < 0) _current = _docs.size() - 1;
+      show(_current);
+    }
+  }

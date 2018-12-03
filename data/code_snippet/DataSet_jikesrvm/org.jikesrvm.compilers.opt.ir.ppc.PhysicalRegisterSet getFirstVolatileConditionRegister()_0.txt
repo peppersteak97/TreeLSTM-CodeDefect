@@ -1,0 +1,6 @@
+  public Register getFirstVolatileConditionRegister() {
+    if (VM.VerifyAssertions) {
+      VM._assert(getFirstConditionRegister() != getTSR());
+    }
+    return getFirstConditionRegister();
+  }

@@ -1,0 +1,24 @@
+    void makeReservationsHere() {
+        if (newDsStateHere==Sensor.ACTIVE && currentDsStateHere==Sensor.INACTIVE) {
+            if (debug) log.debug("went occupied, new states are A="+(newDsStateOnA==Sensor.ACTIVE)
+                        +" B="+(newDsStateOnB==Sensor.ACTIVE)
+                        +" C="+(newDsStateOnC==Sensor.ACTIVE) );
+            if (makeAReservation && newDsStateOnA==Sensor.ACTIVE)
+                newDirection |= AX;
+            if (makeBReservation && newDsStateOnB==Sensor.ACTIVE && newTurnoutStateHere==Turnout.CLOSED)
+                newDirection |= XA;
+            if (makeCReservation && newDsStateOnC==Sensor.ACTIVE && newTurnoutStateHere==Turnout.THROWN)
+                newDirection |= XA;
+        }
+        else if (newDsStateHere==Sensor.INACTIVE) newDirection = NONE;
+
+        if (newSpeedLimitFromA==0 && newReservedFromA) {
+        }
+        if (newTurnoutStateHere==Turnout.CLOSED || turnout == 0) {
+            if (newSpeedLimitFromB==0 && newReservedFromB) {
+            }
+        } else {
+            if (newSpeedLimitFromC==0 && newReservedFromC) {
+            }
+        }
+    }

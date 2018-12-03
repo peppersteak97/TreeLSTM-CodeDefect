@@ -1,0 +1,4 @@
+    void prepareForRemoval() {
+        m_uiDelegate.getDataObject().removePropertyChangeListener(m_entityListener);
+        m_boundProperties.clear();
+    }

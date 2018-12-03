@@ -1,0 +1,4 @@
+  public final int getLowSwitchValue() {
+    if (VM.VerifyAssertions) VM._assert(opcode == JBC_tableswitch);
+    return readSignedInt();
+  }

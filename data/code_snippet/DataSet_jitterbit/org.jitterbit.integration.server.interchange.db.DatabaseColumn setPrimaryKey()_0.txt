@@ -1,0 +1,3 @@
+    public void setPrimaryKey() {
+        m_bPrimaryKey = true;
+    }

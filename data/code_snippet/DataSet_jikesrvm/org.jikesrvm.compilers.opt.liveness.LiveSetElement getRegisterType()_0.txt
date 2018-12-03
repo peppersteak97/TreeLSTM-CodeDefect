@@ -1,0 +1,3 @@
+  public TypeReference getRegisterType() {
+    return regOp.getType();
+  }

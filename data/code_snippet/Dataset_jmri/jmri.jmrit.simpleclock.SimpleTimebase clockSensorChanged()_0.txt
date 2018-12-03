@@ -1,0 +1,10 @@
+	private void clockSensorChanged() {
+		if (clockSensor.getKnownState() == Sensor.ACTIVE) {
+			if (pauseTime==null) return;
+			setRun(true);
+		}
+		else {
+			if (pauseTime!=null) return;
+			setRun(false);
+		}
+	}	

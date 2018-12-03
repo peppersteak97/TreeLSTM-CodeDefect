@@ -1,0 +1,3 @@
+    private void setupWaitManager() {
+        m_waitManager = GlassPaneWaitManager.newInstance(m_frame);
+    }

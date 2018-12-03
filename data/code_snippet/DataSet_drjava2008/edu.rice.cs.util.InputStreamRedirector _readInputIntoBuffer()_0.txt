@@ -1,0 +1,8 @@
+  private void _readInputIntoBuffer() throws IOException {
+    String input = _getInput();
+    if (input.equals("")) throw new IOException("_getInput() must return non-empty input!");
+
+    for(int i = 0; i < input.length(); i++) {
+      _buffer.add(new Character(input.charAt(i)));
+    }
+  }

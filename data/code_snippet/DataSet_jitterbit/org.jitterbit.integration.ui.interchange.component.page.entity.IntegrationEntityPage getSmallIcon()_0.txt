@@ -1,0 +1,3 @@
+    public Icon getSmallIcon() {
+        return m_model.getSmallIcon();
+    }

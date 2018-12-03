@@ -1,0 +1,3 @@
+  void markBBUnsafeForScheduling() {
+    currentBBLE.block.setUnsafeToSchedule();
+  }

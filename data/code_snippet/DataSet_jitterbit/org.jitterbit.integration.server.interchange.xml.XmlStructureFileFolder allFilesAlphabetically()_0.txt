@@ -1,0 +1,14 @@
+    public Iterable<XmlStructureFile> allFilesAlphabetically() {
+        final List<XmlStructureFile> list = new ArrayList<XmlStructureFile>(m_files.values());
+        Collections.sort(list, new Comparator<XmlStructureFile>() {
+            public int compare(XmlStructureFile file1, XmlStructureFile file2) {
+                return file1.getFilePath().compareToIgnoreCase(file2.getFilePath());
+            }
+        });
+        return new Iterable<XmlStructureFile>() {
+
+            public Iterator<XmlStructureFile> iterator() {
+                return list.iterator();
+            }
+        };
+    }

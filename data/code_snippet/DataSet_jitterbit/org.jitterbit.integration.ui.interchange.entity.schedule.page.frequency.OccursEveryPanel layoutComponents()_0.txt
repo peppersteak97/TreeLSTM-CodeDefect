@@ -1,0 +1,8 @@
+    private void layoutComponents() {
+        OneRowPanel p = new OneRowPanel();
+        p.setInsets(IntegrationUiStyleSheet.DEFAULT_GBC_INSETS_LEFT);
+        p.add(InputFieldFactory.getCapsule(m_everyNum));
+        p.add(m_everyHMBox);
+        p.add(getTimePanel());
+        wrap(p);
+    }

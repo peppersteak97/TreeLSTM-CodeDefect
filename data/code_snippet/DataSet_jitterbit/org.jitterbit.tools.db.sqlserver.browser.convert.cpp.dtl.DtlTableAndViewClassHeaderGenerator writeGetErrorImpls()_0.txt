@@ -1,0 +1,8 @@
+    private void writeGetErrorImpls() {
+        addLine("\t" + CppUtils.STRING + " GetLastError() const {");
+        addLine("\t\treturn m_dtlRecSet.GetLastError();");
+        addLine("\t}");
+        addLine("\tlong GetLastErrorNumber() const {");
+        addLine("\t\treturn m_dtlRecSet.GetLastErrorNumber();");
+        addLine("\t}");
+    }

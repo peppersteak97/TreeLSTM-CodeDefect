@@ -1,0 +1,5 @@
+    private void refresh() {
+        m_frame.invalidate();
+        m_frame.validate();
+        m_frame.repaint();
+    }

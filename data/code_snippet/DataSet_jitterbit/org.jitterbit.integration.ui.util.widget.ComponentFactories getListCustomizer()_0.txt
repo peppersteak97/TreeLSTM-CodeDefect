@@ -1,0 +1,9 @@
+    private static IComponentCustomizer<JList> getListCustomizer() {
+        return new IComponentCustomizer<JList>() {
+
+            public JList customize(JList component) {
+                LookAndFeelCustomizer.makeOver(component);
+                return component;
+            }
+        };
+    }

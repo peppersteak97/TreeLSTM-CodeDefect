@@ -1,0 +1,4 @@
+    public Source getSource() {
+        Object o = m_sourceBox.getSelectedEntity();
+        return (o instanceof ISourceUi) ? ((ISourceUi) o).getDataObject() : null;
+    }

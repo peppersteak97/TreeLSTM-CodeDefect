@@ -1,0 +1,8 @@
+    public void showOnEventThread() {
+        UiUtils.runOnEventThread(new Runnable() {
+
+            public void run() {
+                setVisible(true);
+            }
+        });
+    }

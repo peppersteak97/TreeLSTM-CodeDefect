@@ -1,0 +1,21 @@
+  public void dumpContents() {
+    System.err.println("TempRegister: @" + ip.toInt());
+    System.err.println("  GPRS: ");
+    for (int i = 0; i < NUM_GPRS; i++) {
+      System.err.println("    (" + i + "," + gprs.get(i).toInt() + ")");
+    }
+
+    System.err.println();
+    System.err.println("  OBJS: ");
+    for (int i = 0; i < NUM_GPRS; i++) {
+      if (objs[i] != null) {
+        System.err.println("    (" + i + "," + objs[i] + ")");
+      }
+    }
+
+    System.err.println();
+    System.err.println("  FPRS  ");
+    for (int i = 0; i < NUM_FPRS; i++) {
+      System.err.println("    (" + i + "," + fprs[i] + ")");
+    }
+  }

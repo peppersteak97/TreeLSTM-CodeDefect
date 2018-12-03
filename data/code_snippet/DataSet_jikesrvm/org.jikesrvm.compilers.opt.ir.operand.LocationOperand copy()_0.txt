@@ -1,0 +1,27 @@
+  public Operand copy() {
+    LocationOperand o = null;
+    switch (type) {
+      case FIELD_ACCESS:
+        o = new LocationOperand(fieldRef);
+        break;
+      case ARRAY_ACCESS:
+        o = new LocationOperand(arrayElementType);
+        break;
+      case JTOC_ACCESS:
+        o = new LocationOperand(JTOCoffset);
+        break;
+      case SPILL_ACCESS:
+        o = new LocationOperand(spillOffset);
+        break;
+      case ALENGTH_ACCESS:
+        o = new LocationOperand();
+        break;
+      case METHOD_ACCESS:
+        o = new LocationOperand(methOp);
+        break;
+      default:
+        o = new LocationOperand();
+        break;
+    }
+    return o;
+  }

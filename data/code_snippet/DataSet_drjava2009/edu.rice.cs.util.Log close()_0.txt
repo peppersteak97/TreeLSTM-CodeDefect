@@ -1,0 +1,4 @@
+  public void close() {
+    _writer.close();
+    _writer = null;
+  }

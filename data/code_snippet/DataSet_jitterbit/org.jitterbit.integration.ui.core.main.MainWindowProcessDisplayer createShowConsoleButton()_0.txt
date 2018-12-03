@@ -1,0 +1,6 @@
+    private void createShowConsoleButton() {
+        m_showConsoleAction = new ShowConsoleAction();
+        m_showConsoleButton = ComponentFactories.toolbarButtonFactory().newButton(
+                m_showConsoleAction);
+        m_showConsoleButton.setBackground(BACKGROUND);
+    }

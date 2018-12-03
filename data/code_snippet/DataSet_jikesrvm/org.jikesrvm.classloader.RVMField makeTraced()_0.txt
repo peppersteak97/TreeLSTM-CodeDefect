@@ -1,0 +1,4 @@
+  public void makeTraced() {
+    madeTraced = true;
+    getDeclaringClass().makeFieldTraced(this);
+  }

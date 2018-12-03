@@ -1,0 +1,5 @@
+    private void writeNextImpl() {
+        addLine("\tbool Next() {");
+        addLine("\t\treturn m_dtlRecSet.Next();");
+        addLine("\t}");
+    }

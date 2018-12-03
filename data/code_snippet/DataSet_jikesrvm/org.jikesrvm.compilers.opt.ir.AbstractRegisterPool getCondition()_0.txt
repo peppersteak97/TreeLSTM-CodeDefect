@@ -1,0 +1,5 @@
+  public Register getCondition() {
+    Register reg = makeNewReg();
+    reg.setCondition();
+    return reg;
+  }

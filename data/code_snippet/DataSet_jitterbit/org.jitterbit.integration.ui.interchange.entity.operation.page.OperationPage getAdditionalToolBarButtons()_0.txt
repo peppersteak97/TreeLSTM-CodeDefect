@@ -1,0 +1,13 @@
+    protected List<JButton> getAdditionalToolBarButtons() {
+        m_activeObjectActions = new ArrayList<ActiveObjectPageAction>();
+        List<JButton> btns = new ArrayList<JButton>();
+        for (InterchangeActionFactory factory : ADDITIONAL_PAGE_ACTIONS) {
+            ActiveObjectPageAction a = new ActiveObjectPageAction(
+                            getObject(), factory, getView());
+            m_activeObjectActions.add(a);
+            btns.add(createToolBarButton(a));
+        }
+        btns.add(null);
+        
+        return btns;
+    }

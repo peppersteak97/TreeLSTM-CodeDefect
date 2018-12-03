@@ -1,0 +1,3 @@
+    public DatabaseObjectType getObjectType() {
+        return m_objectType;
+    }

@@ -1,0 +1,7 @@
+  public void testBraceLastCharOnLine() throws BadLocationException {
+    _setDocText("{\n");
+    assertTrue("Brace only char on line.", _rule.testApplyRule(_doc, 2, Indenter.IndentReason.OTHER));
+    
+    _setDocText("void foo() {\n");
+    assertTrue("Brace last char on line.", _rule.testApplyRule(_doc, 13, Indenter.IndentReason.OTHER));
+  }

@@ -1,0 +1,8 @@
+	public String nextToken() {
+		if( hasMoreTokens() ) {
+			String s = m_sNextToken;
+			m_sNextToken = null;
+			return s;
+		}
+		throw new NoSuchElementException();
+	}

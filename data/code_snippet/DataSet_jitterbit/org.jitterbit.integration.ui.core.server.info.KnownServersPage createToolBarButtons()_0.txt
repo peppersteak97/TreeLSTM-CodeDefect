@@ -1,0 +1,5 @@
+    protected List<JButton> createToolBarButtons() {
+        List<JButton> buttons =  m_ui.getToolBarButtons();
+        buttons.addAll(super.createToolBarButtons());
+        return buttons;
+    }

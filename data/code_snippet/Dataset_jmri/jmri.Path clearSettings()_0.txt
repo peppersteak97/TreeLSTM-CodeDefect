@@ -1,0 +1,5 @@
+	public void clearSettings() {
+		for (int i = _beans.size();i>0;i--) {
+			_beans.remove(i-1);
+		}
+	}

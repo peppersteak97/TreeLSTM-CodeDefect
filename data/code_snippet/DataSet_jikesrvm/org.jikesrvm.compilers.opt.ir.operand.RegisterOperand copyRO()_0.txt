@@ -1,0 +1,9 @@
+  public RegisterOperand copyRO() {
+    RegisterOperand temp = new RegisterOperand(getRegister(), type);
+    temp.info = info;
+    temp.flags = flags;
+    temp.flags2 = flags2;
+    temp.scratchObject = scratchObject;
+    if (VM.VerifyAssertions) verifyPreciseType();
+    return temp;
+  }

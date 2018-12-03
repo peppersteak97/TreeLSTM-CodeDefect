@@ -1,0 +1,63 @@
+  public void testMultilineIndentAfterScroll() throws BadLocationException, InterruptedException {
+    final String text =
+      "public class stuff {\n" +
+      "private int _int;\n" +
+      "private Bar _bar;\n" +
+      "public void foo() {\n" +
+      "_bar.baz(_int);\n" +
+      "}\n" +
+      "}\n";
+    
+    final String indented =
+      "public class stuff {\n" +
+      "  private int _int;\n" +
+      "  private Bar _bar;\n" +
+      "  public void foo() {\n" +
+      "    _bar.baz(_int);\n" +
+      "  }\n" +
+      "}\n";
+    
+    final int newPos = 20;
+    
+    final DefinitionsPane pane = _frame.getCurrentDefPane();
+    final OpenDefinitionsDocument doc = pane.getOpenDefDocument();
+    
+    setConfigSetting(OptionConstants.INDENT_LEVEL, Integer.valueOf(2));
+
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        doc.append(text, null);
+        pane.setCaretPosition(0);
+        pane.endCompoundEdit(); 
+      } 
+    });
+    
+    Utilities.clearEventQueue();
+    assertEquals("Should have inserted correctly.", text, doc.getText());
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { doc.indentLines(0, doc.getLength()); }
+    });
+    
+    assertEquals("Should have indented.", indented, doc.getText());
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        doc.getUndoManager().undo();
+      }
+    }); 
+
+    assertEquals("Should have undone.", text, doc.getText());
+    
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        pane.setCaretPosition(newPos);
+        doc.getUndoManager().redo();
+      }
+    });
+    Utilities.clearEventQueue();
+    
+    assertEquals("redo",indented, doc.getText());
+    _log.log("testMultilineIndentAfterScroll completed");
+  }

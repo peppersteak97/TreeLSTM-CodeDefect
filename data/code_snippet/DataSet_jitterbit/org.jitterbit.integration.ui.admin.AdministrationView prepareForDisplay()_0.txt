@@ -1,0 +1,12 @@
+    public boolean prepareForDisplay() {
+        initializeContextMenuManager();
+        if (!super.prepareForDisplay()) {
+            return false;
+        }
+        setupEventHub();
+        initializePageManager();
+        initializeMainMenu();
+        initializeToolBarManager();
+        initializeControlPanel();
+        return true;
+    }

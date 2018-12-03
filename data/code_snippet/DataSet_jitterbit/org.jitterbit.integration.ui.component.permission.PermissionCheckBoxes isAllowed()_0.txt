@@ -1,0 +1,3 @@
+    boolean isAllowed() {
+        return m_allowBox.isSelected();
+    }

@@ -1,0 +1,4 @@
+    public void dispose() {
+        if (pane!=null) pane.dispose();
+        super.dispose();
+    }

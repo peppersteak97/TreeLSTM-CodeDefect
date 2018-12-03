@@ -1,0 +1,21 @@
+	public Date getTime() {
+		issueDeferredGetTime = true;
+        Date now = internalClock.getTime();
+        if (lastClockReadPacket != null) {
+			if (nceLast1224) {	
+	            now.setHours(nceLastHour);
+			} else {
+				if (nceLastAmPm) {	
+		            now.setHours(nceLastHour);
+				} else {
+		            now.setHours(nceLastHour + 12);
+				}
+			}
+            now.setMinutes(nceLastMinute);
+            now.setSeconds(nceLastSecond);
+        }
+        if (DEBUG_SHOW_PUBLIC_CALLS && log.isDebugEnabled()){
+        	log.debug("getTime returning: " + now);
+        }
+        return(now);
+	}

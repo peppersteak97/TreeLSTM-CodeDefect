@@ -1,0 +1,8 @@
+    private static void customizeWindowsToolbarUI() {
+        if (CUSTOMIZE_WINDOWS_TOOLBAR) {
+            UIManager.put("ToolBarUI",
+                            "com.sun.java.swing.plaf.windows.WindowsToolBarUI");
+            UIManager.put("ToolBarSeparatorUI",
+                            "com.sun.java.swing.plaf.windows.WindowsToolBarSeparatorUI");
+        }
+    }

@@ -1,0 +1,3 @@
+    public ProcessMessage getDataObject() {
+        return (ProcessMessage)getKongaObject();
+    }

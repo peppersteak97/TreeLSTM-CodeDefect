@@ -1,0 +1,3 @@
+                        if (isNoneSourceToFirstTargetPageTransition()) {
+                            page = getTargetStartPage();
+                        }

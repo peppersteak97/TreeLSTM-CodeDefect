@@ -1,0 +1,20 @@
+    void setDurationPushed() {
+        getProgrammer();
+        status.setText(res.getString("StatusProgramming"));
+        int val = Integer.parseInt(length.getText())/256;
+        
+        try {
+           p.writeCV(253, val, new ProgListener() {
+                public void programmingOpReply(int value, int retval) {
+                    synchronized (this) {
+                        try {
+                        } catch (InterruptedException i) {}
+                    }
+                    durationPart2();
+                }
+            });
+        } catch (ProgrammerException e) {
+            status.setText(res.getString("StatusError")+e);
+            releaseProgrammer();
+        } 
+    }

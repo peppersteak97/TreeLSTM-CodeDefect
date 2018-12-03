@@ -1,0 +1,7 @@
+  public RVMField peekResolvedField() {
+    if (resolvedMember != null) return resolvedMember;
+
+    RVMClass declaringClass = (RVMClass) type.peekType();
+    if (declaringClass == null) return null;
+    return resolveInternal(declaringClass);
+  }

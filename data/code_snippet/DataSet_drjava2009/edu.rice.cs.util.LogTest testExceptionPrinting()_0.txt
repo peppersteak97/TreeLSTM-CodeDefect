@@ -1,0 +1,53 @@
+  public void testExceptionPrinting() throws IOException {
+    
+    File file2 = IOUtil.createAndMarkTempFile("logtest002",".txt");
+    
+    Date earlier = new Date();
+    
+    Log log2 = new Log(file2, true);
+    
+    
+    try { throw new ArrayIndexOutOfBoundsException(); }
+    catch (ArrayIndexOutOfBoundsException e) {
+      log2.log("Message 1", e);
+    }
+    
+    String method = null;
+    try { throw new NullPointerException(); }
+    catch (NullPointerException e) {
+      StackTraceElement[] stes = e.getStackTrace();
+      method = "\tat "+stes[0].toString();
+      log2.log("Message 2", stes);
+    }
+    
+    BufferedReader fin = new BufferedReader(new FileReader(file2));
+    Date now = new Date();
+    
+    String s0 = fin.readLine();
+    Date time0 = parse(s0);
+    assertTrue("Log not opened after 'earlier' and before 'now'", withinTolerance(earlier, time0, now));
+    
+    String log2OpenMsg = "Log '" + file2.getName() + "' opened: ";
+    assertEquals("Incorrect log open message", log2OpenMsg , getStringAfterDate(s0).substring(0, log2OpenMsg.length()));
+    
+    String s1 = fin.readLine();
+    Date time1 = parse(s1);
+    assertTrue("Date of message 1 not after 'earlier' and before 'now'", withinTolerance(earlier, time1, now));
+    assertTrue("Date of message 1 not after 'log opened' and before 'now'", withinTolerance(time0, time1, now));
+    assertEquals("Log exception 1", "java.lang.ArrayIndexOutOfBoundsException", fin.readLine());
+    
+    String s2;
+    Date time2;
+    do {
+      s2 = fin.readLine();
+    }
+    while (time2 == null); 
+    
+    
+    assertTrue("Date of message 2 not after 'earlier' and before 'now'", withinTolerance(earlier, time2, now));
+    assertTrue("Date of message 2 not after 'message 1' and before 'now'", withinTolerance(time1, time2, now)); 
+    assertEquals("Log message 2", "Message 2", getStringAfterDate(s2));
+    assertEquals("Log exception 2 (trace line 1)", method, fin.readLine());
+    
+    fin.close();
+  }   

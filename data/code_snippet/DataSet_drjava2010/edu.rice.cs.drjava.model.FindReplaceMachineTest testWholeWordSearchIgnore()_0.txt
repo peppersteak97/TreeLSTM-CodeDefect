@@ -1,0 +1,55 @@
+  public void testWholeWordSearchIgnore() throws BadLocationException {
+    _doc.insertString(0, IGNORE_TEXT, null);
+    _initFrm(0);
+    _frm.setFindWord("plt");
+    _frm.setMatchWholeWord();
+    _frm.setIgnoreCommentsAndStrings(true);
+    _frm.setSearchBackwards(false);
+    
+    _testFindNextSucceeds(_frm, 0, 12);
+    _testFindNextSucceeds(_frm, 0, 25);
+    _testFindNextSucceeds(_frm, 0, 40);
+    _testFindNextSucceeds(_frm, 0, 53);
+    _testFindNextSucceeds(_frm, 0, 66);
+    _testFindNextSucceeds(_frm, 0, 75);
+    _testFindNextSucceeds(_frm, 0, 85);
+    _testFindNextSucceeds(_frm, 0, 95);
+    _frm.setLastFindWord();
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 0, 82);
+    _testFindNextSucceeds(_frm, 0, 72);
+    _testFindNextSucceeds(_frm, 0, 63);
+    _testFindNextSucceeds(_frm, 0, 50);
+    _testFindNextSucceeds(_frm, 0, 37);
+    _testFindNextSucceeds(_frm, 0, 22);
+    _testFindNextSucceeds(_frm, 0, 9);
+    _testFindNextSucceeds(_frm, 0, 92);
+    
+    _frm.setSearchBackwards(false);
+    _frm.setFindWord("comment");
+    _testFindNextSucceeds(_frm, 0, 152);
+    _testFindNextSucceeds(_frm, 0, 206);
+    _testFindNextSucceeds(_frm, 0, 358);
+    
+    _frm.setLastFindWord();
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 0, 199);
+    _testFindNextSucceeds(_frm, 0, 145);
+    _testFindNextSucceeds(_frm, 0, 351);
+    
+    _frm.setSearchBackwards(false);
+    _frm.setFindWord("@");
+    _testFindNextSucceeds(_frm, 0, 291);
+    
+    _frm.setLastFindWord();
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 0, 290);
+    
+    _frm.setSearchBackwards(false);
+    _frm.setFindWord("string");
+    _testFindNextSucceeds(_frm, 0, 246);
+    
+    _frm.setLastFindWord();
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 0, 240);
+  }

@@ -1,0 +1,9 @@
+    public List<IntegrationEntity> getAllItems() {
+        List<IntegrationEntity> items = new ArrayList<IntegrationEntity>();
+        for (IntegrationEntity r : getAllChildren()) {
+            if (!(r instanceof Folder)) {
+                items.add(r);
+            }
+        }
+        return items;
+    }

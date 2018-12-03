@@ -1,0 +1,3 @@
+	protected void finalize() {
+		m_route.removeRoutePositionChangedListener(this);
+	}

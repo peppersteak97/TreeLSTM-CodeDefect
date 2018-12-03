@@ -1,0 +1,3 @@
+    public IOperationUi getUi() {
+        return (IOperationUi) super.getUi();
+    }

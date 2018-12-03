@@ -1,0 +1,6 @@
+    public void start() {
+        Thread t = threadVar.get();
+        if (t != null) {
+            t.start();
+        }
+    }

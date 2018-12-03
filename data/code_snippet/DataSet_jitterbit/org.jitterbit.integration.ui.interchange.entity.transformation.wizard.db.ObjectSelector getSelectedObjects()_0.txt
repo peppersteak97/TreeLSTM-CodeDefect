@@ -1,0 +1,10 @@
+    public Set<DatabaseObject> getSelectedObjects() {
+        Set<DatabaseObject> items = 
+            new TreeSet<DatabaseObject>(new DatabaseObjectComparator());
+        for (Object o : m_objectSelector.getTargetObjects()) {
+            if (o instanceof DatabaseObjectListItem) {
+                items.add(((DatabaseObjectListItem) o).Item);
+            }
+        }
+        return items;
+    }

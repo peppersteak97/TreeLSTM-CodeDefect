@@ -1,0 +1,6 @@
+    private void showBanner() {
+        assert !m_isBannerVisible;
+        m_isBannerVisible = true;
+        m_banner.addToParent(m_holder, null);
+        m_layoutSupport.fireLayoutChanged();
+    }

@@ -1,0 +1,7 @@
+  protected void dispose() {
+    transition(State.FRESH, State.DISPOSED);
+    if (_masterStub.isResolved()) { 
+      try { UnicastRemoteObject.unexportObject(this, true); }
+      catch (NoSuchObjectException e) { error.log(e); }
+    }
+  }

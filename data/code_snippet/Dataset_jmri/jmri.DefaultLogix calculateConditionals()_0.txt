@@ -1,0 +1,16 @@
+	public void calculateConditionals() {
+		if (mNumConditionals>0) {
+			String cName = "";
+			Conditional c = null;
+			for (int i = 0;i<mNumConditionals;i++) {
+				cName = getConditionalByNumberOrder(i);
+				c = InstanceManager.conditionalManagerInstance().getBySystemName(cName);
+				if (c==null) {
+					log.error("Invalid conditional system name when calculating Logix - "+cName);
+				}
+				else {
+					c.calculate(mEnabled);
+				}
+			}
+		}
+	}

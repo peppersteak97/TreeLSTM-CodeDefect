@@ -1,0 +1,3 @@
+    public boolean isDecoratingDeployDirtyNodes() {
+        return m_isDecoratingDeployDirtyItems;
+    }

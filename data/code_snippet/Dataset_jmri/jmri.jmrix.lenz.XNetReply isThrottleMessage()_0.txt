@@ -1,0 +1,8 @@
+        if (this.isThrottleMessage()) {
+            int a1 = this.getElement(2);
+            int a2 = this.getElement(3);
+	    if(a1==0) 
+	       return(a2);
+	    else 	
+               return (((a1 * 256) & 0xFF00) + (a2 &0xFF) - 0xC000);
+        }

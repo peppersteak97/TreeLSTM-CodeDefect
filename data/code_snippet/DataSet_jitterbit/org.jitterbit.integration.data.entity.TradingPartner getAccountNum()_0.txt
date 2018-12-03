@@ -1,0 +1,3 @@
+    public String getAccountNum() {
+        return getProperty(ACCOUNT_NUM);
+    }

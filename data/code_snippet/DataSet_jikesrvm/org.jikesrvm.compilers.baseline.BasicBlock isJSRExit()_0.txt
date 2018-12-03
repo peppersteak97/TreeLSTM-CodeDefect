@@ -1,0 +1,3 @@
+  public boolean isJSRExit() {
+    return ((state & JSREXIT) == JSREXIT);
+  }

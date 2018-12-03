@@ -1,0 +1,11 @@
+    public DatabaseStructure clone() throws CloneNotSupportedException {
+        DatabaseStructure clone = (DatabaseStructure) super.clone();
+        clone.m_dbTables = m_dbTables.getCopy();
+        clone.m_dbFields = m_dbFields.getCopy();
+        clone.m_relations = m_relations.getCopy();
+        clone.m_sqlScript = m_sqlScript.getCopy();
+        clone.m_treeFilters = m_treeFilters.getCopy();
+
+
+        return clone;
+    }

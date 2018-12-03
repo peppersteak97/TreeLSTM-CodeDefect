@@ -1,0 +1,14 @@
+    protected ITreeNodeDecorator<IIntegrationTreeNodeDecor> createDecorator() {
+        return new DefaultIntegrationTreeNodeDecorator(this) {
+            
+            @Override
+            protected Icon getIcon(IIntegrationTreeNodeDecor decor) {
+                return PackageResources.RootNode.ICON;
+            }
+            
+            @Override
+            protected StyleSheetTextClass getStyleSheetClass(IIntegrationTreeNodeDecor decor) {
+                return IntegrationUiStyleSheet.TreeRootFolderText;
+            }
+        };
+    }

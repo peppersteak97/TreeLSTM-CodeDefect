@@ -1,0 +1,20 @@
+  private void handleDisconnectedException() throws DebugException {
+    EventQueue queue = _vm.eventQueue();
+    while (_connected) {
+      try {
+        EventSet eventSet = queue.remove();
+        EventIterator iter = eventSet.eventIterator();
+        while (iter.hasNext()) {
+          Event event = iter.nextEvent();
+          if (event instanceof VMDeathEvent) _handleVMDeathEvent((VMDeathEvent)event);
+          else if (event instanceof VMDisconnectEvent)  _handleVMDisconnectEvent((VMDisconnectEvent)event);
+        }
+      }
+      catch (InterruptedException ie) {
+        _log("InterruptedException after a disconnected exception.", ie);
+      }
+      catch (VMDisconnectedException de) {
+        _log("A second VMDisconnectedException.", de);
+      }
+    }
+  }

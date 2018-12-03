@@ -1,0 +1,9 @@
+	public String longDescription() {
+		if( getCause() != null ) {
+			StringBuilder sb = new StringBuilder(shortDescription());
+			sb.append( KongaIoUtils.LINE_BREAK );
+			sb.append( getCause().toString() );
+			return sb.toString();
+		}
+		return shortDescription();
+	}

@@ -1,0 +1,7 @@
+	static public TurnoutOperationManager getInstance() {
+		if (theInstance==null) {
+			theInstance = new TurnoutOperationManager();
+			theInstance.loadOperationTypes();
+		}
+		return theInstance;
+	}

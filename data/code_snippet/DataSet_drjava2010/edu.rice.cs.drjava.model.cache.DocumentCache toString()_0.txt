@@ -1,0 +1,1 @@
+    public String toString() { return "DocManager for " + _rec.toString() + "[stat = " + _stat + "]"; } 

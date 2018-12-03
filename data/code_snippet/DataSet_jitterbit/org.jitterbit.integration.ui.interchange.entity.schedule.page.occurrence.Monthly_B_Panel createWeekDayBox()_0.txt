@@ -1,0 +1,4 @@
+    private void createWeekDayBox() {
+        m_weekDayBox = new DayOfTheWeekComboBox();
+        ComponentFactories.comboBoxFactory().customize(m_weekDayBox, true);
+    }

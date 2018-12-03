@@ -1,0 +1,3 @@
+    public List<String> getServerHistory() {
+        return m_liServers;
+    }

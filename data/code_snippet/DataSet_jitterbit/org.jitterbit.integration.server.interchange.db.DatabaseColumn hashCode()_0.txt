@@ -1,0 +1,7 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = hash*37 + ((m_name == null) ? 0 : m_name.hashCode());
+        hash = hash*37 + ((m_dbObject == null) ? 0 : m_dbObject.hashCode());
+        hash =  hash*37 + (m_bPrimaryKey ? 1 : 0);
+        return hash;
+    }

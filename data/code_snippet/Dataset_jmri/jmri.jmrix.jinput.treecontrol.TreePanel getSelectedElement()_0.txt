@@ -1,0 +1,10 @@
+    public UsbNode getSelectedElement() {
+        if (!dTree.isSelectionEmpty() && dTree.getSelectionPath()!=null ) {
+            log.debug("getSelectedIcon with "+dTree.getSelectionPath().toString());
+            TreePath path = dTree.getSelectionPath();
+            
+            int level = path.getPathCount();
+            
+            return (UsbNode)path.getPathComponent(level-1);
+        } else return null;
+    }

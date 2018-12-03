@@ -1,0 +1,17 @@
+  private int getFreeOptimizationPlan() {
+    synchronized (optimizationPlanLocks) {
+      for (int i = 0; i < optimizationPlanLocks.size(); i++) {
+        if (!optimizationPlanLocks.get(i)) {
+          optimizationPlanLocks.set(i, Boolean.TRUE);
+          return i;
+        }
+      }
+      OptimizationPlanElement[] optimizationPlan;
+      OptOptions cloneOptions = masterOptions.dup();
+      optimizationPlan = OptimizationPlanner.createOptimizationPlan(cloneOptions);
+      optimizationPlans.addElement(optimizationPlan);
+      optimizationPlanLocks.addElement(Boolean.TRUE);
+      options.addElement(cloneOptions);
+      return optimizationPlanLocks.size() - 1;
+    }
+  }

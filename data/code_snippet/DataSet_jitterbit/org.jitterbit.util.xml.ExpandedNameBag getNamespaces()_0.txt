@@ -1,0 +1,4 @@
+    public String[] getNamespaces() {
+        Set<String> keys = m_uriToExpandedName.keySet();
+        return keys.toArray(new String[keys.size()]);
+    }

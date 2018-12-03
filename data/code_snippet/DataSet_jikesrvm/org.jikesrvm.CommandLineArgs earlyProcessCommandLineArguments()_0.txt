@@ -1,0 +1,135 @@
+  static void earlyProcessCommandLineArguments() {
+    for (int i = 0; i < app_name_pos; i++) {
+      String arg = args[i];
+      PrefixType type = arg_types[i];
+      if (type == PrefixType.INVALID_ARG) continue;
+      Prefix p = findPrefix(type);
+      if (DEBUG) VM.sysWriteln(" CommandLineArgs.earlyProcessCLA(" + p + arg + " - " + type + ")");
+      switch (type) {
+
+        case CLASSPATH_ARG:
+          RVMClassLoader.stashApplicationRepositories(arg);
+          break;
+
+        case JAR_ARG:
+          RVMClassLoader.stashApplicationRepositories(arg);
+          break;
+
+        case ENABLE_ASSERTION_ARG:
+          RVMClassLoader.stashEnableAssertionArg(arg);
+          break;
+
+        case ENABLE_SYSTEM_ASSERTION_ARG:
+          RVMClassLoader.stashEnableAssertionArg(arg);
+          break;
+
+        case DISABLE_ASSERTION_ARG:
+          RVMClassLoader.stashDisableAssertionArg(arg);
+          break;
+
+        case DISABLE_SYSTEM_ASSERTION_ARG:
+          RVMClassLoader.stashDisableAssertionArg(arg);
+          break;
+
+        case VERBOSE_CLS_ARG:
+          VM.verboseClassLoading = true;
+          break;
+
+        case VERBOSE_JNI_ARG:
+          VM.verboseJNI = true;
+          break;
+
+          int nProcs;
+          if (arg.equals("all")) {
+            /* Assume sysCall.sysNumProcessors() always returns a sane
+          value.  */
+            nProcs = sysCall.sysNumProcessors();
+          } else {
+            nProcs = primitiveParseInt(arg);
+          }
+          if (nProcs < 1) {
+            VM.sysWrite("vm: ", p.value, " needs an argument that is at least 1");
+            VM.sysWriteln(", but found ", arg);
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          RVMThread.numProcessors = nProcs;
+          break;
+
+          MemoryManager.processCommandLineArg("help");
+          break;
+          MemoryManager.processCommandLineArg(arg);
+          break;
+
+        case IRC_HELP_ARG:
+          RuntimeCompiler.processCommandLineArg("-X:irc:", "help");
+          break;
+          RuntimeCompiler.processCommandLineArg("-X:irc:", arg);
+          break;
+
+        case RECOMP_HELP_ARG:
+          if (VM.BuildForAdaptiveSystem) {
+            Controller.addOptCompilerOption("opt:help");
+          } else {
+            VM.sysWriteln("vm: nonadaptive configuration; -X:recomp is not a legal prefix in this configuration");
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          break;
+        case RECOMP_ARG:
+          if (VM.BuildForAdaptiveSystem) {
+            Controller.addOptCompilerOption("opt" + arg);
+          } else {
+            VM.sysWriteln("vm: nonadaptive configuration; -X:recomp is not a legal prefix in this configuration");
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          break;
+
+          if (VM.BuildForAdaptiveSystem) {
+            Controller.processCommandLineArg("help");
+          } else {
+            VM.sysWrite("vm: nonadaptive configuration; -X:aos is not a legal prefix in this configuration\n");
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          break;
+          if (VM.BuildForAdaptiveSystem) {
+            Controller.processCommandLineArg(arg);
+          } else {
+            VM.sysWrite("vm: nonadaptive configuration; -X:aos is not a legal prefix in this configuration\n");
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          break;
+
+        case BASE_HELP_ARG:
+          BaselineOptions.printHelp("-X:base:");
+          break;
+          BaselineCompiler.processCommandLineArg(p.value, arg);
+          break;
+
+        case OPT_HELP_ARG:
+          if (VM.BuildForAdaptiveSystem) {
+            RuntimeCompiler.processOptCommandLineArg("-X:opt:", "help");
+          } else {
+            VM.sysWriteln("vm: You are not using a system that includes the optimizing compiler.");
+            VM.sysWriteln("  Illegal command line argument prefix '-X:opt'");
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          break;
+          if (VM.BuildForAdaptiveSystem) {
+            RuntimeCompiler.processOptCommandLineArg("-X:opt:", arg);
+            Controller.addOptCompilerOption("opt:" + arg);
+          } else {
+            VM.sysWriteln("vm: You are not using a system that includes the optimizing compiler.");
+            VM.sysWriteln("  Illegal command line argument prefix '-X:opt'");
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          break;
+
+          Options.printHelp();
+          break;
+          if (!Options.process(arg)) {
+            VM.sysWriteln("Unrecognized command line argument ", p.value, arg);
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          break;
+      }
+    }
+  }

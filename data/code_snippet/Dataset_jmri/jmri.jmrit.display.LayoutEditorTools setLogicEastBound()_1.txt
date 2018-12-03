@@ -1,0 +1,30 @@
+	private void setLogicEastBound() {
+		LayoutBlock eastBlock = eastTrack.getLayoutBlock();
+		Sensor eastBlockOccupancy = eastBlock.getOccupancySensor();
+		if (eastBlockOccupancy==null) {
+			JOptionPane.showMessageDialog(setSignalsAtBoundaryFrame,
+				java.text.MessageFormat.format(rb.getString("InfoMessage4"),
+					new String[]{eastBlock.getUserName()}), 
+						null,JOptionPane.INFORMATION_MESSAGE);						
+			return;
+		}
+		SignalHead nextHead = getNextSignalFromObject(eastTrack,
+													(Object)boundary);
+		if ( (nextHead==null) && (!reachedEndBumper()) ) {
+			JOptionPane.showMessageDialog(setSignalsAtBoundaryFrame,
+				java.text.MessageFormat.format(rb.getString("InfoMessage5"),
+					new String[]{eastBlock.getUserName()}), 
+						null,JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		if (!initializeBlockBossLogic(eastBoundField.getText().trim())) return;
+		logic.setMode(BlockBossLogic.SINGLEBLOCK);
+		logic.setSensor1(eastBlockOccupancy.getSystemName());
+		if (nextHead!=null) {
+			logic.setWatchedSignal1(nextHead.getSystemName(),false);
+		}
+		if (auxSignal!=null) {
+			logic.setWatchedSignal1Alt(auxSignal.getSystemName());
+		}
+		finalizeBlockBossLogic();
+	}

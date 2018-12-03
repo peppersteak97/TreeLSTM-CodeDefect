@@ -1,0 +1,11 @@
+    protected List<JButton> createToolBarButtons() {
+        List<JButton> buttons = KongaListUtils.asList(
+                        createRefreshButton(), null, createDeployButton());
+        List<JButton> genericButtons = super.createToolBarButtons();
+        if (!genericButtons.isEmpty()) {
+            buttons.add(null);
+            buttons.addAll(genericButtons);
+        }
+
+        return buttons;
+    }

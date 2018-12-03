@@ -1,0 +1,13 @@
+    public static synchronized void initialize() throws DataLocationMetaDataXmlException {
+        if (s_instance == null) {
+            try {
+                s_instance = new DataLocationMetaData();
+                s_instance.loadData();
+                s_initializationLatch.countDown();
+            }
+            catch (DataLocationMetaDataXmlException e) {
+                s_instance = null;
+                throw e;
+            }
+        }
+    }

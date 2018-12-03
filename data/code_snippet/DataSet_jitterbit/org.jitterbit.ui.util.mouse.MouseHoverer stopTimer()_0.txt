@@ -1,0 +1,5 @@
+    protected final void stopTimer() {
+        if (m_timer != null) {
+            m_timer.stop();
+        }
+    }

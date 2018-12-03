@@ -1,0 +1,3 @@
+    public FtpTransferType getTransferType() {
+        return m_transferTypePanel.getTransferType();
+    }

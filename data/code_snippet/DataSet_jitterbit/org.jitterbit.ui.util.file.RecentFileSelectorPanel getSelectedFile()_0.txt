@@ -1,0 +1,7 @@
+    public File getSelectedFile() {
+        Object selected = m_comboInputField.getSelectedItem();
+        if (selected instanceof IFileUi) {
+            return ((IFileUi) selected).getFile();
+        }
+        return super.getSelectedFile();
+    }

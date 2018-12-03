@@ -1,0 +1,27 @@
+  public void testWholeWordSearchOnTestString1() throws BadLocationException {
+    _doc.insertString(0, FIND_WHOLE_WORD_TEST_1, null);
+    _initFrm(0);
+    _frm.setFindWord("bar");
+    _frm.setMatchWholeWord();
+    _frm.setSearchBackwards(false);
+    
+    _testFindNextSucceeds(_frm, 0, 91);
+    _testFindNextSucceeds(_frm, 0, 128);
+    _testFindNextSucceeds(_frm, 0, 166);
+    _frm.setLastFindWord();
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 0, 125);
+    _testFindNextSucceeds(_frm, 0, 88);
+    _testFindNextSucceeds(_frm, 0, 163);
+    
+    _frm.setFindWord("ubl");
+    _testFindNextFails(_frm, 0, 163);
+    
+    _frm.setSearchBackwards(false);
+    _frm.setFindWord("pub");
+    _testFindNextFails(_frm, 0, 163);
+    
+    _frm.setSearchBackwards(true);
+    _frm.setFindWord("pub");
+    _testFindNextFails(_frm, 0, 163);
+  }

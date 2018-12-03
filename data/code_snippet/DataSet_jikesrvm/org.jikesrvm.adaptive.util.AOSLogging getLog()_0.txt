@@ -1,0 +1,3 @@
+  public PrintStream getLog() {
+    return log;
+  }

@@ -1,0 +1,4 @@
+    public boolean isCSBusyMessage() {
+        return (this.getElement(0)==XNetConstants.CS_INFO && 
+                this.getElement(1)==XNetConstants.CS_BUSY);
+    }	

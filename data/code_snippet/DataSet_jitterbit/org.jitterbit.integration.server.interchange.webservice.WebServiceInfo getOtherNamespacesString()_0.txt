@@ -1,0 +1,15 @@
+    public String getOtherNamespacesString() {
+        StringBuilder sb = new StringBuilder();
+        int n = 0;
+        for (String ns : m_OtherNamespaces) {
+            if (ns.startsWith("name=")) { 
+                continue;
+            }
+            if (n > 0) {
+                sb.append(OTHER_NAMESPACES_SEPARATOR);
+            }
+            sb.append(ns);
+            ++n;
+        }
+        return sb.toString();
+    }

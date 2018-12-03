@@ -1,0 +1,8 @@
+    public boolean cancel() {
+        boolean b = super.cancel();
+        if (b) {
+            setStatus(PackageResources.DownloadJob.CANCELLED);
+            m_internalCallback.cancelled();
+        }
+        return b;
+    }

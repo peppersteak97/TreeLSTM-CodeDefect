@@ -1,0 +1,15 @@
+    public void dispose() {
+        mHead.removePropertyChangeListener(this);
+        mHead = null;
+
+        red = null;
+        flashRed = null;
+        yellow = null;
+        flashYellow = null;
+        green = null;
+        flashGreen = null;
+        dark = null;
+        held = null;
+
+        super.dispose();
+    }

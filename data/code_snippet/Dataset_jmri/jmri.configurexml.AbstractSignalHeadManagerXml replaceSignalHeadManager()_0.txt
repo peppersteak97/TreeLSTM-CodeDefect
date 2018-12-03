@@ -1,0 +1,12 @@
+    protected void replaceSignalHeadManager() {
+        if (InstanceManager.signalHeadManagerInstance().getClass().getName()
+                .equals(AbstractSignalHeadManager.class.getName()))
+            return;
+        if (InstanceManager.signalHeadManagerInstance() != null)
+            InstanceManager.configureManagerInstance().deregister(
+                InstanceManager.signalHeadManagerInstance() );
+
+        AbstractSignalHeadManager pManager = new AbstractSignalHeadManager();
+        InstanceManager.setSignalHeadManager(pManager);
+        InstanceManager.configureManagerInstance().registerConfig(pManager);
+    }

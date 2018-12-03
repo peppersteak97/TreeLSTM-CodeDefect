@@ -1,0 +1,7 @@
+    public void dispose() {
+        log.debug("dispose");
+
+        release();
+        
+        super.dispose();
+    }

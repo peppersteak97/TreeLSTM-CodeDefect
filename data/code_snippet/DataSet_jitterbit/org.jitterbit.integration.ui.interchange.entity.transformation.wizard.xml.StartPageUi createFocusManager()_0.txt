@@ -1,0 +1,7 @@
+    private void createFocusManager() {
+        m_focusManager = new KongaFocusManager();
+        m_focusManager.addFocusRoot(m_serverXsdSelectorCapsule, 
+                                    new PanelFocusListener(m_radioSelectExisting));
+        m_focusManager.addFocusRoot(m_uploadFilePanelCapsule,
+                                    new PanelFocusListener(m_radioUpload));
+    }

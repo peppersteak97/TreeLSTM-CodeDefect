@@ -1,0 +1,7 @@
+    private void installStdErr() throws IOException {
+        m_savedErr = System.err;
+        Stream s = new Stream(StyledDocumentDefiner.ERR,
+                m_mode == REPLACE ? null : m_savedErr);
+        PrintStream err = new PrintStream(s);
+        System.setErr(err);
+    }

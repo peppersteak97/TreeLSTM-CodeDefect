@@ -1,0 +1,3 @@
+    protected void displayedEntityNameChanged() {
+        m_queueDisplayer.getNavigationControl().setDisplayedSubject(getObject());
+    }

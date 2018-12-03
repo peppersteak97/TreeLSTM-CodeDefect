@@ -1,0 +1,11 @@
+	private boolean consistChanged() {
+		if (consistNum != validConsist(consistTextField.getText())) {
+			JOptionPane.showMessageDialog(NceConsistEditFrame.this,
+					"Press Get to read consist", "NCE Consist",
+					JOptionPane.ERROR_MESSAGE);
+			return true;
+		} else {
+			newConsist = false;
+			return false;
+		}
+	}

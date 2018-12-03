@@ -1,0 +1,18 @@
+   public void writeSubFiles() throws IOException {  
+        int n = numHeaders();
+        for (int i = 1; i< n; i++) {
+            if (headers[i].isWAV()) {
+                writeSubFile(i, ""+i+".wav");
+            } else if (headers[i].isSDF()) {
+                writeSubFile(i, ""+i+".sdf");
+            } else if (headers[i].getType() == 3) {
+                writeSubFile(i, ""+i+".cv");
+            } else if (headers[i].getType() == 4) {
+                writeSubFile(i, ""+i+".txt");
+            } else if (headers[i].isMap()) {
+                writeSubFile(i, ""+i+".map");
+            } else if (headers[i].getType() == 6) {
+                writeSubFile(i, ""+i+".uwav");
+            }
+        }
+    }

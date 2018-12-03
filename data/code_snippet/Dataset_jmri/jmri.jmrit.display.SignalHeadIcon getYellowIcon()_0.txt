@@ -1,0 +1,1 @@
+    public NamedIcon getYellowIcon() { return yellow; }

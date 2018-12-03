@@ -1,0 +1,16 @@
+  private void _refreshDefScrollPane() {
+    _currentDefPane.notifyInactive();
+    
+    OpenDefinitionsDocument doc = _model.getActiveDocument();
+    JScrollPane scroll = _defScrollPanes.get(doc);
+    
+    
+    _reenableScrollBar();
+    
+    int oldLocation = _docSplitPane.getDividerLocation();
+    _docSplitPane.setDividerLocation(oldLocation);
+    
+    _currentDefPane.notifyActive();
+    resetUndo();
+    _updateDebugStatus();
+  }

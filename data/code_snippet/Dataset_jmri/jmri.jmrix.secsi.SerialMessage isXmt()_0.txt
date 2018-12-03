@@ -1,0 +1,1 @@
+    public boolean isXmt()  { return getElement(1)==17;}

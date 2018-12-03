@@ -1,0 +1,3 @@
+  public final boolean isNative() {
+    return (modifiers & ACC_NATIVE) != 0;
+  }

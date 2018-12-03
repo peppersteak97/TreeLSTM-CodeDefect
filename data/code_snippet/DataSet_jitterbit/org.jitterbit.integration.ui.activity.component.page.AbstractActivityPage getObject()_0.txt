@@ -1,0 +1,3 @@
+    public IActivityEntrySubject getObject() {
+        return m_displayedObject;
+    }

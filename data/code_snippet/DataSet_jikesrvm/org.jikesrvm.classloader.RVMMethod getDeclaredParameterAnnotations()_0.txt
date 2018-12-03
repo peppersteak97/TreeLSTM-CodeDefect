@@ -1,0 +1,17 @@
+  public final Annotation[][] getDeclaredParameterAnnotations() {
+    Annotation[][] result;
+    synchronized(declaredParameterAnnotations) {
+      result = declaredParameterAnnotations.get(this);
+    }
+    if (result == null) {
+      RVMAnnotation[][] parameterAnnotations = getParameterAnnotations();
+      result = new Annotation[parameterAnnotations.length][];
+      for (int a = 0; a < result.length; ++a) {
+        result[a] = toAnnotations(parameterAnnotations[a]);
+      }
+      synchronized(declaredParameterAnnotations) {
+        declaredParameterAnnotations.put(this, result);
+      }
+    }
+    return result;
+  }

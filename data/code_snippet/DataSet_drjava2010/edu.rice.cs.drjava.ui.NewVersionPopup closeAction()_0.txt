@@ -1,0 +1,4 @@
+  protected void closeAction() {
+    NewVersionPopup.this.setVisible(false);
+    NewVersionPopup.this.dispose();
+  }

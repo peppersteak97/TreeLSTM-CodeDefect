@@ -1,0 +1,3 @@
+    public String getLBVersion() {
+        return locoBufferVersion;
+    }

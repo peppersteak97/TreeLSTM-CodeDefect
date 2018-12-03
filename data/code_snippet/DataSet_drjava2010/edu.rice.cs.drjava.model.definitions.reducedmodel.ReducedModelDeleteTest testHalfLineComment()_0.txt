@@ -1,0 +1,16 @@
+  public void testHalfLineComment() {
+    model1.insertChar('/');
+    model1.insertChar('/');
+    model1.move(-2);
+    assertEquals("#0.1", 0, model1.absOffset());
+    model1.delete(1);
+    assertEquals("#1.0", "/", model1.currentToken().getType());
+    assertEquals("#1.1", 0, model1.absOffset());
+    model1.insertChar('/');
+    assertEquals("#2.0", 1, model1.absOffset());
+    model1.move(-1);
+    assertEquals("#2.1", 0, model1.absOffset());
+    assertEquals("#2.2", "/", model1.currentToken().getType());
+    model1.delete(1);
+    assertEquals("#3.0", 0, model1.absOffset());
+  }

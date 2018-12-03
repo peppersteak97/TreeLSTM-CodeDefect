@@ -1,0 +1,12 @@
+  public void testSave() throws Exception {
+    XMLConfig xc = new XMLConfig(new StringReader(
+                                                  "<?xml version=\"1.0\" encoding=\"UTF-8\"?><foo a=\"foo.a\">\n"
+                                                    + "  <bar>abc</bar>\n"
+                                                    + "  <fum fee=\"xyz\">def</fum>\n"
+                                                    + "</foo>"));
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL +
+                             "<foo a=\"foo.a\">"+NL +
+                             "  <bar>abc</bar>"+NL +
+                             "  <fum fee=\"xyz\">def</fum>"+NL +
+                             "</foo>"+NL), xc.toString());
+  }

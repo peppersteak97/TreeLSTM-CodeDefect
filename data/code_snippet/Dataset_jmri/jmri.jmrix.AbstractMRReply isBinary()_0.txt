@@ -1,0 +1,1 @@
+    public boolean isBinary() { return _isBinary; }

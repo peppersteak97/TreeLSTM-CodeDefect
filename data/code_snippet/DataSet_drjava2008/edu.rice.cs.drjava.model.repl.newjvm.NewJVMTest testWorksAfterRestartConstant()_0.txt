@@ -1,0 +1,16 @@
+  public void testWorksAfterRestartConstant() throws Throwable {
+    debug.logStart();
+    _log.log("NewJVMTest.testWorksAfterRestartConstant executing");
+
+    _jvm.interpret("5");
+    assertEquals("result", "5", _jvm.returnBuf);
+    
+    synchronized(_testLock) {
+      _testLock.wait();
+    }
+
+    _jvm.interpret("4");
+    assertEquals("result", "4", _jvm.returnBuf);
+    
+    debug.logEnd();
+  }

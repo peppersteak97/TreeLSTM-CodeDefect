@@ -1,0 +1,6 @@
+    synchronized protected void timeout() {
+        if (bootState == CRSENT) {
+            JOptionPane.showMessageDialog(null, "No reply",
+                    "SPROG Version", JOptionPane.ERROR_MESSAGE);
+        }
+    }

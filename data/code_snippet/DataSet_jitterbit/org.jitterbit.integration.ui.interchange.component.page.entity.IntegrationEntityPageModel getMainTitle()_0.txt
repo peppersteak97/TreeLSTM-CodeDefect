@@ -1,0 +1,3 @@
+    public final String getMainTitle() {
+        return m_uiDelegate.getDataObject().getEntityType().getDisplayName();
+    }

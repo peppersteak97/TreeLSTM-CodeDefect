@@ -1,0 +1,6 @@
+    public void load() throws XmlTreeMetaDataException {
+        if (!m_dataHasBeenLoaded) {
+            new TreeMetaDataSaxParser(this).loadData(m_xmlResource);
+            m_dataHasBeenLoaded = true;
+        }
+    }

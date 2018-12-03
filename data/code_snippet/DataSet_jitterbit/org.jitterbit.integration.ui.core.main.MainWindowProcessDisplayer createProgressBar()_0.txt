@@ -1,0 +1,6 @@
+    private void createProgressBar() {
+        m_progressBar = new JProgressBar();
+        m_progressBar.setBackground(BACKGROUND);
+        m_progressBar.setIndeterminate(false);
+        m_progressBar.setVisible(false);
+    }

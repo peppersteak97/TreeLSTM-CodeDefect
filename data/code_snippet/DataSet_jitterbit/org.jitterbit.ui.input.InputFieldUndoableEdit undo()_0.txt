@@ -1,0 +1,3 @@
+    public void undo() throws CannotUndoException {
+        m_wrappee.undo();
+    }

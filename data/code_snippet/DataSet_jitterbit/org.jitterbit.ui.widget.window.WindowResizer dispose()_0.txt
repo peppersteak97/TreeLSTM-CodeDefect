@@ -1,0 +1,6 @@
+    public void dispose() {
+        m_window.removeComponentListener(m_resizeListener);
+        m_window.getRootPane().removeMouseListener(m_mouseHandler);
+        m_window.getRootPane().removeMouseMotionListener(m_mouseHandler);
+        m_window.setCursor(Cursor.getDefaultCursor());
+    }

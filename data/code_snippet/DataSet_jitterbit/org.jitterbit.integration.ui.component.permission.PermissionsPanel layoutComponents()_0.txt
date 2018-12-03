@@ -1,0 +1,68 @@
+    private void layoutComponents() {
+        m_displayer = new JPanel(new GridBagLayout()) {
+
+            @Override
+            public Dimension getMaximumSize() {
+                return getPreferredSize();
+            }
+        };
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(5, 7, 5, 7);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+
+        gbc.gridwidth = 3;
+        Box labels = Box.createHorizontalBox();
+        labels.add(m_leftLabel);
+        labels.add(m_rightLabel);
+        labels.add(Box.createHorizontalGlue());
+        m_displayer.add(labels, gbc);
+
+        StyleSheetTextClass ssc = IntegrationUiStyleSheet.DefaultText;
+
+        gbc.gridwidth = 1;
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        m_displayer.add(ssc.makeJLabel(PackageResources.Labels.ALLOW), gbc);
+        gbc.gridx = 2;
+        m_displayer.add(ssc.makeJLabel(PackageResources.Labels.DENY), gbc);
+
+        ++gbc.gridy;
+
+        gbc.gridx = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        m_displayer.add(ssc.makeJLabel(PackageResources.Labels.FULL_CONTROL), gbc);
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        m_displayer.add(m_allowFullAccessCheck, gbc);
+        gbc.gridx = 2;
+        m_displayer.add(m_denyFullAccessCheck, gbc);
+
+        ++gbc.gridy;
+
+        for (int n = 0; n < SUPPORTED_PERMISSIONS.length; ++n) {
+            PermissionCheckBoxes checks = m_permissionChecks.get(n);
+            gbc.gridx = 0;
+            gbc.anchor = GridBagConstraints.WEST;
+            m_displayer.add(ssc.makeJLabel(SUPPORTED_PERMISSIONS[n].toString()), gbc);
+            gbc.gridx = 1;
+            gbc.anchor = GridBagConstraints.CENTER;
+            ComponentDecorFactory.gridBag(m_displayer, gbc, checks.getAllowBoxDecorator());
+            gbc.gridx = 2;
+            ComponentDecorFactory.gridBag(m_displayer, gbc, checks.getDenyBoxDecorator());
+
+            ++gbc.gridy;
+        }
+
+        if (m_recursiveCheck != null) {
+            gbc.gridx = 0;
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(15, 7, 5, 7);
+            m_displayer.add(m_recursiveCheck, gbc);
+        }
+
+        ++gbc.gridy;
+    }

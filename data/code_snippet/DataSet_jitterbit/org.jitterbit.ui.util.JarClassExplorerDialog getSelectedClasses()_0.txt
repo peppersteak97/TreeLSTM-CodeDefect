@@ -1,0 +1,3 @@
+	public Class[] getSelectedClasses() {
+		return m_arSelectedClasses;
+	}

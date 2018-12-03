@@ -1,0 +1,9 @@
+    private void createComponentsForNewDocument() {
+        createManuallyAction = new CreateManuallyAction();
+        createFromFileAction = new CreateFromFileAction();
+        NewDocumentPanel panel = 
+            new NewDocumentPanel(model, new Action[] { createManuallyAction, createFromFileAction} );
+        stagePanel.add(panel.getUi(), TYPE_AND_FORMAT);
+        documentDefiners.add(panel);
+        model.addPropertyChangeListener(new ModelListener());
+    }

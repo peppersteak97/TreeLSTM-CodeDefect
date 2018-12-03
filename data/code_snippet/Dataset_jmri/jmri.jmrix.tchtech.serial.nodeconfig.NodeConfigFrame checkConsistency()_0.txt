@@ -1,0 +1,70 @@
+    protected boolean checkConsistency() {
+        switch (nodeType) {
+            case SerialNode.MICRO:
+                case SerialNode.PICO:
+                    case SerialNode.MEGA:
+                int numBits = 0;
+                for (int i = 0;i<96;i++) {
+                    if (searchlightBits[i]) numBits ++;
+                }
+                if ( (2*num2LSearchLights) != numBits ) {
+                    statusText1.setText(rb.getString("Error10"));
+                    statusText1.setVisible(true);
+                    errorInStatus1 = true;
+                    resetNotes2();
+                    return (false);
+                }
+                break;
+            case SerialNode.TERA:
+                numCards = 0;
+                boolean atNoCard = false;
+                for (int i = 0; i<64 ; i++) {
+                    if ( (cardType[i].equals(rb.getString("CardTypeOutput"))) || 
+                            (cardType[i].equals(rb.getString("CardTypeInput"))) ) {
+                        if (atNoCard) {
+                            statusText1.setText(rb.getString("Error11"));
+                            statusText1.setVisible(true);
+                            statusText2.setText(rb.getString("Error12"));
+                            errorInStatus1 = true;
+                            errorInStatus2 = true;
+                            return (false);
+                        }
+                        else {
+                            numCards ++;
+                        }
+                    }
+                    else if (cardType[i].equals(rb.getString("CardTypeNone"))) {
+                        atNoCard = true;
+                    }
+                }
+                if ( numCards <= 0 ) {
+                    statusText1.setText(rb.getString("Error13"));
+                    statusText2.setText(rb.getString("Error14"));
+                    statusText1.setVisible(true);
+                    errorInStatus1 = true;
+                    errorInStatus2 = true;
+                    return (false);
+                }
+                if (editMode) {
+                    int numOutput = curNode.numOutputCards();
+                    int numInput = curNode.numInputCards();
+                    if ( numCards<(numOutput+numInput) ) {
+                        if ( javax.swing.JOptionPane.NO_OPTION == 
+                                javax.swing.JOptionPane.showConfirmDialog(this,
+                                rb.getString("ConfirmUpdate1")+"\n"+
+                                rb.getString("ConfirmUpdate2")+"\n"+
+                                rb.getString("ConfirmUpdate3"),
+                                rb.getString("ConfirmUpdateTitle"),
+                                    javax.swing.JOptionPane.YES_NO_OPTION,
+                                        javax.swing.JOptionPane.WARNING_MESSAGE) ) {
+                            return (false);
+                        }
+                    }
+                }
+                break;
+            default:
+                log.warn("Unexpected node type - "+Integer.toString(nodeType));
+                break;
+        }
+        return true;
+    }

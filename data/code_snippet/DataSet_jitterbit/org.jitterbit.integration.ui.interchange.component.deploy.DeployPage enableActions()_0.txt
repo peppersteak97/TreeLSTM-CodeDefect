@@ -1,0 +1,4 @@
+    private void enableActions() {
+        m_deployTriggeringAction.setEnabled(true);
+        m_refreshAction.setEnabled(true);
+    }

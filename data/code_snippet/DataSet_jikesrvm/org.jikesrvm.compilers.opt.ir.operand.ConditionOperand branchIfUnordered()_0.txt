@@ -1,0 +1,18 @@
+  public boolean branchIfUnordered() {
+    switch (value) {
+      case CMPL_EQUAL:
+      case CMPL_GREATER:
+      case CMPG_LESS:
+      case CMPL_GREATER_EQUAL:
+      case CMPG_LESS_EQUAL:
+        return false;
+      case CMPL_NOT_EQUAL:
+      case CMPL_LESS:
+      case CMPG_GREATER_EQUAL:
+      case CMPG_GREATER:
+      case CMPL_LESS_EQUAL:
+        return true;
+      default:
+        throw new OptimizingCompilerException("invalid condition " + this);
+    }
+  }

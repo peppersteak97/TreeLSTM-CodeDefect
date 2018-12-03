@@ -1,0 +1,4 @@
+  public void testImmediateQuit() throws Exception {
+    for (int i = 0; i < 5; i++)  _testMaster.runImmediateQuitTest();
+    _log.log("testImmediateQuit completed");
+  }

@@ -1,0 +1,3 @@
+  boolean noBoundsChecks() {
+    return method.hasNoBoundsCheckAnnotation();
+  }

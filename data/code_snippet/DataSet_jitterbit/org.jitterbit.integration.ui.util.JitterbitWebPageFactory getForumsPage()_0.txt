@@ -1,0 +1,3 @@
+            public IWebPage getForumsPage() {
+                return (FORUM_URL == null) ? null : new DefaultWebPage(FORUM_URL);
+            }

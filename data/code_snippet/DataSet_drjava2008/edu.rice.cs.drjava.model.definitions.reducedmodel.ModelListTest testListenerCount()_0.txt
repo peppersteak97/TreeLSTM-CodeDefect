@@ -1,0 +1,23 @@
+  public void testListenerCount() {
+    ModelList<Character> testList = new ModelList<Character>();
+    
+    assertEquals("No iterators", 0, testList.listenerCount());
+    
+    ModelList<Character>.ModelIterator iter1 = testList.getIterator();
+    
+    assertEquals("One iterator", 1, testList.listenerCount());
+    
+    ModelList<Character>.ModelIterator iter2 = testList.getIterator();
+    
+    assertEquals("Two iterators", 2, testList.listenerCount());
+    
+    iter1.dispose();
+    iter1 = null;
+    
+    assertEquals("Removed first iterator", 1, testList.listenerCount());
+    
+    iter2.dispose();
+    iter2 = null;
+    
+    assertEquals("Removed second iterator", 0, testList.listenerCount());
+  }

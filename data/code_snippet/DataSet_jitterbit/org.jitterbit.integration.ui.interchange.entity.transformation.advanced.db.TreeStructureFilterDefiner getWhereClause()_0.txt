@@ -1,0 +1,6 @@
+    public String getWhereClause() {
+        String where = m_whereClauseArea.getText().trim();
+        if (where.length() == 0) {
+        }
+        s_lastWhereClauses.put(m_dbStructure, where);
+    }

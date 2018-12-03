@@ -1,0 +1,4 @@
+  protected final void emit_prologue() {
+    spTopOffset = emptyStackOffset;
+    genPrologue();
+  }

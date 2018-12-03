@@ -1,0 +1,3 @@
+    public IFileUi[] recentFiles() {
+        return m_files.toArray(new IFileUi[m_files.size()]);
+    }

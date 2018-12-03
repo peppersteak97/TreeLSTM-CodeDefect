@@ -1,0 +1,17 @@
+    private void executeImpl() {
+        IIntegrationEntityUiDelegate uiDel = getActiveUiDelegate();
+        if ((uiDel != null) && ActivityViewUtils.isValidType(uiDel)) {
+            try {
+                IActivityEntrySubject subject = getEntrySubject(uiDel);
+                if (subject != null && subject.isReady()) {
+                    submitJob(subject);
+                    succeeded(null);
+                    return;
+                }
+            }
+            catch (IllegalArgumentException e1) {
+                e1.printStackTrace();
+            }
+        }
+        failed(null);
+    }

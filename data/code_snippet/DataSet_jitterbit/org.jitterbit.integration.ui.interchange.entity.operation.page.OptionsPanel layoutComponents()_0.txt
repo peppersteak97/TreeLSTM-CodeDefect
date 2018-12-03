@@ -1,0 +1,4 @@
+    private void layoutComponents() {
+        InputField[] fields = { m_checkLogWarnings, m_checkHistory };
+        InputFieldLayoutUtils.layoutOneColumn(this, fields, false, false);
+    }

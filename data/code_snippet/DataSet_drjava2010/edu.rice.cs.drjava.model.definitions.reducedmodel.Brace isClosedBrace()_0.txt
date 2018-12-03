@@ -1,0 +1,1 @@
+  public boolean isClosedBrace() { return ((_type == 1) || (_type == 3) || (_type == 5)); }

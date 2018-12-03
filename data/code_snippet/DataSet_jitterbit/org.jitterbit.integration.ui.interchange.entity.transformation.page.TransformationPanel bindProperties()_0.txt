@@ -1,0 +1,4 @@
+    private void bindProperties() {
+        IBoundProperty pc = BoundPropertyControlFactory.newNameControl(m_nameField);
+        m_page.getPageModel().bindProperty(pc);
+    }

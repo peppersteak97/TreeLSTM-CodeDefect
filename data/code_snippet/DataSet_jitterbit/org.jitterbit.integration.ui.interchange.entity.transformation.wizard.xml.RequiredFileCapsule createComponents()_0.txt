@@ -1,0 +1,6 @@
+    private void createComponents() {
+        statusIndicator = new JLabel(EMPTY_ICON);
+        filePathField = ComponentFactories.textFactory().newTextField(30);
+        browseButton = ComponentFactories.buttonFactory().newButton(PackageResources.FilePrompter.BROWSE);
+        browseButton.addActionListener(this);
+    }

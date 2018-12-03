@@ -1,0 +1,7 @@
+  public void freeRegister() {
+    deallocateRegister();
+    Register symbReg = mapsToRegister;
+    if (symbReg != null) {
+      symbReg.clearSpill();
+    }
+  }

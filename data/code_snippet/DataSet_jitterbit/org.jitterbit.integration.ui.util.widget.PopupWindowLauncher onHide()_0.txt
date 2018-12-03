@@ -1,0 +1,5 @@
+    private void onHide() {
+        if (m_windowIsShowing) {
+            m_popupWindow.dispose();
+        }
+    }

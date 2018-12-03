@@ -1,0 +1,3 @@
+    public ScriptCreator getScriptCreator() {
+        return m_scriptCreator;
+    }

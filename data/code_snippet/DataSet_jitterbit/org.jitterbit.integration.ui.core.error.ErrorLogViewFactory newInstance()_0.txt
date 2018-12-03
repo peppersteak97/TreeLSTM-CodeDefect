@@ -1,0 +1,9 @@
+    public static ErrorLogViewFactory newInstance() {
+        return new ErrorLogViewFactory() {
+
+            @Override
+            public IErrorLogView create(IWindowSection section) {
+                return new ErrorLogViewImpl(section);
+            }
+        };
+    }

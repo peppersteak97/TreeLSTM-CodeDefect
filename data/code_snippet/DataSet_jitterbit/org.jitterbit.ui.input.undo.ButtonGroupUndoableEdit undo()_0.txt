@@ -1,0 +1,6 @@
+    public void undo() throws CannotUndoException {
+        super.undo();
+        m_buttonGroup.setSendUndoEvents(false);
+        m_buttonGroup.setSelected(m_previousSelection, true);
+        m_buttonGroup.setSendUndoEvents(true);
+    }

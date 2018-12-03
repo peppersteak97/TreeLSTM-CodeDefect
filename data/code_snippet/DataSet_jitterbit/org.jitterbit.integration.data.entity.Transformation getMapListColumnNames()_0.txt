@@ -1,0 +1,3 @@
+    public static String[] getMapListColumnNames() {
+        return new String[] { "transformation_id", "target_field_id", "transformation" }; 
+    }

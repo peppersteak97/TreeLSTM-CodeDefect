@@ -1,0 +1,1 @@
+  protected InterpretResult.Visitor<Void> resultHandler() { return _handler; }

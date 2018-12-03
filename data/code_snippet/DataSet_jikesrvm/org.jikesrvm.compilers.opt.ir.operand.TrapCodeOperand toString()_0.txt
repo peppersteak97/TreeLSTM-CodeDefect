@@ -1,0 +1,22 @@
+  public String toString() {
+    switch (trapCode) {
+      case RuntimeEntrypoints.TRAP_NULL_POINTER:
+        return "<NULL PTR>";
+      case RuntimeEntrypoints.TRAP_ARRAY_BOUNDS:
+        return "<ARRAY BOUNDS>";
+      case RuntimeEntrypoints.TRAP_DIVIDE_BY_ZERO:
+        return "<DIV BY ZERO>";
+      case RuntimeEntrypoints.TRAP_STACK_OVERFLOW:
+        return "<STACK OVERFLOW>";
+      case RuntimeEntrypoints.TRAP_CHECKCAST:
+        return "<CLASSCAST>";
+      case RuntimeEntrypoints.TRAP_MUST_IMPLEMENT:
+        return "<MUST IMPLEMENT>";
+      case RuntimeEntrypoints.TRAP_STORE_CHECK:
+        return "<OBJARRAY STORE CHECK>";
+      case RuntimeEntrypoints.TRAP_REGENERATE:
+        return "<REGENERATE>";
+      default:
+        return "<UNKNOWN TRAP>";
+    }
+  }

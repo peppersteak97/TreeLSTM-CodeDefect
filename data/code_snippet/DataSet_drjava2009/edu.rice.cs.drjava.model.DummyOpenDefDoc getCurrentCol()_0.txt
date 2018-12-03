@@ -1,0 +1,1 @@
+  public int getCurrentCol() { throw new UnsupportedOperationException("Dummy method"); }

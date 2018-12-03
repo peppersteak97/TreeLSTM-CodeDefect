@@ -1,0 +1,11 @@
+    public String getManualConnectionString() {
+        String s = getProperty(CONNECT_STRING_PROPERTY);
+        if (s == null || s.length() == 0) {
+            return s;
+        }
+        StringBuilder connect = new StringBuilder(s);
+        if (connect.charAt(connect.length() - 1) != ';') {
+        }
+        appendPasswordToManualConnect(connect);
+        return connect.toString();
+    }

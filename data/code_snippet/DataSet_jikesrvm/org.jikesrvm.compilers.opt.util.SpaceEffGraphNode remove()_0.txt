@@ -1,0 +1,11 @@
+  public final SpaceEffGraphNode remove() {
+    SpaceEffGraphNode Prev = prev, Next = next;
+
+    prev = null;
+    next = null;
+
+    if (Prev != null) Prev.next = Next;
+    if (Next != null) Next.prev = Prev;
+
+    return Next;
+  }

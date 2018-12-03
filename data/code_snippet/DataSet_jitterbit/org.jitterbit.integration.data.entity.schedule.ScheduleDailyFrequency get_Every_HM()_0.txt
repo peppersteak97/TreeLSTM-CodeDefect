@@ -1,0 +1,3 @@
+    public int get_Every_HM() {
+        return m_Frequency_Every_HM;
+    }

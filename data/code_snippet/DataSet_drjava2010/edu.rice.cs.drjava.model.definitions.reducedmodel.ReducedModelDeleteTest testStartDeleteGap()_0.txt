@@ -1,0 +1,16 @@
+  public void testStartDeleteGap() {
+    model1.insertChar('/');
+    model1.insertChar('*');
+    insertGap(model1, 2);
+    model1.insertChar('*');
+    model1.insertChar('/');
+    model1.move(-4);
+    model1.delete(2);
+    assertEquals("#0.0", 2, model1.absOffset());
+    assertEquals("#0.1", "*/", model1.currentToken().getType());
+    assertEquals("#0.2", INSIDE_BLOCK_COMMENT, model1.getStateAtCurrent());
+    model1.move(-2);
+    assertEquals("#1.0", 0, model1.absOffset());
+    assertEquals("#1.1", "/*", model1.currentToken().getType());
+    assertEquals("#1.2", FREE, model1.getStateAtCurrent());
+  }

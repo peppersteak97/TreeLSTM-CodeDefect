@@ -1,0 +1,3 @@
+  public File getMasterWorkingDirectory() {
+    throw new UnsupportedOperationException("Tried to call getMasterWorkingDirectory on a Dummy");
+  }

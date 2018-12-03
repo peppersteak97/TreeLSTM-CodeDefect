@@ -1,0 +1,8 @@
+	public String longDescription() {
+		if( getCause() != null ) {
+			StringBuilder sb = new StringBuilder(shortDescription());
+			sb.append(getCause().getMessage());
+			return sb.toString();
+		}
+		return shortDescription();
+	}

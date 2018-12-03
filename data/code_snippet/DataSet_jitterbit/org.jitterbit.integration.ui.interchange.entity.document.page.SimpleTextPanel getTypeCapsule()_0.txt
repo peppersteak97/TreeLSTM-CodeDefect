@@ -1,0 +1,6 @@
+    private JComponent getTypeCapsule() {
+        JComponent typeCapsule = InputFieldFactory.getLabeledComponent(m_docTypeLabel,
+                        RESOURCES.getString("Label.DocumentType"),
+                        InputFieldFactory.HORIZONTAL_LABEL_LEFT);
+        return InvisiblePanel.newPanel(typeCapsule);
+    }

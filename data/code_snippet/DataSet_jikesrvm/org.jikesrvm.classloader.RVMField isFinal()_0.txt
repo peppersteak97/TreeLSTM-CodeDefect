@@ -1,0 +1,3 @@
+  public boolean isFinal() {
+    return (modifiers & ACC_FINAL) != 0;
+  }

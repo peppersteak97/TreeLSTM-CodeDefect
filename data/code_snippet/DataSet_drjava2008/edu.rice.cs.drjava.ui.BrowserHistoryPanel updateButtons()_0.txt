@@ -1,0 +1,8 @@
+  protected void updateButtons() {
+    ArrayList<BrowserDocumentRegion> regs = getSelectedRegions();
+    _goToButton.setEnabled(regs.size()==1);
+    _removeButton.setEnabled(regs.size()>0);
+    _removeAllButton.setEnabled(_listModel.size()>0);
+    _backAction.setEnabled((_listModel.size()>0) && (!_model.getBrowserHistoryManager().isCurrentRegionFirst()));
+    _forwardAction.setEnabled((_listModel.size()>0) && (!_model.getBrowserHistoryManager().isCurrentRegionLast()));
+  }

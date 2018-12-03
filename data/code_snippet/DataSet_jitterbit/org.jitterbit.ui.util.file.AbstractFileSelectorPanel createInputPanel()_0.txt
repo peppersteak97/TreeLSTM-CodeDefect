@@ -1,0 +1,11 @@
+    private InputPanel createInputPanel() {
+        InputPanel p = new InputPanel();
+        m_siteImplementor = new InputPanelSiteImplementor(p);
+        m_siteImplementor.addInputChangeListener(new IInputChangeListener() {
+
+            public void inputChanged(InputChangeEvent e) {
+                fireFileSelectionChanged();
+            }
+        });
+        return p;
+    }

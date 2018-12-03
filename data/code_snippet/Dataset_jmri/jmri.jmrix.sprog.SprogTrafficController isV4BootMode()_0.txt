@@ -1,0 +1,1 @@
+        public boolean isV4BootMode() {return sprogState == V4BOOTMODE; }

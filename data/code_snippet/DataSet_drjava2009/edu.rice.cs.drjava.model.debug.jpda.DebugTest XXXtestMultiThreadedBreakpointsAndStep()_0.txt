@@ -1,0 +1,61 @@
+  public synchronized void XXXtestMultiThreadedBreakpointsAndStep() throws Exception {
+    _log.log("----testMultiThreadedBreakpointsAndStep----");
+    BreakpointTestListener debugListener = new BreakpointTestListener();
+    _debugger.addListener(debugListener);
+    
+    OpenDefinitionsDocument doc = _startupDebugger("Monkey.java", MONKEY_CLASS);
+    
+    int index = MONKEY_CLASS.indexOf("System.out.println(\"I\'m a thread! Yeah!\");");
+    _debugger.toggleBreakpoint(doc,index,true);
+    index = MONKEY_CLASS.indexOf("System.out.println(\"I just woke up.  I\'m a big boy now.\");");
+    _debugger.toggleBreakpoint(doc,index,true);
+    
+    Utilities.clearEventQueue();
+    debugListener.assertRegionAddedCount(2);
+    
+    synchronized(_notifierLock) {
+      interpretIgnoreResult("java Monkey");
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    
+    DebugThreadData thread = new JPDAThreadData(_debugger.getCurrentThread());
+    synchronized(_notifierLock) {
+      _asyncResume();
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    
+    DebugThreadData thread2 = new JPDAThreadData(_debugger.getCurrentThread());
+    assertTrue("testMultiThreadedBreakPoint thread references should not be equal",
+               !thread.getName().equals(thread2.getName()));
+    
+    debugListener.assertCurrThreadResumedCount(1);
+    _debugger.removeListener(debugListener);
+    
+    _log.log("Testing stepping...");
+    
+    StepTestListener stepTestListener = new StepTestListener();
+    _debugger.addListener(stepTestListener);
+    synchronized(_notifierLock) {
+      _asyncStep(Debugger.StepType.STEP_INTO);
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    stepTestListener.assertStepRequestedCount(1);
+    _debugger.removeListener(stepTestListener);
+    
+    DebugThreadData thread3 = new JPDAThreadData(_debugger.getCurrentThread());
+    assertEquals("testMultiThreadedBreakPoint thread references should be equal",
+                 thread2.getName(), thread3.getName());
+    
+    _debugger.addListener(debugListener);
+    InterpretListener interpretListener = new InterpretListener();
+    _model.addListener(interpretListener);
+    synchronized(_notifierLock) {
+      _asyncResume();
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    interpretListener.assertInteractionEndCount(1);
+    _model.removeListener(interpretListener);
+    
+    _shutdownWithoutSuspendedInteraction();
+    _debugger.removeListener(debugListener);
+  }

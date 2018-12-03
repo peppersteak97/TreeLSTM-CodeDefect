@@ -1,0 +1,52 @@
+  public String getTypeString() {
+    String result = "";
+    if (isRegTrue()) {
+      result += " REG_TRUE ";
+    }
+    if (isRegAnti()) {
+      result += " REG_ANTI ";
+    }
+    if (isRegOutput()) {
+      result += " REG_OUT  ";
+    }
+    if (isMemTrue()) {
+      result += " MEM_TRUE ";
+    }
+    if (isMemAnti()) {
+      result += " MEM_ANTI ";
+    }
+    if (isMemOutput()) {
+      result += " MEM_OUT  ";
+    }
+    if (isMemReadsKill()) {
+      result += " MEM_READS_KILL  ";
+    }
+    if (isControl()) {
+      result += " CONTROL  ";
+    }
+    if (isExceptionE()) {
+      result += " EXCEP_E  ";
+    }
+    if (isExceptionMS()) {
+      result += " EXCEP_MS ";
+    }
+    if (isExceptionML()) {
+      result += " EXCEP_ML ";
+    }
+    if (isExceptionR()) {
+      result += " EXCEP_R  ";
+    }
+    if (isGuardTrue()) {
+      result += " GUARD_TRUE ";
+    }
+    if (isGuardAnti()) {
+      result += " GUARD_ANTI ";
+    }
+    if (isGuardOutput()) {
+      result += " GUARD_OUT  ";
+    }
+    if (isRegMayDef()) {
+      result += " REG_MAY_DEF";
+    }
+    return result;
+  }

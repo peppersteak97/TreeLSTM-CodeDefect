@@ -1,0 +1,21 @@
+  public void testOpenRealFile() throws BadLocationException, IOException {
+    final File tempFile = writeToNewTempFile(BAR_TEXT);
+    
+    TestListener listener = new TestFileIOListener(tempFile); 
+    
+    _model.addListener(listener);
+    try {
+      OpenDefinitionsDocument doc = _model.openFile(new FileSelector(tempFile));
+      listener.assertOpenCount(1);
+      assertModified(false, doc);
+      assertContents(BAR_TEXT, doc);
+    }
+    catch (AlreadyOpenException aoe) {
+      fail("File was already open!");
+    }
+    catch (OperationCanceledException oce) {
+      fail("Open was unexpectedly canceled!");
+    }
+    
+    _log.log("testOpenRealFile completed");
+  }

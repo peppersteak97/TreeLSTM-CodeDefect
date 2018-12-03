@@ -1,0 +1,5 @@
+    private void createMembersList() {
+        m_memberList = new MembersList();
+        m_memberList.setEnabled(false);
+        installMemberListKeyBindings();
+    }

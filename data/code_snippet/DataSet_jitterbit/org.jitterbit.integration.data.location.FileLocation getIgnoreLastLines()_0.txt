@@ -1,0 +1,8 @@
+    public int getIgnoreLastLines() {
+        try {
+            return Integer.parseInt(getProperty(PROPERTY_IGNORE_LAST));
+        }
+        catch (NumberFormatException e) {
+            return DEFAULT_IGNORE_LAST_LINES;
+        }
+    }

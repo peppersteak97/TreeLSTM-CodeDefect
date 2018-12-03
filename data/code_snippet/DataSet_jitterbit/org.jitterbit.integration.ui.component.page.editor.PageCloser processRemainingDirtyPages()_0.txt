@@ -1,0 +1,10 @@
+    private void processRemainingDirtyPages() {
+        for (IPage page : m_dirtyPages) {
+            m_editor.setActivePage(page);
+            if (m_editor.closePageImpl(page, true)) {
+                ++m_pagesThatWereClosed;
+            }
+            else {
+            }
+        }
+    }

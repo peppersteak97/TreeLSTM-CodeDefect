@@ -1,0 +1,3 @@
+    public void load() throws InterchangeViewMetaDataXmlException {
+        new ViewMetaDataSaxParser(this, m_xmlResource).loadData();
+    }

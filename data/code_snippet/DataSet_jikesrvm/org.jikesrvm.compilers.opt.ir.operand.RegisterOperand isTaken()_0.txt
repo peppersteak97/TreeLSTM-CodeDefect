@@ -1,0 +1,1 @@
+  public boolean isTaken() { return (flags2 & TAKEN) != 0; }

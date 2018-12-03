@@ -1,0 +1,6 @@
+    private void updateUsersList() {
+        if (m_updater == null) {
+            m_updater = new UserAndGroupUpdater(this);
+        }
+        m_updater.update();
+    }

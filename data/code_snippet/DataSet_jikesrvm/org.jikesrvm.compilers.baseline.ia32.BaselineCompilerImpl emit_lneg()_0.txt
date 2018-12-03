@@ -1,0 +1,8 @@
+  protected final void emit_lneg() {
+    if (VM.BuildFor32Addr){
+      asm.emitPUSH_Reg(T1);
+      asm.emitPUSH_Reg(T0);
+    } else {
+      asm.emitNEG_RegInd_Quad(SP);
+    }
+  }

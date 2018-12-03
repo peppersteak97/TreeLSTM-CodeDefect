@@ -1,0 +1,24 @@
+  public void testInsertBraceAtStartAndEnd() {
+    assertFalse(model1._rmb.openBraceImmediatelyLeft());
+    assertFalse(model1._rmb.closedBraceImmediatelyLeft());
+    model1.insertChar('(');
+    assertTrue("#0.0", model1.atEnd());
+    assertTrue(model1._rmb.openBraceImmediatelyLeft());
+    assertFalse(model1._rmb.closedBraceImmediatelyLeft());
+    model1.move(-1);
+    assertEquals("#0.1", "(", model1.currentToken().getType());
+    assertEquals("#0.2", 1, model1.currentToken().getSize());
+    assertFalse(model1._rmb.openBraceImmediatelyLeft());
+    assertFalse(model1._rmb.closedBraceImmediatelyLeft());
+    assertFalse(model2._rmb.openBraceImmediatelyLeft());
+    assertFalse(model2._rmb.closedBraceImmediatelyLeft());
+    model2.insertChar(')');
+    assertTrue("#1.0", model2.atEnd());
+    assertTrue(model2._rmb.closedBraceImmediatelyLeft());
+    assertFalse(model2._rmb.openBraceImmediatelyLeft());
+    model2.move(-1);
+    assertEquals("#1.1", ")", model2.currentToken().getType());
+    assertEquals("#1.2", 1, model2.currentToken().getSize());
+    assertFalse(model2._rmb.openBraceImmediatelyLeft());
+    assertFalse(model2._rmb.closedBraceImmediatelyLeft());
+  }

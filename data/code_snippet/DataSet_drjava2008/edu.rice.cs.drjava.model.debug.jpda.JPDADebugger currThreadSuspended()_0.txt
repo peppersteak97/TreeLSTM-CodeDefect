@@ -1,0 +1,8 @@
+  /* synchronized */ void currThreadSuspended() {
+    assert EventQueue.isDispatchThread();
+    try {
+      _dumpVariablesIntoInterpreterAndSwitch();
+      _switchToSuspendedThread();
+    }
+    catch(DebugException de) { throw new UnexpectedException(de); }
+  }

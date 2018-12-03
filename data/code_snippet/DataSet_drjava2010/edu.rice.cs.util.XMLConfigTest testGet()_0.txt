@@ -1,0 +1,24 @@
+  public void testGet() throws Exception {
+    XMLConfig xc = 
+      new XMLConfig(new StringReader(
+                                     "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><concutest>\n"
+                                       +"  <threadcheck:def>\n"
+                                       +"    <invariant>\n"
+                                       +"      <name type=\"only\" value=\"childclass1\"/>\n"
+                                       +"    </invariant>\n"
+                                       +"    <class name=\"sample.threadCheck.ThreadCheckSample4\"/>\n"
+                                       +"  </threadcheck:def>\n"
+                                       +"  <threadcheck:def>\n"
+                                       +"    <invariant>\n"
+                                       +"      <name type=\"only\" value=\"childclass-method1\"/>\n"
+                                       +"    </invariant>\n"
+                                       +"    <method name=\"sample.threadCheck.ThreadCheckSample4\" sig=\"run()V\"/>\n"
+                                       +"    <method name=\"sample.threadCheck.ThreadCheckSample4\" sig=\"run2()V\"/>\n"
+                                       +"  </threadcheck:def>\n"
+                                       +"</concutest>"));    
+    
+    subTestGet("arbitraryPath", xc);
+    subTestGet("path1/path2", xc);
+    subTestGet("path1.prop1", xc);
+    subTestGet("path1/path2.prop2", xc);
+  }

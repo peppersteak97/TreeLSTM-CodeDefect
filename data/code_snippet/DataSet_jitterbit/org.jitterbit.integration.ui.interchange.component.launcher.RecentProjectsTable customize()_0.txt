@@ -1,0 +1,16 @@
+    private void customize() {
+        customizeHeader();
+        for (int n = 0; n < getColumnCount(); ++n) {
+            getColumnModel().getColumn(n).setCellRenderer(new CellRenderer());
+        }
+        setShowGrid(false);
+        customizeRowHeight();
+        setSortingStatus(RecentProjectsTableModel.ACCESSED.getIndex(),
+                        KongaTableSorter.DESCENDING);
+        setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        getActionMap().put("none", new AbstractAction() { 
+
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+    }

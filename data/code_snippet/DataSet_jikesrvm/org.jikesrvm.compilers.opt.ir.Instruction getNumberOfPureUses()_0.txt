@@ -1,0 +1,20 @@
+  public int getNumberOfPureUses() {
+    if (operator.hasVarDefs()) {
+      if (VM.VerifyAssertions) {
+        VM._assert(operator.getNumberOfDefUses() == 0);
+      }
+      int numOps = operator.getNumberOfFixedPureUses();
+      int i = getNumberOfDefs() + numOps;
+      for (; i < ops.length; i++) {
+        if (ops[i] == null) break;
+        numOps++;
+      }
+      return numOps;
+    } else {
+      if (operator.hasVarUses()) {
+        return getNumberOfOperands() - operator.getNumberOfDefs();
+      } else {
+        return operator.getNumberOfFixedPureUses();
+      }
+    }
+  }

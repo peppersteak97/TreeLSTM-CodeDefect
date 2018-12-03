@@ -1,0 +1,39 @@
+    public Dimension getMaximumSize() {
+        try {
+            try {
+                Dimension screen = getToolkit().getScreenSize();
+
+                Insets insets = getToolkit().getScreenInsets(this.getGraphicsConfiguration());
+                int widthInset = insets.right+insets.left;
+                int heightInset = insets.top+insets.bottom;
+                
+                if (widthInset == 0 && heightInset == 0) {
+                    String type = System.getProperty("os.name","");
+                    if (type.equals("Linux")) {
+                        heightInset = 70;
+                    }
+                    else if (type.equals("Windows XP")) {
+                    } else if (type.equals("Windows 98")) {
+                    } else if (type.equals("Windows 2000")) {
+                    }
+                }
+                
+                String sw = System.getProperty("jmri.inset.width");
+                if (sw!=null) try {
+                    widthInset = Integer.parseInt(sw);
+                } catch (Exception e1) {log.error("Error parsing jmri.inset.width: "+e1);}
+                String sh = System.getProperty("jmri.inset.height");
+                if (sh!=null) try {
+                    heightInset = Integer.parseInt(sh);
+                } catch (Exception e1) {log.error("Error parsing jmri.inset.height: "+e1);}
+                           
+                return new Dimension(screen.width-widthInset, screen.height-heightInset);
+                
+            } catch (NoSuchMethodError e) {
+                Dimension screen = getToolkit().getScreenSize();
+                return new Dimension(screen.width,
+            }
+        } catch (Exception e2) {
+            return super.getMaximumSize();
+        }
+    }

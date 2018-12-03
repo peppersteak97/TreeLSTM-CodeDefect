@@ -1,0 +1,3 @@
+  public static PowerPCConditionOperand LESS() {
+    return new PowerPCConditionOperand(LESS);
+  }

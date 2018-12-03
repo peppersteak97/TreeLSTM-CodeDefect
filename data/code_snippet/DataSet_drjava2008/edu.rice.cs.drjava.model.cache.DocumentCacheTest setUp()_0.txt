@@ -1,0 +1,18 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    createModel();
+    
+    String user = System.getProperty("user.name");
+    _tempDir = IOUtil.createAndMarkTempDirectory("DrJava-test-" + user, "");
+    
+    _cache = _model.getDocumentCache();
+    _cache.setCacheSize(4);
+    _adapterTable = new HashMap<OpenDefinitionsDocument, DCacheAdapter> ();
+    _cache.addRegistrationListener(new DocumentCache.RegistrationListener() {
+      public void registered(OpenDefinitionsDocument odd, DCacheAdapter a) {
+        _adapterTable.put(odd, a);
+      }
+    });
+    _doc_made = 0;
+    _doc_saved = 0;
+  }

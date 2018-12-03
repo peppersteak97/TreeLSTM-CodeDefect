@@ -1,0 +1,5 @@
+  private static void reportReportableObjects() {
+    for (Reportable obj : reportObjects) {
+      obj.report();
+    }
+  }

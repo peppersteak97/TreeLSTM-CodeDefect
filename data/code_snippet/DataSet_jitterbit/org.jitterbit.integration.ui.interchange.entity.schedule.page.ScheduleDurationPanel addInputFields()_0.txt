@@ -1,0 +1,5 @@
+    private void addInputFields() {
+        addInputField(m_startDate, m_startDate, m_startDate);
+        addInputField(m_endDate, m_endDate, m_endDate);
+        addInputField(new CheckBoxInputField("", m_endDateActivator, null));
+    }

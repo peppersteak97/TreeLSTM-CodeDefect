@@ -1,0 +1,6 @@
+    private ProjectDownloaderFactory getDownloaderFactory() {
+        if (m_downloaderFactory == null) {
+            m_downloaderFactory = ProjectDownloaderFactory.newInstance();
+        }
+        return m_downloaderFactory;
+    }

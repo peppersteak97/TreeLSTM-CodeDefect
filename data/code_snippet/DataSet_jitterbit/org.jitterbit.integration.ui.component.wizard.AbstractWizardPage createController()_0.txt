@@ -1,0 +1,12 @@
+    protected IPageController createController() {
+        DefaultPageController ctrl = new DefaultPageController();
+        ctrl.setPopupMenuRequestHandler(new IPopupMenuRequestHandler() {
+
+            public boolean popupMenuRequested(Component source, int x, int y) {
+                JPopupMenu pm = createPagePopupMenu();
+                pm.show(source, x, y);
+                return true;
+            }
+        });
+        return ctrl;
+    }

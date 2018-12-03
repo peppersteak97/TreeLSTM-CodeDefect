@@ -1,0 +1,3 @@
+    public List<Group> getAllGroups() {
+        return new ArrayList<Group>(m_groups);
+    }

@@ -1,0 +1,22 @@
+  public File getMainClassContainingFile(){
+    DocFile[] possibleContainers = getSourceFiles();
+    
+    String main = getMainClass();
+    if(main.toLowerCase().endsWith(".java")){
+      main = main.substring(0, main.length()-5);
+      main = main.replace(File.separatorChar,'.');
+    }
+    
+    for(int i = 0; i < possibleContainers.length; i++){
+      String toMatch = possibleContainers[i].getAbsolutePath();
+      toMatch = toMatch.substring(0, toMatch.lastIndexOf(".java"));
+      toMatch = toMatch.replace(File.separatorChar,'.');
+      
+      if(toMatch.endsWith(main))
+        return possibleContainers[i];
+    }
+    
+    File toRet = new File(main.replace('.',File.separatorChar)+".java");
+    
+    return toRet;
+  }

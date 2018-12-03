@@ -1,0 +1,3 @@
+  public BytecodeStream getBytecodes() {
+    return new BytecodeStream(this, bytecodes);
+  }

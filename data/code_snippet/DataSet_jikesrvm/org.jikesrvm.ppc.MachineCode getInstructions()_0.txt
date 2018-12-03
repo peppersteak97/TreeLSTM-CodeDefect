@@ -1,0 +1,3 @@
+  public ArchitectureSpecific.CodeArray getInstructions() {
+    return instructions;
+  }

@@ -1,0 +1,19 @@
+    public synchronized List getAtLeastOne() throws InterruptedException {
+        while (m_list.isEmpty())
+            wait();
+        
+        return getAll();
+
+        /*
+        LinkedList list = new LinkedList(m_list);
+        m_list.clear();
+        return list;
+         */
+        /*
+        LinkedList list = new LinkedList();
+        int n = m_list.size();
+        for (int i = 0; i < n; ++i)
+            list.addLast(m_list.removeFirst());
+        return list;
+         */
+    }

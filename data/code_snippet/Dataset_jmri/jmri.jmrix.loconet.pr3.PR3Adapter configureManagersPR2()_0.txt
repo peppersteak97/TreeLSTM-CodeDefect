@@ -1,0 +1,6 @@
+    static public void configureManagersPR2() {
+        
+        jmri.InstanceManager.setPowerManager(new jmri.jmrix.loconet.pr2.LnPr2PowerManager());
+
+        jmri.InstanceManager.setThrottleManager(new jmri.jmrix.loconet.LnPr2ThrottleManager());
+    }

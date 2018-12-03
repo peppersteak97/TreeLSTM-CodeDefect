@@ -1,0 +1,22 @@
+	public String getFormattedMessage() {
+		boolean hasMessage = !StringUtils.isBlank(m_message);
+		boolean hasAttemptedName = !StringUtils.isBlank(m_attemptedName);
+		boolean hasIllegalCharacters = !StringUtils.isBlank( m_illegalCharacters);
+		
+		StringBuffer sb = new StringBuffer(); 
+		if (hasMessage) {
+			sb.append(m_message);
+		}
+		if (hasAttemptedName) {
+			if (hasMessage) {
+				sb.append(LINE_BREAK);
+            }
+			sb.append(m_attemptedName);
+			if (hasIllegalCharacters) {
+				sb.append(LINE_BREAK);
+				sb.append(LINE_BREAK);
+				sb.append(m_illegalCharacters);
+			}
+		}
+		return sb.toString();
+	}

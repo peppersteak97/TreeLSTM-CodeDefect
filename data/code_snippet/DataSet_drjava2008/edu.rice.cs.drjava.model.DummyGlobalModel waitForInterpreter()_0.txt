@@ -1,0 +1,3 @@
+  public void waitForInterpreter() {
+    throw new UnsupportedOperationException("Tried to call waitForInterpreter on a Dummy");
+  }

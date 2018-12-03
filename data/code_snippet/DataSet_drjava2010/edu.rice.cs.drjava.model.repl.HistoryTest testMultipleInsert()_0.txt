@@ -1,0 +1,5 @@
+  public void testMultipleInsert() {
+    _history.add("new Object()");
+    _history.add("new Object()");
+    assertEquals("Duplicate elements inserted", 2, _history.size());
+  }

@@ -1,0 +1,12 @@
+  private void doneWriting() {
+    if (log.isDebugEnabled()) {
+      log.debug("Done writing");
+    }
+    statusBar.setText("Write Complete");
+    connectButton.setEnabled(true);
+    openFileChooserButton.setEnabled(false);
+    programButton.setEnabled(false);
+
+    setSprogModeButton.setEnabled(true);
+    bootState = IDLE;
+  }

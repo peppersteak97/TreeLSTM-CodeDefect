@@ -1,0 +1,3 @@
+  AbstractAction getForwardAction() {
+    return _forwardAction;
+  }

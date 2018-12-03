@@ -1,0 +1,9 @@
+    boolean buttonLive() {
+        if (!getControlling()) return false;
+        if (getForceControlOff()) return false;
+        if (sensor==null) {  
+            log.error("No sensor connection, can't process click");
+            return false;
+        }
+        return true;        
+    }

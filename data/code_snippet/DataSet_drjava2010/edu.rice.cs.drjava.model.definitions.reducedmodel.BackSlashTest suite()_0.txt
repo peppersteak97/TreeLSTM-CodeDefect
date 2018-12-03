@@ -1,0 +1,3 @@
+  public static Test suite() {
+    return  new TestSuite(BackSlashTest.class);
+  }

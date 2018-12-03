@@ -1,0 +1,44 @@
+	private void placeContinuing() {
+		if (testIcon == null)
+			testIcon = signalIconEditor.getIcon(0);
+		if( layoutTurnoutHorizontal && layoutTurnoutThroatLeft && layoutTurnoutBUp) {
+			setSignalHeadOnPanel(0,continuingField.getText().trim(),
+				(int)(layoutTurnout.getCoordsB().getX()),
+				(int)(layoutTurnout.getCoordsB().getY()-4-testIcon.getIconHeight()) );
+		}
+		else if( layoutTurnoutHorizontal && layoutTurnoutThroatLeft && (!layoutTurnoutBUp) ) {
+			setSignalHeadOnPanel(0,continuingField.getText().trim(),
+				(int)(layoutTurnout.getCoordsB().getX()),
+				(int)(layoutTurnout.getCoordsB().getY()+4) );
+		}
+		else if( layoutTurnoutHorizontal && (!layoutTurnoutThroatLeft) && layoutTurnoutBUp ) {
+			setSignalHeadOnPanel(2,continuingField.getText().trim(),
+				(int)(layoutTurnout.getCoordsB().getX()-testIcon.getIconWidth()),
+				(int)(layoutTurnout.getCoordsB().getY()-4-testIcon.getIconHeight()) );
+		}
+		else if( layoutTurnoutHorizontal && (!layoutTurnoutThroatLeft) && (!layoutTurnoutBUp) ) {
+			setSignalHeadOnPanel(2,continuingField.getText().trim(),
+				(int)(layoutTurnout.getCoordsB().getX()-testIcon.getIconWidth()),
+				(int)(layoutTurnout.getCoordsB().getY()+4) );
+		}
+		else if( layoutTurnoutVertical && layoutTurnoutThroatUp && layoutTurnoutBLeft ) {
+			setSignalHeadOnPanel(3,continuingField.getText().trim(),
+				(int)(layoutTurnout.getCoordsB().getX()-4-testIcon.getIconWidth()),
+				(int)(layoutTurnout.getCoordsB().getY()) );
+		}
+		else if( layoutTurnoutVertical && layoutTurnoutThroatUp && (!layoutTurnoutBLeft) ) {
+			setSignalHeadOnPanel(3,continuingField.getText().trim(),
+				(int)(layoutTurnout.getCoordsB().getX()+4),
+				(int)(layoutTurnout.getCoordsB().getY()) );
+		}
+		else if( layoutTurnoutVertical && (!layoutTurnoutThroatUp) && layoutTurnoutBLeft ) {
+			setSignalHeadOnPanel(1,continuingField.getText().trim(),
+				(int)(layoutTurnout.getCoordsB().getX()-4-testIcon.getIconWidth()),
+				(int)(layoutTurnout.getCoordsB().getY()-testIcon.getIconHeight()) );
+		}
+		else if( layoutTurnoutVertical && (!layoutTurnoutThroatUp) && (!layoutTurnoutBLeft) ) {
+			setSignalHeadOnPanel(1,continuingField.getText().trim(),
+				(int)(layoutTurnout.getCoordsB().getX()+4),
+				(int)(layoutTurnout.getCoordsB().getY()-testIcon.getIconHeight()) );
+		}
+	}

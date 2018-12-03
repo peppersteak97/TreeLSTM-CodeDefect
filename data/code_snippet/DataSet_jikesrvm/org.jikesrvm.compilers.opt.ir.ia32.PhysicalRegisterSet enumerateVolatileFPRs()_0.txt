@@ -1,0 +1,7 @@
+  public PhysicalRegisterEnumeration enumerateVolatileFPRs() {
+    Register[] r = new Register[NUM_VOLATILE_FPRS];
+    for (int i = 0; i < NUM_VOLATILE_FPRS; i++) {
+      r[i] = getFPR(VOLATILE_FPRS[i]);
+    }
+    return new PhysicalRegisterEnumeration(r);
+  }

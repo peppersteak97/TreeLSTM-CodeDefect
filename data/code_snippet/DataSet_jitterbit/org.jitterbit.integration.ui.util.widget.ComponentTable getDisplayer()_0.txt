@@ -1,0 +1,19 @@
+    private JComponent getDisplayer() {
+        if (m_tablePanel == null) {
+            layoutTable();
+        }
+        JViewport viewPort = new JViewport() {
+
+            @Override
+            public Dimension getPreferredSize() {
+                return new Dimension(super.getPreferredSize().width, Math.min(400,
+                                m_tablePanel.getPreferredSize().height));
+            }
+        };
+        viewPort.setView(m_tablePanel);
+        JScrollPane scroll = ComponentFactories.scrollFactory().newScrollPane(
+                        viewPort, 
+                        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
+                        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        return scroll;
+    }

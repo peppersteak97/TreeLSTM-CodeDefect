@@ -1,0 +1,3 @@
+                public IWebBrowser createBrowser() {
+                    return new WindowsWebBrowser();
+                }

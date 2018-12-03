@@ -1,0 +1,51 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+
+        try {
+          File f = File.createTempFile("project-",".pjt").getCanonicalFile();
+          tree = new JTreeSortNavigator<DummyINavigatorItem>(f.getCanonicalPath());
+          
+          tree.addTopLevelGroup(SOURCE_BIN_NAME, new INavigatorItemFilter<INavigatorItem>(){
+            public boolean accept(INavigatorItem n) { return !n.getName().startsWith("aux"); }
+          });
+          tree.addTopLevelGroup(EXTERNAL_BIN_NAME, new INavigatorItemFilter<INavigatorItem>(){
+            public boolean accept(INavigatorItem n) { return n.getName().startsWith("aux"); }
+          });
+
+          i1 = new DummyINavigatorItem("item11");
+          i2 = new DummyINavigatorItem("item12");
+          i3 = new DummyINavigatorItem("item21");
+          i4 = new DummyINavigatorItem("item22");
+          tree.addDocument(i1, "folder1");
+          tree.addDocument(i2, "folder1");
+          tree.addDocument(i3, "folder2");
+          tree.addDocument(i4, "folder2");
+          
+          auxi1 = new DummyINavigatorItem("auxitem11");
+          auxi2 = new DummyINavigatorItem("auxitem12");
+          auxi3 = new DummyINavigatorItem("auxitem21");
+          auxi4 = new DummyINavigatorItem("auxitem22");
+          auxi5 = new DummyINavigatorItem("auxitem23");
+          tree.addDocument(auxi1, "auxfolder1");
+          tree.addDocument(auxi2, "auxfolder1");
+          tree.addDocument(auxi3, "auxfolder2");
+          tree.addDocument(auxi4, "auxfolder2");
+          tree.addDocument(auxi5, "auxfolder2");
+          
+          root = (DefaultMutableTreeNode)tree.getModel().getRoot();
+          source = (DefaultMutableTreeNode)root.getChildAt(0);
+          folder1 = (DefaultMutableTreeNode)source.getChildAt(0);
+          folder2 = (DefaultMutableTreeNode)source.getChildAt(1);
+          aux = (DefaultMutableTreeNode)root.getChildAt(1);
+          auxFolder1 = (DefaultMutableTreeNode)aux.getChildAt(0);
+          auxFolder2 = (DefaultMutableTreeNode)aux.getChildAt(1);
+          
+          projName = root.toString();
+        }
+        catch(Exception e) { throw new UnexpectedException(e); }
+      }
+    });
+  }

@@ -1,0 +1,3 @@
+  public void testEmptyConfigSet() throws IOException {
+    checkSet("",INDENT_LEVEL.getDefault(), JAVAC_LOCATION.getDefault(),  EXTRA_CLASSPATH.getDefault().size());
+  }

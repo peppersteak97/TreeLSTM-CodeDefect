@@ -1,0 +1,4 @@
+    private void createTextArea() {
+        m_textArea = ComponentFactories.textFactory().newTextArea(20, 60);
+        m_textArea.setEditable(false);
+    }

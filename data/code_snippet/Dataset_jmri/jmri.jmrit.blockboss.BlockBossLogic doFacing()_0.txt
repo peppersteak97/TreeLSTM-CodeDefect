@@ -1,0 +1,54 @@
+    void doFacing() {
+        int appearance = SignalHead.GREEN;
+        int oldAppearance = ((SignalHead)outputs[0]).getAppearance();
+        
+        int s = SignalHead.GREEN;
+        if (watchTurnout!=null && watchTurnout.getKnownState() != Turnout.THROWN)
+            s = slowerOf(s, fastestColor1());
+        if (watchTurnout!=null && watchTurnout.getKnownState() != Turnout.CLOSED)
+            s = slowerOf(s, fastestColor2());
+
+        if (protectWithFlashing && s==SignalHead.YELLOW)
+            appearance = SignalHead.FLASHYELLOW;
+        if (s==SignalHead.RED)
+            appearance = SignalHead.YELLOW;
+        if (distantSignal)
+            appearance = s;
+
+        if (watchTurnout!=null && limitSpeed1 && watchTurnout.getKnownState()!=Turnout.THROWN)
+            appearance = slowerOf(appearance, SignalHead.YELLOW);
+
+        if (watchTurnout!=null && limitSpeed2 && watchTurnout.getKnownState()!=Turnout.CLOSED)
+            appearance = slowerOf(appearance, SignalHead.YELLOW);
+           
+
+        if (watchSensor1!=null && watchSensor1.getKnownState() != Sensor.INACTIVE) 
+            appearance = SignalHead.RED;
+        if (watchSensor2!=null && watchSensor2.getKnownState() != Sensor.INACTIVE) 
+            appearance = SignalHead.RED;
+        if (watchSensor3!=null && watchSensor3.getKnownState() != Sensor.INACTIVE) 
+            appearance = SignalHead.RED;
+        if (watchSensor4!=null && watchSensor4.getKnownState() != Sensor.INACTIVE) 
+            appearance = SignalHead.RED;
+
+        if ((watchTurnout!=null && watchTurnout.getKnownState() == Turnout.CLOSED) && ((watchedSensor1!=null && watchedSensor1.getKnownState() != Sensor.INACTIVE)))
+            appearance = SignalHead.RED;
+        if ((watchTurnout!=null && watchTurnout.getKnownState() == Turnout.CLOSED) && ((watchedSensor1Alt!=null && watchedSensor1Alt.getKnownState() != Sensor.INACTIVE)))
+            appearance = SignalHead.RED;
+        if ((watchTurnout!=null && watchTurnout.getKnownState() == Turnout.THROWN) && ((watchedSensor2!=null && watchedSensor2.getKnownState() != Sensor.INACTIVE)))
+            appearance = SignalHead.RED;
+        if ((watchTurnout!=null && watchTurnout.getKnownState() == Turnout.THROWN) && ((watchedSensor2Alt!=null && watchedSensor2Alt.getKnownState() != Sensor.INACTIVE)))
+            appearance = SignalHead.RED;
+        
+        if (watchTurnout!=null && (watchTurnout.getKnownState() != watchTurnout.getCommandedState()) )
+            appearance = SignalHead.RED;
+            appearance = SignalHead.RED;
+
+        if (((SignalHead)outputs[0]).getHeld())
+            appearance = SignalHead.RED;
+            
+        doApproach();
+        
+        if (appearance != oldAppearance)
+            ((SignalHead)outputs[0]).setAppearance(appearance);
+    }

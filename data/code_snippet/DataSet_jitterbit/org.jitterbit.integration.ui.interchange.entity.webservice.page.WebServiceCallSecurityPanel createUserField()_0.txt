@@ -1,0 +1,3 @@
+    private void createUserField() {
+        m_userNameField = new FixedSizeTextField(15);
+    }

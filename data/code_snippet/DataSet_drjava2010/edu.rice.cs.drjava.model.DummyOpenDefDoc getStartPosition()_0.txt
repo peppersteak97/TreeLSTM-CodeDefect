@@ -1,0 +1,3 @@
+  public Position getStartPosition() { 
+    throw new UnsupportedOperationException("DummyOpenDefDoc does not support getStartPosition()"); 
+  }

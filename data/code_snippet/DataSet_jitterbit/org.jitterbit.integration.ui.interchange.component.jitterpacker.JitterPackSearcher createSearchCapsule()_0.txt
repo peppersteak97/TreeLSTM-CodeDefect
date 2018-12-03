@@ -1,0 +1,6 @@
+    private JComponent createSearchCapsule() {
+        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        p.add(ComponentFactories.buttonFactory().newButton(m_startStopAction));
+        p.add(createProgressPanelCapsule());
+        return p;
+    }

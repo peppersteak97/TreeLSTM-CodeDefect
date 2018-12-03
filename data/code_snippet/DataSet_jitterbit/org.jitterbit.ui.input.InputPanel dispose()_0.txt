@@ -1,0 +1,12 @@
+    public void dispose() {
+        for (IInputPanelSite p : m_inputPanels) {
+            p.dispose();
+        }
+        for (InputField f : m_inputFields) {
+            f.dispose();
+        }
+        m_inputPanels.clear();
+        m_inputFields.clear();
+        m_otherChangeSources.clear();
+        m_ui.removeAll();
+    }

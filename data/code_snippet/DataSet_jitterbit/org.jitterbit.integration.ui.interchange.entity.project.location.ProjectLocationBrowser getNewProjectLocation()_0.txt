@@ -1,0 +1,3 @@
+    public static File getNewProjectLocation() {
+        return s_newProjectLocation;
+    }

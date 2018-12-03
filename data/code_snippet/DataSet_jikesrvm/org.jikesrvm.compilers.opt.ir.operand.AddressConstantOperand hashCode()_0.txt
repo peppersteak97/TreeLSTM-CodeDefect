@@ -1,0 +1,3 @@
+  public int hashCode() {
+    return value.toWord().rshl(SizeConstants.LOG_BYTES_IN_ADDRESS).toInt();
+  }

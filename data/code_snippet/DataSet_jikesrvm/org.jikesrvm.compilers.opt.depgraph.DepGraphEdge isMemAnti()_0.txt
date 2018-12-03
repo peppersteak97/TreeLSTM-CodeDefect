@@ -1,0 +1,1 @@
+  public boolean isMemAnti() { return (scratch & MEM_ANTI) != 0; }

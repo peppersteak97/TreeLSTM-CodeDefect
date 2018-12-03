@@ -1,0 +1,7 @@
+  public final int getNumberOfIn() {
+    int count = 0;
+    for (SpaceEffGraphEdge e = _inEdgeStart; e != null; e = e.nextIn) {
+      count++;
+    }
+    return count;
+  }

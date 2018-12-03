@@ -1,0 +1,4 @@
+    private void installHelp() {
+        IntegrationUiHelp.getHelp().configureStaticHelpButton(m_btnHelp1,
+                        "integration.transformation.formulabuilder");
+    }

@@ -1,0 +1,9 @@
+    private void createUi() {
+        try {
+            SqlServerBrowserImageFactory.waitUntilInitialized();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        SqlServerBrowserUi ui = new SqlServerBrowserUi(this);
+        ui.show();
+    }

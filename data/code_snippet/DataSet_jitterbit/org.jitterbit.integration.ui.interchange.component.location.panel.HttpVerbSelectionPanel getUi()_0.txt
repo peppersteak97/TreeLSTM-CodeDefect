@@ -1,0 +1,12 @@
+    public JPanel getUi() {
+        OneColumnPanel col = new OneColumnPanel();
+        col.setWeightX(1.0);
+        col.setInsets(2, 0, 3, 0);
+        col.add(IntegrationUiStyleSheet.InputLabelText.makeJLabel(
+                        PackageResources.Http.VERB));
+        col.add(super.getUi());
+        col.setOpaque(false, true);
+        JPanel p = InvisiblePanel.newPanel();
+        col.addToParent(p, null);
+        return p;
+    }

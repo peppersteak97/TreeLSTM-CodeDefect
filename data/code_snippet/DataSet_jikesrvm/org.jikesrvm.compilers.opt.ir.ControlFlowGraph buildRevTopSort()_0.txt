@@ -1,0 +1,21 @@
+  public SortedGraphNode buildRevTopSort() {
+    SortedGraphNode firstNode = super.buildRevTopSort();
+    if (firstNode != null) {
+
+
+
+      int sortMarker = firstNode.getSortMarker();
+      int sortNumber = firstNode.getBackwardSortNumber() - 1;
+      for (BasicBlock block = firstInCodeOrder(); block != null; block = block.nextBasicBlockInCodeOrder()) {
+
+        if (block.getSortMarker() != sortMarker) {
+          block.setSortMarker(sortMarker);
+          block.setBackwardSortNumber(sortNumber--);
+
+          block.setSortedNext(firstNode, false);
+          firstNode = block;
+        }
+      }
+    }
+    return firstNode;
+  }

@@ -1,0 +1,5 @@
+    private void addInputComponents() {
+        addInputPanel(m_every_X_month_panel);
+        addInputField(new ComboBoxInputField("", m_dayNumBox, null));
+        addInputField(new ComboBoxInputField("", m_weekDayBox, null));
+    }

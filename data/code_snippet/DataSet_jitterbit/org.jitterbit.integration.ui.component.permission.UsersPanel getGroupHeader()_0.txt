@@ -1,0 +1,6 @@
+    private HeaderItem getGroupHeader() {
+        Icon icon = ICONS.getIcon(EntityType.Group,
+                        EntityIconRepository.Size.SMALL);
+        return new HeaderItem(icon, PackageResources.Labels.GROUPS, 
+                        BorderFactory.createEmptyBorder(5, 1, 3, 1));
+    }

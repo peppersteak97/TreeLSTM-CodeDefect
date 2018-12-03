@@ -1,0 +1,1 @@
+  public boolean isControl() { return (scratch & CONTROL) != 0; }

@@ -1,0 +1,9 @@
+  protected final void emit_i2f() {
+    if (SSE2_BASE) {
+      asm.emitCVTSI2SS_Reg_RegInd(XMM0, SP);
+      asm.emitMOVSS_RegInd_Reg(SP, XMM0);
+    } else {
+      asm.emitFILD_Reg_RegInd(FP0, SP);
+      asm.emitFSTP_RegInd_Reg(SP, FP0);
+    }
+  }

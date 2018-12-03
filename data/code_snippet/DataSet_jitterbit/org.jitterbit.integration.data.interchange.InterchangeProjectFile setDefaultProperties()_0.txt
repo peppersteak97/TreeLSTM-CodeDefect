@@ -1,0 +1,5 @@
+    private void setDefaultProperties() {
+        for (DefaultProperty p : DEFAULT_PROPERTIES) {
+            p.set(this);
+        }
+    }

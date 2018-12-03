@@ -1,0 +1,18 @@
+  public void testNodeStarAttrsStar() throws Exception {
+    XMLConfig xc = 
+      new XMLConfig(new StringReader(
+                                     "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><foo a=\"foo.a\">\n"
+                                       + "  <bar flubb=\"mno\">abc</bar>\n"
+                                       + "  <fum fee=\"xyz\" fuz=\"zzz\" fiz=\"aaa\">def</fum>\n"
+                                       + "</foo>"));
+    List<String> r = xc.getMultiple("*.*");
+    assertEquals(1, r.size());
+    assertEquals("foo.a", r.get(0));
+    
+    r = xc.getMultiple("foo/*.*");
+    assertEquals(4, r.size());
+    assertEquals("mno", r.get(0));
+    assertEquals("xyz", r.get(1));
+    assertEquals("aaa", r.get(2));
+    assertEquals("zzz", r.get(3));
+  }

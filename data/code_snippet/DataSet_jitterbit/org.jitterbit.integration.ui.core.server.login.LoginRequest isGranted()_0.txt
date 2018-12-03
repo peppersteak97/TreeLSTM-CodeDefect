@@ -1,0 +1,10 @@
+    public boolean isGranted() {
+        try {
+            m_latch.await();
+            return m_loginSucceeded;
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }

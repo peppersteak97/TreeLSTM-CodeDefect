@@ -1,0 +1,7 @@
+    static public AcelaTrafficController instance() {
+    	if (self == null) {
+            if (log.isDebugEnabled()) log.debug("creating a new AcelaTrafficController object");
+            self = new AcelaTrafficController();
+        }
+        return self;
+    }

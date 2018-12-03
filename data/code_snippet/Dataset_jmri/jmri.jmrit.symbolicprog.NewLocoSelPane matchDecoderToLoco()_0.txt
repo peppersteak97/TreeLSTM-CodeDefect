@@ -1,0 +1,19 @@
+    private void matchDecoderToLoco() {
+        if (((String)locoBox.getSelectedItem()).equals("<none>")) return;
+        RosterEntry r = Roster.instance().entryFromTitle((String) locoBox.getSelectedItem());
+        String decoderModel = r.getDecoderModel();
+        String decoderFamily = r.getDecoderFamily();
+        if (log.isDebugEnabled()) log.debug("selected loco uses decoder "+decoderFamily+" "+decoderModel);
+        List l = DecoderIndexFile.instance().matchingDecoderList(null, decoderFamily, null, null, null, decoderModel);
+        if (log.isDebugEnabled()) log.debug("found "+l.size()+" matches");
+        if (l.size() > 0) {
+            DecoderFile d = (DecoderFile)l.get(0);
+            String title = d.titleString();
+            if (log.isDebugEnabled()) log.debug("Decoder file title "+title);
+            for (int i = 0; i<decoderBox.getItemCount(); i++) {
+                if (title.equals((String)decoderBox.getItemAt(i))) decoderBox.setSelectedIndex(i);
+            }
+        } else {
+            log.warn("Loco uses "+decoderFamily+" "+decoderModel+" decoder, but no such decoder defined");
+        }
+    }

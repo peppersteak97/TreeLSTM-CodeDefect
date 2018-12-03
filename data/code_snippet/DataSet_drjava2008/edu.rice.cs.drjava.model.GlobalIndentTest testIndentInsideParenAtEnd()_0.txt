@@ -1,0 +1,11 @@
+  public void testIndentInsideParenAtEnd() throws BadLocationException, OperationCanceledException {
+    OpenDefinitionsDocument openDoc = _getOpenDoc();
+    
+    openDoc.insertString(0, BAR_CALL_1, null);
+    openDoc.insertString(BAR_CALL_1.length(), BAR_CALL_2, null);
+    openDoc.setCurrentLocation(openDoc.getLength() - 1);
+    int loc = openDoc.getCurrentLocation();
+    openDoc.indentLines(loc, loc, Indenter.IndentReason.OTHER, null);
+    _assertContents(BAR_CALL_1 + "    " + BAR_CALL_2, openDoc);
+    _assertLocation(openDoc.getLength() - 1, openDoc);
+  }

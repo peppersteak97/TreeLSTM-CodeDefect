@@ -1,0 +1,4 @@
+    IWindowSectionContent getActiveContent() {
+        int index = m_tabPane.getSelectedIndex();
+        return (index >= 0) ? m_contents.get(index) : null;
+    }

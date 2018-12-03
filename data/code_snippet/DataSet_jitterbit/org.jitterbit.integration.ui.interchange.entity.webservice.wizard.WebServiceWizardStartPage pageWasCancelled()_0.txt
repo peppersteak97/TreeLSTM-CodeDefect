@@ -1,0 +1,5 @@
+    public void pageWasCancelled() {
+        if (m_wsdlProcessingJobID != null) {
+            IntegrationUi.getUi().getJobManager().cancelJob(m_wsdlProcessingJobID);
+        }
+    }

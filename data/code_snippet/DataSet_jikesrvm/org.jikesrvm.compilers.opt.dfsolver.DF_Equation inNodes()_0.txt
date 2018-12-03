@@ -1,0 +1,17 @@
+  public GraphNodeEnumeration inNodes() {
+    return new GraphNodeEnumeration() {
+      private int i = 1;
+
+      public boolean hasMoreElements() {
+        return (i < operands.length);
+      }
+
+      public GraphNode next() {
+        return operands[i++];
+      }
+
+      public GraphNode nextElement() {
+        return next();
+      }
+    };
+  }

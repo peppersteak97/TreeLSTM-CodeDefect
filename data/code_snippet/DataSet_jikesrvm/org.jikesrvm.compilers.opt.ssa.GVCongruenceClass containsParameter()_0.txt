@@ -1,0 +1,3 @@
+  public boolean containsParameter() {
+    return (nParameter > 0);
+  }

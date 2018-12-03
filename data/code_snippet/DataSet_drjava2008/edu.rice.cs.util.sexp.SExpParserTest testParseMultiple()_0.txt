@@ -1,0 +1,34 @@
+  public void testParseMultiple() throws SExpParseException{
+    String text = "(abcdefg)(hijklmnop)";
+    List<? extends SExp> exps = SExpParser.parse(text);
+    SExp exp1 = exps.get(0);
+    SExp exp2 = exps.get(1);
+    
+    
+    final SExpVisitor<String> innerVisitor = new SExpVisitor<String>() {
+      private String _failMe(String who) {
+        fail("The inside was "+ who +" but should have been text");
+        return "";
+      }
+      public String forEmpty(Empty e){ return _failMe("an empty list"); }
+      public String forCons(Cons c){ return _failMe("an empty list"); }
+      public String forBoolAtom(BoolAtom b){ return _failMe("a boolean"); }
+      public String forNumberAtom(NumberAtom n) { return _failMe("a number"); }
+      public String forTextAtom(TextAtom t) { return t.getText(); }
+    };
+    
+    final SExpVisitor<String> outerVisitor = new SExpVisitor<String>() {
+      private String _failMe(String who) {
+        fail("The top-level was "+ who +" but should have been a cons");
+        return "";
+      }
+      public String forEmpty(Empty e){ return _failMe("an empty list"); }
+      public String forCons(Cons c){ return c.getFirst().accept(innerVisitor); }
+      public String forBoolAtom(BoolAtom b){ return _failMe("a boolean"); }
+      public String forNumberAtom(NumberAtom n) { return _failMe("a number"); }
+      public String forTextAtom(TextAtom t) { return _failMe("text"); }
+    };
+    
+    assertEquals("wrong text in 1st s-expression", "abcdefg",  exp1.accept(outerVisitor));
+    assertEquals("wrong text in 2nd s-expression", "hijklmnop",exp2.accept(outerVisitor));
+  }

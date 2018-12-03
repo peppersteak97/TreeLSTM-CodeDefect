@@ -1,0 +1,5 @@
+    if (!isCurrent()) {
+      update(pm);
+      if (_value == null) { throw new IllegalArgumentException("DrJavaProperty value is null"); }
+      _isCurrent = true;
+    }

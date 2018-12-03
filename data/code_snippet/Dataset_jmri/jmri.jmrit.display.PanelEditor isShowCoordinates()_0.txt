@@ -1,0 +1,3 @@
+    public boolean isShowCoordinates() {
+        return showCoordinatesBox.isSelected();
+    }

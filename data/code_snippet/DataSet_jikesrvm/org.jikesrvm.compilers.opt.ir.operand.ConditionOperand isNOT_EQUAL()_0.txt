@@ -1,0 +1,3 @@
+  public boolean isNOT_EQUAL() {
+    return value == NOT_EQUAL;
+  }

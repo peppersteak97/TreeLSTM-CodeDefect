@@ -1,0 +1,3 @@
+            public ITransformationTreeStructureCache createCache() {
+                return new FileBasedTransformationTreeStructureCache(location);
+            }

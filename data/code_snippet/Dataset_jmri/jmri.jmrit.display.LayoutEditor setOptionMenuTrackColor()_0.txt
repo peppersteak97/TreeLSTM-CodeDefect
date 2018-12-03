@@ -1,0 +1,8 @@
+	protected void setOptionMenuTrackColor() {
+		for (int i = 0;i<trackColorCount;i++) {
+			if (trackColors[i] == defaultTrackColor) 
+				trackColorMenuItems[i].setSelected(true);
+			else 
+				trackColorMenuItems[i].setSelected(false);
+		}	
+	}

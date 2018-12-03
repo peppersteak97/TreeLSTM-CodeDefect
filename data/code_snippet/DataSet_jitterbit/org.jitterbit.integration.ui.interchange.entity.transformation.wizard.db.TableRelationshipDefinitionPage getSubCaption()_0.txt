@@ -1,0 +1,3 @@
+    protected String getSubCaption() {
+        return PackageResources.RelationshipDefinitionPage.SUB_CAPTION;
+    }

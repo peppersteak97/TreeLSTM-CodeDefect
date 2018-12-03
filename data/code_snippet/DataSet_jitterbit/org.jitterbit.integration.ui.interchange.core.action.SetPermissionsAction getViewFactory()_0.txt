@@ -1,0 +1,6 @@
+    private synchronized PermissionsViewFactory getViewFactory() {
+        if (m_viewFactory == null) {
+            m_viewFactory = PermissionsViewFactory.newInstance();
+        }
+        return m_viewFactory;
+    }

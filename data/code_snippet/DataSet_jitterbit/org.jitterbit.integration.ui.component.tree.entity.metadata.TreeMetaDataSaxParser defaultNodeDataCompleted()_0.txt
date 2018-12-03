@@ -1,0 +1,4 @@
+    void defaultNodeDataCompleted() {
+        m_currentNodeData = null;
+        m_mapCurrentNodeIcons = null;
+    }

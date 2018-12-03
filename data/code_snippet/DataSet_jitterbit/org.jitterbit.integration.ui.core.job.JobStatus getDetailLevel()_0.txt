@@ -1,0 +1,3 @@
+    public IUiJob.DetailLevel getDetailLevel() {
+        return m_detailLevel;
+    }

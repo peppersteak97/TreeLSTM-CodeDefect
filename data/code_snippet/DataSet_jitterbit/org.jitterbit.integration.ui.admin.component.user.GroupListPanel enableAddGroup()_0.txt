@@ -1,0 +1,3 @@
+    void enableAddGroup() {
+        m_addGroupAction.setEnabled(true);
+    }

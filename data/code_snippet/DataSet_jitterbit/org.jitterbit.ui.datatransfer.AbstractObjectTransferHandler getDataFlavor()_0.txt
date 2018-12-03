@@ -1,0 +1,3 @@
+	protected final DataFlavor getDataFlavor() {
+		return m_dataFlavor;
+	}

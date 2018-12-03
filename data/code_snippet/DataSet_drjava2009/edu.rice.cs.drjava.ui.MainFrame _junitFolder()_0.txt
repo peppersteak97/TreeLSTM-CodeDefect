@@ -1,0 +1,17 @@
+  private void _junitFolder() {
+    updateStatusField("Running Unit Tests in Current Folder");
+    new Thread("Run JUnit on specified folder") {
+      public void run() { 
+        _disableJUnitActions();
+        if (_model.getDocumentNavigator().isGroupSelected()) {
+          ArrayList<OpenDefinitionsDocument> docs = _model.getDocumentNavigator().getDocuments();
+          final LinkedList<OpenDefinitionsDocument> l = new LinkedList<OpenDefinitionsDocument>();
+          for (OpenDefinitionsDocument doc: docs) {
+            if (_model.getDocumentNavigator().isSelectedInGroup(doc)) l.add(doc);
+          }
+          catch(UnexpectedException e) { _junitInterrupted(e); }
+          catch(Exception e) { _junitInterrupted(new UnexpectedException(e)); }
+        }
+      }
+    }.start();
+  }

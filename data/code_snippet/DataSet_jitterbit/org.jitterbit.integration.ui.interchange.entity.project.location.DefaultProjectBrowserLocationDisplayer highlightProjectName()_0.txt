@@ -1,0 +1,4 @@
+    public void highlightProjectName() {
+        m_newProjectName.setSelectionStart(0);
+        m_newProjectName.setSelectionEnd(m_newProjectName.getDocument().getLength());
+    }

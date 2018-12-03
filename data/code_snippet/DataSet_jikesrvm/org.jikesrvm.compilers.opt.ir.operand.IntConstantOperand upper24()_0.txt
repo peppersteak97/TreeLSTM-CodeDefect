@@ -1,0 +1,3 @@
+  public int upper24() {
+    return Bits.upper24(value);
+  }

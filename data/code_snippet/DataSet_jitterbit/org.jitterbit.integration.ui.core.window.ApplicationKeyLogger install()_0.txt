@@ -1,0 +1,10 @@
+    synchronized void install() {
+        if (m_isInstalled) {
+            return;
+        }
+        if (m_dispatcher == null) {
+            m_dispatcher = new Dispatcher();
+        }
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(m_dispatcher);
+        m_isInstalled = true;
+    }

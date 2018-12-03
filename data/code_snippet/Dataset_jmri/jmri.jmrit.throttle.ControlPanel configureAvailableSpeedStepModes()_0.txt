@@ -1,0 +1,24 @@
+    private void configureAvailableSpeedStepModes() {
+	int modes = jmri.InstanceManager.throttleManagerInstance()
+            .supportedSpeedModes();
+	if((modes & DccThrottle.SpeedStepMode128) != 0) {
+            SpeedStep128Button.setEnabled(true);
+	}else { 
+            SpeedStep128Button.setEnabled(false);
+	}
+	if((modes & DccThrottle.SpeedStepMode28) != 0) {
+            SpeedStep28Button.setEnabled(true);
+	}else { 
+            SpeedStep28Button.setEnabled(false);
+	}
+	if((modes & DccThrottle.SpeedStepMode27) != 0) {
+            SpeedStep27Button.setEnabled(true);
+	}else { 
+            SpeedStep27Button.setEnabled(false);
+	}
+	if((modes & DccThrottle.SpeedStepMode14) != 0) {
+            SpeedStep14Button.setEnabled(true);
+	}else { 
+            SpeedStep14Button.setEnabled(false);
+	}
+    }

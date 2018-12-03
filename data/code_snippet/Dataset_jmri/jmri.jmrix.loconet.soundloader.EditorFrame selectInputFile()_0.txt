@@ -1,0 +1,7 @@
+    void selectInputFile() {
+        if (chooser == null) chooser = jmri.jmrit.XmlFile.userFileChooser();
+        chooser.rescanCurrentDirectory();
+        int retVal = chooser.showOpenDialog(this);
+        
+        addFile(chooser.getSelectedFile());
+    }

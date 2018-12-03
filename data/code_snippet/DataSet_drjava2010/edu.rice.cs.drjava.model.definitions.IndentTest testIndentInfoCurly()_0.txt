@@ -1,0 +1,20 @@
+  public void testIndentInfoCurly() throws BadLocationException {
+    _assertLineBraceInfo(-1, NONE);
+    _assertBraceInfo(-1, NONE);
+    _doc.insertString(0, "\n", null);
+    _assertContents("\n", _doc);
+    _assertLineBraceInfo(-1, NONE);
+    _assertBraceInfo(-1, NONE);
+    _doc.insertString(0, "{\n\n", null);
+    _assertContents("{\n\n\n", _doc);
+    _assertLineBraceInfo(3, OPEN_CURLY);
+    _assertBraceInfo(3, OPEN_CURLY);
+    _doc.insertString(3, "{\n\n", null);
+    _assertContents("{\n\n{\n\n\n", _doc);
+    _assertLineBraceInfo(3, OPEN_CURLY);
+    _assertBraceInfo(3, OPEN_CURLY);
+    _doc.insertString(6, "  {\n\n", null);
+    _assertContents("{\n\n{\n\n  {\n\n\n", _doc);
+    _assertLineBraceInfo(3, OPEN_CURLY);
+    _assertBraceInfo(3, OPEN_CURLY);
+  }

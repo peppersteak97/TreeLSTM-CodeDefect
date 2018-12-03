@@ -1,0 +1,9 @@
+  private Operand getLockObject() {
+    if (method.isStatic()) {
+      Class<?> klass = method.getDeclaringClass().getClassForType();
+      Offset offs = Offset.fromIntSignExtend(Statics.findOrCreateObjectLiteral(klass));
+      return new ClassConstantOperand(klass, offs);
+    } else {
+      return makeLocal(0, arguments[0].getType());
+    }
+  }

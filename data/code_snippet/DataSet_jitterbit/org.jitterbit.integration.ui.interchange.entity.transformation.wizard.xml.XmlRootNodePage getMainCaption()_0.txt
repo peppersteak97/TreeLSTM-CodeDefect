@@ -1,0 +1,3 @@
+    protected String getMainCaption() {
+        return PackageResources.RootNodePage.MAIN_CAPTION;
+    }

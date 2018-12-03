@@ -1,0 +1,3 @@
+  private void _notifyJUnitEnded() { 
+    EventQueue.invokeLater(new Runnable() { public void run() { _notifier.junitEnded(); } });
+  }

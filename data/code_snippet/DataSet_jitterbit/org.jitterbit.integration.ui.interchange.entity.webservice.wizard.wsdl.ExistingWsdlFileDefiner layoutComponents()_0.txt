@@ -1,0 +1,6 @@
+    private void layoutComponents() {
+        IUiProvider uiProvider = createUi();
+        JComponent ui = ComponentDecorFactory.centerBorder(uiProvider).getUi();
+        registerKeyBindings(ui);
+        setDisplayer(ui);
+    }

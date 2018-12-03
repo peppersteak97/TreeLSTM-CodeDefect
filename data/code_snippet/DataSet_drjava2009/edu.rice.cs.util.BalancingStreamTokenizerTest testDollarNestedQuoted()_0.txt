@@ -1,0 +1,25 @@
+  public void testDollarNestedQuoted() throws IOException {
+    BalancingStreamTokenizer tok = make("abc ${def ghi 'abc'} 123\n456 ${abc def \"xxx '111' yyy\"} 789");
+    tok.defaultThreeQuoteDollarCurlySetup();
+    String s = tok.getNextToken();
+    assertEquals("abc", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("${def ghi 'abc'}", s);
+    assertEquals(BalancingStreamTokenizer.Token.QUOTED, tok.token());
+    s = tok.getNextToken();
+    assertEquals("123", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("456", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("${abc def \"xxx '111' yyy\"}", s);
+    assertEquals(BalancingStreamTokenizer.Token.QUOTED, tok.token());
+    s = tok.getNextToken();
+    assertEquals("789", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals(null, s);
+    assertEquals(BalancingStreamTokenizer.Token.END, tok.token());
+  }

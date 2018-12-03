@@ -1,0 +1,3 @@
+    public ScheduleDuration getDuration() {
+        return new ScheduleDuration(getData());
+    }

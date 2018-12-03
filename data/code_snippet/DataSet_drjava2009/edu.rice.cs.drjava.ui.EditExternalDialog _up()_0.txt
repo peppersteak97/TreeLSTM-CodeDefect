@@ -1,0 +1,33 @@
+  private void _up() {
+    final int count = DrJava.getConfig().getSetting(OptionConstants.EXTERNAL_SAVED_COUNT);
+    final int selectedIndex = _list.getSelectedIndex();
+    if ((selectedIndex<1) ||
+        (selectedIndex>=DrJava.getConfig().getSetting(OptionConstants.EXTERNAL_SAVED_COUNT)) ||
+        (count<=0)) {
+      _removeButton.setEnabled(false);
+      return;
+    }
+
+    Vector<String> v = DrJava.getConfig().getSetting(OptionConstants.EXTERNAL_SAVED_NAMES);
+    String s = v.remove(selectedIndex);
+    v.add(selectedIndex-1,s);
+    DrJava.getConfig().setSetting(OptionConstants.EXTERNAL_SAVED_NAMES,v);
+    
+    v = DrJava.getConfig().getSetting(OptionConstants.EXTERNAL_SAVED_CMDLINES);
+    s = v.remove(selectedIndex);
+    v.add(selectedIndex-1,s);
+    DrJava.getConfig().setSetting(OptionConstants.EXTERNAL_SAVED_CMDLINES,v);
+
+    v = DrJava.getConfig().getSetting(OptionConstants.EXTERNAL_SAVED_WORKDIRS);
+    s = v.remove(selectedIndex);
+    v.add(selectedIndex-1,s);
+    DrJava.getConfig().setSetting(OptionConstants.EXTERNAL_SAVED_WORKDIRS,v);
+
+    v = DrJava.getConfig().getSetting(OptionConstants.EXTERNAL_SAVED_ENCLOSING_DJAPP_FILES);
+    s = v.remove(selectedIndex);
+    v.add(selectedIndex-1,s);
+    DrJava.getConfig().setSetting(OptionConstants.EXTERNAL_SAVED_ENCLOSING_DJAPP_FILES,v);
+
+    DrJava.getConfig().setSetting(OptionConstants.EXTERNAL_SAVED_COUNT, count);
+    updateList(Math.max(0,selectedIndex-1));
+  }

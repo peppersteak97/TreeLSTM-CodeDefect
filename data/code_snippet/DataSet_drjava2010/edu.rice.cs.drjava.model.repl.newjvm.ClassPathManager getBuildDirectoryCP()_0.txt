@@ -1,0 +1,1 @@
+  public synchronized Iterable<File> getBuildDirectoryCP() { return IterUtil.snapshot(_buildCP); }

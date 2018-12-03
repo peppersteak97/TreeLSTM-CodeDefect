@@ -1,0 +1,11 @@
+  public static synchronized LnMessageServer getInstance() throws RemoteException
+  {
+    if( self == null )
+    {
+      System.setSecurityManager( new java.rmi.RMISecurityManager() );
+
+      self = new LnMessageServer() ;
+    }
+
+    return self ;
+  }

@@ -1,0 +1,5 @@
+    if (_rmc._cursor.atStart()) {
+      _rmc.next();
+      _rmb.next();
+      return;
+    }

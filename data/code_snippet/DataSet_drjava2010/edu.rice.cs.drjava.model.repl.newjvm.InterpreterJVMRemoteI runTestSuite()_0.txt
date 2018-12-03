@@ -1,0 +1,2 @@
+  public boolean runTestSuite() throws RemoteException;
+  

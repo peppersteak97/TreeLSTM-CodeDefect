@@ -1,0 +1,48 @@
+  public void execute() {
+
+    AOSLogging.logger.logOsrEvent("OSR compiling " + compPlan.method);
+
+    setTimeInitiated(Controller.controllerClock);
+
+    {
+      ExecutionStateExtractor extractor = null;
+
+      CompiledMethod cm = CompiledMethods.getCompiledMethod(this.CMID);
+
+      boolean invalidate = true;
+      if (cm.getCompilerType() == CompiledMethod.BASELINE) {
+        extractor = new BaselineExecutionStateExtractor();
+        invalidate = false;
+      } else if (cm.getCompilerType() == CompiledMethod.OPT) {
+        extractor = new OptExecutionStateExtractor();
+      } else {
+        if (VM.VerifyAssertions) VM._assert(VM.NOT_REACHED);
+        return;
+      }
+
+      ExecutionState state = extractor.extractState(suspendedThread, this.tsFromFPoff, this.ypTakenFPoff, CMID);
+
+      if (invalidate) {
+        AOSLogging.logger.debug("Invalidate cmid " + CMID);
+        OSRProfiler.notifyInvalidation(state);
+      }
+
+      CompiledMethod newCM = SpecialCompiler.recompileState(state, invalidate);
+
+      setTimeCompleted(Controller.controllerClock);
+
+      if (newCM == null) {
+        setStatus(ControllerPlan.ABORTED_COMPILATION_ERROR);
+        AOSLogging.logger.logOsrEvent("OSR compilation failed!");
+      } else {
+        setStatus(ControllerPlan.COMPLETED);
+        CodeInstaller.install(state, newCM);
+        AOSLogging.logger.logOsrEvent("OSR compilation succeeded! " + compPlan.method);
+      }
+    }
+
+    suspendedThread.monitor().lockNoHandshake();
+    suspendedThread.osr_done=true;
+    suspendedThread.monitor().broadcast();
+    suspendedThread.monitor().unlock();
+  }

@@ -1,0 +1,5 @@
+    if (isVirtual()) {
+      isPreciseTarget = target != null && (target.isFinal() || target.getDeclaringClass().isFinal());
+    } else {
+      isPreciseTarget = !isInterface();
+    }

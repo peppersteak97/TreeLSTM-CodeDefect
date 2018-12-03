@@ -1,0 +1,3 @@
+    public USStates getState() {
+        return m_state;
+    }

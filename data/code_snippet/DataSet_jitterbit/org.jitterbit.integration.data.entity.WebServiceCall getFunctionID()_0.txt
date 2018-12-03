@@ -1,0 +1,3 @@
+    public IntegrationId getFunctionID() {
+        return getID();
+    }

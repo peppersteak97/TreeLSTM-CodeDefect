@@ -1,0 +1,5 @@
+  public static void initializeMeasureCompilation() {
+    for (OptimizationPlanElement element : masterPlan) {
+      element.initializeForMeasureCompilation();
+    }
+  }

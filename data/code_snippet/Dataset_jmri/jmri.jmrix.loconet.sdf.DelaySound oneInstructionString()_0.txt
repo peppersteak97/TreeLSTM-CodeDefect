@@ -1,0 +1,5 @@
+    public String oneInstructionString() {
+        String modeVal = (DELAY_THIS == mode) ? "DELAY_THIS" : "DELAY_CV";
+        String valueVal = (DELAY_THIS == mode) ? ""+value : "CV="+value;
+        return name()+' '+modeVal+","+valueVal+","+glblVal+'\n';
+    }

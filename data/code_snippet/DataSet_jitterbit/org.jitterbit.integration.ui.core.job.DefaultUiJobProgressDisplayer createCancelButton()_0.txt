@@ -1,0 +1,14 @@
+    private JButton createCancelButton() {
+        JButton b = ComponentFactories.toolbarButtonFactory().newButton(
+                null, PackageResources.DefaultDisplayer.Cancel.ICON);
+        b.setToolTipText(PackageResources.DefaultDisplayer.Cancel.TOOLTIP);
+        b.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (m_jobID != null) {
+                    IntegrationUi.getUi().getJobManager().cancelJob(m_jobID);
+                }
+            }
+        });
+        return b;
+    }

@@ -1,0 +1,28 @@
+  public void testClassFileSynchronizationAfterRename() throws BadLocationException, IOException, IllegalStateException,
+    InterruptedException {
+    
+    final OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    final File file = tempFile();
+    final File file2 = tempFile(2);
+    
+    saveFile(doc, new FileSelector(file));
+    
+    CompileShouldSucceedListener listener = new CompileShouldSucceedListener(false);
+    _model.addListener(listener);
+    assertTrue("Class file should not exist before compile", doc.getCachedClassFile() == FileOps.NULL_FILE);
+    assertTrue("should not be in sync before compile", !doc.checkIfClassFileInSync());
+    testStartCompile(doc);
+    listener.waitCompileDone();
+    if (_model.getCompilerModel().getNumErrors() > 0) {
+      fail("compile failed: " + getCompilerErrorString());
+    }
+    _model.removeListener(listener);
+    listener.checkCompileOccurred();
+    assertTrue("should be in sync after compile",
+               doc.checkIfClassFileInSync());
+    
+    Thread.sleep(2000);
+    
+    saveFileAs(doc, new FileSelector(file2));
+    assertTrue("should not be in sync after renaming", ! doc.checkIfClassFileInSync());
+  }

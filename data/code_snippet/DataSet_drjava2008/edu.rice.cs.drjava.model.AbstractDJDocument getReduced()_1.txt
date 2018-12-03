@@ -1,0 +1,1 @@
+  public ReducedModelControl getReduced() { return _reduced; } 

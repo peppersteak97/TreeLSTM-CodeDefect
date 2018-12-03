@@ -1,0 +1,10 @@
+  public void testParenDelimsWithText() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionNewParenPhrase(null, null);
+    
+    _setDocText("new Foo(\nx,\ny;\na[\nbar])\n{");
+    assertTrue("line after paren", rule.testApplyRule(_doc, 9, Indenter.IndentReason.OTHER));
+    assertTrue("line after comma", rule.testApplyRule(_doc, 12, Indenter.IndentReason.OTHER));
+    assertTrue("line after semicolon", rule.testApplyRule(_doc, 15, Indenter.IndentReason.OTHER));
+    assertTrue("line after bracket", rule.testApplyRule(_doc, 18, Indenter.IndentReason.OTHER));
+    assertTrue("line after close paren", !rule.testApplyRule(_doc, 24, Indenter.IndentReason.OTHER));
+  }

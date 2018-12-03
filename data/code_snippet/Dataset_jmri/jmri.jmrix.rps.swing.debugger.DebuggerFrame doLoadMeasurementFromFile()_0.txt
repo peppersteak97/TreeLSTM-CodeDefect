@@ -1,0 +1,22 @@
+    void doLoadMeasurementFromFile() throws java.io.IOException {
+        if (measurementInput == null) {
+            setupMeasurementFile();
+        }
+        
+        if (!measurementInput.readRecord()) {
+            setupMeasurementFile();
+            if (!measurementInput.readRecord()) throw new java.io.IOException("no valid file");
+        }
+
+        Measurement m = new Measurement(null, 
+                            Double.valueOf(measurementInput.get(1)).doubleValue(),
+                            Double.valueOf(measurementInput.get(2)).doubleValue(),
+                            Double.valueOf(measurementInput.get(3)).doubleValue(),
+                            Engine.instance().getVSound(),
+                            0,
+                            "Data File"
+                        );
+        
+        lastPoint = m;
+        Distributor.instance().submitMeasurement(m);
+    }

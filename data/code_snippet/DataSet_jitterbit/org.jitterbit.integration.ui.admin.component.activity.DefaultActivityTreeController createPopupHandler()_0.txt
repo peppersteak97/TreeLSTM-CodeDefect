@@ -1,0 +1,3 @@
+    protected IPopupMenuRequestHandler createPopupHandler() {
+        return new PopupHandler();
+    }

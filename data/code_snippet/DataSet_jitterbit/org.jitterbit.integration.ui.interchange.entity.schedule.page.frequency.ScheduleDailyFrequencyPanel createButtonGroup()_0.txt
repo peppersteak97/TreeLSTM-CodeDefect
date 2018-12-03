@@ -1,0 +1,5 @@
+    private UndoableButtonGroup createButtonGroup() {
+        UndoableButtonGroup group = new UndoableButtonGroup();
+        addChangeSource(group);
+        return group;
+    }

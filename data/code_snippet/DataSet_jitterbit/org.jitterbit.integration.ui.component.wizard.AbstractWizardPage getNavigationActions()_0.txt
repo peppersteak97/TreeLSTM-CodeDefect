@@ -1,0 +1,5 @@
+        for (Action a : getNavigationActions()) {
+            if (a != null) {
+                MenuItemFactory.createAndAddItem(pm, a);
+            }
+        }

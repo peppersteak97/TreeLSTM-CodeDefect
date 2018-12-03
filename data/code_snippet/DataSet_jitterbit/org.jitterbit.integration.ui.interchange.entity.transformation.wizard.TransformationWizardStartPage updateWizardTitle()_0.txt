@@ -1,0 +1,10 @@
+    private void updateWizardTitle() {
+        EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                setTitle(m_ui.getTransformationName());
+                getWizard().setPageTitle(m_ui.getTransformationName());
+                firePropertyChange("title", "0", "1");
+            }
+        });
+    }

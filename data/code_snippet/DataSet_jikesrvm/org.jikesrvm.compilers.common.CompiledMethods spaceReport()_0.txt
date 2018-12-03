@@ -1,0 +1,75 @@
+  public static void spaceReport() {
+    int[] codeCount = new int[CompiledMethod.NUM_COMPILER_TYPES + 1];
+    int[] codeBytes = new int[CompiledMethod.NUM_COMPILER_TYPES + 1];
+    int[] mapBytes = new int[CompiledMethod.NUM_COMPILER_TYPES + 1];
+
+    RVMArray codeArray = RVMType.CodeArrayType.asArray();
+    for (int i = 0; i < numCompiledMethods(); i++) {
+      CompiledMethod cm = getCompiledMethodUnchecked(i);
+      if (cm == null || !cm.isCompiled()) continue;
+      int ct = cm.getCompilerType();
+      codeCount[ct]++;
+      int size = codeArray.getInstanceSize(cm.numberOfInstructions());
+      codeBytes[ct] += Memory.alignUp(size, BYTES_IN_ADDRESS);
+      mapBytes[ct] += cm.size();
+    }
+    VM.sysWriteln("Compiled code space report\n");
+
+    VM.sysWriteln("  Baseline Compiler");
+    VM.sysWriteln("    Number of compiled methods =         " + codeCount[CompiledMethod.BASELINE]);
+    VM.sysWriteln("    Total size of code (bytes) =         " + codeBytes[CompiledMethod.BASELINE]);
+    VM.sysWriteln("    Total size of mapping data (bytes) = " + mapBytes[CompiledMethod.BASELINE]);
+
+    if (codeCount[CompiledMethod.OPT] > 0) {
+      VM.sysWriteln("  Optimizing Compiler");
+      VM.sysWriteln("    Number of compiled methods =         " + codeCount[CompiledMethod.OPT]);
+      VM.sysWriteln("    Total size of code (bytes) =         " + codeBytes[CompiledMethod.OPT]);
+      VM.sysWriteln("    Total size of mapping data (bytes) = " + mapBytes[CompiledMethod.OPT]);
+    }
+
+    if (codeCount[CompiledMethod.JNI] > 0) {
+      VM.sysWriteln("  JNI Stub Compiler (Java->C stubs for native methods)");
+      VM.sysWriteln("    Number of compiled methods =         " + codeCount[CompiledMethod.JNI]);
+      VM.sysWriteln("    Total size of code (bytes) =         " + codeBytes[CompiledMethod.JNI]);
+      VM.sysWriteln("    Total size of mapping data (bytes) = " + mapBytes[CompiledMethod.JNI]);
+    }
+    if (!VM.runningVM) {
+      TreeMap<String, Integer> packageData = new TreeMap<String, Integer>(
+          new Comparator<String>() {
+            public int compare(String a, String b) {
+              return a.compareTo(b);
+            }
+          });
+      for (int i = 0; i < numCompiledMethods(); ++i) {
+        CompiledMethod compiledMethod = getCompiledMethodUnchecked(i);
+        if (compiledMethod != null) {
+          RVMMethod m = compiledMethod.getMethod();
+          if (m != null && compiledMethod.isCompiled()) {
+            String packageName = m.getDeclaringClass().getPackageName();
+            int numInstructions = compiledMethod.numberOfInstructions();
+            Integer val = packageData.get(packageName);
+            if (val == null) {
+              val = numInstructions;
+            } else {
+              val = val + numInstructions;
+            }
+            packageData.put(packageName, val);
+          }
+        }
+      }
+      VM.sysWriteln("------------------------------------------------------------------------------------------");
+      VM.sysWriteln("  Break down of code space usage by package (bytes):");
+      VM.sysWriteln("------------------------------------------------------------------------------------------");
+      Set<String> keys = packageData.keySet();
+      int maxPackageNameSize = 0;
+      for (String packageName : keys) {
+        maxPackageNameSize = Math.max(maxPackageNameSize, packageName.length());
+      }
+      maxPackageNameSize++;
+      for (String packageName : keys) {
+        VM.sysWriteField(maxPackageNameSize, packageName);
+        VM.sysWriteField(10, packageData.get(packageName));
+        VM.sysWriteln();
+      }
+    }
+  }

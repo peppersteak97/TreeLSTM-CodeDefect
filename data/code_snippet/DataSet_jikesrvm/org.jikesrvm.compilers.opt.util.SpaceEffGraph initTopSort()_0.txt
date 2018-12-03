@@ -1,0 +1,3 @@
+  protected void initTopSort() {
+    _topSortNodes = new SpaceEffGraphNodeListHeader();
+  }

@@ -1,0 +1,30 @@
+    private void onShowViews() {
+        if( m_currentType != BrowserObjectType.VIEW ) {
+            if( m_viewLock.isTrue() ) {
+                m_tablePanel.displayItems(m_liViewItems);
+                m_currentType = BrowserObjectType.VIEW;
+            }
+            else {
+                m_waitMgr.startWait();
+                new SwingWorker() {
+                    
+                    @Override
+                    public Object construct() {
+                        try {
+                            m_viewLock.waitUntilTrue();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+                    
+                    @Override
+                    public void finished() {
+                        m_tablePanel.displayItems(m_liViewItems);
+        	            m_waitMgr.stopWait();
+                        m_currentType = BrowserObjectType.VIEW;
+                    }
+                }.start();
+            }
+        }
+    }

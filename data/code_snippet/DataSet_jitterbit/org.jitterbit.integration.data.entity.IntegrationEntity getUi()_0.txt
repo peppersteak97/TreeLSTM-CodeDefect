@@ -1,0 +1,6 @@
+    public IIntegrationEntityUiDelegate getUi() {
+        if (m_ui == null) {
+            m_ui = createUiDelegate();
+        }
+        return m_ui;
+    }

@@ -1,0 +1,1 @@
+    public boolean getShowEmptyTabs() { return showEmptyTabs.isSelected(); }

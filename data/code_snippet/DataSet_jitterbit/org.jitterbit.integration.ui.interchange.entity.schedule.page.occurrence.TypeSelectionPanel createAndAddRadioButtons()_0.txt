@@ -1,0 +1,12 @@
+    private void createAndAddRadioButtons() {
+        OneColumnPanel column = new OneColumnPanel();
+        column.setInsets(IntegrationUiStyleSheet.DEFAULT_GBC_INSETS_LEFT);
+        ButtonGroup group = createButtonGroup();
+        for (int n = 0; n < labels.length; ++n) {
+            JRadioButton btn = createRadioButton(labels[n], group);
+            btn.addActionListener(this);
+            column.add(btn);
+            m_selector[n] = btn;
+        }
+        wrap(column);
+    }

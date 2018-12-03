@@ -1,0 +1,3 @@
+	protected IKongaDataUiDelegate getTargetUi() {
+		return m_targetUi;
+	}

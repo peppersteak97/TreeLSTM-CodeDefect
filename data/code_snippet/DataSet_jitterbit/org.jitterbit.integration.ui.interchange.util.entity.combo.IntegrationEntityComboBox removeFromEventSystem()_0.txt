@@ -1,0 +1,6 @@
+    private void removeFromEventSystem() {
+        if (m_isListeningToEvents) {
+            m_support.removeFromEventSystem(this, this);
+            m_isListeningToEvents = false;
+        }
+    }

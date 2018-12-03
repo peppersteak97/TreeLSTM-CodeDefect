@@ -1,0 +1,3 @@
+    protected void sendFunctionGroup3() {
+        log.error("sendFunctionGroup3 needs to be implemented if invoked");
+    }

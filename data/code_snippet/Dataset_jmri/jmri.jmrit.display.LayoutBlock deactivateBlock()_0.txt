@@ -1,0 +1,6 @@
+	private void deactivateBlock() {
+		if ( (mBlockListener!=null) && (block!=null) ) {
+			block.removePropertyChangeListener(mBlockListener);
+		}
+		mBlockListener = null;
+	}

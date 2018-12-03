@@ -1,0 +1,10 @@
+  public void testFlatten() {
+    assertEquals("", StringOps.flatten(""));
+    assertEquals("abc", StringOps.flatten("abc"));
+    assertEquals(""+StringOps.SEPARATOR, StringOps.flatten("\n"));
+    assertEquals(""+StringOps.SEPARATOR+StringOps.SEPARATOR+StringOps.SEPARATOR, StringOps.flatten("\n\n\n"));
+    assertEquals("abc"+StringOps.SEPARATOR+"def"+StringOps.SEPARATOR+"ghi"+StringOps.SEPARATOR, StringOps.flatten("abc\ndef\nghi\n"));
+    assertEquals("abc"+StringOps.SEPARATOR+StringOps.SEPARATOR+
+                 "def"+StringOps.SEPARATOR+StringOps.SEPARATOR+
+                 "ghi"+StringOps.SEPARATOR+StringOps.SEPARATOR, StringOps.flatten("abc\n\ndef\n\nghi\n\n"));
+  }

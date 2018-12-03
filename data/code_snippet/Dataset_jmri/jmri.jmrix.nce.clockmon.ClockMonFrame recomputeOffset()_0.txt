@@ -1,0 +1,23 @@
+    private void recomputeOffset() {
+        Date now = internalClock.getTime();
+        double sumDiff = 0;
+        if (priorOffsetErrors.size() > 1) {
+            sumDiff = ((Double) priorOffsetErrors.get(0)).doubleValue() + ((Double) priorOffsetErrors.get(1)).doubleValue();
+        }
+        double avgDiff = sumDiff / 2;
+        syncInterval = syncInterval + avgDiff;
+        if (syncInterval < 30) {
+        	syncInterval = 30;
+        }
+        if (syncInterval > 58) {
+        	syncInterval = 58;
+        }
+        if (log.isDebugEnabled() && false) {
+            String txt = "";
+            for (int i = 0; i < priorOffsetErrors.size(); i++) {
+                txt = txt + " " + ((Double)priorOffsetErrors.get(i)).doubleValue();
+            }
+            log.debug("priorOffsetErrors: " + txt);
+            log.debug("syncOffset: " + syncInterval + " avgDiff: " + avgDiff + " @ " + now);
+        }
+    }

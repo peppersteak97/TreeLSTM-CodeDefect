@@ -1,0 +1,12 @@
+	void Yes6(){
+		if(m_obj instanceof TreeMapper){
+			TreeMapper treemapper=(TreeMapper)m_obj;
+			try {
+				treemapper.testTransformation(null);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			dispose();
+			return;
+		}
+	}

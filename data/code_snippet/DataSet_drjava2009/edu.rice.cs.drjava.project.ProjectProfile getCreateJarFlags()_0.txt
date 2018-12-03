@@ -1,0 +1,1 @@
+  public int getCreateJarFlags() { return _createJarFlags; }

@@ -1,0 +1,5 @@
+  private RVMAnnotation[][] getParameterAnnotations() {
+    synchronized(parameterAnnotations) {
+      return parameterAnnotations.get(this);
+    }
+  }

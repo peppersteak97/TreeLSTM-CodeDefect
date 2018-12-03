@@ -1,0 +1,40 @@
+	public void readBlockValues() throws org.jdom.JDOMException, java.io.IOException {
+		log.debug("entered readBlockValues");
+		List blocks = blockManager.getSystemNameList();
+		if (checkFile(defaultFileName)) {
+			root = rootFromName(defaultFileName);
+			if ( (root!=null) && (blocks!=null) && (blocks.size()>0) ) {
+				Element blockvalues = root.getChild("blockvalues");
+				if (blockvalues!=null) {	
+					List blockList = blockvalues.getChildren("block");
+					for (int i=0; i<blockList.size(); i++) {
+						if ( ((Element)(blockList.get(i))).getAttribute("systemname") == null) {
+							log.warn("unexpected null in systemName "+
+									((Element)(blockList.get(i)))+" "+
+										((Element)(blockList.get(i))).getAttributes());
+							break;
+						}
+						String sysName = ((Element)(blockList.get(i))).
+												getAttribute("systemname").getValue();
+						Block b = blockManager.getBySystemName(sysName);
+						if (b!=null) {
+							String v = ((Element)(blockList.get(i))).
+												getAttribute("value").getValue();
+							b.setValue(v);
+							int dd = jmri.Path.NONE;
+							Attribute a = ((Element)(blockList.get(i))).getAttribute("dir");
+							if (a!=null) {
+								try {
+									dd = a.getIntValue();
+								}
+								catch (org.jdom.DataConversionException e) {
+									log.error("failed to convert direction attribute");
+								}
+							}
+							b.setDirection(dd);
+						}
+					}
+				}
+			}
+		} 
+	}

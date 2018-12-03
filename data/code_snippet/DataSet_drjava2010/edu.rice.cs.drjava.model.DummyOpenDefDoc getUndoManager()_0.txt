@@ -1,0 +1,1 @@
+  public CompoundUndoManager getUndoManager() { throw new UnsupportedOperationException("Dummy method"); }

@@ -1,0 +1,6 @@
+    public String showReservations() {
+        return "A:"+(currentReservedFromA?"t":"f")
+            +" B:"+(currentReservedFromB?"t":"f")
+            +" C:"+(currentReservedFromC?"t":"f")
+            +" x:"+(currentReservedFromAux?"t":"f");
+    }

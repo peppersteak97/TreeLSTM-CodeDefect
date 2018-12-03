@@ -1,0 +1,14 @@
+    protected void fireSelectionChanged() {
+        if (m_selectionListeners.isEmpty()) {
+            return;
+        }
+        List<T> values = getSelectedOptions();
+        final IOption[] selection = (IOption[]) Array.newInstance(IOption.class, values.size());
+        values.toArray(selection);
+        m_selectionListeners.visitAll(new ListenerVisitor<ISelectedOptionListener>() {
+
+            public void accept(ISelectedOptionListener listener) {
+                listener.selectionChanged(selection);
+            }
+        });
+    }

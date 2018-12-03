@@ -1,0 +1,11 @@
+    protected JPopupMenu getToolbarPopupMenu() {
+        Action[] actions = getPopupMenuActions();
+        if (actions == null || actions.length == 0) {
+            return null;
+        }
+        JPopupMenu pm = new JPopupMenu();
+        for (Action a : actions) {
+            MenuItemFactory.createAndAddItem(pm, a);
+        }
+        return pm;
+    }

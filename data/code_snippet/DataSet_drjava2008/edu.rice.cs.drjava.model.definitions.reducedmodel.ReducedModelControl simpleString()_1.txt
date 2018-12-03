@@ -1,0 +1,3 @@
+  public String simpleString() {
+    return "\n********\n" + _rmb.simpleString() + "\n________\n" + _rmc.simpleString();
+  }

@@ -1,0 +1,1 @@
+ public int getMaxProgress() { return 100; }

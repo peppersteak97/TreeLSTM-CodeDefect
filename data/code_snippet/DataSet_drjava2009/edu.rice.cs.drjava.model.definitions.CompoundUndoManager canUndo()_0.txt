@@ -1,0 +1,7 @@
+      if (ce.canUndo()) {
+        if (! _compoundEditInProgress()) {
+          super.addEdit(ce);
+          _notifyUndoHappened();
+        }
+        else _compoundEdits.get(0).addEdit(ce);
+      } 

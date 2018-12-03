@@ -1,0 +1,4 @@
+    public void removePrefItems(){
+        if (log.isDebugEnabled()) log.debug("removePrefItems dropped "+plist.size());
+        plist.clear();
+    }

@@ -1,0 +1,11 @@
+    private void addInputFields() {
+        addInputField(m_driverField, m_driverField, m_driverField);
+        addInputField(m_serverField, m_serverField, m_serverField);
+        addInputField(m_timeoutField, m_timeoutField, m_timeoutField);
+
+        addInputField(m_databaseField);
+        addInputField(m_loginField);
+        addInputField(m_paramsField);
+        addInputField(m_manualConnectionStringChoice);
+        addInputField(m_manualConnectionStringField, m_manualConnectionStringField, m_manualConnectionStringField);
+    }

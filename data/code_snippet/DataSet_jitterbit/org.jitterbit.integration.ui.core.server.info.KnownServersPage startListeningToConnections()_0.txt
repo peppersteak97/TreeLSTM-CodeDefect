@@ -1,0 +1,4 @@
+    private void startListeningToConnections() {
+        m_connectionListener = new CurrentServerListener();
+        ServerManager.getManager().addServerConnectionListener(m_connectionListener);
+    }

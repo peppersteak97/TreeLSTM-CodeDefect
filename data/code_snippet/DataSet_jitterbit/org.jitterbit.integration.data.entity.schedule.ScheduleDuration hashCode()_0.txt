@@ -1,0 +1,7 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 31 * hash + (m_bHasEndDate ? 1 : 0);
+        hash = 31 * hash + (m_startDate != null ? m_startDate.hashCode() : 0);
+        hash = 31 * hash + (m_endDate != null ? m_endDate.hashCode() : 0);
+        return hash;
+    }

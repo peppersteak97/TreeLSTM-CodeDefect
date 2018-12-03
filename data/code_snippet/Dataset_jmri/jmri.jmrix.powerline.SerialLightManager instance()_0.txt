@@ -1,0 +1,9 @@
+    static public SerialLightManager instance() {
+        if (_instance == null) {
+            log.error("instance called without manager loaded");
+            _instance = new SerialLightManager(){
+                protected Light createNewSpecificLight(String systemName, String userName){return null;}
+            };
+        }
+        return _instance;
+    }

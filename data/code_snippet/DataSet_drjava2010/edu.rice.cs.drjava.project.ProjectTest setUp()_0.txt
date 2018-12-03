@@ -1,0 +1,11 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    try { 
+      base = new File(System.getProperty("java.io.tmpdir")).getCanonicalFile();
+      parent = IOUtil.createAndMarkTempDirectory("proj", "", base);
+      buildDir = new File(parent, "built");
+      srcDir = new File(parent, "src");
+      absp = parent.getCanonicalPath() + File.separator; 
+    }
+    catch(IOException e) { fail("could not initialize temp path string"); }
+  }

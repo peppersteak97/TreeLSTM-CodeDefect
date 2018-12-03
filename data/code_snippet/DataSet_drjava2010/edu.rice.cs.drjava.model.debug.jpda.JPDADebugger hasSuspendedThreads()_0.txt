@@ -1,0 +1,5 @@
+  public /* synchronized */ boolean hasSuspendedThreads() throws DebugException {
+    assert EventQueue.isDispatchThread();
+    if (! isReady()) return false;
+    return _suspendedThreads.size() > 0;
+  }

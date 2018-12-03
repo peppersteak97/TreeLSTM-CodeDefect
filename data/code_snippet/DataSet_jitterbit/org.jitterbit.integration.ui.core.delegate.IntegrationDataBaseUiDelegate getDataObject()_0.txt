@@ -1,0 +1,3 @@
+    public IntegrationData getDataObject() {
+        return (IntegrationData) super.getDataObject();
+    }

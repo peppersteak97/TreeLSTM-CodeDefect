@@ -1,0 +1,25 @@
+    protected void sendFunctionGroup1() {
+        byte[] result = jmri.NmraPacket.function0Through4Packet(address.getNumber(), 
+                                         address.isLongAddress(),
+                                         getF0(), getF1(), getF2(), getF3(), getF4());
+
+        /* Format of EasyDcc 'send' command 
+         * S nn xx yy
+         * nn = number of times to send - usually 01 is sufficient.
+         * xx = Cx for 4 digit or 00 for 2 digit addresses
+         * yy = LSB of address for 4 digit, or just 2 digit address
+         */
+        EasyDccMessage m = new EasyDccMessage(4+3*result.length);
+        m.setElement(i++, 'S');
+        m.setElement(i++, ' ');
+        m.setElement(i++, '0');
+        m.setElement(i++, '1');
+
+        for (int j = 0; j<result.length; j++) {
+            m.setElement(i++, ' ');
+            m.addIntAsTwoHex(result[j]&0xFF,i);
+            i = i+2;
+        }
+
+        EasyDccTrafficController.instance().sendEasyDccMessage(m, null);
+    }

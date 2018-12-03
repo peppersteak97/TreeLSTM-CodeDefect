@@ -1,0 +1,3 @@
+    public WizardConfiguration getConfiguration() {
+        return m_configuration;
+    }

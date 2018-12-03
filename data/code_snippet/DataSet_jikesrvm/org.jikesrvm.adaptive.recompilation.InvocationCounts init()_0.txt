@@ -1,0 +1,4 @@
+  public static void init() {
+    createOptimizationPlan();
+    BaselineCompiler.options.INVOCATION_COUNTERS = true;
+  }

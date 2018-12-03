@@ -1,0 +1,3 @@
+    protected Database getDatabase() {
+        return m_db;
+    }

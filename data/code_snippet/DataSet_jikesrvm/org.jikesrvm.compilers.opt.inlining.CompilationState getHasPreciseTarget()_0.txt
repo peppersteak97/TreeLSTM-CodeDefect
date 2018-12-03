@@ -1,0 +1,3 @@
+  public boolean getHasPreciseTarget() {
+    return Call.getMethod(call).hasPreciseTarget();
+  }

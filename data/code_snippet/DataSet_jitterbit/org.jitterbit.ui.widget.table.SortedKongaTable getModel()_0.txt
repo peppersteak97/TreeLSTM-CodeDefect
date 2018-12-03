@@ -1,0 +1,1 @@
+ * {@link #getModel() getModel} and {@link #setModel(TableModel) setModel} in

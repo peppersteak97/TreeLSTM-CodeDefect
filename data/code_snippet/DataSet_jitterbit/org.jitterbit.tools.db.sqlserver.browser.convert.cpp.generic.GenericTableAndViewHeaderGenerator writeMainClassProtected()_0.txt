@@ -1,0 +1,5 @@
+    private void writeMainClassProtected() {
+        addLine("protected:");
+        addLine("\t" + getRowClassName() + " m_row;");
+        addLine();
+    }

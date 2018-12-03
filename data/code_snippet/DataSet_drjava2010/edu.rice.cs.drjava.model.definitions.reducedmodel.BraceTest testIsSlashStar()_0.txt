@@ -1,0 +1,8 @@
+  public void testIsSlashStar(){
+    assertEquals(false, lparen.isSlash());
+    Brace slash = Brace.MakeBrace("/",FREE);
+    assertEquals(true, slash.isSlash());
+    assertEquals(false, lparen.isStar());
+    Brace star = Brace.MakeBrace("*",FREE);
+    assertEquals(true, star.isStar());
+  }

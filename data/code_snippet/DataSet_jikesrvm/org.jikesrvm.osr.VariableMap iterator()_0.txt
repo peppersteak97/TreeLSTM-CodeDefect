@@ -1,0 +1,3 @@
+  public ListIterator<VariableMapElement> iterator() {
+    return list.listIterator(0);
+  }

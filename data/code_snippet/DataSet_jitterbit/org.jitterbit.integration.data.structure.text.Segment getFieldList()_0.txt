@@ -1,0 +1,4 @@
+	public Vector<Field> getFieldList(){
+		if(m_alias==null)return m_fieldList;
+		return m_alias.m_fieldList;
+	}

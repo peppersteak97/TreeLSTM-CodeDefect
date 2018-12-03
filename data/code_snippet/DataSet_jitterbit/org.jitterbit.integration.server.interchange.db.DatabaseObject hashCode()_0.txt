@@ -1,0 +1,6 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 31*hash + m_name.hashCode();
+        hash = 31*hash + m_schema.hashCode();
+        return hash;
+    }

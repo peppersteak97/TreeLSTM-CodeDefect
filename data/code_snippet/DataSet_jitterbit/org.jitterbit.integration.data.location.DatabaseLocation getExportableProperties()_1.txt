@@ -1,0 +1,11 @@
+    public IExportableProperty[] getExportableProperties() {
+        return new IExportableProperty[] {
+            new ExportableDriverProperty(this),
+            new ExportableStringProperty(this, SERVER_PROPERTY, 
+            new ExportableStringProperty(this, DATABASE_PROPERTY, 
+            new ExportableStringProperty(this, LOGIN_PROPERTY, 
+            new ExportableStringProperty(this, PASSWORD_PROPERTY, 
+            new ExportableStringProperty(this, CONNECT_PARAMETERS_PROPERTY, 
+            new ExportableStringProperty(this, CONNECT_STRING_PROPERTY, 
+        };
+    }

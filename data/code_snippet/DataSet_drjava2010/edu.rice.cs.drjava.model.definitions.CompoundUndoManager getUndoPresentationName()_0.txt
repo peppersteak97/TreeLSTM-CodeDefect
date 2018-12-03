@@ -1,0 +1,4 @@
+  public /* synchronized */ String getUndoPresentationName() {
+    if (_compoundEditInProgress()) return "Undo Previous Command";
+    return super.getUndoPresentationName();
+  }

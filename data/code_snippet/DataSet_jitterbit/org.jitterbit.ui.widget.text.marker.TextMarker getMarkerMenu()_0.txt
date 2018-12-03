@@ -1,0 +1,9 @@
+    public JMenu getMarkerMenu() {
+        for (Action a : m_markActions) {
+            m.add(a);
+        }
+        m.addSeparator();
+        m.add(m_clearAction);
+        m.add(m_clearAllAction);
+        return m;
+    }

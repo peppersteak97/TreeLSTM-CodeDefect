@@ -1,0 +1,4 @@
+  public void forwardSearchInteractionsInHistory() {
+    if (hasHistoryNext()) forwardHistorySearch(getCurrentInteraction());
+    else _beep.run();
+  }

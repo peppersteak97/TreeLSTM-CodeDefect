@@ -1,0 +1,4 @@
+  public void setPreciseType() {
+    flags |= PRECISE_TYPE;
+    if (VM.VerifyAssertions) verifyPreciseType();
+  }

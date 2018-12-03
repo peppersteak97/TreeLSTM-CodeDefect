@@ -1,0 +1,4 @@
+  public synchronized void open() {
+    open=true;
+    notifyAll();
+  }

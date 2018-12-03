@@ -1,0 +1,3 @@
+  public DefinitionsEditorKit getEditor(){
+    return _editor;
+  }

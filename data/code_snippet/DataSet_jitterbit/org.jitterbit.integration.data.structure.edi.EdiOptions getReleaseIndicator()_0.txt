@@ -1,0 +1,3 @@
+    public String getReleaseIndicator() {
+        return m_releaseIndicator;
+    }

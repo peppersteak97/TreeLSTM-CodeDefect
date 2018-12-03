@@ -1,0 +1,89 @@
+    public void initComponents() throws Exception {
+        addHelpMenu("package.jmri.jmrit.sensorgroup.SensorGroupFrame", true);
+        
+        for (int i = 0; i<MAXSENSOR; i++)
+            includedSensors[i] = Boolean.FALSE;
+                    
+        setTitle("Define Sensor Group");
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        JPanel p2xs = new JPanel();
+        
+        JPanel p21s = new JPanel();
+        p21s.setLayout(new BoxLayout(p21s, BoxLayout.Y_AXIS));
+        p21s.add(new JLabel("Please select "));
+        p21s.add(new JLabel(" Sensors to "));
+        p21s.add(new JLabel(" be included "));
+        p21s.add(new JLabel(" in this group."));
+        p2xs.add(p21s);
+        sensorModel = new SensorTableModel(){
+            public Object getValueAt (int r,int c) {
+                if (c == INCLUDE_COLUMN)
+                    return includedSensors[r];
+                else
+                    return super.getValueAt(r,c);
+            }
+        
+            public void setValueAt(Object type,int r,int c) {
+                if (c == INCLUDE_COLUMN)
+                    includedSensors[r] = (Boolean)type;
+                else
+                    super.setValueAt(type,r,c);
+            }
+        };
+        JTable sensorTable = jmri.util.JTableUtil.sortableDataModel(sensorModel);
+        try {
+            jmri.util.com.sun.TableSorter tmodel = ((jmri.util.com.sun.TableSorter)sensorTable.getModel());
+            tmodel.setColumnComparator(String.class, new jmri.util.SystemNameComparator());
+            tmodel.setSortingStatus(SensorTableModel.SNAME_COLUMN, jmri.util.com.sun.TableSorter.ASCENDING);
+        } catch (ClassCastException e3) {}  
+        sensorTable.setRowSelectionAllowed(false);
+        sensorTable.setPreferredScrollableViewportSize(new 
+                                                        java.awt.Dimension(480,100));
+        TableColumnModel sensorColumnModel = sensorTable.getColumnModel();
+        TableColumn includeColumnS = sensorColumnModel.
+                                            getColumn(SensorTableModel.INCLUDE_COLUMN);
+        includeColumnS.setResizable(false);
+        includeColumnS.setMinWidth(50);
+        includeColumnS.setMaxWidth(60);
+        TableColumn sNameColumnS = sensorColumnModel.
+                                            getColumn(SensorTableModel.SNAME_COLUMN);
+        sNameColumnS.setResizable(true);
+        sNameColumnS.setMinWidth(75);
+        sNameColumnS.setMaxWidth(95);
+        TableColumn uNameColumnS = sensorColumnModel.
+                                            getColumn(SensorTableModel.UNAME_COLUMN);
+        uNameColumnS.setResizable(true);
+        uNameColumnS.setMinWidth(210);
+        uNameColumnS.setMaxWidth(260);
+
+        JScrollPane sensorScrollPane = new JScrollPane(sensorTable);
+        p2xs.add(sensorScrollPane,BorderLayout.CENTER);
+        getContentPane().add(p2xs);
+        p2xs.setVisible(true);
+
+        JPanel p3 = new JPanel();
+        p3.add(new JLabel("Group Name:"));
+        name = new JTextField(12);
+        p3.add(name);
+        getContentPane().add(p3);
+        
+        JPanel p4 = new JPanel();
+        viewButton = new JButton(" View ");
+        viewButton.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e) {
+                    viewPressed();
+                }
+            });
+        p4.add(viewButton);
+        addButton = new JButton(" Add/Update ");
+        addButton.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e) {
+                    addPressed();
+                }
+            });
+        p4.add(addButton);
+        getContentPane().add(p4);
+        
+        pack();
+    }

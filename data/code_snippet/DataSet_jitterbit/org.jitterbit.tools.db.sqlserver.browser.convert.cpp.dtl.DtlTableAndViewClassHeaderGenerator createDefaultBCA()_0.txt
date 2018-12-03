@@ -1,0 +1,14 @@
+    private void createDefaultBCA() {
+        addLine("template<> class DefaultBCA<" + getQualifiedRowClassName() + ">");
+        addLine("{");
+        addLine("public:");
+        addLine("\tvoid operator()(BoundIOs &cols, " + getQualifiedRowClassName() + " &rowbuf)");
+        addLine("\t{");
+        for( Column c : getValidColumns() ) {
+            addLine("\t\t" + getColumnBindingRow(c, INPUT_OUTPUT_BINDING));
+        }
+        writeSkippedColumns();
+        addLine("\t}");
+        addLine("};");
+        addLine();
+    }

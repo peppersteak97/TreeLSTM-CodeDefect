@@ -1,0 +1,2 @@
+        if (isBinary()) 
+            return getOpCode() == KILL_MAIN_CMD;

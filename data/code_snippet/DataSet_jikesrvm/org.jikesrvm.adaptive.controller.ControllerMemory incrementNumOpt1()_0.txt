@@ -1,0 +1,1 @@
+  static void incrementNumOpt1() { numOpt1++; }

@@ -1,0 +1,1 @@
+  public ReducedModelState getStateAtCurrent() { throw new UnsupportedOperationException("Dummy method"); }

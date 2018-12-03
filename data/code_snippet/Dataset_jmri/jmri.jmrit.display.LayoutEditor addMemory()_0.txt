@@ -1,0 +1,22 @@
+    void addMemory() {
+		if ((textMemory.getText()).trim().length()<=0) {
+			JOptionPane.showMessageDialog(targetPanel,rb.getString("Error11"),
+						rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+        LayoutMemoryIcon l = new LayoutMemoryIcon();
+        l.setMemory(textMemory.getText().trim());
+		Memory xMemory = l.getMemory();
+		if (xMemory != null) {
+			if ( (xMemory.getUserName() == null) || 
+					(!(xMemory.getUserName().equals(textMemory.getText().trim())))  ) {
+				textMemory.setText(xMemory.getSystemName());
+			}
+		}
+        setNextLocation(l);
+        l.setSize(l.getPreferredSize().width, l.getPreferredSize().height);
+        l.setDisplayLevel(LABELS);
+		memoryLabelList.add((Object)l);
+		setDirty(true);
+        putLabel(l);
+    }

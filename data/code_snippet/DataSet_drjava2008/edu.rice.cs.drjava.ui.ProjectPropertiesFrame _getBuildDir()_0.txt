@@ -1,0 +1,5 @@
+  private File _getBuildDir() {
+    File buildDir = _model.getBuildDirectory();
+    if (buildDir != null) return buildDir;
+    return FileOps.NULL_FILE;
+  }

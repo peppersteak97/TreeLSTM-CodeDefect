@@ -1,0 +1,1 @@
+    public boolean getThrottlePollMode() { return throttlePoll; }

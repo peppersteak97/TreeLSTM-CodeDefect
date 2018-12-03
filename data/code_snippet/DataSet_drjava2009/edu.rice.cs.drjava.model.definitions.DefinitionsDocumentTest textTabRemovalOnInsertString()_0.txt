@@ -1,0 +1,10 @@
+  public void textTabRemovalOnInsertString() throws BadLocationException {
+    _doc.setIndent(1);
+    _doc.insertString(0, " \t yet \t\tanother\ttest\t", null);
+    String result = _doc.getText();
+    
+    if (_doc.tabsRemoved()) {
+      assertEquals("   yet   another test ", result);
+    }
+      assertEquals(" \t yet \t\tanother\ttest\t", result);
+    }

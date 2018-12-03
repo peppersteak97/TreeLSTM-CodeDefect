@@ -1,0 +1,9 @@
+	public void requestAllThrottleFramesDestroyed()
+	{
+		for (Iterator i = throttleFrames.iterator(); i.hasNext();)
+		{
+			ThrottleFrame frame = (ThrottleFrame)i.next();
+			destroyThrottleFrame(frame);
+		}
+		throttleFrames = new ArrayList(0);
+	}

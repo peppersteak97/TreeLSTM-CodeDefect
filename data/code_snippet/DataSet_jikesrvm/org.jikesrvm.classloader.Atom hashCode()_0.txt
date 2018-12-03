@@ -1,0 +1,11 @@
+  public int hashCode() {
+    try {
+      if (unicodeStringOrJTOCoffset != null) {
+        return toUnicodeStringInternal().hashCode();
+      } else {
+        return UTF8Convert.computeStringHashCode(val);
+      }
+    } catch (UTFDataFormatException e) {
+      return 0;
+    }
+  }

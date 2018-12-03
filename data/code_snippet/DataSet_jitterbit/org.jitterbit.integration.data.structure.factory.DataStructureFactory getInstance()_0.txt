@@ -1,0 +1,6 @@
+    public static synchronized DataStructureFactory getInstance() {
+        if (s_instance == null) {
+            s_instance = createInstance();
+        }
+        return s_instance;
+    }

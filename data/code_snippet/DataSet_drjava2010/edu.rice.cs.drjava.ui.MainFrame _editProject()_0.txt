@@ -1,0 +1,5 @@
+  private void _editProject() {
+    ProjectPropertiesFrame ppf = new ProjectPropertiesFrame(this);
+    ppf.setVisible(true);
+    ppf.reset();
+  }

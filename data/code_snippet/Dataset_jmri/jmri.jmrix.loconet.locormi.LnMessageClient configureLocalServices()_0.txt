@@ -1,0 +1,11 @@
+    public void configureLocalServices() {
+
+        if (jmri.InstanceManager.programmerManagerInstance() == null)
+            jmri.jmrix.loconet.SlotManager.instance();
+
+        jmri.jmrix.loconet.LnPortController.configureManagers();
+
+
+        jmri.jmrix.loconet.ActiveFlag.setActive();
+
+    }

@@ -1,0 +1,8 @@
+    void startSequenceDelay() {
+        try {
+        	delay = Integer.parseInt(mDelayField[mNextSequenceElement].getText());
+        } catch (NumberFormatException e) {}
+        
+        mNextSequenceElement++;
+        restartTimer(delay);
+    }

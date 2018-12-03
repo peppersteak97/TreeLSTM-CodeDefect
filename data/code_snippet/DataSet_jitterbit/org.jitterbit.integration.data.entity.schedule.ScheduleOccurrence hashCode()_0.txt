@@ -1,0 +1,16 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 31 * hash + m_type;
+        hash = 31 * hash + m_Every_X_Days;
+        hash = 31 * hash + m_Every_X_Weeks;
+        for (int n = 0; n < 7; ++n) {
+            hash = 31 * hash + (m_Weekly_On_This_Day[n] ? 1 : 0);
+        }
+        hash = 31 * hash + m_monthlyType;
+        hash = 31 * hash + m_Monthly_A_of_Every_X_Month;
+        hash = 31 * hash + m_Monthly_B_Num;
+        hash = 31 * hash + (m_Monthly_B_Day_Of_The_Week != null ? 
+                        m_Monthly_B_Day_Of_The_Week.hashCode() : 0);
+        hash = 31 * hash + m_Monthly_B_of_Every_X_Month;
+        return hash;
+    }

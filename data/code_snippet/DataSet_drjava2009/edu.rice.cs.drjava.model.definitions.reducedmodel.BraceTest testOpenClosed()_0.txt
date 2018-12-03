@@ -1,0 +1,4 @@
+  public void testOpenClosed() {
+    assertTrue(lparen.isOpen());
+    assertTrue(rparen.isClosed());
+  }

@@ -1,0 +1,16 @@
+    public String getFilterString() {
+        Date start = m_startDate;
+        Date end = m_endDate;
+        if (start == null && end == null) {
+        }
+        if (start == null) {
+            st = PackageResources.TimeWindowFilter.getBefore(end);
+        }
+        else if (end == null) {
+            st = PackageResources.TimeWindowFilter.getAfter(start);
+        }
+        else {
+            st = PackageResources.TimeWindowFilter.getBetween(start, end);
+        }
+        return st;
+    }

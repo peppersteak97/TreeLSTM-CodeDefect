@@ -1,0 +1,4 @@
+    static public SRCPTurnoutManager instance() {
+        if (_instance == null) _instance = new SRCPTurnoutManager();
+        return _instance;
+    }

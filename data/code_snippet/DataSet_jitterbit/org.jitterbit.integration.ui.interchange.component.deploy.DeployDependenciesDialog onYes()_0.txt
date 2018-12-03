@@ -1,0 +1,4 @@
+    protected void onYes() {
+        super.onYes();
+        m_callback.succeeded(getAdditionalEntitiesToDeploy());
+    }

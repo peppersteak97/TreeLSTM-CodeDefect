@@ -1,0 +1,5 @@
+    protected boolean handle() {
+        setOutput();
+        waitChange(inputs);
+        return true;
+    }

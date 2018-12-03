@@ -1,0 +1,1 @@
+  public String toString() { return "BraceInfo(" + _distance + ", '" + _braceType + "')"; }

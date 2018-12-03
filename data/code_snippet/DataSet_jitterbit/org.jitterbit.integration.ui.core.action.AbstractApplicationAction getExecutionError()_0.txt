@@ -1,0 +1,3 @@
+    public Throwable getExecutionError() {
+        return m_executionError;
+    }

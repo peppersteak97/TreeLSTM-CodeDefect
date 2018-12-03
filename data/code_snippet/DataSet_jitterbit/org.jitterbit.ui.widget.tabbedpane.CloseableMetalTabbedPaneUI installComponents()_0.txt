@@ -1,0 +1,9 @@
+    protected void installComponents() {
+        if (m_closeButton == null) {
+            m_closeButton = new CloseButton();
+        }
+        getIconProperties();
+        if (((CloseableTabbedPane) tabPane).isUsingCloseButton()) {
+            tabPane.add(m_closeButton);
+        }
+    }

@@ -1,0 +1,1 @@
+  public JMenu getEditMenu() { return _editMenu; }

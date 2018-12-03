@@ -1,0 +1,3 @@
+    public List<String> getProblems() {
+        return new ArrayList<String>(m_problems);
+    }

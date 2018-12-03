@@ -1,0 +1,3 @@
+    public Iterator<IFile> getChildren() {
+        return new ArrayList<IFile>(m_children).iterator();
+    }

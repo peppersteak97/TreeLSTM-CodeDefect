@@ -1,0 +1,5 @@
+    void startSequenceDelay() {
+        int delay = Integer.parseInt(mDelayField[mNextSequenceElement].getText());
+        mNextSequenceElement++;
+        restartTimer(delay);
+    }

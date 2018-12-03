@@ -1,0 +1,6 @@
+    public void close() {
+        m_mainStream.close();
+        for (PrintStream ps : m_additionalStreams) {
+            ps.close();
+        }
+    }

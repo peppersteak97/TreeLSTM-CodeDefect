@@ -1,0 +1,4 @@
+    private void persistChanges() throws InterchangeSavingException {
+        IProjectPersistor persistor = m_view.getProjectPersistor();
+        persistor.saveIntegrationEntity(m_entity);
+    }

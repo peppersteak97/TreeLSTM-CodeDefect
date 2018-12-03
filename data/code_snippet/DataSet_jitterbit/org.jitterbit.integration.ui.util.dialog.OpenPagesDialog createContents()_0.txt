@@ -1,0 +1,6 @@
+    private void createContents() {
+        createContentPane();
+        createList();
+        createControlPanel();
+        createButtonPanel();
+    }

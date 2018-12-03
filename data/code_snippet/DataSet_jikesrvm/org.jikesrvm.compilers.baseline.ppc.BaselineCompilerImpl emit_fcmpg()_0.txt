@@ -1,0 +1,14 @@
+  protected final void emit_fcmpg() {
+    popFloat(F1);
+    popFloat(F0);
+    asm.emitFCMPU(F0, F1);
+    ForwardReference fr1 = asm.emitForwardBC(GE);
+    ForwardReference fr2 = asm.emitForwardB();
+    fr1.resolve(asm);
+    ForwardReference fr3 = asm.emitForwardBC(EQ);
+    ForwardReference fr4 = asm.emitForwardB();
+    fr3.resolve(asm);
+    fr2.resolve(asm);
+    fr4.resolve(asm);
+    pushInt(T0);
+  }

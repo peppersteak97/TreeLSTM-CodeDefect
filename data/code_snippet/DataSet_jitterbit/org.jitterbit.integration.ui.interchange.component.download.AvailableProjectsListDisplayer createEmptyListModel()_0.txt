@@ -1,0 +1,10 @@
+    private ListModel createEmptyListModel() {
+        DefaultListModel m = new DefaultListModel();
+        Object data = new ItalicTextListDecorator(
+                        PackageResources.AvailableProjectsDisplayer.NO_PROJECTS_MESSAGE,
+                        null,
+                        null,
+                        IntegrationUiStyleSheet.DefaultListText.getFont());
+        m.addElement(data);
+        return m;
+    }

@@ -1,0 +1,3 @@
+    public FolderId getID() {
+        return (FolderId) super.getID();
+    }

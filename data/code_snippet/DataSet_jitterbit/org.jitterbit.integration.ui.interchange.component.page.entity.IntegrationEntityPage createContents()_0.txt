@@ -1,0 +1,6 @@
+    private void createContents() {
+        createTitlePanel();
+        m_inputPanel = createDataPanel();
+        setMainPanel(m_inputPanel.getUi());
+        setToolBar(createToolBar());
+    }

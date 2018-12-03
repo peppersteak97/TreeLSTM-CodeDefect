@@ -1,0 +1,11 @@
+    private String getXml() {
+        XmlStringBuilder builder = new XmlStringBuilder();
+        builder.addElement(MappingsXmlConstants.ROOT);
+        for (String m : m_mappings) {
+            builder.addElement(MappingsXmlConstants.MAPPING);
+            builder.setElementValue(m);
+            builder.closeElement();
+        }
+        builder.closeElement();
+        return builder.getXml();
+    }

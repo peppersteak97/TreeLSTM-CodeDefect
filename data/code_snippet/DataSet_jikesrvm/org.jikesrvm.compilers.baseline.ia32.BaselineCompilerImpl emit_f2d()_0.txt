@@ -1,0 +1,9 @@
+  protected final void emit_f2d() {
+    if (SSE2_BASE) {
+      asm.emitCVTSS2SD_Reg_RegInd(XMM0, SP);
+      asm.emitMOVLPD_RegInd_Reg(SP, XMM0);
+    } else {
+      asm.emitFLD_Reg_RegInd(FP0, SP);
+      asm.emitFSTP_RegInd_Reg_Quad(SP, FP0);
+    }
+  }

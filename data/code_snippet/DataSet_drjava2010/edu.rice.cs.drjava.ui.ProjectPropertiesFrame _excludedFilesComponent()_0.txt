@@ -1,0 +1,26 @@
+  public Component _excludedFilesComponent() {
+    _excludedFilesList = new VectorFileOptionComponent(null, "Files Excluded from Auto-Refresh", this, null, false) {
+      protected Action _getAddAction() {
+        final Action a = super._getAddAction();
+        return new AbstractAction("Add") {
+          public void actionPerformed(ActionEvent ae) {
+            _mainFrame.removeModalWindowAdapter(ProjectPropertiesFrame.this);
+            a.actionPerformed(ae);
+            _mainFrame.installModalWindowAdapter(ProjectPropertiesFrame.this, LambdaUtil.NO_OP, CANCEL);
+          }
+        };
+      }
+    };
+    _excludedFilesList.setRows(5,5);
+    _excludedFilesList.setFileFilter(new JavaSourceFilter());
+    _excludedFilesList.addChangeListener(new OptionComponent.ChangeListener() {
+      public Object value(Object oc) {
+        _applyButton.setEnabled(true);
+        return null;
+      }
+    });
+    if (_model.getProjectRoot() != null) {
+      _excludedFilesList.setBaseDir(_model.getProjectRoot());
+    }
+    return _excludedFilesList.getComponent();
+  }

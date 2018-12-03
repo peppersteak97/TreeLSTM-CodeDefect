@@ -1,0 +1,8 @@
+    private IRequiredObjectsLookup createRequiredObjectsLookup() {
+        return new IRequiredObjectsLookup() {
+
+            public List<? extends IntegrationEntity> getRequiredObjects(IntegrationEntity entity) {
+                return m_dependencies.getRequiredObjects(entity);
+            }
+        };
+    }

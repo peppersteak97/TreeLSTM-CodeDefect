@@ -1,0 +1,12 @@
+    protected void generateScript() {
+        
+        String sOriginalScript = ((View)getObject()).getSqlScript();
+        
+        String sNew_1 = sOriginalScript.replaceAll("(\\[)|(\\])", "");
+        String sNew_2 = sNew_1.replaceAll("dbo\\.", "");
+        addLine( PostgreSQLConstants.DROP_VIEW + getObject().getName() + ";");
+        getStringBuffer().append(sNew_2);
+        addLine(";");
+        addLine();
+        addLine();
+    }

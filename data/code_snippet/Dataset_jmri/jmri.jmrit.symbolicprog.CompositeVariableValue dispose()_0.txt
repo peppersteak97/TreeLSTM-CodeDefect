@@ -1,0 +1,11 @@
+    public void dispose() {
+        if (log.isDebugEnabled()) log.debug("dispose");
+
+        Iterator i = variables.iterator();
+        while (i.hasNext()) {
+            VariableValue v = (VariableValue) i.next();
+            v.removePropertyChangeListener(this);
+        }
+
+        disposeReps();
+    }

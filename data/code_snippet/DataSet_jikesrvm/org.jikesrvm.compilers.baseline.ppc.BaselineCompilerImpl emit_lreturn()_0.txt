@@ -1,0 +1,5 @@
+  protected final void emit_lreturn() {
+    if (method.isSynchronized()) genSynchronizedMethodEpilogue();
+    peekLong(T0, VM.BuildFor64Addr ? T0 : T1, 0);
+    genEpilogue();
+  }

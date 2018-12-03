@@ -1,0 +1,9 @@
+    private void createButtons() {
+        m_selectors = new ArrayList<JRadioButton>();
+        ButtonGroup group = new ButtonGroup();
+        for (ILaunchOption option : m_options) {
+            JRadioButton btn = createRadioButton(option);
+            m_selectors.add(btn);
+            group.add(btn);
+        }
+    }

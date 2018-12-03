@@ -1,0 +1,10 @@
+    private void createComponents() {
+        m_mainPanel = new JPanel();
+        m_mainPanel.setLayout( new BorderLayout() );
+        m_topPanel = new TopPanel();
+        m_mainPanel.add( m_topPanel, BorderLayout.NORTH );
+        
+        m_listPanel = new JPanel();
+        m_listPanel.setLayout( new BorderLayout() );
+        m_mainPanel.add( m_listPanel, BorderLayout.CENTER );
+    }

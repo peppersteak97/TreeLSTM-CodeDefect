@@ -1,0 +1,5 @@
+  public void chooseKeyStroke() {    
+    _table.getSelectionModel().clearSelection();
+    GetKeyDialog getKeyDialog = new GetKeyDialog(_parent, "Specify Shortcut", true);
+    getKeyDialog.promptKey(KeyStrokeOption.NULL_KEYSTROKE);
+  }

@@ -1,0 +1,9 @@
+  public float getTakenProbability() {
+    if (freq > 0) {
+      return taken / freq;
+    } else if (backwards) {
+      return 0.9f;
+    } else {
+      return 0.5f;
+    }
+  }

@@ -1,0 +1,9 @@
+    public final boolean cancel() {
+        boolean b = super.cancel();
+        if (b && !m_cancelHasBeenHandled) {
+            setStatus(Resources.UiJobStrings.CANCELLED);
+            Login.cancelled();
+            cancelled();
+        }
+        return b;
+    }

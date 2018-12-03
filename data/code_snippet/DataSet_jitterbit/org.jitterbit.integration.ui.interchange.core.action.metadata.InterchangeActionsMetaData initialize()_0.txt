@@ -1,0 +1,13 @@
+    public static synchronized void initialize() throws ViewActionsMetaDataException {
+        if( s_instance == null ) {
+            try {
+                s_instance = new InterchangeActionsMetaData();
+                s_instance.loadData();
+                INITIALIZATION_LATCH.countDown();
+            }
+            catch( ViewActionsMetaDataException e ) {
+                s_instance = null;
+                throw e;
+            }
+        }
+    }

@@ -1,0 +1,3 @@
+    DatabaseColumn getPrimaryKey() {
+        return m_checkBox.isSelected() ? m_column : null;
+    }

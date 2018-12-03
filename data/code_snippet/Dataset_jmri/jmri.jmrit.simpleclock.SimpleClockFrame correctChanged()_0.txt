@@ -1,0 +1,4 @@
+	private void correctChanged() {
+		clock.setCorrectHardware(correctCheckBox.isSelected(),true);
+		changed = true;
+	}

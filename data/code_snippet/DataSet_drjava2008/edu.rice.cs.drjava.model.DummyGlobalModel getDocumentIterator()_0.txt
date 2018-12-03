@@ -1,0 +1,3 @@
+  public DocumentIterator getDocumentIterator() {
+    throw new UnsupportedOperationException("Tried to call getDocumentIterator on a Dummy");
+  }

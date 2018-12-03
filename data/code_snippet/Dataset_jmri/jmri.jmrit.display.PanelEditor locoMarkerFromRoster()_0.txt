@@ -1,0 +1,19 @@
+    void locoMarkerFromRoster(){
+    	if (locoRosterFrame == null) {
+			locoRosterFrame = new JmriJFrame();
+			locoRosterFrame.getContentPane().setLayout(new FlowLayout());
+			locoRosterFrame.setTitle("Loco Marker from Roster");
+			text.setText("Select loco:");
+			locoRosterFrame.getContentPane().add(text);
+			rosterBox.insertItemAt("", 0);
+			rosterBox.setSelectedIndex(0);
+			rosterBox.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					selectLoco();
+				}
+			});
+			locoRosterFrame.getContentPane().add(rosterBox);
+			locoRosterFrame.pack();
+		}
+    	locoRosterFrame.setVisible(true);	
+    }

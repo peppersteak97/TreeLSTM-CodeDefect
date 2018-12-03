@@ -1,0 +1,4 @@
+	public void dispose() {
+		EasyDccTrafficController.instance().removeEasyDccListener(this);
+		super.dispose();
+	}

@@ -1,0 +1,7 @@
+    private static void customizeLocations() throws IntrospectionException {
+        BeanInfo info = Introspector.getBeanInfo(DataLocation.class);
+        BeanDescriptor desc = info.getBeanDescriptor();
+        
+        info = Introspector.getBeanInfo(DatabaseLocation.class);
+        desc = info.getBeanDescriptor();
+    }

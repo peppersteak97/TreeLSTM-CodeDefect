@@ -1,0 +1,3 @@
+  public LocalRegPair copy() {
+    return new LocalRegPair(kind, num, typeCode, operand);
+  }

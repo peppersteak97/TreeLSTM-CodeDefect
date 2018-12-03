@@ -1,0 +1,3 @@
+  public boolean getSamplesReset() {
+    return (flags & SAMPLES_RESET) != 0;
+  }

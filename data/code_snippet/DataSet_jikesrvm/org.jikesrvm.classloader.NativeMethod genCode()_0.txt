@@ -1,0 +1,15 @@
+  protected synchronized CompiledMethod genCode() {
+    if (isSysCall()) {
+      Entrypoints.sysCallMethod.compile();
+      return Entrypoints.sysCallMethod.getCurrentCompiledMethod();
+    } else if (!resolveNativeMethod()) {
+      Entrypoints.unimplementedNativeMethodMethod.compile();
+      return Entrypoints.unimplementedNativeMethodMethod.getCurrentCompiledMethod();
+    } else {
+      if (VM.writingBootImage) {
+        return BootImageCompiler.compile(this);
+      } else {
+        return RuntimeCompiler.compile(this);
+      }
+    }
+  }

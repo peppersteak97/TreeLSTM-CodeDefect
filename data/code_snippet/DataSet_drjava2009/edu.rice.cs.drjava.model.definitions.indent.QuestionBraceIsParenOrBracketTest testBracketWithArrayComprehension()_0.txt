@@ -1,0 +1,22 @@
+  public void testBracketWithArrayComprehension() throws BadLocationException {
+    int i;
+    
+    /* (1) */
+    
+    _text =
+      "f(int[\n" +
+      "                   ] {1, 2, 3},\n" +
+      "               a, String b)";
+    
+    _setDocText(_text);
+    
+    for (i = 0; i < 7; i++)
+      assertTrue("START has no brace.", !_rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+    
+    
+    for (i = 7; i < 27; i++)
+      assertTrue("START's brace is an open bracket.", _rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+    
+    for (i = 27; i < _text.length(); i++)
+      assertTrue("START's brace is an open paren.", _rule.testApplyRule(_doc, i, Indenter.IndentReason.OTHER));
+  }

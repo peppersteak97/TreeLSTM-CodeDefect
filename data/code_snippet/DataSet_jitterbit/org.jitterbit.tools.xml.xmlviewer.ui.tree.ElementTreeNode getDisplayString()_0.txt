@@ -1,0 +1,11 @@
+	public String getDisplayString() {
+		StringBuffer sb = new StringBuffer("[E] ");
+		sb.append( getXmlElement().getNodeName() );
+		String name = getXmlElement().getAttribute("name");
+		if( name.length() > 0 ) {
+			sb.append(" (");
+			sb.append(name);
+			sb.append(")");
+		}
+		return sb.toString();
+	}

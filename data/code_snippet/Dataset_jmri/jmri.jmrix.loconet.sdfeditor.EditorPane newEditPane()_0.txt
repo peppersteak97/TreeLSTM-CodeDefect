@@ -1,0 +1,26 @@
+    JPanel newEditPane() {
+        JPanel p = new JPanel();
+        p.setMinimumSize(new Dimension(600,400));
+        p.setPreferredSize(new Dimension(600,400));
+        p.setMaximumSize(new Dimension(600,400));
+        
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+        
+        p.add(newInstructionPane());
+        
+        p.add(new JSeparator());
+        
+        p.add(explanation);
+        explanation.setContentType("text/html");
+        explanation.setMinimumSize(new Dimension(600,200));
+        explanation.setPreferredSize(new Dimension(600,200));
+        explanation.setMaximumSize(new Dimension(600,200));
+        explanation.setBackground(instruction.getBackground());
+        explanation.setEditable(false);
+        
+        p.add(new JSeparator());
+        
+        p.add(newDetailPane());
+        
+        return p;
+    }

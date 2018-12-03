@@ -1,0 +1,4 @@
+  static void unexpectedAbstractMethodCall() {
+    VM.sysWrite("RuntimeEntrypoints.unexpectedAbstractMethodCall\n");
+    throw new AbstractMethodError();
+  }

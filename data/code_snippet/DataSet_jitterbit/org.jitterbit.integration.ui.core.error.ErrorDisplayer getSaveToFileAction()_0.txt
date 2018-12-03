@@ -1,0 +1,3 @@
+    public Action getSaveToFileAction() {
+        return m_saveToFileAction;
+    }

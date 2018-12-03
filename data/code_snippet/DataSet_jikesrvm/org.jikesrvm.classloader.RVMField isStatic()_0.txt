@@ -1,0 +1,3 @@
+  public boolean isStatic() {
+    return (modifiers & ACC_STATIC) != 0;
+  }

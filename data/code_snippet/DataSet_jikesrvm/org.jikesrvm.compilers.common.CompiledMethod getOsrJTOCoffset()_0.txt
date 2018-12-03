@@ -1,0 +1,4 @@
+  public final Offset getOsrJTOCoffset() {
+    if (VM.VerifyAssertions) VM._assert(isSpecialForOSR());
+    return Offset.fromIntSignExtend(this.osrJTOCoffset);
+  }

@@ -1,0 +1,11 @@
+    private void createInputPanel() {
+        m_inputPanel = new InputPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
+        m_inputPanel.addInputField(m_name, m_name, m_name);
+        IInputFieldDecorator comboDecorator = new LabelIconFieldDecorator();
+        String sourceMsg = errors.getString(resourceKey + "SourceMissing");
+        m_inputPanel.addInputField(m_sourceTypeBox,
+                        new DataTypeInputValidator(sourceMsg), comboDecorator);
+        String targetMsg = errors.getString(resourceKey + "TargetMissing");
+        m_inputPanel.addInputField(m_targetTypeBox,
+                        new DataTypeInputValidator(targetMsg), comboDecorator);
+    }

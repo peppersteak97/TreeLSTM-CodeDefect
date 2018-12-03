@@ -1,0 +1,6 @@
+  private static void _displayUsage() {
+    System.out.println(
+      "Usage:" +
+      "  java edu.rice.cs.drjava.IndentFile [-indent N] [-silent] [filenames]\n" +
+      "  Where N is the number of spaces in an indentation level");
+  }

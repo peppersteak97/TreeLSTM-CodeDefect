@@ -1,0 +1,9 @@
+  public void testInterpretAppletSingleQuotedArgs() {
+    _log.log("testInterpretAppletSingleQuotedArgs started");
+    _assertAppletTransformation("applet Foo 'asdf'", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"asdf\"), 400, 300);");
+    
+    _assertAppletTransformation("applet Foo 'a b c'", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"a b c\"), 400, 300);");
+    
+    _assertAppletTransformation("applet Foo 'a b'c", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"a bc\"), 400, 300);");
+     _log.log("testInterpretAppletSingleQuotedArgs ended");
+  }

@@ -1,0 +1,6 @@
+  protected final void emit_frem() {
+    popFloat(F1);
+    popFloat(F0);
+    generateSysCall(16, Entrypoints.sysDoubleRemainderIPField);
+    pushFloat(F0);
+  }

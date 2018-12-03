@@ -1,0 +1,3 @@
+    public String name() {
+        return "SKIP_ON_TRIGGER";
+    }

@@ -1,0 +1,3 @@
+    boolean isDirty() {
+        return !m_dirtyUsersAndGroups.isEmpty();
+    }

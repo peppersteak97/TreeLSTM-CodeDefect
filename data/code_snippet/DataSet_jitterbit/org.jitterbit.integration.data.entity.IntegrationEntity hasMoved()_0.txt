@@ -1,0 +1,3 @@
+    public final boolean hasMoved() {
+        return m_hasMoved;
+    }

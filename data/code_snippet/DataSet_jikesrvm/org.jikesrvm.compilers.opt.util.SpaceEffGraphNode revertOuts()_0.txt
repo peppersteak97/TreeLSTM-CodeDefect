@@ -1,0 +1,12 @@
+  final void revertOuts() {
+    SpaceEffGraphEdge last = null;
+    SpaceEffGraphEdge e = firstOutEdge();
+    _outEdgeStart = _outEdgeEnd;
+    _outEdgeEnd = e;
+    while (e != null) {
+      SpaceEffGraphEdge next = e.getNextOut();
+      e.appendOut(last);
+      last = e;
+      e = next;
+    }
+  }

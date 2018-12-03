@@ -1,0 +1,1 @@
+	public int getControlPoint() { return m_iCP; }

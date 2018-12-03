@@ -1,0 +1,5 @@
+  public byte[] getBytes() {
+    byte[] codes = new byte[1];
+    codes[0] = 87;
+    return codes;
+  }

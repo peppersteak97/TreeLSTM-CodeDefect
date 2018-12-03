@@ -1,0 +1,3 @@
+	public JScrollPane getScrollPane() {
+	    return m_scroll;
+	}

@@ -1,0 +1,5 @@
+			if (allowDragging()) {
+				m_pnlDraggedArea.setVisible(true);
+				m_parent.add(m_pnlDraggedArea);
+				m_bIsDragging = true;
+			}

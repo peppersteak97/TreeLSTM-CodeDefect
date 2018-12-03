@@ -1,0 +1,3 @@
+    public IntegrationId getNextFunctionId() {
+        return null;
+    }

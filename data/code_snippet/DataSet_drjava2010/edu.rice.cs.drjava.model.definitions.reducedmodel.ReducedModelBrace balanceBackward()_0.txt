@@ -1,0 +1,36 @@
+  public int balanceBackward() {
+    
+    Stack<Brace> braceStack = new Stack<Brace>();
+    TokenList.Iterator iter = _cursor.copy();
+    
+    if (! closedBraceImmediatelyLeft() || isShadowed()) {
+      iter.dispose();
+      return -1;
+    }
+    
+    
+    iter.prev();   
+    
+    /* We loop until:
+     * (i)   we get a match and the stack is empty and report success
+     * (ii)  we reach the start of a file and haven't found a match and aborrt
+     * (iii) we reach an open brace that doesn't have a match and abort
+     */
+    do {
+      ReducedToken curToken = iter.current();
+      int size = curToken.getSize();
+      distance += size;
+      relDistance += size;
+      
+        Brace curBrace = (Brace) curToken;
+        relDistance = 0;
+          if (curBrace.isOpenBrace()) {
+            Brace popped = braceStack.pop();
+            if (! curBrace.isMatch(popped)) {
+              iter.dispose();
+              return -1;
+            }
+          }
+            braceStack.push(curBrace);
+          }
+        }

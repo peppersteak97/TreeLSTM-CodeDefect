@@ -1,0 +1,20 @@
+  private void _findAll() {
+    _machine.setSearchBackwards(false);
+    _findLabelBot.setText("Next");
+
+    String searchStr = _findField.getText();
+    String title = searchStr;
+    OpenDefinitionsDocument startDoc = _defPane.getOpenDefDocument();
+    boolean searchAll = _machine.getSearchAllDocuments();
+    String tabLabel = (title.length() <= 20) ? title : title.substring(0,20);
+    RegionManager<MovingDocumentRegion> rm = _model.createFindResultsManager();
+    final FindResultsPanel panel = 
+      _frame.createFindResultsPanel(rm, tabLabel, searchStr, searchAll, _machine.getMatchCase(), 
+                                    _machine.getMatchWholeWord(), _machine.getIgnoreCommentsAndStrings(),
+                                    _ignoreTestCases.isSelected(), new WeakReference<OpenDefinitionsDocument>(startDoc),
+                                    this);
+    findAll(searchStr, searchAll, _machine.getMatchCase(), _machine.getMatchWholeWord(),
+            _machine.getIgnoreCommentsAndStrings(), _ignoreTestCases.isSelected(), startDoc, rm, panel);
+    panel.requestFocusInWindow();
+    EventQueue.invokeLater(new Runnable() { public void run() { panel._regTree.scrollRowToVisible(0); } });
+  }

@@ -1,0 +1,8 @@
+    private void createDisplayer() {
+        m_queueDisplayer = new OperationQueueDisplayer(getWindow());
+        m_queueDisplayer.getNavigationControl().addControl(m_helpButton,
+                        Integer.MAX_VALUE - 1);
+        m_queueDisplayer.setDisplayedSubject(getObject());
+        IComponentDecor decor = ComponentDecorFactory.centerBorder(m_queueDisplayer);
+        setDisplayPanel(decor.getUi());
+    }

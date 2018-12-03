@@ -1,0 +1,11 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        int n = 0;
+        for (Entry e : m_entries) {
+            if (n > 0) {
+            }
+            sb.append(e);
+            ++n;
+        }
+        return sb.toString();
+    }

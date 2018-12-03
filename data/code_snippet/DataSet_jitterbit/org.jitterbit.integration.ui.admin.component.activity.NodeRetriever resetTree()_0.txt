@@ -1,0 +1,10 @@
+    private void resetTree() {
+        Runnable job = new Runnable() {
+
+            public void run() {
+                m_tree.stopNodeUpdater();
+                m_tree.removeWaitNode();
+            }
+        };
+        UiUtils.runOnEventThread(job);
+    }

@@ -1,0 +1,9 @@
+    public int getSize() {
+        int nSize = 0;
+        for (IIntegrationEntityUiDelegate uiDel : m_items) {
+            if (m_comboBox.accept(uiDel)) {
+                ++nSize;
+            }
+        }
+        return m_includeNoneItem ? nSize + 1 : nSize;
+    }

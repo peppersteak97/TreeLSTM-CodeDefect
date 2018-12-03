@@ -1,0 +1,7 @@
+    public static File getLocation() {
+        if (s_directory == null) {
+            throw new IllegalStateException(
+                "The ServerDirectory has not been initialized properly.");
+        }
+        return s_directory;
+    }

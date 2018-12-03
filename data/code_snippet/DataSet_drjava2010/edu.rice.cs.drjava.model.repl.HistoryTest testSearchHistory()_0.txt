@@ -1,0 +1,17 @@
+  public void testSearchHistory() {
+    String entry1 = "some text";
+    String entry2 = "blah";
+
+    _history.add(entry1);
+    _history.add(entry2);
+
+    _history.reverseSearch("s");
+    
+    Utilities.clearEventQueue();
+    assertEquals("Did not find the correct entry in history.", entry1, _history.getCurrent());
+
+    _history.forwardSearch("b");
+    
+    Utilities.clearEventQueue();
+    assertEquals("Did not find the correct entry in history.", entry2, _history.getCurrent());
+  }

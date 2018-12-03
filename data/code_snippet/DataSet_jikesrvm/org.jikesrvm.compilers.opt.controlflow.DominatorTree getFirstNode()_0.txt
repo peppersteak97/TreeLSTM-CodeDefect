@@ -1,0 +1,7 @@
+  private BasicBlock getFirstNode() {
+    if (forward) {
+      return ir.cfg.entry();
+    } else {
+      return ir.cfg.exit();
+    }
+  }

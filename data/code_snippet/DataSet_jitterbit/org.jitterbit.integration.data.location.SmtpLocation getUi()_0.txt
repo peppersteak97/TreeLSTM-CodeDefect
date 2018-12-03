@@ -1,0 +1,3 @@
+    public IDataLocationUiDelegate getUi() {
+        return new DefaultSmtpLocationUi(this);
+    }

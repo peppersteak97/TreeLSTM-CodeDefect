@@ -1,0 +1,3 @@
+	public Point getLastMouseClickPosition() {
+		return m_mouseClickListener.getLastMouseClickPoint();
+	}

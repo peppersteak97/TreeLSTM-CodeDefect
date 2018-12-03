@@ -1,0 +1,14 @@
+    private void updatePreferenceStore() {
+        String keyName = m_key.keyName();
+        int index = 0;
+        for (IFileUi f : m_files) {
+            m_preferences.putFile(getIndexedKeyName(keyName, index), f.getFile());
+            ++index;
+            if (index == m_historySize) {
+                break;
+            }
+        }
+        for ( ; index < m_historySize; ++index) {
+            m_preferences.putFile(getIndexedKeyName(keyName, index), null);
+        }
+    }

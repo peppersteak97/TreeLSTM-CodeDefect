@@ -1,0 +1,20 @@
+    private void processPartialDeploy() throws InterchangeSavingException {
+        InterchangeProject realProject = 
+            (InterchangeProject) m_currentProject.getDataLookup().getInstance(
+                            m_partialProject.getID());
+        if (realProject != null) {
+            setServerPropertiesOnProject(realProject, m_serverInfo);
+        }
+        
+        IPostDeployProcessingManager mgr = createManager(m_serverInfo.getGuid());
+        for (RootFolder f : m_partialProject.getAllRootFolders()) {
+            postPartialDeployProcessingImpl(f, mgr);
+        }
+        IProjectPersistor saver = m_currentProject.getProjectPersistor();
+        for (IntegrationEntity e : m_partialProject.getAllEntities()) {
+            saver.saveIntegrationEntity(e);
+        }
+        updateProject();
+        ProjectUtils.saveProjectFile(m_currentProject.getProject(), 
+                        m_currentProject.getProjectFile());
+    }

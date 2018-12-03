@@ -1,0 +1,10 @@
+  public void testStringInterfaceRejection() {
+    try {
+      ClassAndInterfaceFinder finder = new ClassAndInterfaceFinder(r);
+      String s = finder.getClassName();
+      assertEquals("stringInterfaceRejection","", s);
+    }
+    catch (Exception e) {
+      fail("stringInterfaceRejection threw "+ e);
+    }
+  }

@@ -1,0 +1,6 @@
+    private void collectWebServiceCallLinks() {
+        List<? extends IIntegrationLink> links = m_webServiceLinkFactory.getLinks();
+        if (links != null) {
+            m_links.addAll(links);
+        }
+    }

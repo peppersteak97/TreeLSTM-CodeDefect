@@ -1,0 +1,3 @@
+  public Iterator<String> getLegalValues() {
+    return _choices.iterator();
+  }

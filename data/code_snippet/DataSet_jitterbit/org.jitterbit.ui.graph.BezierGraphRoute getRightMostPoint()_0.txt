@@ -1,0 +1,9 @@
+	public Point getRightMostPoint() {
+		Point retVal = getControlPoint(0);
+		Point p = null;
+		for( int i = 1; i < 4; ++i ) {
+			p = getControlPoint(i);
+			if ( p.x > retVal.x ) retVal = p;
+		}		
+		return retVal;
+	}

@@ -1,0 +1,38 @@
+  public void dump() {
+    VM.sysWrite("********* START OF SSA LOOP DUMP in AnnotatedLSTNode FOR " + ir.method + "\n");
+    if (isNonRegularLoop()) {
+      VM.sysWrite("Non-regular");
+    } else if (isAffineLoop()) {
+      VM.sysWrite("Affine");
+    } else if (isCountableLoop()) {
+      VM.sysWrite("Countable");
+    } else {
+      VM.sysWrite("INVALID");
+    }
+    VM.sysWrite(" Loop:\n\tIteratorInstr: " +
+                iteratorInstr.toString() +
+                "\n\tIfCmpInstr:" +
+                ifCmpInstr.toString() +
+                "\n\tTerminalIteratorValue: " +
+                terminalIteratorValue.toString() +
+                "\n\tInitialIteratorValue: " +
+                initialIteratorValue.toString() +
+                "\n\tCarriedLoopIterator: " +
+                carriedLoopIterator.toString() +
+                "\n\tPhiLoopIterator: " +
+                phiLoopIterator.toString() +
+                "\n\tStrideValue: " +
+                strideValue.toString() +
+                "\n\tLoop: " +
+                getBasicBlocks().toString() +
+                " / " +
+                loop.toString() +
+                "\n");
+
+    BasicBlockEnumeration loopBlocks = getBasicBlocks();
+    while (loopBlocks.hasMoreElements()) {
+      BasicBlock curLoopBB = loopBlocks.next();
+      dumpBlock(curLoopBB);
+    }
+    VM.sysWrite("*********   END OF SSA LOOP DUMP in AnnotatedLSTNode FOR " + ir.method + "\n");
+  }

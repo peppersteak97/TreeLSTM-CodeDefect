@@ -1,0 +1,4 @@
+    private ProjectLocation getSelectedExistingProject() {
+        return (m_selectedProject != null) ? m_selectedProject : 
+            m_representation.getSelectedProject();
+    }

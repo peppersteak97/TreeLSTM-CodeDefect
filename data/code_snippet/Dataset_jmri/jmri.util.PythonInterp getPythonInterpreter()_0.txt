@@ -1,0 +1,24 @@
+    static public Object getPythonInterpreter() {
+
+        if (interp!=null) return interp;
+
+        try {
+            log.debug("create interpreter");
+            Class cs = Class.forName("org.python.core.PySystemState");
+            java.lang.reflect.Method initialize =
+                        cs.getMethod("initialize",(Class[])null);
+            initialize.invoke(null, null);
+
+            interp = Class.forName("org.python.util.PythonInterpreter").newInstance();
+
+            log.debug("load defaults from "+defaultContextFile);
+            execFile(defaultContextFile);
+
+            return interp;
+
+        } catch (Exception e) {
+            log.error("Exception creating jython system objects: "+e);
+            e.printStackTrace();
+            return null;
+        }
+    }

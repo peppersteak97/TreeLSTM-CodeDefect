@@ -1,0 +1,3 @@
+    public List<StructureNode> getChildren() {
+        return m_children;
+    }

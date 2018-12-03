@@ -1,0 +1,6 @@
+    public void sendEdit() {
+        if (m_lastEdit != null) {
+            fireUndoableEditHappened(m_lastEdit);
+            m_lastEdit = null;
+        }
+    }

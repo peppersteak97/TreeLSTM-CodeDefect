@@ -1,0 +1,3 @@
+    void showErrButtonChanged() {
+        panel.setShowErrors(showErrButton.isSelected());
+    }

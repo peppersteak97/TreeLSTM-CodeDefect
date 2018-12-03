@@ -1,0 +1,10 @@
+    private JComponent createTopComponent() {
+        JPanel topPanel = new JPanel(new BorderLayout());
+        JComponent navDisplayer = getNavigationControl().getDisplayer();
+        FocusUtils.makeComponentMouseFocusable(navDisplayer);
+        topPanel.add(navDisplayer, BorderLayout.NORTH);
+        topPanel.add(ComponentFactories.scrollFactory().newScrollPane(m_entryTable), 
+                        BorderLayout.CENTER);
+        getFilterDescriptionPanel().addToContainer(topPanel, BorderLayout.SOUTH);
+        return topPanel;
+    }

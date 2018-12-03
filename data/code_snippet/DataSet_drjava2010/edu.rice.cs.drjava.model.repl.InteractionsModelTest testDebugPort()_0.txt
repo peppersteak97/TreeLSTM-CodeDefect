@@ -1,0 +1,17 @@
+  public void testDebugPort() throws IOException {
+     _log.log("testDebugPort started");
+    int port = _model.getDebugPort();
+    assertTrue("generated debug port", port != -1);
+    
+    _model.setWaitingForFirstInterpreter(false);
+    _model.interpreterResetting();
+    int newPort = _model.getDebugPort();
+    assertTrue("debug port should change", newPort != port);
+    
+    _model.setDebugPort(5);
+    assertEquals("manually set debug port", 5, _model.getDebugPort());
+    
+    _model.setDebugPort(-1);
+    assertEquals("debug port should be -1", -1, _model.getDebugPort());
+    _log.log("testDebugPort ended");
+  }

@@ -1,0 +1,3 @@
+        for (LoginRequest req : getRequestsToNotify()) {
+            req.granted();
+        }

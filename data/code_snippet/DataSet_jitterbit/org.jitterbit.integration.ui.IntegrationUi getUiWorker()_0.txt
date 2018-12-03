@@ -1,0 +1,6 @@
+    public synchronized IUiWorker getUiWorker() {
+        if (m_uiWorker == null) {
+            m_uiWorker = createUiWorker();
+        }
+        return m_uiWorker;
+    }

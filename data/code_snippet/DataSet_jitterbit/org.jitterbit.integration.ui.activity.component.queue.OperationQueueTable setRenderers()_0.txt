@@ -1,0 +1,7 @@
+    private void setRenderers() {
+        ComponentCustomizer.customizeTable(this);
+        setDefaultRenderer(QueueStatus.class, new StatusRenderer());
+        setDefaultRenderer(Date.class, ActivityViewUtils.getDateCellRenderer());
+        setRowHeight((int) (getRowHeight() * 1.25));
+        setFont(IntegrationUiStyleSheet.SmallTableText.getFont());
+    }

@@ -1,0 +1,3 @@
+    private boolean exitRequestedImpl() {
+        return m_viewManager.exitRequested();
+    }

@@ -1,0 +1,9 @@
+  public void testFormat() {
+    LongOption io1 = new LongOption("max_files",null);
+    LongOption io2 = new LongOption("indent_size",null);
+    
+    assertEquals(new Long(Integer.MAX_VALUE+1).toString(), io1.format(new Long(Integer.MAX_VALUE+1)));
+    assertEquals(new Long(Integer.MAX_VALUE+1).toString(), io2.format(new Long(Integer.MAX_VALUE+1)));
+    assertEquals(new Long(Integer.MIN_VALUE-1).toString(), io1.format(new Long(Integer.MIN_VALUE-1)));
+    assertEquals(new Long(Integer.MIN_VALUE-1).toString(), io2.format(new Long(Integer.MIN_VALUE-1)));
+  }

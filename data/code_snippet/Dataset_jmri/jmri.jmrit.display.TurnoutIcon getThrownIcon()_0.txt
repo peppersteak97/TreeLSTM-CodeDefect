@@ -1,0 +1,1 @@
+    public NamedIcon getThrownIcon() { return thrown; }

@@ -1,0 +1,7 @@
+    private static void setup() {
+        if (smap == null) {
+            smap = new Hashtable();
+            umap = new Hashtable();
+            InstanceManager.configureManagerInstance().registerConfig(new BlockBossLogic());
+        }
+    }

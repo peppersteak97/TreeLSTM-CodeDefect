@@ -1,0 +1,9 @@
+  public final Instruction firstBranchInstruction() {
+    Instruction s = lastRealInstruction();
+    if (s == null) return null;
+    if (!s.operator().isBranch()) return null;
+    while (s.getPrev().isBranch()) {
+      s = s.getPrev();
+    }
+    return s;
+  }

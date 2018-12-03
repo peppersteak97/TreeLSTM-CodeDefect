@@ -1,0 +1,5 @@
+  public void expandAll() {
+    TreeNode root = (TreeNode)_regTree.getModel().getRoot();
+    
+    expandRecursive(_regTree, new TreePath(root), true);
+  }

@@ -1,0 +1,3 @@
+    private void uninstallChangeListener() {
+        getTree().removePropertyChangeListener(m_treeChangeListener);
+    }

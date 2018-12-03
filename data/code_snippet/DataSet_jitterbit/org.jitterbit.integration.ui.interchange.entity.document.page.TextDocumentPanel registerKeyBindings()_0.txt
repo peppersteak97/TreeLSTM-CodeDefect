@@ -1,0 +1,5 @@
+    private void registerKeyBindings() {
+        KeyBindingInstaller installer = new KeyBindingInstaller(getUi(), JComponent.WHEN_IN_FOCUSED_WINDOW);
+        installer.addBinding(KeyUtils.ENTER, "create", createManuallyAction);
+        installer.install();
+    }

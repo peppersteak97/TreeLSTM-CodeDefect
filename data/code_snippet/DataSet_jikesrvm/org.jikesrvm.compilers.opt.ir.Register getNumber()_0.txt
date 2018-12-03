@@ -1,0 +1,4 @@
+  public int getNumber() {
+    int start = PhysicalRegisterSet.getSize();
+    return number - start;
+  }

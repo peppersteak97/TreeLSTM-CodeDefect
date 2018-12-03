@@ -1,0 +1,28 @@
+  protected JComponent[] makeButtons() {    
+    Action goToAction = new AbstractAction("Go to") {
+      public void actionPerformed(ActionEvent ae) {
+        goToRegion();
+      }
+    };
+    _goToButton = new JButton(goToAction);
+
+    Action removeAction = new AbstractAction("Remove") {
+    };
+  
+    _removeButton = new JButton(removeAction);
+    
+    Action removeAllAction = new AbstractAction("Remove All") {
+      public void actionPerformed(ActionEvent ae) {
+        _regionManager.clearRegions();
+      }
+    };
+    _removeAllButton = new JButton(removeAllAction);
+    
+    JComponent[] buts = new JComponent[] { 
+      _goToButton, 
+        _removeButton,
+        _removeAllButton
+    };
+    
+    return buts;
+  }

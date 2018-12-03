@@ -1,0 +1,8 @@
+    public IWindowSectionContentDisplayer newDisplayer() {
+        return new IWindowSectionContentDisplayer() {
+
+            public void displayInWindow(IApplicationWindow window, SectionPosition position) {
+                ApplicationWindowUtils.displayContent(window, getContentProvider(), position);
+            }
+        };
+    }

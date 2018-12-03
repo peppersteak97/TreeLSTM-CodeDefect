@@ -1,0 +1,55 @@
+  public void textTopLevelEnclosingClassName() throws BadLocationException, ClassNameNotFoundException {
+    String classes =
+    
+    _doc.insertString(0, classes, null);
+    
+    try {
+      @SuppressWarnings("unused") String result = _doc.getEnclosingTopLevelClassName(3);
+      fail("no enclosing class should be found at start");
+    }
+    catch (ClassNameNotFoundException cnnfe) {
+    }
+    
+    try {
+      _doc.getEnclosingTopLevelClassName(15);
+      fail("no enclosing class should be found before open brace");
+    }
+    catch (ClassNameNotFoundException cnnfe) {
+    }
+    
+    try {
+      @SuppressWarnings("unused") String result = _doc.getEnclosingTopLevelClassName(186);
+      fail("no enclosing class should be found at end of file");
+    }
+    catch (ClassNameNotFoundException cnnfe) {
+    }
+    
+    assertEquals("top level class name after first open brace", "C1", _doc.getEnclosingTopLevelClassName(22));
+    assertEquals("top level class name inside C1", "C1", _doc.getEnclosingTopLevelClassName(26));
+    assertEquals("top level class name inside method of C1", "C1", _doc.getEnclosingTopLevelClassName(42));
+    assertEquals("top level class name on C2's brace", "C1", _doc.getEnclosingTopLevelClassName(58));
+    assertEquals("top level class name after C2's brace", "C1", _doc.getEnclosingTopLevelClassName(59));
+    assertEquals("top level class name inside C2", "C1", _doc.getEnclosingTopLevelClassName(68));
+    assertEquals("top level class name inside C3", "C1", _doc.getEnclosingTopLevelClassName(92));
+    assertEquals("top level class name after C3's close brace", "C1", _doc.getEnclosingTopLevelClassName(93));
+    assertEquals("top level class name after C2's close brace", "C1", _doc.getEnclosingTopLevelClassName(100));
+    
+    try {
+      _doc.getEnclosingTopLevelClassName(107);
+      fail("no enclosing class should be found between classes");
+    }
+    catch (ClassNameNotFoundException cnnfe) {
+    }
+    
+    assertEquals("class name inside C4", "C4", _doc.getEnclosingTopLevelClassName(122));
+    assertEquals("class name inside C5", "C4", _doc.getEnclosingTopLevelClassName(135));
+    assertEquals("class name inside C6", "C4", _doc.getEnclosingTopLevelClassName(167));
+    assertEquals("class name inside C7", "C7", _doc.getEnclosingTopLevelClassName(185));
+    
+    try {
+      @SuppressWarnings("unused") String result = _doc.getEnclosingTopLevelClassName(186);
+      fail("no enclosing class should be found at end");
+    }
+    catch (ClassNameNotFoundException cnnfe) {
+    }
+  }

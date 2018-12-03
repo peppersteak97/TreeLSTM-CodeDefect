@@ -1,0 +1,4 @@
+    public void dispose() {
+        super.dispose();
+        m_inputField = null;
+    }

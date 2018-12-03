@@ -1,0 +1,27 @@
+  void quit() {
+    if (_promptBeforeQuit) {
+      String title = "Quit DrJava?";
+      String message = "Are you sure you want to quit DrJava?";
+      ConfirmCheckBoxDialog dialog = new ConfirmCheckBoxDialog(MainFrame.this, title, message);
+      int rc = dialog.show();
+      if (rc != JOptionPane.YES_OPTION) return;
+      else {
+        if (dialog.getCheckBoxValue() == true) {
+          DrJava.getConfig().setSetting(QUIT_PROMPT, Boolean.FALSE);
+        }
+      }
+    }
+    _executeExternalDialog.setVisible(false);
+    if (! _closeProject(true)) { return; /* if user pressed cancel, do not quit */ }
+    
+    _recentFileManager.saveRecentFiles();
+    _recentProjectManager.saveRecentFiles();
+    if (! _model.closeAllFilesOnQuit()) { return; /* if user pressed cancel, do not quit */ }
+    _storePositionInfo();
+    
+    if (! DrJava.getConfig().hadStartupException()) {
+      try { DrJava.getConfig().saveConfiguration(); }
+      catch (IOException ioe) { _showIOError(ioe); }
+    }
+    _model.quit();
+  }

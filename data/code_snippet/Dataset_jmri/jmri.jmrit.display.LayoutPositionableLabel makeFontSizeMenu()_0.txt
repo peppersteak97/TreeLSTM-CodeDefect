@@ -1,0 +1,17 @@
+    JMenu makeFontSizeMenu() {
+        JMenu sizeMenu = new JMenu(rb.getString("FontSize"));
+        fontButtonGroup = new ButtonGroup();
+        addFontMenuEntry(sizeMenu, 6);
+        addFontMenuEntry(sizeMenu, 8);
+        addFontMenuEntry(sizeMenu, 10);
+        addFontMenuEntry(sizeMenu, 11);
+        addFontMenuEntry(sizeMenu, 12);
+        addFontMenuEntry(sizeMenu, 14);
+        addFontMenuEntry(sizeMenu, 16);
+        addFontMenuEntry(sizeMenu, 20);
+        addFontMenuEntry(sizeMenu, 24);
+        addFontMenuEntry(sizeMenu, 28);
+        addFontMenuEntry(sizeMenu, 32);
+        addFontMenuEntry(sizeMenu, 36);
+        return sizeMenu;
+    }

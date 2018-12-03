@@ -1,0 +1,3 @@
+  public boolean isMethodEntry() {
+    return ((state & METHODENTRY) == METHODENTRY);
+  }

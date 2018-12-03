@@ -1,0 +1,594 @@
+  public File getMainClassContainingFile(){
+    String path = getMainClass();
+    
+    if(path == null){
+      return null;
+    }
+    
+    if(path.toLowerCase().endsWith(".java")){
+      return new File(getProjectFile().getParent(), path);
+    
+    path = path.replace('.', File.separatorChar);
+    File tempFile = new File(getProjectRoot(), path+".java");
+    while(path.length() > 0){
+      if(tempFile.exists()){
+        return tempFile;
+      
+      if(path.indexOf(File.separatorChar) == -1)
+        break;
+      
+      path = path.substring(0, path.lastIndexOf(File.separatorChar));
+      tempFile = new File(getProjectRoot(), path + ".java");
+    }
+    
+    return null;
+  }
+  
+  /** Sets the create jar file of the project. */
+  public void setCreateJarFile(File f) {
+    _state.setCreateJarFile(f);
+    setProjectChanged(true);
+  }
+  
+  /** Return the create jar file for the project. If not in project mode, returns null. */
+  public File getCreateJarFile() { return _state.getCreateJarFile(); }
+  
+  /** Sets the create jar flags of the project. */
+  public void setCreateJarFlags(int f) {
+    _state.setCreateJarFlags(f);
+    setProjectChanged(true);
+  }
+  
+  /** Return the create jar flags for the project. If not in project mode, returns 0. */
+  public int getCreateJarFlags() { return _state.getCreateJarFlags(); }
+  
+  /** @return the root of the project sourc tree (assuming one exists). */
+  public File getProjectRoot() { return _state.getProjectRoot(); }
+  
+  /** Sets the class with the project's main method.  Degenerate version overridden in DefaultGlobalModel. */
+  public void setProjectRoot(File f) {
+    _state.setProjectRoot(f);
+    setProjectChanged(true);
+  }
+  
+  /** Sets project file to specifed value; used in "Save Project As ..." command in MainFrame. */
+  public void setProjectFile(File f) { _state.setProjectFile(f); }
+  
+  /** @return the build directory for the project (assuming one exists). */
+  public File getBuildDirectory() { return _state.getBuildDirectory(); }
+  
+  /** Sets the class with the project's main method.  Degenerate version overridden in DefaultGlobalModel. */
+  public void setBuildDirectory(File f) {
+    _state.setBuildDirectory(f);
+    _notifier.projectBuildDirChanged();
+    setProjectChanged(true);
+  }
+  
+  /** Gets autorfresh status of the project */
+  public boolean getAutoRefreshStatus() { return _state.getAutoRefreshStatus(); }
+  
+  /** Sets autofresh status of the project */
+  public void setAutoRefreshStatus(boolean status) { _state.setAutoRefreshStatus(status); }
+  
+  /** @return the working directory for the Master JVM (editor and GUI). */
+  public File getMasterWorkingDirectory() {
+    File file;
+    try {
+      file = FileOps.getValidDirectory(DrJava.getConfig().getSetting(LAST_DIRECTORY));
+    }
+    catch (RuntimeException e) {
+      DrJava.getConfig().setSetting(LAST_DIRECTORY, FileOps.NULL_FILE);
+      file = FileOps.getValidDirectory(new File(System.getProperty("user.home", ".")));
+    }
+    DrJava.getConfig().setSetting(LAST_DIRECTORY, file);
+    return file;
+  }
+  
+  /** @return the working directory for the Slave (Interactions) JVM */
+  public File getWorkingDirectory() { return _state.getWorkingDirectory(); }
+  
+  /** Sets the working directory for the project; ignored in flat file model. */
+  public void setWorkingDirectory(File f) {
+    _state.setWorkingDirectory(f);
+    _notifier.projectWorkDirChanged();
+    setProjectChanged(true);
+    DrJava.getConfig().setSetting(LAST_INTERACTIONS_DIRECTORY, _state.getWorkingDirectory());
+  }
+  
+  public void cleanBuildDirectory()  { _state.cleanBuildDirectory(); }
+  
+  public List<File> getClassFiles() { return _state.getClassFiles(); }
+  
+  /** Helper method used in subsequent anonymous inner class */
+  protected static String getPackageName(String classname) {
+    int index = classname.lastIndexOf(".");
+    if (index != -1) return classname.substring(0, index);
+    else return "";
+  }
+  
+  class ProjectFileGroupingState implements FileGroupingState {
+    
+    volatile File _projRoot;
+    volatile String _mainClass;
+    volatile File _buildDir;
+    volatile File _workDir;
+    volatile File _projectFile;
+    final File[] _projectFiles;
+    volatile Iterable<AbsRelFile> _projExtraClassPath;
+    private boolean _isProjectChanged = false;
+    volatile File _createJarFile;
+    volatile int _createJarFlags;
+    volatile boolean _autoRefreshStatus;
+    
+    volatile String _manifest = null;
+    
+    HashSet<String> _projFilePaths = new HashSet<String>();
+    
+    /** Degenerate constructor for a new project; only the file project name is known. */
+    ProjectFileGroupingState(File project) {
+      this(project.getParentFile(), null, null, null, project, new File[0], new File[0], new File[0], 
+           IterUtil.<AbsRelFile>empty(), null, 0, false, null);
+    }
+    
+    ProjectFileGroupingState(File pr, String main, File bd, File wd, File project, File[] srcFiles, File[] auxFiles, 
+                             File[] excludedFiles, Iterable<AbsRelFile> cp, File cjf, int cjflags, boolean refreshStatus, String customManifest) {
+      _projRoot = pr;
+      _mainClass = main;
+      _buildDir = bd;
+      _workDir = wd;
+      _projectFile = project;
+      _projectFiles = srcFiles;
+      _auxFiles = new ArrayList<File>(auxFiles.length);
+      for(File f: auxFiles) { _auxFiles.add(f); }
+      _exclFiles = new ArrayList<File>(excludedFiles.length);
+      for(File f: excludedFiles) { _exclFiles.add(f); }
+      _projExtraClassPath = cp;
+      
+      if (_projectFiles != null) {
+        try { for (File file : _projectFiles) { _projFilePaths.add(file.getCanonicalPath()); } }
+        catch(IOException e) { /*do nothing */ }
+      }
+      
+      _createJarFile = cjf;
+      _createJarFlags = cjflags;
+      _autoRefreshStatus = refreshStatus;
+      _manifest = customManifest;
+    }
+    
+    public boolean isProjectActive() { return true; }
+    
+    /** Determines whether the specified doc in within the project file tree.
+      * No synchronization is required because only immutable data is accessed.
+      */
+    public boolean inProjectPath(OpenDefinitionsDocument doc) {
+      if (doc.isUntitled()) return false;
+      
+      /* If the file does not exist, we still want to tell if it's path lies within the project source tree.  The file 
+       * may have existed previously at one point and then removed, in which case we should treat it as an untitled 
+       * project file that should be resaved. */
+      File f;
+      try { f = doc.getFile(); }
+      catch(FileMovedException fme) { f = fme.getFile(); }
+      return inProjectPath(f);
+    }
+    
+    /** Determines whether the specified file in within the project file tree. No synchronization is required because
+      * only immutable data is accessed.
+      */
+    public boolean inProjectPath(File f) { return IOUtil.isMember(f, getProjectRoot()); }
+    
+    /** @return the absolute path to the project file.  Since projectFile is final, no synchronization is necessary.*/
+    public File getProjectFile() { return _projectFile; }
+    
+    public boolean inProject(File f) {
+      String path;
+      
+      if (isUntitled(f) || ! inProjectPath(f)) return false;
+      try {
+        path = f.getCanonicalPath();
+        return _projFilePaths.contains(path);
+      }
+      catch(IOException ioe) { return false; }
+    }
+    
+    public File[] getProjectFiles() { return _projectFiles; }
+    
+    public File getProjectRoot() {
+      if (_projRoot == null || _projRoot.equals( FileOps.NULL_FILE)) return _projectFile.getParentFile();
+      return _projRoot;
+    }
+    
+    public File getBuildDirectory() { return _buildDir; }
+    
+    public File getWorkingDirectory() {
+      try {
+        if (_workDir == null || _workDir == FileOps.NULL_FILE) {
+          File parentDir = _projectFile.getParentFile();
+          if (parentDir != null) {
+          }
+          else return new File(System.getProperty("user.dir"));
+        }
+        return _workDir.getCanonicalFile();
+      }
+      catch(IOException e) { /* fall through */ }
+      return _workDir.getAbsoluteFile();
+    }
+    
+    /** Sets project file to specifed value; used in "Save Project As ..." command in MainFrame. */
+    public void setProjectFile(File f) { _projectFile = f; }
+    
+    public void setProjectRoot(File f) {
+      _projRoot = f;
+    }
+    
+    /** Adds File f to end of _auxFiles vector. */
+    public void addAuxFile(File f) {
+      synchronized(_auxFiles) {
+        if (_auxFiles.add(f)) setProjectChanged(true);
+      }
+    }
+    
+    /** Removes File file from _auxFiles list. */
+    public void remAuxFile(File file) {
+      synchronized(_auxFiles) { 
+        if (_auxFiles.remove(file)) setProjectChanged(true);
+      }
+    }
+    
+    public void addExcludedFile(File f) {
+      if(f == null) return;
+      synchronized(_exclFiles) {
+        if (_exclFiles.add(f)) setProjectChanged(true);
+      }
+    }
+    
+    public void removeExcludedFile(File f) {
+      synchronized(_exclFiles) {
+        for(int i = 0;i < _exclFiles.size();i++) {
+          try {
+            if(_exclFiles.get(i).getCanonicalPath().equals(f.getCanonicalPath())) {
+              _exclFiles.remove(i);
+              setProjectChanged(true);
+            }
+          }
+          catch(IOException e) {}
+        }
+      }
+    }
+    
+    public File[] getExclFiles() { return _exclFiles.toArray(new File[_exclFiles.size()]); }
+    
+    public void setExcludedFiles(File[] fs) {
+      if(fs == null) return;
+      synchronized(_exclFiles) {
+        _exclFiles.clear();
+        for(File f: fs) { addExcludedFile(f); }
+        setProjectChanged(true);
+      }
+    }
+    
+    public void setBuildDirectory(File f) { _buildDir = f; }
+    
+    public void setWorkingDirectory(File f) { _workDir = f; }
+    
+    public String getMainClass() { return _mainClass; }
+    
+    public void setMainClass(String f) { _mainClass = f; }
+    
+    public void setCreateJarFile(File f) { _createJarFile = f; }
+    
+    public File getCreateJarFile() { return _createJarFile; }
+    
+    public void setCreateJarFlags(int f) { _createJarFlags = f; }
+    
+    public int getCreateJarFlags() { return _createJarFlags; }
+    
+    public boolean isProjectChanged() { return _isProjectChanged; }
+    
+    public void setProjectChanged(boolean changed) { _isProjectChanged = changed; }
+    
+    public boolean isAuxiliaryFile(File f) {
+      String path;
+      
+      if (isUntitled(f)) return false;  
+      
+      try { path = f.getCanonicalPath();}
+      catch(IOException ioe) { return false; }
+      
+      synchronized(_auxFiles) {
+        for (File file : _auxFiles) {
+          try { if (file.getCanonicalPath().equals(path)) return true; }
+          catch(IOException ioe) { /* ignore file */ }
+        }
+        return false;
+      }
+    }
+    
+    public boolean isExcludedFile(File f) {
+      String path;
+      if (isUntitled(f)) return false;  
+      
+      try { path = f.getCanonicalPath();}
+      catch(IOException ioe) { return false; }
+      
+      synchronized(_exclFiles) {
+        for (File file : _exclFiles) {
+          try { if (file.getCanonicalPath().equals(path)) return true; }
+          catch(IOException ioe) { /* ignore file */ }
+        }
+        return false;
+      }
+    }
+    
+    public boolean getAutoRefreshStatus() { return _autoRefreshStatus; }
+    public void setAutoRefreshStatus(boolean status) { _autoRefreshStatus = status; }
+    
+    
+    public void cleanBuildDirectory() {
+      File dir = this.getBuildDirectory ();
+      _notifier.executeAsyncTask(_findFilesToCleanTask, dir, false, true);
+    }
+    
+    private AsyncTask<File,List<File>> _findFilesToCleanTask = new AsyncTask<File,List<File>>("Find Files to Clean") {
+      private FilenameFilter _filter = new FilenameFilter() {
+        public boolean accept(File parent, String name) {
+          return new File(parent, name).isDirectory() || name.endsWith(".class");
+        }
+      };
+      
+      public List<File> runAsync(File buildDir, IAsyncProgress monitor) throws Exception {
+        List<File> accumulator = new LinkedList<File>();
+        return accumulator;
+      }
+      public void complete(AsyncCompletionArgs<List<File>> args) {
+        _notifier.executeAsyncTask(_deleteFilesTask, args.getResult(), true, true);
+      }
+      public String getDiscriptionMessage() {
+        return "Finding files to delete...";
+      }
+      private void helper(File file, List<File> accumulator) {
+        if (file.isDirectory ()) {
+          File[] children = file.listFiles(_filter);
+          for (File child : children) {
+            helper(child, accumulator);
+            accumulator.add(file);
+          }
+        }
+        else if ( file.getName().endsWith(".class")){
+          accumulator.add(file);
+        }
+      }
+    };    
+    
+    private AsyncTask<List<File>,List<File>> _deleteFilesTask = new AsyncTask<List<File>,List<File>>("Delete Files") {
+      public List<File> runAsync(List<File> filesToDelete, IAsyncProgress monitor) throws Exception {
+        List<File> undeletableFiles = new ArrayList<File>();
+        
+        monitor.setMinimum (0);
+        monitor.setMaximum(filesToDelete.size());
+        int progress = 1;
+        for(File file : filesToDelete) {
+          if (monitor.isCanceled()) {
+            break;
+          }
+          monitor.setNote(file.getName());
+          boolean could = file.delete();
+          if (!could) undeletableFiles.add(file);
+          monitor.setProgress(progress++);
+        }
+        return undeletableFiles;
+      }
+      public void complete(AsyncCompletionArgs<List<File>> args) {
+      }
+      public String getDiscriptionMessage() {
+        return "Deleting files...";
+      }
+    };
+    
+    public List<File> getClassFiles() {
+      File dir = this.getBuildDirectory ();
+      LinkedList<File> acc = new LinkedList<File>();
+      getClassFilesHelper(dir, acc);
+      return acc;
+    }
+    
+    private void getClassFilesHelper(File f, LinkedList<File> acc) {
+      if (f.isDirectory()) {
+        
+        File fs[] = f.listFiles(new FilenameFilter() {
+          public boolean accept(File parent, String name) {
+            return new File(parent, name).isDirectory() || name.endsWith(".class");
+          }
+        });
+        
+          for (File kid: fs) { getClassFilesHelper(kid, acc); }
+        }
+        
+      } else if (f.getName().endsWith(".class")) acc.add(f);
+    }    
+    
+    
+    public Iterable<AbsRelFile> getExtraClassPath() { return _projExtraClassPath; }
+    public void setExtraClassPath(Iterable<AbsRelFile> cp) { 
+      _projExtraClassPath = cp; 
+      setClassPathChanged(true);
+    }
+  
+    public String getCustomManifest() { return _manifest; }
+    public void setCustomManifest(String manifest) { _manifest = manifest; }
+  }
+  
+  protected FileGroupingState makeFlatFileGroupingState() { return new FlatFileGroupingState(); }
+  
+  class FlatFileGroupingState implements FileGroupingState {
+    public File getBuildDirectory() { return FileOps.NULL_FILE; }
+    public File getProjectRoot() { return getWorkingDirectory(); }
+    public File getWorkingDirectory() {
+      Iterable<File> roots = getSourceRootSet();
+      if (!IterUtil.isEmpty(roots)) { return IterUtil.first(roots); }
+      else {
+        File file = FileOps.NULL_FILE;
+        if (DrJava.getConfig().getSetting(STICKY_INTERACTIONS_DIRECTORY)) {
+          try {
+            file = FileOps.getValidDirectory(DrJava.getConfig().getSetting(LAST_INTERACTIONS_DIRECTORY));
+          }
+          catch (RuntimeException e) { file = FileOps.NULL_FILE; }
+        }
+        if (file == FileOps.NULL_FILE) {
+          file = FileOps.getValidDirectory(new File(System.getProperty("user.home", ".")));
+        }
+        DrJava.getConfig().setSetting(LAST_INTERACTIONS_DIRECTORY, file);
+        return file;
+      }
+    }
+    public boolean isProjectActive() { return false; }
+    public boolean inProjectPath(OpenDefinitionsDocument doc) { return false; }
+    public boolean inProjectPath(File f) { return false; }
+    public File getProjectFile() { return FileOps.NULL_FILE; }
+    public void setBuildDirectory(File f) { }
+    public void setProjectFile(File f) { }
+    public void setProjectRoot(File f) { }
+    public void addAuxFile(File f) { }
+    public void remAuxFile(File f) { }
+    public void setWorkingDirectory(File f) { }
+    public File[] getProjectFiles() { return new File[0]; }
+    public boolean inProject(File f) { return false; }
+    public String getMainClass() { return null; }
+    public void setMainClass(String f) { }
+    public void setCreateJarFile(File f) { }
+    public File getCreateJarFile() { return FileOps.NULL_FILE; }
+    public void setCreateJarFlags(int f) { }
+    public int getCreateJarFlags() { return 0; }
+    public Iterable<AbsRelFile> getExtraClassPath() { return IterUtil.empty(); }
+    public void setExtraClassPath(Iterable<AbsRelFile> cp) { }
+    public boolean isProjectChanged() { return false; }
+    public void setProjectChanged(boolean changed) { /* Do nothing  */  }
+    public boolean isAuxiliaryFile(File f) { return false; }
+    public boolean isExcludedFile(File f) { return false; }
+    public File[] getExclFiles() { return null; }
+    public void addExcludedFile(File f) {}
+    public void removeExcludedFile(File f) {}
+    public void setExcludedFiles(File[] fs) {}
+    public boolean getAutoRefreshStatus() {return false;}
+    public void setAutoRefreshStatus(boolean b) {}
+    
+    public void cleanBuildDirectory() { }
+    
+    public List<File> getClassFiles() { return new LinkedList<File>(); }
+    
+    public String getCustomManifest(){ return null; }
+    public void setCustomManifest(String manifest) {}
+  }
+  
+  /** Gives the title of the source bin for the navigator.
+    * @return The text used for the source bin in the tree navigator
+    */
+  public String getSourceBinTitle() { return "[ Source Files ]"; }
+  
+  /** Gives the title of the external files bin for the navigator
+    * @return The text used for the external files bin in the tree navigator.
+    */
+  public String getExternalBinTitle() { return "[ External Files ]"; }
+  
+  /** Gives the title of the aux files bin for the navigator.
+    * @return The text used for the aux files bin in the tree navigator.
+    */
+  public String getAuxiliaryBinTitle() { return "[ Included External Files ]"; }
+  
+  
+  /** Add a listener to this global model.
+    * @param listener a listener that reacts on events generated by the GlobalModel.
+    */
+  public void addListener(GlobalModelListener listener) { _notifier.addListener(listener); }
+  
+  /** Remove a listener from this global model.
+    * @param listener a listener that reacts on events generated by the GlobalModel
+    * This method is synchronized using the readers/writers event protocol incorporated in EventNotifier<T>.
+    */
+  public void removeListener(GlobalModelListener listener) { _notifier.removeListener(listener); }
+  
+  
+  public DefinitionsEditorKit getEditorKit() { return _editorKit; }
+  
+  /** throws UnsupportedOperationException */
+  public DefaultInteractionsModel getInteractionsModel() {
+    throw new UnsupportedOperationException("AbstractGlobalModel does not support interaction");
+  }
+  
+  /** throws UnsupportedOperationException */
+  public InteractionsDJDocument getSwingInteractionsDocument() {
+    throw new UnsupportedOperationException("AbstractGlobalModel does not support interaction");
+  }
+  
+  /** throws UnsupportedOperationException */
+  public InteractionsDocument getInteractionsDocument() {
+    throw new UnsupportedOperationException("AbstractGlobalModel does not support interaction");
+  }
+  
+  public ConsoleDocument getConsoleDocument() { return _consoleDoc; }
+  
+  public InteractionsDJDocument getSwingConsoleDocument() { return _consoleDocAdapter; }
+  
+  public PageFormat getPageFormat() { return _pageFormat; }
+  
+  public void setPageFormat(PageFormat format) { _pageFormat = format; }
+  
+  public CompilerModel getCompilerModel() {
+    throw new UnsupportedOperationException("AbstractGlobalModel does not support compilation");
+  }
+  
+  /** throws UnsupportedOperationException */
+  public int getNumCompErrors() {
+    throw new UnsupportedOperationException("AbstractGlobalModel does not support compilation");
+  }
+  
+  /** throws UnsupportedOperationException */
+  public void setNumCompErrors(int num) { 
+    throw new UnsupportedOperationException("AbstractGlobalModel does not support compilation");
+  };
+  
+  /** throws UnsupportedOperationException */
+  public JUnitModel getJUnitModel() {
+    throw new UnsupportedOperationException("AbstractGlobalModel does not support unit testing");
+  }
+  
+  /** throws UnsupportedOperationException */
+  public JavadocModel getJavadocModel() {
+    throw new UnsupportedOperationException("AbstractGlobalModel does not support javadoc");
+  }
+  
+  public IDocumentNavigator<OpenDefinitionsDocument> getDocumentNavigator() { return _documentNavigator; }
+  
+  public void setDocumentNavigator(IDocumentNavigator<OpenDefinitionsDocument> newnav) { _documentNavigator = newnav; }
+  
+  /** Toogle the specified bookmark in the active document.
+    * @param pos1 first selection position
+    * @param pos2 second selection position */
+  public void toggleBookmark(int pos1, int pos2) { _toggleBookmark(pos1, pos2); }
+  
+  /** Raw version of toggleBookmark.  ASSUMES that read lock is already held
+    * @param pos1 first selection position
+    * @param pos2 second selection position */
+  public void _toggleBookmark(int pos1, int pos2) {
+    assert EventQueue.isDispatchThread();
+    
+    final OpenDefinitionsDocument doc = getActiveDocument();
+    
+    int startSel = Math.min(pos1, pos2);
+    int endSel = Math.max(pos1, pos2);
+    RegionManager<MovingDocumentRegion> bm = _bookmarkManager;
+      endSel = doc._getLineEndPos(startSel);
+      startSel = doc._getLineStartPos(startSel);
+    }
+    
+    Collection<MovingDocumentRegion> conflictingRegions = bm.getRegionsOverlapping(doc, startSel, endSel);
+    
+    if (conflictingRegions.size() > 0) {
+      for (MovingDocumentRegion cr: conflictingRegions) bm.removeRegion(cr);
+    }
+    else {
+      MovingDocumentRegion newR = 
+        new MovingDocumentRegion(doc, startSel, endSel, doc._getLineStartPos(startSel), doc._getLineEndPos(endSel));
+      bm.addRegion(newR);
+    }
+  }

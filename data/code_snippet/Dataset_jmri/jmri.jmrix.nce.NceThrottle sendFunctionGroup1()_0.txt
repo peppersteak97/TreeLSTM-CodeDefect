@@ -1,0 +1,26 @@
+    protected void sendFunctionGroup1() {
+		if (NceUSB.getUsbSystem() != NceUSB.USB_SYSTEM_NONE) {
+			int locoAddr = address.getNumber();
+			if (address.isLongAddress())
+				locoAddr += 0xC000;
+			
+			int data = 0x00 |
+			( f0 ? 0x10 : 0) |
+			( f1 ? 0x01 : 0) |
+			( f2 ? 0x02 : 0) |
+			( f3 ? 0x04 : 0) |
+			( f4 ? 0x08 : 0);
+			
+			byte[] bl = NceBinaryCommand.nceLocoCmd(locoAddr,
+					NceBinaryCommand.LOCO_CMD_FG1, (byte) data);
+			NceMessage m = NceMessage.createBinaryMessage(bl);
+			NceTrafficController.instance().sendNceMessage(m, null);
+
+		} else {
+			byte[] result = jmri.NmraPacket.function0Through4Packet(address
+					.getNumber(), address.isLongAddress(), getF0(), getF1(),
+					getF2(), getF3(), getF4());
+			NceMessage m = NceMessage.sendPacketMessage(result);
+			NceTrafficController.instance().sendNceMessage(m, null);
+		}
+	}

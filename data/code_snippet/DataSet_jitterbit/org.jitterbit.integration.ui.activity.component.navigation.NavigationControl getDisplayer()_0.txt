@@ -1,0 +1,4 @@
+    public JComponent getDisplayer() {
+        layoutDisplayerComponent(m_displayer);
+        return m_displayer;
+    }

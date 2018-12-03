@@ -1,0 +1,1 @@
+  public void testStub() { /* here just to prevent a "no tests found" error */ }

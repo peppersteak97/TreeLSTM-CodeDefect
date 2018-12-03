@@ -1,0 +1,10 @@
+    private Action getTableAction() {
+        return new AbstractAction() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (m_table.getSelectedRow() >= 0) {
+                    fireActionEvent();
+                }
+            }
+        };
+    }

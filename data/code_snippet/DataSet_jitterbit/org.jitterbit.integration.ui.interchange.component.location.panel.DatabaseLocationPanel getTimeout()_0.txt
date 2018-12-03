@@ -1,0 +1,8 @@
+    public int getTimeout() {
+        try {
+            return Integer.parseInt(m_timeoutField.getValue());
+        }
+        catch (NumberFormatException e) {
+            return DatabaseLocation.DEFAULT_TIMEOUT;
+        }
+    }

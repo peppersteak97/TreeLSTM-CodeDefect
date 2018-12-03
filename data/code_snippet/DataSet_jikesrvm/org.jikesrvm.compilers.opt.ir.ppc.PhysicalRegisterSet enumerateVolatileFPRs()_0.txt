@@ -1,0 +1,3 @@
+  public Enumeration<Register> enumerateVolatileFPRs() {
+    return new PhysicalRegisterEnumeration(FIRST_DOUBLE + FIRST_SCRATCH_FPR, FIRST_DOUBLE + LAST_VOLATILE_FPR);
+  }

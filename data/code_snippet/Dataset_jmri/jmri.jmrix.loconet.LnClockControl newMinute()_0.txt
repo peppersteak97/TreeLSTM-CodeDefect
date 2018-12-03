@@ -1,0 +1,29 @@
+	public void newMinute()
+    {
+		// ignore if waiting on Loconet clock read
+		if (!inSyncWithInternalFastClock) return;
+		if (correctFastClock || synchronizeWithInternalClock) {
+			// get time from the internal clock
+			Date now = clock.getTime();
+			// skip the correction if minutes is 0 because Logic Rail Clock displays incorrectly
+			//		if a correction is sent at zero minutes.
+			if (now.getMinutes()!=0) {
+				// Set the Fast Clock Day to the current Day of the month 1-31
+				curDays = now.getDate();
+				// Update current time
+				curHours = now.getHours();
+				curMinutes = now.getMinutes();
+				long millis = now.getTime() ;
+				// How many ms are we into the fast minute as we want to sync the
+				// Fast Clock Master Frac_Mins to the right 65.535 ms tick
+				long elapsedMS = millis % 60000 ;
+				double frac_min = elapsedMS / 60000.0 ;
+				curFractionalMinutes = 915 - (int)( 915 * frac_min ) ;
+				setClock();
+			}
+		}
+		else if (setInternal && !correctFastClock && !synchronizeWithInternalClock) { 
+			inSyncWithInternalFastClock = false;
+			initiateRead();
+		}
+    }

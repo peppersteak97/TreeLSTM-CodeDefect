@@ -1,0 +1,4 @@
+  public final int getShortValue() {
+    if (VM.VerifyAssertions) VM._assert(opcode == JBC_sipush);
+    return readSignedShort();
+  }

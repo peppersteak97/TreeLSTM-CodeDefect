@@ -1,0 +1,8 @@
+    public void reloadRosterFile() {
+        _list.clear();
+        try {
+            _instance.readFile(defaultRosterFilename());
+        } catch (Exception e) {
+            log.error("Exception during roster reading: "+e);
+        }
+    }

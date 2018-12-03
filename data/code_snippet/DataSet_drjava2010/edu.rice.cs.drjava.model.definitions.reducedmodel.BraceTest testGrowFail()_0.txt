@@ -1,0 +1,6 @@
+  public void testGrowFail() {
+    try{
+     lparen.grow(5);
+     fail("Expected BraceException");
+    }catch(BraceException b){};
+  }

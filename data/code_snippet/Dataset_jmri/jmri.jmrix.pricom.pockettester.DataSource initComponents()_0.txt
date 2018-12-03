@@ -1,0 +1,40 @@
+    public void initComponents() {
+        setTitle(rb.getString("TitleSource"));
+        
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        
+        portBox.setToolTipText(rb.getString("TooltipSelectPort"));
+        portBox.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        Vector v = getPortNames();
+        for (int i=0; i<v.size(); i++)
+            portBox.addItem(v.elementAt(i));
+        speedBox.setToolTipText(rb.getString("TooltipSelectBaud"));
+        speedBox.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        speedBox.setSelectedItem("115200");
+        openPortButton.setText(rb.getString("ButtonOpen"));
+        openPortButton.setToolTipText(rb.getString("TooltipOpen"));
+        openPortButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    openPortButtonActionPerformed(evt);
+                } catch (jmri.jmrix.SerialConfigException ex) {
+                    log.error("Error while opening port.  Did you select the right one?\n"+ex);
+                }
+                catch (java.lang.UnsatisfiedLinkError ex) {
+                    log.error("Error while opening port.  Did you select the right one?\n"+ex);
+                    }
+                }
+            });
+        getContentPane().add(new JSeparator());
+        JPanel p1 = new JPanel();
+        p1.setLayout(new FlowLayout());
+        p1.add(new JLabel(rb.getString("LabelSerialPort")));
+        p1.add(portBox);
+        p1.add(new JLabel(rb.getString("LabelSpeed")));
+        p1.add(speedBox);
+        p1.add(openPortButton);
+        getContentPane().add(p1);
+
+        
+        pack();
+    }

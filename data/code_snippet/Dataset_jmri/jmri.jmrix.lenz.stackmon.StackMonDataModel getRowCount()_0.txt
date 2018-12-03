@@ -1,0 +1,7 @@
+        public int getRowCount() {
+            try {
+                  return(_addressList.size());
+                } catch(NullPointerException e) {
+                  return(0);
+                }
+        }

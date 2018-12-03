@@ -1,0 +1,4 @@
+  public GCMapIterator getJniIterator() {
+    if (VM.VerifyAssertions) VM._assert(jniIterator != null);
+    return jniIterator;
+  }

@@ -1,0 +1,6 @@
+  protected final void emit_dsub() {
+    popDouble(F0);
+    popDouble(F1);
+    asm.emitFSUB(F0, F1, F0);
+    pushDouble(F0);
+  }

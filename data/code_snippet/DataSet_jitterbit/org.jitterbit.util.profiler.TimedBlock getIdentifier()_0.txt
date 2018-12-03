@@ -1,0 +1,3 @@
+    public ITimedBlockIdentifier getIdentifier() {
+        return m_identifier;
+    }

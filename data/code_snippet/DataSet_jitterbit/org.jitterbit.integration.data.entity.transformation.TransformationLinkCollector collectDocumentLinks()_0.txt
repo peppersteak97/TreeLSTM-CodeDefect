@@ -1,0 +1,14 @@
+    private void collectDocumentLinks() {
+        TextDocumentId srcDocId = m_tf.getSourceTextDocumentId();
+        TextDocumentId tgtDocId = m_tf.getTargetTextDocumentId();
+        if (srcDocId == null && tgtDocId == null) {
+            return;
+        }
+        if (KongaID.areEqual(srcDocId, tgtDocId)) {
+            onSameSourceAndTargetDocument();
+        }
+        else {
+            collectSourceDocumentLink();
+            collectTargetDocumentLink(tgtDocId);
+        }
+    }

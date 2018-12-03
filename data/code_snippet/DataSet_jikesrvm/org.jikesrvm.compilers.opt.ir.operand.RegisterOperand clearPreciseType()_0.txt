@@ -1,0 +1,1 @@
+  public void clearPreciseType() { flags &= ~PRECISE_TYPE; }

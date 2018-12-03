@@ -1,0 +1,12 @@
+    public int getNumberOfItemsRecursively() {
+        int n = 0;
+        for (IntegrationEntity e : getAllChildren()) {
+            if (e instanceof Folder) {
+                n += ((Folder) e).getNumberOfItemsRecursively();
+            }
+            else {
+                ++n;
+            }
+        }
+        return n;
+    }

@@ -1,0 +1,4 @@
+  public void markAsPEI() {
+    if (VM.VerifyAssertions) VM._assert(getOpcode() > MIR_START_opcode);
+    operatorInfo |= (OI_PEI_VALID | OI_PEI | OI_GC_VALID | OI_GC);
+  }

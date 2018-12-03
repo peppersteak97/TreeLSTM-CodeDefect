@@ -1,0 +1,7 @@
+    private void installStdOut() throws IOException {
+        m_savedOut = System.out;
+        Stream s = new Stream(StyledDocumentDefiner.OUT,
+                m_mode == REPLACE ? null : m_savedOut);
+        PrintStream out = new PrintStream(s);
+        System.setOut(out);
+    }

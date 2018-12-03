@@ -1,0 +1,1 @@
+  public int braceCursorOffset() { return _rmb.absOffset(); }  

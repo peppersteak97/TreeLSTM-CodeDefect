@@ -1,0 +1,3 @@
+    protected synchronized AbstractMRMessage pollMessage() {
+        return null;
+    }

@@ -1,0 +1,3 @@
+    public final void removeAllExtensions() {
+        m_extensions.clear();
+    }

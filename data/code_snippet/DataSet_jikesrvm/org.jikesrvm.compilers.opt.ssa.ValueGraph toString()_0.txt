@@ -1,0 +1,8 @@
+  public String toString() {
+    StringBuilder s = new StringBuilder("VALUE GRAPH: \n");
+    for (Enumeration<GraphNode> n = graph.enumerateNodes(); n.hasMoreElements();) {
+      ValueGraphVertex node = (ValueGraphVertex) n.nextElement();
+      s.append(node).append("\n");
+    }
+    return s.toString();
+  }

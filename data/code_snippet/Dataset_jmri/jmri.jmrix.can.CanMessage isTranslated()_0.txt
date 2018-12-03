@@ -1,0 +1,1 @@
+    public boolean isTranslated() { return _translated; }

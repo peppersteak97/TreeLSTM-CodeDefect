@@ -1,0 +1,6 @@
+    public void dispose() {
+        if (SlotManager.instance()!=null)
+            SlotManager.instance().removeSlotListener(this);
+
+        super.dispose();
+    }

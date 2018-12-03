@@ -1,0 +1,3 @@
+    public static void refresh() {
+        s_instance = new ClassRelations();
+    }

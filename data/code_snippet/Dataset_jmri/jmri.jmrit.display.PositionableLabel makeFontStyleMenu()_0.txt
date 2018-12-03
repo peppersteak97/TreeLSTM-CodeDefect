@@ -1,0 +1,23 @@
+    JMenu makeFontStyleMenu() {
+        JMenu styleMenu = new JMenu("Font style");
+        styleMenu.add(italic = newStyleMenuItem(new AbstractAction("Italic") {
+            public void actionPerformed(ActionEvent e) {
+                if (log.isDebugEnabled())
+                    log.debug("When style item selected "+((String)getValue(NAME))
+                                +" italic state is "+italic.isSelected());
+                if (italic.isSelected()) setFontStyle(Font.ITALIC, 0);
+                else setFontStyle(0, Font.ITALIC);
+            }
+          }, Font.ITALIC));
+
+        styleMenu.add(bold = newStyleMenuItem(new AbstractAction("Bold") {
+            public void actionPerformed(ActionEvent e) {
+                if (log.isDebugEnabled())
+                    log.debug("When style item selected "+((String)getValue(NAME))
+                                +" bold state is "+bold.isSelected());
+                if (bold.isSelected()) setFontStyle(Font.BOLD, 0);
+                else setFontStyle(0, Font.BOLD);
+            }
+          }, Font.BOLD));
+         return styleMenu;     
+    }

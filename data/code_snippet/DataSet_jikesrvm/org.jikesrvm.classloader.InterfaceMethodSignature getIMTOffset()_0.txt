@@ -1,0 +1,5 @@
+  public Offset getIMTOffset() {
+    if (VM.VerifyAssertions) VM._assert(VM.BuildForIMTInterfaceInvocation);
+    int slot = id % IMT_METHOD_SLOTS;
+    return Offset.fromIntZeroExtend(slot << LOG_BYTES_IN_ADDRESS);
+  }

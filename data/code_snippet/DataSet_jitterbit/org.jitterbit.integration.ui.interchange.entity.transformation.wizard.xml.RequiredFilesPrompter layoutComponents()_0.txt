@@ -1,0 +1,11 @@
+    private void layoutComponents() {
+        JPanel cp = IntegrationUiStyleSheet.getDialogContentPane();
+        JComponent north = getNorthComponent();
+        cp.add(north, BorderLayout.NORTH);
+        JComponent center = getCenterComponent();
+        cp.add(/*getScrollPane(center)*/center, BorderLayout.CENTER);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        cp.add(buttonPanel, BorderLayout.SOUTH);
+        JScrollPane scroll = ComponentFactories.scrollFactory().newScrollPane(cp);
+        setContentPane(scroll);
+    }

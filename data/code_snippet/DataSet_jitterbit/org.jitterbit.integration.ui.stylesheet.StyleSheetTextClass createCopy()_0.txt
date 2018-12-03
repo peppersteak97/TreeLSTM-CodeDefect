@@ -1,0 +1,9 @@
+    private StyleSheetTextClass createCopy() {
+        try {
+            return clone();
+        }
+        catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }

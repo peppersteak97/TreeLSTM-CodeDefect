@@ -1,0 +1,3 @@
+  public final boolean isUnsafeToSchedule() {
+    return (flags & UNSAFE_TO_SCHEDULE) != 0;
+  }

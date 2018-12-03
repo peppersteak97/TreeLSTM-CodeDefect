@@ -1,0 +1,5 @@
+    private void setCertificateEnabled() {
+        String url = getUrl();
+        boolean certificateEnabled = url.toLowerCase().startsWith("https");
+        m_certificate.setEnabled(certificateEnabled);
+    }

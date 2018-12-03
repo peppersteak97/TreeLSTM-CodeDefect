@@ -1,0 +1,11 @@
+    private Target getTarget() {
+        Object entity = super.getSelectedEntity();
+        Target target = null;
+        if (entity instanceof Target) {
+            target = (Target) entity;
+        }
+        else if (entity instanceof ITargetUi) {
+            target = ((ITargetUi) entity).getDataObject();
+        }
+        return target;
+    }

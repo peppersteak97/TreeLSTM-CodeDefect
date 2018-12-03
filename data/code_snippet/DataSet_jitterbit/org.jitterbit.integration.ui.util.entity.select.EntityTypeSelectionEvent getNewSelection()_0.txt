@@ -1,0 +1,3 @@
+    public EnumSet<EntityType> getNewSelection() {
+        return m_newSelection;
+    }

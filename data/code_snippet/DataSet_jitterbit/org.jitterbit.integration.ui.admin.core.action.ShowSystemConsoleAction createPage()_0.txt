@@ -1,0 +1,3 @@
+    protected IPage createPage() {
+        return new SystemConsolePage();
+    }

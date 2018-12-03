@@ -1,0 +1,7 @@
+  protected final void emit_caload() {
+    if (VM.BuildFor32Addr) {
+      asm.emitMOVZX_Reg_RegIdx_Word(T1, S0, T0, Assembler.SHORT, NO_SLOT);
+    } else {
+      asm.emitMOVZXQ_Reg_RegIdx_Word(T1, S0, T0, Assembler.SHORT, NO_SLOT);
+    }
+  }

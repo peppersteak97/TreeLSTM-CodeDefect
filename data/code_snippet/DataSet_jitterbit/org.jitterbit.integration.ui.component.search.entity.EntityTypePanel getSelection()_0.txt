@@ -1,0 +1,4 @@
+    EnumSet<EntityType> getSelection() {
+        return m_includeAll.isSelected() ? EnumSet.allOf(EntityType.class) :
+            m_typeSelectionPanel.getSelection();
+    }

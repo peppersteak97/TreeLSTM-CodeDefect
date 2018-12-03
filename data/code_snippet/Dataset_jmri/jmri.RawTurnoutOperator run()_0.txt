@@ -1,0 +1,14 @@
+	public void run() {
+		try {
+			operatorCheck();
+                        sendCommand();
+			while (++tries < maxTries) {
+				try {
+					Thread.sleep(interval);
+				} catch (InterruptedException e) { };
+				operatorCheck();
+                                sendCommand();
+			}
+			myTurnout.setKnownStateToCommanded();
+		} catch (TurnoutOperatorException e) { };
+	}

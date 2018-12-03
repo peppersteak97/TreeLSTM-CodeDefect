@@ -1,0 +1,11 @@
+  private void _repaintLineNums() {
+    JScrollPane front = _defScrollPanes.get(_model.getActiveDocument());
+    if (front != null) {
+      JViewport rhvport = front.getRowHeader();
+      
+      if (rhvport != null) {
+        Component view = rhvport.getView();
+        if (view != null) view.repaint();
+      }
+    }
+  }

@@ -1,0 +1,5 @@
+    private void updateTree() {
+        if (m_turnedOn) {
+            m_tree.repaint();
+        }
+    }

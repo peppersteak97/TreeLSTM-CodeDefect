@@ -1,0 +1,11 @@
+  public ReducedToken currentToken() {
+    ReducedToken rmcToken = _rmc.current();
+    if (! rmcToken.isGap()) return rmcToken;
+    ReducedToken rmbToken = _rmb.current();
+    if (! rmbToken.isGap()) {
+      rmbToken.setState(_rmc.getStateAtCurrent());
+      return rmbToken;
+    }
+    int size = getSize(rmbToken,rmcToken);
+    return new Gap(size, _rmc.getStateAtCurrent());
+  }

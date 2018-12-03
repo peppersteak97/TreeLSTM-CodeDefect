@@ -1,0 +1,8 @@
+	public LayoutBlock getLayoutBlockBD() {
+		if ( (blockBD==null) && (blockNameBD.length()>0) ) {
+			blockBD = layoutEditor.provideLayoutBlock(blockNameBD);
+			if ( (blockBD!=null) && (blockAC==blockBD) )
+					blockBD.decrementUse();
+		}				
+		return blockBD;
+	}

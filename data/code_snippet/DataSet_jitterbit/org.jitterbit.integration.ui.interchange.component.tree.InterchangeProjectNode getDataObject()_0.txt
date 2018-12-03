@@ -1,0 +1,3 @@
+    public InterchangeProject getDataObject() {
+        return (InterchangeProject) super.getDataObject();
+    }

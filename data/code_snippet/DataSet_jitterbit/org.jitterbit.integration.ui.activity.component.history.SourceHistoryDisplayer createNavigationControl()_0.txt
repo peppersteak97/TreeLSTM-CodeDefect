@@ -1,0 +1,3 @@
+    protected FilteredPageNavigationControl<ISourceFileHistoryEntry> createNavigationControl() {
+        return new SourceHistoryNavigationControl(this);
+    }

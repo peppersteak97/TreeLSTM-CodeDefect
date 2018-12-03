@@ -1,0 +1,7 @@
+    public static java.util.List getFrameList() {
+        java.util.List returnList;
+        synchronized(list) {
+            returnList = new java.util.ArrayList(list);
+        }
+        return returnList;
+    }

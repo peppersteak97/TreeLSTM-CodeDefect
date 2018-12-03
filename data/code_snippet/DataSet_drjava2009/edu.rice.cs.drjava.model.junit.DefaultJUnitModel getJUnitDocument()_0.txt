@@ -1,0 +1,1 @@
+  public SwingDocument getJUnitDocument() { return _junitDoc; }

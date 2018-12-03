@@ -1,0 +1,3 @@
+ *     	if( checker.isPressed() ) {
+ *     		System.err.println(&quot;This operation is illegal when the 'X' key is pressed!&quot;);
+ *     	}

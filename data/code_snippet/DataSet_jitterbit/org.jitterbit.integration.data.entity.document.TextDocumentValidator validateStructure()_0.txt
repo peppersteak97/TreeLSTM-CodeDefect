@@ -1,0 +1,13 @@
+    private void validateStructure() {
+        TextStructure structure = m_document.getDataStructure();
+        if (structure == null) {
+            return;
+        }
+        TextValidatorFactory validatorFactory = new TextValidatorFactory();
+        if (structure instanceof SimpleTextStructure) {
+            validateFields((SimpleTextStructure) structure, validatorFactory);
+        }
+        else {
+            validateComplexStructure((ComplexTextStructure) structure, validatorFactory);
+        }
+    }

@@ -1,0 +1,4 @@
+    public void setClean() {
+        setTitle(PackageResources.ConsolePage.TITLE);
+        super.setClean();
+    }

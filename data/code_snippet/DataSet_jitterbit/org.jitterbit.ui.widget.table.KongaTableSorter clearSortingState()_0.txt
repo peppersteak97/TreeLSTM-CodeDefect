@@ -1,0 +1,4 @@
+    private void clearSortingState() {
+        m_viewToModel = null;
+        m_modelToView = null;
+    }

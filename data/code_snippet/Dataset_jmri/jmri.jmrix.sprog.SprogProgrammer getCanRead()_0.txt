@@ -1,0 +1,6 @@
+    public boolean getCanRead() {
+        if (jmri.InstanceManager.programmerManagerInstance().isOpsModePossible())
+            return false;
+        else 
+            return true;
+    }

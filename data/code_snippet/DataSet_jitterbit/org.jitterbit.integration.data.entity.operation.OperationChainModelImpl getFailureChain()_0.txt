@@ -1,0 +1,3 @@
+    public Node getFailureChain() {
+        return startNode.failure;
+    }

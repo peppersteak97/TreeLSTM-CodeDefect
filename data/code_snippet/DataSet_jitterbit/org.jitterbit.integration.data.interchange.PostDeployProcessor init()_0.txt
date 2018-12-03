@@ -1,0 +1,6 @@
+    private void init() {
+        m_currentProject = m_manager.getCurrentProject();
+        DeployResultStructureBuilder builder = 
+            new DeployResultStructureBuilder(m_deployResults);
+        m_itemRenames = builder.getRenameMap();
+    }

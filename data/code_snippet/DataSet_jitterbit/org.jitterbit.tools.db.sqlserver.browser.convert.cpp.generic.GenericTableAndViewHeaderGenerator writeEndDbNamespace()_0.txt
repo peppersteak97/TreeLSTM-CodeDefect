@@ -1,0 +1,6 @@
+    private void writeEndDbNamespace() {
+        if( getNamespace().length() > 0 ) {
+            addLine("}  
+            addLine();
+        }
+    }

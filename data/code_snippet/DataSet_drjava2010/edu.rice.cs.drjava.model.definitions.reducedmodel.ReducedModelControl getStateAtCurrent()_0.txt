@@ -1,0 +1,2 @@
+      rmbToken.setState(_rmc.getStateAtCurrent());
+      return rmbToken;

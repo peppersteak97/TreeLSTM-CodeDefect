@@ -1,0 +1,4 @@
+    static public XNetTurnoutManager instance() {
+        if (_instance == null) _instance = new XNetTurnoutManager();
+        return _instance;
+    }

@@ -1,0 +1,11 @@
+  static public synchronized ServerFrame getInstance(){
+    if( self == null ) {
+      self = new ServerFrame() ;
+      Server server = Server.getInstance() ;
+      server.setStateListner(self);
+      server.updateServerStateListener();
+      server.updateClinetStateListener();
+    }
+
+    return self ;
+  }

@@ -1,0 +1,22 @@
+    void updateDccAddress() {
+        boolean longMode = false;
+        if (log.isDebugEnabled())
+            log.debug("updateDccAddress: short "+(primaryAddr==null?"<null>":primaryAddr.getValueString())+
+                      " long "+(extendAddr==null?"<null>":extendAddr.getValueString())+
+                      " mode "+(addMode==null?"<null>":addMode.getValueString()));
+        String newAddr = null;
+        if (addMode == null || extendAddr == null || !addMode.getValueString().equals("1")) {
+            longMode = false;
+            if (primaryAddr != null && !primaryAddr.getValueString().equals(""))
+                newAddr = primaryAddr.getValueString();
+        }
+        else {
+            if (extendAddr != null && !extendAddr.getValueString().equals(""))
+                longMode = true;
+                newAddr = extendAddr.getValueString();
+        }
+        if (newAddr!=null) {
+            _rPane.setDccAddress(newAddr);
+            _rPane.setDccAddressLong(longMode);
+        }
+    }

@@ -1,0 +1,8 @@
+    boolean checkDuplicate() {
+        List l = Roster.instance().matchingList(null, null, null, null, null, null, id.getText());
+        boolean oops = false;
+        for (int i=0; i<l.size(); i++) {
+            if (re != (RosterEntry)l.get(i)) oops = true;
+        }
+        return oops;
+    }

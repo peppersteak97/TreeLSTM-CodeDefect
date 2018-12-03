@@ -1,0 +1,3 @@
+    public Action getCloseOthersAction() {
+        return m_closeOthersAction;
+    }

@@ -1,0 +1,58 @@
+    void writeFile() {
+        log.warn("SymbolicProgFrame writeFile invoked - is this still right, or should the LocoFile method be used?");
+        log.warn("Note use of VersionID attribute...");
+        try {
+            int retVal = fco.showSaveDialog(this);
+
+            File file = fco.getSelectedFile();
+
+
+            Element root = new Element("locomotive-config");
+            Document doc = jmri.jmrit.XmlFile.newDocument(root, jmri.jmrit.XmlFile.dtdLocation+"locomotive-config.dtd");
+
+            java.util.Map m = new java.util.HashMap();
+            m.put("type", "text/xsl");
+            ProcessingInstruction p = new ProcessingInstruction("xml-stylesheet", m);
+            doc.addContent(0,p);
+            
+            Element values;
+                            .setAttribute("roadNumber",locoRoadNumber.getText())
+                            .setAttribute("roadName",locoRoadName.getText())
+                            .setAttribute("mfg",locoMfg.getText())
+                            .setAttribute("model",locoModel.getText())
+                            .addContent(new Element("decoder")
+                                        .setAttribute("model",decoderModel.getText())
+                                        .setAttribute("mfg",decoderMfg.getText())
+                                        .setAttribute("versionID","")
+                                        .setAttribute("mfgID","")
+                                        )
+                            .addContent(values = new Element("values"))
+                            )
+                ;
+
+            Element decoderDef;
+            values.addContent(decoderDef = new Element("decoderDef"));
+            for (int i = 0; i < variableModel.getRowCount(); i++) {
+                decoderDef.addContent(new Element("varValue")
+                                      .setAttribute("item", variableModel.getLabel(i))
+                                      .setAttribute("value", variableModel.getValString(i))
+                                      );
+            }
+            for (int i = 0; i < cvModel.getRowCount(); i++) {
+                values.addContent(new Element("CVvalue")
+                                  .setAttribute("name", cvModel.getName(i))
+                                  .setAttribute("value", cvModel.getValString(i))
+                                  );
+            }
+
+            java.io.FileOutputStream o = new java.io.FileOutputStream(file);
+            XMLOutputter fmt = new XMLOutputter();
+            fmt.output(doc, o);
+            o.close();
+
+            variableModel.setFileDirty(false);
+        }
+        catch (Exception e) {
+            log.error(e);
+        }
+    }

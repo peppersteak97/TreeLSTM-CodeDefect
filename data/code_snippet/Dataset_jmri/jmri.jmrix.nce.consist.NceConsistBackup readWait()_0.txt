@@ -1,0 +1,16 @@
+	private boolean readWait() {
+		int waitcount = 30;
+		while (waiting > 0) {
+			synchronized (this) {
+				try {
+					wait(1000);
+				} catch (InterruptedException e) {
+				}
+			}
+			if (waitcount-- < 0) {
+				log.error("read timeout");
+				return false;
+			}
+		}
+		return true;
+	}

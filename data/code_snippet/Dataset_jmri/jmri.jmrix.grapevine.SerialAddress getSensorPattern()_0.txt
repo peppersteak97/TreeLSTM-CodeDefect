@@ -1,0 +1,4 @@
+    static Pattern getSensorPattern() {
+        if (sensorPattern == null) sensorPattern = Pattern.compile(sensorRegex);
+        return sensorPattern;
+    }

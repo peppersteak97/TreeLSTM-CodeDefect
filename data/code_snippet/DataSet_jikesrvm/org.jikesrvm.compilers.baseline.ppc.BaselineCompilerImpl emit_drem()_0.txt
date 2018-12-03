@@ -1,0 +1,4 @@
+  protected final void emit_drem() {
+    generateSysCall(16, Entrypoints.sysDoubleRemainderIPField);
+    pushDouble(F0);
+  }

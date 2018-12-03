@@ -1,0 +1,5 @@
+  public void testMakeBraceSuccess() {
+    Brace brace = Brace.MakeBrace("{", FREE);
+    assertEquals("{", brace.getType());
+    assertEquals(1, brace.getSize());
+  }

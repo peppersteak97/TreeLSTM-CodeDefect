@@ -1,0 +1,6 @@
+	public void destroy() {
+		if (throttle != null)
+			throttle.release();
+		if (consistThrottle != null)
+			consistThrottle.release();
+	}

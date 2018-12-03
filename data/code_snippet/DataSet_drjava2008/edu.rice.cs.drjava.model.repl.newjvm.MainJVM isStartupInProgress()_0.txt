@@ -1,0 +1,2 @@
+    if (isStartupInProgress() || isInterpreterRunning())  return;  // These predicates simply check volatile boolean flags
+    ArrayList<String> jvmArgs = new ArrayList<String>();

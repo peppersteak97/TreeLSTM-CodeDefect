@@ -1,0 +1,97 @@
+    public void initComponents() {
+
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        alignModel = new AlignModel();
+
+        JTable alignTable = jmri.util.JTableUtil.sortableDataModel(alignModel);
+
+        ButtonRenderer buttonRenderer = new ButtonRenderer();
+                alignTable.setDefaultRenderer(JButton.class,buttonRenderer);
+        TableCellEditor buttonEditor = new ButtonEditor(new JButton());
+                alignTable.setDefaultEditor(JButton.class,buttonEditor);
+        
+        try {
+            jmri.util.com.sun.TableSorter tmodel = ((jmri.util.com.sun.TableSorter)alignTable.getModel());
+            tmodel.setSortingStatus(alignModel.NUMCOL, jmri.util.com.sun.TableSorter.ASCENDING);
+        } catch (ClassCastException e3) {}  
+        alignTable.setRowSelectionAllowed(false);
+        alignTable.setPreferredScrollableViewportSize(new java.awt.Dimension(580,80));
+
+        JScrollPane scrollPane = new JScrollPane(alignTable);
+        add(scrollPane);
+        
+        JPanel p = new JPanel() {
+            public Dimension getMaximumSize() { 
+                int height = getPreferredSize().height;
+                int width = super.getMaximumSize().width;
+                return new Dimension(width, height); }
+        };
+        p.setLayout(new FlowLayout());
+
+        p.add(new JLabel(rb.getString("LabelNumCol")));
+        num.setText(""+Engine.instance().getReceiverCount());
+        p.add(num);
+        
+        JButton b = new JButton(rb.getString("ButtonSet"));
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                Engine.instance().setReceiverCount(
+                    Integer.parseInt(num.getText()));
+                flag.setModifiedFlag(true);
+                alignModel.fireTableStructureChanged();
+                
+            }
+        });
+        p.add(b);
+        add(p);
+        
+        p = new JPanel() {
+            public Dimension getMaximumSize() { 
+                int height = getPreferredSize().height;
+                int width = super.getMaximumSize().width;
+                return new Dimension(width, height); }
+        };
+        p.setLayout(new FlowLayout());
+
+        p.add(new JLabel(rb.getString("LabelVSound")));
+        vsound.setText(""+Engine.instance().getVSound());
+        p.add(vsound);
+        
+        p.add(new JLabel(rb.getString("LabelOffset")));
+        offset.setText(""+Engine.instance().getOffset());
+        p.add(offset);
+        
+        b = new JButton(rb.getString("ButtonSet"));
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                Engine.instance().setOffset(
+                    Integer.parseInt(offset.getText()));
+                Engine.instance().setVSound(
+                    Double.parseDouble(vsound.getText()));
+                flag.setModifiedFlag(true);
+            }
+        });
+        p.add(b);        
+        add(p);
+
+        add(loadStore = new jmri.jmrix.rps.swing.LoadStorePanel(){
+            public void load() {
+                super.load();
+                alignModel.fireTableStructureChanged();
+                flag.setModifiedFlag(true);
+            }
+            public void storeDefault() {
+                super.storeDefault();
+                flag.setModifiedFlag(false);
+            }
+        });
+
+        Engine.instance().addPropertyChangeListener(new PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent e) {
+                if(e.getPropertyName().equals("vSound")) {
+                    vsound.setText(""+e.getNewValue());
+                }
+            }
+        });
+    }

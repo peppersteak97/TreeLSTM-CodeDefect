@@ -1,0 +1,6 @@
+	public void dispose(){
+		if(m_searchObjects!=null){
+			for(TreeComponent.Search search:m_searchObjects)search.dispose();
+		}
+		super.dispose();
+	}

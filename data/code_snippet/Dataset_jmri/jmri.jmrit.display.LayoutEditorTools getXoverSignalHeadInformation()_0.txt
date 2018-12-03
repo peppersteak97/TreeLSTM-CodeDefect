@@ -1,0 +1,27 @@
+	private boolean getXoverSignalHeadInformation() {
+		a1Head = getSignalHeadFromEntry(a1Field,true,setSignalsAtXoverFrame);
+		if (a1Head==null) return false;
+		if (!(xoverType == LayoutTurnout.LH_XOVER)) 
+			a2Head = getSignalHeadFromEntry(a2Field,false,setSignalsAtXoverFrame);
+		else
+			a2Head = null;
+		b1Head = getSignalHeadFromEntry(b1Field,true,setSignalsAtXoverFrame);
+		if (b1Head==null) return false;
+		if (!(xoverType == LayoutTurnout.RH_XOVER)) 
+			b2Head = getSignalHeadFromEntry(b2Field,false,setSignalsAtXoverFrame);
+		else
+			b2Head = null;
+		c1Head = getSignalHeadFromEntry(c1Field,true,setSignalsAtXoverFrame);
+		if (c1Head==null) return false;
+		if (!(xoverType == LayoutTurnout.LH_XOVER)) 
+			c2Head = getSignalHeadFromEntry(c2Field,false,setSignalsAtXoverFrame);
+		else
+			c2Head = null;
+		d1Head = getSignalHeadFromEntry(d1Field,true,setSignalsAtXoverFrame);
+		if (d1Head==null) return false;
+		if (!(xoverType == LayoutTurnout.RH_XOVER)) 
+			d2Head = getSignalHeadFromEntry(d2Field,false,setSignalsAtXoverFrame);
+		else
+			d2Head = null;
+		return true;
+	}

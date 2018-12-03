@@ -1,0 +1,17 @@
+  protected final void emit_lastore() {
+    Barriers.compileModifyCheck(asm, 3*WORDSIZE);
+    if (VM.BuildFor32Addr) {
+      if (SSE2_BASE) {
+      } else {
+      }
+    } else {
+    }
+    if (VM.BuildFor32Addr) {
+      if (SSE2_BASE) {
+      } else {
+        asm.emitMOV_RegIdx_Reg(S0, T0, Assembler.LONG, NO_SLOT, T1);
+        asm.emitMOV_RegIdx_Reg(S0, T0, Assembler.LONG, ONE_SLOT, T1);
+      }
+    } else {
+    }
+  }

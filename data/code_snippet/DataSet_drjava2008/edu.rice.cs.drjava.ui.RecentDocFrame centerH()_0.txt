@@ -1,0 +1,1 @@
+  private void centerH() { MainFrame.setPopupLoc(this, _frame); }

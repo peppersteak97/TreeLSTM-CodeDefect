@@ -1,0 +1,1 @@
+  public boolean fileExists() { throw new UnsupportedOperationException("Dummy method"); }

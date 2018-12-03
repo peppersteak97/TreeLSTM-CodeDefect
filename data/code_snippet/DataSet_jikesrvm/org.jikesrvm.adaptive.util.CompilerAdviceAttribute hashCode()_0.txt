@@ -1,0 +1,3 @@
+  public int hashCode() {
+    return className.hashCode() ^ methodName.hashCode() ^ methodSig.hashCode();
+  }

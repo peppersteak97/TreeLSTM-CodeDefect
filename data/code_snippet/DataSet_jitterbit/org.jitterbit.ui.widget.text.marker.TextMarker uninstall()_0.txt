@@ -1,0 +1,3 @@
+    public void uninstall() {
+        m_textPane.getDocument().removeDocumentListener(m_docListener);
+    }

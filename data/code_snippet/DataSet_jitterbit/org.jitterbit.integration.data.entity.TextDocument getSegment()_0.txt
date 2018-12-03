@@ -1,0 +1,3 @@
+	public Segment getSegment(){
+        return (m_textStructure == null) ? null : m_textStructure.getSegment();
+	}

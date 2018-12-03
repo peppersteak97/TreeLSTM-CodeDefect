@@ -1,0 +1,5 @@
+  public void setActionsEnabled() {
+    _nextInteractionAction.setEnabled(_model.hasNextInteraction());
+    _prevInteractionAction.setEnabled(_model.hasPrevInteraction());
+    _executeInteractionAction.setEnabled(true);
+  }

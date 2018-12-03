@@ -1,0 +1,4 @@
+    private void setInitialOption() {
+        m_renameOption.setSelected(true);
+        m_moveExecuter = m_renameExecuter;
+    }

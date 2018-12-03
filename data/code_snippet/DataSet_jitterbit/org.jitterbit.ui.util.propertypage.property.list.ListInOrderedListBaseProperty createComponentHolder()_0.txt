@@ -1,0 +1,3 @@
+	protected IPropertyComponentHolder createComponentHolder() {
+		return new Displayer(getList(), m_listSelectionModel, m_modificationMode, m_iVisibleRows);
+	}

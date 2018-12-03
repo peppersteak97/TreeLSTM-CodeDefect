@@ -1,0 +1,8 @@
+    private void createContents() {
+        JPanel box = new JPanel(new BorderLayout());
+        box.setOpaque(true);
+        box.setBackground(BLUE);
+        box.add(createCenterDisplay(), BorderLayout.CENTER);
+        box.setBorder(USE_FUNKY_BORDER ? getFunkyBorder() : getNoNonsenseBorder());
+        getContentPane().add(box, BorderLayout.CENTER);
+    }

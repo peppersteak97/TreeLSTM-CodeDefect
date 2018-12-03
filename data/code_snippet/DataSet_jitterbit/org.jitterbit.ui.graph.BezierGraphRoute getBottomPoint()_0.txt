@@ -1,0 +1,9 @@
+	public Point getBottomPoint() {
+		Point retVal = getControlPoint(0);
+		Point p = null;
+		for( int i = 1; i < 4; ++i ) {
+			p = getControlPoint(i);
+			if ( p.y > retVal.y ) retVal = p;
+		}		
+		return retVal;
+	}

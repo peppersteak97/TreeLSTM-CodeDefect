@@ -1,0 +1,6 @@
+  protected final void emit_fdiv() {
+    popFloat(F0);
+    popFloat(F1);
+    asm.emitFDIVS(F0, F1, F0);
+    pushFloat(F0);
+  }

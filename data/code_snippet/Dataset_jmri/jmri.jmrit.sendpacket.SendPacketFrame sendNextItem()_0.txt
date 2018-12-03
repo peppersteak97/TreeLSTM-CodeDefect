@@ -1,0 +1,18 @@
+    void sendNextItem() {
+        if (!mRunButton.isSelected()) return;
+        if (mNextSequenceElement>=MAXSEQUENCE) {
+            mNextSequenceElement = 0;
+        }
+        if (mUseField[mNextSequenceElement].isSelected()) {
+            byte[] m = createPacket(mPacketField[mNextSequenceElement].getText());
+            mNextEcho = m;
+            if (m != null) 
+                cs.sendPacket(m, 1);
+            else
+                log.warn("Message invalid: "+mPacketField[mNextSequenceElement].getText());
+            if (mRunButton.isSelected()) startSequenceDelay();
+        } else {
+            mNextSequenceElement++;
+            sendNextItem();
+        }
+    }

@@ -1,0 +1,3 @@
+    public JButton getMainActionButton() {
+        return m_btnMainAction;
+    }

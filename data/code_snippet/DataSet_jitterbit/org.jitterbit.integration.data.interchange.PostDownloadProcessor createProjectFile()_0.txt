@@ -1,0 +1,7 @@
+    private InterchangeProjectFile createProjectFile() {
+        String projectName = m_project.getName();
+        InterchangeProjectFile projectFile = InterchangeProjectFile.createForNewProject(
+                        projectName, m_projectFolder);
+        projectFile.update(m_project);
+        return projectFile;
+    }

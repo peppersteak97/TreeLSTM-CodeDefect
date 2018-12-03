@@ -1,0 +1,3 @@
+  public final LocationOperand asLocation() {
+    return (LocationOperand) this;
+  }

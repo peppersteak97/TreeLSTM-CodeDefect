@@ -1,0 +1,11 @@
+    public void dispose() {
+        turnout.removePropertyChangeListener(this);
+        turnout = null;
+
+        closed = null;
+        thrown = null;
+        inconsistent = null;
+        unknown = null;
+
+        super.dispose();
+    }

@@ -1,0 +1,26 @@
+  private boolean _saveSettings() {
+    _lastState = new FrameState(this);
+    if ((_model.getCreateJarFile() == null) ||
+        (!_model.getCreateJarFile().getName().equals(_jarFileSelector.getFileFromField().getName()))) {
+      _model.setCreateJarFile(_jarFileSelector.getFileFromField());
+    }
+    int f = 0;
+    if (_jarClasses.isSelected()) f |= JAR_CLASSES;
+    if (_jarSources.isSelected()) f |= JAR_SOURCES;
+    if (_jarAll.isSelected()) f |= JAR_ALL;
+    if (_makeExecutable.isSelected()) f |= MAKE_EXECUTABLE;
+    if (_customManifest.isSelected()) f |= CUSTOM_MANIFEST;
+    
+    if (f != _model.getCreateJarFlags()) {
+      _model.setCreateJarFlags(f);
+    }
+    
+    String currentManifest = _model.getCustomManifest();
+    
+    if(currentManifest == null || !(currentManifest.equals(_customManifestText))){
+      LOG.log("Updated Manifest on: "+_model);
+      _model.setCustomManifest(_customManifestText);
+    }
+    
+    return true;
+  }

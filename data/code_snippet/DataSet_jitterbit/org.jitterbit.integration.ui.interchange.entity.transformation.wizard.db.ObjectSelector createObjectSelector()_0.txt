@@ -1,0 +1,23 @@
+    private void createObjectSelector() {
+        m_objectSelector = new SourceAndTargetList(
+                PackageResources.ObjectSelectionPage.Labels.AVAILABLE_ITEMS,
+                PackageResources.ObjectSelectionPage.Labels.SELECTED_ITEMS);
+        m_objectSelector.setTargetFilter(new TargetFilterImpl());
+        m_objectSelector.setTitleBackground(
+                IntegrationUiStyleSheet.ComponentTableHeader.getBackground());
+        m_objectSelector.setTitleForeground(
+                IntegrationUiStyleSheet.ComponentTableHeaderText.getColor());
+        m_objectSelector.setTitleFont(
+                IntegrationUiStyleSheet.ComponentTableHeaderText.getFont());
+        m_objectSelector.setTitleBorder(
+                IntegrationUiStyleSheet.ComponentTableHeader.getBorder());
+        m_objectSelector.setPrototypeCellValue("XXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        m_objectSelector.getSourceList().getJList().setCellRenderer(new SourceListRenderer());
+        m_objectSelector.getTargetList().getJList().getModel().addListDataListener(
+                new ValidInputChecker());
+        m_objectSelector.setVisibleRowCount(15);
+        IntegrationUiStyleSheet.DefaultListText.makeOver(
+                m_objectSelector.getSourceList().getJList());
+        IntegrationUiStyleSheet.DefaultListText.makeOver(
+                m_objectSelector.getTargetList().getJList());
+    }

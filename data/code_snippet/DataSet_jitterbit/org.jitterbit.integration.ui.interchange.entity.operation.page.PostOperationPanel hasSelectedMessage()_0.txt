@@ -1,0 +1,4 @@
+    private boolean hasSelectedMessage() {
+        return EMAIL_MESSAGES_SUPPORTED && 
+            (m_messageControl.getSelectedEntity() != null);
+    }

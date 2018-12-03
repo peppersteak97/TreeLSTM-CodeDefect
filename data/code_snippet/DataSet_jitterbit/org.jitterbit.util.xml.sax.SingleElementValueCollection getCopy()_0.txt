@@ -1,0 +1,3 @@
+    public Map<String, String> getCopy() {
+        return new HashMap<String, String>(m_parsedValues);
+    }

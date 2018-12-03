@@ -1,0 +1,3 @@
+  protected SingleDisplayModel getModel() {
+    return _model;
+  }

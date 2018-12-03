@@ -1,0 +1,15 @@
+  public void testSetNodeFromEmptyDelegate() throws Exception {
+    XMLConfig xcParent = new XMLConfig();
+    xcParent.set("foo/bar", "abc");
+    XMLConfig xc = new XMLConfig(xcParent, xcParent.getNodes("foo").get(0));
+    
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                             "  <bar>abc</bar>"+NL+"</foo>"+NL), xc.toString());
+    assertEquals("abc", xc.get("bar"));
+    
+    xc.set("fum", "def");
+    
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                             "  <bar>abc</bar>"+NL+"  <fum>def</fum>"+NL+"</foo>"+NL), xc.toString());
+    assertEquals("def", xc.get("fum"));
+  }

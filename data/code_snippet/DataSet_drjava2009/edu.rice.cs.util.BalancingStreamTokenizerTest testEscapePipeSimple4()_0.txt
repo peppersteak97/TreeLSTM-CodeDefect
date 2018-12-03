@@ -1,0 +1,10 @@
+  public void testEscapePipeSimple4() throws IOException {
+    BalancingStreamTokenizer tok = make("foo|bar", '|');
+    tok.defaultWhitespaceSetup();
+    String s = tok.getNextToken();
+    assertEquals("foo|bar", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals(null, s);
+    assertEquals(BalancingStreamTokenizer.Token.END, tok.token());
+  }

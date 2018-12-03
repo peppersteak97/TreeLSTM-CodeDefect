@@ -1,0 +1,7 @@
+    public boolean test1() {
+        Programmer p = InstanceManager.programmerManagerInstance().getServiceModeProgrammer();
+        originalMode = p.getMode();
+        statusUpdate("Read CV 29");
+        readCV(29);
+        return false;
+    }

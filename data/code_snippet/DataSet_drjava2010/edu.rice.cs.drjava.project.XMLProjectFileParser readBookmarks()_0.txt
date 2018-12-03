@@ -1,0 +1,14 @@
+  protected List<FileRegion> readBookmarks() {
+    List<FileRegion> rList = new ArrayList<FileRegion>();
+    List<Node> defs = _xc.getNodes("bookmarks/bookmark");
+    for(Node n: defs) {
+      String name = _xc.get(".file", n);
+      final int from = _xc.getInt(".from", n);
+      final int to = _xc.getInt(".to", n);
+      File f;
+      if ((_srcFileBase == null) || (new File(name).isAbsolute())) { f = new File(name); }
+      else { f = new File(_srcFileBase, name); }
+      rList.add(new DummyDocumentRegion(f, from, to));
+    }
+    return rList;
+  }

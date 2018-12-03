@@ -1,0 +1,3 @@
+  public boolean isConditionalCall() {
+    return operator.isConditionalCall();
+  }

@@ -1,0 +1,1 @@
+    public int getAddr() { return getElement(0)&0x7F; }

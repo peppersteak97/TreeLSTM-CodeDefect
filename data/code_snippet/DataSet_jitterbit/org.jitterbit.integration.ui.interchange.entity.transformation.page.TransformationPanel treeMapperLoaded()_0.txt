@@ -1,0 +1,6 @@
+    public void treeMapperLoaded() {
+        m_editFactory.setTreeMapper(m_treeMapper);
+        validateMappings();
+        setSendUndoEvents(true);
+        setSendInputChangeEvents(true);
+    }

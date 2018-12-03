@@ -1,0 +1,3 @@
+    PermissionFileManager getPermissionFileManager() {
+        return m_permissionFileMgr;
+    }

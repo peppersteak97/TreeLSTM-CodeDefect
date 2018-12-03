@@ -1,0 +1,4 @@
+    private boolean hasApplicableSelection() {
+        return (m_availableDestinations.getSelection().size() > 0) &&
+            (m_propertySelector.getSelection().length > 0);
+    }

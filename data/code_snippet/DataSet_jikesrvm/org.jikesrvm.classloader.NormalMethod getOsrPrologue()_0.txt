@@ -1,0 +1,12 @@
+  public BytecodeStream getOsrPrologue() {
+    if (VM.VerifyAssertions) {
+      synchronized (synthesizedBytecodes) {
+        VM._assert(synthesizedBytecodes.get(this) != null);
+      }
+    }
+    byte[] osrPrologue;
+    synchronized(osrPrologues) {
+      osrPrologue = osrPrologues.get(this);
+    }
+    return new BytecodeStream(this, osrPrologue);
+  }

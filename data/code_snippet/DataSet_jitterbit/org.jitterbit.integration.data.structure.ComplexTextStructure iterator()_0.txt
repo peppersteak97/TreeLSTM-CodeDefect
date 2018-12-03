@@ -1,0 +1,5 @@
+    public Iterator<Segment> iterator() {
+        return (m_segmentList == null) ? 
+                        KongaCollectionUtils.<Segment>getEmptyIterator() :
+                            new ArrayList<Segment>(m_segmentList).iterator();
+    }

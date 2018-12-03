@@ -1,0 +1,8 @@
+    public synchronized void start() {
+        if (m_timer != null) {
+            m_timer.stop();
+        }
+        m_timer = new Timer(300, this);
+        m_timer.start();
+        m_label.setIcon(null);
+    }

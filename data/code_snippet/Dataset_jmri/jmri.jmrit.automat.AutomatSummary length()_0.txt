@@ -1,0 +1,6 @@
+	public int length() {
+	    int length;
+	    synchronized (automats) {
+	        length = automats.size();
+	    }
+	}

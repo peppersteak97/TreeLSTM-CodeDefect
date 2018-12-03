@@ -1,0 +1,3 @@
+    public void shutdown() {
+        m_view.removePageEditorListener(m_pageEditorListener);
+    }

@@ -1,0 +1,3 @@
+    public int getMonthlyType() {
+        return m_btn_type_A.isSelected() ? 0 : 1;
+    }

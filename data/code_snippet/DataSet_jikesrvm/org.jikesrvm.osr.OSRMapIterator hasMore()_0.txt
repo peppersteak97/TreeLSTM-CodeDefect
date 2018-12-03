@@ -1,0 +1,9 @@
+ *     while (it.hasMore()) {
+ *       it.getKind();
+ *       it.getNumber();
+ *       it.getMethodId();
+ *       it.getBcIndex();
+ *       ....
+ *
+ *       it.moveToNext();
+ *     }

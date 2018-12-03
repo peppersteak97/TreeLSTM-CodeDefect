@@ -1,0 +1,118 @@
+  public void testOldDocumentsInAndOutOfTheCache() throws BadLocationException, IOException {
+    
+    File file1 = tempFile(1);
+    File file2 = tempFile(2);
+    File file3 = tempFile(3);
+    File file4 = tempFile(4);
+    File file5 = tempFile(5);
+    File file6 = tempFile(6);
+    
+    OpenDefinitionsDocument doc1 = openFile(file1);
+    assertEquals("There should be 1 document in the cache", 1, _cache.getNumInCache());
+    OpenDefinitionsDocument doc2 = openFile(file2);
+    assertEquals("There should be 2 documents in the cache", 2, _cache.getNumInCache());
+    OpenDefinitionsDocument doc3 = openFile(file3);
+    assertEquals("There should be 3 documents in the cache", 3, _cache.getNumInCache());
+    OpenDefinitionsDocument doc4 = openFile(file4);
+    assertEquals("There should be 4 documents in the cache", 4, _cache.getNumInCache());
+    OpenDefinitionsDocument doc5 = openFile(file5);
+    assertEquals("There should be 4 documents in the cache", 4, _cache.getNumInCache());
+    OpenDefinitionsDocument doc6 = openFile(file6);
+    assertEquals("There should be 4 documents in the cache", 4, _cache.getNumInCache());
+    
+    assertEquals("Wrong Cache Size", 4, _cache.getCacheSize());
+    
+    
+    assertFalse("Document 1 shouldn't be modified", doc1.isModifiedSinceSave());
+    assertFalse("Document 2 shouldn't be modified", doc2.isModifiedSinceSave());
+    assertFalse("Document 3 shouldn't be modified", doc3.isModifiedSinceSave());
+    assertFalse("Document 4 shouldn't be modified", doc4.isModifiedSinceSave());
+    assertFalse("Document 5 shouldn't be modified", doc5.isModifiedSinceSave());
+    assertFalse("Document 6 shouldn't be modified", doc6.isModifiedSinceSave());
+    
+    assertEquals("There should be 4 documents in the cache", 4, _cache.getNumInCache());
+    
+    assertFalse("Document 1 shouldn't be ready", _adapterTable.get(doc1).isReady());
+    assertFalse("Document 2 shouldn't be ready", _adapterTable.get(doc2).isReady());
+    assertTrue("Document 3 should be ready", _adapterTable.get(doc3).isReady());
+    assertTrue("Document 4 should be ready", _adapterTable.get(doc4).isReady());
+    assertTrue("Document 5 should be ready", _adapterTable.get(doc5).isReady());
+    assertTrue("Document 6 should be ready", _adapterTable.get(doc6).isReady());
+    
+    
+    
+    doc1.getCurrentLine();
+    doc2.getCurrentLine();
+    doc3.getCurrentLine();
+    doc4.getCurrentLine();
+    
+    
+    assertTrue("Document 1 should be ready", _adapterTable.get(doc1).isReady());
+    assertTrue("Document 2 should be ready", _adapterTable.get(doc2).isReady());
+    assertTrue("Document 3 should be ready", _adapterTable.get(doc3).isReady());
+    assertTrue("Document 4 should be ready", _adapterTable.get(doc4).isReady());
+    
+    doc5.getCurrentLine();
+    assertFalse("Document 1 is not longer ready", _adapterTable.get(doc1).isReady());
+    assertTrue("Document 5 should be ready", _adapterTable.get(doc5).isReady());
+    
+    doc6.getCurrentLine();
+    assertFalse("Document 2 is not longer ready", _adapterTable.get(doc2).isReady());
+    assertTrue("Document 6 should be ready", _adapterTable.get(doc6).isReady());
+    assertTrue("Document 3 should be ready", _adapterTable.get(doc3).isReady());
+    assertTrue("Document 4 should be ready", _adapterTable.get(doc4).isReady());
+    assertTrue("Document 5 should be ready", _adapterTable.get(doc5).isReady());
+    
+    assertTrue("The document 1 should should now be in the cache", _adapterTable.get(doc1).isReady());    
+    assertEquals("There should still be 4 documents in the cache", 4, _cache.getNumInCache()); 
+    assertFalse("The document 3 should have been kicked out of the cache", _adapterTable.get(doc3).isReady());
+    
+    assertTrue("The document 2 should should now be in the cache", _adapterTable.get(doc2).isReady());
+    assertEquals("There should still be 4 documents in the cache", 4, _cache.getNumInCache());
+    assertFalse("The document 4 should have been kicked out of the cache", _adapterTable.get(doc4).isReady());
+    
+    assertTrue("The document 3 should should now be in the cache", _adapterTable.get(doc3).isReady());
+    assertEquals("There should still be 4 documents in the cache", 4, _cache.getNumInCache());
+    assertFalse("The document 5 should have been kicked out of the cache", _adapterTable.get(doc5).isReady());
+    
+    assertTrue("The document 4 should should now be in the cache", _adapterTable.get(doc4).isReady());
+    assertEquals("There should still be 4 documents in the cache", 4, _cache.getNumInCache());
+    assertFalse("The document 6 should have been kicked out of the cache", _adapterTable.get(doc6).isReady());
+    
+    assertTrue("The document 5 should should now be in the cache", _adapterTable.get(doc5).isReady());
+    assertEquals("There should still be 4 documents in the cache", 4, _cache.getNumInCache());
+    assertFalse("The document 1 should have been kicked out of the cache", _adapterTable.get(doc1).isReady());
+    
+    assertTrue("The document 6 should should now be in the cache", _adapterTable.get(doc6).isReady());
+    assertEquals("There should still be 4 documents in the cache", 4, _cache.getNumInCache());
+    assertFalse("The document 2 should have been kicked out of the cache", _adapterTable.get(doc2).isReady());
+    
+    assertTrue("The document 3 should should still be in the cache", _adapterTable.get(doc3).isReady());    
+    assertEquals("There should still be 4 documents in the cache", 4, _cache.getNumInCache());
+    assertTrue("The document 3 should should still be in the cache", _adapterTable.get(doc3).isReady());    
+    assertEquals("There should still be 4 documents in the cache", 4, _cache.getNumInCache());
+    assertTrue("The document 6 should should still be in the cache", _adapterTable.get(doc6).isReady());    
+    assertEquals("There should still be 4 documents in the cache", 4, _cache.getNumInCache());
+    assertTrue("The document 6 should should still be in the cache", _adapterTable.get(doc6).isReady());    
+    
+    assertEquals("There should be 4 documents in the cache", 4, _cache.getNumInCache());
+    assertFalse("The document 1 should still be out of the cache", _adapterTable.get(doc1).isReady());
+    assertFalse("The document 2 should still be out of the cache", _adapterTable.get(doc2).isReady());
+    
+    assertEquals("The cache size should now be 5", 5, _cache.getCacheSize());
+    assertEquals("There should still only be 4 files in the cache", 4, _cache.getNumInCache());
+    
+    assertTrue("The document 2 should now be in the cache", _adapterTable.get(doc2).isReady());
+    assertFalse("The document 1 should still be out of the cache", _adapterTable.get(doc1).isReady());
+    assertEquals("There should be 5 documents in the cache", 5, _cache.getNumInCache());
+    
+    
+    assertEquals("The cache size should now be 3", 3, _cache.getCacheSize());
+    assertEquals("There should be 3 documents in the cache", 3, _cache.getNumInCache());
+    assertTrue("The document 2 should be in the cache", _adapterTable.get(doc2).isReady());
+    assertTrue("The document 6 should be in the cache", _adapterTable.get(doc6).isReady());
+    assertTrue("The document 5 should be in the cache", _adapterTable.get(doc5).isReady());
+    assertFalse("The document 3 should now be out of the cache", _adapterTable.get(doc3).isReady());
+    assertFalse("The document 4 should now be out of the cache", _adapterTable.get(doc4).isReady());
+    assertFalse("The document 1 should still be out of the cache", _adapterTable.get(doc1).isReady());
+  }

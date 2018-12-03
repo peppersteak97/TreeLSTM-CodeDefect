@@ -1,0 +1,8 @@
+    private void createServerField() {
+        String serverLabel = PackageResources.Database.Labels.SERVER;
+        m_serverField = InputFieldFactory.getNonEmptyTextInputField(
+                        serverLabel, 
+                        serverLabel, 
+                        20, 
+                        true);
+    }

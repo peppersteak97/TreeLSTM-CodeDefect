@@ -1,0 +1,9 @@
+	public int selectOutputType() {
+		int iType = 0;
+		iType = javax.swing.JOptionPane.showOptionDialog(null,
+				"Should the C/MRI output bit(s) be 'steady state' or 'pulsed'?",
+					"C/MRI Output Bits Question",javax.swing.JOptionPane.DEFAULT_OPTION,
+						javax.swing.JOptionPane.QUESTION_MESSAGE,
+						null,new String[] {"Steady State Output","Pulsed Output"},"Steady State Output");
+		return iType;
+	}

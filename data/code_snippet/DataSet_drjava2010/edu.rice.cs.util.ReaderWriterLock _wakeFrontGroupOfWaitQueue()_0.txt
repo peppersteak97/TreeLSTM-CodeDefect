@@ -1,0 +1,16 @@
+  private synchronized void _wakeFrontGroupOfWaitQueue() {
+    if (!_waitQueue.isEmpty()) {
+      ReaderWriterThread front = _waitQueue.getFirst();
+      
+      if (front.isReader()) {
+        while (!_waitQueue.isEmpty()) {
+          front = _waitQueue.getFirst();
+          if (front.isReader()) {
+          }
+          else {
+            break;
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,28 @@
+    boolean doTransfer() {
+
+        log.debug("doTransfer starts");
+
+        XmlFile.ensurePrefsPresent(LocoFile.getFileLocation());
+
+        File f = new File(mFullFromFilename);
+
+        Element lroot = null;
+        try {
+            lroot = lf.rootFromName(mFullFromFilename);
+        } catch (Exception e) {
+            log.error("Exception while loading loco XML file: "+mFullFromFilename+" exception: "+e);
+            return false;
+        }
+
+        mToEntry = new RosterEntry(mFromEntry, mToID);
+
+        mToEntry.ensureFilenameExists();
+
+        lroot.detach();
+        
+        LocoFile newLocoFile = new LocoFile();
+        File fout = new File(LocoFile.getFileLocation()+mToEntry.getFileName());
+        newLocoFile.writeFile(fout, lroot, mToEntry);
+
+        return true;
+    }

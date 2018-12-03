@@ -1,0 +1,12 @@
+    public String getConnectionString() {
+        if (isManualMode()) {
+            return getManualConnectionString();
+        }
+        DatabaseDriverDescription driver = getDriver();
+        if (driver != null) {
+            StringBuilder sb = new StringBuilder(driver.getConnectionString(this));
+            appendOptionalParameters(sb);
+            return sb.toString();
+        }
+        return null;
+    }

@@ -1,0 +1,85 @@
+    public void activateRoute() {
+        
+        if (mTurnoutsAlignedSensor!="" && mNumOutputTurnouts>0) {
+            
+            for (int k = 0;k < mNumOutputTurnouts;k++) {
+                mOpTurnout[k] = InstanceManager.turnoutManagerInstance().
+                        provideTurnout(mOutputTurnout[k]);
+                if (mOpTurnout[k]!=null) {
+                    mOpTurnout[k].addPropertyChangeListener(mOpTurnoutListener[k] =
+                            new java.beans.PropertyChangeListener() {
+                        public void propertyChange(java.beans.PropertyChangeEvent e) {
+                            if (e.getPropertyName().equals("KnownState")
+                            || e.getPropertyName().equals("CommandedState")) {
+                                checkTurnoutAlignment();
+                            }
+                        }
+                    }
+                    );
+                }
+            }
+        }         
+        
+        if (mNumSensors>0) {
+            for (int k = 0;k < mNumSensors;k++) {
+                mSensors[k] = InstanceManager.sensorManagerInstance().
+                                            provideSensor(mControlSensors[k]);
+                if (mSensors[k]!=null) {
+                    mSensors[k].addPropertyChangeListener(mSensorListener[k] =
+                                                new java.beans.PropertyChangeListener() {
+                            public void propertyChange(java.beans.PropertyChangeEvent e) {
+                                if (e.getPropertyName().equals("KnownState")) {
+                                    int now = ((Integer) e.getNewValue()).intValue();
+                                    int then = ((Integer) e.getOldValue()).intValue();
+                                    checkSensor(now, then, (Sensor)e.getSource());
+                                }
+                            }
+                    });
+                } else {
+                    log.error("Route "+getSystemName()+" is linked to a Sensor that does not exist: "+
+                                             mControlSensors[k]);
+                }
+            }
+        }
+        if ( (mControlTurnout!=null) && (mControlTurnout.length() > 2)) {
+            mTurnout = InstanceManager.turnoutManagerInstance().
+                                            provideTurnout(mControlTurnout);
+            if (mTurnout!=null) {
+                mTurnout.addPropertyChangeListener(mTurnoutListener =
+                                                new java.beans.PropertyChangeListener() {
+                        public void propertyChange(java.beans.PropertyChangeEvent e) {
+                            if (e.getPropertyName().equals("KnownState")) {
+                                int now = ((Integer) e.getNewValue()).intValue();
+                                int then = ((Integer) e.getOldValue()).intValue();
+                                checkTurnout(now, then, (Turnout)e.getSource());
+                            }
+                        }
+                    });
+            } else {
+                log.error("Route "+getSystemName()+" is linked to a Turnout that does not exist: "+
+                                             mControlTurnout);
+            }
+        }
+        if ( (mLockControlTurnout!=null) && (mLockControlTurnout.length() > 2)) {
+            mLockTurnout = InstanceManager.turnoutManagerInstance().
+                                            provideTurnout(mLockControlTurnout);
+            if (mLockTurnout!=null) {
+                mLockTurnout.addPropertyChangeListener(mLockTurnoutListener =
+                                                new java.beans.PropertyChangeListener() {
+                        public void propertyChange(java.beans.PropertyChangeEvent e) {
+                            if (e.getPropertyName().equals("KnownState")) {
+                                int now = ((Integer) e.getNewValue()).intValue();
+                                int then = ((Integer) e.getOldValue()).intValue();
+                                checkLockTurnout(now, then, (Turnout)e.getSource());
+                            }
+                        }
+                    });
+            } else {
+                log.error("Route "+getSystemName()+" is linked to a Turnout that does not exist: "+
+                                             mLockControlTurnout);
+            }
+        }
+
+        
+        
+    }

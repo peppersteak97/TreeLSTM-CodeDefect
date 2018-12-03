@@ -1,0 +1,3 @@
+    public TargetId getID() {
+        return (TargetId) super.getID();
+    }

@@ -1,0 +1,4 @@
+    public Icon getSmallIcon() {
+        return InterchangeActionDictionary.DICTIONARY.getSmallIcon(
+                        InterchangeActionFactory.DEPLOY.getId());
+    }

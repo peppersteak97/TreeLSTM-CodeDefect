@@ -1,0 +1,5 @@
+    public void dispose() {
+        mRed = null;
+        mGreen = null;
+        super.dispose();
+    }

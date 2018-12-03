@@ -1,0 +1,17 @@
+    private IMouseEventHandler getTableMouseClickHandler() {
+        return new IMouseEventHandler() {
+
+            public boolean handle(MouseEvent evt) {
+                if (evt.getClickCount() == 1) {
+                    int row = m_table.rowAtPoint(evt.getPoint());
+                    if (row == (m_table.getRowCount() - 1)) {
+                        fireActionEvent();
+                    }
+                }
+                if (evt.getClickCount() == 2) {
+                    fireActionEvent();
+                }
+                return true;
+            }
+        };
+    }

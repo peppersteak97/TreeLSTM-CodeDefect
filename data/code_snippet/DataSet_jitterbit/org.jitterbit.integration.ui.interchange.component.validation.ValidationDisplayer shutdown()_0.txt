@@ -1,0 +1,10 @@
+    public void shutdown() {
+        m_context.getEventHub().removeDistributedEventListener(this);
+        removeEntityListener();
+        if (m_runWhenValid != null) {
+            m_runWhenValid.clear();
+        }
+        if (m_runWhenInvalid != null) {
+            m_runWhenInvalid.clear();
+        }
+    }

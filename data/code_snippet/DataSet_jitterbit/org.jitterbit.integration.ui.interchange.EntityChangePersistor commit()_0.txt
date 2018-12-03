@@ -1,0 +1,10 @@
+    public void commit() throws InterchangeSavingException {
+        try {
+            if (entityHasChanged()) {
+                persistChanges();
+            }
+        }
+        finally {
+            dispose();
+        }
+    }

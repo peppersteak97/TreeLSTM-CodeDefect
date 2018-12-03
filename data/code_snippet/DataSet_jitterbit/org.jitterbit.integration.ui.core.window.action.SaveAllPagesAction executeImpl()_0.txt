@@ -1,0 +1,13 @@
+    private void executeImpl() {
+        IntegrationUi.getUi().startWait();
+        addCallback(new WaitStopper());
+        Runnable job = new Runnable() {
+
+            public void run() {
+                IPageSaver saver = getPageSaver();
+                saver.saveAllPages(new InternalActionCallback(SaveAllPagesAction.this));
+            }
+        };
+        IUiWorker worker = IntegrationUi.getUi().getUiWorker();
+        worker.submitForParallell(IUiWorker.GUARD.protect(job));
+    }

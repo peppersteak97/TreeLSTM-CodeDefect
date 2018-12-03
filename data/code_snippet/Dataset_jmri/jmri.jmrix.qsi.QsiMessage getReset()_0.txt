@@ -1,0 +1,7 @@
+    static public QsiMessage getReset() {
+        QsiMessage m = new QsiMessage(3);
+        m.setOpCode(0);
+        m.setLength(0);
+        m.setChecksum();
+        return m.frame();
+    }

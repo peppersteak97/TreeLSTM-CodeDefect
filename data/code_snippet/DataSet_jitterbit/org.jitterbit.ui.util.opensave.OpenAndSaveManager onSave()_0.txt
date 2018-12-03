@@ -1,0 +1,10 @@
+	public void onSave() {
+		if (m_file == null) {
+            onSaveAs();
+        }
+        else {
+            if (m_fileSaver != null) {
+                m_fileSaver.saveToFile(m_file);
+            }
+        }
+	}

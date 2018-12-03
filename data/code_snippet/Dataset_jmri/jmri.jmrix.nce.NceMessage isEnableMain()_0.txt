@@ -1,0 +1,6 @@
+    public boolean isEnableMain() {
+        if (isBinary()) 
+            return getOpCode() == ENABLE_MAIN_CMD;
+        else
+            return getOpCode() == 'E';
+    }

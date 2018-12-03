@@ -1,0 +1,5 @@
+	protected JPanel createInputPanel() {
+		JPanel p = super.createInputPanel();
+		createAndAddCapsLockWarning(p);
+		return p;
+	}

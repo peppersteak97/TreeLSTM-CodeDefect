@@ -1,0 +1,3 @@
+  public boolean getKind() {
+    return (maps[curidx] & KIND_MASK) >> KIND_SHIFT != 0;
+  }

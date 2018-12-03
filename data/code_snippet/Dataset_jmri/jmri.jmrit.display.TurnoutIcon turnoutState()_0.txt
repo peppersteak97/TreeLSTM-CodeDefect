@@ -1,0 +1,4 @@
+    int turnoutState() {
+        if (turnout != null) return turnout.getKnownState();
+        else return Turnout.UNKNOWN;
+    }

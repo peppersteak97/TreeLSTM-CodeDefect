@@ -1,0 +1,3 @@
+    public static UiResources getDefault() {
+        return s_defaultInstance;
+    }

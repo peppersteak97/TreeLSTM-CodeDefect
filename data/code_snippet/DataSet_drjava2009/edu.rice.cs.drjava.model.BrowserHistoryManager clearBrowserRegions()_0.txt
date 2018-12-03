@@ -1,0 +1,5 @@
+  public /* synchronized */ void clearBrowserRegions() {
+    while(_pastRegions.size()+_futureRegions.size() > 0) {
+      remove(((_pastRegions.size()>_futureRegions.size())?_pastRegions:_futureRegions).get(0));
+    }
+  }

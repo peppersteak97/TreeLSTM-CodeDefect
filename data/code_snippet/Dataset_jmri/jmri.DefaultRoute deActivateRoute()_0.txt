@@ -1,0 +1,27 @@
+    public void deActivateRoute() {
+        if (mNumSensors > 0) {
+            for (int k = 0;k<mNumSensors;k++) {
+                if (mSensorListener[k]!=null) {
+                    mSensors[k].removePropertyChangeListener(mSensorListener[k]);
+                    mSensorListener[k] = null;
+                }
+            }
+        }
+        if (mTurnoutListener!=null) {
+            mTurnout.removePropertyChangeListener(mTurnoutListener);
+            mTurnoutListener = null;
+        }
+        if (mLockTurnoutListener!=null) {
+            mLockTurnout.removePropertyChangeListener(mLockTurnoutListener);
+            mLockTurnoutListener = null;
+        }
+        
+        if (mTurnoutsAlignedSensor!=""){
+            for (int k = 0;k < mNumOutputTurnouts; k++) {
+                if (mOpTurnoutListener[k]!=null) {
+                    mOpTurnout[k].removePropertyChangeListener(mOpTurnoutListener[k]);
+                    mOpTurnoutListener[k] = null;
+    }
+            }
+        }
+    }

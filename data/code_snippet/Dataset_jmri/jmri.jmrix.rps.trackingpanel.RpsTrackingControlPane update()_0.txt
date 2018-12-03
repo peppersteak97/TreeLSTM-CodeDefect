@@ -1,0 +1,10 @@
+    void update() {
+        trX = Double.parseDouble(trXf.getText());
+        trY = Double.parseDouble(trYf.getText());
+        blX = Double.parseDouble(blXf.getText());
+        blY = Double.parseDouble(blYf.getText());
+        
+        panel.setOrigin(blX, blY);
+        panel.setCoordMax(trX, trY);
+        panel.repaint();
+    }

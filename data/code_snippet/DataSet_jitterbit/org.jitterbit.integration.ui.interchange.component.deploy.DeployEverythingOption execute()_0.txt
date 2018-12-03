@@ -1,0 +1,4 @@
+    public void execute() {
+        m_project.markAsDeployDirty();
+        m_deployLauncher.startDeploy(m_deployData);
+    }

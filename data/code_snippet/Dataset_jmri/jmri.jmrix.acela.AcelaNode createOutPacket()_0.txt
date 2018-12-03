@@ -1,0 +1,68 @@
+    public AbstractMRMessage createOutPacket() {
+    	byte addr = 0x00;
+        Integer tempint = new Integer(startingOutputAddress);
+        addr = tempint.byteValue();
+
+        if (nodeType == TB) {         
+            int tempsettings = outputArray[3] * 8 + outputArray[2] * 4 + outputArray[1] * 2 + outputArray[0] * 1;
+            byte newsettings = (byte) (tempsettings);
+            AcelaMessage m = new AcelaMessage(4);
+            m.setElement(0, 0x07);
+            m.setElement(1, 0x00);
+            m.setElement(2, addr);
+            m.setElement(3, newsettings);
+            m.setBinary(true);
+            return m;
+    	}
+    	if (nodeType == D8) {         
+            int tempsettings = outputArray[3] * 8 + outputArray[2] * 4 + outputArray[1] * 2 + outputArray[0] * 1;
+            tempsettings = outputArray[7] * 128 + outputArray[6] * 64 + outputArray[5] * 32 + outputArray[4] * 16 + tempsettings;
+            byte newsettings = (byte) (tempsettings);
+            AcelaMessage m = new AcelaMessage(4);
+            m.setElement(0, 0x08);
+            m.setElement(1, 0x00);
+            m.setElement(2, addr);
+            m.setElement(3, newsettings);
+            m.setBinary(true);
+            return m;
+    	}
+    	if ((nodeType == WM) || (nodeType == SY)) {
+            AcelaMessage m = new AcelaMessage(3);
+            m.setElement(0, 0x01);
+            m.setElement(1, 0x00);
+            m.setElement(2, 0x00);
+            m.setBinary(true);
+            return m;
+    	}
+    	if (nodeType == SC) {
+            AcelaMessage m = new AcelaMessage(3);
+            m.setElement(0, 0x01);
+            m.setElement(1, 0x00);
+            m.setElement(2, 0x00);
+            m.setBinary(true);
+            return m;
+    	}
+    	if ((nodeType == SM) || (nodeType == SW) || (nodeType == YM)) {
+            int tempsettings = outputArray[3] * 8 + outputArray[2] * 4 + outputArray[1] * 2 + outputArray[0] * 1;
+            tempsettings = outputArray[7] * 128 + outputArray[6] * 64 + outputArray[5] * 32 + outputArray[4] * 16 + tempsettings;
+            byte newsettings = (byte) (tempsettings);
+            int tempsettings2 = outputArray[11] * 8 + outputArray[10] * 4 + outputArray[9] * 2 + outputArray[8] * 1;
+            tempsettings2 = outputArray[15] * 128 + outputArray[14] * 64 + outputArray[13] * 32 + outputArray[12] * 16 + tempsettings2;
+            byte newsettings2 = (byte) (tempsettings2);
+            AcelaMessage m = new AcelaMessage(5);
+            m.setElement(0, 0x09);
+            m.setElement(1, 0x00);
+            m.setElement(2, addr);
+            m.setElement(3, newsettings2);
+            m.setElement(4, newsettings);
+            m.setBinary(true);
+            return m;
+    	}
+
+        AcelaMessage m = new AcelaMessage(3);
+        m.setElement(0, 0x01);
+        m.setElement(1, 0x00);
+        m.setElement(2, 0x00);
+        m.setBinary(true);
+        return m;
+    }

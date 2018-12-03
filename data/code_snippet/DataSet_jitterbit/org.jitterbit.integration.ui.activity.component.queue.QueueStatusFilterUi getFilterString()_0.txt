@@ -1,0 +1,3 @@
+    public String getFilterString() {
+        return PackageResources.QueueStatusFilter.getFilterString(m_status);
+    }

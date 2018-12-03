@@ -1,0 +1,62 @@
+    public void read() throws java.io.IOException {
+        if (file == null) {
+            throw new java.io.IOException("Null file during read");
+        }
+        InputStream s = new java.io.BufferedInputStream(new java.io.FileInputStream(file));
+    
+        h0 = new FirstHeader();
+        h0.load(s);
+        if (log.isDebugEnabled()) log.debug(h0.toString());
+        int n = h0.numHeaders();
+        headers = new Header[n];
+        headers[0] = h0;
+        
+        for (int i = 1; i< n; i++) {  
+            headers[i] = new Header();
+            headers[i].load(s);
+            if (log.isDebugEnabled()) log.debug("Header "+i+" "+headers[i].toString());
+        }
+   
+        
+        for (int i = 1; i< n; i++) {
+            if (log.isDebugEnabled()) log.debug("Header "+i+" length "+headers[i].getDataLength()+" type "+headers[i].getType());
+            if (headers[i].getDataLength() > headers[i].getRecordLength())
+                log.error("header "+i+" has data length "+headers[i].getDataLength()
+                        +" greater than record length "+headers[i].getRecordLength());
+
+            for (int j = 1; j<i; j++) {
+                if (headers[i].getHandle() == headers[j].getHandle()
+                    && headers[i].getType() == 1
+                    && headers[j].getType() == 1)
+                    log.error("Duplicate handle number in records "+i+"("+headers[i].getHandle()+") and "
+                            +j+"("+headers[j].getHandle()+")");
+            }
+            if (headers[i].getType()  > 6 ) log.error("Type field unexpected value: "+headers[i].getType());
+            if (headers[i].getType() == 0 ) log.error("Type field unexpected value: "+headers[i].getType());
+            if (headers[i].getType() < -1 ) log.error("Type field unexpected value: "+headers[i].getType());
+        }
+        
+        int length = 0;
+        for (int i = 1; i< n; i++) {
+            if (length < headers[i].getRecordStart()+headers[i].getRecordLength())
+                length = headers[i].getRecordStart()+headers[i].getRecordLength();
+        }
+        
+        if (log.isDebugEnabled()) log.debug("Last byte at "+length);
+        
+        for (int i = 1; i< n; i++) {
+            s.close();
+            s = new java.io.BufferedInputStream(new java.io.FileInputStream(file));
+            s.skip(headers[i].getRecordStart());
+            
+            byte [] array = new byte[headers[i].getRecordLength()];
+            int read = s.read(array);
+            if (read != headers[i].getRecordLength())
+                log.error("header "+i+" read "+read+", expected "+headers[i].getRecordLength());
+                
+            headers[i].setByteArray(array);
+        }
+        
+        s.close();
+        
+    }

@@ -1,0 +1,9 @@
+  public void testFormat() {
+    NonNegativeIntegerOption io1 = new NonNegativeIntegerOption("max_files",null);
+    NonNegativeIntegerOption io2 = new NonNegativeIntegerOption("indent_size",null);
+    
+    assertEquals("33",  io1.format(Integer.valueOf(33)));
+    assertEquals("33",  io2.format(Integer.valueOf(33)));
+    assertEquals("-11", io1.format(Integer.valueOf(-11)));
+    assertEquals("-11", io2.format(Integer.valueOf(-11)));
+  }

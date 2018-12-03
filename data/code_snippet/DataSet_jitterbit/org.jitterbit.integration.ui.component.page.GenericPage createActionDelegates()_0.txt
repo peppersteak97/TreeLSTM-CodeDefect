@@ -1,0 +1,4 @@
+    private void createActionDelegates() {
+        m_undoDelegate = new UndoActionDelegate();
+        m_redoDelegate = new RedoActionDelegate();
+    }

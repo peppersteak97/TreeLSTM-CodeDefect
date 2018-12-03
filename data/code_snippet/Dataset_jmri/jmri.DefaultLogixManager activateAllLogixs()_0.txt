@@ -1,0 +1,21 @@
+	public void activateAllLogixs() {
+		java.util.Iterator iter =
+                                    getSystemNameList().iterator();
+		while (iter.hasNext()) {
+			String sysName = (String)iter.next();
+			if (sysName==null) {
+				log.error("System name null when activating Logixs");
+				break;
+			}
+			Logix x = getBySystemName(sysName);
+			if (x==null) {
+				log.error("Error getting Logix *"+sysName+"* when activating Logixs");
+				break;
+			}
+			if (loadDisabled) {
+				x.setEnabled(false);
+			}
+			x.activateLogix();
+		}
+		loadDisabled = false;
+	}

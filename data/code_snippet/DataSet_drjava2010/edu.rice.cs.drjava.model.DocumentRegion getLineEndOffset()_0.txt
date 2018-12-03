@@ -1,0 +1,3 @@
+  public int getLineEndOffset() { 
+    throw new UnsupportedOperationException("DocumentRegion does not suppport getLineEnd()"); 
+  }

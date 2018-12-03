@@ -1,0 +1,3 @@
+    protected Action[] getPopupMenuActions() {
+        return null;
+    }

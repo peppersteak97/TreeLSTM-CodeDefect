@@ -1,0 +1,4 @@
+  public void process() {
+    CompiledMethod cmpMethod = getCompiledMethod();
+    Controller.recompilationStrategy.considerHotCallEdge(cmpMethod, this);
+  }

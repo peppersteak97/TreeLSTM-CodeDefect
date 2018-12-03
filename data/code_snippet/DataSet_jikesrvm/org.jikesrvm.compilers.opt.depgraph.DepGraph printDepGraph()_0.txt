@@ -1,0 +1,4 @@
+  public void printDepGraph() {
+    System.out.println(toString());
+    System.out.println("-----------------------------------");
+  }

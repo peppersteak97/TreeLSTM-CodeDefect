@@ -1,0 +1,3 @@
+  public static void raiseNullPointerException() {
+    throw new java.lang.NullPointerException();
+  }

@@ -1,0 +1,8 @@
+    public int getIgnoreFirstLines() {
+        try {
+            return Integer.parseInt(getProperty(PROPERTY_IGNORE_FIRST));
+        }
+        catch (NumberFormatException e) {
+            return DEFAULT_IGNORE_FIRST_LINES;
+        }
+    }

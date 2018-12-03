@@ -1,0 +1,8 @@
+  public int[] getMCIndexes() {
+    int[] indexes = new int[mapEntries.length];
+    for (int i = 0, n = mapEntries.length; i < n; i++) {
+      indexes[i] = getMCOffset(i);
+    }
+
+    return indexes;
+  }

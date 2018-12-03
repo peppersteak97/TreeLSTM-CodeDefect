@@ -1,0 +1,6 @@
+    private IFindListener getFindListener() {
+        if (m_findListener == null) {
+            m_findListener = new Listener();
+        }
+        return m_findListener;
+    }

@@ -1,0 +1,9 @@
+    public void configure() {
+        AbstractMRTrafficController packets = (AbstractMRTrafficController) (new XNetPacketizer(new LenzCommandStation()));
+        packets.connectPort(this);
+        
+        
+        new LI100XNetInitilizationManager();
+	
+        jmri.jmrix.lenz.ActiveFlag.setActive();
+    }

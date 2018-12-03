@@ -1,0 +1,6 @@
+    private void registerActions() {
+        KeyBindingInstaller installer = new KeyBindingInstaller(this);
+        installer.addBinding(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), 
+                        "space", new SpaceAction(this));
+        installer.install();
+    }

@@ -1,0 +1,9 @@
+    private JComponent createButtonPanel() {
+        setFixedButtonSize(false);
+        JPanel buttons = getButtonPanel(OK_CANCEL, 15);
+        buttons.setOpaque(false);
+        buttons.setBorder(BorderFactory.createEmptyBorder(20, 10, 20, 10));
+        customizeOKButton();
+        getRootPane().setDefaultButton(getOKButton());
+        return buttons;
+    }

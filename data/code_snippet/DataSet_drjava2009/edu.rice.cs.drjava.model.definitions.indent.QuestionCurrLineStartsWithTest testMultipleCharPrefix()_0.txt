@@ -1,0 +1,9 @@
+  public void testMultipleCharPrefix() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionCurrLineStartsWith(".*.", null, null);
+    
+    _setDocText("*\n.*\n.*.\n.*.foo");
+    assertTrue("star", !rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("dot star", !rule.testApplyRule(_doc, 2, Indenter.IndentReason.OTHER));
+    assertTrue("dot star dot", rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+    assertTrue("dot star dot text", rule.testApplyRule(_doc, 9, Indenter.IndentReason.OTHER));
+  }

@@ -1,0 +1,4 @@
+    JComponent getParentBox() {
+        return InputFieldFactory.getLabeledComponent(m_parentBox,
+                        PackageResources.RelationshipDefinitionPage.Labels.PARENT);
+    }

@@ -1,0 +1,1 @@
+  public ReducedModelControl getReduced() { throw new UnsupportedOperationException("Dummy method"); }

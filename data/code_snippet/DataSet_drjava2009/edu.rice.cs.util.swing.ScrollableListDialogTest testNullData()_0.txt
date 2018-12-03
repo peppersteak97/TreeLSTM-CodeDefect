@@ -1,0 +1,15 @@
+  public void testNullData() {
+    try {
+      new  ScrollableListDialog.Builder<String>()
+        .setOwner(null).setTitle(TITLE).setText(LEADER).setItems(DATA).build();
+    } catch (IllegalArgumentException e) {
+      fail("Data was non-null, so it should have been accepted.");
+    }
+    
+    try {
+      new  ScrollableListDialog.Builder<String>()
+        .setOwner(null).setTitle(TITLE).setText(LEADER).setItems(null).build();
+      fail("Data was null, so it shouldn't have been accepted.");
+    } catch (IllegalArgumentException e) {
+    }
+  }

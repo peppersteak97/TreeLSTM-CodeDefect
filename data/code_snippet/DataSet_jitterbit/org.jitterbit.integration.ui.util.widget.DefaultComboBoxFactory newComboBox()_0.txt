@@ -1,0 +1,3 @@
+    public JComboBox newComboBox() {
+        return newComboBox((Object) null);
+    }

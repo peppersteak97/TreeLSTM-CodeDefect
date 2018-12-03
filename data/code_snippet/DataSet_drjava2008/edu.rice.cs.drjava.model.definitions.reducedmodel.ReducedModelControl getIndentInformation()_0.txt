@@ -1,0 +1,64 @@
+//  public IndentInfo getIndentInformation() {
+  
+  public int getDistToIdentNewline() { return -1; }
+  public int getDistToEnclosingBraceStart() { return -1; }
+  
+  /** Gets info about the brace enclosing the beginning of this line. */
+  public BraceInfo _getLineEnclosingBrace() { return _rmb._getLineEnclosingBrace(); }
+  
+  /** Gets info about the brace enclosing this location. */
+  public BraceInfo _getEnclosingBrace() { return _rmb._getEnclosingBrace(); }
+  /** Gets distance to the new newline character (not including the newline). */
+  public int getDistToStart() { return _rmc.getDistToStart(); }
+  /** Gets distance to previous newline character (not including the newline). */
+  public int getDistToStart(int relLoc) { return _rmc.getDistToStart(relLoc); }
+  
+  public int getDistToNextNewline() { return _rmc.getDistToNextNewline(); }
+  
+  /** Return all highlight status info for text between the current location and current location + length.  This should
+    * collapse adjoining blocks with the same status into one.  Assumes read and reduced locks are already held.
+    * @param start  The start location of the area being inspected.  The reduced model cursor is already set at this
+    *               position, but this value is needed to compute the absolute positions of HighlightStatus objects.
+    * @param length The length of the text segment for which status information must be generated.
+    */
+  public ArrayList<HighlightStatus> getHighlightStatus(final int start, final int length) {
+    ArrayList<HighlightStatus> vec = new ArrayList<HighlightStatus>();
+    
+    int curState;
+    int curLocation;
+    int curLength;
+    
+    TokenList.Iterator cursor = _rmc._cursor.copy();
+    curLocation = start;
+      curLength = length;
+      curState = 0;
+    }
+    else {
+      curLength = cursor.current().getSize() - _rmc.getBlockOffset();
+      curState = cursor.current().getHighlightState();
+    }
+    
+    while (curLocation + curLength < start + length) {
+      cursor.next();
+      if (cursor.atEnd()) break;
+      int nextState = cursor.current().getHighlightState();
+      
+      if (nextState == curState) {
+        curLength += cursor.current().getSize();
+      }
+      else {
+        vec.add(new HighlightStatus(curLocation, curLength, curState));
+        curLength = cursor.current().getSize();
+        curState = nextState;
+      }
+    }
+    
+    int requestEnd = start + length;
+    if (curLocation + curLength > requestEnd)  curLength = requestEnd - curLocation;
+    
+    vec.add(new HighlightStatus(curLocation, curLength, curState));
+    
+    cursor.dispose();
+    
+    return vec;
+  }

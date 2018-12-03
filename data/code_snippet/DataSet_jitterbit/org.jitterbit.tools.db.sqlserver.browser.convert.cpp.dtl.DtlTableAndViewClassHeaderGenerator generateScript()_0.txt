@@ -1,0 +1,16 @@
+    protected void generateScript() {
+        checkColumns();
+        writeHeader();
+        startDtlNamespace();
+        createDefaultSelValidate();
+        createDefaultInsValidate();
+        createDefaultBCA();
+        endDtlNamespace();
+        startTableNamespace();
+        createInsertBinder();
+        createDeleteBinder();
+        createMainClass();
+        endTableNamespace();
+        addLine("#endif");
+        addLine();
+    }

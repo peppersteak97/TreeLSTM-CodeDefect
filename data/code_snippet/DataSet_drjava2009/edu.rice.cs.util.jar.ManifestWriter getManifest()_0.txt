@@ -1,0 +1,11 @@
+  public Manifest getManifest() {
+    try {
+      Manifest m = new Manifest();
+      m.read(getInputStream());
+      return m;
+    }
+    catch (IOException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }

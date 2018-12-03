@@ -1,0 +1,4 @@
+    public String getCurrentOption1Setting() {
+        if (mOpt1 == null) return validOption1()[0];
+        return mOpt1;
+    }

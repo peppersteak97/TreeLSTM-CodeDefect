@@ -1,0 +1,6 @@
+	public static void initTitlePanelForegroundColors() {
+		COL_TITLE_PANEL_FOREGROUND = new Color[] {
+			COLORED_TITLE_PANELS ? Color.white : Color.black,
+			COLORED_TITLE_PANELS ? Color.white : Color.black,
+		};
+	}

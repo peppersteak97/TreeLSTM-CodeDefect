@@ -1,0 +1,50 @@
+  public void testSetFromNode() throws Exception {
+    XMLConfig xc = new XMLConfig();
+    Node n = xc.set("foo/bar", "abc", false);
+    
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                             "  <bar>abc</bar>"+NL+"</foo>"+NL), xc.toString());
+    assertEquals("abc", xc.get("foo/bar"));
+    
+    xc.set(".fuz", "def", n, false);
+    
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                             "  <bar fuz=\"def\">abc</bar>"+NL+"</foo>"+NL), xc.toString());
+    assertEquals("abc", xc.get("foo/bar"));
+    
+    n = xc.set("fum", "", n.getParentNode(), false);
+    
+    if (System.getProperty("java.version").startsWith("1.5")) {
+      assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                               "  <bar fuz=\"def\">abc</bar>"+NL+"  <fum></fum>"+NL+"</foo>"+NL),
+                   xc.toString());
+    }
+    else {
+      assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                               "  <bar fuz=\"def\">abc</bar>"+NL+"  <fum/>"+NL+"</foo>"+NL),
+                   xc.toString());
+    }
+    assertEquals("", xc.get("foo/fum"));
+    
+    xc.set("file", "test1.txt", n, false);
+    xc.set("file", "test2.txt", n, false);
+    
+    if (System.getProperty("java.version").startsWith("1.5")) {
+      assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                               "  <bar fuz=\"def\">abc</bar>"+NL
+                                 + "  <fum><file>test1.txt</file>"+NL+"    <file>test2.txt</file>"+NL+
+                               "  </fum>"+NL+"</foo>"+NL),
+                   xc.toString());
+    }
+    else {
+      assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>" + NL +
+                               "  <bar fuz=\"def\">abc</bar>" + NL
+                                 + "  <fum>"+NL + "    <file>test1.txt</file>" + NL + "    <file>test2.txt</file>" +
+                               NL+"  </fum>"+NL + "</foo>"+NL),
+                   xc.toString());
+    }
+    List<String> r = xc.getMultiple("foo/fum/file");
+    assertEquals(2, r.size());
+    assertEquals("test1.txt", r.get(0));
+    assertEquals("test2.txt", r.get(1));
+  }

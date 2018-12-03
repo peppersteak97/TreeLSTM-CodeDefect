@@ -1,0 +1,4 @@
+  protected final void emit_castore() {
+    Barriers.compileModifyCheck(asm, 8);
+    asm.emitMOV_RegIdx_Reg_Word(S0, T0, Assembler.SHORT, NO_SLOT, T1);
+  }

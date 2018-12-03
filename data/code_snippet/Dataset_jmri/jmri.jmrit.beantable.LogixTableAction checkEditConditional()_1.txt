@@ -1,0 +1,11 @@
+	boolean checkEditConditional() {
+		if (inEditConditionalMode) {
+			javax.swing.JOptionPane.showMessageDialog(editConditionalFrame,
+					java.text.MessageFormat.format(rbx.getString("Error35"),
+							new String[] { curConditional.getSystemName() }),
+					rbx.getString("ErrorTitle"),
+					javax.swing.JOptionPane.ERROR_MESSAGE);
+			return true;
+		}
+		return false;
+	}

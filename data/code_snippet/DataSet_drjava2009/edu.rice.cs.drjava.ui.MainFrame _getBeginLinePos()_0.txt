@@ -1,0 +1,11 @@
+  private int _getBeginLinePos() {
+    try {
+      int currPos = _currentDefPane.getCaretPosition();
+      OpenDefinitionsDocument openDoc = _model.getActiveDocument();
+      openDoc.setCurrentLocation(currPos);
+      return openDoc.getIntelligentBeginLinePos(currPos);
+    }
+    catch (BadLocationException ble) {
+      throw new UnexpectedException(ble);
+    }
+  }

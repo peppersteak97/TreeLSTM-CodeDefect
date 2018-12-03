@@ -1,0 +1,6 @@
+    private synchronized final Runnable getJob() throws InterruptedException {
+        while (m_job == null) {
+            wait();
+        }
+        return m_job;
+    }

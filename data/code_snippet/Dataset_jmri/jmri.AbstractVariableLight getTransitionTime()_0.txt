@@ -1,0 +1,12 @@
+	        if (getMaxIntensity() == 1.0 && getTransitionTime() <= 0) {
+                if (log.isDebugEnabled()) log.debug("setState("+newState+") considers not variable for ON");
+                notifyTargetIntensityChange(1.0);
+            } else {
+                if (getTransitionTime() <= 0) {
+                    if (log.isDebugEnabled()) log.debug("setState("+newState+") using variable intensity");
+                    sendIntensity(getMaxIntensity());
+                    notifyTargetIntensityChange(getMaxIntensity());                
+                } else {
+                    startTransition(getMaxIntensity());
+                }
+            }

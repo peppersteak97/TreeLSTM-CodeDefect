@@ -1,0 +1,72 @@
+  public void testSpaceSuffix() throws BadLocationException
+  {
+    _action = new ActionBracePlus(1);
+    
+    
+    _text = 
+     "var = method(arg1,\n"+
+     "  arg2, arg3) + 4;";
+
+    _aligned = 
+     "var = method(arg1,\n"+
+     "             arg2, arg3) + 4;";
+ 
+    _setDocText(_text);
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("Line aligned to open paren.", _aligned.length(), _doc.getLength());
+    assertEquals("Line aligned to open paren.", _aligned, _doc.getText());
+    
+     
+    _text =
+     "boolean method(\n"+
+     "int[] a, String b)\n"+
+     "{}";
+    _aligned = 
+     "boolean method(\n"+
+     "               int[] a, String b)\n"+
+     "{}";
+
+    _setDocText(_text);
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("Line aligned to open paren.", _aligned.length(), _doc.getLength());
+    assertEquals("Line aligned to open paren.", _aligned, _doc.getText());
+ 
+ 
+    _text =
+     "boolean method(\n"+
+     "int[] a,\n"+
+     "               String b)\n"+
+     "{}";
+    _aligned = 
+     "boolean method(\n"+
+     "               int[] a,\n"+
+     "               String b)\n"+
+     "{}";
+
+    _setDocText(_text);
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("Line aligned to open paren.", _aligned, _doc.getText());
+ 
+
+    _text =
+     "array[\n"+
+     "              new Listener() {\n"+
+     "           method() {\n"+
+     "           }\n"+
+     "      }]";
+    _aligned =
+     "array[\n"+
+     "      new Listener() {\n"+
+     "           method() {\n"+
+     "           }\n"+
+     "      }]";
+
+    _setDocText(_text);
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("Line aligned to open bracket.", _aligned, _doc.getText()); 
+
+  }

@@ -1,0 +1,12 @@
+  public void testRemembersOneEditedEntry() {
+    _history.add("some text");
+    _history.movePrevious("");
+
+    String newEntry = "some different text";
+
+    _history.moveNext(newEntry);
+    _history.movePrevious("");
+
+    Utilities.clearEventQueue();
+    assertEquals("Did not remember the edited entry correctly.", newEntry, _history.getCurrent());
+  }

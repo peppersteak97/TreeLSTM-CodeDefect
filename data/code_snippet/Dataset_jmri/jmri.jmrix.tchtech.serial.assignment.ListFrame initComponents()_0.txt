@@ -1,0 +1,121 @@
+    public void initComponents() throws Exception {
+
+        setTitle(rb.getString("WindowTitle"));
+        setSize(1000,2000);
+        Container contentPane = getContentPane();        
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+
+		initializeNodes();
+		nodeSelBox.setEditable(false);
+		if (numConfigNodes>0) {
+			nodeSelBox.addActionListener(new ActionListener() 
+			{
+				public void actionPerformed(ActionEvent event)
+				{
+					displayNodeInfo( (String)nodeSelBox.getSelectedItem() ); 
+				}
+			} );
+			inputBits.addActionListener(new ActionListener() 
+			{
+				public void actionPerformed(ActionEvent event)
+				{
+					if (inputSelected == false) {
+						inputSelected = true;
+						displayNodeInfo(selNodeID);
+					}
+				}
+			} );
+			outputBits.addActionListener(new ActionListener() 
+			{
+				public void actionPerformed(ActionEvent event)
+				{
+					if (inputSelected == true) {
+						inputSelected = false;
+						displayNodeInfo(selNodeID);
+					}
+				}
+			} );
+		}
+		else {
+			nodeInfoText.setText(rb.getString("NoNodesError"));
+		}
+		nodeSelBox.setToolTipText(rb.getString("NodeBoxTip"));
+		inputBits.setToolTipText(rb.getString("ShowInputTip"));
+		outputBits.setToolTipText(rb.getString("ShowOutputTip"));
+		
+        JPanel panel1 = new JPanel();
+        panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
+        JPanel panel11 = new JPanel();
+		panel11.add(nodeLabel);
+		panel11.add(nodeSelBox);
+        bitTypeGroup.add(outputBits);
+        bitTypeGroup.add(inputBits);
+        panel11.add(inputBits);
+        panel11.add(outputBits);
+        JPanel panel12 = new JPanel();
+		panel12.add(nodeInfoText);
+        panel1.add(panel11);
+        panel1.add(panel12);
+        Border panel1Border = BorderFactory.createEtchedBorder();
+        Border panel1Titled = BorderFactory.createTitledBorder(panel1Border,
+									rb.getString("NodePanelName") );
+        panel1.setBorder(panel1Titled);                
+        contentPane.add(panel1);
+        
+        if (numConfigNodes>0) {
+			assignmentPanel = new JPanel();
+			assignmentPanel.setLayout(new BoxLayout(assignmentPanel, BoxLayout.Y_AXIS));
+			assignmentListModel = new AssignmentTableModel();        
+			assignmentTable = new JTable(assignmentListModel);
+			assignmentTable.setRowSelectionAllowed(false);
+			assignmentTable.setPreferredScrollableViewportSize(new java.awt.Dimension(300,350));
+			TableColumnModel assignmentColumnModel = assignmentTable.getColumnModel();
+			TableColumn bitColumn = assignmentColumnModel.getColumn(AssignmentTableModel.BIT_COLUMN);
+			bitColumn.setMinWidth(20);
+			bitColumn.setMaxWidth(40);
+			bitColumn.setResizable(true);
+			TableColumn addressColumn = assignmentColumnModel.getColumn(AssignmentTableModel.ADDRESS_COLUMN);
+			addressColumn.setMinWidth(40);
+			addressColumn.setMaxWidth(85);
+			addressColumn.setResizable(true);
+			TableColumn sysColumn = assignmentColumnModel.getColumn(AssignmentTableModel.SYSNAME_COLUMN);
+			sysColumn.setMinWidth(75);
+			sysColumn.setMaxWidth(100);
+			sysColumn.setResizable(true);
+			TableColumn userColumn = assignmentColumnModel.getColumn(AssignmentTableModel.USERNAME_COLUMN);
+			userColumn.setMinWidth(90);
+			userColumn.setMaxWidth(450);			
+			userColumn.setResizable(true);
+			JScrollPane assignmentScrollPane = new JScrollPane(assignmentTable);
+			assignmentPanel.add(assignmentScrollPane,BorderLayout.CENTER);
+			if (inputSelected) {
+				assignmentPanel.setBorder(inputBorderTitled);
+			}
+			else {
+				assignmentPanel.setBorder(outputBorderTitled);
+			}
+			contentPane.add(assignmentPanel);
+		}
+        
+        JPanel panel3 = new JPanel();
+        panel3.setLayout(new FlowLayout());
+        printButton.setVisible(true);
+        printButton.setToolTipText(rb.getString("PrintButtonTip") );
+		if (numConfigNodes>0) {
+			printButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					printButtonActionPerformed(e);
+				}
+			});
+		}
+		panel3.add(printButton);
+        contentPane.add(panel3);
+
+		if (numConfigNodes>0) {
+			displayNodeInfo( (String)nodeSelBox.getSelectedItem() );
+		}
+
+        addHelpMenu("package.jmri.jmrix.tchtech.serial.assignment.ListFrame", true);
+
+        pack();
+    }

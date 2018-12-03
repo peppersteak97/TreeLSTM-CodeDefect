@@ -1,0 +1,13 @@
+    public List getSystemNameList() {
+        String[] arr = new String[_tsys.size()];
+        List out = new ArrayList();
+        Enumeration en = _tsys.keys();
+        int i=0;
+        while (en.hasMoreElements()) {
+            arr[i] = (String)en.nextElement();
+            i++;
+        }
+        jmri.util.StringUtil.sort(arr);
+        for (i=0; i<arr.length; i++) out.add(arr[i]);
+        return out;
+    }

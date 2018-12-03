@@ -1,0 +1,7 @@
+  protected final void emit_i2d() {
+    if (VM.BuildFor64Addr) {
+      pushLong(T0, T0);
+    } else {
+      fr.resolve(asm);
+    }
+  }

@@ -1,0 +1,4 @@
+    public String[] getConstants() {
+        return new String[] {
+        };
+    }

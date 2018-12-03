@@ -1,0 +1,3 @@
+    public boolean getF23Momentary() {
+        return f23Momentary;
+    }

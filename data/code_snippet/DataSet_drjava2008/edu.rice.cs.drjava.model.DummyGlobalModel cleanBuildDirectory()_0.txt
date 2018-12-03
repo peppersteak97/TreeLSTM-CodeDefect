@@ -1,0 +1,3 @@
+  public void cleanBuildDirectory(){
+    throw new UnsupportedOperationException("Tried to call cleanBuildDirectory on a Dummy");
+  }

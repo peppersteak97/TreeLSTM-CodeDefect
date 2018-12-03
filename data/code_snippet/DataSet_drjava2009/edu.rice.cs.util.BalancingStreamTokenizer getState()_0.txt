@@ -1,0 +1,1 @@
+  public State getState() { return new State(_state); }

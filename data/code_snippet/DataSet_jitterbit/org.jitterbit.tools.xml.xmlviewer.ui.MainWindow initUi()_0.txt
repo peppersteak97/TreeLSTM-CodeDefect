@@ -1,0 +1,21 @@
+	private void initUi() {
+		m_deskTop = new Desktop();
+		m_deskTop.addDesktopDropListener( new DesktopDropListener() {
+			public void fileDroppedOnDesktop(DesktopDropEvent e) {
+				File f = e.getDroppedFile();
+				m_fileManager.openFile(f);
+				m_openAndSaveManager.addRecentFile(f);
+				m_openAndSaveManager.setCurrentFile(f);
+				m_openAndSaveManager.setCurrentDirectory(f.getParentFile());
+			}
+		});
+		m_findManager = new SimpleFindManager(this, new FindEventHandler(m_deskTop));
+		m_findManager.setFindEnabled(false);
+		setContentPane(m_deskTop);
+		setJMenuBar( createMenuBar() );
+		pack();
+		int inset = 50;
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		setBounds(inset, inset, screenSize.width - inset * 2, screenSize.height
+				- inset * 2);
+	}

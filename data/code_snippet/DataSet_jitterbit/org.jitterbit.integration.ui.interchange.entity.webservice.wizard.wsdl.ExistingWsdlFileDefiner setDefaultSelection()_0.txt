@@ -1,0 +1,8 @@
+    private void setDefaultSelection() {
+        EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                m_wsdlList.setSelectedIndex(0);
+            }
+        });
+    }

@@ -1,0 +1,8 @@
+  public void testInterpretAppletEscapedArgs() {
+    _log.log("testInterpretAppletEscapedArgs started");
+    _assertAppletTransformation("applet Foo \\j", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"j\"), 400, 300);");
+    _assertAppletTransformation("applet Foo \\\"", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"\\\"\"), 400, 300);");
+    _assertAppletTransformation("applet Foo \\\\", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"\\\\\"), 400, 300);");
+    _assertAppletTransformation("applet Foo a\\ b", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"a b\"), 400, 300);");
+    _log.log("testInterpretAppletEscapedArgs ended");
+  }

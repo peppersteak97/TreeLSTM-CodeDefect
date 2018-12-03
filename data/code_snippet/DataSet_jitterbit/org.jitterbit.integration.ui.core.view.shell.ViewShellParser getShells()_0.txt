@@ -1,0 +1,3 @@
+    public List<ViewShell> getShells() {
+        return new ArrayList<ViewShell>(m_shells);
+    }

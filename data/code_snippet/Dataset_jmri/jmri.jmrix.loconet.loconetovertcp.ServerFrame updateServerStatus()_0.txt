@@ -1,0 +1,12 @@
+  private void updateServerStatus(){
+    Server server = Server.getInstance() ;
+    autoStartCheckBox.setSelected( server.getAutoStart() );
+    autoStartCheckBox.setEnabled( !server.isEnabled() );
+    if (portNumber!=null) JSpinnerUtil.setValue( portNumber, new Integer( server.getPortNumber() ) ) ;
+    portNumber.setEnabled( !server.isEnabled() );
+    portNumberLabel.setEnabled( !server.isEnabled() );
+    startButton.setEnabled( !server.isEnabled() );
+    stopButton.setEnabled( server.isEnabled() );
+    saveButton.setEnabled( server.isSettingChanged() );
+    serverStatus.setText( "Server Status: " + (server.isEnabled() ? "Enabled" : "Disabled" ) );
+  }

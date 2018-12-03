@@ -1,0 +1,9 @@
+    private void layoutForSource() {
+        TwoColumnPanel p = createControlCanvas();
+        addLoginBox(p);
+        p.addRow(getFileFilterCapsule());
+        p.addRow(createDeleteSourceFileOptionCapsule());
+        p.addRow(InputFieldFactory.getCapsule(m_renameFileTo));
+        p.addRow(m_ignoreLinesPanel.getUi());
+        wrap(p);
+    }

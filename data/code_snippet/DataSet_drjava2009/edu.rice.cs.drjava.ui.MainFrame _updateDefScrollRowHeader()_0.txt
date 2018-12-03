@@ -1,0 +1,13 @@
+  private void _updateDefScrollRowHeader() {
+    boolean ruleEnabled = DrJava.getConfig().getSetting(LINEENUM_ENABLED).booleanValue();
+    
+    for (JScrollPane scroll: _defScrollPanes.values()) {
+      if (scroll != null) {
+        DefinitionsPane pane = (DefinitionsPane) scroll.getViewport().getView();
+        if (scroll.getRowHeader() == null || scroll.getRowHeader().getView() == null) {
+          if (ruleEnabled) scroll.setRowHeaderView(new LineEnumRule(pane));
+        }
+        else if (! ruleEnabled) scroll.setRowHeaderView(null);
+      }
+    }
+  }

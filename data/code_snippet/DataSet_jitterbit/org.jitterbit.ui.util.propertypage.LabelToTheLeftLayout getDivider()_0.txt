@@ -1,0 +1,3 @@
+	public int getDivider() {
+		return m_iDivider;
+	}

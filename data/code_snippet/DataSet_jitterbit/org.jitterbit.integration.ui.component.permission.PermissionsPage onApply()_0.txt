@@ -1,0 +1,14 @@
+    void onApply() {
+        IntegrationEntity selected = m_usersPanel.getSelectedUserOrGroup();
+        if (selected != null) {
+            if (m_permissionsPanel.isDirty()) {
+                m_cache.cachePermissions(selected, m_permissionsPanel.getPermissions());
+            }
+        }
+        m_permissionsPanel.setClean();
+        boolean save = m_cache.applyAll(m_permissionsPanel.isRecursive());
+        if (save) {
+            save();
+        }
+        m_buttons.update();
+    }

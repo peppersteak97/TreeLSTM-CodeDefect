@@ -1,0 +1,8 @@
+	public static ThrottleFrameManager instance()
+	{
+		if (instance == null)
+		{
+			instance = new ThrottleFrameManager();
+		}
+		return instance;
+	}

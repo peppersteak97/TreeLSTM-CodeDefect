@@ -1,0 +1,3 @@
+    public static final ImageIcon getTableTreeIcon() {
+        return TABLE_TREE;
+    }

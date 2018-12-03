@@ -1,0 +1,3 @@
+    public static SourceTargetTypeComboBox getTargetTypesComboBox() {
+        return new SourceTargetTypeComboBox(SourceTarget.Target);
+    }

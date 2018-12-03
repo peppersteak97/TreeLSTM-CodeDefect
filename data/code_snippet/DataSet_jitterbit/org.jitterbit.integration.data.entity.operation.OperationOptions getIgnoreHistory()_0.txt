@@ -1,0 +1,3 @@
+    public boolean getIgnoreHistory() {
+        return m_ignoreHistory;
+    }

@@ -1,0 +1,3 @@
+    protected IActiveObjectProvider getProvider() {
+        return m_provider;
+    }

@@ -1,0 +1,5 @@
+    public IKongaList newList() {
+        JList raw = createEmptyList();
+        customizeList(raw);
+        return createKongaList(raw);
+    }

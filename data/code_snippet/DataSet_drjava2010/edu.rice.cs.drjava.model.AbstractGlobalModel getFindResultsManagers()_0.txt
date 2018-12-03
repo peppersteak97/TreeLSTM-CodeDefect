@@ -1,0 +1,3 @@
+  public List<RegionManager<MovingDocumentRegion>> getFindResultsManagers() {
+    return new LinkedList<RegionManager<MovingDocumentRegion>>(_findResultsManagers);
+  }

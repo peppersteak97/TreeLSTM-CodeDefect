@@ -1,0 +1,7 @@
+    public boolean checkError() {
+        boolean ret = m_mainStream.checkError();
+        for (PrintStream ps : m_additionalStreams) {
+            ps.checkError();
+        }
+        return ret;
+    }

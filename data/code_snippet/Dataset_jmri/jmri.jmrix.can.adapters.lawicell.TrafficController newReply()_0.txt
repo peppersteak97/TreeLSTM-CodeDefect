@@ -1,0 +1,5 @@
+    protected AbstractMRReply newReply() { 
+        log.debug("New Reply created");
+        Reply reply = new Reply();
+        return reply;
+    }

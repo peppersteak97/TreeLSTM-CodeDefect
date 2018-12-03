@@ -1,0 +1,9 @@
+  public final FieldReference getFieldReference() {
+    if (VM.VerifyAssertions) {
+      VM._assert(opcode == JBC_getstatic ||
+                 opcode == JBC_putstatic ||
+                 opcode == JBC_getfield ||
+                 opcode == JBC_putfield);
+    }
+    return getDeclaringClass().getFieldRef(readUnsignedShort());
+  }

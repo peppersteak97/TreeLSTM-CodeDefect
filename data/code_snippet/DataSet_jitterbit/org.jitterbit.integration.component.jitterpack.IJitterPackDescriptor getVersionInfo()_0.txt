@@ -1,0 +1,3 @@
+        public IVersionInfo getVersionInfo() {
+            return null;
+        }

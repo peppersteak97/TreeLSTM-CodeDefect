@@ -1,0 +1,7 @@
+  public SortedGraphNode buildRevTopSort() {
+    if (!backwardTopSorted) {
+      return TopSort.buildTopological(this, false);
+    } else {
+      return null;
+    }
+  }

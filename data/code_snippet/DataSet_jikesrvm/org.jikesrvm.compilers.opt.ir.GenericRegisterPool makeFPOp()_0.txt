@@ -1,0 +1,3 @@
+  public RegisterOperand makeFPOp() {
+    return new RegisterOperand(getFP(), TypeReference.Address);
+  }

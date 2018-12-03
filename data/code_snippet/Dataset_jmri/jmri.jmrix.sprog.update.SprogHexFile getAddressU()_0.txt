@@ -1,0 +1,3 @@
+  public byte getAddressU() {
+    return (byte) (address / 0x10000);
+  }

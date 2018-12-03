@@ -1,0 +1,25 @@
+    private void closeRunningInstance() {
+        Socket socket = null;
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(socket.getOutputStream());
+            out.writeObject(signal);
+        }
+        catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            KongaIoUtils.close(out);
+            KongaNetUtils.close(socket);
+        }
+        
+        try {
+            Thread.sleep(250);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }

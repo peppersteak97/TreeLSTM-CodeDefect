@@ -1,0 +1,22 @@
+  public void testIndentCommonCases() throws BadLocationException {
+    String text =
+      "int x;\n" +
+      "      int y;\n" +
+      "  class Foo\n" +
+      "     extends F\n" +
+      " {\n" +
+      "   }";
+    
+    String indented =
+      "int x;\n" +
+      "int y;\n" +
+      "class Foo\n" +
+      "  extends F\n" +
+      "{\n" +
+      "}";
+    
+    _doc.insertString(0, text, null);
+    _assertContents(text, _doc);
+    safeIndentLines(0, _doc.getLength());
+    _assertContents(indented, _doc);
+  }

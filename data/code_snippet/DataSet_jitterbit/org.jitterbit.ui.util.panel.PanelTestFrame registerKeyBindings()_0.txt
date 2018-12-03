@@ -1,0 +1,13 @@
+    private void registerKeyBindings() {
+        InputMap im = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap am = getRootPane().getActionMap();
+        
+        am.put("esc", new AbstractAction() { 
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                if (getDefaultCloseOperation() == EXIT_ON_CLOSE) {
+                    System.exit(0);
+                }
+            }
+        });
+    }

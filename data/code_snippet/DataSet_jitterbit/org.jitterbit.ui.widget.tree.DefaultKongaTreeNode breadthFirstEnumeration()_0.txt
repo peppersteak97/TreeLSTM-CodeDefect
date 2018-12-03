@@ -1,0 +1,3 @@
+    public Enumeration<IKongaTreeNode> breadthFirstEnumeration() {
+        return new EnumImpl(super.breadthFirstEnumeration());
+    }

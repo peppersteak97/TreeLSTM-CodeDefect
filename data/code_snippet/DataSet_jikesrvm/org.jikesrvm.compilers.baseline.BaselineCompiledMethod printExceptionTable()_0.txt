@@ -1,0 +1,3 @@
+  public void printExceptionTable() {
+    if (eTable != null) ExceptionTable.printExceptionTable(eTable);
+  }

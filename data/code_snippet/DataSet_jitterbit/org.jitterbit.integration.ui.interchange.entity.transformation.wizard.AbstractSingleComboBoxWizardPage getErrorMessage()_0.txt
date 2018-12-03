@@ -1,0 +1,4 @@
+    protected String getErrorMessage() {
+        return TransformationWizard.getErrorResources().getString(
+                        getClass().getSimpleName() + ".ErrorMessage");
+    }

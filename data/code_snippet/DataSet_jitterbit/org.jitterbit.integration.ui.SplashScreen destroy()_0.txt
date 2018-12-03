@@ -1,0 +1,9 @@
+    public static void destroy() {
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                INSTANCE.dispose();
+                INSTANCE.setInFront(false);
+            }
+        });
+    }

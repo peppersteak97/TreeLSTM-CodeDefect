@@ -1,0 +1,52 @@
+    void sendUpdate() {
+        if (newDsStateHere != currentDsStateHere
+            || newTurnoutStateHere != currentTurnoutStateHere
+            || newSpeedAX != currentSpeedAX
+            || newSpeedXA != currentSpeedXA
+            || newDirection != currentDirection) {
+            if (debug) log.debug("Send new values from SE"+mNumber+": "+
+                                 newSpeedAX+" "+
+                                 newSpeedXA+" "+
+                                 newDirection);
+
+            int seStat1 = 0;
+            int seStat2 = 0;
+
+            if ((newDirection&AX)==AX) seStat1 |= 0x10;
+            if ((newDirection&XA)==XA) seStat1 |= 0x20;
+
+            if (newTurnoutStateHere==Turnout.THROWN) seStat2 |= 0x01;
+            if (newTurnoutStateOnA==Turnout.THROWN)  seStat2 |= 0x02;
+            if (newTurnoutStateOnB==Turnout.THROWN)  seStat2 |= 0x04;
+            if (newTurnoutStateOnC==Turnout.THROWN)  seStat2 |= 0x08;
+
+            if (newDsStateHere==Sensor.ACTIVE) seStat1 |= 0x01;
+            if (newDsStateOnA==Sensor.ACTIVE)  seStat1 |= 0x02;
+            if (newDsStateOnB==Sensor.ACTIVE)  seStat1 |= 0x04;
+            if (newDsStateOnC==Sensor.ACTIVE)  seStat1 |= 0x08;
+
+            LocoNetMessage m1 = new LocoNetMessage(10);
+
+            if (log.isDebugEnabled()) log.debug("Send SE message: "+m1.toString());
+
+            LnTrafficController.instance().sendLocoNetMessage(m1);
+        }
+
+        currentDsStateHere       = newDsStateHere;
+        currentTurnoutStateHere  = newTurnoutStateHere;
+        currentSpeedLimitFromA   = newSpeedLimitFromA;
+        currentDsStateOnA        = newDsStateOnA;
+        currentReservedFromA     = newReservedFromA;
+        currentSpeedLimitFromB   = newSpeedLimitFromB;
+        currentDsStateOnB        = newDsStateOnB;
+        currentReservedFromB     = newReservedFromB;
+        currentSpeedLimitFromC   = newSpeedLimitFromC;
+        currentDsStateOnC        = newDsStateOnC;
+        currentReservedFromC     = newReservedFromC;
+        currentDsStateOnAux      = newDsStateOnAux;
+        currentReservedFromAux   = newReservedFromAux;
+
+        currentSpeedAX           = newSpeedAX;
+        currentSpeedXA           = newSpeedXA;
+        currentDirection         = newDirection;
+    }

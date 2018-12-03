@@ -1,0 +1,3 @@
+  static BasicBlock makeExit() {
+    return new BasicBlock();
+  }

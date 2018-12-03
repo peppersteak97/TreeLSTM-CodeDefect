@@ -1,0 +1,7 @@
+  public void compileProject() throws IOException {
+    if (! _model.isProjectActive()) 
+      throw new UnexpectedException("compileProject invoked when DrJava is not in project mode");
+    
+    if (_prepareForCompile()) { _doCompile(_model.getProjectDocuments()); }
+    else _notifier.compileAborted(new UnexpectedException("Project contains unsaved modified files"));
+  }

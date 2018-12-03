@@ -1,0 +1,20 @@
+	private void testForChange() {
+        if( m_iDelayInMillis > 0 ) {
+            if( m_eventTimer == null ) {
+                m_eventTimer = new Timer(m_iDelayInMillis, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        m_changeJob.run();
+                    }
+                });
+                m_eventTimer.setRepeats(false);
+                m_eventTimer.start();
+            }
+            else {
+                m_eventTimer.setDelay(m_iDelayInMillis);
+                m_eventTimer.restart();
+            }
+        }
+        else {
+            m_changeJob.run();
+        }
+	}

@@ -1,0 +1,3 @@
+    public int getAllowedBits() {
+        return (m_allowed == null) ? 0 : Permission.toBitCode(m_allowed);
+    }

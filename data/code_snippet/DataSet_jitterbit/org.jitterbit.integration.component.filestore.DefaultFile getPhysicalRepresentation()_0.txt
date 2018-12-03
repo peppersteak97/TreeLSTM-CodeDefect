@@ -1,0 +1,6 @@
+    public File getPhysicalRepresentation() {
+        if (m_parent == null) {
+            return new File(m_path);
+        }
+        return new File(m_parent.getPhysicalRepresentation(), m_name);
+    }

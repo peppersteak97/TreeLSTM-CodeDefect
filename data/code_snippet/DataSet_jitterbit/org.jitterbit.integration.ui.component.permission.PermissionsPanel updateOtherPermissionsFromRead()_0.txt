@@ -1,0 +1,13 @@
+    private void updateOtherPermissionsFromRead() {
+        if (m_readChecks == null) {
+            return;
+        }
+        boolean allowed = m_readChecks.isAllowed() && !m_readChecks.isDenied();
+        if (!allowed) {
+            for (PermissionCheckBoxes cb : m_permissionChecks) {
+                if (cb != m_readChecks) {
+                    cb.unselectAllow();
+                }
+            }
+        }
+    }

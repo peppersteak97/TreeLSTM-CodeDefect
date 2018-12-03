@@ -1,0 +1,11 @@
+    public String getDisplayName() {
+        String name = null;
+        Object o = getUserObject();
+        if (o instanceof IntegrationEntity) {
+            name = ((IntegrationEntity) o).getName();
+        }
+        else {
+            name = (o == null) ? "" : o.toString();
+        }
+        return name;
+    }

@@ -1,0 +1,3 @@
+    public Collection<IntegrationEntityId> getDirtyEntities() {
+        return m_permissions.getDirtyEntities();
+    }

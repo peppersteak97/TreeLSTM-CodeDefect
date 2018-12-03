@@ -1,0 +1,6 @@
+    	if (isDataValid())
+    	{
+    		control.setSpeedController(_displaySlider);
+    		control.setTrackSlider(trackBox.isSelected());
+    		finishEdit();
+    	}

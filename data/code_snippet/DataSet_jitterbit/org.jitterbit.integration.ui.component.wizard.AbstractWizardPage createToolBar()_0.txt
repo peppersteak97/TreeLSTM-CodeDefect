@@ -1,0 +1,36 @@
+    protected WizardToolBar createToolBar() {
+        JButton helpButton = createHelpButton(getHelpId());
+        WizardNavigationOption.ActionInformation actionInfo = 
+            m_navigationOption.getActions(m_wizard, true);
+        Action[] actions = actionInfo.getActions();
+        switch (m_navigationOption) {
+        case NEXT_ONLY:
+            m_previousAction = null;
+            m_nextAction = actions[0];
+            m_actionMap.put(IWizardPage.MOVE_NEXT_COMMAND, actions[0]);
+            break;
+        case SAVE_ONLY:
+            m_previousAction = null;
+            m_nextAction = actions[0];
+            m_actionMap.put(IWizardPage.MOVE_NEXT_COMMAND, actions[0]);
+            break;
+        case PREVIOUS_ONLY:
+            m_previousAction = actions[0];
+            m_nextAction = null;
+            m_actionMap.put(IWizardPage.MOVE_PREVIOUS_COMMAND, actions[0]);
+            break;
+        case PREVIOUS_AND_NEXT:
+            m_previousAction = actions[0];
+            m_nextAction = actions[1];
+            m_actionMap.put(IWizardPage.MOVE_PREVIOUS_COMMAND, actions[0]);
+            m_actionMap.put(IWizardPage.MOVE_NEXT_COMMAND, actions[1]);
+            break;
+        case PREVIOUS_AND_SAVE:
+            m_previousAction = actions[0];
+            m_nextAction = actions[1];
+            m_actionMap.put(IWizardPage.MOVE_PREVIOUS_COMMAND, actions[0]);
+            m_actionMap.put(IWizardPage.MOVE_NEXT_COMMAND, actions[1]);
+            break;
+        }
+        return new WizardToolBar(actions, actionInfo.getDefaultAction(), true, helpButton);
+    }

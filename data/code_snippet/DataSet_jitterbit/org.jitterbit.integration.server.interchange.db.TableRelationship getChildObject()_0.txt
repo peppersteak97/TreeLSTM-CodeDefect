@@ -1,0 +1,3 @@
+    public DatabaseObject getChildObject() {
+        return m_childObject;
+    }

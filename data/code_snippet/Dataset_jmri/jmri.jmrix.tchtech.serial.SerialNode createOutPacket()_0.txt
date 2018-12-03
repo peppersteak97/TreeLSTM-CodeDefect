@@ -1,0 +1,11 @@
+    public SerialMessage createOutPacket() {
+        
+        int nOutBytes = numOutputCards() * (bitsPerCard/8);
+        SerialMessage m = new SerialMessage(nOutBytes + 2);
+        int k = 2;
+        for (int i=0; i<nOutBytes; i++) {
+            m.setElement(k,outputArray[i]);
+            k ++;
+        }
+        return m;
+    }

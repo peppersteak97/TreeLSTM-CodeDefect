@@ -1,0 +1,3 @@
+    public CheckedTree getSource() {
+        return (CheckedTree) super.getSource();
+    }

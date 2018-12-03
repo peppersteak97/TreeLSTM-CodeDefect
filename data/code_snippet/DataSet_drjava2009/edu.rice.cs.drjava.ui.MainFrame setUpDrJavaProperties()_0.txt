@@ -1,0 +1,208 @@
+  public void setUpDrJavaProperties() {
+    final String DEF_DIR = "${drjava.working.dir}";
+    
+    DrJavaPropertySetup.setup(); 
+    
+    PropertyMaps.TEMPLATE.
+      setProperty("DrJava", 
+                  new FileProperty("drjava.current.file", new Thunk<File>() {
+      public File value() { return _model.getActiveDocument().getRawFile(); }
+    }, 
+                                   "Returns the current document in DrJava.\n"+
+                                   "Optional attributes:\n"+
+                                   "\trel=\"<dir to which the output should be relative\"\n"+
+                                   "\tsquote=\"<true to enclose file in single quotes>\"\n"+
+                                   "\tdquote=\"<true to enclose file in double quotes>\"") {
+                                     public String getLazy(PropertyMaps pm) { return getCurrent(pm); }
+                                   });
+    PropertyMaps.TEMPLATE.setProperty("DrJava", 
+                                      new DrJavaProperty("drjava.current.line", 
+                                                         "Returns the current line in the Definitions Pane.") {
+      public void update(PropertyMaps pm) { _value = String.valueOf(_posListener.lastLine()); }
+      public String getLazy(PropertyMaps pm) { return getCurrent(pm); }
+      public boolean isCurrent() { return false; }
+    });
+    PropertyMaps.TEMPLATE.
+      setProperty("DrJava", new DrJavaProperty("drjava.current.col",
+                                               "Returns the current column in the Definitions Pane.") {
+      public void update(PropertyMaps pm) {
+        _value = String.valueOf(_posListener.lastCol());
+      }
+      public String getLazy(PropertyMaps pm) { return getCurrent(pm); }
+      public boolean isCurrent() { return false; }
+    });
+    PropertyMaps.TEMPLATE.
+      setProperty("DrJava", 
+                  new FileProperty("drjava.working.dir", new Thunk<File>() {
+      public File value() { return _model.getInteractionsModel().getWorkingDirectory(); }
+    },
+                                   "Returns the current working directory of DrJava.\n"+
+                                   "Optional attributes:\n"+
+                                   "\trel=\"<dir to which output should be relative\"\n"+
+                                   "\tsquote=\"<true to enclose file in single quotes>\"\n"+
+                                   "\tdquote=\"<true to enclose file in double quotes>\"") {
+                                     public String getLazy(PropertyMaps pm) { return getCurrent(pm); }
+                                   });
+    PropertyMaps.TEMPLATE.
+      setProperty("DrJava", 
+                  new FileProperty("drjava.master.working.dir", new Thunk<File>() {
+      public File value() { return _model.getMasterWorkingDirectory(); }
+    },
+                                   "Returns the working directory of the DrJava master JVM.\n"+
+                                   "Optional attributes:\n"+
+                                   "\trel=\"<dir to which output should be relative\"\n"+
+                                   "\tsquote=\"<true to enclose file in single quotes>\"\n"+
+                                   "\tdquote=\"<true to enclose file in double quotes>\"") {
+                                     public String getLazy(PropertyMaps pm) { return getCurrent(pm); }
+                                   });
+    
+    PropertyMaps.TEMPLATE.
+      setProperty("DrJava", 
+                  new FileListProperty("drjava.all.files", File.pathSeparator, DEF_DIR,
+                                       "Returns a list of all files open in DrJava.\n"+
+                                       "Optional attributes:\n"+
+                                       "\trel=\"<dir to which output should be relative\"\n"+
+                                       "\tsep=\"<separator between files>\"\n"+
+                                       "\tsquote=\"<true to enclose file in single quotes>\"\n"+
+                                       "\tdquote=\"<true to enclose file in double quotes>\"") {
+      protected List<File> getList(PropertyMaps pm) {
+        ArrayList<File> l = new ArrayList<File>();
+        for(OpenDefinitionsDocument odd: _model.getOpenDefinitionsDocuments()) {
+          l.add(odd.getRawFile());
+        }
+        return l;
+      }
+      public String getLazy(PropertyMaps pm) { return getCurrent(pm); }
+      public boolean isCurrent() { return false; }
+    });
+    PropertyMaps.TEMPLATE.
+      setProperty("DrJava", 
+                  new FileListProperty("drjava.project.files", File.pathSeparator, DEF_DIR,
+                                       "Returns a list of all files open in DrJava that belong " +
+                                       "to a project and are underneath the project root.\n" +
+                                       "Optional attributes:\n" +
+                                       "\trel=\"<dir to which output should be relative\"\n" +
+                                       "\tsep=\"<separator between files>\"\n"+
+                                       "\tsquote=\"<true to enclose file in single quotes>\"\n"+
+                                       "\tdquote=\"<true to enclose file in double quotes>\"") {
+      protected List<File> getList(PropertyMaps pm) {
+        ArrayList<File> l = new ArrayList<File>();
+        for(OpenDefinitionsDocument odd: _model.getProjectDocuments()) {
+          l.add(odd.getRawFile());
+        }
+        return l;
+      }
+      public String getLazy(PropertyMaps pm) { return getCurrent(pm); }
+      public boolean isCurrent() { return false; }
+    }).listenToInvalidatesOf(PropertyMaps.TEMPLATE.getProperty("DrJava", "drjava.all.files"));
+    PropertyMaps.TEMPLATE.
+      setProperty("DrJava", 
+                  new FileListProperty("drjava.included.files", File.pathSeparator, DEF_DIR,
+                                       "Returns a list of all files open in DrJava that are " +
+                                       "not underneath the project root but are included in " +
+                                       "the project.\n" +
+                                       "Optional attributes:\n" +
+                                       "\trel=\"<dir to which output should be relative\"\n" +
+                                       "\tsep=\"<separator between files>\"\n"+
+                                       "\tsquote=\"<true to enclose file in single quotes>\"\n"+
+                                       "\tdquote=\"<true to enclose file in double quotes>\"") {
+      protected List<File> getList(PropertyMaps pm) {
+        ArrayList<File> l = new ArrayList<File>();
+        for(OpenDefinitionsDocument odd: _model.getAuxiliaryDocuments()) {
+          l.add(odd.getRawFile());
+        }
+        return l;
+      }
+      public String getLazy(PropertyMaps pm) { return getCurrent(pm); }
+      public boolean isCurrent() { return false; }
+    }).listenToInvalidatesOf(PropertyMaps.TEMPLATE.getProperty("DrJava", "drjava.all.files"));
+    PropertyMaps.TEMPLATE.
+      setProperty("DrJava", 
+                  new FileListProperty("drjava.external.files", File.pathSeparator, DEF_DIR,
+                                       "Returns a list of all files open in DrJava that are "+
+                                       "not underneath the project root and are not included in "+
+                                       "the project.\n"+
+                                       "Optional attributes:\n"+
+                                       "\trel=\"<dir to which output should be relative\"\n"+
+                                       "\tsep=\"<separator between files>\"\n"+
+                                       "\tsquote=\"<true to enclose file in single quotes>\"\n"+
+                                       "\tdquote=\"<true to enclose file in double quotes>\"") {
+      protected List<File> getList(PropertyMaps pm) {
+        ArrayList<File> l = new ArrayList<File>();
+        for(OpenDefinitionsDocument odd: _model.getNonProjectDocuments()) {
+          l.add(odd.getRawFile());
+        }
+        return l;
+      }
+      public String getLazy(PropertyMaps pm) { return getCurrent(pm); }
+      public boolean isCurrent() { return false; }
+    }).listenToInvalidatesOf(PropertyMaps.TEMPLATE.getProperty("DrJava", "drjava.all.files"));    
+    
+    PropertyMaps.TEMPLATE.
+      setProperty("Misc", 
+                  new DrJavaProperty("input", "(User Input...)",
+                                     "Get an input string from the user.\n"+
+                                     "Optional attributes:\n"+
+                                     "\tprompt=\"<prompt to display>\"\n"+
+                                     "\tdefault=\"<suggestion to the user>\"") {
+      public String toString() {
+        return "(User Input...)";
+      }
+      public void update(PropertyMaps pm) {
+        String msg = _attributes.get("prompt");
+        if (msg == null) msg = "Please enter text for the external process.";
+        String input = _attributes.get("default");
+        if (input == null) input = "";
+        input = JOptionPane.showInputDialog(MainFrame.this, msg, input);
+        if (input == null) input = _attributes.get("default");
+        if (input == null) input = "";
+        _value = input;
+      }
+      public String getCurrent(PropertyMaps pm) {
+        invalidate();
+        return super.getCurrent(pm);
+      }
+      public void resetAttributes() {
+        _attributes.clear();
+        _attributes.put("prompt", null);
+        _attributes.put("default", null);
+      }
+      public boolean isCurrent() { return false; }
+    });
+    
+    PropertyMaps.TEMPLATE.
+      setProperty("Project", 
+                  new DrJavaProperty("project.mode",
+                                     "Evaluates to true if a project is loaded.") {
+      public void update(PropertyMaps pm) {
+        Boolean b = _model.isProjectActive();
+        String f = _attributes.get("fmt").toLowerCase();
+        if (f.equals("int")) _value = b ? "1" : "0";
+        else if (f.equals("yes")) _value = b ? "yes" : "no";
+        else _value = b.toString();
+      }
+      public String getLazy(PropertyMaps pm) { return getCurrent(pm); }
+      public void resetAttributes() {
+        _attributes.clear();
+        _attributes.put("fmt", "boolean");
+      }
+      public boolean isCurrent() { return false; }
+    });
+    PropertyMaps.TEMPLATE.
+      setProperty("Project", 
+                  new DrJavaProperty("project.changed",
+                                     "Evaluates to true if the project has been "+
+      public void update(PropertyMaps pm) {
+        String f = _attributes.get("fmt").toLowerCase();
+        Boolean b = _model.isProjectChanged();
+        if (f.equals("int")) _value = b ? "1" : "0";
+        else if (f.equals("yes")) _value = b ? "yes" : "no";
+        else  _value = b.toString();
+      }
+      public String getLazy(PropertyMaps pm) { return getCurrent(pm); }
+      public void resetAttributes() {
+        _attributes.clear();
+        _attributes.put("fmt", "boolean");
+      }
+      public boolean isCurrent() { return false; }
+    });

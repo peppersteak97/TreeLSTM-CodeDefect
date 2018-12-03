@@ -1,0 +1,11 @@
+    public void redo() {
+        for (IRedoRequestFilter filter : m_redoFilters) {
+            if (!filter.preRedo()) {
+                return;
+            }
+        }
+        if (m_manager.canRedo()) {
+            m_manager.redo();
+        }
+        updateActions();
+    }

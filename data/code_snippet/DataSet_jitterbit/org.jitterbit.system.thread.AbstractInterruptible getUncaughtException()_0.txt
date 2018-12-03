@@ -1,0 +1,6 @@
+    public Throwable getUncaughtException() {
+        if (!isInState(COMPLETED)) {
+            throw new IllegalStateException(
+        }
+        return m_uncaughtException;
+    }

@@ -1,0 +1,11 @@
+    private void load() throws WizardConfigurationException {
+        try {
+            new Parser().load(XML_RESOURCE);
+        }
+        catch (InvalidTypeNameException e) {
+            throw new WizardConfigurationException(e);
+        }
+        catch (KongaSaxParserException ex) {
+            throw new WizardConfigurationException(ex);
+        }
+    }

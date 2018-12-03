@@ -1,0 +1,3 @@
+    public List<DatabaseColumn> getAllColumns() {
+        return new ArrayList<DatabaseColumn>(m_columns);
+    }

@@ -1,0 +1,8 @@
+    public String toString() {
+        String retval = "";
+        for (int i=0; i<points.length; i++) {
+            retval += "("+points[i].x+","+points[i].y+","+points[i].z+")";
+            if (i!=points.length-1) retval+=";";
+        }
+        return retval;
+    }

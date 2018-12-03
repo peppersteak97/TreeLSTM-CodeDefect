@@ -1,0 +1,12 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder(getClass().getName());
+        sb.append(getSourceComponent());
+        sb.append("; UiDelegates:{"); 
+        for( int n = 0; n < m_liUiDelegates.size(); ++n ) {
+            if(n > 0) {
+            }
+            sb.append(m_liUiDelegates.get(n));
+        }
+        sb.append("}]"); 
+        return sb.toString();
+    }

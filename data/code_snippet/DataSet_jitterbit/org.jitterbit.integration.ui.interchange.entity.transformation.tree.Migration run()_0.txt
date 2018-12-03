@@ -1,0 +1,12 @@
+            public void run() {
+                start();
+                if(m_newSourceTree.equals(m_oldSourceTree)){
+                    automaticSourceMapping();
+                    changeView(c_hide_source);
+                }
+                if(m_newTargetTree.equals(m_oldTargetTree)){
+                    automaticTargetMapping();
+                    changeView(c_hide_target);
+                }
+                RESIZE();
+            }

@@ -1,0 +1,6 @@
+    private void endTableNamespace() {
+        addLine();
+        addLine("} 
+        addLine();
+        addLine();
+    }

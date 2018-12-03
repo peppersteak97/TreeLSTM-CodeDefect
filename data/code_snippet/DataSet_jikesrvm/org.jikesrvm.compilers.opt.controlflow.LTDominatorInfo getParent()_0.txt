@@ -1,0 +1,3 @@
+  public BasicBlock getParent() {
+    return parent;
+  }

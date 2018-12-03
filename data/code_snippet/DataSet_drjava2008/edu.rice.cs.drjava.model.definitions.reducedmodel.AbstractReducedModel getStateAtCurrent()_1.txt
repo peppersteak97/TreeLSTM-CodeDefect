@@ -1,0 +1,2 @@
+    _cursor.insert(new Gap(length, _cursor.getStateAtCurrent()));
+    _cursor.next();

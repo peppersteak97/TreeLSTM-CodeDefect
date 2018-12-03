@@ -1,0 +1,1 @@
+  public int getCaretPosition() { throw new UnsupportedOperationException("Dummy method"); }

@@ -1,0 +1,10 @@
+    private void layoutComponents() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setInsets(0, 5, 10, 5);
+        layoutUserField(p);
+        p.setFill(OneColumnPanel.NONE);
+        layoutPasswordButton(p);
+        p.setFill(OneColumnPanel.HORIZONTAL);
+        layoutCertificateField(p);
+        wrap(p);
+    }

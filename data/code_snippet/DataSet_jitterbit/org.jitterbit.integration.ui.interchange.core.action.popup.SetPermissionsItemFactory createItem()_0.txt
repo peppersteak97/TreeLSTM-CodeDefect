@@ -1,0 +1,4 @@
+    protected IPopupMenuItem createItem() {
+        Action a = InterchangeActionFactory.SET_PERMISSIONS.get(m_view);
+        return new Item(a);
+    }

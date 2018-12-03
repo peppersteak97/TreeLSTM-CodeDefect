@@ -1,0 +1,16 @@
+    static public Locale[] getAvailableLocales() {
+        try {
+            return Locale.getAvailableLocales();
+        } catch (Throwable e) {  
+            return  new Locale[] {  
+                Locale.CANADA,
+                Locale.CANADA_FRENCH,
+                Locale.ENGLISH,
+                Locale.FRENCH,
+                Locale.GERMAN,
+                Locale.ITALIAN,
+                Locale.UK,
+                Locale.US
+            };
+        }
+    }

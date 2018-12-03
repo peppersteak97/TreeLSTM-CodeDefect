@@ -1,0 +1,4 @@
+  public int getDebugPort() throws IOException {
+    if (!_debugPortSet) _createNewDebugPort();
+    return _debugPort;
+  }

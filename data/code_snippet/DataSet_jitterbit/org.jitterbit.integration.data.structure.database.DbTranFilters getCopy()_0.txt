@@ -1,0 +1,10 @@
+    public DbTranFilters getCopy() {
+        DbTranFilters copy = new DbTranFilters();
+        copy.m_groupID = m_groupID;
+        Set<Entry> copied_entries = new HashSet<Entry>();
+        for (Entry e : m_entries) {
+            copied_entries.add(e.getCopy());
+        }
+        copy.m_entries = copied_entries;
+        return copy;
+    }

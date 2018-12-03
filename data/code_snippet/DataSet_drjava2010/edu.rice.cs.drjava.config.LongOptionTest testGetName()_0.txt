@@ -1,0 +1,7 @@
+  public void testGetName() {
+    LongOption io1 = new LongOption("indent_size",null);
+    LongOption io2 = new LongOption("max_files",null);
+    
+    assertEquals("indent_size", io1.getName());
+    assertEquals("max_files",   io2.getName());
+  }

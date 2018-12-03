@@ -1,0 +1,6 @@
+  public void tearDown() throws Exception {
+    if (_model instanceof IncompleteInputInteractionsModel) ((IncompleteInputInteractionsModel) _model).dispose();
+    _model = null;
+    _adapter = null;
+    super.tearDown();
+  }

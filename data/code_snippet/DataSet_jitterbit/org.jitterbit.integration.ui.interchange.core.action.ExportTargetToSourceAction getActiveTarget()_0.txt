@@ -1,0 +1,10 @@
+    private ITargetUi getActiveTarget() {
+        List<IIntegrationEntityUiDelegate> activeObjects = getActiveObjects(IIntegrationEntityUiDelegate.class);
+        if (activeObjects.size() == 1) {
+            Object o = activeObjects.get(0);
+            if (o instanceof ITargetUi) {
+                return (ITargetUi) o;
+            }
+        }
+        return null;
+    }

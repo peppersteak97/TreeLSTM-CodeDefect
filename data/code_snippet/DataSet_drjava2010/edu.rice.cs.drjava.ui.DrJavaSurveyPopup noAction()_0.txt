@@ -1,0 +1,6 @@
+  protected void noAction() {
+    DrJava.getConfig().setSetting(OptionConstants.LAST_DRJAVA_SURVEY, new Date().getTime());
+    DrJava.getConfig().setSetting(OptionConstants.LAST_DRJAVA_SURVEY_RESULT, getSurveyURL());
+    setVisible(false);
+    dispose();
+  }

@@ -1,0 +1,4 @@
+	protected void onYes() {
+        m_okWasPressed = true;
+		onDialogClose();
+	}

@@ -1,0 +1,3 @@
+    public static IComboBoxUndoRedoControllerFactory getFactory() {
+        return INSTANCE;
+    }

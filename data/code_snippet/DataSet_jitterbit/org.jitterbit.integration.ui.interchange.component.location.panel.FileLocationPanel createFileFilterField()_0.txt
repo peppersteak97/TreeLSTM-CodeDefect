@@ -1,0 +1,8 @@
+    private void createFileFilterField() {
+        if (m_st == SourceTarget.Source) {
+            createFileFilterFieldForSource();
+        }
+        else {
+            createFileFilterFieldForTarget();
+        }
+    }

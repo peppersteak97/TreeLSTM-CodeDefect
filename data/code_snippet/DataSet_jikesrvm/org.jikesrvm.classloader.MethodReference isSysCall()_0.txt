@@ -1,0 +1,3 @@
+  public boolean isSysCall() {
+    return (getType() == TypeReference.SysCall) || ((resolvedMember != null) && (resolvedMember.isSysCall()));
+  }

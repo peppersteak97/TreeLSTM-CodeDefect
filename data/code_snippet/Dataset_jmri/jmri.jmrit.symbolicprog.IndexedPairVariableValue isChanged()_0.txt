@@ -1,0 +1,5 @@
+    public boolean isChanged() {
+        CvValue cvLow = ((CvValue)_cvVector.elementAt(_row));
+        CvValue cvHigh = ((CvValue)_cvVector.elementAt(_secondCVrow));
+        return (considerChanged(cvLow)||considerChanged(cvHigh));
+    }

@@ -1,0 +1,67 @@
+  public ConditionOperand flipOperands() {
+    switch (value) {
+      case EQUAL:
+        value = EQUAL;
+        break;
+      case NOT_EQUAL:
+        value = NOT_EQUAL;
+        break;
+      case LESS:
+        value = GREATER;
+        break;
+      case LESS_EQUAL:
+        value = GREATER_EQUAL;
+        break;
+      case GREATER:
+        value = LESS;
+        break;
+      case GREATER_EQUAL:
+        value = LESS_EQUAL;
+        break;
+      case HIGHER:
+        value = LOWER;
+        break;
+      case LOWER:
+        value = HIGHER;
+        break;
+      case HIGHER_EQUAL:
+        value = LOWER_EQUAL;
+        break;
+      case LOWER_EQUAL:
+        value = HIGHER_EQUAL;
+        break;
+      case CMPL_EQUAL:
+        value = CMPL_EQUAL;
+        break;
+      case CMPL_GREATER:
+        value = CMPG_LESS;
+        break;
+      case CMPG_LESS:
+        value = CMPL_GREATER;
+        break;
+      case CMPL_GREATER_EQUAL:
+        value = CMPG_LESS_EQUAL;
+        break;
+      case CMPG_LESS_EQUAL:
+        value = CMPL_GREATER_EQUAL;
+        break;
+      case CMPL_NOT_EQUAL:
+        value = CMPL_NOT_EQUAL;
+        break;
+      case CMPL_LESS:
+        value = CMPG_GREATER;
+        break;
+      case CMPG_GREATER_EQUAL:
+        value = CMPL_LESS_EQUAL;
+        break;
+      case CMPG_GREATER:
+        value = CMPL_LESS;
+        break;
+      case CMPL_LESS_EQUAL:
+        value = CMPG_GREATER_EQUAL;
+        break;
+      default:
+        OptimizingCompilerException.UNREACHABLE();
+    }
+    return this;
+  }

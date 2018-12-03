@@ -1,0 +1,3 @@
+	public void init() {
+		m_iCurrentVersion = 0;
+	}

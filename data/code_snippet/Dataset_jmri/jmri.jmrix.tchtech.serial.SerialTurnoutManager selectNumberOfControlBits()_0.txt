@@ -1,0 +1,9 @@
+	public int selectNumberOfControlBits() {
+		int iNum = 0;
+		iNum = javax.swing.JOptionPane.showOptionDialog(null,
+				"How many TCH Technology NIC output bits should be used to control this turnout?",
+					"TCH Technology NIC Turnout Question",javax.swing.JOptionPane.DEFAULT_OPTION,
+						javax.swing.JOptionPane.QUESTION_MESSAGE,
+						null,new String[] {"Use 1 bit","Use 2 bits"},"Use 1 bit");
+		return iNum;
+	}

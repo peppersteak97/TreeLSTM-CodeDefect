@@ -1,0 +1,4 @@
+             if ( systemLetter == ((Manager)mgrs.get(i)).systemLetter()) {
+                ((Manager)mgrs.get(i)).register(s);
+                return;
+            }

@@ -1,0 +1,3 @@
+    public static TableCellRenderer getGreenTableHeaderRenderer() {
+        return new GreenTableHeader();
+    }

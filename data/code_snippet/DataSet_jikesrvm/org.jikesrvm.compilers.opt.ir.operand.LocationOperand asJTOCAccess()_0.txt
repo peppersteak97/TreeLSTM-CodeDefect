@@ -1,0 +1,1 @@
+  public LocationOperand asJTOCAccess() { return this; }

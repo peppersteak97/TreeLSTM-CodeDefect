@@ -1,0 +1,2 @@
+    public String[] validOption1() { return new String[]{"ATX0E0"}; 
+    }

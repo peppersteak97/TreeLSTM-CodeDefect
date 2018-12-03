@@ -1,0 +1,14 @@
+    static public String getArgumentList() {
+
+        String classpath = "-cp "+GetClassPath.getClassPath();
+        
+        String javaextdirs = "-Djava.ext.dirs="
+                            +System.getProperty("java.ext.dirs")
+                            +":.:lib";
+
+        String javalibrarypath = "-Djava.library.path="
+                            +System.getProperty("java.library.path")
+                            +":.:lib";
+
+        return classpath+" "+javaextdirs+" "+javalibrarypath;
+    }

@@ -1,0 +1,3 @@
+	public List<KongaGraphComponent> getNewSelection() {
+		return m_liNewSelection;
+	}

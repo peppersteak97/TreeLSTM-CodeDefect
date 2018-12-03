@@ -1,0 +1,8 @@
+  public void write() throws IOException {
+    FileOutputStream fos = null;
+    try {
+      fos = new FileOutputStream(_projectFile);
+      write(fos);
+    }
+    finally { if (fos != null) fos.close(); }
+  }

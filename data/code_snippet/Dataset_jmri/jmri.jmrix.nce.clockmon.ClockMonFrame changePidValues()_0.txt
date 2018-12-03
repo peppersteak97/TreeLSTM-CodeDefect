@@ -1,0 +1,47 @@
+    private void changePidValues() {
+        double p = 0;
+        double i = 0;
+        double d = 0;
+        boolean ok = true;
+        try {
+            p = Double.parseDouble(ncePidGainP.getText().trim());
+        }
+        catch (NumberFormatException e) {
+            log.error("Invalid value: " + ncePidGainP.getText().trim());
+            ok = false;
+        }
+        try {
+            i = Double.parseDouble(ncePidGainI.getText().trim());
+        }
+        catch (NumberFormatException e) {
+            log.error("Invalid value: " + ncePidGainP.getText().trim());
+            ok = false;
+        }
+        try {
+            d = Double.parseDouble(ncePidGainD.getText().trim());
+        }
+        catch (NumberFormatException e) {
+            log.error("Invalid value: " + ncePidGainP.getText().trim());
+            ok = false;
+        }
+        if (ok) {
+            if (p < 0) {
+                p = 0;
+            }
+            if (p > 1) {
+                p = 1;
+            }
+            if (i < 0) {
+                i = 0;
+            }
+            if (d > 1) {
+                d = 1;
+            }
+            ncePidGainPv = p;
+            ncePidGainIv = i;
+            ncePidGainDv = d;
+            ncePidGainP.setText(fiveDigits.format(p));
+            ncePidGainI.setText(fiveDigits.format(i));
+            ncePidGainD.setText(fiveDigits.format(d));
+        }
+    }

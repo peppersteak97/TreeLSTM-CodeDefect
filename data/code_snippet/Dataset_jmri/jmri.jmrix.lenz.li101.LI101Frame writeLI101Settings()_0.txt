@@ -1,0 +1,24 @@
+    void writeLI101Settings() {
+        if((String)addrBox.getSelectedItem()!="" &&
+           (String)addrBox.getSelectedItem()!=null) {
+	   XNetMessage msg=new XNetMessage(4);
+           /* First, we take care of sending an address request */
+	   msg.setElement(0,XNetConstants.LI101_REQUEST);
+	   msg.setElement(1,XNetConstants.LI101_REQUEST_ADDRESS);
+           /* For element 2, we need to figure out what address to send based
+           on user selections */
+	   msg.setElement(2,addrBox.getSelectedIndex());
+           XNetTrafficController.instance().sendXNetMessage(msg,this);
+        }
+        if((String)speedBox.getSelectedItem()!=""  &&
+           (String)speedBox.getSelectedItem()!=null) {
+	     XNetMessage msg=new XNetMessage(4);
+             /* Now, we can send a baud rate request */
+	     msg.setElement(0,XNetConstants.LI101_REQUEST);
+	     msg.setElement(1,XNetConstants.LI101_REQUEST_BAUD);
+             /* For element 2, we need to figure out what address to send based
+             on user selections */
+	     msg.setElement(2,(int)speedBox.getSelectedIndex()+1);
+             XNetTrafficController.instance().sendXNetMessage(msg,this);
+          }
+    }

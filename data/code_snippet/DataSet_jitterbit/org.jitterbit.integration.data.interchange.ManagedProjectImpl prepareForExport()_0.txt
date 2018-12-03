@@ -1,0 +1,11 @@
+    public IPostExportManager prepareForExport() throws ExportPreparationException {
+        IPostExportManager mgr = new PostExportManagerImpl(this);
+        try {
+            prepareForExportImpl(mgr);
+            return mgr;
+        }
+        catch (ExportPreparationException ex) {
+            mgr.runJobs(IPostExportJob.Condition.ON_FAILURE);
+            throw ex;
+        }
+    }

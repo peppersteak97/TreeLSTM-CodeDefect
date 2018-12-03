@@ -1,0 +1,6 @@
+    public Dimension getPreferredSize() {
+        Dimension screen = getMaximumSize();
+        int width = Math.min(super.getPreferredSize().width, screen.width);
+        int height = Math.min(super.getPreferredSize().height, screen.height);
+        return new Dimension(width, height);
+    }

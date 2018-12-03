@@ -1,0 +1,15 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus(PackageResources.Deployer.Job.STARTED);
+        Runnable task = new Runnable() {
+
+            public void run() {
+                DeployManager mgr = DeployManager.getManager();
+                mgr.deploy(m_data, DeployJob.this);
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallellAndWait(task, this);
+    }

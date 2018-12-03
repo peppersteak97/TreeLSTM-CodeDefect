@@ -1,0 +1,1 @@
+  public InteractionsDJDocument getSwingInteractionsDocument() { return _interactionsDocument; }

@@ -1,0 +1,38 @@
+  public PowerPCTrapOperand flipCode() {
+    switch (value) {
+      case EQUAL:
+        value = NOT_EQUAL;
+        break;
+      case NOT_EQUAL:
+        value = EQUAL;
+        break;
+      case LESS:
+        value = GREATER_EQUAL;
+        break;
+      case LESS_EQUAL:
+        value = GREATER;
+        break;
+      case GREATER:
+        value = LESS_EQUAL;
+        break;
+      case GREATER_EQUAL:
+        value = LESS;
+        break;
+      case HIGHER:
+        value = LOWER_EQUAL;
+        break;
+      case LOWER:
+        value = HIGHER_EQUAL;
+        break;
+      case HIGHER_EQUAL:
+        value = LOWER;
+        break;
+      case LOWER_EQUAL:
+        value = HIGHER;
+        break;
+      case NOT_SAME:
+        value = SAME;
+        break;
+    }
+    return this;
+  }

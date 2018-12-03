@@ -1,0 +1,3 @@
+    StartPageUi getUi() {
+        return m_ui;
+    }

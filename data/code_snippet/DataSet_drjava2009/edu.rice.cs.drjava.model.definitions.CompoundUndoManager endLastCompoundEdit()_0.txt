@@ -1,0 +1,4 @@
+  public /* synchronized */ void endLastCompoundEdit() {
+    if (_keys.size() == 0) return;
+    endCompoundEdit(_keys.get(0).intValue());
+  }

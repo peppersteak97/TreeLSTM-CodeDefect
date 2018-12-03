@@ -1,0 +1,68 @@
+  public void testSaveAlreadySaved() throws Exception {
+    Boolean backupStatus = DrJava.getConfig().getSetting(BACKUP_FILES);
+    DrJava.getConfig().setSetting(BACKUP_FILES, Boolean.FALSE);
+    
+    final OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    final File file = tempFile();
+    
+    assertFalse("Confirm that backup status is initially false", DrJava.getConfig().getSetting(BACKUP_FILES));
+    saveFile(doc, new FileSelector(file));
+    assertModified(false, doc);
+    assertContents(FOO_TEXT, doc);
+    assertEquals("contents of saved file", FOO_TEXT, IOUtil.toString(file));
+    
+    TestListener listener = new TestListener() {
+      public void fileSaved(OpenDefinitionsDocument doc) {
+        File f = null;
+        try { f = doc.getFile(); }
+        catch (FileMovedException fme) { 
+        }   
+        try {
+          assertEquals("saved file", file.getCanonicalFile(), f.getCanonicalFile());
+          synchronized(this) { saveCount++; }
+        }
+        catch (IOException ioe) { fail("could not get canonical file"); }
+      }
+    };
+    
+    final File backup = new File(file.getPath() + "~");
+    backup.delete();
+    
+    assertFalse("Confirm that backup has been deleted if it already existed", backup.exists());
+    
+    _model.addListener(listener);
+    
+    changeDocumentText(BAR_TEXT, doc);
+    Utilities.clearEventQueue();
+    
+    
+    saveFile(doc, new FileSelector(file)); 
+    
+    listener.assertSaveCount(1);
+    assertEquals("Contents of saved file 2nd write", BAR_TEXT, IOUtil.toString(file));
+    assertFalse("No backup was made", backup.exists());
+    
+    DrJava.getConfig().setSetting(BACKUP_FILES, Boolean.TRUE);
+    Utilities.clearEventQueue();
+    
+    changeDocumentText(FOO_TEXT, doc);
+
+    
+    assertTrue("Confirm that BACKUP_FILES is true", DrJava.getConfig().getSetting(BACKUP_FILES));
+    assertFalse("Confirm that backup file " + backup + " does not yet exist", backup.exists());
+    assertEquals("Confirm that file " + file + " was modified properly", BAR_TEXT, IOUtil.toString(file));
+    saveFile(doc, new FileSelector(file));
+    Utilities.clearEventQueue();
+    
+    assertTrue("Confirm that backup file " + backup + " was created", backup.exists());
+    
+
+    listener.assertSaveCount(2);
+    assertEquals("contents of saved file 3rd write", FOO_TEXT, IOUtil.toString(file));
+    assertEquals("contents of backup file 3rd write", BAR_TEXT, IOUtil.toString(backup));
+    
+    /* Set the config back to the original option */
+    DrJava.getConfig().setSetting(BACKUP_FILES, backupStatus);
+    
+    _log.log("testSaveAlreadySaved completed");
+  }

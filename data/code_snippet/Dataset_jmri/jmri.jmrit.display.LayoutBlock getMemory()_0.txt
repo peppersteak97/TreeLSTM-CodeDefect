@@ -1,0 +1,1 @@
+	public jmri.Memory getMemory() {return (memory);}

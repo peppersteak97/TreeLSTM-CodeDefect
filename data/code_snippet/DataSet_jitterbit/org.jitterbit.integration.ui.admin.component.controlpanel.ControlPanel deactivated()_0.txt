@@ -1,0 +1,6 @@
+    protected void deactivated() {
+        if (m_isActive) {
+            m_view.setActive(false);
+            m_isActive = false;
+        }
+    }

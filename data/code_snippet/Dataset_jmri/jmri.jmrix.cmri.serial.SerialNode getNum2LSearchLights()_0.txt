@@ -1,0 +1,3 @@
+    public int getNum2LSearchLights() {
+    	return num2LSearchLights;
+    }

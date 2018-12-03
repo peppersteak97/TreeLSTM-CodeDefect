@@ -1,0 +1,3 @@
+  public static String[] getJavaAgentArgs() {
+    return CommandLineArgs.getArgs(CommandLineArgs.PrefixType.JAVAAGENT_ARG);
+  }

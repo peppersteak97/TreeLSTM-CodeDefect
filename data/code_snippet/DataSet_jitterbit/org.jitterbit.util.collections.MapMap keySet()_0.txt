@@ -1,0 +1,5 @@
+		for (Iterator<K> it1 = m_mapmap.keySet().iterator(); it1.hasNext();) {
+            Map<L, V> map = m_mapmap.get(it1.next());
+            map.clear();
+            it1.remove();
+        }

@@ -1,0 +1,9 @@
+  public static void growSpecializedMethods() {
+    int org_length = specializedMethods.length;
+    int new_length = 2 * org_length;
+    CodeArray[] temp = new CodeArray[new_length];
+    for (int i = 0; i < org_length; i++) {
+      temp[i] = specializedMethods[i];
+    }
+    specializedMethods = temp;
+  }

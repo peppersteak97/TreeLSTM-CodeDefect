@@ -1,0 +1,4 @@
+    static public LnLightManager instance() {
+        if (_instance == null) _instance = new LnLightManager();
+        return _instance;
+    }

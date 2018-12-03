@@ -1,0 +1,16 @@
+    void onViewEffective() {
+        EffectivePermissionsPanel p = null;
+        User user = m_usersPanel.getSelectedUser();
+        if (user != null) {
+            p = new EffectivePermissionsPanel(getObject().getDataObject(), user);
+        }
+        else {
+            Group group = m_usersPanel.getSelectedGroup();
+            if (group != null) {
+                p = new EffectivePermissionsPanel(getObject().getDataObject(), group);
+            }
+        }
+        if (p != null) {
+            MessageDisplayer.showMessage(this, null, p.getDisplayer(), PackageResources.Page.EFFECTIVE);
+        }
+    }

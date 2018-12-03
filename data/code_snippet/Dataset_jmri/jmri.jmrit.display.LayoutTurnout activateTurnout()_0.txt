@@ -1,0 +1,10 @@
+	private void activateTurnout() {
+		if (turnout!=null) {
+			turnout.addPropertyChangeListener(mTurnoutListener =
+								new java.beans.PropertyChangeListener() {
+				public void propertyChange(java.beans.PropertyChangeEvent e) {
+					layoutEditor.redrawPanel();
+				}
+			});
+		}
+	}

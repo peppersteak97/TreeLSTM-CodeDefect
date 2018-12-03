@@ -1,0 +1,7 @@
+    protected IntegrationToolBar createToolBar() {
+        List<JButton> buttons = createToolBarButtons();
+        if (!buttons.isEmpty()) {
+            return new IntegrationToolBar(buttons.toArray(new JButton[buttons.size()]));
+        }
+        return null;
+    }

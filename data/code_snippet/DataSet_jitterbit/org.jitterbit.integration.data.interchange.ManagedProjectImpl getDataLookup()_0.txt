@@ -1,0 +1,3 @@
+    public IIntegrationDataLookup getDataLookup() {
+        return m_dataStore;
+    }

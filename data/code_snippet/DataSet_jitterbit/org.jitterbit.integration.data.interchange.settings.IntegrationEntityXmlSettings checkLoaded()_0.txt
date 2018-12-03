@@ -1,0 +1,7 @@
+    private void checkLoaded() {
+        if (isLoaded) {
+            return;
+        }
+        loadFromDisk();
+        isLoaded = true;
+    }

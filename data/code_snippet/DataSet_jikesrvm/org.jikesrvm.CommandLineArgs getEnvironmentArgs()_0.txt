@@ -1,0 +1,4 @@
+  public static String[] getEnvironmentArgs() {
+    if (!VM.runningVM) throw new IllegalAccessError("Environment variables can't be read in a non-running VM");
+    return getArgs(PrefixType.ENVIRONMENT_ARG);
+  }

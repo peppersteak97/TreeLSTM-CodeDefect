@@ -1,0 +1,5 @@
+  public final boolean hasSwitch() {
+    if (isEmpty()) return false;
+    Instruction s = lastRealInstruction();
+    return TableSwitch.conforms(s) || LowTableSwitch.conforms(s) || LookupSwitch.conforms(s);
+  }

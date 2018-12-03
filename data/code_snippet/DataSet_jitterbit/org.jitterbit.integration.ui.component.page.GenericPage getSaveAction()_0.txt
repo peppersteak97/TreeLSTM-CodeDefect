@@ -1,0 +1,4 @@
+    private IApplicationAction getSaveAction() {
+        IApplicationWindow window = getWindow();
+        return (window == null) ? null : WindowActionFactory.SAVE.get(window);
+    }

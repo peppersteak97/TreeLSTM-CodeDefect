@@ -1,0 +1,7 @@
+    private void createActivityTree() {
+        m_treeManager = new ActivityTreeManager(m_view, PackageResources.Activity.TITLE);
+        m_treePanel = m_treeManager.getPanel();
+        m_treePanel.addActiveObjectProviderListener(m_view);
+        m_treePanel.setAsFocusRoot(true);
+        m_treePanel.activated();
+    }

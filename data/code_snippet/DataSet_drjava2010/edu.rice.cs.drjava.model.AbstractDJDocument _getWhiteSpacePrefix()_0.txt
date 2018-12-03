@@ -1,0 +1,14 @@
+  private int _getWhiteSpacePrefix() throws BadLocationException {
+    
+    
+/* */ assert Utilities.TEST_MODE || EventQueue.isDispatchThread();
+    
+    int lineStart = _getLineStartPos(_currentLocation);
+    int prefixSize = _currentLocation - lineStart;
+    
+    String prefix = getText(lineStart, prefixSize);
+    
+    int pos = prefixSize - 1;
+    while (pos >= 0 && prefix.charAt(pos) == ' ') pos--;
+    return (pos < 0) ? prefixSize : 0;
+  }

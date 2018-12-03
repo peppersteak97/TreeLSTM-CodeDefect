@@ -1,0 +1,13 @@
+    private void createDisplayer() {
+        OneColumnPanel col = new OneColumnPanel();
+        col.setInsets(0, 0, 5, 0);
+        Box top = Box.createHorizontalBox();
+        top.add(m_monthCombo);
+        top.add(Box.createHorizontalStrut(5));
+        top.add(m_yearSpinner);
+        col.add(top);
+        col.add(m_daysPanel);
+        col.setOpaque(false, true);
+        m_displayer = InvisiblePanel.newPanel();
+        col.addToParent(m_displayer, null);
+    }

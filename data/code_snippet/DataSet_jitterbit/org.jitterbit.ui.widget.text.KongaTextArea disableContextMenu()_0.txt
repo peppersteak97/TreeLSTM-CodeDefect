@@ -1,0 +1,3 @@
+    public void disableContextMenu() {
+        KongaTextComponentCustomizer.disablePopup(this);
+    }

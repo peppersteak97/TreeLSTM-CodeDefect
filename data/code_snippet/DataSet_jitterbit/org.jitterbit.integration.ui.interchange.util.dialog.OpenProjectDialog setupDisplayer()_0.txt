@@ -1,0 +1,7 @@
+    private void setupDisplayer() {
+        InterchangeLauncher launcher = InterchangeLauncher.getLatestInstance();
+        m_displayer = launcher.getExistingProjectsDisplayer();
+        ContainerDecor.decorate(m_displayer, getContentPane(), BorderLayout.CENTER);
+        m_displayer.addOpenListener(new OpenListener());
+        m_displayer.addCancelListener(new CancelListener());
+    }

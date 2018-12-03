@@ -1,0 +1,23 @@
+  public void testDocumentPaneMemoryLeak() throws InterruptedException, IOException {
+    runIsolatedDrJavaSession();
+    
+    int ct = 0;
+    do {  
+      Utilities.clearEventQueue();
+      Utilities.clearEventQueue();
+      
+      System.gc();
+      System.runFinalization();
+      System.gc();
+      ct++; 
+    }
+    while (ct < 10 && (_finalDocCt < 6 || _finalPaneCt < 6));
+
+
+    if (ct > 1) System.out.println("testDocumentPaneMemoryLeak required " + ct + " iterations");
+
+    assertEquals("all the defdocs should have been garbage collected", 6, _finalDocCt);
+    assertEquals("all the defpanes should have been garbage collected", 6,  _finalPaneCt);
+    
+    _log.log("testDocumentPaneMemoryLeak completed");
+  }

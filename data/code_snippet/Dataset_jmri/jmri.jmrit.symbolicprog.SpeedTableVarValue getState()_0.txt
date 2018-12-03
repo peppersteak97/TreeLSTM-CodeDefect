@@ -1,0 +1,15 @@
+    public int getState()  {
+        int i;
+        for (i=0; i<nValues; i++)
+            if (((CvValue)_cvVector.elementAt(getCvNum()+i)).getState() == UNKNOWN ) return UNKNOWN;
+        for (i=0; i<nValues; i++)
+            if (((CvValue)_cvVector.elementAt(getCvNum()+i)).getState() == EDITED ) return EDITED;
+        for (i=0; i<nValues; i++)
+            if (((CvValue)_cvVector.elementAt(getCvNum()+i)).getState() == FROMFILE ) return FROMFILE;
+        for (i=0; i<nValues; i++)
+            if (((CvValue)_cvVector.elementAt(getCvNum()+i)).getState() == READ ) return READ;
+        for (i=0; i<nValues; i++)
+            if (((CvValue)_cvVector.elementAt(getCvNum()+i)).getState() == STORED ) return STORED;
+        log.error("getState did not decode a possible state");
+        return UNKNOWN;
+    }

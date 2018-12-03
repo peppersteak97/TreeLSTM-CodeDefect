@@ -1,0 +1,8 @@
+  public void testXML() throws CloneNotSupportedException {
+    PropertyMaps pm = PropertyMaps.TEMPLATE.clone();
+    DrJavaProperty p;
+
+    p = pm.getProperty("Misc","xml.in");
+    
+    p = pm.getProperty("Misc","xml.out.action");
+  }

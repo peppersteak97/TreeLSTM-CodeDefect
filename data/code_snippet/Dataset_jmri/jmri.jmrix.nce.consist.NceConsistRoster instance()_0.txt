@@ -1,0 +1,15 @@
+    public static synchronized NceConsistRoster instance() {
+    	if (_instance == null) {
+    		if (log.isDebugEnabled()) log.debug("ConsistRoster creating instance");
+    		_instance = new NceConsistRoster();
+    		if(_instance.checkFile(defaultNceConsistRosterFilename())){
+    			try {
+    				_instance.readFile(defaultNceConsistRosterFilename());
+    			} catch (Exception e) {
+    				log.error("Exception during ConsistRoster reading: "+e);
+    			}
+    		}
+    	}
+        if (log.isDebugEnabled()) log.debug("ConsistRoster returns instance "+_instance);
+        return _instance;
+    }

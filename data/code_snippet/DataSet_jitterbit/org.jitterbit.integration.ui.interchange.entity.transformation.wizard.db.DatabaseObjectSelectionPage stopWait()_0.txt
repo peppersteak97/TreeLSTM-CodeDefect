@@ -1,0 +1,4 @@
+    public void stopWait() {
+        getWizard().stopWait();
+        m_objectSearcher.setSearchEnabled(true);
+    }

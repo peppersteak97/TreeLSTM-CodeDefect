@@ -1,0 +1,21 @@
+    public boolean prepareForForwardNavigation() {
+        updateWizardTitle();
+        WsdlProcessor job = new WsdlProcessor(getWizard(), m_ui);
+        IUiJobManager mgr = IntegrationUi.getUi().getJobManager();
+        IUiJobProgressDisplayer displayer = 
+            UiJobProgressDialogDisplayer.createDisplayer(job);
+        m_wsdlProcessingJobID = mgr.submitForParallellProcessing(
+                        job, KongaListUtils.asList(displayer));
+        try {
+            job.waitUntilDone();
+            boolean success = job.succeeded();
+            if (success) {
+                m_wsdlFile = job.getWsdlFile();
+                m_webServiceCallInfo = job.getParsedInfo();
+            }
+            return success;
+        }
+        catch (InterruptedException e) {
+            return false;
+        }
+    }

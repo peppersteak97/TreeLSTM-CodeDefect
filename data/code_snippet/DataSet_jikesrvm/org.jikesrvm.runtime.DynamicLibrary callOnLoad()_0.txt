@@ -1,0 +1,6 @@
+  private void callOnLoad() {
+    if (!jniOnLoad.isZero()) {
+      int version = runJNI_OnLoad(jniOnLoad);
+      checkJNIVersion(version);
+    }
+  }

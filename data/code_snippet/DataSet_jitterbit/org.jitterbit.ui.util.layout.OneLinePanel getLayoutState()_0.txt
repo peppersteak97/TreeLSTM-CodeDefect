@@ -1,0 +1,3 @@
+    public Object getLayoutState() {
+        return m_gbc.clone();
+    }

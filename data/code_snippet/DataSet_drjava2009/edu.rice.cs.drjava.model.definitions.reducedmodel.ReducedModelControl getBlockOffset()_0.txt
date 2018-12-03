@@ -1,0 +1,11 @@
+    else if (_rmb.getBlockOffset() < _rmc.getBlockOffset()) {
+      _rmb.prev();
+      size = _rmb.current().getSize() + _rmb.getBlockOffset();
+      _rmb.next();
+      if (size < _rmc.getBlockOffset()) {
+        move(-size);
+      }
+      else {
+        move(-_rmc.getBlockOffset());
+      }
+    }

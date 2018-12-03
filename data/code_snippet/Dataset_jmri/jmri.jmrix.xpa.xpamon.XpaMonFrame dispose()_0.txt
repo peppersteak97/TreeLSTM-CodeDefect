@@ -1,0 +1,4 @@
+	public void dispose() {
+		XpaTrafficController.instance().removeXpaListener(this);
+		super.dispose();
+	}

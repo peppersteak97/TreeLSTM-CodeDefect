@@ -1,0 +1,3 @@
+    public Command getCommand() {
+        return cmds[index++];
+    }

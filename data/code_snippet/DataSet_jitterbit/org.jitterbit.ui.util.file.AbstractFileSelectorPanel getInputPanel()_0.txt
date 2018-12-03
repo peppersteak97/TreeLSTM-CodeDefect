@@ -1,0 +1,3 @@
+    protected final InputPanel getInputPanel() {
+        return m_panel;
+    }

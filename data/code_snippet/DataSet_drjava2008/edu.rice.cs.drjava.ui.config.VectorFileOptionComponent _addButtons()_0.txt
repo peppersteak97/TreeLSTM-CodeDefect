@@ -1,0 +1,7 @@
+  protected void _addButtons() {
+    super._addButtons();
+    if (_moveButtonEnabled) {
+      _buttonPanel.add(_moveUpButton);
+      _buttonPanel.add(_moveDownButton);
+    }
+  }

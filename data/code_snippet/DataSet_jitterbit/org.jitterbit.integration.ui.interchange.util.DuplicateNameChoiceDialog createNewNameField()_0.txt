@@ -1,0 +1,16 @@
+    private void createNewNameField() {
+        JTextComponent comp = InputFieldFactory.getTextField(20, true);
+        comp.setText(getNewNameSuggestion());
+        String newName = PackageResources.DuplicateNameDialog.Labels.NEW_NAME;
+        JLabel newNameLabel = IntegrationUiStyleSheet.CaptionText.makeJLabel(
+        IntegrationEntityNameInputField field = new IntegrationEntityNameInputField(
+                        m_toMove, newName, comp, newNameLabel);
+        field.setNameValidator(new NameValidatorImpl());
+        m_newNameField = field;
+        field.addInputChangeListener(new IInputChangeListener() {
+
+            public void inputChanged(InputChangeEvent e) {
+                getOKButton().setEnabled(isNewNameValid());
+            }
+        });
+    }

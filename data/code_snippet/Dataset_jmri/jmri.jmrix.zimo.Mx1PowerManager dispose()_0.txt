@@ -1,0 +1,4 @@
+	public void dispose() throws JmriException {
+		tc.removeMx1Listener(~0, this);
+		tc = null;
+	}

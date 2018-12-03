@@ -1,0 +1,10 @@
+    private void updateList() {
+        removeRenameListener();
+        List<IIntegrationEntityUiDelegate> deps = getDependants();
+        DefaultListModel m = new DefaultListModel();
+        for (IIntegrationEntityUiDelegate e : deps) {
+            m.addElement(e);
+        }
+        m_list.setModel(m);
+        addRenameListener();
+    }

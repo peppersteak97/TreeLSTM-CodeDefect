@@ -1,0 +1,18 @@
+  public void testColonNotInTernaryOpDueToQuestionMarkInCommentsOrQuotes() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionExistsCharInStmt('?', ':', null, null);
+
+    _doc.setCurrentLocation(38);
+    assertTrue("colon not in ternary op, ignores '?' in single-line comments",
+        !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _setDocText("foo();\nreturn test; /* huh? okay */\ncase default: break;\n");
+    _doc.setCurrentLocation(36);
+    assertTrue("colon not in ternary op, ignores '?' in multi-line comments",
+        !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _setDocText("foo();\nreturn str + \"?\";\ncase default: break;\n");
+    _doc.setCurrentLocation(25);
+    assertTrue("colon not in ternary op, ignores '?' in quotes",
+        !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+  }

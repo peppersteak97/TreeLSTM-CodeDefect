@@ -1,0 +1,6 @@
+    private void createInputPanel() {
+        m_inputPanel = new JPanel();
+        m_inputPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
+        m_inputPanel.setLayout(new CardLayout());
+        m_inputPanel.setOpaque(false);
+    }

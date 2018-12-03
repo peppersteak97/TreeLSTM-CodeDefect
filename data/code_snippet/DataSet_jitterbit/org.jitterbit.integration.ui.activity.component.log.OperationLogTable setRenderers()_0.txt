@@ -1,0 +1,6 @@
+    private void setRenderers() {
+        setDefaultRenderer(LogStatus.class, new StatusRenderer());
+        setDefaultRenderer(Date.class, ActivityViewUtils.getDateCellRenderer());
+        setFont(IntegrationUiStyleSheet.SmallTableText.getFont());
+        ComponentCustomizer.customizeTable(this);
+    }

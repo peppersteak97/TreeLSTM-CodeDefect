@@ -1,0 +1,3 @@
+    public ITransformationUi getObject() {
+        return (ITransformationUi) super.getObject();
+    }

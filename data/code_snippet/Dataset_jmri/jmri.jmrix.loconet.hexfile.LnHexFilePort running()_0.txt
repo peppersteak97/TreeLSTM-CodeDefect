@@ -1,0 +1,1 @@
+    public boolean running() { return _running; }

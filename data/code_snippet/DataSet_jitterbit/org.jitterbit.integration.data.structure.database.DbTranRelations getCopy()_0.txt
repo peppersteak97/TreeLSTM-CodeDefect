@@ -1,0 +1,15 @@
+    public DbTranRelations getCopy() {
+        try {
+            DbTranRelations copy = (DbTranRelations) clone();
+            Set<Relation> copied_relations = new TreeSet<Relation>();
+            for (Relation r : m_fieldRelations) {
+                copied_relations.add(r.getCopy());
+            }
+            copy.m_fieldRelations = copied_relations;
+            return copy;
+        }
+        catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }

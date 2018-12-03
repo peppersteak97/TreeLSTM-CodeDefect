@@ -1,0 +1,3 @@
+  final int[] getBytecodeMap() {
+    return bytecodeMap;
+  }

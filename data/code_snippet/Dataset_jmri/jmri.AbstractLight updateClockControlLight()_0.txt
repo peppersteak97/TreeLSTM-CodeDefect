@@ -1,0 +1,23 @@
+	public void updateClockControlLight() {
+		if (mClock!=null) {
+			Date now = mClock.getTime();
+			int timeNow = now.getHours() * 60 + now.getMinutes();
+			int state = getState();
+			if (mTimeOn <= mTimeOff) {
+				if ( (timeNow<mTimeOn) || (timeNow>=mTimeOff) ) {
+					if (state == ON) setState(OFF);
+				}
+				else { 
+					if (state == OFF) setState(ON);
+				}
+			}
+			else {
+				if ( (timeNow>=mTimeOn) || (timeNow<mTimeOff) ) {
+					if (state == OFF) setState(ON);
+				}
+				else { 
+					if (state == ON) setState(OFF);
+				}
+			}
+		}
+	}

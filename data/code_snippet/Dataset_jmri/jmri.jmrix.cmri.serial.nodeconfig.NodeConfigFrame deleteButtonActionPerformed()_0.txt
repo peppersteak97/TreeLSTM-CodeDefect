@@ -1,0 +1,27 @@
+    public void deleteButtonActionPerformed() {
+        int nodeAddress = readNodeAddress();
+        if (nodeAddress < 0) return;
+        curNode = (SerialNode) SerialTrafficController.instance().getNodeFromAddress(nodeAddress);
+        if (curNode == null) {
+            statusText1.setText(rb.getString("Error4"));
+            statusText1.setVisible(true);
+            errorInStatus1 = true;
+            resetNotes2();
+            return;
+        }
+        if ( javax.swing.JOptionPane.OK_OPTION == javax.swing.JOptionPane.showConfirmDialog(
+                this,rb.getString("ConfirmDelete1")+"\n"+
+                    rb.getString("ConfirmDelete2"),rb.getString("ConfirmDeleteTitle"),
+                        javax.swing.JOptionPane.OK_CANCEL_OPTION,
+                            javax.swing.JOptionPane.WARNING_MESSAGE) ) {
+            SerialTrafficController.instance().deleteNode(nodeAddress);
+            resetNotes();
+            statusText1.setText(rb.getString("FeedBackDelete")+" "+
+                                    Integer.toString(nodeAddress));
+            errorInStatus1 = true;
+            changedNode = true;
+	}
+        else {
+            resetNotes();
+        }
+    }

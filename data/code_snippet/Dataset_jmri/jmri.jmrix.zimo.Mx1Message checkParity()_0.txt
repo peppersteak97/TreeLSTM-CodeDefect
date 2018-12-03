@@ -1,0 +1,4 @@
+	public boolean checkParity() {
+		int len = getNumDataElements();
+		return (getElement(len-1) == (0x0D | 0x0A));
+                }

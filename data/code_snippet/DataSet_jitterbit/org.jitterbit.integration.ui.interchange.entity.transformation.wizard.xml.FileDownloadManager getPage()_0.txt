@@ -1,0 +1,3 @@
+    XmlWizardStartPage getPage() {
+        return m_page;
+    }

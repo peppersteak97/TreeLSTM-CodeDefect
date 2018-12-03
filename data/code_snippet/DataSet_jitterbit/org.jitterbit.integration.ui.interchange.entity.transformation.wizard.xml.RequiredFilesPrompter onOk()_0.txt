@@ -1,0 +1,12 @@
+    protected void onOk() {
+        if (isInputValid()) {
+            super.onOk();
+        }
+        else {
+            MessageDisplayer.showErrorMessage(
+                            this, 
+                            getRootPane(), 
+                            PackageResources.FilePrompter.InvalidEntries.MESSAGE,
+                            PackageResources.FilePrompter.InvalidEntries.TITLE);
+        }
+    }

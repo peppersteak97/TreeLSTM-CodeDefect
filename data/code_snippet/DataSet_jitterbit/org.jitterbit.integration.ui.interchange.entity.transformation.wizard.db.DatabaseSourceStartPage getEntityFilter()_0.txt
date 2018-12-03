@@ -1,0 +1,13 @@
+    private static IIntegrationEntityFilter getEntityFilter() {
+        return new IIntegrationEntityFilter() {
+
+            public boolean accept(IntegrationEntity e) {
+                if (e instanceof Source) {
+                    DataLocation location = ((Source) e).getLocation();
+                    return (location == null) ? false
+                                    : location.getDataLocationType() == DataLocationType.Database;
+                }
+                return false;
+            }
+        };
+    }

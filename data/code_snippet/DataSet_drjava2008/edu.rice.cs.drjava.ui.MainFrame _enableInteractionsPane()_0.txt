@@ -1,0 +1,8 @@
+  protected void _enableInteractionsPane() {
+    
+    _interactionsPane.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+    _interactionsPane.setEditable(true);
+    _interactionsController.moveToEnd();
+    if (_interactionsPane.hasFocus()) _interactionsPane.getCaret().setVisible(true);
+    if (_interactionsScriptController != null) _interactionsScriptController.setActionsEnabled();
+  }

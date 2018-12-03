@@ -1,0 +1,3 @@
+  public String getHistoryAsString() { 
+    return _history.getHistoryAsString(); 
+  }

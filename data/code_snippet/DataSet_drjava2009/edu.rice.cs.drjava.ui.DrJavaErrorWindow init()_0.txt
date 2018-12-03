@@ -1,0 +1,16 @@
+  private void init() {
+    _errorCount = DrJavaErrorHandler.getErrorCount();
+    if (_errorCount > 0) {
+      _error = DrJavaErrorHandler.getError(0);
+      _errorIndex = 0;
+    }
+    else {
+      _error = null;
+      _errorIndex = -1;
+    }
+    _prevAction.setEnabled(false);
+    _nextAction.setEnabled(_errorCount>1);
+    _dismissAction.setEnabled(_errorCount > 0);
+    _copyAction.setEnabled(_errorCount > 0);
+    updateErrorInfo();
+  }

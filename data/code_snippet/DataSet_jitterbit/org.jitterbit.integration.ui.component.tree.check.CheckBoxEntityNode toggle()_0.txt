@@ -1,0 +1,3 @@
+    public void toggle() {
+        m_isSelected = !m_isSelected;
+    }

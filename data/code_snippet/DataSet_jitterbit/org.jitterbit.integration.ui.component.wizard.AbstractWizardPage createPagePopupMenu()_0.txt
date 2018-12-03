@@ -1,0 +1,5 @@
+    private JPopupMenu createPagePopupMenu() {
+        JPopupMenu pm = new JPopupMenu();
+        addPopupMenuItems(pm);
+        return pm;
+    }

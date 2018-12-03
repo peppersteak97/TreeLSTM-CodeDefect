@@ -1,0 +1,8 @@
+  private void advanceBarrier() {
+    if (currentNode != null) {
+      currentNode.setSortMarker(Integer.MIN_VALUE);
+    }
+    if ((currentNode == barrier) && (barrier != null)) {
+      barrier = barrier.getSortedNext(forward);
+    }
+  }

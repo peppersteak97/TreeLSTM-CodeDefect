@@ -1,0 +1,4 @@
+    if (!isOutermost && requiresUnintMarker()) {
+      Instruction s = Empty.create(UNINT_BEGIN);
+      appendInstruction(prologue, s, PROLOGUE_BCI);
+    }

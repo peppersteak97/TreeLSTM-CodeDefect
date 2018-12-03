@@ -1,0 +1,3 @@
+  public boolean apply() {
+    return _rootNode.update();
+  }

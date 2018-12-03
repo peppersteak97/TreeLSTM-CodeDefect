@@ -1,0 +1,3 @@
+    public IntegrationEntityComboBox getComboBox() {
+        return m_comboBox;
+    }

@@ -1,0 +1,7 @@
+  public final int getSpill() {
+    if (VM.VerifyAssertions) {
+      VM._assert(isSpill(), "RegSpillListElement asked for a spill, when it had a real register");
+    }
+
+    return value;
+  }

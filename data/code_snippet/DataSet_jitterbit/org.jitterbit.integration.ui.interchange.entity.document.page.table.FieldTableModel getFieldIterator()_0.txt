@@ -1,0 +1,3 @@
+    public Iterator<Field> getFieldIterator() {
+        return new IteratorImpl();
+    }

@@ -1,0 +1,75 @@
+  private JPanel _makePanel() {
+    JPanel panel = new JPanel();
+    GridBagLayout gridbag = new GridBagLayout();
+    GridBagConstraints c = new GridBagConstraints();
+    panel.setLayout(gridbag);
+    c.fill = GridBagConstraints.HORIZONTAL;
+    Insets labelInsets = new Insets(5, 10, 0, 10);
+    c.weightx = 0.0;
+    c.gridwidth = 1;
+    c.insets = labelInsets;
+    
+    _jarAll = new JCheckBox(new AbstractAction("Jar All files") {
+      public void actionPerformed(ActionEvent e){
+        _toggleClassOptions();
+        _jarClasses.setEnabled(!_jarAll.isSelected());
+        _jarSources.setEnabled(!_jarAll.isSelected());
+        _okButton.setEnabled(_jarSources.isSelected() || _jarClasses.isSelected() || _jarAll.isSelected());
+      }
+    });
+    
+    c.weightx = 0.0;
+    c.gridwidth = GridBagConstraints.REMAINDER;
+    c.insets = labelInsets;
+    gridbag.setConstraints(_jarAll, c);
+    panel.add(_jarAll);
+    
+    _jarSources = new JCheckBox(new AbstractAction("Jar source files") {
+      public void actionPerformed(ActionEvent e) {
+        _jarAll.setEnabled(!_jarSources.isSelected());
+        _okButton.setEnabled(_jarSources.isSelected() || _jarClasses.isSelected() || _jarAll.isSelected());
+      }
+    });
+    
+    c.weightx = 0.0;
+    c.gridwidth = 1;
+    c.insets = labelInsets;
+    
+    gridbag.setConstraints(_jarSources, c);
+    panel.add(_jarSources);
+
+    c.weightx = 1.0;
+    c.gridwidth = GridBagConstraints.REMAINDER;
+    c.insets = labelInsets;
+    c.fill = GridBagConstraints.HORIZONTAL;
+    
+    JPanel jarClassesPanel = _makeClassesPanel();
+    gridbag.setConstraints(jarClassesPanel, c);
+    panel.add(jarClassesPanel);
+    
+    _cantJarClassesLabel = new JLabel("<html><center>A build directory must be specified in order to jar class files,<br>and the project needs to be compiled.</center></html>",  SwingConstants.CENTER);
+    c.gridx = 0;
+    c.anchor = GridBagConstraints.WEST;
+    c.fill = GridBagConstraints.HORIZONTAL;
+    gridbag.setConstraints(jarClassesPanel, c);
+    panel.add(_cantJarClassesLabel);
+     
+    c.gridx = 0;
+    c.gridwidth = 1;
+    c.insets = labelInsets;
+    JLabel label = new JLabel("Jar File");
+    label.setToolTipText("The file that the jar should be written to.");
+    gridbag.setConstraints(label, c);
+    panel.add(label);
+    
+    c.weightx = 1.0;
+    c.gridx = 0;
+    c.gridwidth = GridBagConstraints.REMAINDER;
+    c.insets = labelInsets;
+    
+    JPanel jarFilePanel = _makeJarFileSelector();
+    gridbag.setConstraints(jarFilePanel, c);
+    panel.add(jarFilePanel);
+    
+    return panel;
+  }

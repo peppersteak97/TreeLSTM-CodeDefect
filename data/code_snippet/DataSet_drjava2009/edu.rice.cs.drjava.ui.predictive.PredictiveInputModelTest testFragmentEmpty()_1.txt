@@ -1,0 +1,71 @@
+  public void testFragmentEmpty() {
+    PredictiveInputModel<String> pim = new PredictiveInputModel<String>(false,
+                                                                        new PredictiveInputModel.FragmentStrategy<String>());
+    assertEquals(null, pim.getCurrentItem());
+    assertEquals("", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+    
+    pim.setMask("F");
+    assertEquals(null, pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+
+    pim.extendMask(pim.getSharedMaskExtension());
+    assertEquals(null, pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+
+    pim.extendMask(".");
+    assertEquals(null, pim.getCurrentItem());
+    assertEquals("F.", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+
+    pim.extendMask("x");
+    assertEquals(null, pim.getCurrentItem());
+    assertEquals("F.x", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+
+    pim.extendMask("y");
+    assertEquals(null, pim.getCurrentItem());
+    assertEquals("F.xy", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+        
+    pim.setMask("i .java");
+    assertEquals(null, pim.getCurrentItem());
+    assertEquals("i .java", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+
+    pim.setItems("AboutDialog.java",
+                 "FileOps.java",
+                 "FileOpsTest.java",
+                 "Utilities.java");
+    pim.setMask("F");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+
+    pim.extendMask("ileOps");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("FileOps", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+
+    pim.extendMask(".");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("FileOps.", pim.getMask());
+    assertEquals(1, pim.getMatchingItems().size());
+
+    pim.extendMask("x");
+    assertEquals("AboutDialog.java", pim.getCurrentItem());
+    assertEquals("FileOps.x", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+
+    pim.extendMask("y");
+    assertEquals("AboutDialog.java", pim.getCurrentItem());
+    assertEquals("FileOps.xy", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+    
+    pim.setMask("File java");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("File java", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+  }

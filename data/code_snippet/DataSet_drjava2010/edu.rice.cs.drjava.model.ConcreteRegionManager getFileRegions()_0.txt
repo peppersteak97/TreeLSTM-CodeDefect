@@ -1,0 +1,8 @@
+  public ArrayList<FileRegion> getFileRegions() {
+    ArrayList<FileRegion> regions = new ArrayList<FileRegion>();
+    for (OpenDefinitionsDocument odd: _documents) {
+      File f = odd.getRawFile();
+      for (R r: _regions.get(odd)) regions.add(new DummyDocumentRegion(f, r.getStartOffset(), r.getEndOffset()));
+    }
+    return regions;
+  }

@@ -1,0 +1,8 @@
+    private void createDatabaseField() {
+        String dbLabel = PackageResources.Database.Labels.DATABASE;
+        m_databaseField = InputFieldFactory.getTextInputField(
+                        dbLabel, 
+                        dbLabel, 
+                        20, 
+                        true);
+    }

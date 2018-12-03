@@ -1,0 +1,3 @@
+    public boolean isWorking() {
+        return (m_idleWorkers.size() < m_workers.length);
+    }

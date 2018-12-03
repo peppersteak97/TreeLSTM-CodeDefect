@@ -1,0 +1,3 @@
+    protected void setResourceBundle() {
+        rb = ResourceBundle.getBundle("apps.AppsBundle");
+    }

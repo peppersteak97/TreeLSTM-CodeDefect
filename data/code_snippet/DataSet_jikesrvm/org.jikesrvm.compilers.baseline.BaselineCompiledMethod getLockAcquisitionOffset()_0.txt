@@ -1,0 +1,3 @@
+  public Offset getLockAcquisitionOffset() {
+    return Offset.fromIntZeroExtend(lockOffset);
+  }

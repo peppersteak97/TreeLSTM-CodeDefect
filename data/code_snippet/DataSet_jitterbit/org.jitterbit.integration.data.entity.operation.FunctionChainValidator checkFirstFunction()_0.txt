@@ -1,0 +1,14 @@
+    private void checkFirstFunction() {
+        if (functions.isEmpty()) {
+            return;
+        }
+        sourceFirstFunctionMatch = sourceFunctionMatches();
+        if (sourceFirstFunctionMatch) {
+            sourceIsValid = true;
+            firstFunctionIsValid = true;
+        }
+        else {
+            sourceIsValid = (source == active);
+            firstFunctionIsValid = (source != active);
+        }
+    }

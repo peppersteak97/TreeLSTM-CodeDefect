@@ -1,0 +1,4 @@
+  public boolean hasPrevInteraction() {
+    int index = _currentInteraction;
+    return index > 0;
+  }

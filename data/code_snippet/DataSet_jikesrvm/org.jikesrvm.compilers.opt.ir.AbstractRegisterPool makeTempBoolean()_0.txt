@@ -1,0 +1,3 @@
+  public RegisterOperand makeTempBoolean() {
+    return new RegisterOperand(getInteger(), TypeReference.Boolean);
+  }

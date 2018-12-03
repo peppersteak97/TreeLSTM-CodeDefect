@@ -1,0 +1,3 @@
+    public boolean getF24() {
+        return f24;
+    }

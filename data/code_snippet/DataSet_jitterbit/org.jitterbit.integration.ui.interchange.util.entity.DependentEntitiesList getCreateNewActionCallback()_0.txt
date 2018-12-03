@@ -1,0 +1,3 @@
+    protected ICallbackResult getCreateNewActionCallback() {
+        return null;
+    }

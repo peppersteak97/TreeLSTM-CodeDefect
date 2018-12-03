@@ -1,0 +1,3 @@
+  public void testAfterCommentedOutSlashStar() throws javax.swing.text.BadLocationException {
+    assertEquals(false, _rule.testApplyRule(_doc, 49, Indenter.IndentReason.OTHER));
+  }

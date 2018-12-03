@@ -1,0 +1,1 @@
+    public boolean isLoco3LongAddress() { return _isLoco3LongAddress; }

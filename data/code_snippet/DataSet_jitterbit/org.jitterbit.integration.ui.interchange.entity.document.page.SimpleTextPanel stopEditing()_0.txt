@@ -1,0 +1,3 @@
+    public void stopEditing() {
+        m_fieldTable.stopEditing();
+    }

@@ -1,0 +1,10 @@
+    private void installEditProducer() {
+        m_editProducer = new EditProducer(new IEditCallback() {
+
+            public void setEdit(UndoableEdit edit) {
+                ComboBoxEditSender.this.m_lastEdit = edit;
+                sendEdit();
+            }
+        });
+        m_editProducer.install(m_comboBox);
+    }

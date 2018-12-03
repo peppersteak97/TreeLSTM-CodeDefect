@@ -1,0 +1,23 @@
+    protected void updateDisplay() {
+        commonrail.setSelected(opsw[ 1]);
+        polarity.setSelected(opsw[ 3]);
+        transpond.setSelected(opsw[ 5]);
+        rx4connected1.setSelected(opsw[ 6]);
+        rx4connected2.setSelected(opsw[ 7]);
+        forceoccupied.setSelected(opsw[ 9]);
+        section16qualpower.setSelected(opsw[10]);
+        nomaster.setSelected(opsw[11]);
+        noterminate.setSelected(opsw[12]);
+        delayhalfsecond.setSelected(opsw[13]);
+        highthreshold.setSelected(opsw[19]);
+        drivefromswitch.setSelected(opsw[25]);
+        decodefromloconet.setSelected(opsw[26]);
+        reserved36.setSelected(opsw[36]);
+        longdelay.setSelected(opsw[37]);
+        extralongdelay.setSelected(opsw[38]);
+        transpondtrack.setSelected(opsw[39]);
+        poweronmsg.setSelected(opsw[42]);
+        antichatfilt.setSelected(opsw[43]);
+        antichatsens.setSelected(opsw[44]);
+        setdefault.setSelected(opsw[40]);
+    }

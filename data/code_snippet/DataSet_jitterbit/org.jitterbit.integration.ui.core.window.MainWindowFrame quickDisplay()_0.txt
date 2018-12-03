@@ -1,0 +1,10 @@
+    private void quickDisplay() {
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                m_frame.setVisible(true);
+                Thread.currentThread().setUncaughtExceptionHandler(
+                                new UncaughtExceptionLogger());
+            }
+        });
+    }

@@ -1,0 +1,12 @@
+    public String getSystemClipboardContents() {
+        try {
+            content = (String) m_systemClipboard.getData(DataFlavor.stringFlavor);
+        }
+        catch (UnsupportedFlavorException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content;
+    }

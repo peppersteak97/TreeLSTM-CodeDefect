@@ -1,0 +1,18 @@
+  public void testBackSlashBeforeDoubleEscape() {
+    model1.insertChar('\\');
+    model1.insertChar('\\');
+    model1.move(-2);
+    model1.insertChar('\\');
+    assertEquals("#0.0", "\\\\", model1.currentToken().getType());
+    assertEquals("#0.1", 2, model1.currentToken().getSize());
+    model1.move(1);
+    assertEquals("#0.2", "\\", model1.currentToken().getType());
+    model2.insertChar('\\');
+    model2.insertChar('\"');
+    model2.move(-2);
+    model2.insertChar('\\');
+    assertEquals("#1.0", "\\\\", model2.currentToken().getType());
+    assertEquals("#1.1", 1, model2.absOffset());
+    model2.move(1);
+    assertEquals("#1.2", "\"", model2.currentToken().getType());
+  }

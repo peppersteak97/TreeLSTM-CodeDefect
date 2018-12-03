@@ -1,0 +1,34 @@
+    private void initUi() {
+        JPanel pnlMain = new JPanel();
+        pnlMain.setLayout( new BoxLayout(pnlMain, BoxLayout.Y_AXIS) );
+
+        if( m_columnOwner instanceof View ) {
+            JPanel pnlScript = new JPanel();
+            pnlScript.setLayout( new BorderLayout() );
+            pnlScript.add( new JLabel("Script:"), BorderLayout.NORTH);
+            WordWrapTextArea text = new WordWrapTextArea( ((View)m_columnOwner).getSqlScript(), 20, 75 );
+            pnlScript.add( new JScrollPane(text), BorderLayout.CENTER );
+            pnlScript.setBorder( new EmptyBorder(5, 5, 5, 5) );
+            pnlMain.add( pnlScript);
+            pnlMain.add( Box.createVerticalStrut(10) );
+        }
+        
+        JPanel pnlTable = new JPanel();
+        pnlTable.setLayout( new BorderLayout() );
+        KongaTable table = new ColumnTable(m_columnOwner);
+        JScrollPane scroll = new JScrollPane(table);
+        pnlTable.add( new JLabel("Columns:"), BorderLayout.NORTH );
+        pnlTable.add(scroll, BorderLayout.CENTER);
+        pnlTable.setBorder( new EmptyBorder(5, 5, 5, 5) );
+        pnlMain.add(pnlTable);
+        pnlMain.add( Box.createVerticalStrut(10) );
+        
+        JPanel pnlBtns = getButtonPanel( KongaDialog.CLOSE_ONLY, -1, 0, -1 );
+        pnlBtns.setBorder( new EmptyBorder(0, 0, 10, 0) );
+        
+        pnlMain.add( pnlBtns, BorderLayout.SOUTH );
+        
+        getContentPane().add(pnlMain);
+        pack();
+        WindowUtils.centerWindowOnScreen(this);
+    }

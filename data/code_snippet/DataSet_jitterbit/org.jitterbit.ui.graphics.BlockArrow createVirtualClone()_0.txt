@@ -1,0 +1,5 @@
+    private BlockArrow createVirtualClone() {
+        BlockArrow a = new BlockArrow(this);
+        a.setVirtual(true);
+        return a;
+    }

@@ -1,0 +1,5 @@
+  public void filePathContainsPound() {
+    _lock.startRead();
+    try { for (GlobalModelListener l : _listeners) { l.filePathContainsPound(); } }
+    finally { _lock.endRead(); }
+  }

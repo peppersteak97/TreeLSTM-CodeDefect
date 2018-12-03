@@ -1,0 +1,4 @@
+  public void resetModification() {
+    _isModifiedSinceSave = false;
+    _undoManager.documentSaved();
+  }

@@ -1,0 +1,50 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        
+        if (m_checkCacheFirst) {
+            checkCache();
+        }
+        
+        if (isCancelled()) {
+            return;
+        }
+        
+        boolean addInputStructureToCache = false;
+        boolean addOutputStructureToCache = false;
+        if (getInputJtr() == null && m_invoker.isAskingForInputStructure()) {
+            retrieveInputStructure();
+            if (!m_inputCallback.wasSuccessful()) {
+                return;
+            }
+            m_inputCallback = null;
+            addInputStructureToCache = true;
+        }
+
+        if (isCancelled()) {
+            return;
+        }
+        
+        boolean success = false;
+        if (getOutputJtr() == null && m_invoker.isAskingForOutputStructure()) {
+            retrieveOutputStructure();
+            success = m_outputCallback.wasSuccessful();
+            addOutputStructureToCache = success;
+        }
+        else {
+            success = true;
+        }
+        if (isCancelled()) {
+            return;
+        }
+
+        if (success) {
+            setStatus(PackageResources.LoadStructures.UPDATING_UI);
+            if (addInputStructureToCache || addOutputStructureToCache) {
+                cacheJtrFiles(addInputStructureToCache, addOutputStructureToCache);
+            }
+            m_invoker.displayLoadedStructures(getInputJtr(), getOutputJtr());
+            m_invoker.jobHasCompleted();
+        }
+    }

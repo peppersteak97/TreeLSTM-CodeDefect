@@ -1,0 +1,6 @@
+  public void clearBasicBlockScratchObject() {
+    BasicBlockEnumeration e = getBasicBlocks();
+    while (e.hasMoreElements()) {
+      e.next().scratchObject = null;
+    }
+  }

@@ -1,0 +1,6 @@
+    public synchronized static RootNodeExtractor getDomExtractor() {
+        if (s_domImplementation == null) {
+            s_domImplementation = new DomRootNodeExtractor();
+        }
+        return s_domImplementation;
+    }

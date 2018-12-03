@@ -1,0 +1,9 @@
+    public void configure() {
+        TrafficController.instance().connectPort(this);
+
+
+        jmri.InstanceManager.setCommandStation(TrafficController.instance());
+
+        jmri.jmrix.direct.ActiveFlag.setActive();
+
+    }

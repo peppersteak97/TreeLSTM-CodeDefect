@@ -1,0 +1,4 @@
+    private void init() {
+        setPriority(Thread.NORM_PRIORITY);
+        m_defaultExceptionHandler = Thread.currentThread().getUncaughtExceptionHandler();
+    }

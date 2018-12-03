@@ -1,0 +1,4 @@
+	public void dispose() {
+		AcelaTrafficController.instance().removeAcelaListener(this);
+        super.dispose();
+	}

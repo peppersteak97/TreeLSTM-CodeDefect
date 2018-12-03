@@ -1,0 +1,15 @@
+    private void createDialog() {
+        JComponent buttons = createButtons();
+        createControls();
+        layoutControls();
+
+        JPanel cp = new JPanel(new BorderLayout());
+        cp.add(getCaptionPanel(), BorderLayout.NORTH);
+        JPanel input = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        input.add(m_inputPanel.getUi());
+        cp.add(input, BorderLayout.CENTER);
+        cp.add(buttons, BorderLayout.SOUTH);
+
+        cp.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setContentPane(cp);
+    }

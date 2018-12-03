@@ -1,0 +1,8 @@
+    public int getSelectedType() {
+        for (int n = 0; n < m_selector.length; ++n) {
+            if (m_selector[n].isSelected()) {
+                return n + 1;
+            }
+        }
+        return -1;
+    }

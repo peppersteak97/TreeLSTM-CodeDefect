@@ -1,0 +1,23 @@
+    private int readNodeAddress() {
+        int addr = -1;
+        try 
+        {
+            addr = Integer.parseInt(nodeAddrField.getText());
+        }
+        catch (Exception e)
+        {
+            statusText1.setText(rb.getString("Error5"));
+            statusText1.setVisible(true);
+            errorInStatus1 = true;
+            resetNotes2();
+            return -1;
+        }
+        if ( (addr < 0) || (addr > 127) ) {
+            statusText1.setText(rb.getString("Error6"));
+            statusText1.setVisible(true);
+            errorInStatus1 = true;
+            resetNotes2();
+            return -1;
+        }
+        return (addr);
+    }

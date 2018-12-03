@@ -1,0 +1,6 @@
+    public EmailMessage getMessage() {
+        if (EMAIL_MESSAGES_SUPPORTED) {
+            return (EmailMessage) m_messageControl.getSelectedEntity();
+        }
+        return null;
+    }

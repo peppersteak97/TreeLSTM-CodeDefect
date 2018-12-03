@@ -1,0 +1,3 @@
+  public boolean isImplicitLoad() {
+    return operator.isImplicitLoad();
+  }

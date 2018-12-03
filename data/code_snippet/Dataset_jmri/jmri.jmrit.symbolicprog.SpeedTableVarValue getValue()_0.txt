@@ -1,0 +1,3 @@
+            if (models[i-1].getValue() > value)  {
+                setModel(i-1, value);
+            }

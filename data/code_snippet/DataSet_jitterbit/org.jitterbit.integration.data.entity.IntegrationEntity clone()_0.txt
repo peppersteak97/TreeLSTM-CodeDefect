@@ -1,0 +1,14 @@
+    public IntegrationEntity clone() throws CloneNotSupportedException {
+        IntegrationEntity clone = (IntegrationEntity) super.clone();
+        
+        clone.m_parent = null;
+        
+        clone.m_ui = null;
+
+        clone.m_children = null;
+
+        clone.m_hasBeenDeployed = false;
+        clone.m_isDeployDirty = true;
+        clone.m_hasMoved = false;
+        return clone;
+    }

@@ -1,0 +1,44 @@
+	public boolean onApply() {
+
+		Property[] arProps = m_properties.toArray();
+		
+		for( int i = 0; i < arProps.length; ++i ) {
+			if( !arProps[i].isValid() )
+				return false;
+		}
+		
+		for( int i = 0; i < arProps.length; ++i ) {
+			try {
+				arProps[i].apply();
+			}
+			catch( final SetPropertyException e ) {
+				e.printStackTrace();
+				try {
+					SwingUtilities.invokeAndWait( new Runnable() {
+						public void run() {
+							JOptionPane.showMessageDialog(
+                                    PropertyPanel.this, 
+                                    e.longDescription(), 
+                                    JOptionPane.WARNING_MESSAGE);
+						}
+					});
+				}
+				catch( InvocationTargetException e2 ) {
+					e2.printStackTrace();
+				}
+				catch( InterruptedException e3 ) {
+					e3.printStackTrace();
+				}
+			}
+		}
+
+		/*
+		if ( m_liPropertyPanels != null ) {
+			for( Iterator it = m_liPropertyPanels.iterator(); it.hasNext(); ) {
+				((PropertyPanel)it.next()).onApply();
+			}
+		}
+		*/
+		
+		return true;
+	}

@@ -1,0 +1,11 @@
+  public void testAddKeywordWhitespace(){
+    BalancingStreamTokenizer tok = make("abc def\\ ghi 123\n456");
+    tok.defaultWhitespaceSetup();
+    try{
+      tok.addKeyword("   key");
+    } catch (Exception e)
+    {
+      return;
+    }
+    fail("Expected Exception");
+  }

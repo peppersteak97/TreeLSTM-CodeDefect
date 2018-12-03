@@ -1,0 +1,1 @@
+  public JUnitErrorListPane getErrorListPane() { return _errorListPane; }

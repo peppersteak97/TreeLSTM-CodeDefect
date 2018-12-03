@@ -1,0 +1,3 @@
+        public IOperationHistoryEntry getHistoryEntry() {
+            return null;
+        }

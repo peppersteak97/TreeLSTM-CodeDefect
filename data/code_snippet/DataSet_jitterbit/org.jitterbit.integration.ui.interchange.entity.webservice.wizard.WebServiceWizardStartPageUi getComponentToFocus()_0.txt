@@ -1,0 +1,3 @@
+    private JComponent getComponentToFocus() {
+        return m_name.getInputComponent();
+    }

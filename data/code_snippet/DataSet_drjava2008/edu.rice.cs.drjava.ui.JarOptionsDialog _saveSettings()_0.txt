@@ -1,0 +1,15 @@
+  private boolean _saveSettings() {
+    _lastState = new FrameState(this);
+    if ((_model.getCreateJarFile() == null) ||
+        (!_model.getCreateJarFile().getName().equals(_jarFileSelector.getFileFromField().getName()))) {
+      _model.setCreateJarFile(_jarFileSelector.getFileFromField());
+    }
+    int f = 0;
+    if (_jarClasses.isSelected()) f |= JAR_CLASSES;
+    if (_jarSources.isSelected()) f |= JAR_SOURCES;
+    if (_makeExecutable.isSelected()) f |= MAKE_EXECUTABLE;
+    if (f!=_model.getCreateJarFlags()) {
+      _model.setCreateJarFlags(f);
+    }
+    return true;
+  }

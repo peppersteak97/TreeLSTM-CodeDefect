@@ -1,0 +1,10 @@
+    public void dispose() {
+        m_displayPage.removeFromWindow(true);
+        m_displayPage = null;
+        m_startPage = null;
+        m_sourceStartPage = null;
+        m_targetStartPage = null;
+        m_mapSourceStartPages.clear();
+        m_mapTargetStartPages.clear();
+        super.dispose();
+    }

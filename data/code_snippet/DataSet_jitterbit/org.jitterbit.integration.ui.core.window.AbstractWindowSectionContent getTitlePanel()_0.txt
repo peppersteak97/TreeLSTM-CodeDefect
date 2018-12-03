@@ -1,0 +1,19 @@
+    protected final JPanel getTitlePanel() {
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.LINE_AXIS));
+
+        Border outside = BorderFactory.createBevelBorder(BevelBorder.RAISED);
+        Border inside = BorderFactory.createEmptyBorder(0, 2, 0, 2);
+
+        p.setBorder(BorderFactory.createCompoundBorder(outside, inside));
+
+        JLabel caption = IntegrationUiStyleSheet.DefaultText.makeJLabel(
+                        getTitlePanelTitle());
+        p.add(caption);
+
+        p.add(Box.createHorizontalGlue());
+        p.add(createToolBar());
+
+        p.add(Box.createHorizontalStrut(5));
+        return p;
+    }

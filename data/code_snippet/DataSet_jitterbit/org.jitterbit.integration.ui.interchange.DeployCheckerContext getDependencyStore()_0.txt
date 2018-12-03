@@ -1,0 +1,4 @@
+    public IDependencyStore getDependencyStore() {
+        IManagedProject p = InterchangeViewUtils.getManagedProject(m_view);
+        return p.getDependencyStore();
+    }

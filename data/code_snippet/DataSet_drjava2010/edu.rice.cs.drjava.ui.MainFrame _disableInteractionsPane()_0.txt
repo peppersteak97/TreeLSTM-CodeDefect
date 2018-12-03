@@ -1,0 +1,7 @@
+  protected void _disableInteractionsPane() {
+    assert EventQueue.isDispatchThread();
+    _interactionsPane.setEditable(false);
+    _interactionsPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+    
+    if (_interactionsScriptController != null) _interactionsScriptController.setActionsDisabled();
+  }

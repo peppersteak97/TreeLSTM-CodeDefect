@@ -1,0 +1,13 @@
+    private void createValidator() {
+        m_validator = new ValidationDecorator(this, 
+                        m_model.getUiDelegate().getDataObject(), m_view);
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                IntegrationEntity entity = m_model.getUiDelegate().getDataObject();
+                if (!entity.isTransient()) {
+                    m_validator.validate();
+                }        
+            }
+        });
+    }

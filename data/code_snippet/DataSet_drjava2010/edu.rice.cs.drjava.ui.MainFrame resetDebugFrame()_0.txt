@@ -1,0 +1,6 @@
+  public void resetDebugFrame() {
+    _debugFrame.setFrameState("default");
+    if (DrJava.getConfig().getSetting(DIALOG_DEBUGFRAME_STORE_POSITION).booleanValue()) {
+      DrJava.getConfig().setSetting(DIALOG_DEBUGFRAME_STATE, "default");
+    }
+  }

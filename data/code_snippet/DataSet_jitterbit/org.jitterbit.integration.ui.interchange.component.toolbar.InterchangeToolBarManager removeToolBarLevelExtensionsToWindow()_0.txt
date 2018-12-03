@@ -1,0 +1,5 @@
+    public void removeToolBarLevelExtensionsToWindow() {
+        m_fileToolBarExtension.removeAll();
+        m_editToolBarExtension.removeAll();
+        m_actionToolBarExtension.removeAll();
+    }

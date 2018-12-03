@@ -1,0 +1,13 @@
+    private void createComponents() {
+        m_name = InputFieldFactory.getTextInputField(name, name, 20, true);
+
+        m_title = InputFieldFactory.getTextInputField(title, title, 20, true);
+
+        m_email = InputFieldFactory.getTextInputField(email, email, 20, true);
+
+        m_phone = InputFieldFactory.getTextInputField(phone, phone, 20, true);
+
+        m_fax = InputFieldFactory.getTextInputField(fax, fax, 20, true);
+
+        m_notes = InputFieldFactory.getTextInputArea(notes, notes, 6, 30);
+    }

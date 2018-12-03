@@ -1,0 +1,3 @@
+    public ILogFileRepository getRepository() {
+        return m_repository;
+    }

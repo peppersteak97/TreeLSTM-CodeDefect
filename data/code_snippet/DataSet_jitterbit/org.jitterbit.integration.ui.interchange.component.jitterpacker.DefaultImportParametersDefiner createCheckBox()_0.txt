@@ -1,0 +1,10 @@
+    private void createCheckBox() {
+        String label = PackageResources.getEncryptionLabel(PackMode.IMPORT);
+        m_checkBox = ComponentFactories.checkBoxFactory().newCheckBox(label);
+        m_checkBox.addItemListener(new ItemListener() {
+
+            public void itemStateChanged(ItemEvent e) {
+                m_pwdField.setEnabled(m_checkBox.isSelected());
+            }
+        });
+    }

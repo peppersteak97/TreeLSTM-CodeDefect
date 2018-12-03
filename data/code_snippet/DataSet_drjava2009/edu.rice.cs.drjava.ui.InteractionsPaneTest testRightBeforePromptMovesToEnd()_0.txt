@@ -1,0 +1,11 @@
+  public void testRightBeforePromptMovesToEnd() {
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() {
+        _pane.setCaretPosition(1);
+        _controller.moveRightAction.actionPerformed(null);
+      }
+    });
+    assertEquals("Right arrow doesn't move to end when caret is before prompt.",
+                 _doc.getLength(),
+                 _pane.getCaretPosition());
+  }

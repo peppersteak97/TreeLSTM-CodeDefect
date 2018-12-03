@@ -1,0 +1,58 @@
+  void debuggerToggleBreakpoint() {
+    addToBrowserHistory();
+    OpenDefinitionsDocument doc = _model.getActiveDocument();
+    
+    boolean isUntitled = doc.isUntitled();
+    if (isUntitled) {
+      JOptionPane.showMessageDialog(this,
+                                    "You must save and compile this document before you can\n" +
+                                    "set a breakpoint in it.",
+                                    "Must Save and Compile",
+                                    JOptionPane.ERROR_MESSAGE);
+      return;
+    }
+    
+    boolean isModified = doc.isModifiedSinceSave();
+    if (isDebuggerReady() && isModified  && !_currentDefPane.hasWarnedAboutModified() &&
+        DrJava.getConfig().getSetting(WARN_BREAKPOINT_OUT_OF_SYNC).booleanValue()) {
+      String message =
+        "This document has been modified and may be out of sync\n" +
+        "with the debugger.  It is recommended that you first\n" +
+        "save and recompile before continuing to use the debugger,\n" +
+        "to avoid any unexpected errors.  Would you still like to\n" +
+        "toggle the breakpoint on the specified line?";
+      String title = "Toggle breakpoint on modified file?";
+      
+      ConfirmCheckBoxDialog dialog = new ConfirmCheckBoxDialog(this, title, message);
+      int rc = dialog.show();
+      switch (rc) {
+        case JOptionPane.YES_OPTION:
+          _currentDefPane.hasWarnedAboutModified(true);
+          if (dialog.getCheckBoxValue()) {
+            DrJava.getConfig().setSetting(WARN_BREAKPOINT_OUT_OF_SYNC, Boolean.FALSE);
+          }
+          break;
+          
+        case JOptionPane.NO_OPTION:
+          if (dialog.getCheckBoxValue())  DrJava.getConfig().setSetting(WARN_BREAKPOINT_OUT_OF_SYNC, Boolean.FALSE);
+          return;
+          
+        case JOptionPane.CANCEL_OPTION:
+        case JOptionPane.CLOSED_OPTION:
+          return;
+          
+        default:
+          throw new RuntimeException("Invalid rc from showConfirmDialog: " + rc);
+      }
+    }
+    
+    try {
+      Debugger debugger = _model.getDebugger();
+      boolean breakpointSet = 
+        debugger.toggleBreakpoint(doc, _currentDefPane.getCaretPosition(), true);
+      if (breakpointSet) showBreakpoints();
+    }
+    catch (DebugException de) {
+      _showError(de, "Debugger Error", "Could not set a breakpoint at the current line.");
+    }
+  }

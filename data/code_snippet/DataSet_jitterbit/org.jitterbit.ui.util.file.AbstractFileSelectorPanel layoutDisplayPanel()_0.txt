@@ -1,0 +1,10 @@
+    private void layoutDisplayPanel() {
+        OneRowPanel row = new OneRowPanel();
+        row.setAnchor(OneRowPanel.SOUTHWEST);
+        row.setWeightX(1.0);
+        row.setInsets(0, 0, 0, 10);
+        row.add(getInputFieldLayout(), m_browseButton);
+        row.addToParent(m_panel.getUi(), null);
+        m_panel.setSendInputChangeEvents(true);
+        m_panel.setSendUndoEvents(true);
+    }

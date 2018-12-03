@@ -1,0 +1,3 @@
+    public Collection<? extends IValidationIssue> validate() {
+        return m_fields.isEmpty() ? new ArrayList<IValidationIssue>() : validateImpl();
+    }

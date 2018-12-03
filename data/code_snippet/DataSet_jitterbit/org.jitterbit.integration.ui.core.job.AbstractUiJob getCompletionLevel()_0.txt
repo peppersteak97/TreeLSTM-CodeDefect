@@ -1,0 +1,5 @@
+    public final int getCompletionLevel() {
+        synchronized (m_lock) {
+            return m_completionLevel;
+        }
+    }

@@ -1,0 +1,11 @@
+  static void createControllerThread() {
+    SoftLatch sentinel = new SoftLatch(false);
+    ControllerThread tt = new ControllerThread(sentinel);
+    tt.start();
+    try {
+      sentinel.waitAndClose();
+    } catch (Exception e) {
+      e.printStackTrace();
+      VM.sysFail("Failed to start up controller subsystem");
+    }
+  }

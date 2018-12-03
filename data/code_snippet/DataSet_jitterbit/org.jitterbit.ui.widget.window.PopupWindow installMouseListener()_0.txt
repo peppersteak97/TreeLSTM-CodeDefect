@@ -1,0 +1,17 @@
+    private IDisposable installMouseListener() {
+        final AWTEventListener lst = new AWTEventListener() {
+
+            public void eventDispatched(AWTEvent event) {
+                if (event instanceof MouseEvent) {
+                    checkIfWindowShouldBeDisposed((MouseEvent) event);
+                }
+            }
+        };
+        Toolkit.getDefaultToolkit().addAWTEventListener(lst, MouseEvent.MOUSE_EVENT_MASK);
+        return new IDisposable() {
+
+            public void dispose() {
+                Toolkit.getDefaultToolkit().removeAWTEventListener(lst);
+            }
+        };
+    }

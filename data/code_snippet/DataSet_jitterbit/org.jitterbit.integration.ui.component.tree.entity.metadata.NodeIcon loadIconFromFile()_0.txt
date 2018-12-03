@@ -1,0 +1,3 @@
+    private void loadIconFromFile() {
+        m_icon = ImageLoader.getImageIcon(m_iconLocation);
+    }

@@ -1,0 +1,4 @@
+  protected void _close() {
+    _displayed = false;
+    _frame.removeTab(this);
+  }

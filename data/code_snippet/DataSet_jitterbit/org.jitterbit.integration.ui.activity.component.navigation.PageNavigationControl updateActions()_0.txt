@@ -1,0 +1,5 @@
+    private void updateActions() {
+        boolean enabled = isEnabled();
+        m_gotoNextPageAction.setEnabled(enabled && m_currentPage < m_numberOfPages);
+        m_gotoPreviousPageAction.setEnabled(enabled && m_currentPage > 1);
+    }

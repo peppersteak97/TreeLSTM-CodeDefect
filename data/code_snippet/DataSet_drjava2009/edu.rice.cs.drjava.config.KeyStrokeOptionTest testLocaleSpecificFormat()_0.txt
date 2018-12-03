@@ -1,0 +1,5 @@
+  public void testLocaleSpecificFormat() throws IOException, InterruptedException {
+    Process process = JVMBuilder.DEFAULT.start(KeyStrokeOptionTest.class.getName()); 
+    int status = process.waitFor();
+    assertEquals("Local specific keystroke test failed!", 0, status);
+  }

@@ -1,0 +1,85 @@
+  public void initComponents() throws Exception {
+    connectButton.setText("Connect");
+    connectButton.setVisible(true);
+    connectButton.setToolTipText("Identify and connect to SPROG bootloader");
+
+    programButton.setText("Program");
+    programButton.setVisible(true);
+    programButton.setEnabled(false);
+    programButton.setToolTipText("Re-program SPROG with new firmware");
+
+    openFileChooserButton.setText("Choose hex file");
+    openFileChooserButton.setVisible(true);
+    openFileChooserButton.setEnabled(false);
+    openFileChooserButton.setToolTipText("Click here to select hex file to download");
+
+    setSprogModeButton.setText("Set SPROG Mode");
+    setSprogModeButton.setVisible(true);
+    setSprogModeButton.setEnabled(false);
+    setSprogModeButton.setToolTipText("Click here to set SPROG II in SPROG mode");
+
+
+    statusBar.setVisible(true);
+    statusBar.setText(" ");
+    statusBar.setHorizontalTextPosition(SwingConstants.LEFT);
+
+    setTitle(title());
+    getContentPane().setLayout(new BoxLayout(getContentPane(),
+                                             BoxLayout.Y_AXIS));
+
+    JPanel paneA = new JPanel();
+    paneA.setLayout(new BoxLayout(paneA, BoxLayout.Y_AXIS));
+
+    JPanel buttons1 = new JPanel();
+    buttons1.setLayout(new BoxLayout(buttons1, BoxLayout.X_AXIS));
+    buttons1.add(connectButton);
+    buttons1.add(openFileChooserButton);
+    buttons1.add(programButton);
+
+    JPanel buttons2 = new JPanel();
+    buttons2.setLayout(new BoxLayout(buttons2, BoxLayout.X_AXIS));
+    buttons2.add(setSprogModeButton);
+
+    JPanel status = new JPanel();
+    status.setLayout(new BoxLayout(status, BoxLayout.X_AXIS));
+    status.add(statusBar);
+
+    paneA.add(buttons1);
+    paneA.add(buttons2);
+    paneA.add(status);
+
+    getContentPane().add(paneA);
+
+    connectButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent e) {
+        connectButtonActionPerformed(e);
+      }
+    });
+
+    openFileChooserButton.addActionListener(new java.awt.event.
+                                            ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent e) {
+        openFileChooserButtonActionPerformed(e);
+      }
+    });
+
+    programButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent e) {
+        programButtonActionPerformed(e);
+      }
+    });
+
+    setSprogModeButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent e) {
+        setSprogModeButtonActionPerformed(e);
+      }
+    });
+
+
+    init();
+
+    
+    pack();
+    paneA.setMaximumSize(paneA.getSize());
+    pack();
+  }

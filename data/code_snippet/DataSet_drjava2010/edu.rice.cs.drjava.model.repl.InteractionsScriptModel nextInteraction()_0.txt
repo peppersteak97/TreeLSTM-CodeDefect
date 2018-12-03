@@ -1,0 +1,6 @@
+  public void nextInteraction() {
+    if (! hasNextInteraction()) { throw new IllegalStateException("There is no next interaction!"); }
+    _currentInteraction++;
+    _showCurrentInteraction();
+    _passedCurrent = false;
+  }

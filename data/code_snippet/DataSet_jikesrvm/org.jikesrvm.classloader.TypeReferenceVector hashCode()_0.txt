@@ -1,0 +1,7 @@
+  public int hashCode() {
+    int val=0;
+    for(int i=0; i<cnt; i++) {
+      val ^= array[i].hashCode();
+    }
+    return val;
+  }

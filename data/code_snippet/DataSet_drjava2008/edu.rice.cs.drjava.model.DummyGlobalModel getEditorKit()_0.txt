@@ -1,0 +1,3 @@
+  public DefinitionsEditorKit getEditorKit() {
+    throw new UnsupportedOperationException("Tried to call getEditorKit on a Dummy");
+  }

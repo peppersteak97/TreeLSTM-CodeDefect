@@ -1,0 +1,7 @@
+    public static AdminActionFactory[] getActions() {
+        AdminActionFactory[] ids = new AdminActionFactory[ACTIONS.length];
+        for (int n = 0; n < ACTIONS.length; ++n) {
+            ids[n] = ACTIONS[n];
+        }
+        return ids;
+    }

@@ -1,0 +1,3 @@
+	public List<KongaGraphComponent> getGraphComponents() {
+		return m_liGraphComponents;
+	}

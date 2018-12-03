@@ -1,0 +1,1 @@
+  public /* synchronized */ boolean isCurrentRegionFirst() { return (_pastRegions.size()<2); }

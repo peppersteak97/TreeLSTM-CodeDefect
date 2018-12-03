@@ -1,0 +1,14 @@
+    public void apply() throws IntegrationDataPanelException {
+        ScpLocation loc = getDisplayedObject();
+        loc.setHost(getHost());
+        loc.setHostPath(getHostPath());
+        loc.setFileFilter(getFileFilter());
+        loc.setLogin(getLogin());
+        loc.setPassword(getPassword());
+        if (getSourceTarget() == SourceTarget.Source) {
+            if (getSourceTarget() == SourceTarget.Source) {
+                loc.setIgnoreFirstLines(getIgnoreFirstLines());
+                loc.setIgnoreLastLines(getIgnoreLastLines());
+            }
+        }
+    }

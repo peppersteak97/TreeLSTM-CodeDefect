@@ -1,0 +1,9 @@
+  public void testFindNextOnSuffix() throws BadLocationException {
+    _doc.insertString(0, EVIL_TEXT, null);
+    _initFrm(1);
+    _assertOffset(_frm, 1);
+    _frm.setFindWord("Hear");
+    _testFindNextSucceeds(_frm, 0, 4);
+    _doc.insertString(1, "-", null);
+    assertTrue("no longer on find text", ! _frm.onMatch());
+  }

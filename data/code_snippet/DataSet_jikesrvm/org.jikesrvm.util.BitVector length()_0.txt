@@ -1,0 +1,3 @@
+  public int length() {
+    return bits.length << LOG_BITS_PER_UNIT;
+  }

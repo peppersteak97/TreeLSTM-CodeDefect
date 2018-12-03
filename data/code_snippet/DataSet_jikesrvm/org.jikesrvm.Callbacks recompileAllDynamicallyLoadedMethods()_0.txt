@@ -1,0 +1,16 @@
+  public static void recompileAllDynamicallyLoadedMethods() {
+    synchronized (recompileAllLock) {
+      if (recompileAllCallbacks == null) return;
+      if (TRACE_RECOMPILE_ALL) {
+        VM.sysWriteln("invoking the recompile all monitor");
+      }
+      for (CallbackList l = recompileAllCallbacks; l != null; l = l.next) {
+        if (TRACE_RECOMPILE_ALL) {
+          VM.sysWrite("    ");
+          VM.sysWrite(Callbacks.getClass(l.callback));
+          VM.sysWrite("\n");
+        }
+        ((RecompileAllDynamicallyLoadedMethodsMonitor) l.callback).notifyRecompileAll();
+      }
+    }
+  }

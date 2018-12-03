@@ -1,0 +1,3 @@
+    protected final List<? extends Object> getObjectsActedOn() {
+        return m_liObjectsActedOn;
+    }

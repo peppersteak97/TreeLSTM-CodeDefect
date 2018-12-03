@@ -1,0 +1,16 @@
+    public void stopAllWorkers() {
+        stopIdleWorkers();
+        
+        try {
+            Thread.sleep(250);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+        for (int i = 0; i < m_workers.length; ++i) {
+            if (m_workers[i].isAlive()) {
+                m_workers[i].requestStop();
+            }
+        }
+    }

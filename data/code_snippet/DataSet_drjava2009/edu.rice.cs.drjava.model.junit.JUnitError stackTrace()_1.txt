@@ -1,0 +1,1 @@
+  public StackTraceElement[] stackTrace() { return _stackTrace; }

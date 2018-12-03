@@ -1,0 +1,111 @@
+    public void initComponents() throws Exception {
+
+        setTitle("Run TCH Technology NICS Diagnostic");
+        setSize(1000,1000);
+        Container contentPane = getContentPane();        
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+
+        JPanel panel1 = new JPanel();
+        testGroup.add(outputButton);
+        testGroup.add(wrapButton);
+        panel1.add(outputButton);
+        panel1.add(wrapButton);
+        Border panel1Border = BorderFactory.createEtchedBorder();
+        Border panel1Titled = BorderFactory.createTitledBorder(panel1Border,"Test Type");
+        panel1.setBorder(panel1Titled);                
+        contentPane.add(panel1);
+        
+        JPanel panel2 = new JPanel();
+        panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+        JPanel panel21 = new JPanel();
+        panel21.setLayout(new FlowLayout());
+        panel21.add(new JLabel("Node(NA):"));
+        panel21.add(naAddrField);
+        naAddrField.setToolTipText("Enter node address, numbering from 0.");
+        naAddrField.setText("0");
+        panel21.add(new JLabel("  Out Tab:"));
+        panel21.add(outCardField);
+        outCardField.setToolTipText("Enter output Tab number, numbering from 0.");
+        outCardField.setText("0");
+        JPanel panel22 = new JPanel();
+        panel22.setLayout(new FlowLayout());
+        panel22.add(new JLabel("Output Test Only - Observation Delay:"));
+        panel22.add(obsDelayField);
+        obsDelayField.setToolTipText("Enter delay (milliseconds) between changes of output led's.");
+        obsDelayField.setText("500");        
+        JPanel panel23 = new JPanel();
+        panel23.setLayout(new FlowLayout());
+        panel23.add(new JLabel("Wraparound Test Only - In Tab:"));
+        panel23.add(inCardField);
+        inCardField.setToolTipText("Enter input Tab number, numbering from 0.");
+        inCardField.setText("2");
+        panel23.add(new JLabel("   Filtering Delay:"));
+        panel23.add(filterDelayField);
+        filterDelayField.setToolTipText("Enter delay (milliseconds) if input card has filtering, else 0.");
+        filterDelayField.setText("0");        
+        panel2.add(panel21);
+        panel2.add(panel22);
+        panel2.add(panel23);
+        Border panel2Border = BorderFactory.createEtchedBorder();
+        Border panel2Titled = BorderFactory.createTitledBorder(panel2Border,"Test Set Up");
+        panel2.setBorder(panel2Titled);                
+        contentPane.add(panel2);
+
+        JPanel panel3 = new JPanel();
+        panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
+        JPanel panel31 = new JPanel();
+        panel31.setLayout(new FlowLayout());
+        statusText1.setText("Please ensure test hardware is installed.");
+        statusText1.setVisible(true);
+        statusText1.setMaximumSize(new Dimension(statusText1.getMaximumSize().width,
+                            statusText1.getPreferredSize().height) );
+        panel31.add(statusText1);
+        JPanel panel32 = new JPanel();
+        panel32.setLayout(new FlowLayout());
+        statusText2.setText("Select Test Type, enter Test Set Up information, then select Run below.");
+        statusText2.setVisible(true);
+        statusText2.setMaximumSize(new Dimension(statusText2.getMaximumSize().width,
+                            statusText2.getPreferredSize().height) );
+        panel32.add(statusText2);
+        panel3.add(panel31);
+        panel3.add(panel32);
+        Border panel3Border = BorderFactory.createEtchedBorder();
+        Border panel3Titled = BorderFactory.createTitledBorder(panel3Border,"Status");
+        panel3.setBorder(panel3Titled);                
+        contentPane.add(panel3);
+        
+        JPanel panel4 = new JPanel();
+        panel4.setLayout(new FlowLayout());
+        continueButton.setText("Continue");
+        continueButton.setVisible(true);
+        continueButton.setToolTipText("Continue Current Test");
+        continueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                continueButtonActionPerformed(e);
+            }
+        });
+        panel4.add(continueButton);
+        stopButton.setText("Stop");
+        stopButton.setVisible(true);
+        stopButton.setToolTipText("Stop Test");
+        panel4.add(stopButton);
+        stopButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                stopButtonActionPerformed(e);
+            }
+        });
+        runButton.setText("Run");
+        runButton.setVisible(true);
+        runButton.setToolTipText("Run Test");
+        panel4.add(runButton);
+        runButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                runButtonActionPerformed(e);
+            }
+        });
+        contentPane.add(panel4);
+
+        addHelpMenu("package.jmri.jmrix.tchtech.serial.diagnostic.DiagnosticFrame", true);
+
+        pack();
+    }

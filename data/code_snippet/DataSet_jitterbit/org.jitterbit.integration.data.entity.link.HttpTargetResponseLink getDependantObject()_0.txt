@@ -1,0 +1,3 @@
+    public Target getDependantObject() {
+        return (Target) super.getDependantObject();
+    }

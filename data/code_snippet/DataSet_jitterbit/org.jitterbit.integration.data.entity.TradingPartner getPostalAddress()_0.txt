@@ -1,0 +1,7 @@
+    public PostalAddress getPostalAddress() {
+        String stateName = getProperty(STATE);
+        USStates state = (stateName == null || stateName.length() == 0) ? USStates.NotSpecified
+                        : USStates.valueOf(stateName);
+        return new USPostalAddress(getProperty(ADDRESS_1), getProperty(ADDRESS_2),
+                        getProperty(CITY), state, getProperty(POSTAL_CODE));
+    }

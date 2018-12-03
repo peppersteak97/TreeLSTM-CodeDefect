@@ -1,0 +1,7 @@
+    public final boolean cancel() {
+        boolean b = super.cancel();
+        if (b) {
+            getCallback().cancelled();
+        }
+        return b;
+    }

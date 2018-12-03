@@ -1,0 +1,3 @@
+    public static UndoableEditTimer getTimer() {
+        return s_instance;
+    }

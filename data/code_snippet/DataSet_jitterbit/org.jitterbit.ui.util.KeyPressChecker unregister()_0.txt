@@ -1,0 +1,4 @@
+	public synchronized void unregister() {
+		KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(this);
+		m_isRegistered = false;
+	}

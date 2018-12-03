@@ -1,0 +1,1 @@
+  private boolean inLineComment() { return  _state == INSIDE_LINE_COMMENT; }

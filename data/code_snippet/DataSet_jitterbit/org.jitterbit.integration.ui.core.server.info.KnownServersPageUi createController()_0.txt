@@ -1,0 +1,15 @@
+    private IComponentController<Component> createController() {
+        DefaultComponentController<Component> ctrl = 
+            new DefaultComponentController<Component>();
+        Runnable doubleClickJob = new Runnable() {
+            
+            public void run() {
+                UiUtils.triggerActionOnEventThread(m_actions.login(), 
+            }
+        };
+        ctrl.addMouseEventHandler(MouseEvent.MOUSE_CLICKED, 
+                        new DoubleClickHandler(doubleClickJob));
+        ctrl.setPopupMenuRequestHandler(new PopupMenuHandler());
+        ctrl.registerAction(KeyUtils.DELETE, m_actions.remove());
+        return ctrl;
+    }

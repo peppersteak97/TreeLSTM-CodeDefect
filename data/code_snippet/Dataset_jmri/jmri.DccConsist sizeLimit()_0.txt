@@ -1,0 +1,5 @@
+        public int sizeLimit(){
+           if(ConsistType==ADVANCED_CONSIST) {
+                return -1;
+           } else return 0;
+        }      

@@ -1,0 +1,3 @@
+    public void expandTree() {
+        m_tree.expandAll();
+    }

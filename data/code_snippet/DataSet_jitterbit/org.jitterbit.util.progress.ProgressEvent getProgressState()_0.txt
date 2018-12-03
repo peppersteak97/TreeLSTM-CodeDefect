@@ -1,0 +1,3 @@
+	public int getProgressState() {
+		return m_iProgressState;
+	}

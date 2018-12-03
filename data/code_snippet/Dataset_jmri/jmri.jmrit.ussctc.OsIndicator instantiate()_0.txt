@@ -1,0 +1,44 @@
+    public void instantiate() {
+        String nameP = namePrefix+output;
+        Logix l = InstanceManager.logixManagerInstance().
+            getLogix(nameP);
+        if (l==null) l = InstanceManager.logixManagerInstance().
+            createNewLogix(nameP,"");
+        l.deActivateLogix();
+        Conditional c = InstanceManager.conditionalManagerInstance()
+            .getConditional(l,nameP+"C1");
+        if (c==null) {
+            c = InstanceManager.conditionalManagerInstance()
+                .createNewConditional(nameP+"C1", "");
+            l.addConditional(nameP+"C1",-1);
+        }
+        
+        if (!lock.equals("")) {
+            int[] opern = new int[]{Conditional.OPERATOR_NONE, Conditional.OPERATOR_AND};
+            int[] type = new int[]{Conditional.TYPE_SENSOR_INACTIVE,Conditional.TYPE_SENSOR_INACTIVE};
+            String[] name = new String[]{osSensor,lock};
+            String[] data = new String[]{"N/A","N/A"};
+            int[] num1 = new int[]{0,0};
+            int[] num2 = new int[]{0,0};
+			boolean[] triggersCalc = new boolean[]{true,true};
+            c.setStateVariables(opern, type, name, data, num1, num2, triggersCalc, opern.length);
+            String[] actionName = {output,output};
+		    c.setAction(actionOption,actionDelay,actionType,
+							actionName,actionData,actionString);
+        } else {
+            int[] opern = new int[]{Conditional.OPERATOR_NONE};
+            int[] type = new int[]{Conditional.TYPE_SENSOR_INACTIVE};
+            String[] name = new String[]{osSensor};
+            String[] data = new String[]{"N/A"};
+            int[] num1 = new int[]{0};
+            int[] num2 = new int[]{0};
+			boolean[] triggersCalc = new boolean[]{true};
+            c.setStateVariables(opern, type, name, data, num1, num2, triggersCalc, opern.length);
+            String[] actionName = {output,output};
+		    c.setAction(actionOption,actionDelay,actionType,
+							actionName,actionData,actionString);
+        }
+                
+        l.activateLogix();
+        
+    }

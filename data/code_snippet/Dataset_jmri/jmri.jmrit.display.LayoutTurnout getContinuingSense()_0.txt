@@ -1,0 +1,1 @@
+	public int getContinuingSense() {return continuingSense;}

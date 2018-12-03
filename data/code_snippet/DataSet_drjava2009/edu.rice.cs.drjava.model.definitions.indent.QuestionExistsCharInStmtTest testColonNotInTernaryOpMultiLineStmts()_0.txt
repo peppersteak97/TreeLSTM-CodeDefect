@@ -1,0 +1,13 @@
+  public void testColonNotInTernaryOpMultiLineStmts() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionExistsCharInStmt('?', ':', null, null);
+
+    _setDocText("return test ? x : y;\ncase 1\n: foo();\n");
+    _doc.setCurrentLocation(28);
+    assertTrue("colon not in ternary op, multi-line stmt",
+        !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _setDocText("foo()\nreturn test ? x :\ny; case default: break;\n");
+    _doc.setCurrentLocation(24);
+    assertTrue("colon not in ternary op, multi-line stmt, same line as end of ternary op",
+        !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+  }

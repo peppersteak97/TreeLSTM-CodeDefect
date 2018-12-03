@@ -1,0 +1,16 @@
+    void addTurnoutL() {
+        int errorCheck = checkEntry("Turnout" , nextTurnoutL.getText());
+        if (errorCheck != 0) return;
+        TurnoutIcon l = new TurnoutIcon();
+        l.setClosedIcon(turnoutLIconEditor.getIcon(0));
+        l.setThrownIcon(turnoutLIconEditor.getIcon(1));
+        l.setInconsistentIcon(turnoutLIconEditor.getIcon(2));
+        l.setUnknownIcon(turnoutLIconEditor.getIcon(3));
+
+        l.setTurnout(nextTurnoutL.getText());
+
+        setNextLocation(l);
+        putTurnout(l);
+        l.setPositionable(true);
+        moveToFront(l);
+    }

@@ -1,0 +1,13 @@
+    private FieldTable createFixedWidthTable() {
+        return new FixedWidthFieldTable((FixedWidthFieldTableModel) m_tableModel) {
+
+            @Override
+            protected void setEditors(DocDefTableUi ui) {
+                super.setEditors(ui);
+                TableColumn column = ui.getColumnModel().getColumn(2);
+                JComboBox editor = ComponentFactories.comboBoxFactory().newComboBox(
+                                FieldDataType.getVisibleTypes(true));
+                column.setCellEditor(new DefaultCellEditor(editor));
+            }
+        };
+    }

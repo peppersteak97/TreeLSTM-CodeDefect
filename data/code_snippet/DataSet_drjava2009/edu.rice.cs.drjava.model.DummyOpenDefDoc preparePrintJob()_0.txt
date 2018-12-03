@@ -1,0 +1,3 @@
+  public void preparePrintJob() throws BadLocationException, FileMovedException {
+    throw new UnsupportedOperationException("Dummy method");
+  }

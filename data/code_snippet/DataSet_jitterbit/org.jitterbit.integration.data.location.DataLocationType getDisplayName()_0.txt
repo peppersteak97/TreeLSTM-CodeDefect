@@ -1,0 +1,16 @@
+    public String getDisplayName() {
+        switch (this) {
+        case FileShare:
+            return "File Share";
+        case CRBuilderProcess:
+            return "CRBuilder Process";
+        case WebService:
+            return "Web Service";
+        case Dummy0:
+        case Dummy5:
+        case Dummy7:
+            throw new UnsupportedOperationException(
+                            "Cannot use the dummy DataLocationTypes.");
+        default:
+        }
+    }

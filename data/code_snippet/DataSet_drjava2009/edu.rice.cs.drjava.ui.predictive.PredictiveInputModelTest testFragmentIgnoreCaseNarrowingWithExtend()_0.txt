@@ -1,0 +1,32 @@
+  public void testFragmentIgnoreCaseNarrowingWithExtend() {
+    PredictiveInputModel<String> pim = new PredictiveInputModel<String>(true,
+                                                                        new PredictiveInputModel.FragmentStrategy<String>(),
+                                                                        "AboutDialog.java",
+                                                                        "FileOps.java",
+                                                                        "FileOpsTest.java",
+                                                                        "Utilities.java");
+    pim.setMask("F");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+
+    pim.extendMask(" IlEOpS");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F IlEOpS", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+
+    pim.extendMask(".");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F IlEOpS.", pim.getMask());
+    assertEquals(1, pim.getMatchingItems().size());
+
+    pim.extendMask("x");
+    assertEquals("AboutDialog.java", pim.getCurrentItem());
+    assertEquals("F IlEOpS.x", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+
+    pim.extendMask("y");
+    assertEquals("AboutDialog.java", pim.getCurrentItem());
+    assertEquals("F IlEOpS.xy", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+  }

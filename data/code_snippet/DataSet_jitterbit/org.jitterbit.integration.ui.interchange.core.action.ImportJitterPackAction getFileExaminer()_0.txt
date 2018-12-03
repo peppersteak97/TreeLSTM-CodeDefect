@@ -1,0 +1,4 @@
+    private ISelectedFileExaminer getFileExaminer() {
+        IJitterPackerUi packerUi = getPackerFactory().create();
+        return new DefaultFileExaminer(m_view.getWindow(), packerUi);
+    }

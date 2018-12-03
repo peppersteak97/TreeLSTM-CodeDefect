@@ -1,0 +1,4 @@
+  protected final void emit_i2c() {
+    popCharAsInt(T0);
+    pushInt(T0);
+  }

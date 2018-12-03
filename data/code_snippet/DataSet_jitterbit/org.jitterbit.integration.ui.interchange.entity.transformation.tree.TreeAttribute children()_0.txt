@@ -1,0 +1,3 @@
+    public Iterator<ITreeMapperNode> children() {
+        return KongaCollectionUtils.<ITreeMapperNode>getEmptyIterator();
+    }

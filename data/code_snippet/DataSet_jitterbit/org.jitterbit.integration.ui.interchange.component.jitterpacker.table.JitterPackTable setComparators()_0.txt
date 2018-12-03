@@ -1,0 +1,4 @@
+    private void setComparators() {
+        m_table.setClassComparator(Date.class, TableComparators.getDateComparator());
+        m_table.setClassComparator(Version.class, TableComparators.getVersionComparator());
+    }

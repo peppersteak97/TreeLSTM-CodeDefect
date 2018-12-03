@@ -1,0 +1,5 @@
+    public boolean isXmtBusy() {
+        if (controller == null) return false;
+        
+        return (!controller.okToSend());
+    }

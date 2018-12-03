@@ -1,0 +1,1 @@
+  public boolean isBlockCommentStart() { return _type == BLK_CMT_BEG_TYPE; }

@@ -1,0 +1,6 @@
+    private Collection<V> createValueCollection() {
+        if (m_collectionFactory == null) {
+            m_collectionFactory = ICollectionFactory.ARRAY_LIST_FACTORY;
+        }
+        return m_collectionFactory.newCollection(m_initialCollectionCapacity);
+    }

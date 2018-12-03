@@ -1,0 +1,5 @@
+    private void createTimeZoneField() {
+        ResourceBundle res = SchedulePage.getResources();
+        m_timeZones = createTimeZoneCombo(res);
+        addInputField(m_timeZones);
+    }

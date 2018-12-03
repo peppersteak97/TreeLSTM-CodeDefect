@@ -1,0 +1,4 @@
+  private void _new() { 
+    updateStatusField("Creating a new Untitled Document");
+    _model.newFile(); 
+  }

@@ -1,0 +1,3 @@
+    public boolean isUsingDefaultComparators() {
+    	return m_tableSorter.isUsingDefaultComparators();
+    }

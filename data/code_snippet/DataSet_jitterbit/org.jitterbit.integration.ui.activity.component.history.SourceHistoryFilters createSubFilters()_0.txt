@@ -1,0 +1,8 @@
+    private void createSubFilters() {
+        m_timeWindowFilter = new TimeWindowFilterUi<ISourceFileHistoryEntry>();
+        m_fileSizeFilter = new TransferSizeFilterUi<ISourceFileHistoryEntry>(
+                        PackageResources.SourceFilter.FILE_SIZE);
+
+        addFilter(m_timeWindowFilter);
+        addFilter(m_fileSizeFilter);
+    }

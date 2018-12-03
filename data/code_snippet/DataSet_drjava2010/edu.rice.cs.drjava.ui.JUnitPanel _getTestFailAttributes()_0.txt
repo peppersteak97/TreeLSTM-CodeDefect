@@ -1,0 +1,5 @@
+  private static final SimpleAttributeSet _getTestFailAttributes() {
+    SimpleAttributeSet s = new SimpleAttributeSet();
+    s.addAttribute(StyleConstants.Foreground, Color.red);
+    return s;
+  }

@@ -1,0 +1,3 @@
+    public IWizardPage getNextPage() {
+        return null;
+    }

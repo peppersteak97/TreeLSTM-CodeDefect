@@ -1,0 +1,10 @@
+    public EntityType getSystemType() {
+        switch (this) {
+        case Source:
+            return SystemSource;
+        case Target:
+            return SystemTarget;
+        default:
+            return null;
+        }
+    }

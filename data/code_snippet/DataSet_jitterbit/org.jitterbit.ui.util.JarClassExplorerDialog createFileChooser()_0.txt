@@ -1,0 +1,3 @@
+	protected FileChooser createFileChooser() {
+		return new DefaultFileChooser(this);
+	}

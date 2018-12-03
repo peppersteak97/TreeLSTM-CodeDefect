@@ -1,0 +1,4 @@
+    public boolean prepareForForwardNavigation() {
+        updateWizardTitle();
+        return true;
+    }

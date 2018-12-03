@@ -1,0 +1,19 @@
+    void dim() {
+        dimButton.setEnabled(true);
+        if (dimButton.getText().equals ("To metric units")) {
+          dimButton.setText("To English units");
+          dim = true;
+          text1.setText("Distance 1 (scale cm):");
+          text2.setText("Distance 2 (scale cm):");
+          text3.setText("Timer 1 Speed (scale KMH):");
+          text4.setText("Timer 2 Speed (scale KMH):");
+          }
+        else {
+          dimButton.setText("To metric units");
+          dim = false;
+          text1.setText("Distance 1 (scale feet):");
+          text2.setText("Distance 2 (scale feet):");
+          text3.setText("Timer 1 Speed (scale MPH):");
+          text4.setText("Timer 2 Speed (scale MPH):");
+          }
+       }

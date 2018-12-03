@@ -1,0 +1,4 @@
+  public void setTypeNotLoaded() {
+    _showType = true;
+    _type = NOT_LOADED;
+  }

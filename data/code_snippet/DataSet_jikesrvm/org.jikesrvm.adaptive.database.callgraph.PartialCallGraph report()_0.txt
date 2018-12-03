@@ -1,0 +1,18 @@
+  public synchronized void report() {
+    System.out.println("Partial Call Graph");
+    System.out.println("  Number of callsites " + callGraph.size() + ", total weight: " + totalEdgeWeights);
+    System.out.println();
+
+    TreeSet<CallSite> tmp = new TreeSet<CallSite>(new OrderByTotalWeight());
+    tmp.addAll(callGraph.keySet());
+
+    for (final CallSite cs : tmp) {
+      WeightedCallTargets ct = callGraph.get(cs);
+      ct.visitTargets(new WeightedCallTargets.Visitor() {
+        public void visit(RVMMethod callee, double weight) {
+          System.out.println(weight + " <" + cs.getMethod() + ", " + cs.getBytecodeIndex() + ", " + callee + ">");
+        }
+      });
+      System.out.println();
+    }
+  }

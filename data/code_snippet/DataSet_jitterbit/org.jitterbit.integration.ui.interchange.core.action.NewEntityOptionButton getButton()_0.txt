@@ -1,0 +1,3 @@
+    public StaticOptionButton getButton() {
+        return m_button;
+    }

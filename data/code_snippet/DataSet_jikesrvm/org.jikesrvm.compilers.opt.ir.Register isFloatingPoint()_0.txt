@@ -1,0 +1,1 @@
+  public boolean isFloatingPoint() { return (flags & (FLOAT | DOUBLE)) != 0; }

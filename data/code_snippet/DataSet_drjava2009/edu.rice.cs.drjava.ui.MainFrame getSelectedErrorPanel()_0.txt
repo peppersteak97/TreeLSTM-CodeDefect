@@ -1,0 +1,5 @@
+  public ErrorPanel getSelectedErrorPanel() {
+    Component c = _tabbedPane.getSelectedComponent();
+    if (c instanceof ErrorPanel) return (ErrorPanel) c;
+    return null;
+  }

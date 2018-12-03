@@ -1,0 +1,5 @@
+  public void junitEnded() {
+    _lock.startRead();
+    try { for (GlobalModelListener l : _listeners) { l.junitEnded(); } }
+    finally { _lock.endRead(); }
+  }

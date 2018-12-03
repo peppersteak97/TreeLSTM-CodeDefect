@@ -1,0 +1,3 @@
+	public boolean isPartOfPropertyGroup() {
+		return m_propertyGroup != null;
+	}

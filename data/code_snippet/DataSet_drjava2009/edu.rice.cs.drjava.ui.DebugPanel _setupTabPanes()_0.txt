@@ -1,0 +1,19 @@
+  private void _setupTabPanes() {
+
+    _initWatchTable();
+
+    _stackTable = new JTable( new StackTableModel());
+    _stackTable.addMouseListener(new StackMouseAdapter());
+
+    _rightPane.addTab("Stack", new JScrollPane(_stackTable));
+
+    _initThreadTable();
+
+    TableColumn methodColumn;
+    TableColumn lineColumn;
+    methodColumn = _stackTable.getColumnModel().getColumn(0);
+    lineColumn = _stackTable.getColumnModel().getColumn(1);
+    methodColumn.setPreferredWidth(7*lineColumn.getPreferredWidth());
+
+    _initPopup();
+  }

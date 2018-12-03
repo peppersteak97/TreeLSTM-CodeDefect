@@ -1,0 +1,7 @@
+    public synchronized void dispose() {
+        if (!m_disposed) {
+            removeFromEventSystem();
+            removePathPublisher();
+            m_disposed = true;
+        }
+    }

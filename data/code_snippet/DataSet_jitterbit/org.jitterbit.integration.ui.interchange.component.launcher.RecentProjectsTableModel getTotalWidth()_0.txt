@@ -1,0 +1,7 @@
+    static int getTotalWidth() {
+        int w = 0;
+        for (TableColumnMetaData col : COLUMNS) {
+            w += col.getWidth();
+        }
+        return w;
+    }

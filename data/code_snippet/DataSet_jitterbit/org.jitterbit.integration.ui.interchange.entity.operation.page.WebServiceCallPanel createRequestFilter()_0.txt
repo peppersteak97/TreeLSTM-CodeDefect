@@ -1,0 +1,4 @@
+    private IIntegrationEntityFilter createRequestFilter() {
+        return (m_selectedWsCall == null) ? null
+                        : new RequestFilter(m_selectedWsCall);
+    }

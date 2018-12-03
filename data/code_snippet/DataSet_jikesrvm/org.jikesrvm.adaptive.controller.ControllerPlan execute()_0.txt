@@ -1,0 +1,15 @@
+  public boolean execute() {
+    setStatus(ControllerPlan.IN_PROGRESS);
+    ControllerMemory.insert(this);
+
+    if (Controller.options
+        .BACKGROUND_RECOMPILATION ||
+                                  getCompPlan().getMethod().getDeclaringClass().isInBootImage()) {
+      Controller.compilationQueue.insert(getPriority(), this);
+      AOSLogging.logger.recompilationScheduled(getCompPlan(), getPriority());
+      return true;
+    } else {
+      getCompPlan().getMethod().replaceCompiledMethod(null);
+      return true;
+    }
+  }

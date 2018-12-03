@@ -1,0 +1,3 @@
+	public int getFieldListsize(){
+		return m_segment.m_fieldList.size();
+	}

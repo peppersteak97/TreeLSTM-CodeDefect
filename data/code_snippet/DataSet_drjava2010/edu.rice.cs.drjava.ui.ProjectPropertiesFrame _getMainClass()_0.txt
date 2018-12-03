@@ -1,0 +1,6 @@
+  private String _getMainClass(){
+    String mainClass = _model.getMainClass();
+    if(mainClass == null) return "";
+    
+    return mainClass;
+  }

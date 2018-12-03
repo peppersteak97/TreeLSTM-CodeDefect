@@ -1,0 +1,3 @@
+  public final SpaceEffGraphNodeList rootNodes() {
+    return _rootNodes.first();
+  }

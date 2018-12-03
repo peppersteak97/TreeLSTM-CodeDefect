@@ -1,0 +1,8 @@
+    public void dispose() {
+        if (connected) {
+            if (InstanceManager.programmerManagerInstance() != null
+                && InstanceManager.programmerManagerInstance().getServiceModeProgrammer() != null)
+                InstanceManager.programmerManagerInstance().getServiceModeProgrammer().removePropertyChangeListener(this);
+            connected = false;
+        }
+    }

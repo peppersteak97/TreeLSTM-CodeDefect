@@ -1,0 +1,11 @@
+  public void transform() {
+    RegisterOperand[] scalars = new RegisterOperand[size];
+    TypeReference elementType = vmArray.getElementType().getTypeRef();
+    RegisterOperand def = reg.defList;
+    Instruction defI = def.instruction;
+    Operand defaultValue = IRTools.getDefaultOperand(elementType);
+    for (int i = 0; i < size; i++) {
+      scalars[i] = IRTools.moveIntoRegister(elementType, IRTools.getMoveOp(elementType), ir.regpool, defI, defaultValue.copy());
+    }
+    transform2(this.reg, defI, scalars);
+  }

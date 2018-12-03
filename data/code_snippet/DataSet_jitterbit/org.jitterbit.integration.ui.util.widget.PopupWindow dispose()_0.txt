@@ -1,0 +1,7 @@
+    public void dispose() {
+        if (m_openCloseHandler != null) {
+            m_openCloseHandler.unregister();
+            m_openCloseHandler = null;
+        }
+        super.dispose();
+    }

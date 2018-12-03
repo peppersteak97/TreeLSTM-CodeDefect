@@ -1,0 +1,3 @@
+    private void addInputFields() {
+        addInputPanel(m_topPanel);
+    }

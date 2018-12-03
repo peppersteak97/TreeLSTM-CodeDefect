@@ -1,0 +1,54 @@
+  public Process start() throws IOException {
+    _evaluatedWorkDir = StringOps.replaceVariables(_workdir, _props, PropertyMaps.GET_CURRENT);
+    _evaluatedWorkDir = StringOps.unescapeFileName(_evaluatedWorkDir);
+    File dir = null;
+    if (!_evaluatedWorkDir.trim().equals("")) { dir = new File(_evaluatedWorkDir); }
+
+    String[] env = null;
+    if ((_env != null) && (_env.size() > 0)) {
+      env = new String[_env.size()];
+      int i = 0;
+      for(String key: _env.keySet()) {
+        String value = _env.get(key);
+        env[i] = key+"="+value;
+      }
+    }
+
+    if (_cmdline != null) {
+      _evaluatedCmdLine = StringOps.replaceVariables(_cmdline, _props, PropertyMaps.GET_CURRENT);
+      _seqs = StringOps.commandLineToLists(_evaluatedCmdLine);
+    }
+    LOG.log("\t"+edu.rice.cs.plt.iter.IterUtil.toString(_seqs));
+    if (_seqs.size()<1) { throw new IOException("No process to start."); }
+    if (_seqs.size() == 1) {
+      List<List<String>> pipe = _seqs.get(0);
+      if (pipe.size()<1) { throw new IOException("No process to start."); }
+      if (pipe.size() == 1) {
+        List<String> cmds = pipe.get(0);
+        if (cmds.size()<1) { throw new IOException("No process to start."); }
+        String[] cmdarray = new String[cmds.size()];
+        for (int i = 0; i < cmds.size(); ++i) {
+          cmdarray[i] = StringOps.unescapeFileName(cmds.get(i));
+        }
+        return Runtime.getRuntime().exec(cmdarray,env,dir);
+      }
+      ProcessCreator[] creators = new ProcessCreator[pipe.size()];
+      for (int i = 0; i < pipe.size(); ++i) {
+        List<String> cmds = pipe.get(i);
+        if (cmds.size()<1) { throw new IOException("No process to start."); }
+        String[] cmdarray = new String[cmds.size()];
+        for (int j=0; j<cmds.size(); ++j) {
+          cmdarray[j] = StringOps.unescapeFileName(cmds.get(j));
+        }
+        creators[i] = new ProcessCreator(cmdarray, _workdir);
+      }
+      return new ProcessChain(creators);
+    }
+    ProcessCreator[] creators = new ProcessCreator[_seqs.size()];
+    for (int i = 0; i < _seqs.size(); ++i) {
+      List<List<List<String>>> l = new ArrayList<List<List<String>>>();
+      l.add(_seqs.get(i));
+      creators[i] = new GeneralProcessCreator(l, _workdir, _props);
+    }
+    return new ProcessSequence(creators);
+  }

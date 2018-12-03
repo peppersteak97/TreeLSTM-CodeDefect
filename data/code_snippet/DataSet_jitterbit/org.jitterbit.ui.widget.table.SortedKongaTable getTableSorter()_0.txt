@@ -1,0 +1,3 @@
+	public KongaTableSorter getTableSorter() {
+		return m_tableSorter;
+	}

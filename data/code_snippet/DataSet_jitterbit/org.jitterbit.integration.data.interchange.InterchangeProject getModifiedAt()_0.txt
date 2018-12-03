@@ -1,0 +1,9 @@
+    public Date getModifiedAt() {
+        String dateString = getProperty(PROPERTY_MODIFIED_AT);
+        try {
+            return new Date(Long.parseLong(dateString));
+        }
+        catch (NumberFormatException e) {
+            return null;
+        }
+    }

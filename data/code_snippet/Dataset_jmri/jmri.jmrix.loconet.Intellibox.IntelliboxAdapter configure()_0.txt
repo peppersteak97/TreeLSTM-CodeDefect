@@ -1,0 +1,10 @@
+public void configure() {
+    IBLnPacketizer packets = new IBLnPacketizer();
+    packets.connectPort(this);
+
+    configureCommandStation(mCanRead, mProgPowersOff, commandStationName);
+    configureManagers();
+
+    packets.startThreads();
+    jmri.jmrix.loconet.ActiveFlag.setActive();
+}

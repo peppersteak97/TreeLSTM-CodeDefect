@@ -1,0 +1,4 @@
+    void repaintLists() {
+        m_groupListPanel.repaintList();
+        m_memberListPanel.repaintList();
+    }

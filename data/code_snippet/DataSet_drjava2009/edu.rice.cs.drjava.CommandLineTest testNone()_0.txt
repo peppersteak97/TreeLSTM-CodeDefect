@@ -1,0 +1,9 @@
+  public void testNone() {
+    DrJavaRoot.openCommandLineFiles(_mf, new String[0],false);
+    List<OpenDefinitionsDocument> docs = _mf.getModel().getOpenDefinitionsDocuments();
+    assertEquals("Only one document?", 1, docs.size());
+    OpenDefinitionsDocument doc = docs.get(0);
+    assertTrue("Is new document untitled?", doc.isUntitled());
+    _log.log("testNone() completed");
+    
+  }

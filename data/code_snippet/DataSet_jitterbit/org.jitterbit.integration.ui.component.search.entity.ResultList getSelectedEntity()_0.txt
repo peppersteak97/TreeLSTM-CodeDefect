@@ -1,0 +1,5 @@
+    IIntegrationEntityUiDelegate getSelectedEntity() {
+        Object selected = m_list.getSelection().head();
+        return (selected instanceof IIntegrationEntityUiDelegate) ?
+                (IIntegrationEntityUiDelegate) selected : null;
+    }

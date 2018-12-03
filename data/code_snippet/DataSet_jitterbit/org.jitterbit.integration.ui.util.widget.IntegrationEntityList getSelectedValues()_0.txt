@@ -1,0 +1,9 @@
+    public T[] getSelectedValues() {
+        Object[] selected = super.getSelectedValues();
+        T[] delegates = (T[]) new Object[selected.length];
+        int n = 0;
+        for (Object o : selected) {
+            delegates[n++] = (T) o;
+        }
+        return delegates;
+    }

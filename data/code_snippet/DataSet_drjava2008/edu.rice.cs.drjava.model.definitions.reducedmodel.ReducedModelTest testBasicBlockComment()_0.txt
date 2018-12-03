@@ -1,0 +1,19 @@
+  public void testBasicBlockComment() {
+    model1.insertChar('/');
+    model1.insertChar('*');
+    model1.insertChar('*');
+    model1.insertChar('/');
+    model1.move(-4);
+    assertEquals("0.1", FREE, model1.currentToken().getState());
+    assertEquals("0.2", "/*", model1.currentToken().getType());
+    model1.move(2);
+    assertEquals("0.3", FREE, model1.currentToken().getState());
+    assertEquals("0.4", "*/", model1.currentToken().getType());
+    model1.insertChar('/');
+    model1.move(-1);
+    assertEquals("1.1", INSIDE_BLOCK_COMMENT, model1.currentToken().getState());
+    assertEquals("1.3", "/", model1.currentToken().getType());
+    model1.move(1);
+    assertEquals("1.0", FREE, model1.currentToken().getState());
+    assertEquals("1.2", "*/", model1.currentToken().getType());
+  }

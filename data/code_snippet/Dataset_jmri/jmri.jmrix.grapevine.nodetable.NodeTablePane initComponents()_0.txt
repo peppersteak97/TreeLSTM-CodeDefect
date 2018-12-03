@@ -1,0 +1,54 @@
+    public void initComponents() {
+
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        nodesModel = new NodesModel();
+
+        JTable nodesTable = jmri.util.JTableUtil.sortableDataModel(nodesModel);
+
+        ButtonRenderer buttonRenderer = new ButtonRenderer();
+                nodesTable.setDefaultRenderer(JButton.class,buttonRenderer);
+        TableCellEditor buttonEditor = new ButtonEditor(new JButton());
+                nodesTable.setDefaultEditor(JButton.class,buttonEditor);
+        
+        try {
+            jmri.util.com.sun.TableSorter tmodel = ((jmri.util.com.sun.TableSorter)nodesTable.getModel());
+            tmodel.setSortingStatus(nodesModel.STATUSCOL, jmri.util.com.sun.TableSorter.DESCENDING);
+        } catch (ClassCastException e3) {}  
+        nodesTable.setRowSelectionAllowed(false);
+        nodesTable.setPreferredScrollableViewportSize(new java.awt.Dimension(580,80));
+
+        JScrollPane scrollPane = new JScrollPane(nodesTable);
+        add(scrollPane);
+        
+        JPanel p = new JPanel() {
+            public Dimension getMaximumSize() { 
+                int height = getPreferredSize().height;
+                int width = super.getMaximumSize().width;
+                return new Dimension(width, height); }
+        };
+        p.setLayout(new BoxLayout(p,BoxLayout.X_AXIS));
+        JButton b = new JButton(rb.getString("ButtonCheck"));
+        b.setToolTipText(rb.getString("TipCheck"));
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                startPoll();
+            }
+        });
+        p.add(b);
+        status = new JLabel("");
+        p.add(status);
+        
+        p.add(Box.createHorizontalGlue());
+        
+        b = new JButton(rb.getString("ButtonRenumber"));
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                renumber();
+            }
+        });
+        p.add(b);
+
+        add(p);
+        startPoll();
+    }

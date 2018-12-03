@@ -1,0 +1,8 @@
+  public void textGetLine2() throws BadLocationException {
+    final String s = "abcd\n";
+    _doc.insertString(0, s, null);
+    _doc.setCurrentLocation(2);
+    assertEquals("#0.0", 1, _doc.getCurrentLine());
+    _doc.gotoLine(2);
+    assertEquals("#0.1", 2, _doc.getCurrentLine());
+  }

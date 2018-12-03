@@ -1,0 +1,26 @@
+    public NamedIcon getSelectedIcon() {
+        if (!dTree.isSelectionEmpty() && dTree.getSelectionPath()!=null ) {
+            log.debug("getSelectedIcon with "+dTree.getSelectionPath().toString());
+            TreePath path = dTree.getSelectionPath();
+            int level = path.getPathCount();
+            if (level < 3) return null;
+            if (((DefaultMutableTreeNode)path.getPathComponent(1)).getUserObject().equals("resources")) {
+                String name = CatalogTreeModel.resourceRoot;
+                for (int i=2; i<level; i++) {
+                    name = name+"/"
+                        +(String)((DefaultMutableTreeNode)path.getPathComponent(i)).getUserObject();
+                }
+                log.debug("attempt to load resource from "+name);
+                return getIconByName(name);
+            } else if (((DefaultMutableTreeNode)path.getPathComponent(1)).getUserObject().equals("files")) {
+                String name = "file:"+(String)((DefaultMutableTreeNode)path.getPathComponent(2)).getUserObject();
+                for (int i=3; i<level; i++) {
+                    name = name+File.separator
+                        +(String)((DefaultMutableTreeNode)path.getPathComponent(i)).getUserObject();
+                }
+                log.debug("attempt to load file from "+name);
+                return getIconByName(name);
+            } else log.error("unexpected first element on getSelectedIcon: "+path.getPathComponent(1));
+        }
+        return null;
+    }

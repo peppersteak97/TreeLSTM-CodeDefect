@@ -1,0 +1,3 @@
+    void startCollecting() {
+        m_collectedEntities = new ArrayList<IntegrationEntity>();
+    }

@@ -1,0 +1,3 @@
+    protected final IPageEditor getPageEditor() {
+        return getWindow().getPageEditor();
+    }

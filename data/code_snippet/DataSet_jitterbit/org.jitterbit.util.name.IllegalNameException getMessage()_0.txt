@@ -1,0 +1,18 @@
+	public String getMessage() {
+		boolean hasMessage = StringUtils.isNotBlank( m_message );
+		boolean hasAttemptedName = StringUtils.isNotBlank( m_attemptedName );
+		boolean hasIllegalCharacters = StringUtils.isNotBlank( m_illegalCharacters );
+		StringBuffer sb = new StringBuffer();
+		if (hasMessage) {
+			sb.append(m_message);
+		}
+		if (hasAttemptedName) {
+			if (hasMessage && !m_message.endsWith(".")) { 
+            }
+			sb.append(m_attemptedName);
+			if (hasIllegalCharacters) {
+				sb.append(m_illegalCharacters);
+			}
+		}
+		return sb.toString();
+	}

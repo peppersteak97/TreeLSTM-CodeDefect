@@ -1,0 +1,13 @@
+  public boolean isRVMDescriptor() {
+    outer:
+    for (final byte[] test : RVM_CLASS_PREFIXES) {
+      if (test.length > val.length) continue;
+      for (int j = 0; j < test.length; j++) {
+        if (val[j] != test[j]) {
+          continue outer;
+        }
+      }
+      return true;
+    }
+    return false;
+  }

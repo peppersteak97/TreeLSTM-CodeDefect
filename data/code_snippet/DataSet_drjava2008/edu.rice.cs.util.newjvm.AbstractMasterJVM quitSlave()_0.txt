@@ -1,0 +1,19 @@
+  protected final void quitSlave() throws RemoteException {
+    SlaveRemote dyingSlave;
+    synchronized(_masterJVMLock) {
+      if (isStartupInProgress()) {
+        /* There is a slave to be quit, but _slave == null, so we cannot contact it yet. Instead we set _quitOnStartup
+         * and tell the slave to quit when it registers in registerSlave. */
+        _quitOnStartup = true;
+        return;
+      }
+      else if (_slave == null)  {
+        _log.log(this + " called quitSlave() when no slave was running");
+        return;
+      }
+      else {
+        dyingSlave = _slave;
+        _slave = null;
+      }
+    }
+  }

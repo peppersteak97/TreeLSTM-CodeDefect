@@ -1,0 +1,9 @@
+    public void apply() throws IntegrationDataPanelException {
+        try {
+            m_topPanel.applyTo(m_message);
+        }
+        catch (IllegalNameException ex) {
+            throw new IntegrationDataPanelException(ex);
+        }
+        m_detailsPanel.applyTo(m_message);
+    }

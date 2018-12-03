@@ -1,0 +1,7 @@
+    public String getFilename() {
+        String sFilename = super.getFilename();
+        if( !sFilename.toLowerCase().endsWith(".h") ) {
+            sFilename += ".h";
+        }
+        return sFilename;
+    }

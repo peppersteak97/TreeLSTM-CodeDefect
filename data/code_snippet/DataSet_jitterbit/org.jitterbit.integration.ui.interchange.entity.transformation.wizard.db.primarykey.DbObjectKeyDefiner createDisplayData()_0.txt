@@ -1,0 +1,8 @@
+    private OneColumnPanel createDisplayData() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setInsets(8, 10, 0, 0);
+        addKeyInformation(p);
+        addEditButton(p);
+        p.setOpaque(false, true);
+        return p;
+    }

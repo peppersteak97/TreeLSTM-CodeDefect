@@ -1,0 +1,7 @@
+    public void uninstall() {
+        if (m_target != null) {
+            m_target = null;
+            m_keyBindings.remove();
+            m_keyBindings = null;
+        }
+    }

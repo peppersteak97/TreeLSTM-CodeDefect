@@ -1,0 +1,20 @@
+  private boolean _rename() {
+    try {
+      if (!_model.getActiveDocument().fileExists()) return _saveAs();
+      else {
+        File fileToDelete;
+        try { fileToDelete = _model.getActiveDocument().getFile(); } 
+        catch (FileMovedException fme) { return _saveAs(); }
+        boolean toReturn = _model.getActiveDocument().saveFileAs(_saveAsSelector);
+        /** Delete the old file if save was successful. */
+        if (toReturn && ! _model.getActiveDocument().getFile().equals(fileToDelete)) fileToDelete.delete();
+        /** this highlights the document in the navigator */
+        _model.setActiveDocument(_model.getActiveDocument());
+        return toReturn;
+      }
+    }
+    catch (IOException ioe) {
+      _showIOError(ioe);
+      return false;
+    }
+  }  

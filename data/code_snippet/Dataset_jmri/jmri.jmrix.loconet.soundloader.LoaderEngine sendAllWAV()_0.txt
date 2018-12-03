@@ -1,0 +1,8 @@
+    void sendAllWAV() throws DelayException {
+        notify(res.getString("EngineSendWav"));
+        for (int i=1; i<spjFile.numHeaders(); i++) {
+            if (spjFile.getHeader(i).isWAV()) {
+                SendOneWav(i);
+            }
+        }
+    }

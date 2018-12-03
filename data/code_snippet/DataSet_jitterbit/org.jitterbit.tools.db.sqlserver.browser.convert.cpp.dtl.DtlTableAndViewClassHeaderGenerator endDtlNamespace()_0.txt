@@ -1,0 +1,6 @@
+    private void endDtlNamespace() {
+        addLine();
+        addLine("} 
+        addLine();
+        addLine();
+    }

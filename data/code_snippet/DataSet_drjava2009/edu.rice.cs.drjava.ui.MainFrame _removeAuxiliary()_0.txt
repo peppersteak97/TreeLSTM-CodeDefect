@@ -1,0 +1,6 @@
+  private void _removeAuxiliary() {
+    Runnable1<OpenDefinitionsDocument> op =  new Runnable1<OpenDefinitionsDocument>() { 
+      public void run(OpenDefinitionsDocument d) { _model.removeAuxiliaryFile(d); }
+    };
+    _processDocs(_model.getDocumentNavigator().getSelectedDocuments(), op);
+  }

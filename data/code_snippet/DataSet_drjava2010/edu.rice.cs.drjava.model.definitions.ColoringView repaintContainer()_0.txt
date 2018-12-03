@@ -1,0 +1,4 @@
+  private void repaintContainer() {
+    Container c = getContainer();
+    if (c != null) c.repaint();
+  }

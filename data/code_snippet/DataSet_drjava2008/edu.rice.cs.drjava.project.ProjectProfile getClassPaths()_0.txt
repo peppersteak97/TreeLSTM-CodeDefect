@@ -1,0 +1,1 @@
+  public Iterable<File> getClassPaths() { return _classPathFiles; }

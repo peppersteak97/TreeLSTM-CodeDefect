@@ -1,0 +1,5 @@
+    private void init() {
+        m_queueDeleter = new OperationQueueDeleter(this);
+        createTable();
+        createActions();
+    }

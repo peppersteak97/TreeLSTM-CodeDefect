@@ -1,0 +1,25 @@
+  public void autoImport() {
+    java.util.Vector<String> classes = DrJava.getConfig().getSetting(OptionConstants.INTERACTIONS_AUTO_IMPORT_CLASSES);
+    final StringBuilder sb = new StringBuilder();
+    
+    for(String s: classes) {
+      String name = s.trim();
+      if (s.length() > 0) {
+        sb.append("import ");
+        sb.append(s.trim());
+        sb.append("; ");
+      }
+    }    
+    if (DrJava.getConfig().getSetting(OptionConstants.DEBUG_AUTO_IMPORT).booleanValue()) {
+      for(String s: _autoImportSet) {
+        sb.append("import ");
+        sb.append(s);
+        sb.append("; ");
+      }
+    }
+
+    if (sb.length() > 0) {
+      interpret(sb.toString());
+      _document.insertBeforeLastPrompt("Auto-import: "+sb.toString() + "\n", InteractionsDocument.DEBUGGER_STYLE);
+    }
+  }

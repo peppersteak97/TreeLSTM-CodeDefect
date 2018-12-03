@@ -1,0 +1,12 @@
+    private void sanityCheckOfStructure() {
+        if (!m_document.isUnknownDoc()) {
+            TextStructure ts = m_document.getDataStructure();
+            if (ts instanceof SimpleTextStructure) {
+                m_textStructure = (SimpleTextStructure) ts;
+            }
+            else {
+                throw new IllegalArgumentException("document does not have "
+                                + "a simple structure.");
+            }
+        }
+    }

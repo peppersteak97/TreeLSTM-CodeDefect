@@ -1,0 +1,11 @@
+    private void createActions() {
+        m_decorateInvalidItemsSwitch = new DecorateInvalidItemsAction();
+        setDropdownActions(new Action[] { 
+                        m_decorateInvalidItemsSwitch,
+                        new DecorateDeployDirtyAction(),
+                        /*
+                        null,
+                        new ExpandAllAction(),
+                        new CollapseAllAction()
+                        */ }); 
+    }

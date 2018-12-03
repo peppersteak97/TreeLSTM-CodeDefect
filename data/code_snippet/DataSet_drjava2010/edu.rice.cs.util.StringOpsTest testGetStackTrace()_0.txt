@@ -1,0 +1,9 @@
+  public void testGetStackTrace() {
+    final String trace = "hello";
+    Throwable t = new Throwable() {
+      public void printStackTrace(PrintWriter w) {
+        w.print(trace);
+      }
+    };
+    assertEquals("Should have returned the correct stack trace!", trace, StringOps.getStackTrace(t));
+  }

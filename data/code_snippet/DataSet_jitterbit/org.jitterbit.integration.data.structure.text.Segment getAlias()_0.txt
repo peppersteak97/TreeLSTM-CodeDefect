@@ -1,0 +1,3 @@
+    public Segment getAlias() {
+        return m_alias;
+    }

@@ -1,0 +1,4 @@
+    public boolean isFromNewSerialSensor() {
+        if ( (getElement(3) & 0x70) != 0x40) return false;
+        return true;
+    }

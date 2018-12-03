@@ -1,0 +1,5 @@
+    private void createIgnoreFirstField() {
+        String label = PackageResources.File.IGNORE_FIRST;
+        m_ignoreFirst = InputFieldFactory.getIntegerInputField(label, label, 0,
+                        Integer.MAX_VALUE, 4, true);
+    }

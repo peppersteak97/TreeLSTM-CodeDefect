@@ -1,0 +1,1 @@
+  public boolean isActive() { return _active; }

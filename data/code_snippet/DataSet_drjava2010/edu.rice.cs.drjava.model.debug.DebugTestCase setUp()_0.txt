@@ -1,0 +1,6 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    _log.log("Setting up (DebugTestCase)" + this);
+    _debugger = _model.getDebugger();
+    assertNotNull("Debug Manager should not be null", _debugger);
+  }

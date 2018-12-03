@@ -1,0 +1,42 @@
+    private void layoutComponents() {
+        Insets mainCaptionInsets = new Insets(5, 5, 20, 5);
+        Insets captionInsets = new Insets(5, 5, 2, 5);
+        Insets itemInsets = new Insets(3, 5, 15, 5);
+
+        OneColumnPanel input = new OneColumnPanel();
+        input.setFill(OneColumnPanel.NONE);
+
+        input.setInsets(mainCaptionInsets);
+        input.add(m_mainCaptionLabel);
+        input.setFill(OneColumnPanel.HORIZONTAL);
+        
+        if (m_requiredItemsExist) {
+            input.setInsets(captionInsets);
+            input.add(m_requiredCaptionLabel);
+            input.setInsets(itemInsets);
+            input.setWeightX(1.0);
+            input.add(m_requiredItemsList);
+            input.setWeightX(0.0);
+        }
+        
+        if (m_dirtyItemsExist) {
+            input.setInsets(captionInsets);
+            input.add(m_dirtyCaptionLabel);
+            input.setInsets(itemInsets);
+            input.setWeightX(1.0);
+            input.add(createTableScroll());
+            input.setWeightX(0.0);
+        }
+        
+        input.add(m_questionLabel);
+        
+        input.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
+        JPanel cp = IntegrationUiStyleSheet.getDialogContentPane();
+        input.addToParent(cp, BorderLayout.CENTER);
+        
+        m_buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 20, 10));
+        cp.add(m_buttonPanel, BorderLayout.SOUTH);
+        
+        setContentPane(cp);
+    }

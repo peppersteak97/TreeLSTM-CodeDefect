@@ -1,0 +1,18 @@
+  protected AbstractAction[] makePopupMenuActions() {
+    AbstractAction[] acts = new AbstractAction[] {
+      new AbstractAction("Go to") {
+        public void actionPerformed(ActionEvent e) {
+          goToRegion();
+        }
+      },
+        
+        new AbstractAction("Remove") {
+          public void actionPerformed(ActionEvent e) {
+            for (BrowserDocumentRegion r: getSelectedRegions()) {
+              _model.getBrowserHistoryManager().remove(r);
+            }
+          }
+        }
+    };
+    return acts;
+  }

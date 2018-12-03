@@ -1,0 +1,5 @@
+  public void setActionsDisabled() {
+    _nextInteractionAction.setEnabled(false);
+    _prevInteractionAction.setEnabled(false);
+    _executeInteractionAction.setEnabled(false);
+  }

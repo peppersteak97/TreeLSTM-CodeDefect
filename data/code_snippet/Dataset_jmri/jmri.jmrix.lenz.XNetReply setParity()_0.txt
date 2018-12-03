@@ -1,0 +1,11 @@
+    public void setParity() {
+                int len = getNumDataElements();   
+                int chksum = 0x00;  /* the seed */
+
+                int loop;
+
+        for(loop = 0; loop < len-1; loop++) {  
+                chksum ^= getElement(loop);
+        }
+                setElement(len-1, chksum&0xFF);
+    }

@@ -1,0 +1,3 @@
+  public ConsoleDocument getConsoleDocument() {
+    throw new UnsupportedOperationException("Tried to call getConsoleDocument on a Dummy");
+  }

@@ -1,0 +1,3 @@
+    public List<IntegrationEntity> getEntities() {
+        return new ArrayList<IntegrationEntity>(m_entities);
+    }

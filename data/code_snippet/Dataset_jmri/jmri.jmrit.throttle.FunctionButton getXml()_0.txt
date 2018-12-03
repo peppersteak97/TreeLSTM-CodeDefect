@@ -1,0 +1,10 @@
+    public Element getXml()
+    {
+        Element me = new Element("FunctionButton");
+        me.setAttribute("id", String.valueOf(this.getIdentity()));
+        me.setAttribute("text", this.getText());
+        me.setAttribute("isLockable", String.valueOf(this.getIsLockable()));
+        me.setAttribute("isVisible", String.valueOf(this.getDisplay()));
+        me.setAttribute("fontSize", String.valueOf(this.getFont().getSize()));
+        return me;
+    }

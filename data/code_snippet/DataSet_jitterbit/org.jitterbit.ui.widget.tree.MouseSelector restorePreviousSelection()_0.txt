@@ -1,0 +1,15 @@
+	private void restorePreviousSelection() {
+		if( m_previousPaths != null ) {
+			m_tree.blockSelectionEvents();
+			m_bInternalEventsTriggered = true;
+			
+			for( int i = 0, n = m_previousPaths.length; i < n; ++i ) {
+				m_tree.makePathSelected(m_previousPaths[i], i != 0);
+			}
+			
+			m_bInternalEventsTriggered = false;
+			m_tree.unblockSelectionEvents();
+			
+			m_tree.repaint();
+		}
+	}	

@@ -1,0 +1,17 @@
+    private void layoutComponents() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setFill(OneColumnPanel.NONE);
+        p.setInsets(2, 2, 5, 2);
+        String main_caption = PackageResources.ObjectSelectionPage.List.CAPTION;
+        if (main_caption != null && main_caption.length() > 0) {
+            p.add(IntegrationUiStyleSheet.InfoTextHeader.makeJLabel(main_caption));
+        }
+        if (SCHEMAS_SUPPORTED) {
+            p.add(m_schemaSwitch);
+        }
+        p.add(m_objectSelector.getDisplayer());
+        m_ui = InvisiblePanel.newPanel();
+        p.addToParent(m_ui, null);
+        p.setOpaque(false, false);
+        m_ui.setOpaque(false);
+    }

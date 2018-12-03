@@ -1,0 +1,9 @@
+    String getNameString() {
+        String name;
+        if (mHead == null) name = rb.getString("NotConnected");
+        else if (mHead.getUserName() == null)
+            name = mHead.getSystemName();
+        else
+            name = mHead.getUserName()+" ("+mHead.getSystemName()+")";
+        return name;
+    }

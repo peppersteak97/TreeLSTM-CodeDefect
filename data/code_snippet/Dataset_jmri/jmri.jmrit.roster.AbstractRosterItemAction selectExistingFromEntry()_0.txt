@@ -1,0 +1,17 @@
+    boolean selectExistingFromEntry() {
+        JComboBox selections = Roster.instance().fullRosterComboBox();
+        int retval = JOptionPane.showOptionDialog(mParent,
+                                                  "Select one roster entry", "Select roster entry",
+                                                  0, JOptionPane.INFORMATION_MESSAGE, null,
+                                                  new Object[]{"Cancel", "OK", selections}, null );
+        log.debug("Dialog value "+retval+" selected "+selections.getSelectedIndex()+":\""
+                  +selections.getSelectedItem()+"\"");
+
+        mFromID = (String) selections.getSelectedItem();
+
+        mFromEntry = Roster.instance().entryFromTitle(mFromID);
+        mFromFilename = Roster.instance().fileFromTitle(mFromID);
+        mFullFromFilename = LocoFile.getFileLocation()+mFromFilename;
+        log.debug(" from resolves to \""+mFromFilename+"\", \""+mFullFromFilename+"\"");
+        return true;
+    }

@@ -1,0 +1,12 @@
+  private long readLong() {
+    if (VM.VerifyAssertions) VM._assert(bcIndex <= bcLength);
+    int msb = bcodes[bcIndex++] << (3 * BITS_IN_BYTE);
+    msb |= (bcodes[bcIndex++] & 0xFF) << (2 * BITS_IN_BYTE);
+    msb |= (bcodes[bcIndex++] & 0xFF) << BITS_IN_BYTE;
+    msb |= (bcodes[bcIndex++] & 0xFF);
+    int lsb = bcodes[bcIndex++] << (3 * BITS_IN_BYTE);
+    lsb |= (bcodes[bcIndex++] & 0xFF) << (2 * BITS_IN_BYTE);
+    lsb |= (bcodes[bcIndex++] & 0xFF) << BITS_IN_BYTE;
+    lsb |= (bcodes[bcIndex++] & 0xFF);
+    return (((long)msb) << 32) | (lsb & 0xFFFFFFFFL);
+  }

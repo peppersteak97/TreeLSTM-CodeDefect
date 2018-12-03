@@ -1,0 +1,18 @@
+    private JComponent createCenterDisplay() {
+        JLayeredPane pane = new JLayeredPane();
+        pane.setLayout(null);
+        
+        JLabel iconLabel = createBoundedIconLabel();
+        pane.add(iconLabel, JLayeredPane.DEFAULT_LAYER);
+        
+        JLabel versionNumberLabel = createBoundedVersionNumberLabel();
+        pane.add(versionNumberLabel, JLayeredPane.PALETTE_LAYER);
+        
+        /*
+        JLabel versionLabel = createBoundedVersionLabel(versionNumberLabel.getBounds().x);
+        pane.add(versionLabel, JLayeredPane.PALETTE_LAYER);
+        */
+        
+        pane.setPreferredSize(iconLabel.getSize());
+        return pane;
+    }

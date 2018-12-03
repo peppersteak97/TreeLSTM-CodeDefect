@@ -1,0 +1,7 @@
+    private void createEmailMessageControl() {
+        m_messageControl = new EntitySelectionControl(
+                        m_page,
+                        EntityType.EmailMessage,
+                        null,
+                        PackageResources.PostOperation.MESSAGE);
+    }

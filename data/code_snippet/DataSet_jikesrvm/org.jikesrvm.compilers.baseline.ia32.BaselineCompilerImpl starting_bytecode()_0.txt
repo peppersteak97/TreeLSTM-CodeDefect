@@ -1,0 +1,1 @@
+  protected final void starting_bytecode() {}

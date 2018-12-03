@@ -1,0 +1,3 @@
+    boolean isRestored() {
+        return m_isRestored;
+    }

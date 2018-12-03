@@ -1,0 +1,31 @@
+  public void testLanguageLevelJUnitErrorLine() throws Exception {
+    debug.logStart();
+    _m = new JUnitErrorModel(new JUnitError[0], _model, false);
+    final OpenDefinitionsDocument doc = setupDocument(LANGUAGE_LEVEL_TEST);
+    final File file = new File(_tempDir, "MyTest.dj0");
+    saveFile(doc, new FileSelector(file));
+    
+    JUnitTestListener listener = new JUnitTestListener();
+    _model.addListener(listener);
+    
+    
+    testStartCompile(doc);
+    
+    listener.waitCompileDone();
+    
+    if (_model.getCompilerModel().getNumErrors() > 0) fail("compile failed: " + getCompilerErrorString());
+    listener.checkCompileOccurred();
+    
+    listener.runJUnit(doc);
+    
+    listener.assertJUnitStartCount(1);
+    
+    _model.getJUnitModel().getJUnitDocument().remove(0, _model.getJUnitModel().getJUnitDocument().getLength() - 1);
+    
+    _m = _model.getJUnitModel().getJUnitErrorModel();
+    
+    assertEquals("the test results should have one failure "+_m.getNumErrors(), 1, _m.getNumErrors());
+    
+    assertEquals("the error line should be line number 2", 2, _m.getError(0).lineNumber());
+    debug.logEnd();
+  }

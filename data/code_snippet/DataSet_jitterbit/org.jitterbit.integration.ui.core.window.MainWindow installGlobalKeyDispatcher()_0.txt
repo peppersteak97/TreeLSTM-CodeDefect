@@ -1,0 +1,15 @@
+    private void installGlobalKeyDispatcher() {
+        m_globalKeyDispatcher = new MainWindowGlobalKeyDispatcher(this);
+        m_globalKeyDispatcher.install();
+        addGlobalKeyDispatcher(KeyUtils.getCtrlDown(KeyEvent.VK_F10), new IWindowKeyDispatcher() {
+
+            public boolean dispatch(KeyEvent evt, IApplicationWindow window) {
+                System.gc();
+                return false;
+            }
+
+            public String getId() {
+                return "garbage collector";
+            }
+        });
+    }

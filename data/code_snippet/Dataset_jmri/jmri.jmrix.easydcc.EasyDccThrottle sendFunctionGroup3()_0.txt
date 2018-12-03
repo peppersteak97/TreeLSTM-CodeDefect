@@ -1,0 +1,20 @@
+    protected void sendFunctionGroup3() {
+
+        byte[] result = jmri.NmraPacket.function9Through12Packet(address.getNumber(), 
+                                         address.isLongAddress(),
+                                         getF9(), getF10(), getF11(), getF12());
+
+        EasyDccMessage m = new EasyDccMessage(4+3*result.length);
+        m.setElement(i++, 'S');
+        m.setElement(i++, ' ');
+        m.setElement(i++, '0');
+        m.setElement(i++, '1');
+
+        for (int j = 0; j<result.length; j++) {
+            m.setElement(i++, ' ');
+            m.addIntAsTwoHex(result[j]&0xFF,i);
+            i = i+2;
+        }
+
+        EasyDccTrafficController.instance().sendEasyDccMessage(m, null);
+    }

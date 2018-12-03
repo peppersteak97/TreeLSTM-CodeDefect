@@ -1,0 +1,14 @@
+    private Set<Key> getRequiredObjects() {
+        Set<Key> deps = null;
+        for (Key k : m_initialObjects) {
+            IntegrationEntity entity = k.getObject().getDataObject();
+            Set<Key> newDeps = getRequiredObjects(entity);
+            if (newDeps != null) {
+                if (deps == null) {
+                    deps = new HashSet<Key>();
+                }
+                deps.addAll(newDeps);
+            }
+        }
+        return deps;
+    }

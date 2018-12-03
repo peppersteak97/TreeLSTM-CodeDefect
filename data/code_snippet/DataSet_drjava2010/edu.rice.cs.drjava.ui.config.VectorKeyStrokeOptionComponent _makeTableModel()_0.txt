@@ -1,0 +1,18 @@
+  protected AbstractTableModel _makeTableModel() {
+    return new AbstractTableModel() {
+      public int getRowCount() { return _data.size(); }
+      public int getColumnCount() { return 1; }
+      public Object getValueAt(int row, int col) {
+        switch(col) {
+          case 0: return KeyStrokeOption.formatKeyStroke(_data.get(row));
+        }
+        throw new IllegalArgumentException("Illegal column");
+      }
+      public Class<?> getColumnClass(int col) {
+        switch(col) {
+          case 0: return String.class;
+        }
+        throw new IllegalArgumentException("Illegal column");
+      }
+    };
+  }

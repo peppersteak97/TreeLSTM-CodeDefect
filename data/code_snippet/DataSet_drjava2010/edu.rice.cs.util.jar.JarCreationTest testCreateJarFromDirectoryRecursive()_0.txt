@@ -1,0 +1,75 @@
+  public void testCreateJarFromDirectoryRecursive() {
+    File dir = new File("temp_dir");
+    dir.mkdir();
+    File dir1 = new File(dir, "dir");
+    dir1.mkdir();
+    File[] files = new File[]{new File(dir, "test.java"),
+                              new File(dir, "test.class"),
+                              new File(dir, "p1.tmp"),
+                              new File(dir1, "test1.java"),
+                              new File(dir1, "out.class"),
+                              new File(dir1, "out.out.out.class"),
+                              new File(dir1, "that.java")};
+    dir.deleteOnExit();
+    dir1.deleteOnExit();
+    for(int i = 0; i < files.length; i++)
+      files[i].deleteOnExit();
+    try {
+
+      PrintWriter pw = null;
+      for (int i = 0; i < files.length; i++) {
+        pw = new PrintWriter(new FileOutputStream(files[i]));
+        pw.write(files[i].getName());
+        pw.close();
+      }
+
+      File f = new File("test~.jar");
+      f.deleteOnExit();
+      JarBuilder jb = new JarBuilder(f);
+      jb.addDirectoryRecursive(dir, "");
+      jb.close();
+
+      testArchive(f,
+              new TreeSet<String>(Arrays.asList(new String[]{files[0].getName(),
+                                                             files[1].getName(),
+                                                             files[2].getName(),
+                                                             "dir/" + files[3].getName(),
+                                                             "dir/" + files[4].getName(),
+                                                             "dir/" + files[5].getName(),
+                                                             "dir/" + files[6].getName()})));
+
+      jb = new JarBuilder(f);
+      jb.addDirectoryRecursive(dir, "", new FileFilter() {
+        public boolean accept(File pathname) {
+          return pathname.getName().endsWith(".class") || pathname.isDirectory();
+        }
+      });
+      jb.close();
+
+      testArchive(f,
+              new TreeSet<String>(Arrays.asList(new String[]{files[1].getName(),
+                                                             "dir/" + files[4].getName(),
+                                                             "dir/" + files[5].getName()})));
+
+      jb = new JarBuilder(f);
+      jb.addDirectoryRecursive(dir, "", new FileFilter() {
+        public boolean accept(File pathname) {
+          return pathname.getName().endsWith(".java") || pathname.isDirectory();
+        }
+      });
+      jb.close();
+
+      testArchive(f,
+              new TreeSet<String>(Arrays.asList(new String[]{files[0].getName(),
+                                                             "dir/" + files[3].getName(),
+                                                             "dir/" + files[6].getName()})));
+
+    }
+    catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+    catch (IOException e) {
+      e.printStackTrace();
+    }
+
+  }

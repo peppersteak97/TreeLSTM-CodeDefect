@@ -1,0 +1,3 @@
+	protected Color getTextColor() { 
+		return m_rect.getTextColor(); 
+	}

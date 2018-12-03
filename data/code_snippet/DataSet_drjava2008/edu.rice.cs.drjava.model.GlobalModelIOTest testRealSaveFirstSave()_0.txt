@@ -1,0 +1,26 @@
+  public void testRealSaveFirstSave() throws BadLocationException, IOException {
+    OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    final File file = tempFile();
+    
+    TestListener listener = new TestListener() {
+      public void fileSaved(OpenDefinitionsDocument doc) {
+        File f = null;
+        try { f = doc.getFile(); }
+        try {
+          assertEquals("saved file name", file.getCanonicalFile(), f.getCanonicalFile());
+          synchronized(this) { saveCount++; }
+        }
+        catch (IOException ioe) { fail("could not get canonical file"); }
+      }
+    };
+    
+    _model.addListener(listener);
+    saveFile(doc, new FileSelector(file));
+    listener.assertSaveCount(1);
+    assertModified(false, doc);
+    assertContents(FOO_TEXT, doc);
+    
+    assertEquals("contents of saved file", FOO_TEXT, IOUtil.toString(file));
+    
+    _log.log("testRealSaveFirstSave completed");
+  }

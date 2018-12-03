@@ -1,0 +1,15 @@
+    private void layoutComponents() {
+        m_frame.setLayout(new BorderLayout());
+        final JComponent south = createSouthComponent();
+        IUiDecor decor = new IUiDecor() {
+
+            public void display(Component display) {
+                south.add(display);
+            }
+        };
+        MainWindowProcessDisplayer pd = MainWindowProcessDisplayer.getDisplayer(m_appWin);
+        IUiProvider ui = pd.getUiDecorator();
+        ui.decorate(decor);
+        m_frame.getContentPane().add(south, BorderLayout.SOUTH);
+        south.setBackground(IntegrationUiStyleSheet.NEUTRAL_BACKGROUND);
+    }

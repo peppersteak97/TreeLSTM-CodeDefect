@@ -1,0 +1,10 @@
+    private void createComponents() {
+        m_displayer = new JPanel();
+        m_includeAll = ComponentFactories.checkBoxFactory().newCheckBox(
+                        PackageResources.TypeSelector.ALL, true);
+        m_includeAll.addActionListener(this);
+
+        m_typeSelectionPanel = new EntityTypeSelectionPanel();
+        m_typeSelectionPanel.addEntityTypeSelectionListener(this);
+        m_typeSelectionPanel.setEnabled(false);
+    }

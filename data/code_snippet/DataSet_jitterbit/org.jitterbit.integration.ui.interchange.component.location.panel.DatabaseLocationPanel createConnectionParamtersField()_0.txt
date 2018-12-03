@@ -1,0 +1,8 @@
+    private void createConnectionParamtersField() {
+        String paramsLabel = PackageResources.Database.Labels.ADDITIONAL_PARAMETERS;
+        m_paramsField = InputFieldFactory.getTextInputField(
+                        paramsLabel, 
+                        paramsLabel, 
+                        50, 
+                        true);
+    }

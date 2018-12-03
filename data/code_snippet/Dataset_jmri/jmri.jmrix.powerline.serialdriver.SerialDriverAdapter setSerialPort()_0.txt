@@ -1,0 +1,14 @@
+    protected void setSerialPort() throws javax.comm.UnsupportedCommOperationException {
+        
+        String opt1 = getCurrentOption1Setting();
+        if (opt1.equals("CM11")) {
+        } else if (opt1.equals("CP290")) { 
+            baud = 600;
+        }
+        
+        activeSerialPort.setSerialPortParams(baud, SerialPort.DATABITS_8,
+                                SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+
+
+        activeSerialPort.setFlowControlMode(flow);
+    }

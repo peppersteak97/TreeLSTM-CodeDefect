@@ -1,0 +1,6 @@
+  protected void setUp() throws Exception {
+    super.setUp();
+    _notifier = new GlobalEventNotifier();
+    _doc = new DefinitionsDocument(_notifier);
+    DrJava.getConfig().resetToDefaults();
+  }

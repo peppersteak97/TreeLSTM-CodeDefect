@@ -1,0 +1,5 @@
+    boolean buttonLive() {
+        if (!getControlling()) return false;
+        if (getForceControlOff()) return false;
+        return true;        
+    }

@@ -1,0 +1,63 @@
+    void setNodeParameters() {
+        curNode.setPulseWidth(pulseWidth);
+        switch (nodeType) {
+            case SerialNode.MICRO:
+                case SerialNode.PICO:
+                    case SerialNode.MEGA:
+                int numSet = 0;
+                for (int j=0;j<96;j++) {
+                    if ( curNode.isSearchLightBit(j) ) {
+                        if(!firstSearchlight[j]) {
+                            curNode.clear2LeadSearchLight(j);
+                            j ++;
+                        }
+                        else {
+                            j ++;
+                        }
+                    }
+                }
+                for (int i=0;i<96;i++) {
+                    if ( firstSearchlight[i] ) {
+                        if ( !curNode.isSearchLightBit(i) ) {
+                            curNode.set2LeadSearchLight(i);
+                        }
+                        numSet ++;
+                    }
+                }
+                if (numSet != num2LSearchLights) {
+                    log.error("Inconsistent numbers of 2-lead searchlights. numSet = "+
+                            Integer.toString(numSet)+", num2LSearchLights = "+
+                            Integer.toString(num2LSearchLights) );
+                }
+                break;
+            case SerialNode.TERA:
+                curNode.setNumBitsPerCard(bitsPerCard);
+                int numInput = 0;
+                int numOutput = 0;
+                for (int i=0;i<64;i++) {
+                    if ( "No Tab".equals(cardType[i]) ) {
+                        curNode.setCardTypeByAddress(i,SerialNode.NO_CARD);
+                    }
+                    else if ( "Input Tab".equals(cardType[i]) ) {
+                        curNode.setCardTypeByAddress(i,SerialNode.INPUT_CARD);
+                        numInput ++;
+                    }
+                    else if ( "Output Tab".equals(cardType[i]) ) {
+                        curNode.setCardTypeByAddress(i,SerialNode.OUTPUT_CARD);
+                        numOutput ++;
+                    }
+                    else {
+                        log.error("Unexpected Tab type - "+cardType[i]);
+                    }
+                }
+                if ( numCards != (numOutput+numInput) ) {
+                    log.error("Inconsistent numbers of cards - setNodeParameters.");
+                }
+                break;
+            default:
+                log.error("Unexpected node type in setNodeParameters- "+
+                                            Integer.toString(nodeType));
+                break;
+        }
+        SerialTrafficController.instance().initializeSerialNode(curNode);
+    }

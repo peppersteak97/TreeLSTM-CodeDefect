@@ -1,0 +1,5 @@
+    static public JComponent getJSpinner() {
+        try {
+            return new JSpinner();
+        } catch (Throwable e) { return null; }  
+    }

@@ -1,0 +1,13 @@
+  public void testInterpretAppletQuotedEscapedArgs() {
+    _log.log("testInterpretAppletQuotedEscapedArgs started");
+    _assertAppletTransformation("applet Foo \"a \\\" b\"", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"a \\\" b\"), 400, 300);");
+    _assertAppletTransformation("applet Foo \"\\'\"", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"\\\\'\"), 400, 300);");
+    _assertAppletTransformation("applet Foo \"\\\\\"", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"\\\\\"), 400, 300);");
+    _assertAppletTransformation("applet Foo \"\\\" \\d\"", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"\\\" \\\\d\"), 400, 300);");
+    /*    _assertAppletTransformation("applet Foo \"\\n\"", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"\\n\"), 400, 300);");
+     _assertAppletTransformation("applet Foo \"\\t\"", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"\\t\"), 400, 300);");
+     _assertAppletTransformation("applet Foo \"\\r\"", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"\\r\"), 400, 300);");
+     _assertAppletTransformation("applet Foo \"\\f\"", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"\\f\"), 400, 300);");
+     _assertAppletTransformation("applet Foo \"\\b\"", "edu.rice.cs.plt.swing.SwingUtil.showApplet(new Foo(\"\\b\"), 400, 300);"); */
+    _log.log("testInterpretAppletQuotedEscapedArgs started");
+  }

@@ -1,0 +1,8 @@
+    public FtpTransferType getTransferType() {
+        for (Map.Entry<JRadioButton, FtpTransferType> e : m_buttons.entrySet()) {
+            if (e.getKey().isSelected()) {
+                return e.getValue();
+            }
+        }
+        return FtpTransferType.Binary;
+    }

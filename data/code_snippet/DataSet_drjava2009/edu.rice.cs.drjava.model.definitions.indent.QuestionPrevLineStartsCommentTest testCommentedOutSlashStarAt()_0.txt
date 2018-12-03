@@ -1,0 +1,4 @@
+  public void testCommentedOutSlashStarAt() throws javax.swing.text.BadLocationException {
+    _setDocText(example3);
+    assertEquals(false, rule2.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+  }

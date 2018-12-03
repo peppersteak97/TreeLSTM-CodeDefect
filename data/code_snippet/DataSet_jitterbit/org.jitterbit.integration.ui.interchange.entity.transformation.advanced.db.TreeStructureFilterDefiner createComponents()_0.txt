@@ -1,0 +1,8 @@
+    private void createComponents() {
+        m_captionLabel = IntegrationUiStyleSheet.DefaultText.makeJLabel(
+                        PackageResources.TreeFilterDefiner.Labels.CAPTION);
+        m_rootLabel = IntegrationUiStyleSheet.AdminHint.makeJLabel(
+                        PackageResources.TreeFilterDefiner.getRootLabel(m_rootName));
+        String where = s_lastWhereClauses.get(m_dbStructure);
+        m_whereClauseArea = ComponentFactories.textFactory().newTextArea(where, 5, 40);
+    }

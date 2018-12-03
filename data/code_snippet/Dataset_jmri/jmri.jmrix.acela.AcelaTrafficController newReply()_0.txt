@@ -1,0 +1,3 @@
+    protected AbstractMRReply newReply() { 
+    	return new AcelaReply();
+    }

@@ -1,0 +1,5 @@
+    JPanel getModePane() {
+        if (modePane== null) modePane = new jmri.ProgDeferredServiceModePane();
+        log.debug("invoked getModePane");
+        return modePane;
+    }

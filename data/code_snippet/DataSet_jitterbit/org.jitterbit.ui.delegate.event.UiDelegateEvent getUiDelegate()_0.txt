@@ -1,0 +1,3 @@
+	public IKongaUiDelegate getUiDelegate() {
+		return isSingleDelegateEvent() ? m_liUiDelegates.get(0) : null;
+	}

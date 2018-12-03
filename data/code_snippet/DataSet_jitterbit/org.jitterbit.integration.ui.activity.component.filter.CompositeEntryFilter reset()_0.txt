@@ -1,0 +1,5 @@
+    public void reset() {
+        for (IActivityEntryFilterUi<T> f : m_filters) {
+            f.reset();
+        }
+    }

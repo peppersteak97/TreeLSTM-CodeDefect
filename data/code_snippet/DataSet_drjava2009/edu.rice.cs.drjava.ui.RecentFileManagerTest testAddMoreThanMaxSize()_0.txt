@@ -1,0 +1,11 @@
+  public void testAddMoreThanMaxSize() throws IOException {
+    
+    final File tempFile = writeToNewTempFile(BAR_TEXT);
+    final File tempFile2 = writeToNewTempFile(FOO_TEXT);
+    _rfm.updateMax(1);
+    _rfm.updateOpenFiles(tempFile);
+    _rfm.updateOpenFiles(tempFile2);
+    Vector<File> vector = _rfm.getFileVector();
+    assertEquals("number of recent files", 1, vector.size());
+    assertEquals("text of recent file", FOO_TEXT, IOUtil.toString(vector.get(0)));
+  }

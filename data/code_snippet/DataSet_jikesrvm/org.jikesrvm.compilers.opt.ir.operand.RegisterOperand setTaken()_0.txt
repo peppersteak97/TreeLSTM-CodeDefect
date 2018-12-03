@@ -1,0 +1,1 @@
+  public void setTaken() { flags2 |= TAKEN; }

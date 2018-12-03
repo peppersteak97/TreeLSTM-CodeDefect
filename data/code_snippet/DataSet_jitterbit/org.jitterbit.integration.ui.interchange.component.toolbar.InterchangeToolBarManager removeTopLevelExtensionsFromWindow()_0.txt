@@ -1,0 +1,6 @@
+    public void removeTopLevelExtensionsFromWindow() {
+        if (m_useVerticalToolBars) {
+            m_appWinToolBarManagerVertical.removeExtension(
+                            ToolBarExtensionPoint.EXTENSION_POINT_1);
+        }
+    }

@@ -1,0 +1,3 @@
+    public String getConnectParameters() {
+        return getProperty(CONNECT_PARAMETERS_PROPERTY);
+    }

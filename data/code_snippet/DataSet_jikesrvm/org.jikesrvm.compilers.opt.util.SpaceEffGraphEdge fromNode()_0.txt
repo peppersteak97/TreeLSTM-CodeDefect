@@ -1,0 +1,1 @@
+  public final SpaceEffGraphNode fromNode() { return _fromNode; }

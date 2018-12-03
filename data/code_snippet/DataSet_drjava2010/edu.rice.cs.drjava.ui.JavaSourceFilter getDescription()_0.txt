@@ -1,0 +1,9 @@
+  public String getDescription() {
+    switch (DrJava.getConfig().getSetting(OptionConstants.LANGUAGE_LEVEL)) {
+        case (DrJavaRoot.FULL_JAVA): return "Java source files";
+        case (DrJavaRoot.ELEMENTARY_LEVEL): return "Elementary source files (.dj0)";
+        case (DrJavaRoot.INTERMEDIATE_LEVEL): return "Intermediate source files (.dj1)";
+        case (DrJavaRoot.ADVANCED_LEVEL): return "Advanced source files (.dj2)";
+      }
+    return "Java source files";
+  }

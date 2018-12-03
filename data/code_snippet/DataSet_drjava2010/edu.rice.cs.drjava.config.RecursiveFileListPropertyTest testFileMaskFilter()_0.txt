@@ -1,0 +1,19 @@
+  public void testFileMaskFilter(){
+     RecursiveFileListProperty.FileMaskFilter filter = new RecursiveFileListProperty.FileMaskFilter("?");
+     
+     filter.addIncludedFile(new File("abc"));
+     Assert.assertTrue("Doesn't accept included file", filter.accept(new File("abc")));
+     Assert.assertTrue("Doesn't accept regex filter", filter.accept(new File("a")));
+     
+     filter.removeIncludedFile(new File("abc"));
+     Assert.assertFalse("Doesn't reject removed file", filter.accept(new File("abc")));
+     
+     filter.addExcludedFile(new File("b"));
+     Assert.assertFalse("Accepts excluded file", filter.accept(new File("b")));
+     
+     filter.removeExcludedFile(new File("b"));
+     Assert.assertTrue("Rejects no-longer excluded file", filter.accept(new File("b")));
+     
+     filter.clearIncludedFile();
+     filter.clearExcludedFile();
+  }

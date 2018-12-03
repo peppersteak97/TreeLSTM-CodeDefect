@@ -1,0 +1,50 @@
+  private void _updateToolbarButtons() {
+    _updateToolBarVisible();
+    Component[] buttons = _toolBar.getComponents();
+    
+    Font toolbarFont = DrJava.getConfig().getSetting(FONT_TOOLBAR);
+    boolean iconsEnabled = DrJava.getConfig().getSetting(TOOLBAR_ICONS_ENABLED).booleanValue();
+    boolean textEnabled = DrJava.getConfig().getSetting(TOOLBAR_TEXT_ENABLED).booleanValue();
+    
+    for (int i = 0; i < buttons.length; i++) {
+      
+      if (buttons[i] instanceof JButton) {
+        
+        JButton b = (JButton) buttons[i];
+        Action a = b.getAction();
+        
+        /*
+         if (a == null) {
+         
+         for (int j=0; j<al.length; j++) {
+         if (al[j] instanceof Action) {
+         a = (Action) al[j];
+         break;
+         }
+         }
+         }
+         */
+        
+        b.setFont(toolbarFont);
+        
+        if (a == null) {
+          if (b == _undoButton) a = _undoAction;
+          else if (b == _redoButton) a = _redoAction;
+          else continue;
+        }
+        
+        if (b.getIcon() == null) {
+          if (iconsEnabled) b.setIcon( (Icon) a.getValue(Action.SMALL_ICON));
+        }
+        else if (!iconsEnabled && b.getText().equals(""))  b.setIcon(null);
+        
+        if (b.getText().equals("")) {
+          if (textEnabled) b.setText( (String) a.getValue(Action.DEFAULT));
+        }
+        else if (!textEnabled && b.getIcon() != null) b.setText("");
+        
+      }
+    }
+    
+    _fixToolbarHeights();
+  }

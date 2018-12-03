@@ -1,0 +1,6 @@
+    void startServer() {
+        updateUI(EnumSet.of(ServerStatus.STARTING), 
+                        PackageResources.ConsoleWorker.STARTING);
+        IUiJob p = new StartServerJob(this);
+        IntegrationUi.getUi().getJobManager().submitForParallellProcessing(p);
+    }

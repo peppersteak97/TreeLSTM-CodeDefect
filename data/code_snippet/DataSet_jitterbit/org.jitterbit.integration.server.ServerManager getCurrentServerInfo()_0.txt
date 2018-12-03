@@ -1,0 +1,4 @@
+    public synchronized ServerInfo getCurrentServerInfo() {
+        return (m_connectionStatus == ConnectionStatus.CONNECTED) ?
+                        new ServerInfo(m_serverGuid, m_serverName, m_serverVersion) : null;
+    }

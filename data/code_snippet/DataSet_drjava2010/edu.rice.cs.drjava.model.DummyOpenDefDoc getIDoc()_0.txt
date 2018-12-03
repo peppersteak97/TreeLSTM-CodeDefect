@@ -1,0 +1,1 @@
+  public INavigatorItem getIDoc() { throw new UnsupportedOperationException("Dummy method"); }

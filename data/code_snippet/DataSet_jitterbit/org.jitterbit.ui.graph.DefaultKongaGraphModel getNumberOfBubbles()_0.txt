@@ -1,0 +1,3 @@
+	public int getNumberOfBubbles() {
+		return m_liBubbles.size();
+	}

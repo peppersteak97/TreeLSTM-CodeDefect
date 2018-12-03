@@ -1,0 +1,6 @@
+    private void publishViewContent() {
+        if (!m_contentShowing) {
+            m_content.decorate(m_frame);
+            m_contentShowing = true;
+        }
+    }

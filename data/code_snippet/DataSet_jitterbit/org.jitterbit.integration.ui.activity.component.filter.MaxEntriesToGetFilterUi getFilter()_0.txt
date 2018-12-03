@@ -1,0 +1,3 @@
+    public MaxEntriesToGetFilter getFilter() {
+        return m_filter;
+    }

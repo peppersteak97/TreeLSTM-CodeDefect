@@ -1,0 +1,4 @@
+    private void createEndDateActivator() {
+        m_endDateActivator = ComponentFactories.checkBoxFactory().newCheckBox();
+        m_endDateActivator.addActionListener(this);
+    }

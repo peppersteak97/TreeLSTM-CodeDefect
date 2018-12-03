@@ -1,0 +1,11 @@
+    private void layoutComponents() {
+        m_display = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(5, 5, 15, 5);
+        gbc.gridx = 0;
+        layoutCaption(gbc);
+        layoutTable(gbc);
+        layoutButtons(gbc);
+        UiUtils.setOpaqueRecursively(m_display, false, new Class[] { JButton.class, JTable.class, JViewport.class });
+    }

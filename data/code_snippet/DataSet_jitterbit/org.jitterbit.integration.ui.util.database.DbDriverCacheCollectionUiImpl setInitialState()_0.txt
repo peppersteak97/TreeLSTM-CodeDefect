@@ -1,0 +1,6 @@
+    private void setInitialState() {
+        ServerInfo current = m_availableServersCombo.getSelectedServer();
+        if (current != null) {
+            setSelectedServer(current);
+        }
+    }

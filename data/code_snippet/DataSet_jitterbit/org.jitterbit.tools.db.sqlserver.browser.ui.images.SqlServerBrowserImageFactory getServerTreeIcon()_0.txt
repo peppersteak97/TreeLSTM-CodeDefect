@@ -1,0 +1,3 @@
+    public static final ImageIcon getServerTreeIcon() {
+        return SERVER_TREE;
+    }

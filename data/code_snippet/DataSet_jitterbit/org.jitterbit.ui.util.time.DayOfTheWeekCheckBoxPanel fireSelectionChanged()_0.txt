@@ -1,0 +1,5 @@
+    private void fireSelectionChanged() {
+        DayOfTheWeek[] currentSelection = getSelectedDays();
+        firePropertyChange(SELECTION_CHANGED, m_oldSelection, currentSelection);
+        m_oldSelection = currentSelection;
+    }

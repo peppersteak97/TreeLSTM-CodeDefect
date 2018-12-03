@@ -1,0 +1,58 @@
+    private void nceSyncInitStates() {
+        int priorState = 0;
+        do {
+            if (log.isDebugEnabled() && false) {
+                log.debug("Before nceSyncInitStateCounter: " + nceSyncInitStateCounter + " " + internalClock.getTime());
+            }
+	        priorState = nceSyncInitStateCounter;
+	        switch (nceSyncInitStateCounter) {
+	        case -1:
+	            if (alarmSyncUpdate != null){
+	                alarmSyncUpdate.stop();
+	            }
+	            priorDiffs.clear();
+	            priorCorrections.clear();
+	            nceSyncInitStateCounter = 0;
+	            nceSyncRunStateCounter = 0;
+	            break;
+	        case 0:
+	            break;
+	        case 1:
+	            if (log.isDebugEnabled()) {
+	                log.debug("Init/Reset NCE Clock Sync");
+	            }
+	            nceSyncRunStateCounter = 0;
+	            internalClock.setRun(false);
+	            if (alarmSyncUpdate != null){
+	                alarmSyncUpdate.stop();
+	            }
+	            priorDiffs.clear();
+	            priorCorrections.clear();
+	            issueReadOnlyRequest();
+	            nceSyncInitStateCounter++;
+	            break;
+	        case 2:
+	            if (!waitingForCmdRead) {
+	                nceSyncInitStateCounter++;
+	            }
+	            break;
+	        case 3:
+	            try {
+	                internalClock.setRate(nceLastRatio * ESTIMATED_NCE_RATE_FACTOR);
+	            } catch (TimebaseRateException e) {
+	                log.error("nceSyncInitStates: failed to set internal clock rate: " + nceLastRatio);
+	            }
+	            setInternalClockFromNce();
+	            internalClock.setRun(true);
+	            nceSyncRunStateCounter = 1;
+	            nceSyncRunStates();
+	            alarmSyncStart();
+	            updateNceClockDisplay();
+	            updateInternalClockDisplay();
+	            break;
+	        }
+	        if (log.isDebugEnabled() && false) {
+	            log.debug("After nceSyncInitStateCounter: " + nceSyncInitStateCounter + " " + internalClock.getTime());
+	        }
+        } while (priorState != nceSyncInitStateCounter);
+    }

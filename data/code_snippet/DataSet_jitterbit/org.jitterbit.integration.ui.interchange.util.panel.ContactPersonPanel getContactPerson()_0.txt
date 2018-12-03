@@ -1,0 +1,9 @@
+    public ContactPerson getContactPerson() {
+        return new ContactPerson(
+                        m_name.getValue(), 
+                        m_title.getValue(), 
+                        m_email.getValue(), 
+                        m_phone.getValue(), 
+                        m_fax.getValue(), 
+                        m_notes.getValue());
+    }

@@ -1,0 +1,17 @@
+    protected void activated() {
+        IApplicationAction undo = getUndoAction();
+        if (undo != null) {
+            undo.setDelegate(m_undoDelegate);
+            m_undoDelegate.setEnabled(canUndo());
+        }
+        IApplicationAction redo = getRedoAction();
+        if (redo != null) {
+            redo.setDelegate(m_redoDelegate);
+            m_redoDelegate.setEnabled(canRedo());
+        }
+        updateUndoRedoRepresentations();
+        IApplicationAction save = getSaveAction();
+        if (save != null) {
+            save.setEnabled(isSupportingCommand(IPageCommand.SAVE) && isDirty());
+        }
+    }

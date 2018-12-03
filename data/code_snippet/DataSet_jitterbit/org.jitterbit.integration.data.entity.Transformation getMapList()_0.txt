@@ -1,0 +1,3 @@
+    public List<String> getMapList() {
+        return new ArrayList<String>(m_lstMaps);
+    }

@@ -1,0 +1,4 @@
+  protected void _okCommand() {
+    setVisible(false);
+    _cm.signal();
+  }

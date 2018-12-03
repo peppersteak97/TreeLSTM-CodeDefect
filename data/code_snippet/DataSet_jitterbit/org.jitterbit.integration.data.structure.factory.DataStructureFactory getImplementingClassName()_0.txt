@@ -1,0 +1,13 @@
+    private static String getImplementingClassName() throws IOException {
+        InputStream is = null;
+        BufferedReader reader = null;
+        try {
+            is = DataStructureFactory.class.getResourceAsStream(CLASS_RESOURCE);
+            reader = new BufferedReader(new InputStreamReader(is));
+            return reader.readLine();
+        }
+        finally {
+            KongaIoUtils.close(reader);
+            KongaIoUtils.close(is);
+        }
+    }

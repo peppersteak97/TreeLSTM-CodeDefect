@@ -1,0 +1,3 @@
+    public IEmailMessageUi getUi() {
+        return (IEmailMessageUi) super.getUi();
+    }

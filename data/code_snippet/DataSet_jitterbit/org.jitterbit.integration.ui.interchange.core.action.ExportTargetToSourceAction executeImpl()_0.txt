@@ -1,0 +1,9 @@
+    private void executeImpl() {
+        ITargetUi targetUi = getActiveTarget();
+        if (targetUi != null) {
+            exportImpl(targetUi);
+        }
+        else {
+            cancelled(null);
+        }
+    }

@@ -1,0 +1,11 @@
+  public RVMField[] finish() {
+    RVMField[] result = popularFVs.get(this);
+    if (result != null) {
+      array = result;
+      return result;
+    } else {
+      adjustLength(cnt);
+      popularFVs.put(this, array);
+      return array;
+    }
+  }

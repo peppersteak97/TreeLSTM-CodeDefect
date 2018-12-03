@@ -1,0 +1,10 @@
+    public byte[] getBytes() {
+        byte[] most = new BigInteger(String.valueOf(
+                        m_uuid.getMostSignificantBits())).toByteArray();
+        byte[] least = new BigInteger(String.valueOf(
+                        m_uuid.getLeastSignificantBits())).toByteArray();
+        byte[] ret = new byte[most.length + least.length];
+        System.arraycopy(most, 0, ret, 0, most.length);
+        System.arraycopy(least, 0, ret, most.length, least.length);
+        return ret;
+    }

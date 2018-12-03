@@ -1,0 +1,12 @@
+    private IIntegrationEntityUiDelegate getEntityToCopy() {
+        IIntegrationEntityUiDelegate active = null;
+        for (IIntegrationEntityUiDelegate uiDel : getActiveObjects(IIntegrationEntityUiDelegate.class)) {
+            if (uiDel.isCopyable()) {
+                if (active != null) {
+                    return null;
+                }
+                active = uiDel;
+            }
+        }
+        return active;
+    }

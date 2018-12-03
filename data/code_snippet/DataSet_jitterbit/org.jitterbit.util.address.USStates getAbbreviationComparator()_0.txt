@@ -1,0 +1,7 @@
+    public static Comparator<USStates> getAbbreviationComparator() {
+        return new Comparator<USStates>() {
+            public int compare(USStates lhs, USStates rhs) {
+                return lhs.getAbbreviation().compareTo(rhs.getAbbreviation());
+            }
+        };
+    }

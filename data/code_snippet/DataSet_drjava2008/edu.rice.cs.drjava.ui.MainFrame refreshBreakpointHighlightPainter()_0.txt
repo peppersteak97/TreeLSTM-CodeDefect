@@ -1,0 +1,6 @@
+  void refreshBreakpointHighlightPainter() {
+    for(java.util.Map.Entry<Breakpoint,HighlightManager.HighlightInfo> pair: _documentBreakpointHighlights.entrySet()) {
+      if (pair.getKey().isEnabled()) pair.getValue().refresh(DefinitionsPane.BREAKPOINT_PAINTER);
+      else pair.getValue().refresh(DefinitionsPane.DISABLED_BREAKPOINT_PAINTER);
+    }
+  }

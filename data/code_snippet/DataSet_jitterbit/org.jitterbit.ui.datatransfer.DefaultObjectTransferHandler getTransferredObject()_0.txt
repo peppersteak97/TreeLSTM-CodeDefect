@@ -1,0 +1,7 @@
+	public Object getTransferredObject() {
+		if( m_transferredObject == null && m_transferredObjectExtractor != null ) {
+			m_transferredObject = 
+				m_transferredObjectExtractor.getTransferredObject(m_sourceComponent);
+		}
+		return m_transferredObject;
+	}

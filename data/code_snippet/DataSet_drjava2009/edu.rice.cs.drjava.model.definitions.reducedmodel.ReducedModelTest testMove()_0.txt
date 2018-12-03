@@ -1,0 +1,18 @@
+  public void testMove() {
+    model0.insertChar('(');
+    insertGap(model0, 5);
+    model0.insertChar(')');
+    model0.insertChar('\n');
+    insertGap(model0, 2);
+    model0.insertChar('{');
+    model0.insertChar('}');
+    assertEquals("#0.2", 12, model0.absOffset());
+    model0.move(-2);
+    assertEquals("#0.3", 10, model0.absOffset());
+    model0.move(-8);
+    assertEquals("#0.4", 2, model0.absOffset());
+    model0.move(3);
+    assertEquals("#0.5", 5, model0.absOffset());
+    model0.move(4);
+    assertEquals("#0.6", 9, model0.absOffset());
+  }

@@ -1,0 +1,3 @@
+  public final T peek() {
+    return getTOS();
+  }

@@ -1,0 +1,12 @@
+  private synchronized void writeEventChunks() {
+    while (!unwrittenEventChunks.isEmpty()) {
+      EventChunk c = unwrittenEventChunks.dequeue();
+      try {
+        c.write(outputStream);
+      } catch (IOException e) {
+        VM.sysWriteln("Exception while outputing trace TuningFork trace file");
+        e.printStackTrace();
+      }
+      availableEventChunks.enqueue(c); /* reduce; reuse; recycle...*/
+    }
+  }

@@ -1,0 +1,3 @@
+  private void updateClientStatus(){
+    clientStatus.setText( "   Client Count: " + Integer.toString( Server.getInstance().getClientCount() ) );
+  }

@@ -1,0 +1,3 @@
+  public final InEdgeEnumeration inEdges() {
+    return new InEdgeEnumeration(this);
+  }

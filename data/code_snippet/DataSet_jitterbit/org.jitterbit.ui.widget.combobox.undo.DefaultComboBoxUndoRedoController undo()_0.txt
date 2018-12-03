@@ -1,0 +1,3 @@
+    public void undo() {
+        m_delegate.undo();
+    }

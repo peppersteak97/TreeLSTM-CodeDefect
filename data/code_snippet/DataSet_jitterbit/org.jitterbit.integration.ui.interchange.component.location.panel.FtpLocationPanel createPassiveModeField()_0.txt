@@ -1,0 +1,5 @@
+    private void createPassiveModeField() {
+        String passiveLabel = PackageResources.Ftp.PASSIVE_MODE;
+        m_passiveMode = InputFieldFactory.getCheckBoxInputField(
+                        passiveLabel, passiveLabel);
+    }

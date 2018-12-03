@@ -1,0 +1,10 @@
+    public List<String> getCurrentMappings() {
+        List<String>map_list=new ArrayList<String>();
+        for(MapPairPanel mp: m_MapListPanel.m_mapList){
+            if(!mp.m_targetDE.startsWith("[")){
+                String line=mp.m_targetDE+"\t"+mp.m_source;
+                map_list.add(line);
+            }
+        }
+        return map_list;
+    }

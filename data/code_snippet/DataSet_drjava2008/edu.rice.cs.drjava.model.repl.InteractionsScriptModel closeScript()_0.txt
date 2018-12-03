@@ -1,0 +1,14 @@
+//  public synchronized void closeScript() {
+
+  /** @return true iff this script has another interaction to perform. */
+  public boolean hasNextInteraction() {
+    return _currentInteraction < _interactions.size() - 1; 
+  }
+
+
+  /** @return true iff this script has a previous interaction to perform. */
+  public boolean hasPrevInteraction() {
+    int index = _currentInteraction;
+    return index > 0;
+  }
+}

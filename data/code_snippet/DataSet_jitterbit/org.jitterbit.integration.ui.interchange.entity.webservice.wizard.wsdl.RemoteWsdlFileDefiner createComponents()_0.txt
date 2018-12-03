@@ -1,0 +1,5 @@
+    private void createComponents() {
+        JTextComponent input = new WsdlInputField();
+        m_urlField = new UrlInputField("URL", input, null);
+        m_urlField.setRequired(true);
+    }

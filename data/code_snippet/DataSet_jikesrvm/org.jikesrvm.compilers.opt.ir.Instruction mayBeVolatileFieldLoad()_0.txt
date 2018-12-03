@@ -1,0 +1,6 @@
+  public boolean mayBeVolatileFieldLoad() {
+    if (LocalCSE.isLoadInstruction(this)) {
+      return LocationCarrier.getLocation(this).mayBeVolatile();
+    }
+    return false;
+  }

@@ -1,0 +1,20 @@
+    public void start() throws WizardConfigurationException {
+        m_configuration = WizardConfiguration.getConfiguration();
+        IIntegrationEntityFactoryCallback factoryCallback = new IIntegrationEntityFactoryCallback() {
+
+            public void creationCancelled(Object reason) {
+                fireWizardCancelled(reason);
+                dispose();
+            }
+
+            public void creationFailed(Throwable cause) {
+                fireWizardFailed(cause);
+                dispose();
+            }
+
+            public void creationSucceeded(IntegrationEntity entity, IntegrationEntity parent) {
+                startImpl(entity, parent);
+            }
+        };
+        m_view.createIntegrationEntity(EntityType.Transformation, factoryCallback);
+    }

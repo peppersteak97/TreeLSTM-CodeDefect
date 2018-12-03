@@ -1,0 +1,7 @@
+    protected void mainObjectDeleted() {
+        DataLocation loc = getDependantObject().getLocation();
+        if (loc instanceof HttpLocation) {
+            ((HttpLocation) loc).setTargetForResponse((Target) null);
+        }
+        super.mainObjectDeleted();
+    }

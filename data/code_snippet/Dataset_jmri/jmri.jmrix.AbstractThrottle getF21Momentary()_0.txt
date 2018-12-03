@@ -1,0 +1,3 @@
+    public boolean getF21Momentary() {
+        return f21Momentary;
+    }

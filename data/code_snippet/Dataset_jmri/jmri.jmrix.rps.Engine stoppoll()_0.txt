@@ -1,0 +1,3 @@
+    void stoppoll() {
+        if (pollThread != null) pollThread.interrupt();
+    }

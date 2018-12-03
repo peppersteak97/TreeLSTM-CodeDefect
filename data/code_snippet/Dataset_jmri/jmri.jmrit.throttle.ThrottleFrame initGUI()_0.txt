@@ -1,0 +1,92 @@
+    private void initGUI()
+    {
+        setTitle("Throttle");
+        JDesktopPane desktop = new JDesktopPane();
+        this.setContentPane(desktop);
+        this.addWindowListener(
+                               new WindowAdapter()
+                               {
+                                   public void windowClosing(WindowEvent e)
+                                   {
+                                       ThrottleFrame me = (ThrottleFrame)e.getSource();
+                                       ThrottleFrameManager.instance().requestThrottleFrameDestruction(me);
+                                   }
+                               });
+        
+        initializeMenu();
+        
+        FrameListener frameListener = new FrameListener();
+        
+        controlPanel = new ControlPanel();
+        controlPanel.setResizable(true);
+        controlPanel.setClosable(true);
+        controlPanel.setIconifiable(true);
+        controlPanel.setTitle("Control Panel");
+        controlPanel.pack();
+        controlPanel.setVisible(true);
+        controlPanel.setEnabled(false);
+        controlPanel.addInternalFrameListener(frameListener);
+        
+        functionPanel = new FunctionPanel();
+        functionPanel.setResizable(true);
+        functionPanel.setClosable(true);
+        functionPanel.setIconifiable(true);
+        functionPanel.setTitle("Function Panel");
+        
+        // assumes button width of 54, height of 30 (set in class FunctionButton) with
+        // horiz and vert gaps of 5 each (set in FunctionPanel class)
+        // with 3 buttons across and 6 rows high
+        int width = 3*(FunctionButton.BUT_WDTH) + 2*3*5; 		// = 192
+        int height = 6*(FunctionButton.BUT_HGHT) + 2*6*5 +10;	// = 240 (but there seems to be another 10 needed for some LAFs)
+        functionPanel.setSize(width, height);
+        functionPanel.setLocation(controlPanel.getWidth(), 0);
+        functionPanel.setVisible(true);
+        functionPanel.setEnabled(false);
+        functionPanel.addInternalFrameListener(frameListener);
+        
+        addressPanel = new AddressPanel();
+        addressPanel.setResizable(true);
+        addressPanel.setClosable(true);
+        addressPanel.setIconifiable(true);
+        addressPanel.setTitle("Address Panel");
+        addressPanel.pack();
+        //                if (addressPanel.getWidth()<functionPanel.getWidth()) {addressPanel.setSize(functionPanel.getWidth(),addressPanel.getHeight());}
+        addressPanel.setLocation(controlPanel.getWidth(), functionPanel.getHeight());
+        addressPanel.setVisible(true);
+        addressPanel.addInternalFrameListener(frameListener);
+        addressPanel.addAddressListener(this);
+        
+        if (controlPanel.getHeight() < functionPanel.getHeight() + addressPanel.getHeight())
+            {controlPanel.setSize(controlPanel.getWidth(),functionPanel.getHeight() + addressPanel.getHeight());}
+        if (controlPanel.getHeight() > functionPanel.getHeight() + addressPanel.getHeight())
+            {addressPanel.setSize(addressPanel.getWidth(),controlPanel.getHeight()-functionPanel.getHeight());}
+        if (functionPanel.getWidth() < addressPanel.getWidth())
+            {functionPanel.setSize(addressPanel.getWidth(),functionPanel.getHeight());}
+        desktop.add(controlPanel, PANEL_LAYER);
+        desktop.add(functionPanel, PANEL_LAYER);
+        desktop.add(addressPanel, PANEL_LAYER);
+        
+        frameList = new JInternalFrame[NUM_FRAMES];
+        frameList[ADDRESS_PANEL_INDEX] = addressPanel;
+        frameList[CONTROL_PANEL_INDEX] = controlPanel;
+        frameList[FUNCTION_PANEL_INDEX] = functionPanel;
+        activeFrame = ADDRESS_PANEL_INDEX;
+        
+        desktop.setPreferredSize(new Dimension(
+                                               Math.max(controlPanel.getWidth()+functionPanel.getWidth(),controlPanel.getWidth()+addressPanel.getWidth()),
+                                               Math.max(addressPanel.getHeight()+functionPanel.getHeight(),controlPanel.getHeight())));
+        
+        KeyListenerInstaller.installKeyListenerOnAllComponents(
+                                                               new FrameCyclingKeyListener(), this);
+        
+        try
+            {
+                addressPanel.setSelected(true);
+                
+            }
+        catch (java.beans.PropertyVetoException ex)
+            {
+                log.error("Error selecting InternalFrame:" + ex);
+            }
+        
+    }

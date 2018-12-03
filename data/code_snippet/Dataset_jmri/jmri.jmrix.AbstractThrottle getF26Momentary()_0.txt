@@ -1,0 +1,3 @@
+    public boolean getF26Momentary() {
+        return f26Momentary;
+    }

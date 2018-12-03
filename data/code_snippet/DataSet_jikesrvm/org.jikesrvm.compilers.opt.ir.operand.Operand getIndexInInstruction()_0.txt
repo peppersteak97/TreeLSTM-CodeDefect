@@ -1,0 +1,7 @@
+  public int getIndexInInstruction() {
+    for (int i = 0; i < instruction.getNumberOfOperands(); i++) {
+      Operand op = instruction.getOperand(i);
+      if (op == this) return i;
+    }
+    throw new OptimizingCompilerException("Operand.getIndexInInstruction");
+  }

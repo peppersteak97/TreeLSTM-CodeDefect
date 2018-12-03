@@ -1,0 +1,3 @@
+    DatabaseColumn getSelectedChildField() {
+        return m_selectedChildField;
+    }

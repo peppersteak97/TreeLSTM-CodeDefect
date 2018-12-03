@@ -1,0 +1,8 @@
+    public boolean hasSelectedEntries() {
+        for (Integer row : m_checkedRows) {
+            if (getQueueEntry(row.intValue()) != null) {
+                return true;
+            }
+        }
+        return false;
+    }

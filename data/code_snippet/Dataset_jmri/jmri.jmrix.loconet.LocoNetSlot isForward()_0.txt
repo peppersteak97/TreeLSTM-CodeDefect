@@ -1,0 +1,1 @@
+    public boolean isForward()	{ return 0==(dirf&LnConstants.DIRF_DIR); }

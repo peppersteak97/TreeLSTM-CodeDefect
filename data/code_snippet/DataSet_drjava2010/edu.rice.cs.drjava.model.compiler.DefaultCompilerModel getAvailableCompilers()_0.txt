@@ -1,0 +1,4 @@
+  public Iterable<CompilerInterface> getAvailableCompilers() {
+    if (_compilers.isEmpty()) { return IterUtil.singleton(NoCompilerAvailable.ONLY); }
+    else { return IterUtil.snapshot(_compilers); }
+  }

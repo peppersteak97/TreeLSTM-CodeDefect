@@ -1,0 +1,3 @@
+  public SpecializationContext getSpecializationContext() {
+    return context;
+  }

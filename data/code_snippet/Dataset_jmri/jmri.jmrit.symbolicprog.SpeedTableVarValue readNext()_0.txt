@@ -1,0 +1,20 @@
+    void readNext() {
+        if ( (_progState>=0) && (retries < RETRY_MAX) 
+                && (((CvValue)_cvVector.elementAt(getCvNum()+_progState)).getState() != CvValue.READ) ) {
+            retries++;
+        } else {    
+            retries = 0;
+        }
+
+        if (_progState >= nValues) {
+            _progState = IDLE;
+            isReading = false;
+            isWriting = false;
+            setBusy(false);
+            return;
+        }
+        CvValue cv = ((CvValue)_cvVector.elementAt(getCvNum()+_progState));
+        int state = cv.getState();
+        if (log.isDebugEnabled()) log.debug("invoke CV read index "+_progState+" cv state "+state);
+        if (!onlyChanges || considerChanged(cv) ) cv.read(_status);
+    }

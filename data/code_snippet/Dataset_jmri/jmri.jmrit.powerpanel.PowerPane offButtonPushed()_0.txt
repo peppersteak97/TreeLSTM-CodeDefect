@@ -1,0 +1,9 @@
+    public void offButtonPushed() {
+        if (mgrOK())
+            try {
+                p.setPower(PowerManager.OFF);
+            }
+            catch (JmriException e) {
+                log.error("Exception trying to turn power off " +e);
+            }
+    }

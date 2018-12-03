@@ -1,0 +1,3 @@
+    public XmlTreeNode getNextSibling() {
+        return (XmlTreeNode)super.getNextSibling();
+    }

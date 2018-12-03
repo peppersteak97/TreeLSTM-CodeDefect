@@ -1,0 +1,16 @@
+    protected final void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        Login.addCallback(this);
+        setStatus(PackageResources.LoginJob.SENDING_CREDENTIALS);
+        
+        Runnable task = new Runnable() {
+            
+            public void run() {
+                Login.login(m_credentials);
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallellAndWait(task, this);
+    }

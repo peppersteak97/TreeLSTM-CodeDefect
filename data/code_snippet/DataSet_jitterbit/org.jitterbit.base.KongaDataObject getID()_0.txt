@@ -1,0 +1,3 @@
+	public KongaID getID() {
+		return m_id;
+	}

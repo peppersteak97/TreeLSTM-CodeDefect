@@ -1,0 +1,4 @@
+    public boolean isOpsModePossible() {
+        if(cmdStationType==0x01 || cmdStationType==0x02) return false;
+          else return true;
+    }

@@ -1,0 +1,8 @@
+    private static void customizeStructures() throws IntrospectionException {
+        BeanInfo info = Introspector.getBeanInfo(DataStructure.class);
+        BeanDescriptor desc = info.getBeanDescriptor();
+
+        customizeDatabaseStructure();
+        customizeTextStructure();
+        customizeWebServiceStructure();
+    }

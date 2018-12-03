@@ -1,0 +1,11 @@
+    void execute() {
+        int f = Integer.parseInt(from.getText());
+        int t = Integer.parseInt(to.getText());
+        SerialMessage m = new SerialMessage();
+        m.setElement(0, 0x80+(f&0x7F));
+        m.setElement(1, (t&0x7F));
+        m.setElement(2, 0x80+(f&0x7F));
+        m.setElement(3, 0x60);
+        m.setParity();
+        SerialTrafficController.instance().sendSerialMessage(m, null);
+    }

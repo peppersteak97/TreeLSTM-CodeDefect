@@ -1,0 +1,15 @@
+  protected final void emit_lmul() {
+    popLong(T2, T3);
+    popLong(T0, T1);
+    if (VM.BuildFor64Addr) {
+      asm.emitMULLD(T1, T1, T3);
+    } else {
+      asm.emitMULHWU(S0, T1, T3);
+      asm.emitMULLW(T0, T0, T3);
+      asm.emitADD(T0, T0, S0);
+      asm.emitMULLW(S0, T1, T2);
+      asm.emitMULLW(T1, T1, T3);
+      asm.emitADD(T0, T0, S0);
+    }
+    pushLong(T0, T1);
+  }

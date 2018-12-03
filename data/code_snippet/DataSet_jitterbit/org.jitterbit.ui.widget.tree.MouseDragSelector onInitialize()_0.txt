@@ -1,0 +1,7 @@
+	protected void onInitialize() {
+		Point startPoint = getStartPoint();
+		m_startRow = m_tree.getRowForLocation(
+				startPoint.x, startPoint.y);
+		
+		m_selectedWhenStart = m_tree.getSelectedNodes();
+	}

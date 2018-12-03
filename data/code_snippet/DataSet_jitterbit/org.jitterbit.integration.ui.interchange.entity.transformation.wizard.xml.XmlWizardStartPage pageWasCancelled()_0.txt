@@ -1,0 +1,4 @@
+    public void pageWasCancelled() {
+        m_structureFileManager.cancelCurrentJobs();
+        m_rootElementManager.cancelCurrentJob();
+    }

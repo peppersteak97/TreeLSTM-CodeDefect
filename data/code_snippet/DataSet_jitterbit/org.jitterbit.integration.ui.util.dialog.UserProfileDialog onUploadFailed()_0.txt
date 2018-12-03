@@ -1,0 +1,4 @@
+    void onUploadFailed() {
+        ((CardLayout) m_displayArea.getLayout()).show(m_displayArea, PROFILE_PANEL);
+        getOKButton().setEnabled(true);
+    }

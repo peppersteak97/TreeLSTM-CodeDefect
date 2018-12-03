@@ -1,0 +1,24 @@
+    protected void copyToOpsw() {
+        opsw[ 1] = commonrail.isSelected();
+        opsw[ 3] = polarity.isSelected();
+        opsw[ 5] = transpond.isSelected();
+        opsw[ 6] = rx4connected1.isSelected();
+        opsw[ 7] = rx4connected2.isSelected();
+        opsw[ 9] = forceoccupied.isSelected();
+        opsw[10] = section16qualpower.isSelected();
+        opsw[11] = nomaster.isSelected();
+        opsw[12] = noterminate.isSelected();
+        opsw[13] = delayhalfsecond.isSelected();
+        opsw[19] = highthreshold.isSelected();
+        opsw[25] = drivefromswitch.isSelected();
+        opsw[26] = decodefromloconet.isSelected();
+        opsw[36] = reserved36.isSelected();
+        opsw[37] = longdelay.isSelected();
+        opsw[38] = extralongdelay.isSelected();
+        opsw[39] = transpondtrack.isSelected();
+        opsw[42] = poweronmsg.isSelected();
+        opsw[43] = antichatfilt.isSelected();
+        opsw[44] = antichatsens.isSelected();
+        opsw[40] = setdefault.isSelected();
+
+    }

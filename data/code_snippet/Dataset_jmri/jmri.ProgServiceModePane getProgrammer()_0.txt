@@ -1,0 +1,7 @@
+    public Programmer getProgrammer() {
+        if (InstanceManager.programmerManagerInstance()!=null)
+            return InstanceManager.programmerManagerInstance().getServiceModeProgrammer();
+        else
+            log.warn("request for service mode programmer with no ProgrammerManager configured");
+        return null;
+    }

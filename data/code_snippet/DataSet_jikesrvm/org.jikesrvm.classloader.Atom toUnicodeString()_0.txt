@@ -1,0 +1,22 @@
+  public synchronized String toUnicodeString() throws java.io.UTFDataFormatException {
+    if (unicodeStringOrJTOCoffset == null) {
+      String s = UTF8Convert.fromUTF8(val);
+      if (VM.runningVM) {
+        s = InternedStrings.internUnfoundString(s);
+        unicodeStringOrJTOCoffset = s;
+      } else if (!VM.writingImage) {
+        s = s.intern();
+        int offset = Statics.findOrCreateObjectLiteral(s);
+        unicodeStringOrJTOCoffset = offset;
+      }
+      return s;
+    } else if (unicodeStringOrJTOCoffset instanceof String) {
+      return (String)unicodeStringOrJTOCoffset;
+    } else {
+      if (VM.runningVM) {
+        return (String)Statics.getSlotContentsAsObject(Offset.fromIntSignExtend((Integer)unicodeStringOrJTOCoffset));
+      } else {
+        return UTF8Convert.fromUTF8(val).intern();
+      }
+    }
+  }

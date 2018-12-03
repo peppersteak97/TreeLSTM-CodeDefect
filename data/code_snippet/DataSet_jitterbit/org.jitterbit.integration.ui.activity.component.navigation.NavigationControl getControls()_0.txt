@@ -1,0 +1,10 @@
+    protected final List<JComponent> getControls() {
+        if (m_controls == null) {
+            return null;
+        }
+        List<JComponent> ctrls = new ArrayList<JComponent>();
+        for (Integer key : m_controls.keySet()) {
+            ctrls.add(m_controls.get(key));
+        }
+        return ctrls;
+    }

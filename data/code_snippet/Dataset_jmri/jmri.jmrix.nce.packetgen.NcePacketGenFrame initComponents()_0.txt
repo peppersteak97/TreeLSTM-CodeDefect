@@ -1,0 +1,41 @@
+    public void initComponents() throws Exception {
+
+        jLabel1.setText("Command: ");
+        jLabel1.setVisible(true);
+        
+        sendButton.setText("Send");
+        sendButton.setVisible(true);
+        sendButton.setToolTipText("Send packet");
+
+        packetTextField.setText("");
+		packetTextField.setToolTipText("Enter command");
+		packetTextField.setMaximumSize(new Dimension(packetTextField
+				.getMaximumSize().width, packetTextField.getPreferredSize().height));
+
+        checkBoxBinCmd.setText("Binary");
+        checkBoxBinCmd.setVisible(true);
+        checkBoxBinCmd.setToolTipText("Check to enable binary commands");
+        checkBoxBinCmd.setSelected(true);
+        
+        replyLenTextField.setVisible(true);
+        replyLenTextField.setMaximumSize(new Dimension(50,replyLenTextField.getPreferredSize().height));
+        replyLenTextField.setToolTipText("Enter number of expected bytes, will override internal defaults");
+        
+        setTitle("Send NCE command");
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        getContentPane().add(jLabel1);
+        getContentPane().add(packetTextField);
+        getContentPane().add(sendButton);
+        getContentPane().add(checkBoxBinCmd);
+        getContentPane().add(replyLenTextField);
+
+
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    sendButtonActionPerformed(e);
+                }
+            });
+
+        pack();
+    }

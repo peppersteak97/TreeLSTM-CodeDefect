@@ -1,0 +1,3 @@
+	public JTextField getTextField() {
+		return (JTextField)getComponentHolder();
+	}

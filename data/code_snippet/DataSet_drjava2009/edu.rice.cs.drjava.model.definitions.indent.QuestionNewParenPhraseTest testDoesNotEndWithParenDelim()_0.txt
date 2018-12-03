@@ -1,0 +1,7 @@
+  public void testDoesNotEndWithParenDelim() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionNewParenPhrase(null, null);
+    
+    _setDocText("foo(bar.\nx,y\n)");
+    assertTrue("line after paren", !rule.testApplyRule(_doc, 9, Indenter.IndentReason.OTHER));
+    assertTrue("line after comma", !rule.testApplyRule(_doc, 13, Indenter.IndentReason.OTHER));
+  }

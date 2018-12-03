@@ -1,0 +1,14 @@
+  public boolean getRuntimeFinalValue() {
+    org.vmmagic.pragma.RuntimeFinal ann;
+    if (VM.runningVM) {
+      ann = getAnnotation(org.vmmagic.pragma.RuntimeFinal.class);
+    } else {
+      try {
+      ann = getDeclaringClass().getClassForType().getField(getName().toString())
+      .getAnnotation(org.vmmagic.pragma.RuntimeFinal.class);
+      } catch (NoSuchFieldException e) {
+        throw new Error(e);
+      }
+    }
+    return ann.value();
+  }

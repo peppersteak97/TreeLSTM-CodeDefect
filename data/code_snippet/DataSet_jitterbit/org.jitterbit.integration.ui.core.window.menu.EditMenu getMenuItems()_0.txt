@@ -1,0 +1,8 @@
+    protected List<JMenuItem> getMenuItems() {
+        List<JMenuItem> items = new ArrayList<JMenuItem>();
+        addUndo(items);
+        addRedo(items);
+        items.add(null);
+        addExtensionItems(items, MenuExtensionPoint.EXTENSION_POINT_1);
+        return items;
+    }

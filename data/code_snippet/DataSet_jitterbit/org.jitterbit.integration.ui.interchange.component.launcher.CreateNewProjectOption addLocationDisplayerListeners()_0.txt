@@ -1,0 +1,12 @@
+    private void addLocationDisplayerListeners() {
+        m_newProjectLocationDisplayer.addActionListener(m_createAction);
+        
+        ChangeListener propLst = new ChangeListener() {
+            
+            public void stateChanged(ChangeEvent e) {
+                m_createButton.setEnabled(
+                        m_newProjectLocationDisplayer.getProjectName().length() > 0);
+            }
+        };
+        m_newProjectLocationDisplayer.addProjectNameListener(propLst);
+    }

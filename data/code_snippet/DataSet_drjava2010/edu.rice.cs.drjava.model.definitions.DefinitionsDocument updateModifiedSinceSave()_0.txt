@@ -1,0 +1,4 @@
+  public void updateModifiedSinceSave() {
+    _isModifiedSinceSave = _undoManager.isModified();
+    if (_odd != null) _odd.documentReset();
+  }

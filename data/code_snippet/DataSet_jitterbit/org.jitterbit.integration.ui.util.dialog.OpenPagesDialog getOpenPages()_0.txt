@@ -1,0 +1,3 @@
+        for (IPage p : getOpenPages()) {
+            items.add(new PageListDecorator(p));
+        }

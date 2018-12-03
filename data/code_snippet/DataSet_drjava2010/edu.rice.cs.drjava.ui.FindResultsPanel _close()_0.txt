@@ -1,0 +1,4 @@
+  protected void _close() {
+    _frame.removeCurrentLocationHighlight();
+    freeResources();
+  }

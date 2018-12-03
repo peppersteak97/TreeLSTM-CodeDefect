@@ -1,0 +1,25 @@
+  public void testSetNotMatching() {
+    PredictiveInputModel<String> pim = new PredictiveInputModel<String>(false,
+                                                                        new PredictiveInputModel.PrefixStrategy<String>(),
+                                                                        "AboutDialog.java",
+                                                                        "FileOps.java",
+                                                                        "FileOpsTest.java",
+                                                                        "Utilities.java");
+    pim.setMask("F");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+    assertEquals("ileOps", pim.getSharedMaskExtension());
+
+    pim.setCurrentItem("AboutDialog.java");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+    assertEquals("ileOps", pim.getSharedMaskExtension());
+
+    pim.setCurrentItem("Utilities.java");
+    assertEquals("FileOpsTest.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+    assertEquals("ileOps", pim.getSharedMaskExtension());
+  }

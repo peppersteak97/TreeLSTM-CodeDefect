@@ -1,0 +1,6 @@
+    private void createContentPane() {
+        setContentPane(IntegrationUiStyleSheet.getDialogContentPane(new BorderLayout()));
+        m_listPanel = new JPanel(new BorderLayout(0, 0));
+        m_listPanel.setBorder(COMPONENT_BORDER);
+        getContentPane().add(m_listPanel, BorderLayout.CENTER);
+    }

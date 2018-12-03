@@ -1,0 +1,5 @@
+  public void projectModified() {
+    _lock.startRead();
+    try { for (GlobalModelListener l : _listeners) { l.projectModified(); } }
+    finally { _lock.endRead(); }
+  }

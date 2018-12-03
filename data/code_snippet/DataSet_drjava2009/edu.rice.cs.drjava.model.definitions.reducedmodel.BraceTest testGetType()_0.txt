@@ -1,0 +1,4 @@
+  public void testGetType() {
+    assertEquals("(", lparen.getType());
+    assertEquals(")", rparen.getType());
+  }

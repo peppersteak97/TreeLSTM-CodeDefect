@@ -1,0 +1,3 @@
+  public boolean hasPrev() {
+    return prev != null;
+  }

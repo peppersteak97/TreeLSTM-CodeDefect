@@ -1,0 +1,5 @@
+    private void validateLogin() {
+        String login = m_location.getLogin();
+        if (login == null || login.trim().length() == 0) {
+        }
+    }

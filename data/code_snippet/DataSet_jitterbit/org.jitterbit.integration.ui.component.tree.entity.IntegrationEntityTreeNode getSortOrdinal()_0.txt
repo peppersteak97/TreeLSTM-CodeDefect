@@ -1,0 +1,3 @@
+    protected final int getSortOrdinal() {
+        return m_sortOrdinal;
+    }

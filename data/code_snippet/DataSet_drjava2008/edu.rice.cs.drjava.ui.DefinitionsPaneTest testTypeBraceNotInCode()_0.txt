@@ -1,0 +1,17 @@
+  public void testTypeBraceNotInCode() throws BadLocationException {
+    final DefinitionsPane defPane = _frame.getCurrentDefPane();
+    final OpenDefinitionsDocument doc = defPane.getOpenDefDocument();
+    _assertDocumentEmpty(doc, "before testing");
+    _log.log("calling invokeAndWait in testTypeBraceNotInCode");
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        doc.append("  \"", null);
+        defPane.setCaretPosition(3);
+        defPane.processKeyEvent(new KeyEvent(defPane, TYPED, (new Date()).getTime(), 0, VK_UNDEF, '{'));
+      }
+    });
+    Utilities.clearEventQueue();
+        
+    _assertDocumentContents(doc, "  \"{", "Brace should not indent in a string");
+    _log.log("testTypeBraceNotInCode completed");
+  }

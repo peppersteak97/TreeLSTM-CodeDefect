@@ -1,0 +1,5 @@
+    void prepareForRemoval() {
+        for (FunctionEntry e : m_entries) {
+            e.getComboBox().dispose();
+        }
+    }

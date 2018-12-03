@@ -1,0 +1,19 @@
+    private void writeHeader() {
+        String macro = getDefinedMacro();
+        addCopyrightNotice();
+        addLine("#ifndef " + macro);
+        addLine("#define " + macro);
+        addLine();
+        addLine("#ifdef WIN32");
+        addLine("\t#include <windows.h>");
+        addLine("#endif");
+        addLine();
+        addLine("#include <string>");
+        addLine();
+        addLine("#include <konga/Db/DtlDbUtils/DtlDbRecordSet.h>");
+        addLine();
+        
+        addLine("#include <konga/Db/" + getNamespace() + "/" + getObject().getName() + ".h>");
+        
+        addLine();
+    }

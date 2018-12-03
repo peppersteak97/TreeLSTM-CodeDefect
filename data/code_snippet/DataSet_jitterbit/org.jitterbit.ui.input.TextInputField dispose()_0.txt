@@ -1,0 +1,4 @@
+    public void dispose() {
+        getInputComponent().getDocument().removeDocumentListener(m_docListener);
+        m_undoableEditSender.dispose();
+    }

@@ -1,0 +1,3 @@
+    protected final synchronized boolean isInCancelledState() {
+        return m_isInCancelledState;
+    }

@@ -1,0 +1,19 @@
+    public DataLocation createLocation() {
+        switch (this) {
+        case FTP:
+            return new FtpLocation();
+        case Database:
+            return new DatabaseLocation();
+        case FileShare:
+            return new FileShareLocation();
+        case SMTP:
+            return new SmtpLocation();
+        case HTTP:
+            return new HttpLocation();
+        case SCP:
+            return new ScpLocation();
+        case WebService:
+            return new WebServiceLocation();
+        }
+        return null;
+    }

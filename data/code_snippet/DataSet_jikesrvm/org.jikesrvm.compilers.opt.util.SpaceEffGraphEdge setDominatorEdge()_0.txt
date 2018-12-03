@@ -1,0 +1,1 @@
+  public final void setDominatorEdge() { scratch |= DOMINATOR; }

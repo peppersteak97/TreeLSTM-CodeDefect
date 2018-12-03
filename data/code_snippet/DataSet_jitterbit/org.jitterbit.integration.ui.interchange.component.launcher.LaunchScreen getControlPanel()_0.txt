@@ -1,0 +1,35 @@
+    private JPanel getControlPanel() {
+        IPaintStrategy paintStrategy = PaintStrategies.horizontalGradient(
+                        s_leftColor, s_rightColor);
+        JPanel p = new PanelWithPaintStrategy(new GridBagLayout(), paintStrategy) {
+
+            @Override
+            public void addNotify() {
+                super.addNotify();
+                m_options.get(0).setActive(true);
+            }
+        };
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        Insets ins1 = new Insets(15, 2, 5, 2);
+        Insets ins2 = new Insets(5, 25, 5, 2);
+
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+
+        for (int n = 0, nmax = m_options.size(); n < nmax; ++n) {
+            gbc.insets = ins1;
+            p.add(m_selectors.get(n), gbc);
+            
+            gbc.insets = ins2;
+            gbc.gridwidth = 2;
+            ComponentDecorFactory.gridBag(p, gbc, m_options.get(n));
+        }
+
+        p.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createEtchedBorder(), BorderFactory
+                                        .createEmptyBorder(0, 10, 10, 20)));
+
+        return p;
+    }

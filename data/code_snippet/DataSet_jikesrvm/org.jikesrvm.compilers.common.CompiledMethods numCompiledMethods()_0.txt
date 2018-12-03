@@ -1,0 +1,3 @@
+  public static int numCompiledMethods() {
+    return currentCompiledMethodId + 1;
+  }

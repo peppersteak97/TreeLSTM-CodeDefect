@@ -1,0 +1,6 @@
+    public static void enableMethod() {
+        StackTraceElement[] stack = new Throwable().getStackTrace();
+        String className = stack[1].getClassName();
+        String methodName = stack[1].getMethodName();
+        s_enabledMethods.add(className, methodName);
+    }

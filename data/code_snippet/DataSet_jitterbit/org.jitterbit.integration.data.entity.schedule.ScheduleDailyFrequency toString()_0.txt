@@ -1,0 +1,13 @@
+    public String toString() {
+        if (m_frequencyType == OCCURS_ONCE_AT) {
+                            + ((m_Frequency_Once_Time != null) ? 
+        }
+        sb.append(m_Frequency_Every_Num);
+        if (m_Frequency_Every_HM == 1) {
+        }
+        else if (m_Frequency_Every_HM == 60) {
+        }
+        else {
+        }
+        return sb.toString();
+    }

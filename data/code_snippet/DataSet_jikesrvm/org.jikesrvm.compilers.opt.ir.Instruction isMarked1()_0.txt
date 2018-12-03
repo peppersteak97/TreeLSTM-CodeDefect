@@ -1,0 +1,3 @@
+  boolean isMarked1() {
+    return (operatorInfo & MARK1) != 0;
+  }

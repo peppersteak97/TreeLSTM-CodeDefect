@@ -1,0 +1,12 @@
+    public int numInputCards() {
+    	int result = 0;
+    	for (int i=0; i<cardTypeLocation.length; i++)
+    		if (cardTypeLocation[i]==INPUT_CARD) result++;
+
+    	if (nodeType==SMINI && result!=1)
+    		warn("C/MRI SMINI node with "+result+" input cards");
+    	if (nodeType==USIC_SUSIC && result>=MAXCARDLOCATIONBYTES)
+    		warn("C/MRI USIC/SUSIC node with "+result+" input cards");
+
+    	return result;
+    }

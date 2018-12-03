@@ -1,0 +1,9 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 37 * hash + m_wsCall.getID().hashCode();
+        for (String propName : PROPERTIES) {
+            String prop = m_wsCall.getProperty(propName);
+            hash = 37 * hash + ((prop == null) ? 0 : prop.hashCode());
+        }
+        return hash;
+    }

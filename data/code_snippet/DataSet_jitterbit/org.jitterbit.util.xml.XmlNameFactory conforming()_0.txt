@@ -1,0 +1,1 @@
+ * <li>{@link #conforming()}: Returns a factory that does not allow names to

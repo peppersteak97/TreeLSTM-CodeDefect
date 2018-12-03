@@ -1,0 +1,10 @@
+  public void textTopLevelClassNameNoSpace() throws BadLocationException {
+    String c = "class";
+    _doc.insertString(0, c, null);
+    try {
+      _doc.getFirstTopLevelClassName();
+      fail("Should not have found a class name");
+    }
+    catch (ClassNameNotFoundException e) {
+    }
+  }

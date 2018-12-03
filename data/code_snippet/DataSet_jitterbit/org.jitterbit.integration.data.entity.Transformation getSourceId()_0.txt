@@ -1,0 +1,8 @@
+    public SourceId getSourceId() {
+        try {
+            return new SourceId(id);
+        }
+        catch (IllegalArgumentException e) {
+            return null;
+        }
+    }

@@ -1,0 +1,4 @@
+    public void dispose() throws JmriException {
+        tc.removeLocoNetListener(~0, this);
+        tc = null;
+    }

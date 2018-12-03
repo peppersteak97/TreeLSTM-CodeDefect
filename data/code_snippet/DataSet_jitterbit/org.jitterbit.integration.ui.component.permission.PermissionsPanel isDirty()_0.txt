@@ -1,0 +1,3 @@
+    boolean isDirty() {
+        return (m_originalState != null) && !getState().equals(m_originalState);
+    }

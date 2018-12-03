@@ -1,0 +1,9 @@
+    private void createEvery_X_WeeksPanel() {
+        ResourceBundle res = SchedulePage.getResources();
+        m_every_X_weeks_panel = new Every_X_Panel(
+                "Weeks", 
+                res.getString("Label.Every"), 
+                res.getString("Label.Weeks"), 
+                ScheduleOccurrence.EVERY_X_WEEKS_MIN,
+                ScheduleOccurrence.EVERY_X_WEEKS_MAX);
+    }

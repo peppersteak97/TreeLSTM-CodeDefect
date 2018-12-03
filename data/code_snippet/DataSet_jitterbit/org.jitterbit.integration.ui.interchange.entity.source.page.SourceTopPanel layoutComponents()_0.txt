@@ -1,0 +1,4 @@
+    private void layoutComponents() {
+        InputField[] fields = { m_name, m_sourceType };
+        InputFieldLayoutUtils.layoutOneColumn(this, fields, false, false);
+    }

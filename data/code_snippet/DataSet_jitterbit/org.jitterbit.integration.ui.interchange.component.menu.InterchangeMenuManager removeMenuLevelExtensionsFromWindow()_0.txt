@@ -1,0 +1,7 @@
+    public void removeMenuLevelExtensionsFromWindow() {
+        removeMenuLevelExtensionsImpl(ApplicationWindowMenus.FILE, m_fileMenuExtensions);
+        removeMenuLevelExtensionsImpl(ApplicationWindowMenus.EDIT, m_editMenuExtensions);
+        removeMenuLevelExtensionsImpl(ApplicationWindowMenus.ACTIONS, m_actionsMenuExtensions);
+        removeMenuLevelExtensionsImpl(ApplicationWindowMenus.WINDOWS, m_windowMenuExtensions);
+        removeMenuLevelExtensionsImpl(ApplicationWindowMenus.DEBUG, m_debugMenuExtensions);
+    }

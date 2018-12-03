@@ -1,0 +1,100 @@
+	private boolean getLevelCrossingInformation() {
+		if (!xingFromMenu) {
+			levelXing = null;
+			if (layoutEditor.xingList.size()<=0) {
+				JOptionPane.showMessageDialog(setSignalsAtXingFrame,
+					rb.getString("SignalsError15"),
+								rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+			else if (layoutEditor.xingList.size()==1) {
+				levelXing = (LevelXing)layoutEditor.xingList.get(0);
+			}
+			else {
+				LayoutBlock xingBlockA = null;
+				LayoutBlock xingBlockC = null;
+				xingBlockA = getBlockFromEntry(blockANameField);
+				if (xingBlockA==null) return false;
+				if (blockCNameField.getText().trim().length()>0) {
+					xingBlockC = getBlockFromEntry(blockCNameField);
+					if (xingBlockC==null) return false;
+				}
+				LevelXing x = null;
+				int foundCount = 0;
+				if (xingBlockC!=null) {
+					for (int i = 0;(i<layoutEditor.xingList.size());i++) {
+						x = (LevelXing)layoutEditor.xingList.get(i);
+						LayoutBlock xA = null;
+						LayoutBlock xB = null;
+						LayoutBlock xC = null;
+						LayoutBlock xD = null;
+						LayoutBlock xAC = x.getLayoutBlockAC();
+						LayoutBlock xBD = x.getLayoutBlockBD();
+						if (x.getConnectA()!=null) xA = ((TrackSegment)x.getConnectA()).getLayoutBlock();
+						if (x.getConnectB()!=null) xB = ((TrackSegment)x.getConnectB()).getLayoutBlock();
+						if (x.getConnectC()!=null) xC = ((TrackSegment)x.getConnectC()).getLayoutBlock();
+						if (x.getConnectD()!=null) xD = ((TrackSegment)x.getConnectD()).getLayoutBlock();
+						if ( ( (xA!=null) && (xC!=null) && ( ((xA==xingBlockA)&&(xC==xingBlockC)) ||
+								((xA==xingBlockC)&&(xC==xingBlockA)) ) ) ||
+								( (xB!=null) && (xD!=null) && ( ((xB==xingBlockA)&&(xD==xingBlockC)) ||
+								((xB==xingBlockC)&&(xD==xingBlockA)) ) ) ) {
+							levelXing = x;
+							foundCount ++;
+						}
+						else if ( (xAC!=null) && (xBD!=null) && ( ((xAC==xingBlockA) && (xBD==xingBlockC)) ||
+									((xAC==xingBlockC) && (xBD==xingBlockA)) ) ) {
+							levelXing = x;
+							foundCount ++;
+						}				
+					}
+				}
+				if (foundCount==0) {
+					for (int i = 0;(i<layoutEditor.xingList.size());i++) {
+						x = (LevelXing)layoutEditor.xingList.get(i);
+						if ((xingBlockA == x.getLayoutBlockAC()) || (xingBlockA == x.getLayoutBlockBD())) {
+							levelXing = x;
+							foundCount ++;
+						}				
+					}
+				}
+				if (foundCount>1) {
+					JOptionPane.showMessageDialog(setSignalsAtXingFrame,
+							java.text.MessageFormat.format(rb.getString("SignalsError16"),
+								new String[]{" "+foundCount+" "}), 
+									rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+					return false;
+				}
+				if (levelXing==null) {
+					JOptionPane.showMessageDialog(setSignalsAtXingFrame,
+								rb.getString("SignalsError17"),
+										rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+					return false;
+				}
+			}
+		}
+		if (levelXing.getConnectA()!=null) xingTrackA = ((TrackSegment)levelXing.getConnectA());
+		if (levelXing.getConnectB()!=null) xingTrackB = ((TrackSegment)levelXing.getConnectB());
+		if (levelXing.getConnectC()!=null) xingTrackC = ((TrackSegment)levelXing.getConnectC());
+		if (levelXing.getConnectD()!=null) xingTrackD = ((TrackSegment)levelXing.getConnectD());
+		double delX = levelXing.getCoordsA().getX() - levelXing.getCoordsC().getX();
+		double delY = levelXing.getCoordsA().getY() - levelXing.getCoordsC().getY();
+		levelXingACHorizontal = false;
+		levelXingACVertical = false;
+		levelXingALeft = false;
+		levelXingAUp = false;
+		levelXingBUp = false;
+		levelXingBLeft = false;
+		if (java.lang.Math.abs(delX) > 2.0*java.lang.Math.abs(delY)) {
+			levelXingACHorizontal = true;
+			if (delX < 0.0) levelXingALeft = true;
+			if (levelXing.getCoordsB().getY() < levelXing.getCoordsD().getY())
+				levelXingBUp = true;
+		}
+		else if (java.lang.Math.abs(delY) > 2.0*java.lang.Math.abs(delX)) { 
+			levelXingACVertical = true;
+			if (delY <0.0) levelXingAUp = true;
+			if (levelXing.getCoordsB().getX() < levelXing.getCoordsD().getX())
+				levelXingBLeft = true;
+		}
+		return true;
+	}

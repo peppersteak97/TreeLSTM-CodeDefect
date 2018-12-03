@@ -1,0 +1,6 @@
+    private void executeImpl() {
+        if (m_queueDisplayer == null) {
+            m_queueDisplayer = new SystemQueueDisplayer();
+        }
+        m_queueDisplayer.display(m_view);
+    }

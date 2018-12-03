@@ -1,0 +1,10 @@
+    private ItemListener setUpListeners() {
+        ItemListener lst = new ItemListener() {
+
+            public void itemStateChanged(ItemEvent e) {
+                m_editAction.setEnabled(m_comboBox.getSelectedEntity() != null);
+            }
+        };
+        m_comboBox.addItemListener(lst);
+        return lst;
+    }

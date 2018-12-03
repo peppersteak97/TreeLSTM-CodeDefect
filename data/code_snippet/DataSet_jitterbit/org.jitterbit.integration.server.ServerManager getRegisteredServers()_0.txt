@@ -1,0 +1,3 @@
+    public List<IServerProperties> getRegisteredServers() {
+        return ServerDirectory.getInformationStore().getRegisteredServers();
+    }

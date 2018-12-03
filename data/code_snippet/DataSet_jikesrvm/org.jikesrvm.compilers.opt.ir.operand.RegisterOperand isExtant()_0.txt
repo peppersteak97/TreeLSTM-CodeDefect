@@ -1,0 +1,1 @@
+  public boolean isExtant() { return (flags & EXTANT) != 0; }

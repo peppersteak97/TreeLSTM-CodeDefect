@@ -1,0 +1,28 @@
+    public synchronized static DecoderIndexFile instance() {
+        if (_instance == null) {
+            if (log.isDebugEnabled()) log.debug("DecoderIndexFile creating instance");
+            try {
+                _instance = new DecoderIndexFile();
+                _instance.readFile(defaultDecoderIndexFilename());
+            } catch (Exception e) {
+                log.error("Exception during decoder index reading: "+e);
+                e.printStackTrace();
+            }
+            try {
+                if (updateIndexIfNeeded(defaultDecoderIndexFilename())) {
+                    try {
+                        _instance = new DecoderIndexFile();
+                        _instance.readFile(defaultDecoderIndexFilename());
+                    } catch (Exception e) {
+                        log.error("Exception during decoder index reload: "+e);
+                        e.printStackTrace();
+                    }
+                }
+            } catch (Exception e) {
+                log.error("Exception during decoder index update: "+e);
+                e.printStackTrace();
+            }
+        }
+        if (log.isDebugEnabled()) log.debug("DecoderIndexFile returns instance "+_instance);
+        return _instance;
+    }

@@ -1,0 +1,3 @@
+	public boolean isMultiple(){
+		return m_occurenceType.equals(oTypes[1])||m_occurenceType.equals(oTypes[3]);
+	}

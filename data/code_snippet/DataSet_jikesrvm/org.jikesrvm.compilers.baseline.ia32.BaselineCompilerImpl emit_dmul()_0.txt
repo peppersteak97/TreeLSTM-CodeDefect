@@ -1,0 +1,5 @@
+  protected final void emit_dmul() {
+    if (SSE2_BASE) {
+    } else {
+    }
+  }

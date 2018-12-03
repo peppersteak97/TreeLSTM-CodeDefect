@@ -1,0 +1,3 @@
+                for (IUiJobProgressDisplayer d : getGlobalDisplayers()) {
+                    d.jobStarted(jobID, job);
+                }

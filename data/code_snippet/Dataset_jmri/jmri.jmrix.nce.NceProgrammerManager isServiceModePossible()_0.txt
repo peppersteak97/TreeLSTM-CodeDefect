@@ -1,0 +1,6 @@
+    public boolean isServiceModePossible() {
+		if (NceUSB.getUsbSystem() == NceUSB.USB_SYSTEM_SB3)
+			return false;
+		else
+			return true;
+	}

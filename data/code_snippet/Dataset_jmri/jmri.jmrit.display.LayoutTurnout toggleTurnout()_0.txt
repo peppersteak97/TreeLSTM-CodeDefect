@@ -1,0 +1,8 @@
+	public void toggleTurnout() {
+        if ((turnout!=null) && (!disabled)) {
+			if (turnout.getKnownState()==jmri.Turnout.CLOSED)
+				turnout.setCommandedState(jmri.Turnout.THROWN);
+			else
+				turnout.setCommandedState(jmri.Turnout.CLOSED);
+		}
+    }

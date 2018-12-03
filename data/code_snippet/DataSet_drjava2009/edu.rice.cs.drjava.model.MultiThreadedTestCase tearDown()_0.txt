@@ -1,0 +1,6 @@
+  public void tearDown() throws Exception {
+    ExceptionHandler.ONLY.rethrow();
+    if (_testFailed) fail("test failed in another thread");
+    DefinitionsPaneTest._log.log("MultithreadedTestCase.tearDown() calling super.tearDown()");
+    super.tearDown();
+  }

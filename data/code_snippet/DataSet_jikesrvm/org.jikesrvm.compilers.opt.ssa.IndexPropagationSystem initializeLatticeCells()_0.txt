@@ -1,0 +1,17 @@
+  protected void initializeLatticeCells() {
+    for (DF_LatticeCell c : cells.values()) {
+      if (c instanceof ObjectCell) {
+        ObjectCell c1 = (ObjectCell) c;
+        HeapVariable<?> key = c1.getKey();
+        if (key.isExposedOnEntry()) {
+          c1.setBOTTOM();
+        }
+      } else {
+        ArrayCell c1 = (ArrayCell) c;
+        HeapVariable<?> key = c1.getKey();
+        if (key.isExposedOnEntry()) {
+          c1.setBOTTOM();
+        }
+      }
+    }
+  }

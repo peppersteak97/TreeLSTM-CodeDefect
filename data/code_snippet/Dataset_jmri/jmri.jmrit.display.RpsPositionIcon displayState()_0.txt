@@ -1,0 +1,12 @@
+    void displayState() {
+
+        if (state) {
+            if (icon) super.setIcon(active);
+        } else {
+            if (icon) super.setIcon(error);
+        }
+        
+        updateSize();
+        revalidate();
+        return;
+    }

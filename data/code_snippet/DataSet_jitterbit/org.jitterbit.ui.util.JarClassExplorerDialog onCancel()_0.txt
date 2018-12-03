@@ -1,0 +1,4 @@
+	protected void onCancel() {
+		clearSelection();
+		setVisible(false);
+	}

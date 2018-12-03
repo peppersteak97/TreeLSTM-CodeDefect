@@ -1,0 +1,11 @@
+    private static void customizeOperations() throws IntrospectionException {
+        BeanInfo info = Introspector.getBeanInfo(OperationId.class);
+        BeanDescriptor desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(Operation.class);
+        desc = info.getBeanDescriptor();
+
+        info = Introspector.getBeanInfo(UndefinedFunction.class);
+        desc = info.getBeanDescriptor();
+                        new String[] { "functionId" })); 
+    }

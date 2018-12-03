@@ -1,0 +1,3 @@
+  public boolean isMagicType() {
+    return this == Magic || isUnboxedType() || isUnboxedArrayType() || this == ObjectReference || isRuntimeTable();
+  }

@@ -1,0 +1,115 @@
+    public void initComponents() {
+        setTitle(rb.getString("WindowTitle"));
+			
+        Container contentPane = getContentPane();
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+			
+        JPanel panel1 = new JPanel();
+        panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
+
+        JPanel panel11 = new JPanel();
+        panel11.setLayout(new FlowLayout());
+        panel11.add(new JLabel(rb.getString("LabelNodeAddress")+" "));
+        panel11.add(nodeAddrField);
+        nodeAddrField.setToolTipText(rb.getString("TipNodeAddress"));
+        nodeAddrField.setText("0");
+        panel11.add(nodeAddrStatic);
+        nodeAddrStatic.setVisible(false);
+        panel11.add(new JLabel("   "+rb.getString("LabelNodeType")+" "));
+        nodeTypeBox = new JComboBox(SerialNode.boardNames);
+        panel11.add(nodeTypeBox);
+        nodeTypeBox.setToolTipText(rb.getString("TipNodeType"));
+        contentPane.add(panel11);
+			
+        JPanel panel3 = new JPanel();
+        panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
+        JPanel panel31 = new JPanel();
+        panel31.setLayout(new FlowLayout());
+        statusText1.setText(stdStatus1);
+        statusText1.setVisible(true);
+        panel31.add(statusText1);
+        JPanel panel32 = new JPanel();
+        panel32.setLayout(new FlowLayout());
+        statusText2.setText(stdStatus2);
+        statusText2.setVisible(true);
+        panel32.add(statusText2);
+        JPanel panel33 = new JPanel();
+        panel33.setLayout(new FlowLayout());
+        statusText3.setText(stdStatus3);
+        statusText3.setVisible(true);
+        panel33.add(statusText3);
+        panel3.add(panel31);
+        panel3.add(panel32);
+        panel3.add(panel33);
+        Border panel3Border = BorderFactory.createEtchedBorder();
+        Border panel3Titled = BorderFactory.createTitledBorder(panel3Border,
+                                                rb.getString("BoxLabelNotes"));
+        panel3.setBorder(panel3Titled);                
+        contentPane.add(panel3);
+        
+        JPanel panel4 = new JPanel();
+        panel4.setLayout(new FlowLayout());
+        addButton.setText(rb.getString("ButtonAdd"));
+        addButton.setVisible(true);
+        addButton.setToolTipText(rb.getString("TipAddButton"));
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    addButtonActionPerformed();
+                }
+            });
+        panel4.add(addButton);
+        editButton.setText(rb.getString("ButtonEdit"));
+        editButton.setVisible(true);
+        editButton.setToolTipText(rb.getString("TipEditButton"));
+        panel4.add(editButton);
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    editButtonActionPerformed();
+                }
+            });
+        panel4.add(deleteButton);
+        deleteButton.setText(rb.getString("ButtonDelete"));
+        deleteButton.setVisible(true);
+        deleteButton.setToolTipText(rb.getString("TipDeleteButton"));
+        panel4.add(deleteButton);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    deleteButtonActionPerformed();
+                }
+            });
+        panel4.add(doneButton);
+        doneButton.setText(rb.getString("ButtonDone"));
+        doneButton.setVisible(true);
+        doneButton.setToolTipText(rb.getString("TipDoneButton"));
+        panel4.add(doneButton);
+        doneButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    doneButtonActionPerformed();
+                }
+            });
+        panel4.add(updateButton);
+        updateButton.setText(rb.getString("ButtonUpdate"));
+        updateButton.setVisible(true);
+        updateButton.setToolTipText(rb.getString("TipUpdateButton"));
+        panel4.add(updateButton);
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    updateButtonActionPerformed();
+                }
+            });
+        updateButton.setVisible(false);
+        panel4.add(cancelButton);
+        cancelButton.setText(rb.getString("ButtonCancel"));
+        cancelButton.setVisible(true);
+        cancelButton.setToolTipText(rb.getString("TipCancelButton"));
+        panel4.add(cancelButton);
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    cancelButtonActionPerformed();
+                }
+            });
+        cancelButton.setVisible(false);			
+        contentPane.add(panel4);
+
+        pack();
+    }

@@ -1,0 +1,3 @@
+    public final EventHub getEventHub() {
+        return m_eventHub;
+    }

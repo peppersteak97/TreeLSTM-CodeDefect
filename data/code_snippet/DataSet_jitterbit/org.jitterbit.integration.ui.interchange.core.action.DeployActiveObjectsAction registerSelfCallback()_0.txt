@@ -1,0 +1,16 @@
+    private void registerSelfCallback() {
+        addCallback(new ICallbackResult() {
+            public void cancelled(Object o) {
+                done();
+            }
+            public void failed(Object o) {
+                done();
+            }
+            public void succeeded(Object o) {
+                done();
+            }
+            private void done() {
+                updateEnabledState(getProvider().getActiveObjects());
+            }
+        });
+    }

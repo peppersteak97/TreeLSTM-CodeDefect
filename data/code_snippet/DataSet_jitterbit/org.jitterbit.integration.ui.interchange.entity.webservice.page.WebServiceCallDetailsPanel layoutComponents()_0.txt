@@ -1,0 +1,21 @@
+    private void layoutComponents() {
+        TwoColumnPanel p = new TwoColumnPanel();
+        JComponent wsUrl = InputFieldFactory.getCapsule(m_webServiceUrl);
+        JComponent service = InputFieldFactory.getLabeledComponent(m_service, 
+                        PackageResources.Labels.SERVICE);
+        p.addRow(wsUrl, service);
+        JComponent wsdlUrl = InputFieldFactory.getLabeledComponent(m_wsdlUrl, 
+                        PackageResources.Labels.WSDL_URL);
+        JComponent port = InputFieldFactory.getLabeledComponent(m_port, 
+                        PackageResources.Labels.PORT);
+        p.addRow(wsdlUrl, port);
+        JComponent soapAction = InputFieldFactory.getLabeledComponent(m_soapAction, 
+                        PackageResources.Labels.SOAP_ACTION);
+        JComponent binding = InputFieldFactory.getLabeledComponent(m_binding, 
+                        PackageResources.Labels.BINDING);
+        p.addRow(soapAction, binding);
+        JComponent operation = InputFieldFactory.getLabeledComponent(m_operation, 
+                        PackageResources.Labels.OPERATION);
+        p.addRow(null, operation);
+        wrap(p);
+    }

@@ -1,0 +1,4 @@
+  protected final void emit_iand() {
+    asm.emitPOP_Reg(T0);
+    asm.emitAND_RegInd_Reg(SP, T0);
+  }

@@ -1,0 +1,7 @@
+    private void createTable() {
+        m_segmentModel = new SegmentTableModel(m_document);
+        m_segmentTable = new SegmentTable(m_segmentModel, m_isFixedWidth);
+
+        m_segmentTable.addPropertyChangeListener(
+                        DocDefTable.TABLE_CONTENT_PROPERTY, this);
+    }

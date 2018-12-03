@@ -1,0 +1,3 @@
+    public String getDataTypeString(){
+    	return m_sDataType;
+    }

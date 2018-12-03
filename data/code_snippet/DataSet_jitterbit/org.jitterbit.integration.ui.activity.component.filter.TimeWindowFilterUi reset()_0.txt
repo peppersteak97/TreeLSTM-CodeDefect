@@ -1,0 +1,3 @@
+    public void reset() {
+        m_timeControl = new TimeWindowControl(m_startDate, m_endDate);
+    }

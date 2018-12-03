@@ -1,0 +1,7 @@
+	private void killConsist() {
+		if (validLocoAdr(locoTextField1.getText()) < 0)
+			return;
+		int locoAddr = getLocoAddr (locoTextField1, adrButton1);
+		sendNceBinaryCommand(locoAddr, NceBinaryCommand.LOCO_CMD_KILL_CONSIST,
+				(byte) 0);
+	}

@@ -1,0 +1,18 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus(PackageResources.DownloadInfoJob.STARTED);
+
+        Runnable task = new Runnable() {
+            
+            public void run() {
+                IntegrationServer server = IntegrationServer.getInstance();
+                IXmlInfoProvider call = server.getServerCall(IXmlInfoProvider.class);
+                call.getXmlStructureFiles(m_callback);
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallellAndWait(task, m_callback);
+        m_latch.await();
+    }

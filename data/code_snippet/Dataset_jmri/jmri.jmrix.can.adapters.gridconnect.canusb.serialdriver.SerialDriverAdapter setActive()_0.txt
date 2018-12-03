@@ -1,0 +1,3 @@
+    protected void setActive() { 
+        jmri.jmrix.can.adapters.gridconnect.canusb.ActiveFlag.setActive();
+    }

@@ -1,0 +1,8 @@
+    public DataStructureType getSourceType() {
+        try {
+            return DataStructureType.fromId(Integer.parseInt(sourceTypeId));
+        }
+        catch (NumberFormatException e) {
+            return null;
+        }
+    }

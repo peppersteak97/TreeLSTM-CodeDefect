@@ -1,0 +1,10 @@
+    private void processJobQueue() {
+        while (!m_jobQueue.isEmpty() && !isAborted()) {
+            FileDownloadRequest request = m_jobQueue.poll();
+            if (m_hasBeenDownloaded.contains(request.getFileToDownload())) {
+                continue;
+            }
+            FileDownloadJob job = createDownloadJob(request);
+            runJobAndWait(job);
+        }
+    }

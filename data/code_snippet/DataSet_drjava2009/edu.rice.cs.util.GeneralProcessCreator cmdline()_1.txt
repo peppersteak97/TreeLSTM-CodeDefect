@@ -1,0 +1,23 @@
+  public String cmdline() {
+    if (_cmdline == null) {
+      if (_cachedCmdLine == null) {
+        if (_seqs.size() == 1) {
+          List<List<String>> pipe = _seqs.get(0);
+          if (pipe.size() == 1) {
+            List<String> cmds = pipe.get(0);
+            _cachedCmdLine = getProcessCmdLine(cmds);
+          }
+          else {
+            _cachedCmdLine = getProcessChainCmdLine(pipe);
+          }
+        }
+        else  {
+          _cachedCmdLine = getProcessSequenceCmdLine(_seqs);
+        }
+      }
+      return _cachedCmdLine;
+    }
+    else {
+      return _cmdline;
+    }
+  }

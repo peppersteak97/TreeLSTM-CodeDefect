@@ -1,0 +1,12 @@
+    private String getToolbarToolTip() {
+        if (m_runningProcesses.isEmpty()) {
+            return null;
+        }
+        int n = 1;
+        for (Map.Entry<UiJobID, IUiJob> entry : m_runningProcesses.entrySet()) {
+            tt.append(n);
+            tt.append(entry.getValue().getName());
+            ++n;
+        }
+        return tt.toString();
+    }

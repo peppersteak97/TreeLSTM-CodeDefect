@@ -1,0 +1,55 @@
+	protected void enterTrackWidth() {
+		if (enterWidthOpen) {
+			enterTrackWidthFrame.setVisible(true);
+			return;
+		}
+		if (enterTrackWidthFrame == null) {
+            enterTrackWidthFrame = new JmriJFrame( rb.getString("SetTrackWidth") );
+            enterTrackWidthFrame.addHelpMenu("package.jmri.jmrit.display.EnterTrackWidth", true);
+            enterTrackWidthFrame.setLocation(70,30);
+            Container theContentPane = enterTrackWidthFrame.getContentPane();        
+            theContentPane.setLayout(new BoxLayout(theContentPane, BoxLayout.Y_AXIS));
+            JPanel panel2 = new JPanel(); 
+            panel2.setLayout(new FlowLayout());
+			JLabel sideWidthLabel = new JLabel( rb.getString("SideTrackWidth"));
+            panel2.add(sideWidthLabel);
+            panel2.add(sideWidthField);
+            sideWidthField.setToolTipText( rb.getString("SideTrackWidthHint") );
+            theContentPane.add(panel2);
+            JPanel panel3 = new JPanel(); 
+            panel3.setLayout(new FlowLayout());
+			JLabel mainlineWidthLabel = new JLabel( rb.getString("MainlineTrackWidth"));
+            panel3.add(mainlineWidthLabel);
+            panel3.add(mainlineWidthField);
+            mainlineWidthField.setToolTipText( rb.getString("MainlineTrackWidthHint") );
+            theContentPane.add(panel3);
+            JPanel panel5 = new JPanel();
+            panel5.setLayout(new FlowLayout());
+            panel5.add(trackWidthDone = new JButton(rb.getString("Done")));
+            trackWidthDone.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    trackWidthDonePressed(e);
+                }
+            });
+            trackWidthDone.setToolTipText( rb.getString("DoneHint") );
+            panel5.add(trackWidthCancel = new JButton(rb.getString("Cancel")));
+            trackWidthCancel.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    trackWidthCancelPressed(e);
+                }
+            });
+            trackWidthCancel.setToolTipText( rb.getString("CancelHint") );
+            theContentPane.add(panel5);
+		}
+		mainlineWidthField.setText(""+getMainlineTrackWidth());
+		sideWidthField.setText(""+getSideTrackWidth());
+		enterTrackWidthFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+				public void windowClosing(java.awt.event.WindowEvent e) {
+					trackWidthCancelPressed(null);
+				}
+			});
+        enterTrackWidthFrame.pack();
+        enterTrackWidthFrame.setVisible(true);	
+		trackWidthChange = false;	
+		enterWidthOpen = true;
+	}	

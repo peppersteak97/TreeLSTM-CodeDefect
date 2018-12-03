@@ -1,0 +1,3 @@
+	public KongaGraphComponent[] getGraphComponents() {
+		return m_graphComponents;
+	}

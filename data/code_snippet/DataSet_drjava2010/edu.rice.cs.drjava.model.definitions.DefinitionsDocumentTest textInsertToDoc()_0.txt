@@ -1,0 +1,29 @@
+  public void textInsertToDoc() throws BadLocationException {
+    _doc.insertString(0, "a/*bc */\"\\{}()", null);
+    assertEquals("#0.0", _doc.getText(0, 8), "a/*bc */");
+    assertEquals("#0.1", 14, _doc.getCurrentLocation());
+    _doc.insertString(0, "Start:", null);
+    assertEquals("#1.0", _doc.getText(0, 14), "Start:a/*bc */");
+    assertEquals("#1.1", 6, _doc.getCurrentLocation());
+    BraceReduction _reduced = _doc.getReduced();
+    assertEquals("2.1", FREE, _reduced.getStateAtCurrent());
+    _reduced.move(2);
+    assertEquals("2.3", "/*", _reduced.currentToken().getType());
+    _reduced.move(2);
+    assertEquals("2.4", true, _reduced.currentToken().isGap());
+    assertEquals("2.5", ReducedToken.INSIDE_BLOCK_COMMENT, _reduced.currentToken().getState());
+    _reduced.move(2);
+    assertEquals("2.6", "*/", _reduced.currentToken().getType());
+    _reduced.move(2);
+    assertEquals("2.7", "\"", _reduced.currentToken().getType());
+    _reduced.move(1);
+    assertEquals("2.8", "\\", _reduced.currentToken().getType());
+    _reduced.move(1);
+    assertEquals("2.9", "{", _reduced.currentToken().getType());
+    _reduced.move(1);
+    assertEquals("2.91", "}", _reduced.currentToken().getType());
+    _reduced.move(1);
+    assertEquals("2.92", "(", _reduced.currentToken().getType());
+    _reduced.move(1);
+    assertEquals("2.93", ")", _reduced.currentToken().getType());
+  }

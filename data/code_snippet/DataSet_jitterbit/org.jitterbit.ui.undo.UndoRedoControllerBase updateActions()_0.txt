@@ -1,0 +1,4 @@
+    public void updateActions() {
+        m_undoAction.setEnabled(canUndo());
+        m_redoAction.setEnabled(canRedo());
+    }

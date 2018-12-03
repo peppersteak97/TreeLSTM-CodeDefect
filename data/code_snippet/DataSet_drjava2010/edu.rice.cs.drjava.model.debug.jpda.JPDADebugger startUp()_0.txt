@@ -1,0 +1,41 @@
+  public /* synchronized */ void startUp() throws DebugException {
+    assert EventQueue.isDispatchThread();
+    if (! isReady()) {
+      _eventHandlerError = null;
+      for (OpenDefinitionsDocument doc: _model.getOpenDefinitionsDocuments()) {
+        doc.checkIfClassFileInSync();
+      }
+      
+      try { _attachToVM(); }
+        try { 
+          catch (InterruptedException e) { /* ignore */ }
+          _attachToVM(); 
+          error.log("Two attempts required for debugger to attach to slave JVM");
+        }
+        catch(DebugException e2) {
+          catch (InterruptedException e) { /* ignore */ }
+          _attachToVM();
+          error.log("Three attempts required for debugger to attach to slave JVM");
+      }
+      
+      ThreadDeathRequest tdr = _eventManager.createThreadDeathRequest();
+      tdr.setSuspendPolicy(EventRequest.SUSPEND_EVENT_THREAD);
+      tdr.enable();
+      
+      EventHandlerThread eventHandler = new EventHandlerThread(this, _vm);
+      eventHandler.start();
+      
+      _model.getInteractionsModel().addListener(_watchListener);
+
+      ArrayList<Breakpoint> oldBreakpoints = new ArrayList<Breakpoint>(_model.getBreakpointManager().getRegions());
+      for (int i = 0; i < oldBreakpoints.size(); i++) {
+        Breakpoint bp = oldBreakpoints.get(i);
+        bp.update();
+        OpenDefinitionsDocument odd = bp.getDocument();
+        setBreakpoint(new JPDABreakpoint(odd, bp.getLineStartOffset(), bp.isEnabled(), this)); 
+      }
+    }
+    
+    else
+      throw new IllegalStateException("Debugger has already been started.");
+  }

@@ -1,0 +1,4 @@
+  public BranchProfileOperand flip() {
+    takenProbability = 1f - takenProbability;
+    return this;
+  }

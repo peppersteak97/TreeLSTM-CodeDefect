@@ -1,0 +1,3 @@
+    public static IRadioButtonFactory radioButtonFactory() {
+        return RADIO_BUTTON_FACTORY;
+    }

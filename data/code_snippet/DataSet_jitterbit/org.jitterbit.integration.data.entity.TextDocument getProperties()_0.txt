@@ -1,0 +1,8 @@
+	public StringKeyValuePairs getProperties() {
+		StringKeyValuePairs keyValues = new StringKeyValuePairs();
+		
+		keyValues.putAll( super.getProperties() );
+		keyValues.put(DOCUMENT_ID, getID().toString());
+		keyValues.put(DOCUMENT_NAME, getName());
+		return keyValues;
+	}

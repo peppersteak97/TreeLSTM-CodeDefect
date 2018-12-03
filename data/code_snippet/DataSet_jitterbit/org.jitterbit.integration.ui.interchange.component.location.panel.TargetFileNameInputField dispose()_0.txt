@@ -1,0 +1,8 @@
+    public void dispose() {
+        try {
+            m_autoCompleter.uninstall();
+        }
+        finally {
+            super.dispose();
+        }
+    }

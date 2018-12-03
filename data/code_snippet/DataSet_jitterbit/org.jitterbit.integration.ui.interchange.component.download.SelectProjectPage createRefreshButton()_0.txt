@@ -1,0 +1,12 @@
+    private JComponent createRefreshButton() {
+        JButton refresh = ComponentFactories.buttonFactory().newButton();
+        refresh.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                getAvailableProjects();
+            }
+        });
+        ILabelDecorator decorator = LabelDecorators.REFRESH_BUTTON;
+        LabelDecorators.decorate(refresh, decorator);
+        return refresh;
+    }

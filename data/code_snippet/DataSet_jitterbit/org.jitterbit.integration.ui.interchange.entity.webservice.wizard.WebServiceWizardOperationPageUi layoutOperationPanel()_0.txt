@@ -1,0 +1,11 @@
+    private void layoutOperationPanel() {
+        TwoColumnPanel layout = new TwoColumnPanel();
+        layout.setInsets(5, 5, 5, 5);
+        layout.addRow(m_operationCombo);
+        for (int n = 0; n < m_operationInfoLabels.length; ++n) {
+            addLabelPair(INFO_LABEL_NAMES[n], m_operationInfoLabels[n], layout);
+        }
+        layout.addRow(ComponentFactories.buttonFactory().newButton(m_showDocumentationAction), 
+        m_operationPanel = InvisiblePanel.newPanel();
+        layout.addToParent(m_operationPanel, null);
+    }

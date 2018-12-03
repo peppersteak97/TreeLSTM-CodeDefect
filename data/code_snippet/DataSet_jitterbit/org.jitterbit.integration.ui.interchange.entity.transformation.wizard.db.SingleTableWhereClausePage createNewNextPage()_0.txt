@@ -1,0 +1,13 @@
+    private IWizardPage createNewNextPage() {
+        IWizardPage page = null;
+        if (m_dbObject.hasPrimaryKeys()) {
+            page = new UpdateSourceDatabasePage(getWizard(), m_dbLocation,
+                            m_dbObject, null, getDatabaseStructure());
+        }
+        else {
+            page = new UpdateKeySelectionPage(getWizard(), m_dbLocation, m_dbObject,
+                            getDatabaseStructure());
+        }
+        m_nextPageCache.put(m_dbObject, page);
+        return page;
+    }

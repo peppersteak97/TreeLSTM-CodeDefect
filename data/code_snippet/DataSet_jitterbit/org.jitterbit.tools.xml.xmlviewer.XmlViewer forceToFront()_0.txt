@@ -1,0 +1,3 @@
+    public void forceToFront() {
+        m_mainWindow.forceToFront();
+    }

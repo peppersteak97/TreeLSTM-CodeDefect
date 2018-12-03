@@ -1,0 +1,13 @@
+  public void testEscapeAtFrontBeforeWS() throws IOException {
+    BalancingStreamTokenizer tok = make("\\ abc def", '\\');
+    tok.defaultWhitespaceSetup();
+    String s = tok.getNextToken();
+    assertEquals(" abc", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("def", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals(null, s);
+    assertEquals(BalancingStreamTokenizer.Token.END, tok.token());
+  }

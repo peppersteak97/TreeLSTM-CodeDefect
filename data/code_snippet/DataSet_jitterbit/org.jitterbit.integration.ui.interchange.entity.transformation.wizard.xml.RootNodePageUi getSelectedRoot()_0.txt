@@ -1,0 +1,4 @@
+    String getSelectedRoot() {
+        assert (m_selectedRoot != null);
+        return m_selectedRoot.toString();
+    }

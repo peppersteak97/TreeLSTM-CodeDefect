@@ -1,0 +1,3 @@
+    public static boolean isPlatformSupported() {
+        return SystemUtils.IS_OS_WINDOWS || SystemUtils.IS_OS_LINUX;
+    }

@@ -1,0 +1,9 @@
+  private void advance() {
+    while (e.hasMoreElements()) {
+      next = e.nextElement();
+      if (f.isElement(next)) {
+        return;
+      }
+    }
+    done = true;
+  }

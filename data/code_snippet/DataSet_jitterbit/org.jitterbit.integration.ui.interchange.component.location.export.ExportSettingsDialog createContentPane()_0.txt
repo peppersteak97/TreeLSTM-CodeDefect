@@ -1,0 +1,7 @@
+    private void createContentPane() {
+        JPanel cp = IntegrationUiStyleSheet.getDialogContentPane();
+        addPropertySelector(cp);
+        addDestinationsList(cp);
+        addButtons(cp);
+        setContentPane(cp);
+    }

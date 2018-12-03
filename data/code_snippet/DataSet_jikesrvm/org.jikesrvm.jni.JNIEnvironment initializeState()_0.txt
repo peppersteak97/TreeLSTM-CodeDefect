@@ -1,0 +1,7 @@
+  protected void initializeState() {
+    JNIRefs = AddressArray.create(JNIREFS_ARRAY_LENGTH + JNIREFS_FUDGE_LENGTH);
+    JNIRefsTop = 0;
+    JNIRefsSavedFP = 0;
+    JNIRefsMax = (JNIREFS_ARRAY_LENGTH - 1) << LOG_BYTES_IN_ADDRESS;
+    alwaysHasNativeFrame = false;
+  }

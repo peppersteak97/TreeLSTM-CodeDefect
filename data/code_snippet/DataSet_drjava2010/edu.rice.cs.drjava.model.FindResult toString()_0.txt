@@ -1,0 +1,3 @@
+  public String toString() {
+    return "FindResult(" + _document + ", " + _foundoffset + ", " + _wrapped + ", " + _allWrapped + ")";
+  }

@@ -1,0 +1,6 @@
+	public void notifyThrottleDisposed()
+	{
+		this.setEnabled(false);
+		this.throttle.removePropertyChangeListener(this);
+		throttle = null;
+	}

@@ -1,0 +1,3 @@
+    public int getRecordsPerPage() {
+        return m_recordsPerPage;
+    }

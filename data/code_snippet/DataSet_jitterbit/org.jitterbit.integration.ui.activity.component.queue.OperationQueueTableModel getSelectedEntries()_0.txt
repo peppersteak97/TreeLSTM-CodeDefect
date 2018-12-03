@@ -1,0 +1,15 @@
+    public Iterable<IOperationQueueEntry> getSelectedEntries() {
+        List<IOperationQueueEntry> delete = null;
+        int checkCol = OperationQueueTableModel.SELECT_CHECK.getIndex();
+        for (int row = 0, rows = getRowCount(); row < rows; ++row) {
+            if ((Boolean) getValueAt(row, checkCol)) {
+                if (delete == null) {
+                    delete = new ArrayList<IOperationQueueEntry>();
+                }
+                delete.add(getQueueEntry(row));
+            }
+        }
+        return (delete == null) ? 
+                        KongaCollectionUtils.<IOperationQueueEntry>getEmptyIterable() : 
+                            delete;
+    }

@@ -1,0 +1,4 @@
+    public void updateUI() {
+        createComponents();
+        registerEntityListener();
+    }

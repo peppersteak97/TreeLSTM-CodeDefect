@@ -1,0 +1,5 @@
+    static public SRCPMessage getEnableMain() {
+        SRCPMessage m = new SRCPMessage("SET 1 POWER ON\n");
+        m.setBinary(false);
+        return m;
+    }

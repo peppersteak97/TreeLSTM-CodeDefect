@@ -1,0 +1,6 @@
+  public void reset() {
+    for (String stringName : stringToCounterMap.keySet()) {
+      int counterIdx = getCounterIndexForString(stringName);
+      setCounter(counterIdx, 0.0);
+    }
+  }

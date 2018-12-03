@@ -1,0 +1,13 @@
+    void updatedTextField() {
+        if (log.isDebugEnabled()) log.debug("updatedTextField");
+        CvValue cv = (CvValue)_cvVector.elementAt(getCvNum());
+        int oldCv = cv.getValue();
+        int newVal;
+        try {
+            newVal = Integer.valueOf(_value.getText()).intValue();
+        }
+        catch (java.lang.NumberFormatException ex) { newVal = 0; }
+        int newCv = newValue(oldCv, newVal, getMask());
+                if (oldCv != newCv)
+                    cv.setValue(newCv);
+    }

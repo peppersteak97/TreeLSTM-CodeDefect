@@ -1,0 +1,4 @@
+  protected File tempFile() throws IOException {
+    File f = File.createTempFile("DrJava-test", ".java", _tempDir).getCanonicalFile();
+    return f;
+  }

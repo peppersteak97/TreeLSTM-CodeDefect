@@ -1,0 +1,16 @@
+	private synchronized void removeCurrentMessage() {
+		if (m_messageStack.isEmpty()) {
+            return;
+        }
+        ApplicationMessageEvent top = m_messageStack.peek();
+        if (top.getLifeTime() != ApplicationMessageEvent.LIFETIME_INDEFINITE) {
+            m_messageStack.pop();
+            if (m_messageStack.isEmpty()) {
+                top = null;
+            }
+            else {
+                top = m_messageStack.peek();
+            }
+        }
+        setCurrentMessage(top);
+	}

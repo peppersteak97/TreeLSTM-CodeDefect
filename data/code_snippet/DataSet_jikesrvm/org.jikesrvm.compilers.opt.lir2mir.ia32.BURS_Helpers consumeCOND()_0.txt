@@ -1,0 +1,8 @@
+  protected final ConditionOperand consumeCOND() {
+    ConditionOperand ans = cc;
+    if (VM.VerifyAssertions) {
+      VM._assert(cc != null);
+    }
+    cc = null;
+    return ans;
+  }

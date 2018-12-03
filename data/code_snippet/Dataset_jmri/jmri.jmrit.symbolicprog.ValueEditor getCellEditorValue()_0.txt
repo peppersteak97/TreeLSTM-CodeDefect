@@ -1,0 +1,14 @@
+    public Object getCellEditorValue() {
+        if (log.isDebugEnabled()) {
+            log.debug("getCellEditorValue with 'value' object of type "+mValue.getClass());
+        }
+        if (mValue instanceof JTextField) {
+            return new Integer( ((JTextField)mValue).getText() );
+        } else if (mValue instanceof Component) {
+            return mValue;
+        } else {
+            log.error("getCellEditorValue unable to return a value from unknown type "
+                      +mValue.getClass());
+            return null;
+        }
+    }

@@ -1,0 +1,3 @@
+    public static IButtonFactory buttonFactory() {
+        return BUTTON_FACTORY;
+    }

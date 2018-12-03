@@ -1,0 +1,7 @@
+    List<IViewLauncher> getViewLaunchers() {
+        List<IViewLauncher> launchers = new ArrayList<IViewLauncher>();
+        for (ViewShell sh : m_viewShells) {
+            launchers.add(sh.getLauncher());
+        }
+        return launchers;
+    }

@@ -1,0 +1,8 @@
+  public void textGetColumn1() throws BadLocationException {
+    final String s = "1234567890";
+    assertEquals("#0.0", 0, _doc.getCurrentCol());
+    _doc.insertString(0, s, null);
+    assertEquals("#0.1", 10, _doc.getCurrentCol());
+    _doc.gotoLine(0);
+    assertEquals("#0.2", 0, _doc.getCurrentCol());
+  }

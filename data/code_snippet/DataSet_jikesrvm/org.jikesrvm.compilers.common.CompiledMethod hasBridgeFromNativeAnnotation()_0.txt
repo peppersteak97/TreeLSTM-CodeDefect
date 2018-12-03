@@ -1,0 +1,3 @@
+    if (m != null && m.getDeclaringClass().hasBridgeFromNativeAnnotation()) {
+      flags = BRIDGE_FROM_NATIVE;
+    }

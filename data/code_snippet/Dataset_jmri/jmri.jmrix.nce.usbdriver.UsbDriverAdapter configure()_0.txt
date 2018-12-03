@@ -1,0 +1,31 @@
+    public void configure() {
+        NceTrafficController.instance().connectPort(this);
+        
+		if (getCurrentOption1Setting().equals(validOption1()[0])) {
+			NceUSB.setUsbSystem(NceUSB.USB_SYSTEM_POWERCAB);
+		} else if (getCurrentOption1Setting().equals(validOption1()[1])) {
+			NceUSB.setUsbSystem(NceUSB.USB_SYSTEM_SB3);
+		} else{
+			NceUSB.setUsbSystem(NceUSB.USB_SYSTEM_POWERHOUSE);
+		}
+
+        if (NceUSB.getUsbSystem() != NceUSB.USB_SYSTEM_POWERHOUSE) {
+			jmri.InstanceManager.setProgrammerManager(new NceProgrammerManager(
+					new NceProgrammer()));
+		}
+
+        jmri.InstanceManager.setPowerManager(new jmri.jmrix.nce.NcePowerManager());
+
+        jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.nce.NceTurnoutManager());
+
+        NceSensorManager s;
+        jmri.InstanceManager.setSensorManager(s = new jmri.jmrix.nce.NceSensorManager());
+        NceTrafficController.instance().setSensorManager(s);
+
+        jmri.InstanceManager.setThrottleManager(new jmri.jmrix.nce.NceThrottleManager());
+
+        jmri.jmrix.nce.ActiveFlag.setActive();
+
+		NceMessage.setCommandOptions(NceMessage.OPTION_2006);
+
+	}

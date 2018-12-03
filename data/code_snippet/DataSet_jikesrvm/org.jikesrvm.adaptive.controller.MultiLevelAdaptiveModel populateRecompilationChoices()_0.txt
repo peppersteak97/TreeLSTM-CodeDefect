@@ -1,0 +1,11 @@
+  void populateRecompilationChoices() {
+    int maxOptLevel = Controller.options.DERIVED_MAX_OPT_LEVEL;
+    int maxCompiler = CompilerDNA.getCompilerConstant(maxOptLevel);
+    allOptLevelChoices = new RecompileOptChoice[maxOptLevel + 1];
+
+    for (int optLevel = 0; optLevel <= maxOptLevel; optLevel++) {
+      allOptLevelChoices[optLevel] = new RecompileOptChoice(optLevel);
+    }
+
+    createViableOptionLookupTable(maxCompiler);
+  }

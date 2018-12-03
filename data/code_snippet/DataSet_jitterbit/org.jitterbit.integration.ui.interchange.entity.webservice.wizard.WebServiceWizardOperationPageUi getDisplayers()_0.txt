@@ -1,0 +1,7 @@
+    JComponent[] getDisplayers() {
+        JComponent treeDisplayer = ComponentDecorFactory.invisible(m_treePanel).getUi();
+        return new JComponent[] {
+            m_operationPanel,
+            treeDisplayer,
+        };
+    }

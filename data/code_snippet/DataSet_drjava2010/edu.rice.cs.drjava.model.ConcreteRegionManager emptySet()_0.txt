@@ -1,0 +1,1 @@
+  private <T> T emptySet() { return (T) EMPTY_SET; }

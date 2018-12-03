@@ -1,0 +1,20 @@
+    public IPackingParameters getParameters() {
+        IPackingParameters params = null;
+        if (m_checkBox.isSelected()) {
+            final char[] pwd = m_pwdField.getPassword();
+            params = new IPackingParameters() {
+
+                public char[] getPassword() {
+                    return pwd;
+                }
+
+                public PackingFileFilter getFileFilter() {
+                    return null;
+                }
+            };
+        }
+        else {
+            params = IPackingParameters.DEFAULT;
+        }
+        return params;
+    }

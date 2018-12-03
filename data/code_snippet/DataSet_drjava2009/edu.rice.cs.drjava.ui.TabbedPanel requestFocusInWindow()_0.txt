@@ -1,0 +1,4 @@
+  public boolean requestFocusInWindow() {
+    super.requestFocusInWindow();
+    return _mainPanel.requestFocusInWindow();
+  }

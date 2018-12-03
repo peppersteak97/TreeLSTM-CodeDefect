@@ -1,0 +1,7 @@
+    void buildDependencies() {
+        for (IntegrationEntity e : m_project.getAllEntities()) {
+            for (IIntegrationLink link : e.getLinks(m_dataStore)) {
+                addLink(link);
+            }
+        }
+    }

@@ -1,0 +1,6 @@
+	public void enableLogicOperators() {
+		enableOperator(new NotOperator(m_operations));
+		enableOperator(new AndOperator(m_operations));
+		enableOperator(new XorOperator(m_operations));
+		enableOperator(new OrOperator(m_operations));
+	}

@@ -1,0 +1,12 @@
+    public void initComponents() {
+	    setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+
+        pane = new PollTablePane(this);
+        getContentPane().add(pane);
+        
+        addHelpMenu("package.jmri.jmrix.rps.swing.polling.PollTableFrame", true);
+
+        setShutDownTask();
+        
+        pack();
+    }

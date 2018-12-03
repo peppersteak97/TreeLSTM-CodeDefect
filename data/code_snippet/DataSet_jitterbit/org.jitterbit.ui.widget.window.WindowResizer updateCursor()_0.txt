@@ -1,0 +1,8 @@
+    private void updateCursor() {
+        if (m_strategy == null) {
+            m_window.setCursor(Cursor.getDefaultCursor());
+        }
+        else {
+            m_strategy.updateCursor();
+        }
+    }

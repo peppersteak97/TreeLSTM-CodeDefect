@@ -1,0 +1,12 @@
+    private void runJobs() throws InterruptedException {
+        for (File file : m_filesToUpload) {
+            if (isCancelled() || hasFailed()) {
+                break;
+            }
+            setStatus(PackageResources.UploadJob.getUploadingFileStatus(file.getAbsolutePath()));
+            IUiWorker w = IntegrationUi.getUi().getUiWorker();
+            Runnable task = getJobToRun(file);
+            w.submitForParallellAndWait(task, m_callback);
+        }
+        m_latch.countDown();
+    }

@@ -1,0 +1,3 @@
+    protected IntegrationEntityTreeNode getNode() {
+        return m_node;
+    }

@@ -1,0 +1,3 @@
+  public T getObject() {
+    return _obj;
+  }

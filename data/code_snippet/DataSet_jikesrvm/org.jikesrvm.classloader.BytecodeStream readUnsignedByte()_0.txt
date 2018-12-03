@@ -1,0 +1,4 @@
+  private int readUnsignedByte() {
+    if (VM.VerifyAssertions) VM._assert(bcIndex <= bcLength);
+    return bcodes[bcIndex++] & 0xFF;
+  }

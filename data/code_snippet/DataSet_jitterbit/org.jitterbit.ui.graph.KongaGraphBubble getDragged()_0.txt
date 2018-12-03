@@ -1,0 +1,3 @@
+	public final boolean getDragged() { 
+		return m_bDragged; 
+	}

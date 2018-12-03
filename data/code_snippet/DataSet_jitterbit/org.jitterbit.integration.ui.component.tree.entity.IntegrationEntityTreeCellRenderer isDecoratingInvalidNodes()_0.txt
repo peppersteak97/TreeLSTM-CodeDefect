@@ -1,0 +1,3 @@
+    public boolean isDecoratingInvalidNodes() {
+        return m_isDecoratingInvalidItems;
+    }

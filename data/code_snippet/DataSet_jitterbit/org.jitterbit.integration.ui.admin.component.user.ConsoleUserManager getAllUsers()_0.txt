@@ -1,0 +1,3 @@
+    public List<User> getAllUsers() {
+        return new ArrayList<User>(m_users);
+    }

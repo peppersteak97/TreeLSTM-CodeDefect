@@ -1,0 +1,3 @@
+    protected JTextField getTextField() {
+        return new KongaTextField(30);
+    }

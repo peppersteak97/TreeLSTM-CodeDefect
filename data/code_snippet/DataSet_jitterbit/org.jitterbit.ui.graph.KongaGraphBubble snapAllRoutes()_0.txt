@@ -1,0 +1,10 @@
+	private void snapAllRoutes() {
+		for( KongaGraphRoutePositioner rpos : m_liInRoutes ) {
+			rpos.snap();
+		}
+		for( KongaGraphRoutePositioner rpos : m_liOutRoutes ) {
+			rpos.snap();
+		}
+		
+		snapAllMiddlePoints();
+	}

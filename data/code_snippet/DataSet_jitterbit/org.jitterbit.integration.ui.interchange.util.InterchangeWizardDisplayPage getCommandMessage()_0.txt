@@ -1,0 +1,3 @@
+    public final String getCommandMessage() {
+        return m_currentPage.getCommandMessage();
+    }

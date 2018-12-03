@@ -1,0 +1,4 @@
+    public static void unlock() {
+        s_lock.unlock();
+        Debug.println("Lock released");
+    }

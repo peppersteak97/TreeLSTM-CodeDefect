@@ -1,0 +1,9 @@
+    public void release() {
+        if (!active) log.warn("release called when not active");
+
+        String msg = "TERM 1 GL "
+            +(address.getNumber())
+            +"\n";
+
+        SRCPTrafficController.instance().sendSRCPMessage(new SRCPMessage(msg), null);
+    }

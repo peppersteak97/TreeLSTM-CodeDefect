@@ -1,0 +1,11 @@
+  private void _openFileOrProject() {
+    try {
+      final File[] fileList = _openFileOrProjectSelector.getFiles();
+      
+      FileOpenSelector fos = new FileOpenSelector() { public File[] getFiles() { return fileList; } };
+      
+      if (_openChooser.getFileFilter().equals(_projectFilter)) openProject(fos);
+      else open(fos);
+    }
+    catch(OperationCanceledException oce) { /* do nothing */ }
+  }

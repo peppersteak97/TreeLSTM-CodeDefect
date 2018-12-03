@@ -1,0 +1,5 @@
+    void onInvalidProject() {
+        m_statusLabel.setIcon(PackageResources.INVALID_ICON);
+        m_statusLabel.setText(PackageResources.DeployPage.Labels.INVALID);
+        m_resultReportArea.setText(PackageResources.DeployPage.Messages.INVALID);
+    }

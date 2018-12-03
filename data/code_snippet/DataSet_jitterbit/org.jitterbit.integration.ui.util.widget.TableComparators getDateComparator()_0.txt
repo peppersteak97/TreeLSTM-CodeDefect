@@ -1,0 +1,3 @@
+    public static Comparator<Date> getDateComparator() {
+        return TableComparators.<Date>getGeneralComparator();
+    }

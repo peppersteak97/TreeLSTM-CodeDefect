@@ -1,0 +1,14 @@
+    public void install() throws IllegalStateException {
+        super.install();
+        if (m_docListener == null) {
+            m_docListener = new DocumentContentChangeListener() {
+
+                @Override
+                public void contentChanged(DocumentEvent e) {
+                    stopTimer();
+                    m_cache.reset();
+                }
+            };
+            getTarget().getDocument().addDocumentListener(m_docListener);
+        }
+    }

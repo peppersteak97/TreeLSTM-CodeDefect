@@ -1,0 +1,5 @@
+    private void closeDisplayPage() {
+        m_bWebServiceHasBeenSaved = true;
+        m_displayPage.removeFromWindow(false);
+        m_view.closePage(m_displayPage);
+    }

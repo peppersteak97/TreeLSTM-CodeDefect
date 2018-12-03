@@ -1,0 +1,24 @@
+    public int getTurnoutMsgAddr() {
+        if (this.isFeedbackMessage()) {
+            int a1 = this.getElement(1);
+            int a2 = this.getElement(2);
+            int messagetype=this.getFeedbackMessageType();
+	    if ( messagetype == 0 || messagetype == 1)
+            {
+               int address=(a1 & 0xff) * 4;
+               if(((a2 & 0x13)==0x01) || ((a2 &0x13)==0x02)) {
+                  return(address + 1);
+               } else if(((a2 & 0x1c)==0x04) || ((a2 &0x1c)==0x08)) {
+                  return(address + 1);
+               } else if(((a2 & 0x13)==0x11) || ((a2 &0x13)==0x12)) {
+                  return(address + 3);
+               } else if(((a2 & 0x1c)==0x14) || ((a2 &0x1c)==0x18)) { 
+                  return(address + 3);
+               } else if((a2&0x1f)==0x10) {
+                  return(address + 3);
+     	       } else {
+                  return(address + 1); 
+               }
+            } else return -1;
+        } else return -1;
+    }

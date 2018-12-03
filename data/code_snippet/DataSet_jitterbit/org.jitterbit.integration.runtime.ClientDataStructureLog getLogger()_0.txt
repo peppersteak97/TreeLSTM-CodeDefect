@@ -1,0 +1,3 @@
+    public static synchronized Logger getLogger() {
+        return ApplicationLog.getLogger(ClientDataStructureLog.class, true, true);
+    }

@@ -1,0 +1,3 @@
+    public Action getCloseCurrentAction() {
+        return m_closeCurrentAction;
+    }

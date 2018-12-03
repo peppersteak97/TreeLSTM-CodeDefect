@@ -1,0 +1,3 @@
+    public void setRouteBusy() {
+		busy = true;
+	}

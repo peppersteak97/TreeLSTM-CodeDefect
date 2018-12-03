@@ -1,0 +1,3 @@
+  public final ObjectConstantOperand asObjectConstant() {
+    return (ObjectConstantOperand) this;
+  }

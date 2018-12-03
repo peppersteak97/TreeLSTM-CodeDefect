@@ -1,0 +1,4 @@
+    private void layoutScreen() {
+        m_contentPane = new JPanel(new BorderLayout());
+        m_contentPane.add(getControlPanel(), BorderLayout.CENTER);
+    }

@@ -1,0 +1,3 @@
+    public void dispose() {
+        SerialTrafficController.instance().removeSerialListener(this);
+    }

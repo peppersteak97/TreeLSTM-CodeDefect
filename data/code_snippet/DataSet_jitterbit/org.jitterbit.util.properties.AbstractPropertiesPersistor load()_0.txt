@@ -1,0 +1,13 @@
+    public void load() throws FileNotFoundException, IOException {
+        if (!m_file.canRead()) {
+            return;
+        }
+        InputStream in = null;
+        try {
+            in = new FileInputStream(m_file);
+            loadImpl(m_properties, in);
+        }
+        finally {
+            KongaIoUtils.close(in);
+        }
+    }

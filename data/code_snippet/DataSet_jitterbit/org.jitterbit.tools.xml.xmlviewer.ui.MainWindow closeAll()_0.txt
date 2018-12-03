@@ -1,0 +1,6 @@
+	void closeAll() {
+		for( JInternalFrame frame : m_deskTop.getAllFrames() ) {
+		    frame.dispose();
+		}
+		m_deskTop.removeAll();
+	}

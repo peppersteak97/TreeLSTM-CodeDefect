@@ -1,0 +1,8 @@
+    public void setPoll() {
+        Element v = new Element("poll");
+        v.setAttribute("active", Engine.instance().getPolling()?"true":"false");
+        v.setAttribute("interval", ""+Engine.instance().getPollingInterval());
+        v.setAttribute("bscpoll", Engine.instance().getBscPollMode()?"true":"false");
+        v.setAttribute("throttlepoll", Engine.instance().getThrottlePollMode()?"true":"false");
+        root.addContent(v);
+    }

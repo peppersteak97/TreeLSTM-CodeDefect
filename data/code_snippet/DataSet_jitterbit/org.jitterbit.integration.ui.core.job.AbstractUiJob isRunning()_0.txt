@@ -1,0 +1,5 @@
+    public final boolean isRunning() {
+        synchronized (m_lock) {
+            return m_isRunning;
+        }
+    }

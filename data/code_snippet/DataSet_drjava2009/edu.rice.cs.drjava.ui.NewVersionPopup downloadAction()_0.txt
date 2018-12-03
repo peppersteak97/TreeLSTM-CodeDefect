@@ -1,0 +1,4 @@
+  protected void downloadAction() {
+    closeAction();
+    _openFileDownloadPage(getManualDownloadURL());
+  }

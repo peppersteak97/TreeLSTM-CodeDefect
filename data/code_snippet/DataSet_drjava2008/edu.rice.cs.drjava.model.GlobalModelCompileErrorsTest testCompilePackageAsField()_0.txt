@@ -1,0 +1,19 @@
+  public void testCompilePackageAsField() throws BadLocationException, IOException, InterruptedException {
+    OpenDefinitionsDocument doc = setupDocument(FOO_PACKAGE_AS_FIELD);
+    final File file = tempFile();
+    saveFile(doc,new FileSelector(file));
+    
+    CompileShouldFailListener listener = new CompileShouldFailListener();
+    _model.addListener(listener);
+    
+    testStartCompile(doc);
+    
+    listener.waitCompileDone();
+    listener.checkCompileOccurred();
+    
+    assertCompileErrorsPresent(_name(), true);
+    
+    File compiled = classForJava(file, "DrJavaTestFoo");
+    assertEquals(_name() + "Class file exists after failing compile", false, compiled.exists());
+    _model.removeListener(listener);
+  }

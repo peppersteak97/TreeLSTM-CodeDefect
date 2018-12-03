@@ -1,0 +1,1 @@
+    public String getClosedText() { return rbt.getString("TurnoutStateClosed"); };

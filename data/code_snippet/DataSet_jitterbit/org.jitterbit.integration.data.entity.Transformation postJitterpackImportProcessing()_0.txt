@@ -1,0 +1,9 @@
+    public void postJitterpackImportProcessing() {
+        super.postJitterpackImportProcessing();
+        if (m_inputStructure != null) {
+            m_inputStructure.postJitterpackImportProcessing();
+        }
+        if (m_outputStructure != null) {
+            m_outputStructure.postJitterpackImportProcessing();
+        }
+    }

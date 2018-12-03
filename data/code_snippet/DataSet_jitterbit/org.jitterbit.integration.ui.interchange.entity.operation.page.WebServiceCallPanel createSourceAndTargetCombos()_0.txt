@@ -1,0 +1,5 @@
+    private void createSourceAndTargetCombos() {
+        m_sourceAndTargetCombos = new SourceAndTargetCombos(m_page,
+                        OperationType.WebServiceCall);
+        m_sourceAndTargetCombos.addPropertyChangeListener(new SourceListener());
+    }

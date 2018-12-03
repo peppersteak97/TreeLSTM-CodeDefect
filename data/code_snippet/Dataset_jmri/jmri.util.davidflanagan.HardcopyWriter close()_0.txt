@@ -1,0 +1,11 @@
+    public void close() {
+        synchronized(this.lock) {
+            if (isPreview) {
+                pageImages.addElement(previewImage);
+                pagenum = 1;
+                displayPage();
+            }
+            if (page!=null) page.dispose();
+            job.end();
+        }
+    }

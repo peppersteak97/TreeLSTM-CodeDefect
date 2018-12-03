@@ -1,0 +1,10 @@
+    protected List<T> getSelectedEntities() {
+        Object[] selected = m_list.getSelectedValues();
+        List<T> ret = new ArrayList<T>(selected.length);
+        for (Object o : selected) {
+            if (m_disabledEntities == null || !m_disabledEntities.contains(o)) {
+                ret.add((T) o);
+            }
+        }
+        return ret;
+    }

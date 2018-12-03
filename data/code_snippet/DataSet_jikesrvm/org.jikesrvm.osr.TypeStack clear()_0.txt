@@ -1,0 +1,6 @@
+  public void clear() {
+    top = 0;
+    for (int i = 0, n = stack.length; i < n; i++) {
+      stack[i] = defv;
+    }
+  }

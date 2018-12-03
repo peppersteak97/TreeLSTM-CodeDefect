@@ -1,0 +1,3 @@
+    public static TrashCanUiFactory newInstance() {
+        return new ViewBasedTrashCanUiFactory();
+    }

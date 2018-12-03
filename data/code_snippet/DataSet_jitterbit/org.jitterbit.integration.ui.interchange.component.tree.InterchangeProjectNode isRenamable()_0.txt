@@ -1,0 +1,3 @@
+    public boolean isRenamable() {
+        return RenameProjectSupport.isEnabled();
+    }

@@ -1,0 +1,6 @@
+    protected JPopupMenu createPopupMenu() {
+        JPopupMenu popup = super.createPopupMenu();
+        popup.insert(m_defineFieldsAction, 0);
+        popup.add(new JSeparator(), 1);
+        return popup;
+    }

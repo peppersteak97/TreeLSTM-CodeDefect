@@ -1,0 +1,7 @@
+  public void setAutomaticTraceButtonText() {
+     if(_model.getDebugger().isAutomaticTraceEnabled()) 
+      _automaticTraceButton.setText("Disable Trace"); 
+     else 
+      _automaticTraceButton.setText("Automatic Trace");
+     _frame.setAutomaticTraceMenuItemStatus();
+  }

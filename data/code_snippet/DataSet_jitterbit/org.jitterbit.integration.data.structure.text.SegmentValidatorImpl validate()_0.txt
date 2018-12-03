@@ -1,0 +1,12 @@
+    public Collection<? extends IValidationIssue> validate() {
+        Collection<IValidationIssue> issues = null;
+        if (m_segments.isEmpty()) {
+            IValidationIssue issue = IValidationIssue.FACTORY.createFatal(
+                            "No segments have been defined.");
+            issues = KongaListUtils.asList(issue);
+        }
+        else {
+            issues = validateSegments();
+        }
+        return issues;
+    }

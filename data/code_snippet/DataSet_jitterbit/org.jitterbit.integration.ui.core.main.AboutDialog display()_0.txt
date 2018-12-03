@@ -1,0 +1,10 @@
+    public static void display() {
+        IUiWorker.ISafeRunnable job = new IUiWorker.ISafeRunnable() {
+            
+            public void run() {
+                createAndShowDialog();
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallell(job);
+    }

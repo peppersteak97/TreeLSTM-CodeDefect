@@ -1,0 +1,23 @@
+    private void refreshSelection() {
+        unselectAll();
+
+        for (IntegrationEntity e : m_explicitlySelected) {
+            ICheckBoxNode node = m_tree.getNodeForEntity(e);
+            if (node != null) {
+                node.setSelected(true);
+            }
+        }
+        for (IntegrationEntity e : m_implicitlySelected.keySet()) {
+            Map<IntegrationEntity, Boolean> map = m_implicitlySelected.get(e);
+            if (map != null) {
+                for (IntegrationEntity e2 : map.keySet()) {
+                    ICheckBoxNode node = m_tree.getNodeForEntity(e2);
+                    if (node != null) {
+                        node.setSelected(true);
+                    }
+                }
+            }
+        }
+
+        setRootFoldersSelected();
+    }

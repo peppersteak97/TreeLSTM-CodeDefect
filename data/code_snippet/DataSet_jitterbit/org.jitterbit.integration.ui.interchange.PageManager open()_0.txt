@@ -1,0 +1,8 @@
+    void open() {
+        if (m_synchronous) {
+            openSynchronously();
+        }
+        else {
+            openAsynchronously();
+        }
+    }

@@ -1,0 +1,24 @@
+        void handleOneIncomingReply() throws java.io.IOException {
+
+          XpaMessage msg = new XpaMessage();
+          int i;
+          for (i = 0; i < XpaMessage.maxSize; i++) {
+            byte char1 = istream.readByte();
+            msg.setElement(i, char1);
+          }
+
+          if (log.isDebugEnabled()) log.debug("dispatch reply of length "+i);
+          {
+            final XpaMessage thisMsg = msg;
+            final XpaTrafficController thisTC = this;
+            Runnable r = new Runnable() {
+              XpaMessage msgForLater = thisMsg;
+              XpaTrafficController myTC = thisTC;
+              public void run() {
+                log.debug("Delayed notify starts");
+                myTC.notifyReply(msgForLater);
+              }
+            };
+            javax.swing.SwingUtilities.invokeLater(r);
+          }
+        }

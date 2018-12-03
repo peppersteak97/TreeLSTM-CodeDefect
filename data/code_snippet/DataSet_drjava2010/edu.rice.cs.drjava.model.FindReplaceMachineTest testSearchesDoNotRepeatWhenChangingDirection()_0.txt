@@ -1,0 +1,22 @@
+  public void testSearchesDoNotRepeatWhenChangingDirection() throws BadLocationException {
+    _doc.insertString(0, "int int int", null);
+    _initFrm(0);
+    _frm.setFindWord("int");
+    _frm.setMatchCase(false);
+    _frm.setSearchBackwards(false);
+    _testFindNextSucceeds(_frm, 0, 3);
+    _testFindNextSucceeds(_frm, 0, 7);
+    
+    _frm.setLastFindWord();
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 0, 0);
+    
+    _frm.setLastFindWord();
+    _frm.setSearchBackwards(false);
+    _testFindNextSucceeds(_frm, 0, 7);
+    
+    _frm.setLastFindWord();
+    _frm.positionChanged();
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 0, 4);
+  }

@@ -1,0 +1,8 @@
+    public static XNetMessage getServiceModeResultsMsg() {
+        XNetMessage m = new XNetMessage(3);
+	m.setNeededMode(jmri.jmrix.AbstractMRTrafficController.PROGRAMINGMODE);
+	m.setTimeout(XNetProgrammingTimeout);
+        m.setElement(0, XNetConstants.CS_REQUEST);
+        m.setElement(1, XNetConstants.SERVICE_MODE_CSRESULT);
+        return m;
+    }

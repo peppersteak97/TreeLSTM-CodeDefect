@@ -1,0 +1,11 @@
+    private int getNewVal() {
+        try {
+            if (decButton.isSelected())
+                return Integer.valueOf(valField.getText()).intValue();
+            else
+                return Integer.valueOf(valField.getText(),16).intValue();
+        } catch (java.lang.NumberFormatException e) {
+            valField.setText("");
+            return 0;
+        }
+    }

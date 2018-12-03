@@ -1,0 +1,4 @@
+    private void onValidProject() {
+        m_reportPanel.onValidProject();
+        m_controlPanel.onValidProject();
+    }

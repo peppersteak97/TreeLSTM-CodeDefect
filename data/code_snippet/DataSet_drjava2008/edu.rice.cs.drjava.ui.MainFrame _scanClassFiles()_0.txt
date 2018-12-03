@@ -1,0 +1,51 @@
+  private void _scanClassFiles() {
+    Thread t = new Thread(new Runnable() {
+      public void run() {
+        File buildDir = _model.getBuildDirectory();
+        HashSet<GoToFileListEntry> hs = new HashSet<GoToFileListEntry>();
+        HashSet<JavaAPIListEntry> hs2 = new HashSet<JavaAPIListEntry>();
+        if (buildDir!=null) {
+          List<File> classFiles = _model.getClassFiles();
+          DummyOpenDefDoc dummyDoc = new DummyOpenDefDoc();
+          for(File f: classFiles) {
+            String s = f.toString();
+            if (s.lastIndexOf(File.separatorChar) >= 0) {
+              s = s.substring(s.lastIndexOf(File.separatorChar)+1);
+            }
+            s = s.substring(0, s.lastIndexOf(".class"));
+            s = s.replace('$', '.');
+            int pos = 0;
+            boolean ok = true;
+            while ((pos=s.indexOf('.', pos)) >= 0) {
+              if (s.length() <= pos + 1 || Character.isDigit(s.charAt(pos + 1))) {
+                ok = false;
+                break;
+              }
+              ++pos;
+            }
+            if (ok) {
+              if (s.lastIndexOf('.') >= 0) {
+                s = s.substring(s.lastIndexOf('.') + 1);
+              }
+              GoToFileListEntry entry = new GoToFileListEntry(dummyDoc, s);
+              hs.add(entry);
+              try {
+                String rel = FileOps.stringMakeRelativeTo(f, buildDir);
+                String full = rel.replace(File.separatorChar, '.');
+                full = full.substring(0, full.lastIndexOf(".class"));
+                if (full.indexOf('$')<0) {
+                  hs2.add(new JavaAPIListEntry(s, full, null));
+                }
+              }
+              catch(IOException ioe) { /* ignore, just don't add this one */ }
+              catch(SecurityException se) { /* ignore, just don't add this one */ }
+            }
+          }
+        }
+        _completeClassList = new ArrayList<GoToFileListEntry>(hs);
+        _autoImportClassList = new ArrayList<JavaAPIListEntry>(hs2);
+      }
+    });
+    t.setPriority(Thread.MIN_PRIORITY);
+    t.start();
+  }

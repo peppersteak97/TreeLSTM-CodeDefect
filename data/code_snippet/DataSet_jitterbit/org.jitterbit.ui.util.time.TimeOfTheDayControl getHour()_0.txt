@@ -1,0 +1,9 @@
+    public int getHour() {
+        switch (m_mode) {
+        case TWELVE_HOUR_MODE:
+            return m_hourBox.getSelectedIndex() + 1;
+        case TWENTYFOUR_HOUR_MODE:
+            return m_hourBox.getSelectedIndex();
+        }
+        return -1;
+    }

@@ -1,0 +1,3 @@
+    public boolean isToolTipsEnabled() {
+        return m_tooltipsEnabled;
+    }

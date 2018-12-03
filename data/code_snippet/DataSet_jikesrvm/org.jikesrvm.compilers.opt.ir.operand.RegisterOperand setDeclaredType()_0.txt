@@ -1,0 +1,1 @@
+  public void setDeclaredType() { flags |= DECLARED_TYPE; }

@@ -1,0 +1,12 @@
+    private boolean collectOutgoingObjects() {
+        List<DatabaseObject> outgoing = new ArrayList<DatabaseObject>();
+        for (DatabaseObject obj : m_incomingObjects) {
+            outgoing.add(obj);
+            if (!processObjectCount(obj, outgoing)) {
+                return false;
+            }
+        }
+        m_outgoingObjects = 
+            outgoing.toArray(new DatabaseObject[outgoing.size()]);
+        return true;
+    }

@@ -1,0 +1,5 @@
+        if (getCurrentOption1Setting().equals(validOption1()[1])) {
+            NceMessage.setCommandOptions(NceMessage.OPTION_2006);
+        } else {
+            NceMessage.setCommandOptions(NceMessage.OPTION_2004);
+        }

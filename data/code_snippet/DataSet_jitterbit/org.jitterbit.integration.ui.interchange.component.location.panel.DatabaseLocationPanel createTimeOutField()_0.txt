@@ -1,0 +1,10 @@
+    private void createTimeOutField() {
+        String timeoutLabel = PackageResources.Database.Labels.TIMEOUT;
+        m_timeoutField = InputFieldFactory.getIntegerInputField(
+                        timeoutLabel, 
+                        timeoutLabel, 
+                        0, 
+                        10000000, 
+                        10, 
+                        true);
+    }

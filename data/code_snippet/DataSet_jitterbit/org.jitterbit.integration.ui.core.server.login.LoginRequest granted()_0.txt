@@ -1,0 +1,5 @@
+    void granted() {
+        m_loginSucceeded = true;
+        m_latch.countDown();
+        m_callback.succeeded(null);
+    }

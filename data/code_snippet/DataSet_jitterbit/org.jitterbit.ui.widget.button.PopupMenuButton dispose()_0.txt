@@ -1,0 +1,8 @@
+    public void dispose() {
+        if (m_popupMenu != null) {
+            m_popupMenu.removeAll();
+            for (MouseListener lst : m_popupMenu.getMouseListeners()) {
+                m_popupMenu.removeMouseListener(lst);
+            }
+        }
+    }

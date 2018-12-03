@@ -1,0 +1,3 @@
+    public Class<?> keyClass() {
+        return m_class;
+    }

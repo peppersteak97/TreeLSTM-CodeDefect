@@ -1,0 +1,3 @@
+    public int getDataStart() {
+        return dataOffset+8;
+    }

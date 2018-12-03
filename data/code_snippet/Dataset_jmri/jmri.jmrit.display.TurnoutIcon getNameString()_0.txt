@@ -1,0 +1,9 @@
+    String getNameString() {
+        String name;
+        if (turnout == null) name = "<Not connected>";
+        else if (turnout.getUserName()!=null)
+            name = turnout.getUserName()+" ("+turnout.getSystemName()+")";
+        else
+            name = turnout.getSystemName();
+        return name;
+    }

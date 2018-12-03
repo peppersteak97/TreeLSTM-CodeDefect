@@ -1,0 +1,6 @@
+	public void initiateRead() {
+		if (!readInProgress) {
+			SlotManager.instance().sendReadSlot(LnConstants.FC_SLOT);
+			readInProgress = true;
+		}
+	}

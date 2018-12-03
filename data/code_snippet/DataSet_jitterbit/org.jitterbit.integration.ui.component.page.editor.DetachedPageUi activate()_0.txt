@@ -1,0 +1,9 @@
+    void activate() {
+        UiUtils.runOnEventThread(new Runnable() {
+
+            public void run() {
+                m_pageWindow.toFront();
+                m_pageWindow.getRootPane().requestFocus();
+            }
+        });
+    }

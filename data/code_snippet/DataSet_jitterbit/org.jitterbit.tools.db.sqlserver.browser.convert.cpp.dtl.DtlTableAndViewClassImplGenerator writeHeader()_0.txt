@@ -1,0 +1,9 @@
+    private void writeHeader() {
+    	addCopyrightNotice();
+        addLine("#include \"Dtl" + getObject().getName() + ".h\"");
+        addLine();
+        if( getNamespace().length() > 0 ) {
+            addLine("using namespace " + getNamespace() + ";");
+            addLine();
+        }
+    }

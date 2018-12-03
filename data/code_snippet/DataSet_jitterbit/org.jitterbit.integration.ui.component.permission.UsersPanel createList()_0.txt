@@ -1,0 +1,9 @@
+    private void createList() {
+        IKongaListFactory factory = ComponentFactories.newKongaListFactory();
+        factory.setCellRenderer(new ListRenderer());
+        factory.setVisibleRowCount(10);
+        factory.setPrototypeValue("XXXXXXXXXXXXXXXXXXXXXXXXXX");
+        m_userAndGroupList = factory.newList(getListModel());
+        m_userAndGroupList.setSelectionMode(ListSelectionMode.SINGLE_SELECTION);
+        m_userAndGroupList.addSelectionListener(new ListSelectionHandler());
+    }

@@ -1,0 +1,3 @@
+    public IJitterPack getJitterPack() {
+        return m_table.getSelectedJitterPack();
+    }

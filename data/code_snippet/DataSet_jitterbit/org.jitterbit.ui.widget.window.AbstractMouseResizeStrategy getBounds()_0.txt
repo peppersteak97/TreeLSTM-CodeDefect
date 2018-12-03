@@ -1,0 +1,3 @@
+    protected final Rectangle getBounds() {
+        return m_window.getBounds();
+    }

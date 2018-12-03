@@ -1,0 +1,5 @@
+    public void dispose() {
+        rateButtonGroup = null;
+        runMenu = null;
+        super.dispose();
+    }

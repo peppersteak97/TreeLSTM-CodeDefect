@@ -1,0 +1,4 @@
+    private static void customizeWindowsLabelUI() {
+        UIManager.put("LabelUI",
+            "com.sun.java.swing.plaf.windows.WindowsLabelUI");
+    }

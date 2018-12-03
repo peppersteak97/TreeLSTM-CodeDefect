@@ -1,0 +1,11 @@
+    public boolean isChainValid() {
+        if (sourceIsValid && targetIsValid && sourceFirstFunctionMatch && targetLastFunctionMatch) {
+            for (boolean b : functionJoinIsValid) {
+                if (!b) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }

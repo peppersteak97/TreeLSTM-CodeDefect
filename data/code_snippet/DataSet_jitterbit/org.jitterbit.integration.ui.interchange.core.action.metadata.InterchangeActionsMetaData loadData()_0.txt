@@ -1,0 +1,4 @@
+    private void loadData() throws ViewActionsMetaDataException {
+        m_dataLoader = new ViewActionsMetaDataLoader(XML_RESOURCE);
+        m_dataLoader.load();
+    }

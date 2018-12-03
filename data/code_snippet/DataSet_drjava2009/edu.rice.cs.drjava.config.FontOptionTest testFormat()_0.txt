@@ -1,0 +1,7 @@
+  public void testFormat() {
+    FontOption fO1 = new FontOption("font.test2", Font.decode(null));
+
+    assertEquals("monospaced-12",  fO1.format(new Font("monospaced", 0, 12)));
+    assertEquals("sansserif-BOLD-10", fO1.format(new Font("sansserif", 1, 10)));
+    assertEquals("sansserif-BOLDITALIC-10", fO1.format(new Font("sansserif", 3, 10)));
+  }

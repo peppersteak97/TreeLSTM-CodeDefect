@@ -1,0 +1,17 @@
+  public void testNotStartOfStmtDueToEndCharactersInCommentsOrQuotes() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionStartingNewStmt(null, null);
+
+    _setDocText("x = bar + \";\" + \"}\" + \"{\"\n+ foo;\n");
+    _doc.setCurrentLocation(26);
+    assertTrue("not starting new stmt, ignore end chars in quotes",
+        !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _doc.setCurrentLocation(14);
+    assertTrue("not starting new stmt, ignore end chars in single-line comments",
+        !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _setDocText("x = bar./*;\n{\n}\n*/\nfoo();\n");
+    _doc.setCurrentLocation(19);
+    assertTrue("not starting new stmt, ignore end chars in multi-line comments",
+        !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+  }

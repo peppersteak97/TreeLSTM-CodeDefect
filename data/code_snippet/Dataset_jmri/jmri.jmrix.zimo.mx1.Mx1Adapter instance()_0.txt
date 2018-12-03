@@ -1,0 +1,4 @@
+        static public Mx1Adapter instance() {
+            if (mInstance == null) mInstance = new Mx1Adapter();
+            return mInstance;
+        }

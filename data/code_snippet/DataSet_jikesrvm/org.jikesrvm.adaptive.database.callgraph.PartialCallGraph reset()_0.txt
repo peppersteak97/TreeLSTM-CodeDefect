@@ -1,0 +1,4 @@
+  public synchronized void reset() {
+    callGraph.clear();
+    totalEdgeWeights = seedWeight;
+  }

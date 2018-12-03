@@ -1,0 +1,27 @@
+  public void chooseFile() {
+    int[] rows = _table.getSelectedRows();
+    File selection = (rows.length==1)?_data.get(rows[0]):null;
+    if (selection != null) {
+      File parent = selection.getParentFile();
+      if (parent != null) {
+        _jfc.setCurrentDirectory(parent);
+      }
+    }
+    else {
+      if (_baseDir != null) { _jfc.setCurrentDirectory(_baseDir); }
+    }
+
+    _jfc.setFileFilter(_fileFilter);
+
+    File[] c = null;
+    int returnValue = _jfc.showDialog(_parent, null);
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+      c = _jfc.getSelectedFiles();
+    }
+    if (c != null) {
+      _table.getSelectionModel().clearSelection();
+      for(int i = 0; i < c.length; i++) {
+        _addValue(new AbsRelFile(c[i]));
+      }
+    }
+  }

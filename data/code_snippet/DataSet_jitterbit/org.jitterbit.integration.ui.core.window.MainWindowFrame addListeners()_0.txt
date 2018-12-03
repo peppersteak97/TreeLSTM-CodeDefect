@@ -1,0 +1,5 @@
+    private void addListeners() {
+        m_frame.addWindowListener(new WindowListenerImpl());
+        m_frame.addWindowStateListener(new StateListener());
+        m_frame.addComponentListener(new ComponentListenerImpl());
+    }

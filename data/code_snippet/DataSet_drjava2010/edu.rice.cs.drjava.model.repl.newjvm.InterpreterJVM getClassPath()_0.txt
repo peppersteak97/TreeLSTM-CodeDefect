@@ -1,0 +1,3 @@
+  public Iterable<File> getClassPath() {
+    return IterUtil.snapshot(_classPathManager.getClassPath());
+  }

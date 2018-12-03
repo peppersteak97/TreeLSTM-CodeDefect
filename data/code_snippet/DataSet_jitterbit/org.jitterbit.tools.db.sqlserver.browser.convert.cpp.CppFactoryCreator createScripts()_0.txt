@@ -1,0 +1,22 @@
+    public void createScripts() {
+        final ITimeConsumingTaskListener tctl = 
+            (ITimeConsumingTaskListener) UiResources.get(
+                    UiResources.TIME_CONSUMING_TASK_LISTENER);
+        tctl.startWait();
+        new Thread() {
+            
+            @Override
+            public void run() {
+                DbFactoryHeaderGenerator gh = new DbFactoryHeaderGenerator(
+                        m_db, CppFactoryCreator.this, m_sFactoryName, m_sLibraryName, m_sNamespace);
+                gh.run();
+                saveFile(gh);
+                DtlDbFactoryImplGenerator gi = new DtlDbFactoryImplGenerator(
+                        m_db, CppFactoryCreator.this, m_sFactoryName, m_sLibraryName, m_sNamespace);
+                gi.run();
+                saveFile(gi);
+                displayResult();
+                tctl.stopWait();
+            }
+        }.start();
+    }

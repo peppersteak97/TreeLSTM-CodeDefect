@@ -1,0 +1,12 @@
+    public void saveInterchangeProjectRelations() throws XmlSavingException {
+        saveAllFolders();
+
+        File structureFile = new File(m_rootDirectory, 
+                        m_projectFile.getProperty(InterchangeProjectFile.STRUCTURE_INFO));
+        try {
+            KongaIoUtils.createAndWrite(structureFile, createInterchangeProjectXml());
+        }
+        catch (IOException e) {
+            throw new XmlSavingException(e);
+        }
+    }

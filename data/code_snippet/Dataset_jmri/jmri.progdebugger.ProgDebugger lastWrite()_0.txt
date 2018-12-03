@@ -1,0 +1,1 @@
+    public int lastWrite() { return _lastWriteVal; }

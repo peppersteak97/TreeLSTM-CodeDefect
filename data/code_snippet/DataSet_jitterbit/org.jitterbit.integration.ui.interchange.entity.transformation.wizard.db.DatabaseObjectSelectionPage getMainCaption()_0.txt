@@ -1,0 +1,3 @@
+    protected String getMainCaption() {
+        return PackageResources.ObjectSelectionPage.MAIN_CAPTION;
+    }

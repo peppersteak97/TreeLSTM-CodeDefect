@@ -1,0 +1,1 @@
+  public boolean isDocumentSelected() { return getDocumentSelectedCount()!=0; }

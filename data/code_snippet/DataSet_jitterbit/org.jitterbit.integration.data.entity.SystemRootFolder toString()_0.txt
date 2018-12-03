@@ -1,0 +1,7 @@
+    public String toString() {
+        sb.append(getItemType());
+        for (IntegrationEntity child : getAllChildren()) {
+            sb.append(child.getName());
+        }
+        return sb.toString();
+    }

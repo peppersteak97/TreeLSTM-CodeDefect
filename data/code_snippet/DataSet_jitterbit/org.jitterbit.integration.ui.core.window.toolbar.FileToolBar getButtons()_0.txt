@@ -1,0 +1,10 @@
+    protected List<JButton> getButtons() {
+        List<JButton> btns = new ArrayList<JButton>();
+        addExtensionsToButtonList(btns, ToolBarExtensionPoint.EXTENSION_POINT_1);
+        for (WindowActionFactory factory : getActions()) {
+            IApplicationAction a = factory.get(getWindow());
+            btns.add(createButton(a, WindowActionDictionary.DICTIONARY));
+        }
+        addExtensionsToButtonList(btns, ToolBarExtensionPoint.EXTENSION_POINT_2);
+        return btns;
+    }

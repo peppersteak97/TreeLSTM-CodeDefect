@@ -1,0 +1,3 @@
+    public IRecentProjectManager getRecentProjectManager() {
+        return m_recentProjectManager;
+    }

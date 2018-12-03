@@ -1,0 +1,3 @@
+	public int getCurrentTextCaretPosition() {
+	    return (m_textArea == null) ? -1 : m_textArea.getCaretPosition();
+	}

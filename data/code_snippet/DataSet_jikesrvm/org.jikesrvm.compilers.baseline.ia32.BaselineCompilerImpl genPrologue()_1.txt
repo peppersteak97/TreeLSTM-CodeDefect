@@ -1,0 +1,120 @@
+  private void genPrologue() {
+    if (shouldPrint) asm.comment("prologue for " + method);
+    if (klass.hasBridgeFromNativeAnnotation()) {
+      JNICompiler.generateGlueCodeForJNIMethod(asm, method, compiledMethod.getId());
+      firstLocalOffset = STACKFRAME_BODY_OFFSET - (JNICompiler.SAVED_GPRS_FOR_JNI << LG_WORDSIZE);
+    } else {
+      /* paramaters are on the stack and/or in registers;  There is space
+       * on the stack for all the paramaters;  Parameter slots in the
+       * stack are such that the first paramater has the higher address,
+       * i.e., it pushed below all the other paramaters;  The return
+       * address is the topmost entry on the stack.  The frame pointer
+       * still addresses the previous frame.
+       * The first word of the header, currently addressed by the stack
+       * pointer, contains the return address.
+       */
+
+      /* establish a new frame:
+       * push the caller's frame pointer in the stack, and
+       * reset the frame pointer to the current stack top,
+       * ie, the frame pointer addresses directly the word
+       * that contains the previous frame pointer.
+       * The second word of the header contains the frame
+       * point of the caller.
+       * The third word of the header contains the compiled method id of the called method.
+       */
+      ThreadLocalState.emitMoveRegToField(asm,
+                                          ArchEntrypoints.framePointerField.getOffset(),
+      /*
+       * NOTE: until the end of the prologue SP holds the framepointer.
+       */
+      if (VM.VerifyAssertions) VM._assert(STACKFRAME_METHOD_ID_OFFSET == -WORDSIZE);
+      asm.emitPUSH_Imm(compiledMethod.getId());
+
+      /*
+       * save registers
+       */
+      if (VM.VerifyAssertions) VM._assert(EDI_SAVE_OFFSET.toInt() == -2*WORDSIZE);
+      if (VM.VerifyAssertions) VM._assert(EBX_SAVE_OFFSET.toInt() == -3*WORDSIZE);
+
+      int savedRegistersSize;
+
+      if (method.hasBaselineSaveLSRegistersAnnotation()) {
+        if (VM.VerifyAssertions) VM._assert(EBP_SAVE_OFFSET.toInt() == -4*WORDSIZE);
+        asm.emitPUSH_Reg(EBP);
+        savedRegistersSize = SAVED_GPRS_FOR_SAVE_LS_REGISTERS << LG_WORDSIZE;
+      } else {
+      }
+
+      /* handle "dynamic brige" methods:
+       * save all registers except FP, SP, TR, S0 (scratch), and
+       * EDI and EBX saved above.
+       */
+      if (klass.hasDynamicBridgeAnnotation()) {
+        savedRegistersSize += 2 << LG_WORDSIZE;
+        if (VM.VerifyAssertions) VM._assert(T0_SAVE_OFFSET.toInt() == -4*WORDSIZE);
+        asm.emitPUSH_Reg(T0);
+        if (VM.VerifyAssertions) VM._assert(T1_SAVE_OFFSET.toInt() == -5*WORDSIZE);
+        asm.emitPUSH_Reg(T1);
+        if (SSE2_FULL) {
+          if (VM.VerifyAssertions) VM._assert(XMM_SAVE_OFFSET.toInt() == (-5*WORDSIZE) - XMM_STATE_SIZE);
+          asm.emitMOVQ_RegDisp_Reg(SP, Offset.fromIntSignExtend(24), XMM3);
+          asm.emitMOVQ_RegDisp_Reg(SP, Offset.fromIntSignExtend(16), XMM2);
+          asm.emitMOVQ_RegDisp_Reg(SP, Offset.fromIntSignExtend(8), XMM1);
+          asm.emitMOVQ_RegInd_Reg(SP, XMM0);
+          savedRegistersSize += XMM_STATE_SIZE;
+        } else {
+          if (VM.VerifyAssertions) VM._assert(FPU_SAVE_OFFSET.toInt() == (-5*WORDSIZE) - FPU_STATE_SIZE);
+          asm.emitFNSAVE_RegInd(SP);
+          savedRegistersSize += FPU_STATE_SIZE;
+        }
+      }
+
+      firstLocalOffset = STACKFRAME_BODY_OFFSET - savedRegistersSize;
+      Offset firstParameterOffset = Offset.fromIntSignExtend(savedRegistersSize + STACKFRAME_HEADER_SIZE + (parameterWords << LG_WORDSIZE) - WORDSIZE);
+      genParameterCopy(firstParameterOffset);
+      int emptyStackOffset = (method.getLocalWords() << LG_WORDSIZE) - (parameterWords << LG_WORDSIZE);
+      if (emptyStackOffset != 0) {
+      }
+      /* defer generating code which may cause GC until
+       * locals were initialized. see emit_deferred_prologue
+       */
+      if (method.isForOsrSpecialization()) {
+        return;
+      }
+
+      /*
+       * generate stacklimit check
+       */
+      if (isInterruptible) {
+        if (VM.BuildFor32Addr) {
+          asm.emitCMP_Reg_RegDisp(SP, TR, Entrypoints.stackLimitField.getOffset());
+        } else {
+          asm.emitCMP_Reg_RegDisp_Quad(SP, TR, Entrypoints.stackLimitField.getOffset());
+        }
+        asm.emitBranchLikelyNextInstruction();
+        fr.resolve(asm);
+      } else {
+      }
+
+      if (!VM.runningTool && ((BaselineCompiledMethod) compiledMethod).hasCounterArray()) {
+        if (MemoryManagerConstants.NEEDS_READ_BARRIER) {
+          asm.emitPUSH_Abs(Magic.getTocPointer().plus(Entrypoints.edgeCountersField.getOffset()));
+          asm.emitPUSH_Imm(getEdgeCounterIndex());
+          Barriers.compileArrayLoadBarrier(asm, false);
+          if (VM.BuildFor32Addr) {
+            asm.emitMOV_Reg_Reg(EBX, T0);
+          } else {
+            asm.emitMOV_Reg_Reg_Quad(EBX, T0);
+          }
+        } else {
+          asm.emitMOV_Reg_Abs(EBX, Magic.getTocPointer().plus(Entrypoints.edgeCountersField.getOffset()));
+          asm.emitMOV_Reg_RegDisp(EBX, EBX, getEdgeCounterOffset());
+        }
+      }
+
+      if (method.isSynchronized()) genMonitorEnter();
+
+      genThreadSwitchTest(RVMThread.PROLOGUE);
+    }
+  }

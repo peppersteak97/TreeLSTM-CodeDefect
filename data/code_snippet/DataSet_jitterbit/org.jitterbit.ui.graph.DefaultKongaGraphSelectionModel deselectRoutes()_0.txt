@@ -1,0 +1,20 @@
+	public boolean deselectRoutes() {
+		boolean bAtLeastOneDeselected = false;
+		List<KongaGraphComponent> liOldSelection = (m_listeners == null) ? 
+		        null : new ArrayList<KongaGraphComponent>(m_setSelectedComponents);
+		for( Iterator<KongaGraphComponent> it = m_setSelectedComponents.iterator(); 
+                                        it.hasNext(); ) {
+            KongaGraphComponent comp = it.next();
+			if( comp instanceof BezierGraphRoute ) {
+				((BezierGraphRoute)comp).setSelected(false);
+				it.remove();
+				bAtLeastOneDeselected = true;
+			}
+		}
+		if( bAtLeastOneDeselected ) {
+			KongaGraphSelectionEvent e = getSelectionEventOnDeselect(liOldSelection);
+			if( e != null )
+				fireSelectionChanged(e);
+		}
+		return bAtLeastOneDeselected;
+	}

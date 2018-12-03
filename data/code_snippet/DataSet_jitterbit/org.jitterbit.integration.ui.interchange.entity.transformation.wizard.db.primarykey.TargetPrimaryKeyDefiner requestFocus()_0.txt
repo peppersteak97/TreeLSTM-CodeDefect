@@ -1,0 +1,6 @@
+    public void requestFocus() {
+        if (m_keyDefiners != null) {
+            assert (m_keyDefiners.size() > 0);
+            m_keyDefiners.get(0).requestFocus();
+        }
+    }

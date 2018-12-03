@@ -1,0 +1,8 @@
+  protected AbstractTableModel _makeTableModel() {
+    return new AbstractTableModel() {
+      public String getColumnName(int col) { return (_columnNames.length == 0)?super.getColumnName(col):_columnNames[col]; }
+      public int getRowCount() { return _data.size(); }
+      public int getColumnCount() { return 1; }
+      public Object getValueAt(int row, int column) { return _data.get(row); }      
+    };
+  }

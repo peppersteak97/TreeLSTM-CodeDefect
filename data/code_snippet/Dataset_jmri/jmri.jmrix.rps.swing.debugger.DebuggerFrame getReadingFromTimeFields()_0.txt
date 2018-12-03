@@ -1,0 +1,24 @@
+    Reading getReadingFromTimeFields() {
+        int count = 0;
+        for (int i = 0; i<NUMSENSORS; i++) {
+            if (!times[i].getText().equals("")) count++;
+        }
+        
+        double[] values = new double[count];
+        
+        int index = 0;
+        for (int i = 0; i<NUMSENSORS; i++) {
+            if (!times[i].getText().equals("")) {
+                values[index] = Double.valueOf(times[i].getText()).doubleValue();
+                index++;
+            }
+        }
+
+        int idnum = 21;
+        try {
+            idnum = Integer.valueOf(id.getText()).intValue();
+        } catch (Exception e) {}
+
+        Reading r = new Reading(idnum, values);
+        return r;
+    }

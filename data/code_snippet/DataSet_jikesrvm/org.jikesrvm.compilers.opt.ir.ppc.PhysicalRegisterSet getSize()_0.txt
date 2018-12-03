@@ -1,0 +1,3 @@
+  public static int getSize() {
+    return NUM_GPRS + NUM_FPRS + NUM_CRS + NUM_SPECIALS;
+  }

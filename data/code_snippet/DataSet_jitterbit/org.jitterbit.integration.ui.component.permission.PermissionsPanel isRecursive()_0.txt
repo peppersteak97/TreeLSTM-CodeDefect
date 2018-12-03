@@ -1,0 +1,3 @@
+    boolean isRecursive() {
+        return m_recursiveEnabled && m_recursiveCheck.isSelected();
+    }

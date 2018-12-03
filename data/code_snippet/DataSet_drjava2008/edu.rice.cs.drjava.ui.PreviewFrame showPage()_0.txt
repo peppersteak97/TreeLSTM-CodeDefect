@@ -1,0 +1,14 @@
+  private void showPage() {
+    BufferedImage img = new BufferedImage((int) _model.getPageFormat().getWidth(),
+                                          (int) _model.getPageFormat().getHeight(),
+                                          BufferedImage.TYPE_INT_RGB);
+    Graphics g = img.getGraphics();
+    g.setColor(Color.white);
+    g.fillRect(0, 0, (int) _model.getPageFormat().getWidth(), (int) _model.getPageFormat().getHeight());
+    
+    try {
+      _print.getPrintable(_pageNumber).print(g, _model.getPageFormat(), _pageNumber);
+      _pagePreview.setImage(img);
+    } 
+    catch (PrinterException e) { /* ignore */ }
+  }

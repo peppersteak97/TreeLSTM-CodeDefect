@@ -1,0 +1,37 @@
+  public void textUndoAndRedoAfterMultipleLineIndent() throws BadLocationException {  //this fails
+    String text =
+      "public class stuff {\n" +
+      "private int _int;\n" +
+      "private Bar _bar;\n" +
+      "public void foo() {\n" +
+      "_bar.baz(_int);\n" +
+      "}\n" +
+      "}\n";
+    
+    String indented =
+      "public class stuff {\n" +
+      "  private int _int;\n" +
+      "  private Bar _bar;\n" +
+      "  public void foo() {\n" +
+      "    _bar.baz(_int);\n" +
+      "  }\n" +
+      "}\n";
+    
+    _doc.addUndoableEditListener(_doc.getUndoManager());
+    DrJava.getConfig().setSetting(OptionConstants.INDENT_LEVEL,Integer.valueOf(2));
+    Utilities.clearEventQueue();
+    _doc.insertString(0, text, null);
+    assertEquals("insertion",text, _doc.getText()); 
+    /* This is necessary here and other places where indenting or commenting takes place because the undoListener in DefinitionsPane 
+     * currently starts compound edits, but here, there's no DefinitionsPane.
+     * Perhaps there's some way to factor the undoListener in CompoundUndoManager to be the one that starts compound edits 
+     * so that it will work with or without the view.
+     */
+    _doc.getUndoManager().startCompoundEdit();
+    indentLines(0,_doc.getLength());
+    assertEquals("indenting",indented, _doc.getText());
+    _doc.getUndoManager().undo();
+    assertEquals("undo",text, _doc.getText());
+    _doc.getUndoManager().redo();
+    assertEquals("redo",indented, _doc.getText());
+  }

@@ -1,0 +1,22 @@
+    private boolean checkValid() {
+        lastError = null;
+        String path = filePathField.getText().trim();
+        if (path.length() == 0) {
+            lastError = PackageResources.FilePrompter.Errors.EMPTY_NAME;
+            return false;
+        }
+        File specifiedFile = new File(path);
+        if (!specifiedFile.exists()) {
+            lastError = PackageResources.FilePrompter.Errors.FILE_DOES_NOT_EXIST;
+            return false;
+        }
+        if (specifiedFile.isDirectory()) {
+            lastError = PackageResources.FilePrompter.Errors.PATH_IS_DIRECTORY;
+            return false;
+        }
+        if (!specifiedFile.getName().equalsIgnoreCase(missingFile.getName())) {
+            lastError = PackageResources.FilePrompter.Errors.NAMES_DO_NOT_MATCH;
+            return false;
+        }
+        return true;
+    }

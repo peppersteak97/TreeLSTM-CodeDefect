@@ -1,0 +1,4 @@
+    private void populateServerObject() throws SqlServerBrowserException {
+        m_server = new Server(m_sServer);
+        m_server.populate(m_connections);
+    }

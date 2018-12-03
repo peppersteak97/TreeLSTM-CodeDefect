@@ -1,0 +1,6 @@
+    public static NormalAndBoldTextPane newReadOnly() {
+        NormalAndBoldTextPane tp = new NormalAndBoldTextPane(
+                        getDefaultFontFamily(), getDefaultFontSize());
+        tp.setEditable(false);
+        return tp;
+    }

@@ -1,0 +1,3 @@
+    public final IIntegrationEntityUiDelegate getSelectedEntity() {
+        return (IIntegrationEntityUiDelegate) m_list.getSelectedValue();
+    }

@@ -1,0 +1,18 @@
+  public void testWhitespaceKeyword() throws IOException{
+    BalancingStreamTokenizer tok = make("abc apple");
+    tok.defaultThreeQuoteDollarCurlySetup();
+    tok.addKeyword("apple");
+    tok.addKeyword("alabama");
+    tok.addKeyword("anthem");
+    tok.addKeyword("banana");
+    tok.addQuotes("a:",":a");
+    tok.addQuotes("a","-a");
+    tok.addQuotes("b:",":b");
+    tok.whitespace(97);
+    String s = tok.getNextToken();
+    assertEquals("bc", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("pple", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+  }

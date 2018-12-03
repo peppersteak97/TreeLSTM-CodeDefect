@@ -1,0 +1,17 @@
+    private void createMainPanel() {
+        OneColumnPanel main = new OneColumnPanel();
+        main.setFill(OneColumnPanel.VERTICAL);
+        main.setInsets(5, 5, 2, 5);
+        main.setOpaque(false, false);
+
+        main.add(createTopPanel());
+        IComponentDecor decor = ComponentDecorFactory.invisible(m_projectDisplayer);
+        main.add(decor.getUi());
+        main.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
+        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        p.setOpaque(false);
+        main.addToParent(p, null);
+        
+        setMainPanel(p);
+    }

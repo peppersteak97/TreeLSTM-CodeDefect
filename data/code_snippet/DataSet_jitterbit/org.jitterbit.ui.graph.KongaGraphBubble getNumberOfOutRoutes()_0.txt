@@ -1,0 +1,3 @@
+	protected final int getNumberOfOutRoutes() {
+		return (m_liOutRoutes == null) ? 0 : m_liOutRoutes.size();
+	}

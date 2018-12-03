@@ -1,0 +1,5 @@
+	public Object getDisplayedValue() {
+        return isReadOnly() ? 
+                ((JTextComponent)getComponentHolder()).getText() :
+                    ((KongaEnumComboBox)getComponentHolder()).getSelectedItem();
+	}

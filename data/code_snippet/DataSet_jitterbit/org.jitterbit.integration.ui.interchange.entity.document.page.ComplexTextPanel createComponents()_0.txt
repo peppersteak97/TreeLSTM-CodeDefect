@@ -1,0 +1,9 @@
+    private void createComponents() {
+        if (m_isFixedWidth) {
+            createFixedWidthComponents();
+        }
+        else {
+            createDelimitedComponents();
+        }
+        createTable();
+    }

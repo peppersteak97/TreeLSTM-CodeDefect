@@ -1,0 +1,4 @@
+    	if (isBinary()) {
+    	} else {
+    	    return super.value();
+    	}

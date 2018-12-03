@@ -1,0 +1,8 @@
+    public final Vector<Field> getFields() {
+        int rows = getRowCount();
+        Vector<Field> fields = new Vector<Field>(rows);
+        for (int row = 0; row < rows; ++row) {
+            fields.add(getField(row));
+        }
+        return fields;
+    }

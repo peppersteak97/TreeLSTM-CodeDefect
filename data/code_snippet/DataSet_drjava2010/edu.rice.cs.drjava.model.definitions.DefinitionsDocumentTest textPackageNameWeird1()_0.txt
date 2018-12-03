@@ -1,0 +1,7 @@
+  public void textPackageNameWeird1() throws BadLocationException, InvalidPackageException {
+    String weird = "package edu . rice\n./*comment!*/cs.drjava;";
+    String normal = "edu.rice.cs.drjava";
+    _doc.insertString(0, weird, null);
+    
+    assertEquals("Package name for weird: '" + weird + "'", normal, _doc.getPackageName());
+  }

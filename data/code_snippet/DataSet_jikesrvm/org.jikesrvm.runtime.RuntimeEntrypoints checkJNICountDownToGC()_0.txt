@@ -1,0 +1,8 @@
+  public static void checkJNICountDownToGC() {
+    if (false && canForceGC()) {
+      if (jniCountDownToGC-- <= 0) {
+        jniCountDownToGC = VM.StressGCAllocationInterval;
+        System.gc();
+      }
+    }
+  }

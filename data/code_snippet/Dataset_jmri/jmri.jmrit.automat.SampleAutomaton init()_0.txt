@@ -1,0 +1,21 @@
+    protected void init() {
+
+        log.info("SampleAutomaton monitors sensor "+sensorName+
+                 " and controls turnout "+turnoutName);
+
+        turnout = InstanceManager.turnoutManagerInstance().
+                    provideTurnout(turnoutName);
+		if (turnout==null) {
+			log.error("Failure to provide turnout "+turnoutName+" when initialized");
+		}
+
+        sensor = InstanceManager.sensorManagerInstance().
+                    provideSensor(sensorName);
+					
+		if (sensor!=null) {
+			now = sensor.getKnownState();
+			setTurnout(now);
+		} else {
+			log.error("Failure to provide sensor "+sensorName+" when initialized");
+		}
+    }

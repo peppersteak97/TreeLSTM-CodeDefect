@@ -1,0 +1,11 @@
+    private void layoutComponents() {
+        StyleSheetTextClass ssc = IntegrationUiStyleSheet.DefaultText;
+        TwoColumnPanel p = new TwoColumnPanel();
+        JComponent left = ssc.makeJLabel(PackageResources.GroupDetails.Labels.NAME);
+        JComponent right = m_nameField.getInputComponent();
+        p.addRow(left, right);
+        left = ssc.makeJLabel(PackageResources.GroupDetails.Labels.DESCRIPTION);
+        right = ComponentFactories.scrollFactory().newScrollPane(m_descriptionArea);
+        p.addRow(left, right);
+        m_uiRepresentation = ComponentDecorFactory.invisible(p).getUi();
+    }

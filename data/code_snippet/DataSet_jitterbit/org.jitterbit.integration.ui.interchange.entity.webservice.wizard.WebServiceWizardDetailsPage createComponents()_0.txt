@@ -1,0 +1,24 @@
+    private void createComponents() {
+        m_webServiceUrlField = new FixedSizeTextField(
+                        m_webServiceInfo.getWebServiceURL(), 30);
+        m_defaultUrlButton = WebServiceWizard.getUtils().getButton(
+                        new SetDefaultAction(m_webServiceInfo.getWebServiceURL(),
+                                        m_webServiceUrlField));
+
+        m_soapActionField = new FixedSizeTextField(m_operationInfo
+                        .getProperty(WebServiceOperationInfo.SOAP_ACTION), 30);
+        Action setDefAction = new SetDefaultAction(m_operationInfo
+                        .getProperty(WebServiceOperationInfo.SOAP_ACTION),
+                        m_soapActionField);
+        m_defaultSoapActionButton = WebServiceWizard.getUtils().getButton(setDefAction);
+
+        Border titleBorder = IntegrationUiStyleSheet.getWebServiceWizardTitleBorder(
+                        PackageResources.DetailsPage.SECURITY);
+        m_securityPanel = new WebServiceCallSecurityPanel();
+        m_securityPanel.setBorder(titleBorder);
+
+        titleBorder = IntegrationUiStyleSheet.getWebServiceWizardTitleBorder(
+                        PackageResources.DetailsPage.RESTRICTIONS);
+        m_restrictionsPanel = new WebServiceCallRestrictionsPanel();
+        m_restrictionsPanel.setBorder(titleBorder);
+    }

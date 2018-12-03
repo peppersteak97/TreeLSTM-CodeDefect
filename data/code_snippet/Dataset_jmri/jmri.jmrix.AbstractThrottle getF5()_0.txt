@@ -1,0 +1,3 @@
+    public boolean getF5() {
+        return f5;
+    }

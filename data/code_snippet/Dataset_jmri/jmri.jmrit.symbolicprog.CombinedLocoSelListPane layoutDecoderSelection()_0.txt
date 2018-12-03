@@ -1,0 +1,62 @@
+    protected JPanel layoutDecoderSelection() {
+        JPanel pane1a = new JPanel();
+        pane1a.setLayout(new BoxLayout(pane1a, BoxLayout.X_AXIS));
+        pane1a.add(new JLabel("Decoder installed: "));
+        mMfgList = new JList();
+        updateMfgListContents(null);
+        mMfgList.clearSelection();
+        mMfgList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        mMfgListener = new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!mMfgList.isSelectionEmpty()) {
+                    String vMfg = (String) mMfgList.getSelectedValue();
+                    try {
+                        int vMfgID = Integer.parseInt(
+                                    DecoderIndexFile.instance().mfgIdFromName(vMfg));
+
+                        listDecodersFromMfg(vMfgID, vMfg);
+                    } catch (java.lang.NumberFormatException ex) {
+                    }
+                } else {
+                }
+            }};
+        mMfgList.addListSelectionListener(mMfgListener);
+
+        mDecoderList = new JList(DecoderIndexFile.instance()
+                            .matchingComboBox(null, null, null, null, null, null).getModel());
+        mDecoderList.clearSelection();
+        mDecoderList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        mDecoderListener = new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!mDecoderList.isSelectionEmpty()) {
+                    locoBox.setSelectedIndex(0);
+                    go2.setEnabled(true);
+                    go2.setToolTipText("Click to open the programmer");
+                    updateMfgListToSelectedDecoder();
+                } else {
+                    go2.setEnabled(false);
+                    go2.setToolTipText("Select a locomotive or decoder to enable");
+                }
+            }};
+        mDecoderList.addListSelectionListener(mDecoderListener);
+
+        pane1a.add(new JScrollPane(mMfgList));
+        pane1a.add(new JScrollPane(mDecoderList));
+        iddecoder= new JToggleButton("Ident");
+        iddecoder.setToolTipText("Read the decoders mfg and version, then attempt to select its type");
+            if (jmri.InstanceManager.programmerManagerInstance()!= null
+                    && jmri.InstanceManager.programmerManagerInstance().getServiceModeProgrammer() != null
+                    && !jmri.InstanceManager.programmerManagerInstance().getServiceModeProgrammer().getCanRead()) {
+            iddecoder.setEnabled(false);
+            iddecoder.setToolTipText("Button disabled because configured command station can't read CVs");
+        }
+        iddecoder.addActionListener( new ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                        if (log.isDebugEnabled()) log.debug("identify decoder pressed");
+                        startIdentifyDecoder();
+                }
+        });
+        pane1a.add(iddecoder);
+        pane1a.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+        return pane1a;
+    }

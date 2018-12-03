@@ -1,0 +1,4 @@
+	private void createCapsLockWarning() {
+		m_capsLockWarning = IntegrationUiStyleSheet.DefaultText
+				.makeJLabel(PackageResources.CAPSLOCK);
+	}

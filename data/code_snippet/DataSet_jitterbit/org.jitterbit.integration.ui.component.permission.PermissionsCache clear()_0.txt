@@ -1,0 +1,4 @@
+    void clear() {
+        m_permissionCache.clear();
+        m_dirtyUsersAndGroups.clear();
+    }

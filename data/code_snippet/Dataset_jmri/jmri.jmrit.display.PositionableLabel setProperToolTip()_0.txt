@@ -1,0 +1,3 @@
+    public void setProperToolTip() {
+        setToolTipText("Alt-click to see menu, drag with meta key to move");
+    }

@@ -1,0 +1,6 @@
+    private void createFileFilterFieldForSource() {
+        String label = PackageResources.File.FILTER;
+        m_fileFilter = InputFieldFactory.getNonEmptyTextInputField(label, label, 30);
+        JTextComponent widget = m_fileFilter.getInputComponent();
+        FileDropSupport.install(widget, IFileDropStrategy.SET_NAME);
+    }

@@ -1,0 +1,9 @@
+  private static void initializeMasterPlan() {
+    ArrayList<OptimizationPlanElement> temp = new ArrayList<OptimizationPlanElement>();
+    BC2HIR(temp);
+    HIROptimizations(temp);
+    HIR2LIR(temp);
+    LIROptimizations(temp);
+    MIROptimizationPlanner.intializeMasterPlan(temp);
+    masterPlan = toArray(temp);
+  }

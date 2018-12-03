@@ -1,0 +1,9 @@
+    private void validateMappings() {
+        try {
+            m_treeMapper.validateMappings();
+            m_transformation.setMappingErrors(null);
+        }
+        catch (CheckingException e) {
+            m_transformation.setMappingErrors(e.getMessage());
+        }
+    }

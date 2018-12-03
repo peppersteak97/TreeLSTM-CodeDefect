@@ -1,0 +1,43 @@
+    void loadMapCache() {
+        if (mapCache != null) return;
+
+        log.debug("loading map cache");
+        int map;
+        for (map = 1; map< numHeaders(); map++) 
+            if (headers[map].isMap()) break;
+        if (map > numHeaders()) {
+            log.error("Did not find map data");
+            return;
+        }
+        
+        byte[] buffer = headers[map].getByteArray();
+        log.debug("map buffer length "+buffer.length);
+        int count = 0;
+        for (int i=0; i<buffer.length;i++) if (buffer[i]==0x0D) count++;
+        
+        mapCache = new String[count];
+        
+        log.debug("found "+count+" map entries");
+        
+        int start = 0;
+        int end = 0;
+        int index = 0;
+        
+        if (log.isDebugEnabled()) log.debug("start loop over map with buffer length = "+buffer.length);
+        while ( (++end) < buffer.length) {
+            if (buffer[end] == 0x0D || buffer[end] == 0x0A) {
+                String next = new String(buffer, start, end-start);
+                start = ++end;
+                if (log.isDebugEnabled()) log.debug("new start value is "+start);
+                if (log.isDebugEnabled()) log.debug("new end value is   "+end);
+               
+                if ( (buffer[end-1] == 0x0D || ((end < buffer.length) && buffer[end] == 0x0A)) ||
+                     (buffer[end-1] == 0x0A || ((end < buffer.length) && buffer[end] == 0x0D)) ) {
+                        start++;
+                        end++;
+                }
+                if (log.isDebugEnabled()) log.debug(" store entry "+index);
+                mapCache[index++] = next;
+            }
+        }
+    }

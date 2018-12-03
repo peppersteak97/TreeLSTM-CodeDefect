@@ -1,0 +1,1 @@
+  JButton getCloseButton() { return _closeButton; }

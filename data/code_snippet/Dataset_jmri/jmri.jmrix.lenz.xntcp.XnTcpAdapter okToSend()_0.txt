@@ -1,0 +1,5 @@
+        public boolean okToSend() {
+			if(!opened) return true;
+			log.debug("XnTcpAdapter.okToSend = " + (pendingPackets < MAX_PENDING_PACKETS) + " (pending packets =" + pendingPackets + ")");
+			return pendingPackets < MAX_PENDING_PACKETS;
+        }

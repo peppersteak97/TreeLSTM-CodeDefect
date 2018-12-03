@@ -1,0 +1,5 @@
+    if (isLoaded()) {
+      return type.getStackWords();
+    } else {
+      return 1;
+    }

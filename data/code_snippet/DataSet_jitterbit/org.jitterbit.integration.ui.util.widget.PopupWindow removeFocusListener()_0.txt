@@ -1,0 +1,4 @@
+    private void removeFocusListener() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                                        m_focusListener);
+    }

@@ -1,0 +1,9 @@
+  public void junitJVMReady() {
+    if (! _testInProgress) return;
+    
+    JUnitError[] errors = new JUnitError[1];
+    errors[0] = new JUnitError("Previous test suite was interrupted", true, "");
+    _junitErrorModel = new JUnitErrorModel(errors, _model, true);
+    _notifyJUnitEnded();
+    _testInProgress = false;
+  }

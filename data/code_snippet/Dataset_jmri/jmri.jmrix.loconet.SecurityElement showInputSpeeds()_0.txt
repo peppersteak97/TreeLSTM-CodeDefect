@@ -1,0 +1,5 @@
+    public String showInputSpeeds() {
+        return "A:"+currentSpeedLimitFromA
+            +" B:"+currentSpeedLimitFromB
+            +" C:"+currentSpeedLimitFromC;
+    }

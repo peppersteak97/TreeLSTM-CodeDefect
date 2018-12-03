@@ -1,0 +1,3 @@
+	public static Color getTextFieldSelectedForeground() {
+		return (c == null ) ? Color.white : c;
+	}

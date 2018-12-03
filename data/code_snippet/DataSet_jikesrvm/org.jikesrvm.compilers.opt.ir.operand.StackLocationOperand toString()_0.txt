@@ -1,0 +1,20 @@
+  public String toString() {
+    String s = "";
+    switch (size) {
+      case 1:
+        s = ">B";
+        break;
+      case 2:
+        s = ">W";
+        break;
+      case 4:
+        s = ">DW";
+        break;
+      case 8:
+        s = ">QW";
+        break;
+      default:
+        OptimizingCompilerException.UNREACHABLE();
+    }
+    return "<" + (isFromTop() ? "FrameTop" : "FrameBottom") + (getOffset() < 0 ? "" : "+") + getOffset() + s;
+  }

@@ -1,0 +1,3 @@
+    public static SourceHistoryTableModel emptyModel() {
+        return new SourceHistoryTableModel(null);
+    }

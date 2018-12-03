@@ -1,0 +1,4 @@
+    void disconnect() {
+        removeMouseMotionListener(this);
+        removeMouseListener(this);
+    }

@@ -1,0 +1,3 @@
+    String wavebrkFlagsVal() {
+        return decodeFlags(wavebrkFlags, wavebrkCodes, wavebrkMasks, wavebrkNames);
+    }

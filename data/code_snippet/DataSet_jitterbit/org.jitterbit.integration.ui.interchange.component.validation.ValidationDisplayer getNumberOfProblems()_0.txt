@@ -1,0 +1,3 @@
+    public int getNumberOfProblems() {
+        return countProblems(m_treeModel.getRoot());
+    }

@@ -1,0 +1,1 @@
+	public boolean canSet12Or24HourClock() {return false;}

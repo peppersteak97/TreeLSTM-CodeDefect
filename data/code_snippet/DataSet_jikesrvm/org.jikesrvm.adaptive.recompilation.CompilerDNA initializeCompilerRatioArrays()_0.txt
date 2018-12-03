@@ -1,0 +1,20 @@
+  private static void initializeCompilerRatioArrays() {
+    numCompilers = compilerNames.length;
+    benefitRatio = new double[numCompilers][numCompilers];
+    compileTimeRatio = new double[numCompilers][numCompilers];
+
+    for (int prevCompiler = 0; prevCompiler < numCompilers; prevCompiler++) {
+
+      benefitRatio[prevCompiler][prevCompiler] = 1.0;
+      compileTimeRatio[prevCompiler][prevCompiler] = 1.0;
+
+      for (int nextCompiler = prevCompiler + 1; nextCompiler < numCompilers; nextCompiler++) {
+        benefitRatio[prevCompiler][nextCompiler] = speedupRates[nextCompiler] / speedupRates[prevCompiler];
+
+        compileTimeRatio[prevCompiler][nextCompiler] = compilationRates[prevCompiler] / compilationRates[nextCompiler];
+        AOSLogging.logger.reportBenefitRatio(prevCompiler, nextCompiler, benefitRatio[prevCompiler][nextCompiler]);
+
+        AOSLogging.logger.reportCompileTimeRatio(prevCompiler, nextCompiler, compileTimeRatio[prevCompiler][nextCompiler]);
+      }
+    }
+  }

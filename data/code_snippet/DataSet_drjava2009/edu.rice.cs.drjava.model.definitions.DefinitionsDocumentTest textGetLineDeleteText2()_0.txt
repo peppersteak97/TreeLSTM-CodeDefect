@@ -1,0 +1,8 @@
+  public void textGetLineDeleteText2() throws BadLocationException {
+    final String s = "123456789\n123456789\n123456789\n123456789\n";
+    _doc.insertString(0,s,null);
+    _doc.setCurrentLocation(35);
+    assertEquals("Before delete", 4, _doc.getCurrentLine());
+    _doc.remove(18,7);
+    assertEquals("After delete", 2, _doc.getCurrentLine());
+  }

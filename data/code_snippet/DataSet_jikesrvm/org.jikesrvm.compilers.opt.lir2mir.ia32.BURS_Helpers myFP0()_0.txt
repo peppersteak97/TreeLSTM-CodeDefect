@@ -1,0 +1,3 @@
+  protected final Operand myFP0() {
+    return new BURSManagedFPROperand(0);
+  }

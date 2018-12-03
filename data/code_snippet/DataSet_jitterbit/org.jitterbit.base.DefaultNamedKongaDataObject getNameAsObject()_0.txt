@@ -1,0 +1,3 @@
+    protected final Name getNameAsObject() {
+        return m_name;
+    }

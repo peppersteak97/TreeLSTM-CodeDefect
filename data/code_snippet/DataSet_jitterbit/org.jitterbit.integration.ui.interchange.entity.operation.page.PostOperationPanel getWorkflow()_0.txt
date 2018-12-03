@@ -1,0 +1,6 @@
+    public WorkflowProcess getWorkflow() {
+        if (WORKFLOW_SUPPORTED) {
+            return (WorkflowProcess) m_workflowControl.getSelectedEntity();
+        }
+        return null;
+    }

@@ -1,0 +1,4 @@
+    static void getProgrammer() {
+        p = InstanceManager.programmerManagerInstance().
+                            getOpsModeProgrammer(true, 0);
+    }

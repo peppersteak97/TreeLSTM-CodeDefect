@@ -1,0 +1,15 @@
+	void updateDisplay() {
+		used3.setText(used2.getText());
+		free3.setText(free2.getText());
+		total3.setText(total2.getText());
+
+		used2.setText(used1.getText());
+		free2.setText(free1.getText());
+		total2.setText(total1.getText());
+
+		long free  = Runtime.getRuntime().freeMemory()/1024;
+		long total = Runtime.getRuntime().totalMemory()/1024;
+		used1.setText(Long.toString(total-free));
+		free1.setText(Long.toString(free));
+		total1.setText(Long.toString(total));
+	}

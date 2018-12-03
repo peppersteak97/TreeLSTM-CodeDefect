@@ -1,0 +1,7 @@
+  public void prevInteraction() {
+    if (! hasPrevInteraction()) throw new IllegalStateException("There is no previous interaction!");
+
+    if (! _passedCurrent)  _currentInteraction--;
+    _showCurrentInteraction();
+    _passedCurrent = false;
+  }

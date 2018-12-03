@@ -1,0 +1,1 @@
+	public String getSignalC2Name() {return signalC2Name;}

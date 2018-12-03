@@ -1,0 +1,11 @@
+    public Collection<EntityType> getSupportedTypes() {
+        if (m_supportedTypes == null) {
+            m_supportedTypes = new ArrayList<EntityType>();
+            for (EntityTypeMetaDataEntry entry : m_data) {
+                if (entry != null) {
+                    m_supportedTypes.add(entry.getType());
+                }
+            }
+        }
+        return m_supportedTypes;
+    }

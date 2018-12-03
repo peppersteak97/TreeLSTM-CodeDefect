@@ -1,0 +1,7 @@
+    public List<IntegrationEntity> getAllEntities() {
+        List<IntegrationEntity> entities = new ArrayList<IntegrationEntity>();
+        for (RootFolder rf : m_mapRootFolders.values()) {
+            getAllDescendants(rf, entities, true);
+        }
+        return entities;
+    }

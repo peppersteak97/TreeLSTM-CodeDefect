@@ -1,0 +1,9 @@
+  protected final void emit_lreturn() {
+    if (method.isSynchronized()) genMonitorExit();
+    if (VM.BuildFor32Addr) {
+      genEpilogue(2*WORDSIZE, 2*WORDSIZE);
+    } else {
+      asm.emitPOP_Reg(T0);
+      genEpilogue(2*WORDSIZE, WORDSIZE);
+    }
+  }

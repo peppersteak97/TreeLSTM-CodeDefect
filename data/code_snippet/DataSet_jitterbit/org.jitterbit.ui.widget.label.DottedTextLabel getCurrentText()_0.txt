@@ -1,0 +1,3 @@
+    public String getCurrentText() {
+        return m_label.getText();
+    }

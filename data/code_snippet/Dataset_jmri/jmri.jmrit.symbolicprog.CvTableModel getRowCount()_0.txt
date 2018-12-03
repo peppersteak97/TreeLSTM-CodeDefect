@@ -1,0 +1,1 @@
+    public int getRowCount() { return _numRows; }

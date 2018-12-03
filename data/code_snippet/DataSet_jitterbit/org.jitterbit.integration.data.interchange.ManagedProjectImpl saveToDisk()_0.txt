@@ -1,0 +1,12 @@
+    public void saveToDisk() throws InterchangeSavingException {
+        if (!InterchangeProjectLock.hasLock()) {
+            throw new InterchangeProjectAccessException();
+        }
+        ProjectUtils.saveProjectFile(m_project, m_projectFile);
+        m_projectSaver.saveInterchangeProjectRelations();
+        m_projectSaver.saveDeletedItemsInformation();
+        for (IntegrationEntity e : m_project.getAllEntities()) {
+            m_projectSaver.saveIntegrationEntity(e);
+        }
+        m_projectSaver.savePluginInfo();
+    }

@@ -1,0 +1,6 @@
+  public int allocateSpaceForConversion() {
+    if (conversionOffset == 0) {
+      conversionOffset = allocateOnStackFrame(8);
+    }
+    return conversionOffset;
+  }

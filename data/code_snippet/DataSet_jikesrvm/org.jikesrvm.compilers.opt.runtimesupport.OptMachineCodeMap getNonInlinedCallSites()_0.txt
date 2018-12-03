@@ -1,0 +1,23 @@
+  public ArrayList<CallSite> getNonInlinedCallSites() {
+    ArrayList<CallSite> ans = null;
+    if (MCInformation == null) return ans;
+    for (int entry = 0; entry < MCInformation.length;) {
+      int callInfo = getCallInfo(entry);
+      if (callInfo == IS_UNGUARDED_CALL) {
+        int bcIndex = getBytecodeIndex(entry);
+        if (bcIndex != -1) {
+          int iei = getInlineEncodingIndex(entry);
+          if (iei != -1) {
+            int mid = OptEncodedCallSiteTree.getMethodID(iei, inlineEncoding);
+            RVMMethod caller = MemberReference.getMemberRef(mid).asMethodReference().peekResolvedMethod();
+            if (caller != null) {
+              if (ans == null) ans = new ArrayList<CallSite>();
+              ans.add(new CallSite(caller, bcIndex));
+            }
+          }
+        }
+      }
+      entry = nextEntry(entry);
+    }
+    return ans;
+  }

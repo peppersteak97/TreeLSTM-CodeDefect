@@ -1,0 +1,52 @@
+  public void printOptions() {
+    VM.sysWriteln("Current value of GC options");
+
+    Option o = getFirst();
+    while (o != null) {
+      if (o.getType() == Option.BOOLEAN_OPTION) {
+        String key = o.getKey();
+        VM.sysWrite("\t");
+        VM.sysWrite(key);
+        for (int c = key.length(); c<31;c++) {
+          VM.sysWrite(" ");
+        }
+        VM.sysWrite(" = ");
+        logValue(o, false);
+        VM.sysWriteln();
+      }
+      o = o.getNext();
+    }
+
+    o = getFirst();
+    while (o != null) {
+      if (o.getType() != Option.BOOLEAN_OPTION &&
+          o.getType() != Option.ENUM_OPTION) {
+        String key = o.getKey();
+        VM.sysWrite("\t");
+        VM.sysWrite(key);
+        for (int c = key.length(); c<31;c++) {
+          VM.sysWrite(" ");
+        }
+        VM.sysWrite(" = ");
+        logValue(o, false);
+        VM.sysWriteln();
+      }
+      o = o.getNext();
+    }
+
+    o = getFirst();
+    while (o != null) {
+      if (o.getType() == Option.ENUM_OPTION) {
+        String key = o.getKey();
+        VM.sysWrite("\t");
+        VM.sysWrite(key);
+        for (int c = key.length(); c<31;c++) {
+          VM.sysWrite(" ");
+        }
+        VM.sysWrite(" = ");
+        logValue(o, false);
+        VM.sysWriteln();
+      }
+      o = o.getNext();
+    }
+  }

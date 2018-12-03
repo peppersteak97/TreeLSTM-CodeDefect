@@ -1,0 +1,3 @@
+  public int getDistToStart() { 
+    return _getDistToStart(_cursor.copy()); 
+  }

@@ -1,0 +1,8 @@
+	boolean checkReady(){
+		return
+			(m_deListSelected!=null)&&
+			(g_oneAtATimeOnly||(m_applyCbg.getSelectedCheckbox()!=null))&&
+			(m_deListSelected.length>0)&&
+			(m_instanceCbg.getSelectedCheckbox()!=null)&&
+			(m_case==0||(m_mp!=null&&m_pos[1]>m_pos[0]));
+	}

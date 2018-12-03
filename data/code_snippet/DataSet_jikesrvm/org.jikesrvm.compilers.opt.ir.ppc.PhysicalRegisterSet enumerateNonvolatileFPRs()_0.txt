@@ -1,0 +1,3 @@
+  public Enumeration<Register> enumerateNonvolatileFPRs() {
+    return new PhysicalRegisterEnumeration(FIRST_DOUBLE + FIRST_NONVOLATILE_FPR, FIRST_DOUBLE + LAST_NONVOLATILE_FPR);
+  }

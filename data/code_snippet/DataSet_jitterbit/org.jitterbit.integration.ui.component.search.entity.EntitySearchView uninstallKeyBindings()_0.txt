@@ -1,0 +1,4 @@
+    private void uninstallKeyBindings() {
+        m_ui.uninstallKeyBindings(m_displayer);
+        m_keyBindingInstaller.remove();
+    }

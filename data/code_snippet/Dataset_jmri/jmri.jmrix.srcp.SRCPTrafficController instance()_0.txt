@@ -1,0 +1,7 @@
+    static public SRCPTrafficController instance() {
+        if (self == null) {
+            if (log.isDebugEnabled()) log.debug("creating a new SRCP TrafficController object");
+            self = new SRCPTrafficController();
+        }
+        return self;
+    }

@@ -1,0 +1,6 @@
+  public void testIgnoreDelimsOnLine() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionNewParenPhrase(null, null);
+    
+    _setDocText("foo(x.\ny()\n)");
+    assertTrue("after paren, but not new phrase", !rule.testApplyRule(_doc, 10, Indenter.IndentReason.OTHER));
+  }

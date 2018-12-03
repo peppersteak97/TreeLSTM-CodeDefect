@@ -1,0 +1,27 @@
+	private int getConsist() {
+		newConsist = true;
+		int cN = validConsist(consistTextField.getText());
+		if (!validConsist()) {
+			consistSearchPrevious = false;
+			consistSearchNext = false;
+			return cN;
+		}
+		if (consistSearchNext || consistSearchPrevious) {
+			consistStatus.setText(SEARCH);
+		} else {
+			consistStatus.setText(WAIT);
+			if (cN == consistNum) {
+				newConsist = false;
+			}
+		}
+
+		if (waiting > 0)
+			return cN;
+
+		if (consistSearchNext) {
+			readConsistMemory(cN - 7, LEAD);
+		} else {
+			readConsistMemory(cN, LEAD);
+		}
+		return cN;
+	}

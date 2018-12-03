@@ -1,0 +1,12 @@
+    protected final void fireEnureVisibleRequested() {
+        if (m_sectionListeners == null) {
+            return;
+        }
+        final WindowSectionEvent evt = new WindowSectionEvent(this);
+        m_sectionListeners.visitAll(new ListenerVisitor<IWindowSectionListener>() {
+
+            public void accept(IWindowSectionListener listener) {
+                listener.ensureVisibleRequested(evt);
+            }
+        });
+    }

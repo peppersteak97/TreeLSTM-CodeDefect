@@ -1,0 +1,23 @@
+  public void testIndentTernary() throws BadLocationException {
+    String text =
+      "test1 = x ? y : z;\n" +
+      "test2 = x ? y :\n" +
+      "z;\n" +
+      "foo();\n" +
+      "test3 =\n" +
+      "x ?\n" +
+      "y :\n" +
+      "z;\n" +
+      "bar();\n" +
+      "test4 = (x ?\n" +
+      "y :\n" +
+      "z);\n";
+    
+    String indented =
+    
+    
+    _doc.insertString(0, text, null);
+    _assertContents(text, _doc);
+    safeIndentLines(0, _doc.getLength());
+    _assertContents(indented, _doc);
+  }

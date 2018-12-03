@@ -1,0 +1,10 @@
+    private List<IIntegrationEntityUiDelegate> getRemainingEntities() {
+        List<IIntegrationEntityUiDelegate> uiDels = new ArrayList<IIntegrationEntityUiDelegate>();
+        DefaultListModel model = (DefaultListModel) m_trashCanContent.getModel();
+        for (int n = 0, nmax = model.size(); n < nmax; ++n) {
+            if (!m_trashCanContent.isSelectedIndex(n)) {
+                uiDels.add((IIntegrationEntityUiDelegate) model.elementAt(n));
+            }
+        }
+        return uiDels;
+    }

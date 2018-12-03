@@ -1,0 +1,4 @@
+    private void removeProjectManagerListener() {
+        InterchangeProjectManager mgr = InterchangeProjectManager.getManager();
+        mgr.removeInterchangeProjectManagerListener(this);
+    }

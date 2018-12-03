@@ -1,0 +1,17 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus(PackageResources.OperationJob.WAITING);
+
+        Runnable task = new Runnable() {
+            
+            public void run() {
+                IntegrationServer server = IntegrationServer.getInstance();
+                IOperationHistoryProvider provider = server.getServerCall(IOperationHistoryProvider.class);
+                provider.getOperationHistory(m_request, m_callback);
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallellAndWait(task, m_callback);
+    }

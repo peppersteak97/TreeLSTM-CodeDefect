@@ -1,0 +1,1 @@
+  public File getFile() throws FileMovedException { throw new UnsupportedOperationException("Dummy method"); }

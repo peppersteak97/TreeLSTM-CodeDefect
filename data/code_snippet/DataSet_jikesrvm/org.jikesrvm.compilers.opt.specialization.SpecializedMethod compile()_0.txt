@@ -1,0 +1,3 @@
+  void compile() {
+    compiledMethod = context.specialCompile(method);
+  }

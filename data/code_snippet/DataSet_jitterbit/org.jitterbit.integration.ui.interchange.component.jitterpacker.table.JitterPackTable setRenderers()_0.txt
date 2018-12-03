@@ -1,0 +1,6 @@
+    private void setRenderers() {
+        m_table.setDefaultRenderer(JitterPackLocationTableItem.class, 
+                        TableRenderers.getLocationRenderer());
+        m_table.setDefaultRenderer(String.class, TableRenderers.getStringRenderer());
+        m_table.setDefaultRenderer(IVersion.class, TableRenderers.getVersionRenderer());
+    }

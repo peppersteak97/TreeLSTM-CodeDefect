@@ -1,0 +1,10 @@
+    private JTextPane createTextPane() {
+        JTextPane tp = new KongaTextPane();
+        tp.setEditable(false);
+        String[] fonts = { "Courier New",  "Courier" }; 
+        Font font = FontUtils.getMatchingFont(fonts, 12, Font.PLAIN);
+        tp.setFont(font);
+        StyledDocumentDefiner d = new StyledDocumentDefiner();
+        d.addStylesToDocument(tp.getStyledDocument());
+        return tp;
+    }

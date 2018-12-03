@@ -1,0 +1,19 @@
+    private void writeMainClassPublic() {
+        addLine("public:");
+        writeCTOR();
+        writeDTOR();
+        addLine();
+        writeSelectImpl();
+        writeUpdateImpl();
+        writeEditImpl();
+        writeAddNewImpl();
+        writeDeleteImpl();
+        writeIsEOFImpl();
+        writeNextImpl();
+        writeCloseImpl();
+        writeSetWhereClauseImpl();
+        writeGetWhereClauseImpl();
+        addLine();
+        writeGetErrorImpls();
+        addLine();
+    }

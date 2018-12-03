@@ -1,0 +1,4 @@
+    private void createDownloadDisplayer() {
+        m_downloadDisplayer = new DefaultUiJobProgressDisplayer(m_downloadProcess, false);
+        ContainerDecor.decorate(m_downloadDisplayer, m_displayArea, DOWNLOAD_PROCESS_PANEL);
+    }

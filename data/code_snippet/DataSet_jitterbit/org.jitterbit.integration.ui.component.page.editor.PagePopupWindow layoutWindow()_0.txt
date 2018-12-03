@@ -1,0 +1,15 @@
+    private JPanel layoutWindow() {
+        JLabel caption = IntegrationUiStyleSheet.DefaultText.makeJLabel("Pages");
+        caption.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+
+        JLabel bottom = new JLabel(" ");
+        bottom.setBackground(Color.WHITE);
+        bottom.setOpaque(true);
+
+        JPanel p = new JPanel(new BorderLayout());
+        p.add(caption, BorderLayout.NORTH);
+        ContainerDecor.decorate(m_pageList, p, BorderLayout.CENTER);
+        p.add(bottom, BorderLayout.SOUTH);
+        p.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        return p;
+    }

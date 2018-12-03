@@ -1,0 +1,11 @@
+    public int getFeedbackEncoderMsgAddr() {
+        if (this.isFeedbackMessage()) {
+            int a1 = this.getElement(1);
+            int messagetype=this.getFeedbackMessageType();
+	    if ( messagetype == 2 )
+            {
+               int address=(a1 & 0xff);
+               return(address);
+            } else return -1;
+        } else return -1;
+    }

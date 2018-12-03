@@ -1,0 +1,7 @@
+    private void registerListener() {
+        for (IApplicationWindow.SectionPosition pos : IApplicationWindow.SectionPosition
+                        .values()) {
+            IWindowSection winSec = m_appWin.getWindowSection(pos);
+            winSec.addWindowSectionListener(this);
+        }
+    }

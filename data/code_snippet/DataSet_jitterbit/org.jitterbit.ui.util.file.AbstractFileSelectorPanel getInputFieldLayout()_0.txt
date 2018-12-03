@@ -1,0 +1,9 @@
+    private JComponent getInputFieldLayout() {
+        InputField input = getFileInputFieldForLayout();
+        if (m_useTitleLabel && m_titleLabel != null) {
+            input.setLabel(m_titleLabel);
+        }
+        JPanel capsule = new JPanel();
+        input.layoutVertically(capsule);
+        return capsule;
+    }

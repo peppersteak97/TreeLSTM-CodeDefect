@@ -1,0 +1,10 @@
+	public static byte[] accStopClock() {
+    	if (NceUSB.getUsbSystem() != NceUSB.USB_SYSTEM_NONE){
+    		log.error("attempt to send unsupported binary command to NCE USB");
+			return null;
+    	}
+
+		byte[] retVal = new byte[1];
+
+		return retVal;
+	}

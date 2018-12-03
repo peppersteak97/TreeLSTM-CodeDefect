@@ -1,0 +1,3 @@
+	protected Comparator<IKongaTreeNode> getNodeComparator() {
+		return DEFAULT_CHILDNODE_COMPARATOR;
+	}

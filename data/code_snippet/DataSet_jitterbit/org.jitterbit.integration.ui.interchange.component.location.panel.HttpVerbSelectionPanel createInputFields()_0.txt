@@ -1,0 +1,13 @@
+    private List<InputField> createInputFields() {
+        List<InputField> fields = new ArrayList<InputField>();
+        for (Map.Entry<JRadioButton, IOptionSelector<IHttpVerbOption>> entry :
+                        m_optionMap.entrySet()) {
+            JRadioButton btn = entry.getKey();
+            IHttpVerbOption option = entry.getValue().getOption();
+            String label = option.getValue().toString();
+            InputField input = m_buttonGroup.createInputField(btn, label, null);
+            addInputField(input);
+            fields.add(input);
+        }
+        return fields;
+    }

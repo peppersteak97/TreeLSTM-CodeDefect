@@ -1,0 +1,3 @@
+    public List<MenuExtensionItemData> getItems() {
+        return new ArrayList<MenuExtensionItemData>(m_items);
+    }

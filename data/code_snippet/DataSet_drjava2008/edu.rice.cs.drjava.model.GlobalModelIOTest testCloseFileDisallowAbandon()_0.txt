@@ -1,0 +1,17 @@
+  public void testCloseFileDisallowAbandon() throws BadLocationException {
+    OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    
+    TestListener listener = new TestIOListener() {
+      public synchronized boolean canAbandonFile(OpenDefinitionsDocument doc) {
+        canAbandonCount++;
+      }
+    };
+    
+    _model.addListener(listener);
+    _model.closeFile(doc);
+    listener.assertAbandonCount(1);
+    listener.assertCloseCount(0);
+    listener.assertOpenCount(0);
+    
+    _log.log("testCloseFileDisallowAbandon completed");
+  }

@@ -1,0 +1,5 @@
+  protected final void emit_freturn() {
+    if (method.isSynchronized()) genSynchronizedMethodEpilogue();
+    peekFloat(F0, 0);
+    genEpilogue();
+  }

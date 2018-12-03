@@ -1,0 +1,20 @@
+  public void testGetIndentOfCurrStmtMultipleLines()
+    throws BadLocationException {
+
+    String text = 
+      "  oogabooga();\n" +
+      "  bar().\n" +  
+      "    bump().\n" +  
+      "    /*commment\n" +
+      "     *again;{}\n" +
+      "     */\n" +
+      "     foo();\n";
+
+    _setDocText(text);
+    assertEquals("start stmt on previous line, indent two spaces", 2, _getIndentOfCurrStmt(24));
+    assertEquals("start stmt before previous line, cursor inside single-line comment indent two spaces", 2,
+                 _getIndentOfCurrStmt(42));
+    assertEquals("start stmt before single-line comment, cursor inside multi-line comment indent two spaces", 2,
+                 _getIndentOfCurrStmt(56));
+    assertEquals("start stmt before multi-line comment, indent two spaces", 2, _getIndentOfCurrStmt(88));
+  }

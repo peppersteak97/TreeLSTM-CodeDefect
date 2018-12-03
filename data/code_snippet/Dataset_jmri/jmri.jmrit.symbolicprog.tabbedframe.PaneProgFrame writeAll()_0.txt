@@ -1,0 +1,13 @@
+    public boolean writeAll() {
+        if (log.isDebugEnabled()) log.debug("writeAll starts");
+        justChanges = false;
+        for (int i = 0; i < paneList.size(); i++) {
+            ((PaneProgPane)paneList.get(i)).setToWrite(justChanges, true);
+        }
+        setBusy(true);
+        enableButtons(false);
+        writeAllButton.setEnabled(true);
+        glassPane.setVisible(true);
+        paneListIndex = 0;
+        return doWrite();
+    }

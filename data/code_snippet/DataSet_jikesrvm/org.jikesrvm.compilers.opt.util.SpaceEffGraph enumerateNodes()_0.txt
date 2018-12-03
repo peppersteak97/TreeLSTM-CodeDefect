@@ -1,0 +1,3 @@
+  public GraphNodeEnumeration enumerateNodes() {
+    return new NodeEnumeration(_firstNode);
+  }

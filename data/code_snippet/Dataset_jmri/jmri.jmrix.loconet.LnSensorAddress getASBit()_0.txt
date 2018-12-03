@@ -1,0 +1,1 @@
+    public int getASBit() 		{ return _as; }

@@ -1,0 +1,1 @@
+  public boolean isOpenBrace() { return ((_type == 0) || (_type == 2) || (_type == 4)); }

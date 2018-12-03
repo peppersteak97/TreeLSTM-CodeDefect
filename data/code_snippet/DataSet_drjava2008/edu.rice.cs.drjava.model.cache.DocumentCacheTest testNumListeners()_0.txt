@@ -1,0 +1,25 @@
+  public void testNumListeners() {
+    OpenDefinitionsDocument doc1 = _model.newFile();
+    OpenDefinitionsDocument doc2 = _model.newFile();
+    OpenDefinitionsDocument doc3 = _model.newFile();
+    OpenDefinitionsDocument doc4 = _model.newFile();
+    OpenDefinitionsDocument doc5 = _model.newFile();
+    
+    int numDocListeners = doc1.getDocumentListeners().length;
+    int numUndoListeners = doc1.getUndoableEditListeners().length;
+    
+    doc1.getCurrentLine();
+    doc2.getCurrentLine();
+    doc3.getCurrentLine();
+    doc4.getCurrentLine();
+    
+    doc5.getCurrentLine();
+    
+    doc1.getCurrentLine();
+    
+    assertEquals("the number of document listeners is the same after reconstruction", numDocListeners, 
+                 doc1.getDocumentListeners().length);
+    assertEquals("the number of undoableEditListeners is the same after reconstruction", numUndoListeners, 
+                 doc1.getUndoableEditListeners().length);
+    
+  }

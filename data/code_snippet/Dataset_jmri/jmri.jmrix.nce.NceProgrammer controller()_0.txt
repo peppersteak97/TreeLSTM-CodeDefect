@@ -1,0 +1,6 @@
+    protected NceTrafficController controller() {
+        if (_controller == null) {
+            _controller = NceTrafficController.instance();
+        }
+        return _controller;
+    }

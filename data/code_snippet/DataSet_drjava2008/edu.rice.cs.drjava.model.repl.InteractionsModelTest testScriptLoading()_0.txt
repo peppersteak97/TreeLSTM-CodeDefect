@@ -1,0 +1,108 @@
+  public void testScriptLoading() throws Exception {
+    _log.log("testScriptLoading started");
+    assertTrue(_model instanceof TestInteractionsModel);
+    final TestInteractionsModel model = (TestInteractionsModel)_model;
+    String line1 = "System.out.println(\"hi\")";
+    String line2 = "System.out.println(\"bye\")";
+    final File temp = File.createTempFile("drjava-test", ".hist").getCanonicalFile();
+    temp.deleteOnExit();
+    History history = new History(5);
+    history.add(line1);
+    history.add(line2);
+    
+    history.writeToFile(new FileSaveSelector() {
+      public File getFile() { return temp; }
+      public boolean warnFileOpen(File f) { return true; }
+      public boolean verifyOverwrite() { return true; }
+      public boolean shouldSaveAfterFileMoved(OpenDefinitionsDocument doc, File oldFile) { return true; }
+    });
+    
+    final InteractionsScriptModel ism = model.loadHistoryAsScript(new FileOpenSelector() {
+      public File[] getFiles() {
+        return new File[] { temp };
+      }
+    });
+    final InteractionsDocument doc = model.getDocument();
+    
+    assertTrue("Should have no previous", !ism.hasPrevInteraction());
+    try {
+      ism.prevInteraction();
+      fail("Should not have been able to get previous interaction!");
+    }
+    catch (IllegalStateException ise) {
+    }
+    
+    assertTrue("Should have next", ism.hasNextInteraction());
+    ism.nextInteraction();
+    Utilities.clearEventQueue();
+    assertEquals("Should have put the first line into the document.", line1, doc.getCurrentInteraction());
+    
+    assertTrue("Should have no previous", !ism.hasPrevInteraction());
+    try {
+      ism.prevInteraction();
+      fail("Should not have been able to get previous interaction!");
+    }
+    catch (IllegalStateException ise) {
+    }
+    
+    assertTrue("Should have next", ism.hasNextInteraction());
+    ism.nextInteraction();
+    Utilities.clearEventQueue();
+    assertEquals("Should have put the second line into the document.", line2, doc.getCurrentInteraction());
+    
+    assertTrue("Should have previous", ism.hasPrevInteraction());
+    ism.prevInteraction();
+    Utilities.clearEventQueue();
+    assertEquals("Should have put the first line into the document.", line1, doc.getCurrentInteraction());
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() { ism.nextInteraction(); } });
+    Utilities.clearEventQueue();
+    
+    model._logInteractionStart();
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { ism.executeInteraction(); } 
+    });
+    model._waitInteractionDone();
+
+    assertEquals("Should have \"executed\" the second interaction.", line2, model.toEval);
+    
+    assertTrue("Should have no next", !ism.hasNextInteraction());
+    try {
+      ism.nextInteraction();
+      fail("Should not have been able to get next interaction!");
+    }
+    catch (IllegalStateException ise) {
+    }
+    
+    Utilities.clearEventQueue();
+    assertTrue("Should have previous", ism.hasPrevInteraction());
+    ism.prevInteraction();
+    Utilities.clearEventQueue();
+    assertEquals("Should have put the second line into the document.", line2, doc.getCurrentInteraction());
+    
+    assertTrue("Should have previous", ism.hasPrevInteraction());
+    ism.prevInteraction();
+    Utilities.clearEventQueue();
+    assertEquals("Should have put the first line into the document.", line1, doc.getCurrentInteraction());
+    
+    assertFalse("Should have no previous", ism.hasPrevInteraction());
+    
+    model._logInteractionStart();
+    Utilities.invokeAndWait(new Runnable() { public void run() { ism.executeInteraction();  } });
+    model._waitInteractionDone();
+
+    assertEquals("Should have \"executed\" the first interaction.", line1, model.toEval);
+    
+    assertTrue("Should have previous", ism.hasPrevInteraction());
+    ism.prevInteraction();
+    Utilities.clearEventQueue();
+    assertEquals("Should have put the first line into the document.", line1, doc.getCurrentInteraction());
+    
+    assertTrue("Should have no previous", !ism.hasPrevInteraction());
+    try {
+      ism.prevInteraction();
+      fail("Should not have been able to get previous interaction!");
+    }
+    catch (IllegalStateException ise) { /* good, continue */ }
+    _log.log("testScriptLoading ended");
+  }

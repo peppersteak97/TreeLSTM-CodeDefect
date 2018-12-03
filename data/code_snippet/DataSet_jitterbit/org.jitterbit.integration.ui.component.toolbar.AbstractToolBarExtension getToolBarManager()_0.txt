@@ -1,0 +1,3 @@
+    protected final IToolBarManager getToolBarManager() {
+        return m_toolBarManager;
+    }

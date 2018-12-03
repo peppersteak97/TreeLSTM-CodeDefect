@@ -1,0 +1,1 @@
+  public BrowserHistoryManager getBrowserHistoryManager() { return _browserHistoryManager; }

@@ -1,0 +1,224 @@
+    public void initComponents() {
+        setTitle(rb.getString("WindowTitle"));
+			
+        Container contentPane = getContentPane();
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+			
+        JPanel panel1 = new JPanel();
+        panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
+        JPanel panel11 = new JPanel();
+        panel11.setLayout(new FlowLayout());
+        panel11.add(new JLabel(rb.getString("LabelNodeAddress")+" "));
+        panel11.add(nodeAddrField);
+        nodeAddrField.setToolTipText(rb.getString("TipNodeAddress"));
+        nodeAddrField.setText("0");
+        panel11.add(nodeAddrStatic);
+        nodeAddrStatic.setVisible(false);
+        panel11.add(new JLabel("   "+rb.getString("LabelNodeType")+" "));
+        nodeTypeBox = new JComboBox();
+        panel11.add(nodeTypeBox);
+        nodeTypeBox.addItem("Micro I/O 48");
+        nodeTypeBox.addItem("Pico I/O 24");
+        nodeTypeBox.addItem("Mega I/O 144");
+        nodeTypeBox.addItem("Tera I/O 5");
+        nodeTypeBox.addActionListener(new java.awt.event.ActionListener() 
+            {
+                public void actionPerformed(java.awt.event.ActionEvent event)
+                {
+                    String s = (String)nodeTypeBox.getSelectedItem();
+                    if (s.equals(microName)) {
+                        panel2.setVisible(false);
+                        panel2a.setVisible(true);
+                        nodeType = SerialNode.MICRO;
+                        bitsPerCard = 16;
+                        searchlightConfigModel.fireTableStructureChanged();
+                        configSearchLightTable();
+                    }
+                    if (s.equals(teraName)) {
+                        panel2.setVisible(true);
+                        panel2a.setVisible(false);
+                        nodeType = SerialNode.TERA;
+                        bitsPerCard = 32;
+                    }
+                    if (s.equals(picoName)) {
+                        panel2.setVisible(false);
+                        panel2a.setVisible(true);
+                        nodeType = SerialNode.PICO;
+                        bitsPerCard = 16;
+                        searchlightConfigModel.fireTableStructureChanged();
+                        configSearchLightTable();
+                    }
+                    else if (s.equals(megaName)) {
+                        panel2.setVisible(false);
+                        panel2a.setVisible(true);
+                        nodeType = SerialNode.MEGA;
+                        bitsPerCard = 16;
+                        searchlightConfigModel.fireTableStructureChanged();
+                        configSearchLightTable();
+                    }
+                    resetNotes();
+                }
+            });
+        nodeTypeBox.setToolTipText(rb.getString("TipNodeType"));
+        JPanel panel12 = new JPanel();
+        panel12.setLayout(new FlowLayout());
+        JPanel panel13 = new JPanel();
+        panel13.setLayout(new FlowLayout());
+        panel13.add(new JLabel(rb.getString("LabelPulseWidth")+" "));
+        panel13.add(pulseWidthField);
+        pulseWidthField.setToolTipText(rb.getString("TipPulseWidth"));
+        pulseWidthField.setText("500");
+        panel13.add(new JLabel(rb.getString("LabelMilliseconds")));
+			
+        panel1.add(panel11);
+        panel1.add(panel12);
+		panel1.add(panel13);
+        contentPane.add(panel1);			
+
+        JPanel panel21 = new JPanel();
+        panel21.setLayout(new BoxLayout(panel21, BoxLayout.Y_AXIS));
+        panel21.add(new JLabel(rb.getString("HintCardTypePartA")));
+        panel21.add(new JLabel(" "+rb.getString("HintCardTypePartB")));
+        panel21.add(new JLabel(" "+rb.getString("HintCardTypePartC")));
+        panel21.add(new JLabel("   "));
+        panel21.add(new JLabel(rb.getString("HintCardTypePartD")));
+        panel21.add(new JLabel(" "+rb.getString("HintCardTypePartE")));
+        panel21.add(new JLabel(" "+rb.getString("HintCardTypePartF")));
+        panel2.add(panel21);
+        TableModel cardConfigModel = new CardConfigModel();
+        JTable cardConfigTable = new JTable(cardConfigModel);
+        cardConfigTable.setRowSelectionAllowed(false);
+        cardConfigTable.setPreferredScrollableViewportSize(new java.awt.Dimension(180,70));
+			
+        JComboBox cardTypeCombo = new JComboBox();
+        cardTypeCombo.addItem(rb.getString("CardTypeOutput"));
+        cardTypeCombo.addItem(rb.getString("CardTypeInput"));
+        cardTypeCombo.addItem(rb.getString("CardTypeNone"));
+			
+        TableColumnModel typeColumnModel = cardConfigTable.getColumnModel();
+        TableColumn addressColumn = typeColumnModel.getColumn(CardConfigModel.ADDRESS_COLUMN);
+        addressColumn.setMinWidth(70);
+        addressColumn.setMaxWidth(70);
+        TableColumn cardTypeColumn = typeColumnModel.getColumn(CardConfigModel.TYPE_COLUMN);
+        cardTypeColumn.setCellEditor(new DefaultCellEditor(cardTypeCombo));
+        cardTypeColumn.setMinWidth(90);
+        cardTypeColumn.setMaxWidth(90);
+        JScrollPane cardScrollPane = new JScrollPane(cardConfigTable);
+        panel2.add(cardScrollPane,BorderLayout.CENTER);
+        contentPane.add(panel2);
+        panel2.setVisible(false);
+			
+        JPanel panel2a1 = new JPanel();
+        panel2a1.setLayout(new BoxLayout(panel2a1, BoxLayout.Y_AXIS));
+        panel2a1.add(new JLabel(rb.getString("HintSearchlightPartA")));
+        panel2a1.add(new JLabel(" "+rb.getString("HintSearchlightPartB")));
+        panel2a1.add(new JLabel(" "+rb.getString("HintSearchlightPartC")));
+        panel2a1.add(new JLabel("   "));
+        panel2a1.add(new JLabel(rb.getString("HintSearchlightPartD")));
+        panel2a1.add(new JLabel(" "+rb.getString("HintSearchlightPartE")));
+        panel2a1.add(new JLabel(" "+rb.getString("HintSearchlightPartF")));
+        panel2a.add(panel2a1);
+        searchlightConfigModel = new SearchlightConfigModel();
+        searchlightConfigTable = new JTable(searchlightConfigModel);
+        configSearchLightTable();
+        JScrollPane searchlightScrollPane = new JScrollPane(searchlightConfigTable);
+        panel2a.add(searchlightScrollPane,BorderLayout.CENTER);
+        contentPane.add(panel2a);
+        
+        
+        
+
+        JPanel panel3 = new JPanel();
+        panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
+        JPanel panel31 = new JPanel();
+        panel31.setLayout(new FlowLayout());
+        statusText1.setText(stdStatus1);
+        statusText1.setVisible(true);
+        panel31.add(statusText1);
+        JPanel panel32 = new JPanel();
+        panel32.setLayout(new FlowLayout());
+        statusText2.setText(stdStatus2);
+        statusText2.setVisible(true);
+        panel32.add(statusText2);
+        JPanel panel33 = new JPanel();
+        panel33.setLayout(new FlowLayout());
+        statusText3.setText(stdStatus3);
+        statusText3.setVisible(true);
+        panel33.add(statusText3);
+        panel3.add(panel31);
+        panel3.add(panel32);
+        panel3.add(panel33);
+        Border panel3Border = BorderFactory.createEtchedBorder();
+        Border panel3Titled = BorderFactory.createTitledBorder(panel3Border,
+                                                rb.getString("BoxLabelNotes"));
+        panel3.setBorder(panel3Titled);                
+        contentPane.add(panel3);
+        
+        JPanel panel4 = new JPanel();
+        panel4.setLayout(new FlowLayout());
+        addButton.setText(rb.getString("ButtonAdd"));
+        addButton.setVisible(true);
+        addButton.setToolTipText(rb.getString("TipAddButton"));
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    addButtonActionPerformed();
+                }
+            });
+        panel4.add(addButton);
+        editButton.setText(rb.getString("ButtonEdit"));
+        editButton.setVisible(true);
+        editButton.setToolTipText(rb.getString("TipEditButton"));
+        panel4.add(editButton);
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    editButtonActionPerformed();
+                }
+            });
+        panel4.add(deleteButton);
+        deleteButton.setText(rb.getString("ButtonDelete"));
+        deleteButton.setVisible(true);
+        deleteButton.setToolTipText(rb.getString("TipDeleteButton"));
+        panel4.add(deleteButton);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    deleteButtonActionPerformed();
+                }
+            });
+        panel4.add(doneButton);
+        doneButton.setText(rb.getString("ButtonDone"));
+        doneButton.setVisible(true);
+        doneButton.setToolTipText(rb.getString("TipDoneButton"));
+        panel4.add(doneButton);
+        doneButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    doneButtonActionPerformed();
+                }
+            });
+        panel4.add(updateButton);
+        updateButton.setText(rb.getString("ButtonUpdate"));
+        updateButton.setVisible(true);
+        updateButton.setToolTipText(rb.getString("TipUpdateButton"));
+        panel4.add(updateButton);
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    updateButtonActionPerformed();
+                }
+            });
+        updateButton.setVisible(false);
+        panel4.add(cancelButton);
+        cancelButton.setText(rb.getString("ButtonCancel"));
+        cancelButton.setVisible(true);
+        cancelButton.setToolTipText(rb.getString("TipCancelButton"));
+        panel4.add(cancelButton);
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    cancelButtonActionPerformed();
+                }
+            });
+        cancelButton.setVisible(false);			
+        contentPane.add(panel4);
+
+        addHelpMenu("package.jmri.jmrix.tchtech.serial.nodeconfig.NodeConfigFrame", true);
+
+        pack();
+    }

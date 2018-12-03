@@ -1,0 +1,8 @@
+    private void initialize() {
+        m_attributes.put(ISyntaxToken.STRING, coloredForeground(Color.RED));
+        m_attributes.put(ISyntaxToken.KEYWORD, coloredForeground(Color.BLUE));
+        m_attributes.put(ISyntaxToken.OPERATOR, defaultAttributes());
+        m_attributes.put(ISyntaxToken.COMMENT, coloredForeground(
+                        new Color(0, 150, 0)));
+        m_attributes.put(ISyntaxToken.CONSTANT, coloredForeground(Color.BLUE));
+    }

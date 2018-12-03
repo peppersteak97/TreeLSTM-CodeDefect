@@ -1,0 +1,8 @@
+    void printToConsole() {
+        for (IntegrationData key : m_mainToDependants.keySet()) {
+            Map<IntegrationData, IIntegrationLink> m = m_mainToDependants.get(key);
+            for (IIntegrationLink lk : m.values()) {
+                System.out.println(lk.toString());
+            }
+        }
+    }

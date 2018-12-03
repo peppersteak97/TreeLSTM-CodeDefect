@@ -1,0 +1,6 @@
+    protected JComponent createInvalidTrigger() {
+        m_buttonMode = ButtonMode.INVALID;
+        m_button = createButton();
+        decorateInvalidButton(m_button);
+        return m_button;
+    }

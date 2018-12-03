@@ -1,0 +1,5 @@
+    public void validateInput() throws InputPanelException {
+        for (TextDocumentDefiner definer : documentDefiners) {
+            definer.validateInput();
+        }
+    }

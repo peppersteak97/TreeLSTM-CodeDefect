@@ -1,0 +1,24 @@
+    public void startThreads() {
+        int priority = Thread.currentThread().getPriority();
+        log.debug("startThreads current priority = "+priority+
+                  " max available = "+Thread.MAX_PRIORITY+
+                  " default = "+Thread.NORM_PRIORITY+
+                  " min available = "+Thread.MIN_PRIORITY);
+
+        int xmtpriority = (Thread.MAX_PRIORITY-1>priority ? Thread.MAX_PRIORITY-1 : Thread.MAX_PRIORITY);
+        if( xmtHandler == null )
+          xmtHandler = new XmtHandler();
+        Thread xmtThread = new Thread(xmtHandler, "LocoNet Intellibox transmit handler");
+        log.debug("Xmt thread starts at priority "+xmtpriority);
+        xmtThread.setDaemon(true);
+        xmtThread.setPriority(Thread.MAX_PRIORITY-1);
+        xmtThread.start();
+
+        if( rcvHandler == null )
+          rcvHandler = new RcvHandler(this) ;
+        Thread rcvThread = new Thread(rcvHandler, "LocoNet Intellibox receive handler");
+        rcvThread.setDaemon(true);
+        rcvThread.setPriority(Thread.MAX_PRIORITY);
+        rcvThread.start();
+
+    }

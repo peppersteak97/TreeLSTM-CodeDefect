@@ -1,0 +1,11 @@
+  public void testInterpretJavaArguments() {
+    _log.log("testInterpretJavaArguments started");
+    _assertJavaTransformationTail("java Foo a b c", "Foo.main(new String[]{\"a\",\"b\",\"c\"});");
+    _assertJavaTransformationTail("java Foo \"a b c\"", "Foo.main(new String[]{\"a b c\"});");
+    _assertJavaTransformationTail("java Foo \"a b\"c d", "Foo.main(new String[]{\"a bc\",\"d\"});");
+    
+    _assertJavaTransformationTail("java Foo c:\\\\file.txt", "Foo.main(new String[]{\"c:\\\\file.txt\"});");
+    
+    _assertJavaTransformationTail("java Foo /home/user/file", "Foo.main(new String[]{\"/home/user/file\"});");
+    _log.log("testInterpretJavaArguments ended");
+  }

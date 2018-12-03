@@ -1,0 +1,7 @@
+    private void customizeOKButton() {
+        IActionDictionary dictionary = WindowActionDictionary.DICTIONARY;
+        String actionId = WindowActionFactory.LOGIN.getId();
+        ButtonUtils.decorate(getOKButton(), dictionary.getName(actionId));
+        JButton ok = getOKButton();
+        ok.setEnabled(m_loginEnabled);
+    }

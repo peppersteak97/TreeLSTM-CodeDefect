@@ -1,0 +1,9 @@
+    private void fireUndoableEditEvent() {
+        try {
+            UndoableEdit edit = m_editFactory.createTableEdit();
+            fireUndoableEditEvent(new UndoableEditEvent(this, edit));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }

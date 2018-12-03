@@ -1,0 +1,67 @@
+  public void testGetSelectedDocuments() {
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 3, 4 });
+    java.util.List<DummyINavigatorItem> l = tree.getSelectedDocuments();
+    assertEquals("Two items should be selected", 2, l.size());
+    assertEquals("Wrong item 1", i1, l.get(0));
+    assertEquals("Wrong item 2", i2, l.get(1));
+
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 3, 4, 6, 7 });
+    l = tree.getSelectedDocuments();
+    assertEquals("Four items should be selected", 4, l.size());
+    assertEquals("Wrong item 1", i1, l.get(0));
+    assertEquals("Wrong item 2", i2, l.get(1));
+    assertEquals("Wrong item 3", i3, l.get(2));
+    assertEquals("Wrong item 4", i4, l.get(3));
+
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 1, 2, 3, 4, 5, 6, 7 });
+    l = tree.getSelectedDocuments();
+    assertEquals("Four items should be selected", 4, l.size());
+    assertEquals("Wrong item 1", i1, l.get(0));
+    assertEquals("Wrong item 2", i2, l.get(1));
+    assertEquals("Wrong item 3", i3, l.get(2));
+    assertEquals("Wrong item 4", i4, l.get(3));
+
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 1, 2, 3, 5, 6 });
+    l = tree.getSelectedDocuments();
+    assertEquals("Two items should be selected", 2, l.size());
+    assertEquals("Wrong item 1", i1, l.get(0));
+    assertEquals("Wrong item 2", i3, l.get(1));
+    
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 10, 11 });
+    l = tree.getSelectedDocuments();
+    assertEquals("Two items should be selected", 2, l.size());
+    assertEquals("Wrong item 1", auxi1, l.get(0));
+    assertEquals("Wrong item 2", auxi2, l.get(1));
+
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 10, 11, 13, 14, 15 });
+    l = tree.getSelectedDocuments();
+    assertEquals("Five items should be selected", 5, l.size());
+    assertEquals("Wrong item 1", auxi1, l.get(0));
+    assertEquals("Wrong item 2", auxi2, l.get(1));
+    assertEquals("Wrong item 3", auxi3, l.get(2));
+    assertEquals("Wrong item 4", auxi4, l.get(3));
+    assertEquals("Wrong item 5", auxi5, l.get(4));
+
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 8, 9, 10, 11, 12, 13, 14, 15 });
+    l = tree.getSelectedDocuments();
+    assertEquals("Five items should be selected", 5, l.size());
+    assertEquals("Wrong item 1", auxi1, l.get(0));
+    assertEquals("Wrong item 2", auxi2, l.get(1));
+    assertEquals("Wrong item 3", auxi3, l.get(2));
+    assertEquals("Wrong item 4", auxi4, l.get(3));
+    assertEquals("Wrong item 5", auxi5, l.get(4));
+
+    tree.clearSelection();
+    tree.addSelectionRows(new int[] { 8, 9, 10, 12, 13 });
+    l = tree.getSelectedDocuments();
+    assertEquals("Two items should be selected", 2, l.size());
+    assertEquals("Wrong item 1", auxi1, l.get(0));
+    assertEquals("Wrong item 2", auxi3, l.get(1));
+  }

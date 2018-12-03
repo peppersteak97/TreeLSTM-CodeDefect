@@ -1,0 +1,6 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 37 * hash + (m_dtdFilePath == null ? 0 : m_dtdFilePath.hashCode());
+        hash = 37 * hash + (m_rootNode == null ? 0 : m_rootNode.hashCode());
+        return hash;
+    }

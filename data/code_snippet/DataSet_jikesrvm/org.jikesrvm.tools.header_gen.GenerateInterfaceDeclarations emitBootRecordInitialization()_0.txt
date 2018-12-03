@@ -1,0 +1,40 @@
+  static void emitBootRecordInitialization() {
+    RVMClass bootRecord = TypeReference.findOrCreate(org.jikesrvm.runtime.BootRecord.class).resolve().asClass();
+    RVMField[] fields = bootRecord.getDeclaredFields();
+
+    for (int i = fields.length; --i >= 0;) {
+      RVMField field = fields[i];
+      if (field.isStatic()) {
+        continue;
+      }
+      String fieldName = field.getName().toString();
+      int suffixIndex = fieldName.indexOf("IP");
+      if (suffixIndex > 0) {
+        String functionName = fieldName.substring(0, suffixIndex);
+        p("extern \"C\" int " + functionName + "();\n");
+      } else if (fieldName.equals("sysJavaVM")) {
+        p("extern struct Java " + fieldName + ";\n");
+      }
+    }
+
+    p("extern \"C\" void setLinkage(BootRecord* br){\n");
+    for (int i = fields.length; --i >= 0;) {
+      RVMField field = fields[i];
+      if (field.isStatic()) {
+        continue;
+      }
+
+      String fieldName = field.getName().toString();
+      if (fieldName.indexOf("gcspy") > -1 && !VM.BuildWithGCSpy) {
+      }
+      int suffixIndex = fieldName.indexOf("IP");
+      if (suffixIndex > 0) {
+        String functionName = fieldName.substring(0, suffixIndex);
+        p("  br->" + fieldName + " = (intptr_t)" + functionName + ";\n");
+      } else if (fieldName.equals("sysJavaVM")) {
+        p("  br->" + fieldName + " = (intptr_t)&" + fieldName + ";\n");
+      }
+    }
+
+    p("}\n");
+  }

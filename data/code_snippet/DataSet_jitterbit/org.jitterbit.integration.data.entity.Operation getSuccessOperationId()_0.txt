@@ -1,0 +1,11 @@
+    public OperationId getSuccessOperationId() {
+        String id = getProperty(SUCCESS_OPERATION);
+        if (id != null && id.length() > 0) {
+            try {
+                return new OperationId(id);
+            }
+            catch (IllegalArgumentException e) {
+            }
+        }
+        return null;
+    }

@@ -1,0 +1,3 @@
+    public int getBank() {
+        return ( (getElement(3)&0x70)>>4);
+    }

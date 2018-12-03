@@ -1,0 +1,34 @@
+	private void findInterfaces()  {
+
+		DatagramSocket	udpSocket = null;
+		
+		hostNameVector = new Vector(10, 1);
+		HostAddressVector = new Vector(10, 1);
+		
+		try {
+			byte[] udpBuffer = new byte[UDP_LENGTH];
+			udpSocket = new DatagramSocket();
+			udpBuffer[0]=0x25;
+			DatagramPacket udpPacket = new DatagramPacket(udpBuffer, 1, InetAddress.getByName("255.255.255.255"), DEFAULT_UDP_PORT);
+			udpSocket.send(udpPacket);
+			udpSocket.setSoTimeout(BROADCAST_TIMEOUT);
+			while (true) {
+				udpPacket.setLength(UDP_LENGTH);
+				udpSocket.receive(udpPacket);
+				if(udpPacket.getLength() >= UDP_LENGTH) {
+					hostNameVector.addElement((new String(udpBuffer, 0, 16, "US-ASCII")).trim());
+					HostAddressVector.addElement(new HostAddress(cleanIP((udpPacket.getAddress()).getHostAddress()), 
+												(((int)udpBuffer[16]) & 0xff)*256 + (((int)udpBuffer[17]) & 0xff)));
+				}
+			}
+		}
+		catch (SocketTimeoutException e) {}
+		catch (SocketException e) {}
+		catch (IOException e) {}
+		finally {
+			if (udpSocket != null) {
+				udpSocket.close();
+				udpSocket = null;
+			}
+		}
+	}

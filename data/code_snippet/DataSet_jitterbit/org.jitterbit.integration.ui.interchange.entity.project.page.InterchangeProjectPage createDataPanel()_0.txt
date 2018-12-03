@@ -1,0 +1,6 @@
+    protected IntegrationDataPanel createDataPanel() {
+        InterchangeProjectPanel p = new InterchangeProjectPanel(
+                getObject().getDataObject());
+        getPageModel().bindProperties(p.getBoundPropertyControls());
+        return p;
+    }

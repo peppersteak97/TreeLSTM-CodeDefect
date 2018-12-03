@@ -1,0 +1,7 @@
+    private void createTree() {
+        m_tree = CheckedTree.createCheckedTree(m_protoTypeModel, new Renderer());
+        m_tree.setRootVisible(false);
+        m_tree.setShowsRootHandles(true);
+        m_tree.addCheckListener(m_container);
+        registerTreeController();
+    }

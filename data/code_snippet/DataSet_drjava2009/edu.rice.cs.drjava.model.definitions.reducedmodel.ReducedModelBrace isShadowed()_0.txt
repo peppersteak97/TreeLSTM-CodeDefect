@@ -1,0 +1,4 @@
+    if (! openBraceImmediatelyLeft() || isShadowed()) {
+      iter.dispose();
+      return -1;
+    }

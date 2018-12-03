@@ -1,0 +1,7 @@
+  public OperandEnumeration getParameters() {
+    for (Instruction s = firstInstructionInCodeOrder(); true; s = s.nextInstructionInCodeOrder()) {
+      if (s.operator() == IR_PROLOGUE) {
+        return s.getDefs();
+      }
+    }
+  }

@@ -1,0 +1,4 @@
+    protected String getMainCaption() {
+        return TransformationWizard.getStringResources().getString(
+                        getClass().getSimpleName() + ".MainCaption");
+    }

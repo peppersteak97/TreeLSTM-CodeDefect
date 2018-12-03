@@ -1,0 +1,3 @@
+  public HeapVariable<T> getHeapVariable() {
+    return value;
+  }

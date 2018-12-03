@@ -1,0 +1,5 @@
+  public void saveBeforeJavadoc() {
+    _lock.startRead();
+    try { for (JavadocListener jl: _listeners) { jl.saveBeforeJavadoc(); } }
+    finally { _lock.endRead(); }
+  }

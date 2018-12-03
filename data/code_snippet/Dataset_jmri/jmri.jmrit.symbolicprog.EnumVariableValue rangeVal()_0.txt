@@ -1,0 +1,3 @@
+    public Object rangeVal() {
+        return new String("enum: "+_minVal+" - "+_maxVal);
+    }

@@ -1,0 +1,3 @@
+    public DatabaseColumn getChildColumn() {
+        return m_childColumn;
+    }

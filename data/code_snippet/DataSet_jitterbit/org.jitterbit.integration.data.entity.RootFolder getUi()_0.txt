@@ -1,0 +1,3 @@
+    public IRootFolderUi getUi() {
+        return (IRootFolderUi) super.getUi();
+    }

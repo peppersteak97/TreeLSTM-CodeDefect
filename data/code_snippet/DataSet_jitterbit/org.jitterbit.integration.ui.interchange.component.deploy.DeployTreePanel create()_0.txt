@@ -1,0 +1,15 @@
+    private void create() {
+        IDeployTreeContainer container = new ContainerImpl();
+        m_tree = new DeployTree(container, m_view.getDataModelUi().getTreeModel(), 
+                m_initiallySelected);
+        m_panel = new JPanel(new BorderLayout()) {
+            
+            @Override
+            public void addNotify() {
+                super.addNotify();
+                m_tree.setInitialExpansionState();
+            }
+        };
+        ContainerDecor.decorate(m_tree, m_panel, BorderLayout.CENTER);
+        m_panel.setBorder(BorderFactory.createEtchedBorder());
+    }

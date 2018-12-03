@@ -1,0 +1,31 @@
+  public void testSetNotInList() {
+    PredictiveInputModel<String> pim = new PredictiveInputModel<String>(false,
+                                                                        new PredictiveInputModel.PrefixStrategy<String>(),
+                                                                        "AboutDialog.java",
+                                                                        "FileOps.java",
+                                                                        "FileOpsTest.java",
+                                                                        "Utilities.java");
+    pim.setMask("F");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+    assertEquals("ileOps", pim.getSharedMaskExtension());
+
+    pim.setCurrentItem("BBBB");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+    assertEquals("ileOps", pim.getSharedMaskExtension());
+
+    pim.setCurrentItem("FileOps.XXX");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+    assertEquals("ileOps", pim.getSharedMaskExtension());
+
+    pim.setCurrentItem("XXX");
+    assertEquals("FileOpsTest.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+    assertEquals("ileOps", pim.getSharedMaskExtension());
+  }

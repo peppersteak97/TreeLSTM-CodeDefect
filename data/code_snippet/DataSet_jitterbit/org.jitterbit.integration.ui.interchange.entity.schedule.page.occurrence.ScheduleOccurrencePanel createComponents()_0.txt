@@ -1,0 +1,10 @@
+    private void createComponents() {
+        createTypeSelectionPanel();
+        createInputPanel();
+        createEvery_X_DaysPanel();
+        createDailyPanel();
+        createEvery_X_WeeksPanel();
+        createDayOfTheWeekCheckBoxPanel();
+        createWeeklyPanel();
+        createMonthlyPanel();
+    }

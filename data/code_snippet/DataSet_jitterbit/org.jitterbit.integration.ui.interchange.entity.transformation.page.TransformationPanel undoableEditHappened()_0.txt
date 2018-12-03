@@ -1,0 +1,8 @@
+    public void undoableEditHappened() {
+        if (isSendingUndoEvents()) {
+            UndoableEdit e = m_editFactory.getEdit();
+            if (e != null) {
+                fireUndoableEditEvent(new UndoableEditEvent(this, e));
+            }
+        }
+    }

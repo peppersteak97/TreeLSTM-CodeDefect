@@ -1,0 +1,9 @@
+    private WebServiceCallPanel getWebServiceCallPanel() {
+        if (m_wsCallPanel == null) {
+            m_wsCallPanel = new WebServiceCallPanel(m_page);
+            m_wsCallPanel.addPropertyChangeListener(
+                            m_optionsPanel.getSourceListener());
+            addInputPanel(m_wsCallPanel);
+        }
+        return m_wsCallPanel;
+    }

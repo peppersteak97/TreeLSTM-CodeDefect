@@ -1,0 +1,3 @@
+    public File getParentFolder() {
+        return m_parentFolder;
+    }

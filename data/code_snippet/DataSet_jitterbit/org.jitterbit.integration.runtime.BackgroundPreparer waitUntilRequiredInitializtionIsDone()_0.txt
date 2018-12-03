@@ -1,0 +1,3 @@
+    void waitUntilRequiredInitializtionIsDone() throws InterruptedException {
+        m_initializationLatch.await();
+    }

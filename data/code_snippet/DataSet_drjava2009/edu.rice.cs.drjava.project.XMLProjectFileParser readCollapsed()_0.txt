@@ -1,0 +1,8 @@
+  protected List<String> readCollapsed() {
+    List<String> pList = new ArrayList<String>();
+    List<Node> defs = _xc.getNodes("collapsed/path");
+    for(Node n: defs) {
+      pList.add(_xc.get(".name", n));
+    }
+    return pList;
+  }

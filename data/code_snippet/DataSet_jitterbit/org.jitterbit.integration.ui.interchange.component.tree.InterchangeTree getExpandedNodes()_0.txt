@@ -1,0 +1,15 @@
+    public List<IntegrationEntityTreeNode> getExpandedNodes() {
+        List<IntegrationEntityTreeNode> expanded = new ArrayList<IntegrationEntityTreeNode>();
+        TreePath rootPath = getPath(getRootNode());
+        Enumeration<?> en = getExpandedDescendants(rootPath);
+        if (en != null) {
+            while (en.hasMoreElements()) {
+                TreePath path = (TreePath) en.nextElement();
+                Object o = path.getLastPathComponent();
+                if (o instanceof IntegrationEntityTreeNode) {
+                    expanded.add((IntegrationEntityTreeNode) o);
+                }
+            }
+        }
+        return expanded;
+    }

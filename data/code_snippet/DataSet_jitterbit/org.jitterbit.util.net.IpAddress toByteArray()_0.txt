@@ -1,0 +1,7 @@
+    public byte[] toByteArray() {
+        byte[] ar = new byte[4];
+        for (int i = 0; i < 4; ++i) {
+            ar[i] = (byte) m_rawAddress[i];
+        }
+        return ar;
+    }

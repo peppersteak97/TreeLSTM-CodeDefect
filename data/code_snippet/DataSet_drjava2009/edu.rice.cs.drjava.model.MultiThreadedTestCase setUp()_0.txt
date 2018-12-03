@@ -1,0 +1,6 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    _testFailed = false;
+    ExceptionHandler.ONLY.reset();
+    Thread.setDefaultUncaughtExceptionHandler(ExceptionHandler.ONLY);
+  }

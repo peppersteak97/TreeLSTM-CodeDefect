@@ -1,0 +1,3 @@
+    public int getSampleSizeInBits() {
+        return twoByte(fmtOffset+22);
+    }

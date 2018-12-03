@@ -1,0 +1,8 @@
+    private void flush() {
+        try {
+            m_userPrefs.flush();
+        }
+        catch (BackingStoreException e) {
+            System.err.println(e.getMessage());
+        }
+    }

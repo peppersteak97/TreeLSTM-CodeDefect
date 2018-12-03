@@ -1,0 +1,3 @@
+  public String getCustomManifest(){
+    return _manifest;
+  }

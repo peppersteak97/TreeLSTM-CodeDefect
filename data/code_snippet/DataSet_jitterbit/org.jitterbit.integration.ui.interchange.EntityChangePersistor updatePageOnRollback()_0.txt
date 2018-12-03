@@ -1,0 +1,5 @@
+    private void updatePageOnRollback() {
+        if ((m_page != null) && m_openPageIsClean) {
+            m_view.getPageSaver().savePage(m_page, null);
+        }
+    }

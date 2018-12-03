@@ -1,0 +1,3 @@
+  public List<RegSpillListElement> regSpillList() {
+    return regSpillList;
+  }

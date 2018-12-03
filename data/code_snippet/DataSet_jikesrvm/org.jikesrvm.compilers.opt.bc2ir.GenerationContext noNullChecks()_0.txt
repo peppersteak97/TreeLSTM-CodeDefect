@@ -1,0 +1,3 @@
+  boolean noNullChecks() {
+    return method.hasNoNullCheckAnnotation();
+  }

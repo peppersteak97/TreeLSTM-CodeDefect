@@ -1,0 +1,3 @@
+    public CvValue[] usesCVs() {
+        return new CvValue[]{(CvValue)_cvVector.elementAt(_row)};
+    }

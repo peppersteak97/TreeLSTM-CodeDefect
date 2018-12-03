@@ -1,0 +1,4 @@
+    private void createComponents() {
+        m_startSchedulerAction = new StartSchedulerAction();
+        m_stopSchedulerAction = new StopSchedulerAction();
+    }

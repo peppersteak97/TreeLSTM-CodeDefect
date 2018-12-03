@@ -1,0 +1,4 @@
+    private void layoutWaitPanel() {
+        m_waitPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        m_waitPanel.add(m_reportPanel.getDisplayer());
+    }

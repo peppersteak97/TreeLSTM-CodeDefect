@@ -1,0 +1,110 @@
+    void createModel() {
+        m = new BeanTableDataModel() {
+		    static public final int ENABLECOL = NUMCOLUMN;
+		    static public final int LOCKCOL = ENABLECOL+1;
+		    static public final int SETCOL = ENABLECOL+2;
+    		public int getColumnCount(){ return NUMCOLUMN+3;}
+
+    		public String getColumnName(int col) {
+    			if (col==ENABLECOL) return "Enabled";
+    			if (col==LOCKCOL) return "Locked";
+    			else return super.getColumnName(col);
+		    }
+    		public Class getColumnClass(int col) {
+    			if (col==SETCOL) return JButton.class;
+    			if (col==ENABLECOL) return Boolean.class;
+    			if (col==LOCKCOL) return Boolean.class;
+    			else return super.getColumnClass(col);
+		    }
+    		public int getPreferredWidth(int col) {
+    			if (col==SETCOL) return new JTextField(6).getPreferredSize().width;
+    			if (col==ENABLECOL) return new JTextField(6).getPreferredSize().width;
+    			if (col==LOCKCOL) return new JTextField(6).getPreferredSize().width;
+    			else return super.getPreferredWidth(col);
+		    }
+    		public boolean isCellEditable(int row, int col) {
+    			if (col==SETCOL) return true;
+    			if (col==ENABLECOL) return true;
+    			if (col==LOCKCOL) {
+    				Route r = (Route)getBySystemName((String)getValueAt(row, SYSNAMECOL));
+    				return routeCanLock(r);
+    			}
+    			else return super.isCellEditable(row,col);
+			}    		
+    		public Object getValueAt(int row, int col) {
+    			if (col==SETCOL) {
+    				return "Edit";
+    			}
+    			else if (col==ENABLECOL) {
+    				return new Boolean(((Route)getBySystemName((String)getValueAt(row, SYSNAMECOL))).getEnabled());
+    			}
+    			else if (col==LOCKCOL) {
+    				Route r = (Route)getBySystemName((String)getValueAt(row, SYSNAMECOL));
+    				if (routeCanLock(r)){
+    					return new Boolean(((Route)getBySystemName((String)getValueAt(row, SYSNAMECOL))).getLocked());
+    				}else{
+    					r.setLocked(false);
+    					return new Boolean (false);
+    				}
+     			}
+				else return super.getValueAt(row, col);
+			}    		
+    		public void setValueAt(Object value, int row, int col) {
+    			if (col==SETCOL) {
+                    addPressed(null);
+                    name.setText((String)getValueAt(row, SYSNAMECOL));
+    			}
+    			else if (col==ENABLECOL) {
+                    Route r = (Route)getBySystemName((String)getValueAt(row, SYSNAMECOL));
+                    boolean v = r.getEnabled();
+                    r.setEnabled(!v);
+    			}
+    			else if (col==LOCKCOL) {
+                    Route r = (Route)getBySystemName((String)getValueAt(row, SYSNAMECOL));
+                    boolean v = r.getLocked();
+                    r.setLocked(!v);
+     			}
+    			else super.setValueAt(value, row, col);
+    		}
+    		
+    	      public void configureTable(JTable table) {
+                  table.setDefaultRenderer(Boolean.class, new EnablingCheckboxRenderer());
+                  table.setDefaultRenderer(JComboBox.class, new jmri.jmrit.symbolicprog.ValueRenderer());
+                  table.setDefaultEditor(JComboBox.class, new jmri.jmrit.symbolicprog.ValueEditor());
+                  super.configureTable(table);
+              }
+
+            /**
+             * Delete the bean after all the checking has been done.
+             * <P>
+             * Deactivate the light, then use the superclass to delete it.
+             */
+            void doDelete(NamedBean bean) {
+                ((Route)bean).deActivateRoute();
+                super.doDelete(bean);
+            }
+
+            boolean matchPropertyName(java.beans.PropertyChangeEvent e) {
+                if (e.getPropertyName().equals("Enabled")) return true;
+                if (e.getPropertyName().equals("Locked")) return true;
+                else return super.matchPropertyName(e);
+            }
+
+            public Manager getManager() { return jmri.InstanceManager.routeManagerInstance(); }
+            public NamedBean getBySystemName(String name) { 
+                    return jmri.InstanceManager.routeManagerInstance().getBySystemName(name);
+            }
+            public NamedBean getByUserName(String name) { 
+                return jmri.InstanceManager.routeManagerInstance().getByUserName(name);
+            }    
+            public void clickOn(NamedBean t) {
+               ((Route)t).setRoute();
+            }
+            public String getValue(String s) {
+                return "Set";
+            }
+            public JButton configureButton() {
+                return new JButton(" Set ");
+            }
+        };
+    }

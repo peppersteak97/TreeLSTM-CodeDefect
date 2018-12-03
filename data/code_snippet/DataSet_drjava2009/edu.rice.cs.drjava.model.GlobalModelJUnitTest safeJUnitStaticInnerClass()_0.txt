@@ -1,0 +1,29 @@
+  public void safeJUnitStaticInnerClass() throws Exception {
+    if (printMessages) System.out.println("-----testJUnitAllWithStaticInnerClass-----");
+    
+    OpenDefinitionsDocument doc = setupDocument(NON_TESTCASE_TEXT);
+    OpenDefinitionsDocument doc2 = setupDocument(STATIC_INNER_TEST_TEXT);
+    File file = new File(_tempDir, "NonTestCase.java");
+    File file2 = new File(_tempDir, "StaticInnerTestCase.java");
+    saveFile(doc, new FileSelector(file));
+    saveFile(doc2, new FileSelector(file2));
+    
+    JUnitNonTestListener listener = new JUnitNonTestListener(true);
+    _model.addListener(listener);
+    listener.compile(doc);
+    listener.checkCompileOccurred();
+    listener.resetCompileCounts();
+    listener.compile(doc2);
+    listener.checkCompileOccurred();
+    
+    listener.runJUnit(_model.getJUnitModel());
+    
+    listener.assertNonTestCaseCount(0);
+    listener.assertJUnitSuiteStartedCount(1);
+    listener.assertJUnitTestStartedCount(2);
+    listener.assertJUnitTestEndedCount(2);
+    _model.removeListener(listener);
+    if (printMessages) System.out.println("----testJUnitAllWithNoErrors-----"); 
+    
+    _log.log("testJUnitStaticInnerClass completed");
+  }  

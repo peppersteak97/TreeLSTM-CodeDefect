@@ -1,0 +1,8 @@
+    public void resetToCurrent() {
+      _panel.resetToCurrent();
+
+      Enumeration<?> childNodes = children();
+      while (childNodes.hasMoreElements()) {
+        ((PanelTreeNode)childNodes.nextElement()).resetToCurrent();
+      }
+    }

@@ -1,0 +1,8 @@
+  public String toString() {
+    StringBuilder sb = new StringBuilder(" --> ");
+    for (T t : stack) {
+      sb.append(t.toString());
+      sb.append(' ');
+    }
+    return sb.toString();
+  }

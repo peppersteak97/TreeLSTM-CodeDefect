@@ -1,0 +1,1 @@
+  public DebugModelCallback callback() { return new DebugModelCallback() {}; }

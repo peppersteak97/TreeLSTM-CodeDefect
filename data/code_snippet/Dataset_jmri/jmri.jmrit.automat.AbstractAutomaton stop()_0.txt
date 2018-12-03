@@ -1,0 +1,6 @@
+    public void stop() {
+        if (currentThread == null) log.error("Stop with currentThread null!");
+        currentThread.stop();
+        currentThread = null;
+        done();
+    }

@@ -1,0 +1,14 @@
+    boolean selectNewFromFile() {
+        if (fileChooser==null) {
+            fileChooser = jmri.jmrit.XmlFile.userFileChooser();
+        }
+        fileChooser.rescanCurrentDirectory();
+        int retVal = fileChooser.showOpenDialog(mParent);
+
+
+        mFromFile = fileChooser.getSelectedFile();
+        mFromFilename = mFromFile.getName();
+        mFullFromFilename = mFromFile.getAbsolutePath();
+        log.debug("New from file: "+mFromFilename+" at "+mFullFromFilename);
+        return true;
+    }

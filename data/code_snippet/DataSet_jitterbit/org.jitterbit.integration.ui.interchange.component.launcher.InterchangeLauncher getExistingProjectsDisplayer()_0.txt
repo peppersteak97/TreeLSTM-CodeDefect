@@ -1,0 +1,3 @@
+    public IExistingProjectsDisplayer getExistingProjectsDisplayer() {
+        return new DefaultExistingProjectsDisplayer(this);
+    }

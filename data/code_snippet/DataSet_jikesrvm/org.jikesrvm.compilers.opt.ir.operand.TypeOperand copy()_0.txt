@@ -1,0 +1,3 @@
+  public Operand copy() {
+    return new TypeOperand(type, typeRef);
+  }

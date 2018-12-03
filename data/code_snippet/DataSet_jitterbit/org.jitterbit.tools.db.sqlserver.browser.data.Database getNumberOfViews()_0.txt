@@ -1,0 +1,3 @@
+    public int getNumberOfViews() {
+        return (m_liViews == null) ? -1 : m_liViews.size();
+    }

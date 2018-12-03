@@ -1,0 +1,3 @@
+    protected final DocDefTableModel getModel() {
+        return m_tableModel;
+    }

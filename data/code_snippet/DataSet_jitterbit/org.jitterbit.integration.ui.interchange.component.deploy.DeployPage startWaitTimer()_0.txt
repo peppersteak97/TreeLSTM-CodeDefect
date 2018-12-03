@@ -1,0 +1,8 @@
+    private void startWaitTimer() {
+        m_publishWaitMessageTimer = new Timer(150, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        m_publishWaitMessageTimer.setRepeats(false);
+        m_publishWaitMessageTimer.start();
+    }

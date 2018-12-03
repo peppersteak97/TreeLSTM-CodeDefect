@@ -1,0 +1,16 @@
+    private void layoutTopPanel() {
+        m_topPanel.removeAll();
+        if (m_title != null) {
+            m_topPanel.add(m_titleStyleSheetClass.makeJLabel(m_title));
+        }
+        m_topPanel.add(Box.createHorizontalGlue());
+        if (m_additionalTopComponents != null) {
+            for (JComponent c : m_additionalTopComponents) {
+                m_topPanel.add(c);
+            }
+        }
+        m_topPanel.add(m_closeButton);
+        if (isVisible()) {
+            m_topPanel.validate();
+        }
+    }

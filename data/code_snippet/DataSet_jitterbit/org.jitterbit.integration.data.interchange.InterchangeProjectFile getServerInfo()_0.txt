@@ -1,0 +1,17 @@
+    public ServerInfo getServerInfo() {
+        String guid = m_properties.getProperty(SERVER_GUID);
+        if (guid == null || guid.length() == 0) {
+            return null;
+        }
+        String name = m_properties.getProperty(SERVER_NAME);
+        try {
+            return new ServerInfo(new ServerGuid(guid), name);
+        }
+        catch (IllegalArgumentException ex) {
+            String msg = "The project file " + getFile().getAbsolutePath() +
+                " might be corrupt - failed to load server information: " +
+                ex.getMessage();
+            ApplicationLog.getMainLogger().warning(msg);
+            return null;
+        }
+    }

@@ -1,0 +1,8 @@
+  public BasicBlockEnumeration getBasicBlocks() {
+    BitVector blocksLeftToVisit = new BitVector(loop);
+    BBEnum bbs = getBasicBlocks(header, new BBEnum(), blocksLeftToVisit);
+    if (exit != null) {
+      bbs.add(exit);
+    }
+    return bbs;
+  }

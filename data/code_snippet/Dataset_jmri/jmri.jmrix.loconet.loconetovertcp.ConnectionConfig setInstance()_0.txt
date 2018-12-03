@@ -1,0 +1,3 @@
+    protected void setInstance() {
+        adapter = LnTcpDriverAdapter.instance();
+    }

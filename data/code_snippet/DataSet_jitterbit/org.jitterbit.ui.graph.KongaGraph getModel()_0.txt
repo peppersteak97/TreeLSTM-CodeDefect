@@ -1,0 +1,3 @@
+	public IKongaGraphModel getModel() {
+		return m_model;
+	}

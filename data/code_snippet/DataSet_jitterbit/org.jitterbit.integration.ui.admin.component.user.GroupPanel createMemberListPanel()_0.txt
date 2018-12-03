@@ -1,0 +1,7 @@
+    private void createMemberListPanel() {
+        m_memberListPanel = new MemberListPanel(m_page, m_userManager);
+        m_memberListPanel.addChangeListener(m_inputSiteListener);
+        m_membersLabel = IntegrationUiStyleSheet.DefaultBold.makeJLabel(
+                        PackageResources.GroupPanel.Labels.MEMBERS);
+        m_membersLabel.setEnabled(false);
+    }

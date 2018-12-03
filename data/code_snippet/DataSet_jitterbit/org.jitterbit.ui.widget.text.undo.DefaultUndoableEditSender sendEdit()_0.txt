@@ -1,0 +1,7 @@
+    public synchronized void sendEdit() {
+        if (m_compountEdit != null) {
+            m_compountEdit.end();
+            fireUndoableEditHappened(m_compountEdit);
+            m_compountEdit = null;
+        }
+    }

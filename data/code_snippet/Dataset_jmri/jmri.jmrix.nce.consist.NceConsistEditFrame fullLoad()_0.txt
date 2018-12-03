@@ -1,0 +1,16 @@
+	private void fullLoad(){
+		refresh = true;
+		loadOneLine(locoRosterBox1, locoTextField1, adrButton1,
+				dirButton1, cmdButton1);
+		loadOneLine(locoRosterBox2, locoTextField2, adrButton2,
+				dirButton2, cmdButton2);
+		loadOneLine(locoRosterBox3, locoTextField3, adrButton3,
+				dirButton3, cmdButton3);
+		loadOneLine(locoRosterBox4, locoTextField4, adrButton4,
+				dirButton4, cmdButton4);
+		loadOneLine(locoRosterBox5, locoTextField5, adrButton5,
+				dirButton5, cmdButton5);
+		loadOneLine(locoRosterBox6, locoTextField6, adrButton6,
+				dirButton6, cmdButton6);
+		changeButtons(false);
+	}

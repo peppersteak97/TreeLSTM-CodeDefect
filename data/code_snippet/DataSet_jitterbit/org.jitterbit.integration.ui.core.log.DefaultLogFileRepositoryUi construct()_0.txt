@@ -1,0 +1,6 @@
+    private void construct() {
+        m_openFileAction = new OpenFileAction();
+        createTree();
+        createTextArea();
+        m_display = createDisplay();
+    }

@@ -1,0 +1,6 @@
+  public void toggleBookmark() {
+    assert EventQueue.isDispatchThread();
+    addToBrowserHistory();
+    _model._toggleBookmark(_currentDefPane.getSelectionStart(), _currentDefPane.getSelectionEnd()); 
+    showTab(_bookmarksPanel, true);
+  }

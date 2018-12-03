@@ -1,0 +1,3 @@
+  public static TrapCodeOperand NullPtr() {
+    return new TrapCodeOperand((byte) RuntimeEntrypoints.TRAP_NULL_POINTER);
+  }

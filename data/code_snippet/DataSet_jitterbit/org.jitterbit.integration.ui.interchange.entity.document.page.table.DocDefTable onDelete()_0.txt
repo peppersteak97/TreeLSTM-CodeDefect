@@ -1,0 +1,5 @@
+    protected void onDelete() {
+        int[] rows = m_ui.getSelectedRows();
+        stopEditing();
+        deleteRows(rows);
+    }

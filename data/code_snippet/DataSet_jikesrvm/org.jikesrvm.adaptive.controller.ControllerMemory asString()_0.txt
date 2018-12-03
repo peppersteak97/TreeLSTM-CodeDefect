@@ -1,0 +1,3 @@
+  static synchronized String asString() {
+    return table.toString();
+  }

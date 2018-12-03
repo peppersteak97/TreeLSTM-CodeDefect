@@ -1,0 +1,6 @@
+    public int getIntValue() {
+        if ((_value.getSelectedIndex()>=_valueArray.length) || _value.getSelectedIndex()<0)
+            log.error("trying to get value "+_value.getSelectedIndex()+" too large"
+                    +" for array length "+_valueArray.length);
+        return _valueArray[_value.getSelectedIndex()];
+    }

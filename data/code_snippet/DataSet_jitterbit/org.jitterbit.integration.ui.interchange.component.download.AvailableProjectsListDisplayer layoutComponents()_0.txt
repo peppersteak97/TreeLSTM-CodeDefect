@@ -1,0 +1,8 @@
+    private void layoutComponents() {
+        m_displayer = new OneColumnPanel();
+        m_displayer.setFillOut();
+        m_displayer.setInsets(5, 5, 5, 15);
+        m_displayer.add(ComponentFactories.scrollFactory().newScrollPane(m_projectList));
+        IComponentDecor decor = ComponentDecorFactory.invisible(m_infoDisplayer);
+        m_displayer.add(decor.getUi());
+    }

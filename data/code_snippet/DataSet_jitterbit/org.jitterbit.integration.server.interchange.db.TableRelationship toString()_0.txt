@@ -1,0 +1,4 @@
+    public String toString() {
+        return m_parentObject.getName() + RELATIONSHIP_INDICATOR + 
+                m_childObject.getName();
+    }

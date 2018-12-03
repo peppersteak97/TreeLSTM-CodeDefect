@@ -1,0 +1,6 @@
+    public void updated() {
+        if (treenode != null) {
+            treenode.setUserObject(this);
+        }
+        if (editor != null) editor.updateSummary();
+    }

@@ -1,0 +1,3 @@
+  public void resetJavadocErrors() {
+    _javadocErrorModel = new CompilerErrorModel();
+  }

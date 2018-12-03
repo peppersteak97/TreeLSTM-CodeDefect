@@ -1,0 +1,10 @@
+    protected final File createFile() throws DataCacheException {
+        if (m_parentDirectory.exists() && !m_parentDirectory.isDirectory()) {
+            throw new DataCacheException(
+                            m_parentDirectory.getAbsolutePath());
+        }
+        if (!m_parentDirectory.exists() && !m_parentDirectory.mkdirs()) {
+                            m_parentDirectory.getAbsolutePath());
+        }
+        return new File(m_parentDirectory, getFileName());
+    }

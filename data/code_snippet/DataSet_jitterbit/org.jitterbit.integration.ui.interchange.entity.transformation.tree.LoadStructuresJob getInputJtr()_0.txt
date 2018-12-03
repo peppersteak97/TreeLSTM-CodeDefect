@@ -1,0 +1,8 @@
+        if (getInputJtr() == null && m_invoker.isAskingForInputStructure()) {
+            retrieveInputStructure();
+            if (!m_inputCallback.wasSuccessful()) {
+                return;
+            }
+            m_inputCallback = null;
+            addInputStructureToCache = true;
+        }

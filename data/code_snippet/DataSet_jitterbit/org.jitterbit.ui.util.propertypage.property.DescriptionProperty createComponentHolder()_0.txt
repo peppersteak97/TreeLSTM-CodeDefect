@@ -1,0 +1,4 @@
+	protected IPropertyComponentHolder createComponentHolder() {
+		return new Displayer( getDescription(), m_nRows, m_nColumns, isReadOnly() );
+		
+	}

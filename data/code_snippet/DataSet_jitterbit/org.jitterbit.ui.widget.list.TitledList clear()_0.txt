@@ -1,0 +1,9 @@
+    public void clear() {
+        ListModel model = m_list.getModel();
+        if (model instanceof DefaultListModel) {
+            ((DefaultListModel) model).clear();
+        }
+        else {
+            throw new UnsupportedOperationException(
+        }
+    }

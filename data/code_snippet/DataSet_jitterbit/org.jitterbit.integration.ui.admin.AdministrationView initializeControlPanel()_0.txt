@@ -1,0 +1,7 @@
+    private void initializeControlPanel() {
+        m_controlPanel = new ControlPanel(this, ConsoleLauncherFactory.getLaunchers(this));
+        IWindowSection controlSection = getWindow().getWindowSection(
+                        IApplicationWindow.WEST);
+        m_controlPanel.setWindowSection(controlSection);
+        controlSection.addContent(m_controlPanel);
+    }

@@ -1,0 +1,3 @@
+    public IntegrationEntityId createIntegrationEntityId() {
+        return createIntegrationEntityIdImpl(null);
+    }

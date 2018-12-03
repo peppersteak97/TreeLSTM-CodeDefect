@@ -1,0 +1,9 @@
+  public synchronized void decay() {
+    double rate = Controller.options.DCG_DECAY_RATE;
+    if (Controller.options.DYNAMIC_CALL_FILE_OUTPUT != null) return;
+
+    for (WeightedCallTargets ct : callGraph.values()) {
+      ct.decay(rate);
+    }
+    totalEdgeWeights /= rate;
+  }

@@ -1,0 +1,6 @@
+  private void problemEdgePrep() {
+    for (int i = 0; i < numTreeRoots; i++) {
+      BURS_TreeNode n = treeRoots[i];
+      problemEdgePrep(n, n.dg_node);
+    }
+  }

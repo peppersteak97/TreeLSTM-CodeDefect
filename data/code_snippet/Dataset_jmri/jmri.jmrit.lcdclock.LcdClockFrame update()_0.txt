@@ -1,0 +1,10 @@
+    void update() {
+        Date now = clock.getTime();
+        int hours = now.getHours();
+        int minutes = now.getMinutes();
+
+        h1.setIcon(tubes[hours/10]);
+        h2.setIcon(tubes[hours-(hours/10)*10]);
+        m1.setIcon(tubes[minutes/10]);
+        m2.setIcon(tubes[minutes-(minutes/10)*10]);
+    }

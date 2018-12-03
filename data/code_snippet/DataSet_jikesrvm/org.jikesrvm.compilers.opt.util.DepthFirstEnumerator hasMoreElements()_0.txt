@@ -1,0 +1,12 @@
+  public boolean hasMoreElements() {
+    if (stack == null) {
+      return false;
+    }
+
+    for (GraphNode node : stack) {
+      if (node.getScratch() != mark) {
+        return true;
+      }
+    }
+    return false;
+  }

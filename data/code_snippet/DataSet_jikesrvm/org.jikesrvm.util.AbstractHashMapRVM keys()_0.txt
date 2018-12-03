@@ -1,0 +1,7 @@
+  public final Iterable<K> keys() {
+    return new Iterable<K>() {
+      public Iterator<K> iterator() {
+        return AbstractHashMapRVM.this.keyIterator();
+      }
+    };
+  }

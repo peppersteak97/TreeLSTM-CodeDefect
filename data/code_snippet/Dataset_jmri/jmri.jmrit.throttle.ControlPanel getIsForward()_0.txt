@@ -1,0 +1,1 @@
+    public boolean getIsForward() { return forwardButton.isSelected(); }

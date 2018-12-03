@@ -1,0 +1,4 @@
+  protected final void emit_l2d() {
+    asm.emitFILD_Reg_RegInd_Quad(FP0, SP);
+    asm.emitFSTP_RegInd_Reg_Quad(SP, FP0);
+  }

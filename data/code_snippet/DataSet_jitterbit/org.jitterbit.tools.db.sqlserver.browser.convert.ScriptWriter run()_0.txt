@@ -1,0 +1,21 @@
+    public void run() {
+        try {
+            m_generator.waitUntilDone();
+        } 
+        catch (InterruptedException e1) {
+            e1.printStackTrace();
+            return;
+        }
+        
+        BufferedWriter out = null;
+        try {
+            out = new BufferedWriter( new FileWriter(m_file) );
+            out.write( m_generator.getScript() );
+        } 
+        catch (IOException e) {
+            onException(e);
+        }
+        finally {
+            KongaIoUtils.close(out);
+        }
+    }

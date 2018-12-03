@@ -1,0 +1,5 @@
+  Operand popFloat() {
+    Operand r = pop();
+    if (VM.VerifyAssertions) VM._assert(r.isFloat());
+    return r;
+  }

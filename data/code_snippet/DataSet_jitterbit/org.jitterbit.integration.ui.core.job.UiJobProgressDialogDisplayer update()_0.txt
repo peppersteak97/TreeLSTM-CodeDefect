@@ -1,0 +1,5 @@
+    private void update() {
+        if (!m_job.canBeCancelled()) {
+            getCancelButton().setEnabled(false);
+        }
+    }

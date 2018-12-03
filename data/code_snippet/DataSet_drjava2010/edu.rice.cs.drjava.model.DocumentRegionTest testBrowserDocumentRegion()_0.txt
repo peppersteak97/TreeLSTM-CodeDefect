@@ -1,0 +1,12 @@
+  public void testBrowserDocumentRegion() {
+    DummyOpenDefDoc doc1 = new DummyOpenDefDoc();
+    DummyOpenDefDoc doc2 = new DummyOpenDefDoc();
+    doc1.append("This is a test");
+    doc2.append("This is another test");
+    IDocumentRegion r1 = new BrowserDocumentRegion(doc1, createPosition(doc1, 5), createPosition(doc1, 10));
+    IDocumentRegion r2 = new DocumentRegion(doc1, 5, 10);
+    IDocumentRegion r3 = new DocumentRegion(doc2, 5, 10);
+    assertEquals("equality test 1", r1, r1);
+    assertFalse("equality test 2", r1.equals(r2));
+    assertFalse("equality test 3", r2.equals(r3));
+  }

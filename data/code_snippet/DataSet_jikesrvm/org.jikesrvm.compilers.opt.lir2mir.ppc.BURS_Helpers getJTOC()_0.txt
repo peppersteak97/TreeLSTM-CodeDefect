@@ -1,0 +1,3 @@
+  protected final Register getJTOC() {
+    return getIR().regpool.getPhysicalRegisterSet().getJTOC();
+  }

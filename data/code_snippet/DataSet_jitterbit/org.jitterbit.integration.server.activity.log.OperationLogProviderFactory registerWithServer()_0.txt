@@ -1,0 +1,11 @@
+    private static void registerWithServer() {
+        IntegrationServer server = IntegrationServer.getInstance();
+        IServerCallFactory<IOperationLogProvider> callFactory = 
+            new IServerCallFactory<IOperationLogProvider>() {
+
+                public IOperationLogProvider get() {
+                    return new ActivityInfoProviderWsImpl();
+                }
+        };
+        server.registerCallFactory(IOperationLogProvider.class, callFactory);
+    }

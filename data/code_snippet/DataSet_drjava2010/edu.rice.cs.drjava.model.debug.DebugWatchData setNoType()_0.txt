@@ -1,0 +1,4 @@
+  public void setNoType() {
+    _showType = true;
+    _type = NO_TYPE;
+  }

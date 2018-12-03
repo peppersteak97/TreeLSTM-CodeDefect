@@ -1,0 +1,5 @@
+  public final void reportAdditionalStats() {
+    VM.sysWrite("  ");
+    VM.sysWrite(container.counter1 / container.counter2 * 100, 2);
+    VM.sysWrite("% Infrequent BBs");
+  }

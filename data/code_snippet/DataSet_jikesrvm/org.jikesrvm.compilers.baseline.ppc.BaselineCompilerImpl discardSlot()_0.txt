@@ -1,0 +1,3 @@
+  private void discardSlot() {
+    spTopOffset += BYTES_IN_STACKSLOT;
+  }

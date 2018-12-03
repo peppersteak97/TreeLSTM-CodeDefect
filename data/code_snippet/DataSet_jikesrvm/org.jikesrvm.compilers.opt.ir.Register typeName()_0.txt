@@ -1,0 +1,12 @@
+  public String typeName() {
+    String s = "";
+    if (isCondition()) s += "c";
+    if (isAddress()) s += "a";
+    if (isInteger()) s += "i";
+    if (isDouble()) s += "d";
+    if (isFloat()) s += "f";
+    if (isLong()) s += "l";
+    if (isValidation()) s += "v";
+    if (s == null) s = "_";
+    return s;
+  }

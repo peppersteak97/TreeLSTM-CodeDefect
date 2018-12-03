@@ -1,0 +1,10 @@
+    public void dispatch() {
+        if (!active) log.warn("dispatch called when not active");
+
+        LnTrafficController.instance().sendLocoNetMessage(
+                slot.writeStatus(LnConstants.LOCO_COMMON));
+
+        LnTrafficController.instance().sendLocoNetMessage(slot.dispatchSlot());
+
+        dispose();
+    }

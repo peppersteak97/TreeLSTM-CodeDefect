@@ -1,0 +1,24 @@
+  public void translateCMPG() {
+    switch (value) {
+      case EQUAL:
+        value = CMPL_EQUAL;
+        break;
+      case NOT_EQUAL:
+        value = CMPL_NOT_EQUAL;
+        break;
+      case LESS:
+        value = CMPG_LESS;
+        break;
+      case GREATER_EQUAL:
+        value = CMPG_GREATER_EQUAL;
+        break;
+      case GREATER:
+        value = CMPG_GREATER;
+        break;
+      case LESS_EQUAL:
+        value = CMPG_LESS_EQUAL;
+        break;
+      default:
+        throw new OptimizingCompilerException("invalid condition " + this);
+    }
+  }

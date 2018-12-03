@@ -1,0 +1,4 @@
+  protected void stopAllRedirectors() {
+    for(StreamRedirectThread r: _redirectors) { r.setStopFlag(); }
+    _redirectors.clear();
+  }

@@ -1,0 +1,1 @@
+  public static InterpretResult noValue() { return NoValueResult.INSTANCE; }

@@ -1,0 +1,49 @@
+  public void testAnnotationsAfterDefinition() throws BadLocationException {
+    String textToIndent =
+      "@Annotation\n" +
+      "public class TestClass {\n" +
+      "public TestClass() {}\n" +
+      "\n" +
+      "private int _classField = 0;\n" +
+      "\n" +
+      "@Annotation(WithParens)\n" +
+      "private int _classField2 = 42;\n" +
+      "\n" +
+      "@Override\n" +
+      "public String toString() {\n" +
+      "@LocalVariableAnnotation\n" +
+      "String msg = \"hello\";\n" +
+      "return msg;\n" +
+      "}\n" +
+      "\n" +
+      "public int methodAfterAnnotation() {\n" +
+      "return 0;\n" +
+      "}\n" +
+      "}\n";
+    String textIndented = 
+      "@Annotation\n" +
+      "public class TestClass {\n" +
+      "  public TestClass() {}\n" +
+      "  \n" +
+      "  private int _classField = 0;\n" +
+      "  \n" +
+      "  @Annotation(WithParens)\n" +
+      "  private int _classField2 = 42;\n" +
+      "  \n" +
+      "  @Override\n" +
+      "  public String toString() {\n" +
+      "    @LocalVariableAnnotation\n" +
+      "    String msg = \"hello\";\n" +
+      "    return msg;\n" +
+      "  }\n" +
+      "  \n" +
+      "  public int methodAfterAnnotation() {\n" +
+      "    return 0;\n" +
+      "  }\n" +
+      "}\n";
+    
+    _doc.insertString(0, textToIndent, null);
+    _assertContents(textToIndent, _doc);
+    safeIndentLines(0, _doc.getLength());
+    _assertContents(textIndented, _doc);
+  }

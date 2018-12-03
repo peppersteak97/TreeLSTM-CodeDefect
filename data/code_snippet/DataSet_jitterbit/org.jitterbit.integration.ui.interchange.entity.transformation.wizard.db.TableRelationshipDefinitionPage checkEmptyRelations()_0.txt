@@ -1,0 +1,6 @@
+    private void checkEmptyRelations() throws RelationshipException {
+        if (m_relationships == null || m_relationships.isEmpty()) {
+            throw new RelationshipException(
+                    PackageResources.RelationshipDefinitionPage.Errors.NO_RELATIONS);
+        }
+    }

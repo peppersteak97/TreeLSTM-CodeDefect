@@ -1,0 +1,29 @@
+  private void _setUpPanes() {
+    
+    if (_showDebugger) {
+      try {
+        int debugHeight = DrJava.getConfig().getSetting(DEBUG_PANEL_HEIGHT).intValue();
+        Dimension debugMinSize = _debugPanel.getMinimumSize();
+        
+        if ((debugHeight > debugMinSize.height)) debugMinSize.height = debugHeight;
+        _debugPanel.setPreferredSize(debugMinSize);
+      }
+      catch(NoClassDefFoundError e) {
+        _showDebugger = false;
+      }
+    } 
+    
+    _debugSplitPane.setBottomComponent(_debugPanel);
+    _mainSplit.setResizeWeight(1.0);
+    _debugSplitPane.setResizeWeight(1.0);
+    getContentPane().add(_mainSplit, BorderLayout.CENTER);
+    
+    _mainSplit.setDividerLocation(_mainSplit.getHeight() - 132);
+    _mainSplit.setOneTouchExpandable(true);
+    _debugSplitPane.setOneTouchExpandable(true);
+    
+    int docListWidth = DrJava.getConfig().getSetting(DOC_LIST_WIDTH).intValue();
+    
+    _docSplitPane.setDividerLocation(docListWidth);
+    _docSplitPane.setOneTouchExpandable(true);
+  }

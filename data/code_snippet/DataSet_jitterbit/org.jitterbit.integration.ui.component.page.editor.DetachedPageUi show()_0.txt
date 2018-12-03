@@ -1,0 +1,10 @@
+    private void show() {
+        UiUtils.runOnEventThread(new Runnable() {
+            
+            public void run() {
+                m_pageWindow.setLocationRelativeTo(null);
+                m_pageWindow.setVisible(true);
+                IntegrationUi.getUi().stopWait();
+            }
+        });
+    }

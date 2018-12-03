@@ -1,0 +1,3 @@
+	protected void onCancel() {
+		m_propertyPage.onCancel();
+	}

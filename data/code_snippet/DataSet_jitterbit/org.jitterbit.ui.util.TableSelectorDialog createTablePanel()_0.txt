@@ -1,0 +1,27 @@
+    private JPanel createTablePanel() {
+        JPanel panel = new JPanel(new BorderLayout(0, 5));
+        panel.add(createTableScroll(), BorderLayout.CENTER);
+
+        selectAll.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                setInitialSelectionState(true);
+            }
+        });
+        deselectAll.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                setInitialSelectionState(false);
+            }
+        });
+        JPanel buttons = new JPanel();
+        buttons.setLayout(new BoxLayout(buttons, BoxLayout.LINE_AXIS));
+        buttons.add(Box.createHorizontalGlue());
+        buttons.add(selectAll);
+        buttons.add(Box.createHorizontalStrut(5));
+        buttons.add(deselectAll);
+        buttons.add(Box.createHorizontalStrut(5));
+        panel.add(buttons, BorderLayout.SOUTH);
+
+        return panel;
+    }

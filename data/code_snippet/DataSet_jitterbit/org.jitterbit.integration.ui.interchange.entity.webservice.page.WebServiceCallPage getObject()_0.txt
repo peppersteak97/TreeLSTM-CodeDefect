@@ -1,0 +1,3 @@
+    public IWebServiceCallUi getObject() {
+        return (IWebServiceCallUi) super.getObject();
+    }

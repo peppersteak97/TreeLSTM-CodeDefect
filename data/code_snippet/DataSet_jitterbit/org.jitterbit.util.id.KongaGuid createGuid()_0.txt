@@ -1,0 +1,3 @@
+    public static KongaGuid createGuid() {
+        return new KongaGuid();
+    }

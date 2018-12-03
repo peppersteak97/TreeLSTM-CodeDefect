@@ -1,0 +1,7 @@
+    private List<FileDependency> getInput() {
+        List<FileDependency> deps = new ArrayList<FileDependency>();
+        for (FileDependencyDisplayer dd : displayers) {
+            deps.add(dd.getInput());
+        }
+        return deps;
+    }

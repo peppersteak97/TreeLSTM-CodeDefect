@@ -1,0 +1,21 @@
+  protected void _shutdownAndWaitForInteractionEnded() throws Exception {
+    _log.log("Shutting down debugger in " + this + " with waiting");
+    _model.getBreakpointManager().clearRegions();
+    
+    _log.log("Shutting down...");
+    InterpretListener interpretListener = new InterpretListener() {
+      public void interpreterChanged(boolean inProgress) {
+        interpreterChangedCount++;
+      }
+    };
+    _model.addListener(interpretListener);
+    synchronized(_notifierLock) {
+      _debugger.shutdown();
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    interpretListener.assertInteractionEndCount(1);
+    _model.removeListener(interpretListener);
+    
+    _log.log("Shut down.");
+    _log.log("Completed debugger shutdown for " + this);
+  }

@@ -1,0 +1,24 @@
+	public void restore(){
+		m_TreeMapper.m_targetTreeComponent.clearSourcePaths();
+		for(MapPairPanel mp:m_mapList){
+			if(mp.m_isLabel){
+				m_mapList.removeElement(mp);
+				remove(mp);
+				TreeComponent.Node target=m_TreeMapper.m_targetTreeComponent.findNode(mp.m_targetDE);
+				target.m_sourcePath=null;
+				m_TreeMapper.setDirty(true);
+			} else {
+				Vector stv=m_TreeMapper.m_transform.GetRPNVector(mp.m_source);
+				if(stv!=null){
+					String tmp=mp.m_source;
+					mp.m_source=m_TreeMapper.m_transform.rmInstanceTag(tmp);
+					if(!tmp.equals(mp.m_source)){
+						mp.m_sourceLabel.setText(mp.m_source);
+						mp.m_sourceText.setText(mp.m_source);
+						m_TreeMapper.setDirty(true);
+					}
+				}
+			}
+		}
+		adjustSize();
+	}

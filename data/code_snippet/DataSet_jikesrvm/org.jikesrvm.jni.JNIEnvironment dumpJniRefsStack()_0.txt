@@ -1,0 +1,20 @@
+  public void dumpJniRefsStack() {
+    int jniRefOffset = JNIRefsTop;
+    VM.sysWrite("\n* * dump of JNIEnvironment JniRefs Stack * *\n");
+    VM.sysWrite("* JNIRefs = ");
+    VM.sysWrite(Magic.objectAsAddress(JNIRefs));
+    VM.sysWrite(" * JNIRefsTop = ");
+    VM.sysWrite(JNIRefsTop);
+    VM.sysWrite(" * JNIRefsSavedFP = ");
+    VM.sysWrite(JNIRefsSavedFP);
+    VM.sysWrite(".\n*\n");
+    while (jniRefOffset >= 0) {
+      VM.sysWrite(jniRefOffset);
+      VM.sysWrite(" ");
+      VM.sysWrite(Magic.objectAsAddress(JNIRefs).plus(jniRefOffset));
+      VM.sysWrite(" ");
+      MemoryManager.dumpRef(JNIRefs.get(jniRefOffset >> LOG_BYTES_IN_ADDRESS).toObjectReference());
+      jniRefOffset -= BYTES_IN_ADDRESS;
+    }
+    VM.sysWrite("\n* * end of dump * *\n");
+  }

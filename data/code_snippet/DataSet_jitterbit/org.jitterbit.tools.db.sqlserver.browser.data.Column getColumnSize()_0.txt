@@ -1,0 +1,3 @@
+    public int getColumnSize() {
+        return m_nColumnSize;
+    }

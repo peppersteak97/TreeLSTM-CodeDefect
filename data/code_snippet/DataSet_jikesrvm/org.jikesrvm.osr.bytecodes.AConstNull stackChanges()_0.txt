@@ -1,0 +1,3 @@
+  public int stackChanges() {
+    return 1;
+  }

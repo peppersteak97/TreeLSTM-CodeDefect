@@ -1,0 +1,3 @@
+	public static Icon getErrorIcon() {
+		return ERROR_ICON;
+	}

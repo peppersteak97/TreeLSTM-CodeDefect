@@ -1,0 +1,22 @@
+    private void createPagePanel() {
+        if (m_mainPanel == null) {
+            throw new IllegalStateException("The main panel has not been added.");
+        }
+
+        m_pagePanel = new JPanel(new BorderLayout());
+        IntegrationUiStyleSheet.GenericPageCanvas.makeOver(m_pagePanel);
+        if (m_titlePanel != null) {
+            m_titlePanel.setOpaque(false);
+            m_pagePanel.add(m_titlePanel, BorderLayout.NORTH);
+            FocusUtils.makeComponentMouseFocusable(m_titlePanel);
+        }
+
+        m_mainPanel.setOpaque(true);
+        JScrollPane scroll = new ContainedScrollPane(m_mainPanel);
+        scroll.setBorder(null);
+        scroll.getVerticalScrollBar().setUnitIncrement(10);
+        scroll.getHorizontalScrollBar().setUnitIncrement(10);
+        m_pagePanel.add(scroll, BorderLayout.CENTER);
+        FocusUtils.makeComponentMouseFocusable(m_pagePanel);
+        FocusUtils.makeComponentMouseFocusable(m_mainPanel);
+    }

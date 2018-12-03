@@ -1,0 +1,6 @@
+    public DatabaseDriverDescription getDriver() {
+        DatabaseDriverDescription driver = getDriverImpl();
+        if (driver == null) {
+        }
+        return driver;
+    }

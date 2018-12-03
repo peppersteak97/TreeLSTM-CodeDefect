@@ -1,0 +1,4 @@
+    void disable() {
+        m_parentBox.setEnabled(false);
+        m_childBox.setEnabled(false);
+    }

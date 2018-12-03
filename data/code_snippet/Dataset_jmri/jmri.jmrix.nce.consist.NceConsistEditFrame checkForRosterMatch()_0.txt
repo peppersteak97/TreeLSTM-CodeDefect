@@ -1,0 +1,29 @@
+	private void checkForRosterMatch(){
+		exactMatch = false;
+		if (!verifyRosterMatch)
+			cre = NceConsistRoster.instance().entryFromTitle(locoTextField1.getText());
+		if (cre == null){
+			if (checkBoxConsist.isSelected() && !locoTextField1.getText().equals(EMPTY))
+				consistStatus.setText(UNKNOWN);
+			else
+			textConRoadName.setText(EMPTY);
+			textConRoadNumber.setText(EMPTY);	
+			textConModel.setText(EMPTY);	
+			return;
+		}
+		if (consistRosterMatch(cre)){
+			exactMatch = true;
+			if (verifyRosterMatch)
+				queueError(WARN_CONSIST_ALREADY_LOADED);
+			verifyRosterMatch = false;
+		} else {
+			if (verifyRosterMatch)
+				queueError(ERROR_CONSIST_DOESNT_MATCH);
+			verifyRosterMatch = false;
+			if (!consistRosterPartialMatch(cre)){
+				textConRoadName.setText(EMPTY);
+				textConRoadNumber.setText(EMPTY);	
+				textConModel.setText(EMPTY);	
+			}
+		}
+	}

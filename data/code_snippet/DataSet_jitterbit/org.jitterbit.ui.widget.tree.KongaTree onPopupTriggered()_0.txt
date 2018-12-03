@@ -1,0 +1,33 @@
+    protected void onPopupTriggered() {
+        int x = getPopupX();
+        int y = getPopupY();
+
+        TreePath path = getPathForLocation(x, y);
+        if (path == null) {
+            return;
+        }
+
+        if (getSelectionCount() < 2) {
+            invokePopupMenu(path, true);
+        }
+        else {
+            if ((m_mouseClickListener.getModifiers() & InputEvent.SHIFT_DOWN_MASK) != 0) {
+                invokePopupMenu(path, true);
+            }
+            else if ((m_mouseClickListener.getModifiers() & InputEvent.CTRL_DOWN_MASK) != 0) {
+                invokePopupMenu(path, false);
+            }
+            else {
+                IKongaTreeNode node = (IKongaTreeNode) path.getLastPathComponent();
+                if (node == null) {
+                    return;
+                }
+                if (isNodeSelected(node)) {
+                    invokePopupMenu(path, false);
+                }
+                else {
+                    invokePopupMenu(path, true);
+                }
+            }
+        }
+    }

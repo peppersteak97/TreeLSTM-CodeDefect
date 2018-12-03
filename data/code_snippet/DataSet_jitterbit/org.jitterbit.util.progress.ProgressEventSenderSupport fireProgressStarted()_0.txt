@@ -1,0 +1,6 @@
+	public synchronized void fireProgressStarted() {
+	    if( m_liProgressListeners != null ) {
+	        for( IProgressListener lst : m_liProgressListeners )
+	            lst.progressStarted(e);
+	    }
+	}

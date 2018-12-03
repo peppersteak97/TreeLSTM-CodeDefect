@@ -1,0 +1,45 @@
+  public void testCompileClassPathOKDifferentPackages() throws BadLocationException, IOException, InterruptedException,
+    InvalidPackageException {
+    File aDir = new File(_tempDir, "a");
+    File bDir = new File(_tempDir, "b");
+    aDir.mkdir();
+    bDir.mkdir();
+
+    OpenDefinitionsDocument doc1 = setupDocument("package a;\n" + "public " + FOO_TEXT);
+    final File fooFile = new File(aDir, "DrJavaTestFoo.java");
+    saveFile(doc1, new FileSelector(fooFile));
+    assertEquals("Check package name of doc1", "a", ((AbstractGlobalModel.ConcreteOpenDefDoc) doc1)._packageName); 
+    CompileShouldSucceedListener listener = new CompileShouldSucceedListener();
+    _model.addListener(listener);
+    
+    testStartCompile(doc1);
+    
+    listener.waitCompileDone();
+    if (_model.getCompilerModel().getNumErrors() > 0) {
+      fail("compile failed: " + getCompilerErrorString());
+    }
+    listener.checkCompileOccurred();
+    _model.removeListener(listener);
+    
+    OpenDefinitionsDocument doc2 =
+      setupDocument("package b;\nimport a.DrJavaTestFoo;\n" + FOO2_EXTENDS_FOO_TEXT);
+    final File foo2File = new File(bDir, "DrJavaTestFoo2.java");
+    saveFile(doc2, new FileSelector(foo2File));
+    assertEquals("Check packangeName of doc2", "b", ((AbstractGlobalModel.ConcreteOpenDefDoc) doc2)._packageName); 
+
+    CompileShouldSucceedListener listener2 = new CompileShouldSucceedListener();
+    _model.addListener(listener2);
+    
+    testStartCompile(doc2);
+    listener2.waitCompileDone();
+    if (_model.getCompilerModel().getNumErrors() > 0) {
+      fail("compile failed: " + getCompilerErrorString());
+    }
+    assertCompileErrorsPresent(_name(), false);
+    listener2.checkCompileOccurred();
+    _model.removeListener(listener2);
+
+    File compiled = classForJava(foo2File, "DrJavaTestFoo2");
+    assertTrue(_name() + "Class file doesn't exist after compile",
+               compiled.exists());
+  }

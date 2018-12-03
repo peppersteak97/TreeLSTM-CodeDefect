@@ -1,0 +1,3 @@
+  public final SpaceEffGraphNode firstInNode() {
+    return _inEdgeStart.fromNode();
+  }

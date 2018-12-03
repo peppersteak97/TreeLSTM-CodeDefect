@@ -1,0 +1,6 @@
+    protected final void signalJobCancelled() {
+        if (m_callback != null) {
+            m_callback.processingCancelled();
+        }
+        setDone();
+    }

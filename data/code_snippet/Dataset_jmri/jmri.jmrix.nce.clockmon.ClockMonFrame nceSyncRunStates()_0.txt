@@ -1,0 +1,50 @@
+    private void nceSyncRunStates() {
+        double intTime = 0;
+        double nceTime = 0;
+        double diffTime = 0;
+        if (log.isDebugEnabled() && false) {
+            log.debug("Before nceSyncRunStateCounter: " + nceSyncRunStateCounter + " " + internalClock.getTime());
+        }
+        int priorState = 0;
+        do {
+	        priorState = nceSyncRunStateCounter;
+	        switch (nceSyncRunStateCounter) {
+	            issueReadOnlyRequest();
+	            nceSyncRunStateCounter++;
+	            break;
+	        case 2:
+	            if (!waitingForCmdRead) {
+	                nceSyncRunStateCounter++;
+	            }
+	            break;
+	            intTime = getIntTime();
+	            nceTime = getNceTime();
+	            diffTime = nceTime - intTime;
+	            if (diffTime > MAX_SECONDS_IN_DAY / 2) {
+	                diffTime = MAX_SECONDS_IN_DAY + nceTime - intTime;
+	            } else if (diffTime < MAX_SECONDS_IN_DAY / -2) {
+	                diffTime = nceTime ;
+	            }
+	            if (log.isDebugEnabled()){
+	                log.debug("new diffTime: " + diffTime + " = " + nceTime + " - " + intTime);
+	            }
+	            while (priorDiffs.size() >= MAX_ERROR_ARRAY) {
+	                priorDiffs.remove(0);
+	            }
+	            priorDiffs.add(new Double(diffTime));
+	            recomputeNceSync();
+	            if (alarmSyncUpdate == null){
+	                alarmSyncInit();
+	            }
+	            updateNceClockDisplay();
+	            updateInternalClockDisplay();
+	            nceSyncRunStateCounter++;
+	            break;
+	        case 4:
+	            nceSyncRunStateCounter = 0;
+	        }
+        } while (priorState != nceSyncRunStateCounter);
+        if (log.isDebugEnabled() && false) {
+            log.debug("After nceSyncRunStateCounter: " + nceSyncRunStateCounter + " " + internalClock.getTime());
+        }
+    }

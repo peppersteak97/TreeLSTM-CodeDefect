@@ -1,0 +1,3 @@
+    protected final SystemConsoleWorker getWorker() {
+        return m_worker;
+    }

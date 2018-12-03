@@ -1,0 +1,3 @@
+	public String getUnparsedPartOfExpression() {
+		return m_sExpr.substring(m_nPos);
+	}

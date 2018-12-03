@@ -1,0 +1,6 @@
+  public boolean updateConfig() {
+    Vector<T> current = getValue();
+    DrJava.getConfig().setSetting(_option, current);
+    resetToCurrent();
+    return true;
+  }

@@ -1,0 +1,7 @@
+  public void compileAllMethodsCompleted() {
+    if (Controller.options.LOGGING_LEVEL >= 2) {
+      synchronized (log) {
+        log.println(Controller.controllerClock + "  Compiled all methods finished. ");
+      }
+    }
+  }

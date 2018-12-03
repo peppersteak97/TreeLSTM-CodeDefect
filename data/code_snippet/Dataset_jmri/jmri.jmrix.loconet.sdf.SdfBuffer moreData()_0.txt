@@ -1,0 +1,1 @@
+    public boolean moreData() { return index<buffer.length; }

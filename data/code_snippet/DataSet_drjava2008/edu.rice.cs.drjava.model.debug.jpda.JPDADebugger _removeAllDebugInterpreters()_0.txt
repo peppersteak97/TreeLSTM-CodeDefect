@@ -1,0 +1,13 @@
+  private void _removeAllDebugInterpreters() {
+    DefaultInteractionsModel interactionsModel = _model.getInteractionsModel();
+    String oldInterpreterName;
+    if (_runningThread != null) {
+      oldInterpreterName = _getUniqueThreadName(_runningThread);
+      interactionsModel.removeInterpreter(oldInterpreterName);
+    }
+    while (!_suspendedThreads.isEmpty()) {
+      ThreadReference threadRef = _suspendedThreads.pop();
+      oldInterpreterName = _getUniqueThreadName(threadRef);
+      interactionsModel.removeInterpreter(oldInterpreterName);
+    }
+  }

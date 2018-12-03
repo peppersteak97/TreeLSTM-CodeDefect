@@ -1,0 +1,4 @@
+	public static String[] getColumnNames() {
+		return new String[] {TextDocument.DOCUMENT_ID,
+		};		
+	}

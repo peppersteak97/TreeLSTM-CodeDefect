@@ -1,0 +1,3 @@
+  protected final Register getESI() {
+    return getIR().regpool.getPhysicalRegisterSet().getESI();
+  }

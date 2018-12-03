@@ -1,0 +1,5 @@
+    protected void onCancel() {
+        super.onCancel();
+        IApplicationAction a = InterchangeActionFactory.OPEN_PROJECT.get(m_view);
+        a.cancelled(null);
+    }

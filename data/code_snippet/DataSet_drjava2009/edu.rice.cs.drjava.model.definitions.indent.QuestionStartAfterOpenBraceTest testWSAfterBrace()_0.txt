@@ -1,0 +1,15 @@
+  public void testWSAfterBrace() throws BadLocationException {
+    
+    _text = 
+      "if (<cond>) {\n" +
+      "\n" +
+      "    if (\n" +
+      "        <cond>) { ... }}";
+    
+    _setDocText(_text);
+    
+    assertTrue("START immediatly follows an open brace.", _rule.testApplyRule(_doc, 14, Indenter.IndentReason.OTHER));
+    assertTrue("Only WS between open brace and START.", _rule.testApplyRule(_doc, 15, Indenter.IndentReason.OTHER));
+    assertTrue("Only WS between open brace and START.", _rule.testApplyRule(_doc, 23, Indenter.IndentReason.OTHER));
+    assertTrue("START immediatly follows an open paren.", !_rule.testApplyRule(_doc, 25, Indenter.IndentReason.OTHER)); 
+  }

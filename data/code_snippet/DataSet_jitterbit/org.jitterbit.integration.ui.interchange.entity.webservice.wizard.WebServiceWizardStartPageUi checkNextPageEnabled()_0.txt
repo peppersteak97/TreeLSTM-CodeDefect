@@ -1,0 +1,4 @@
+    private void checkNextPageEnabled() {
+        boolean valid = m_inputPanel.isInputValid() && m_wsdlSelector.inputIsValid();
+        m_startPage.setNextPageEnabled(valid);
+    }

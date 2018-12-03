@@ -1,0 +1,5 @@
+    protected AbstractMRReply newReply() { 
+        log.debug("New GridConnectReply created");
+        GridConnectReply reply = new GridConnectReply();
+        return reply;
+    }

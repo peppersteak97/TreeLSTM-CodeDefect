@@ -1,0 +1,10 @@
+  private int _getWhiteSpace() throws BadLocationException {
+    
+/* */ assert Utilities.TEST_MODE || EventQueue.isDispatchThread();
+    
+    int lineLen = lineEnd - _currentLocation;
+    String line = getText(_currentLocation, lineLen);
+    int i;
+    for (i = 0; i < lineLen && line.charAt(i) == ' '; i++) ;
+    return i;
+  }

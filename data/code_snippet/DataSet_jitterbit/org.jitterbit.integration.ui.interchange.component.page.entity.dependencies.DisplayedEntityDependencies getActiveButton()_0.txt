@@ -1,0 +1,16 @@
+    public JButton getActiveButton() {
+        JButton active = null;
+        if (!m_dependentObjects.isEmpty()) {
+            JButton b = ComponentFactories.toolbarButtonFactory().newButton(
+                    null, PackageResources.ACTIVE_ICON);
+            b.setToolTipText(PackageResources.Trigger.TOOLTIP);
+            b.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    display();
+                }
+            });
+            active = b;
+        }
+        return active;
+    }

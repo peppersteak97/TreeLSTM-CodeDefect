@@ -1,0 +1,13 @@
+    public void displayLastFile() {
+        IRecentFileStore recentFiles = getRecentFiles();
+        IFileUi fileUi = recentFiles.latestFile();
+        if (fileUi == null) {
+            return;
+        }
+        JComboBox cb = m_comboInputField.getInputComponent();
+        cb.setSelectedItem(fileUi);
+        if (cb.getSelectedItem() != fileUi) {
+            JTextField text = (JTextField) cb.getEditor().getEditorComponent();
+            text.setText(fileUi.toString());
+        }
+    }

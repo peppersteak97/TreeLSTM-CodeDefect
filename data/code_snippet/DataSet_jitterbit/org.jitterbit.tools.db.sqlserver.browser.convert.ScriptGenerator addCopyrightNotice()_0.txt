@@ -1,0 +1,6 @@
+    protected final void addCopyrightNotice() {
+        addLine("/*");
+        addLine(" * Copyright (c) 1998-2006 Jitterbit, Inc.");
+        addLine(" *");
+        addLine(" */");
+    }

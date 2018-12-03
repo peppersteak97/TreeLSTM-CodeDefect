@@ -1,0 +1,9 @@
+                if (updateIndexIfNeeded(defaultDecoderIndexFilename())) {
+                    try {
+                        _instance = new DecoderIndexFile();
+                        _instance.readFile(defaultDecoderIndexFilename());
+                    } catch (Exception e) {
+                        log.error("Exception during decoder index reload: "+e);
+                        e.printStackTrace();
+                    }
+                }

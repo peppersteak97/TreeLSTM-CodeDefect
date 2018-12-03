@@ -1,0 +1,77 @@
+    protected synchronized AbstractMRMessage pollMessage() {
+        if (needToInitAcelaNetwork) {
+            if (needToCreateNodesState == 0) {
+                if (needToPollNodes) {
+        		AcelaNode specialnode = new AcelaNode(0, AcelaNode.AC);
+                }
+                curAcelaNodeIndex = SPECIALNODE;
+                AcelaMessage m = AcelaMessage.getAcelaResetMsg();
+            	log.debug("send init message: "+m);
+            	mCurrentMode = NORMALMODE;
+                needToCreateNodesState++;
+            	return m;
+            }
+            if (needToCreateNodesState == 1) {
+            	AcelaMessage m = AcelaMessage.getAcelaOnlineMsg();
+            	log.debug("send init2 message: "+m);
+            	mCurrentMode = NORMALMODE;
+                needToCreateNodesState++;
+        	return m;
+            }
+            if (needToPollNodes) {
+                if (needToCreateNodesState == 2) {
+                    AcelaMessage m = AcelaMessage.getAcelaPollNodesMsg();
+                    log.debug("send poll message: "+m);
+                    mCurrentMode = NORMALMODE;
+                    needToInitAcelaNetwork = false;
+                    needToPollNodes = false;
+                    return m;
+                }
+            } else {
+                needToInitAcelaNetwork = false;
+                setAcelaTrafficControllerState(true); 
+            }
+        }
+        
+        if (getNumNodes()<=0) {
+            return null;
+        }
+        
+        curAcelaNodeIndex ++;
+        if (curAcelaNodeIndex>=getNumNodes()) { 
+            curAcelaNodeIndex = 0;
+        }
+
+        AcelaNode node = (AcelaNode) getNode(curAcelaNodeIndex);       
+        if (node.hasActiveSensors) {
+            for (int s = 0; s < node.sensorbitsPerCard; s++) {
+                if (node.sensorInit[s]) {
+                    AcelaMessage m = AcelaMessage.getAcelaConfigSensorMsg();
+                    int tempiaddr = s + node.getStartingSensorAddress();
+                    byte tempbaddr = (byte) (tempiaddr);
+                    m.setElement(2, tempbaddr);
+                    log.debug("send Config Sesnsor message: "+m);
+                    mCurrentMode = NORMALMODE;
+                    node.sensorInit[s] = false;
+                    return m;
+                }
+            }
+        }
+        
+        if (getNode(curAcelaNodeIndex).mustSend()) {
+            log.debug("request write command to send");
+            getNode(curAcelaNodeIndex).resetMustSend();
+            AbstractMRMessage m = getNode(curAcelaNodeIndex).createOutPacket();
+        	mCurrentMode = NORMALMODE;
+            return m;
+        }
+
+        if (acelaSensorsState) {    
+        	AcelaMessage m = AcelaMessage.getAcelaPollSensorsMsg();
+        	log.debug("send poll message: "+m);
+        	mCurrentMode = NORMALMODE;
+        	return m;
+        } else {
+            return null;
+        }
+    }

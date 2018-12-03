@@ -1,0 +1,10 @@
+    public static LogFileRepositoryViewFactory newInstance() {
+        return new LogFileRepositoryViewFactory() {
+
+            @Override
+            public ILogFileRepositoryView create(ILogFileRepository repository, 
+                                                 IWindowSection windowSection) {
+                return new LogFileRepositoryViewImpl(repository, windowSection);
+            }
+        };
+    }

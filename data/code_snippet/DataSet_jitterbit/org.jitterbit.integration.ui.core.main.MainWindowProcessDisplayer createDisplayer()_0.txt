@@ -1,0 +1,9 @@
+    private void createDisplayer() {
+        m_displayer = Box.createHorizontalBox();
+        if( m_useProgressBar ) {
+            m_displayer.add(m_progressBar);
+        }
+        m_displayer.add(m_showConsoleButton);
+        m_displayer.setBorder(new EtchedBorder());
+        m_displayer.setBackground(BACKGROUND);
+    }

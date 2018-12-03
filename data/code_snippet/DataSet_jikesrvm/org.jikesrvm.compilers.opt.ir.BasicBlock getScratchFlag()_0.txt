@@ -1,0 +1,3 @@
+  public final boolean getScratchFlag() {
+    return (flags & SCRATCH) != 0;
+  }

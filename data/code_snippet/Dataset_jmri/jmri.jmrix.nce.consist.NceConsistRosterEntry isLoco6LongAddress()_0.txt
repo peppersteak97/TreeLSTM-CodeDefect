@@ -1,0 +1,1 @@
+    public boolean isLoco6LongAddress() { return _isLoco6LongAddress; }

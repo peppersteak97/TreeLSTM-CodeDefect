@@ -1,0 +1,76 @@
+  public BasicBlockEnumeration getBranchTargets() {
+    int n = getNumberOfOperands();
+    BasicBlock.ComputedBBEnum e = new BasicBlock.ComputedBBEnum(n);
+
+    switch (getOpcode()) {
+      case GOTO_opcode: {
+        BranchOperand tgt = Goto.getTarget(this);
+        e.addElement(tgt.target.getBasicBlock());
+      }
+      break;
+
+      case INT_IFCMP2_opcode:
+        e.addElement(IfCmp2.getTarget1(this).target.getBasicBlock());
+        e.addPossiblyDuplicateElement(IfCmp2.getTarget2(this).target.getBasicBlock());
+        break;
+
+      case INT_IFCMP_opcode:
+      case REF_IFCMP_opcode:
+      case LONG_IFCMP_opcode:
+      case FLOAT_IFCMP_opcode:
+      case DOUBLE_IFCMP_opcode:
+        e.addElement(IfCmp.getTarget(this).target.getBasicBlock());
+        break;
+
+      case IG_PATCH_POINT_opcode:
+      case IG_CLASS_TEST_opcode:
+      case IG_METHOD_TEST_opcode:
+        e.addElement(InlineGuard.getTarget(this).target.getBasicBlock());
+        break;
+
+      case TABLESWITCH_opcode:
+        e.addElement(TableSwitch.getDefault(this).target.getBasicBlock());
+        for (int i = 0; i < TableSwitch.getNumberOfTargets(this); i++) {
+          e.addPossiblyDuplicateElement(TableSwitch.getTarget(this, i).target.getBasicBlock());
+        }
+        break;
+
+      case LOWTABLESWITCH_opcode:
+        for (int i = 0; i < LowTableSwitch.getNumberOfTargets(this); i++) {
+          e.addPossiblyDuplicateElement(LowTableSwitch.getTarget(this, i).target.getBasicBlock());
+        }
+        break;
+
+      case LOOKUPSWITCH_opcode:
+        e.addElement(LookupSwitch.getDefault(this).target.getBasicBlock());
+        for (int i = 0; i < LookupSwitch.getNumberOfTargets(this); i++) {
+          e.addPossiblyDuplicateElement(LookupSwitch.getTarget(this, i).target.getBasicBlock());
+        }
+        break;
+
+      default:
+        if (MIR_Branch.conforms(this)) {
+          e.addElement(MIR_Branch.getTarget(this).target.getBasicBlock());
+        } else if (MIR_CondBranch.conforms(this)) {
+          e.addElement(MIR_CondBranch.getTarget(this).target.getBasicBlock());
+        } else if (MIR_CondBranch2.conforms(this)) {
+          e.addElement(MIR_CondBranch2.getTarget1(this).target.getBasicBlock());
+          e.addPossiblyDuplicateElement(MIR_CondBranch2.getTarget2(this).target.getBasicBlock());
+        } else if (VM.BuildForIA32 && MIR_LowTableSwitch.conforms(this)) {
+          for (int i = 0; i < MIR_LowTableSwitch.getNumberOfTargets(this); i++) {
+            e.addPossiblyDuplicateElement(MIR_LowTableSwitch.getTarget(this, i).
+                target.getBasicBlock());
+          }
+        } else if (MIR_CondBranch2.conforms(this)) {
+          throw new OptimizingCompilerException("getBranchTargets()",
+                                                    "operator not implemented",
+                                                    operator().toString());
+        } else {
+          throw new OptimizingCompilerException("getBranchTargets()",
+                                                    "operator not implemented",
+                                                    operator().toString());
+        }
+    }
+
+    return e;
+  }

@@ -1,0 +1,14 @@
+    public List<IntegrationEntityTreeNode> getChildrenOfRoot() {
+        List<IntegrationEntityTreeNode> ret = new ArrayList<IntegrationEntityTreeNode>();
+        
+        StructureNode rootNode = m_dataLoader.getRootStructureNode();
+        if (rootNode != null) {
+            for (StructureNode childNode : rootNode.getChildren()) {
+                IntegrationEntityTreeNode treeNode = createRootFolderNode(childNode);
+                if (treeNode != null) {
+                    ret.add(treeNode);
+                }
+            }
+        }
+        return ret;
+    }

@@ -1,0 +1,57 @@
+    void doRead() {
+        if (inputFileName.getText() == "") {
+            JOptionPane.showMessageDialog(this, res.getString("ErrorNoInputFile"),
+                                      res.getString("ErrorTitle"),
+                                      JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        loadButton.setEnabled(false);
+        loadButton.setToolTipText(res.getString("TipLoadDisabled"));
+        verifyButton.setEnabled(false);
+        verifyButton.setToolTipText(res.getString("TipVerifyDisabled"));
+        abortButton.setEnabled(false);
+        abortButton.setToolTipText(res.getString("TipAbortDisabled"));
+
+        inputContent = new MemoryContents();
+
+        try {
+            inputContent.readHex(new File(chooser.getSelectedFile().getPath()));
+        } catch (FileNotFoundException f) {
+            JOptionPane.showMessageDialog(this, res.getString("ErrorFileNotFound"),
+                                      res.getString("ErrorTitle"),
+                                      JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        loadButton.setEnabled(true);
+        loadButton.setToolTipText(res.getString("TipLoadEnabled"));
+        verifyButton.setEnabled(true);
+        verifyButton.setToolTipText(res.getString("TipVerifyEnabled"));
+        status.setText(res.getString("StatusDoDownload"));
+
+        ResourceBundle l = ResourceBundle.getBundle("jmri.jmrix.loconet.downloader.File");
+
+        String text = inputContent.getComment(l.getString("StringLoader"));
+        if (text!=null) bootload.setText(text);
+
+        text = inputContent.getComment(l.getString("StringManufacturer"));
+        if (text!=null) mfg.setText(text);
+
+        text = inputContent.getComment(l.getString("StringDeveloper"));
+        if (text!=null) developer.setText(text);
+
+        text = inputContent.getComment(l.getString("StringProduct"));
+        if (text!=null) product.setText(text);
+
+        text = inputContent.getComment(l.getString("StringHardware"));
+        if (text!=null) hardware.setText(text);
+
+        text = inputContent.getComment(l.getString("StringSoftware"));
+        if (text!=null) software.setText(text);
+
+        text = inputContent.getComment(l.getString("StringDelay"));
+        if (text!=null) delay.setText(text);
+
+        text = inputContent.getComment(l.getString("StringEEStart"));
+        if (text!=null) eestart.setText(text);
+    }

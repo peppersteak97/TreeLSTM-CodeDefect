@@ -1,0 +1,1 @@
+    public void dispose() {}  // no connections need to be broken

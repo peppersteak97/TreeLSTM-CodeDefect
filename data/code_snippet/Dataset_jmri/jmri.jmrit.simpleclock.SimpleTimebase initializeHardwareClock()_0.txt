@@ -1,0 +1,21 @@
+	public void initializeHardwareClock() {
+		if (synchronizeWithHardware || correctHardware) {
+			if (startStopped) {
+				jmri.InstanceManager.clockControlInstance().initializeHardwareClock(0,
+						getTime(),(!internalMaster && !startSetTime));
+			}
+			else {
+				jmri.InstanceManager.clockControlInstance().initializeHardwareClock(mFactor,
+						getTime(),(!internalMaster && !startSetTime));
+			}
+		}
+		else if (!internalMaster) {
+			if (startStopped) {
+				hardwareTimeSource.initializeHardwareClock(0,getTime(),(!startSetTime));
+			}
+			else {
+				hardwareTimeSource.initializeHardwareClock(hardwareFactor,getTime(),(!startSetTime));
+			}
+		}
+		notInitialized = false;
+	}

@@ -1,0 +1,4 @@
+    private void cancelSorting() {
+        m_sortingColumns.clear();
+        sortingStatusChanged();
+    }

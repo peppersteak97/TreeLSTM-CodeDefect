@@ -1,0 +1,3 @@
+  public byte getValueType() {
+    return (byte)((maps[curidx] & VTYPE_MASK) >> VTYPE_SHIFT);
+  }

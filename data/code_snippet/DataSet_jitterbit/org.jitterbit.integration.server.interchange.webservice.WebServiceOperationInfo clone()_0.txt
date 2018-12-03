@@ -1,0 +1,3 @@
+	public WebServiceOperationInfo clone() {
+		return new WebServiceOperationInfo(m_data);
+	}

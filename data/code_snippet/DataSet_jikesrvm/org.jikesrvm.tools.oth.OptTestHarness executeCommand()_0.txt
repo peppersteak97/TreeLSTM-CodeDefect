@@ -1,0 +1,36 @@
+  private static void executeCommand() throws InvocationTargetException, IllegalAccessException {
+    compileMethodsInVector();
+
+    if (EXECUTE_WITH_REFLECTION) {
+
+      if (DISABLE_CLASS_LOADING) {
+        RVMClass.classLoadingDisabled = true;
+      }
+
+      int size = reflectoidVector.size();
+      for (int i = 0; i < size; i++) {
+        reflectoid = reflectoidVector.elementAt(i);
+        reflectMethodArgs = reflectMethodArgsVector.elementAt(i);
+        RVMMethod method = reflectMethodVector.elementAt(i);
+        VM.sysWrite("**** START OF EXECUTION of " + method + " ****.\n");
+        Object result = null;
+        if (perf != null) perf.reset();
+        result = reflectoid.invoke(null, reflectMethodArgs);
+        if (perf != null) perf.stop();
+        VM.sysWrite("**** END OF EXECUTION of " + method + " ****.\n");
+        VM.sysWrite("**** RESULT: " + result + "\n");
+      }
+      EXECUTE_WITH_REFLECTION = false;
+    }
+
+    if (EXECUTE_MAIN) {
+      RVMMethod mainMethod = mainClass.findMainMethod();
+      if (mainMethod == null) {
+        System.err.println(mainClass + " doesn't have a \"public static void main(String[])\" method to execute\n");
+        return;
+      }
+      VM.sysWrite("**** START OF EXECUTION of " + mainMethod + " ****.\n");
+      Reflection.invoke(mainMethod, null, null, new Object[]{mainArgs}, true);
+      VM.sysWrite("**** END OF EXECUTION of " + mainMethod + " ****.\n");
+    }
+  }

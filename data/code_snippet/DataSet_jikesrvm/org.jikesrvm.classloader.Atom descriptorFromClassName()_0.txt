@@ -1,0 +1,15 @@
+  public Atom descriptorFromClassName() {
+    if (VM.VerifyAssertions) {
+      VM._assert(val.length > 0);
+    }
+    if (val[0] == '[') return this;
+    byte[] sig = new byte[1 + val.length + 1];
+    sig[0] = (byte) 'L';
+    for (int i = 0, n = val.length; i < n; ++i) {
+      byte b = val[i];
+      if (b == '.') b = '/';
+      sig[i + 1] = b;
+    }
+    sig[sig.length - 1] = (byte) ';';
+    return findOrCreate(sig, true, null);
+  }

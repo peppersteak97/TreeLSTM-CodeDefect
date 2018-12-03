@@ -1,0 +1,3 @@
+    public WsdlFile getCopy() {
+        return new WsdlFile(this);
+    }

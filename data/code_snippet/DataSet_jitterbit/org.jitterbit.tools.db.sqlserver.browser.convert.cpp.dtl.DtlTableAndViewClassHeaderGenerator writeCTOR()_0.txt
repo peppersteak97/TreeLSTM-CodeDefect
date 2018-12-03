@@ -1,0 +1,5 @@
+    private void writeCTOR() {
+        addLine("\t" + getMainClassName() + "(DBConnection* pConn) :");
+        addLine("\t\tm_dtlRecSet(pConn, GetTableName(), this, m_deleteBinder)");
+        addLine("\t{}");
+    }

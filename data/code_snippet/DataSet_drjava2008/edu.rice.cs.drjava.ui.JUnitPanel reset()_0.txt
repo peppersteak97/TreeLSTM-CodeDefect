@@ -1,0 +1,9 @@
+  public void reset() {
+    JUnitErrorModel juem = getModel().getJUnitModel().getJUnitErrorModel();
+    boolean testsHaveRun = false;
+    if (juem != null) {
+      _numErrors = juem.getNumErrors();
+      testsHaveRun = juem.haveTestsRun();
+    } 
+    else _numErrors = 0;
+  }

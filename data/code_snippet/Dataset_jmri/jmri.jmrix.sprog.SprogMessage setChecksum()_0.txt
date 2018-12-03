@@ -1,0 +1,11 @@
+    public void setChecksum() {
+      int checksum = 0;
+      for (int i = 0; i < _nDataChars - 1; i++) {
+        checksum += _dataChars[i];
+      }
+      checksum = checksum & 0xff;
+      if (checksum > 0) {
+        checksum = 256 - checksum;
+      }
+      _dataChars[_nDataChars - 1] = checksum;
+    }

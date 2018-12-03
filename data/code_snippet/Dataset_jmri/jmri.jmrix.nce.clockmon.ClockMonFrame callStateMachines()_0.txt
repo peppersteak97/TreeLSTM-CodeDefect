@@ -1,0 +1,17 @@
+    private void callStateMachines(){
+        if (internalSyncInitStateCounter > 0) {
+            internalSyncInitStates();
+        }
+        if (internalSyncRunStateCounter > 0) {
+            internalSyncRunStates();
+        }
+        if (nceSyncInitStateCounter > 0) {
+            nceSyncInitStates();
+        }
+        if (nceSyncRunStateCounter > 0) {
+            nceSyncRunStates();
+        }
+        if (alarmDisplayStateCounter > 0) {
+        	alarmDisplayStates();
+        }
+    }

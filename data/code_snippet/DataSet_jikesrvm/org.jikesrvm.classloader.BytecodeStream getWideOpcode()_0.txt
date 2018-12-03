@@ -1,0 +1,10 @@
+  public final int getWideOpcode() {
+    if (VM.VerifyAssertions) VM._assert(wide && opcode == JBC_wide);
+    opcode = readUnsignedByte();
+    if (VM.VerifyAssertions) {
+      VM._assert((opcode >= JBC_iload && opcode <= JBC_aload) ||
+                 (opcode >= JBC_istore && opcode <= JBC_astore) ||
+                 opcode == JBC_iinc);
+    }
+    return opcode;
+  }

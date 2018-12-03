@@ -1,0 +1,21 @@
+    private void layoutComponents() {
+        InputField wsCallLayout = m_wsCallControl.asInputFieldForLayout();
+        RendererUtils.decorateRenderer(wsCallLayout.getLabel(), 
+                        EntityType.WebServiceCall);
+        
+        InputField requestLayout = m_requestControl.asInputFieldForLayout();
+        RendererUtils.decorateRenderer(requestLayout.getLabel(), 
+                        EntityType.Transformation);
+        
+        InputField responseLayout = m_responseControl.asInputFieldForLayout();
+        RendererUtils.decorateRenderer(responseLayout.getLabel(),
+                        EntityType.Transformation);
+        
+        InputField[] fields = { 
+                        wsCallLayout,
+                        m_sourceAndTargetCombos.getSourceFieldForLayout(),
+                        requestLayout, 
+                        responseLayout,
+                        m_sourceAndTargetCombos.getTargetFieldForLayout() };
+        InputFieldLayoutUtils.layoutOneColumn(this, fields, true, false);
+    }

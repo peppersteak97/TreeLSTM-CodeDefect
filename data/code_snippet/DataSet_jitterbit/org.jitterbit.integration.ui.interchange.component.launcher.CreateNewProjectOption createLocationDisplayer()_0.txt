@@ -1,0 +1,4 @@
+    private void createLocationDisplayer() {
+        m_newProjectLocationDisplayer = ProjectLocationBrowser.getNewProjectBrowser(null, null);
+        addLocationDisplayerListeners();
+    }

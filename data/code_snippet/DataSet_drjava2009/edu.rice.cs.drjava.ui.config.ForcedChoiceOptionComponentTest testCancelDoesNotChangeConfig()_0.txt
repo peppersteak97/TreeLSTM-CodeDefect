@@ -1,0 +1,13 @@
+  public void testCancelDoesNotChangeConfig() {
+    String testForcedChoice = new String(DrJava.getConfig().getSetting(OptionConstants.JAVADOC_ACCESS_LEVEL));
+
+    _option.setValue(testForcedChoice);
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+
+    assertEquals("Cancel (resetToCurrent) should not change the config",
+                 OptionConstants.JAVADOC_ACCESS_LEVEL.getDefault(),
+                 DrJava.getConfig().getSetting(OptionConstants.JAVADOC_ACCESS_LEVEL));
+
+  }

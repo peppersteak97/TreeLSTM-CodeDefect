@@ -1,0 +1,4 @@
+	public Dimension getPreferredSize() {
+		Dimension dim = super.getPreferredSize();
+		return new Dimension(dim.width, 50);
+	}

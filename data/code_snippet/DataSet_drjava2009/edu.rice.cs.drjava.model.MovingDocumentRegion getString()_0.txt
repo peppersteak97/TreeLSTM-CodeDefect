@@ -1,0 +1,1 @@
+  public String getString() { return _stringSuspension.value(); }

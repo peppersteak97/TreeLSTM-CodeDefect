@@ -1,0 +1,3 @@
+    public String getServer() {
+        return m_serverField.getValue().trim();
+    }

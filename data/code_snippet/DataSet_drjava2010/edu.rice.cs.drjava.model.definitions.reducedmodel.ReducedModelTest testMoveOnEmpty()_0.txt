@@ -1,0 +1,12 @@
+  public void testMoveOnEmpty() {
+    model1.move(0);
+    assertTrue("#0.0", model1.atStart());
+    try {
+      model1.move(-1);
+      assertTrue("#0.1", false);
+    } catch (Exception e) { }
+    try {
+      model1.move(1);
+      assertTrue("#0.2", false);
+    } catch (Exception e) { }
+  }

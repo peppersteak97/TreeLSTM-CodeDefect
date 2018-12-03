@@ -1,0 +1,6 @@
+    private void createComponents() {
+        m_panel = createInputPanel();
+        createTitle();
+        createTextInputField();
+        createBrowseButton();
+    }

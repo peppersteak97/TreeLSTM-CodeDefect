@@ -1,0 +1,6 @@
+  private void _reset() {
+    _suite = null;
+    _testClassNames = null;
+    _testFiles = null;
+    _log.log("test manager state reset");
+  }

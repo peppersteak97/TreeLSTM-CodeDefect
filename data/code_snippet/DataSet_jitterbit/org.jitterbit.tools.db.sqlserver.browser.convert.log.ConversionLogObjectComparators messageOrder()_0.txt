@@ -1,0 +1,7 @@
+    public static <T extends ConversionLogObject> Comparator<T> messageOrder() {
+        return new Comparator<T>() {
+            public int compare(T o1, T o2) {
+                return String.CASE_INSENSITIVE_ORDER.compare( o1.getMessage(), o2.getMessage() );
+            }
+        };
+    }

@@ -1,0 +1,11 @@
+  public final boolean hasReachableExceptionHandlers() {
+    if (canThrowExceptions()) {
+      for (SpaceEffGraphEdge e = _outEdgeStart; e != null; e = e.getNextOut()) {
+        BasicBlock bb = (BasicBlock) e.toNode();
+        if (bb.isExceptionHandlerBasicBlock()) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }

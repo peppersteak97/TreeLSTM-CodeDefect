@@ -1,0 +1,3 @@
+  final int getNewMark() {
+    return ++markNumber;
+  }

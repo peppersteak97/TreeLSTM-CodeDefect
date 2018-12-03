@@ -1,0 +1,1 @@
+  public InteractionsScriptPane getPane() { return _pane; }

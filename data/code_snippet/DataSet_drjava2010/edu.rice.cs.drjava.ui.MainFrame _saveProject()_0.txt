@@ -1,0 +1,3 @@
+  private void _saveProject() {
+    _saveProjectHelper(_currentProjFile);
+  }

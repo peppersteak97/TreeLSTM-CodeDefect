@@ -1,0 +1,3 @@
+	public boolean isOwnerRelationship() {
+		return m_type == Type.OWNER;
+	}

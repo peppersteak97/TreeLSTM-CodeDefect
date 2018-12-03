@@ -1,0 +1,22 @@
+    private void startLogin() {
+        new SwingWorker() {
+            
+            @Override
+            public Object construct() {
+                KongaPreferences prefs = KongaPreferences.getPreferences(
+                        SqlServerBrowser.class);
+                List<String> liServers = new LinkedList<String>();
+                String sLastUser = prefs.getString( PREF_LAST_USER, "" );
+                String sLastPwd = prefs.getString(PREF_LAST_PWD, "");
+                LoginScreen login = new LoginScreen(liServers, sLastUser, sLastPwd);
+                login.setLoginScreenListener(SqlServerBrowser.this);
+                return login;
+            }
+
+            @Override
+            public void finished() {
+                ((LoginScreen)get()).show();
+            }
+        }.start();
+        
+    }

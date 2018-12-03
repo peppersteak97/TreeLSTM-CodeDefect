@@ -1,0 +1,11 @@
+    public final IntegrationEntity cloneWithNewID() {
+        try {
+            IntegrationEntity clone = clone();
+            clone.setID(clone.createNewID());
+            return clone;
+        }
+        catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }

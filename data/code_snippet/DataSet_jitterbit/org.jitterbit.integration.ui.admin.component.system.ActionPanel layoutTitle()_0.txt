@@ -1,0 +1,7 @@
+    private void layoutTitle() {
+        JLabel titleLabel = IntegrationUiStyleSheet.DropDownPanelTitle.makeJLabel(
+                        PackageResources.ActionPanel.TITLE);
+        titleLabel.setIcon(PackageResources.ActionPanel.ICON);
+        CaptionTitlePanel tp = new CaptionTitlePanel(titleLabel, 25);
+        ContainerDecor.decorate(tp, m_uiRepresentation, BorderLayout.NORTH);
+    }

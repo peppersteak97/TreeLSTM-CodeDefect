@@ -1,0 +1,3 @@
+    public static DateFormat getTableDateFormat() {
+        return s_tableDateFormat;
+    }

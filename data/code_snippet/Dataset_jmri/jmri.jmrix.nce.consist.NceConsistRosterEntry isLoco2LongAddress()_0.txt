@@ -1,0 +1,1 @@
+    public boolean isLoco2LongAddress() { return _isLoco2LongAddress; }

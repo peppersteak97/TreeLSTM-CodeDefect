@@ -1,0 +1,4 @@
+  public void first() {
+    _current = 0;
+    next();
+  }

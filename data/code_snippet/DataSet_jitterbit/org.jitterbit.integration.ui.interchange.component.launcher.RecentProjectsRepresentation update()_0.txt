@@ -1,0 +1,3 @@
+    void update() {
+        m_builder.update();
+    }

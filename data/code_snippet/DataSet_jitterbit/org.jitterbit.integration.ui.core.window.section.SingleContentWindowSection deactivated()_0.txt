@@ -1,0 +1,7 @@
+    void deactivated() {
+        if (m_content == null) {
+            return;
+        }
+        m_content.revokeState(WindowElementState.ACTIVE);
+        fireActiveContentChanged(null);
+    }

@@ -1,0 +1,4 @@
+        if (checkFile()) {
+            IJitterPackerUi packerUi = getPackerFactory().create();
+            packerUi.pack(m_exportUi, callback);
+        }

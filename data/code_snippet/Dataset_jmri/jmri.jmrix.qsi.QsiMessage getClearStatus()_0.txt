@@ -1,0 +1,7 @@
+    static public QsiMessage getClearStatus() {
+        QsiMessage m = new QsiMessage(3);
+        m.setElement(0,17);
+        m.setElement(1,0);
+        m.setElement(2,0);
+        return m;
+    }

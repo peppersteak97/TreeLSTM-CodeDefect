@@ -1,0 +1,3 @@
+    public ITargetMessageUi getObject() {
+        return (ITargetMessageUi) super.getObject();
+    }

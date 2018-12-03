@@ -1,0 +1,24 @@
+    private void createComponents() {
+        m_leftLabel = IntegrationUiStyleSheet.DefaultText.makeJLabel(
+                        PackageResources.Labels.PERMISSIONS);
+        m_rightLabel = IntegrationUiStyleSheet.DefaultText.makeJLabel(" ");
+
+        m_allowFullAccessCheck = createCheckBox("", false);
+        m_denyFullAccessCheck = createCheckBox("", false);
+
+        m_permissionChecks = new ArrayList<PermissionCheckBoxes>();
+        for (Permission p : SUPPORTED_PERMISSIONS) {
+            PermissionCheckBoxes checks = new PermissionCheckBoxes(p,
+                            m_allowFullAccessCheck, m_denyFullAccessCheck);
+            m_permissionChecks.add(checks);
+            if (p == Permission.READ) {
+                m_readChecks = checks;
+                m_readChecks.addActionListener(new ReadListener());
+            }
+            else {
+                checks.addActionListener(this);
+            }
+        }
+
+        m_recursiveCheck = createCheckBox(PackageResources.Labels.APPLY_RECURSIVE, false);
+    }

@@ -1,0 +1,4 @@
+  private void initWordTable() {
+    wordTable.put("true", Tokens.BooleanToken.TRUE);
+    wordTable.put("false", Tokens.BooleanToken.FALSE);
+  }

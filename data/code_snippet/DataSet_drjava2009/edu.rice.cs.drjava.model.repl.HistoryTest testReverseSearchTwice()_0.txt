@@ -1,0 +1,17 @@
+  public void testReverseSearchTwice() {
+    String entry1 = "same";
+    String entry2 = "some";
+
+    _history.add(entry1);
+    _history.add(entry2);
+
+    _history.reverseSearch("s");
+    
+    Utilities.clearEventQueue();
+    assertEquals("Did not reset cursor correctly.", entry2, _history.getCurrent());
+
+    _history.reverseSearch(_history.getCurrent());
+    
+    Utilities.clearEventQueue();
+    assertEquals("Did not reset cursor correctly.", entry1, _history.getCurrent());
+  }

@@ -1,0 +1,7 @@
+  public int exitValue() {
+    if (_aborted) { return -1; }
+    if ((_index<_processes.length-1) || (_processes[_processes.length-1] == null)) {
+      throw new IllegalThreadStateException("Process sequence has not terminated yet, exit value not available.");
+    }
+    return _processes[_processes.length-1].exitValue();
+  }

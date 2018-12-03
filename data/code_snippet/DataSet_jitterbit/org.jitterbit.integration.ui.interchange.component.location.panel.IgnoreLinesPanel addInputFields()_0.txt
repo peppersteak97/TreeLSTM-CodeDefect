@@ -1,0 +1,4 @@
+    private void addInputFields() {
+        addInputField(m_ignoreFirst, m_ignoreFirst, m_ignoreFirst);
+        addInputField(m_ignoreLast, m_ignoreLast, m_ignoreLast);
+    }

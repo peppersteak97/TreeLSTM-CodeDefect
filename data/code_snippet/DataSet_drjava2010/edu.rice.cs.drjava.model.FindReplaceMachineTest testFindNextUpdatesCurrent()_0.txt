@@ -1,0 +1,8 @@
+  public void testFindNextUpdatesCurrent() throws BadLocationException {
+    _doc.insertString(0, EVIL_TEXT, null);
+    _initFrm(0);
+    _assertOffset(_frm, 0);
+    _frm.setFindWord("evil");
+    
+    _testFindNextSucceeds(_frm, 0, 12);
+  }

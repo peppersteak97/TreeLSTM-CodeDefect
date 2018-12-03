@@ -1,0 +1,14 @@
+  private void initLexer() {
+    
+    resetSyntax();
+    parseNumbers();
+    slashSlashComments(true);
+    wordChars('!','\'');
+    wordChars('*','~');
+    quoteChar('"');
+    ordinaryChars('(',')');
+    whitespaceChars(0,' ');
+    commentChar(';');
+    
+    initWordTable();
+  }

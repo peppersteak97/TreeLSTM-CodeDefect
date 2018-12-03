@@ -1,0 +1,37 @@
+  public void testStartOfStmtIgnoreWhiteSpaceAndCommentsInBetween() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionStartingNewStmt(null, null);
+  
+    _setDocText("bar();\n\t   \n  foo();");
+    _doc.setCurrentLocation(12);
+    assertTrue("starting new stmt, ignore whitespace in between",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _doc.setCurrentLocation(30);
+    assertTrue("starting new stmt, ignore single line comments",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _setDocText("{ /* in a comment\nstill in a comment\ndone */\nfoo();");
+    _doc.setCurrentLocation(45);
+    assertTrue("starting new stmt, ignore multi-line comments",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _setDocText("bar();\n/* blah */ foo();\n");
+    _doc.setCurrentLocation(18);
+    assertTrue("starting new stmt, ignore multi-line comment on same " +
+        "line as new stmt",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _setDocText("method foo() {\n" +
+  "}\n" +
+  "     ");
+    _doc.setCurrentLocation(17);
+    assertTrue("Blank line with no non-WS after",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _setDocText("method foo() {\n" +
+  "}\n" +
+  "     \n" +
+    _doc.setCurrentLocation(17);
+    assertTrue("Blank line with comments after, but no non-WS",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+  }

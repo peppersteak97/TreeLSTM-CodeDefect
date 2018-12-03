@@ -1,0 +1,18 @@
+    private void layoutComponents() {
+        setLayout(new BoxLayout(getUi(), BoxLayout.PAGE_AXIS));
+
+        add(getSubComponentPanel(m_topPanel));
+        add(Box.createVerticalStrut(10));
+
+        ResourceBundle res = SchedulePage.getResources();
+        Border border = IntegrationUiStyleSheet.DropDownPanelPanelBorder;
+
+        if (TIMEZONE_SUPPORT) {
+            layoutTimeZonePanel(res, border);
+        }
+        layoutOccurencePanel(res, border);
+        layoutFrequencyPanel(res, border);
+        layoutDurationPanel(res, border);
+        
+        add(Box.createVerticalGlue());
+    }

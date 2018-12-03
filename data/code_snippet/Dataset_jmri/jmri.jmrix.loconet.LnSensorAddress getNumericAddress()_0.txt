@@ -1,0 +1,3 @@
+    public String getNumericAddress() {
+        return "LS"+(asInt()+1);
+    }

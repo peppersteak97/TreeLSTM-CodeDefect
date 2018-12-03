@@ -1,0 +1,11 @@
+	boolean setNextArgFocus(){
+		int i=m_textAreaExpression_end_pos;
+		String text=getText();
+		i=text.indexOf(FormulaBuilderConstants.ARGUMENT,i);
+		if(i>=0){
+			m_textAreaExpression_start_pos=i;
+			m_textAreaExpression_end_pos=i+FormulaBuilderConstants.ARGUMENT_LENGTH;
+			return true;
+		}
+		return false;
+	}

@@ -1,0 +1,1 @@
+    public String getLoco4DccAddress() { return _loco4DccAddress; }

@@ -1,0 +1,5 @@
+  protected final void emit_ladd() {
+    if (VM.BuildFor32Addr) {
+    } else {
+    }
+  }

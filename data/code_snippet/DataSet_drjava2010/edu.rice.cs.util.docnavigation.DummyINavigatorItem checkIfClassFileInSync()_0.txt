@@ -1,0 +1,3 @@
+  public boolean checkIfClassFileInSync() { 
+    throw new UnsupportedOperationException("checkIfClassFileInSync() not implemented"); 
+  }

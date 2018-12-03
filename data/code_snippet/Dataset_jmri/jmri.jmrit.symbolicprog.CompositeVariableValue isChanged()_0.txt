@@ -1,0 +1,8 @@
+    public boolean isChanged() {
+        Iterator i = variables.iterator();
+        while (i.hasNext()) {
+            VariableValue v = (VariableValue) i.next();
+            if (v.isChanged()) return true;
+        }
+        return false;
+    }

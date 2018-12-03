@@ -1,0 +1,3 @@
+  public void resetCompilerErrors() {
+    _compilerErrorModel = new CompilerErrorModel(new CompilerError[0], _model);
+  }

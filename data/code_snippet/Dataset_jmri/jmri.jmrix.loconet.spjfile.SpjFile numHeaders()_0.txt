@@ -1,0 +1,4 @@
+    public int numHeaders() {
+        if (headers != null && h0 != null) return h0.numHeaders();
+        else return -1;
+    }

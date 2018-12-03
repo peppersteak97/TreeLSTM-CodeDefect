@@ -1,0 +1,10 @@
+  public int show() {
+    MainFrame.setPopupLoc(_dialog, _dialog.getOwner());
+    _dialog.setVisible(true);
+    
+    Object val = _optionPane.getValue();
+    if (val == null || !(val instanceof Integer)) {
+      return JOptionPane.CLOSED_OPTION;
+    }
+    return ((Integer)val).intValue();
+  }

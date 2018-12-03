@@ -1,0 +1,10 @@
+  private void requestBoot() {
+    if (log.isDebugEnabled()) {
+      log.debug("Request bootloader version");
+    }
+    tc.setSprogState(SprogTrafficController.V4BOOTMODE);
+    bootState = VERREQSENT;
+    msg = SprogMessage.getv4ExtAddr();
+    tc.sendSprogMessage(msg, this);
+    startLongTimer();
+  }

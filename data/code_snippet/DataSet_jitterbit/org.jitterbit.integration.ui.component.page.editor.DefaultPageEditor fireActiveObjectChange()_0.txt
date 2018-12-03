@@ -1,0 +1,10 @@
+    private void fireActiveObjectChange() {
+        final ActiveObjectProviderEvent evt = new ActiveObjectProviderEvent(this,
+                        getActiveObjects());
+        m_activeObjectListeners.visitAll(new ListenerVisitor<IActiveObjectProviderListener>() {
+
+            public void accept(IActiveObjectProviderListener listener) {
+                listener.activeObjectsChanged(evt);
+            }
+        });
+    }

@@ -1,0 +1,9 @@
+  public RegisterOperand nextElement() {
+    if (current != null) {
+      LiveSetElement ret = current;
+      current = current.getNext();
+      return ret.getRegisterOperand();
+    } else {
+      throw new NoSuchElementException("LiveSetEnumerator");
+    }
+  }

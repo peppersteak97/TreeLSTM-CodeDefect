@@ -1,0 +1,5 @@
+    private void executeImpl() {
+        IIntegrationEntityFactoryCallback callback = new DefaultIntegrationEntityFactoryCallback(
+                m_view.getDataModelUi().getDataObject(), new InternalActionCallback(this));
+    	m_view.createIntegrationEntity(m_entityType, callback);
+    }

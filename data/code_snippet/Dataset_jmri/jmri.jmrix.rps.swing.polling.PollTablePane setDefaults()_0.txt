@@ -1,0 +1,10 @@
+    void setDefaults() {
+        try {
+            File file = new File(PollingFile.defaultFilename());
+            if (log.isInfoEnabled()) log.info("located file "+file+" for store");
+            Engine.instance().storePollConfig(file);
+            modifiedFlag.setModifiedFlag(false);
+        } catch (Exception e) {
+            log.error("exception during storeDefault: "+e);
+        }
+    }

@@ -1,0 +1,15 @@
+	void Yes(){
+		if(m_obj instanceof TreeMapper){
+			try {
+				((TreeMapper)m_obj).saveMaps();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(m_obj instanceof TreeComponent.Node){
+			TreeComponent.Node node=(TreeComponent.Node)m_obj;
+			node.insertPreConditionNode();
+		}
+		else if(m_obj instanceof FormulaBuilder){
+		}
+	}

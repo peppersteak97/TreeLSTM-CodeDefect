@@ -1,0 +1,8 @@
+    public boolean isToRead() {
+        Iterator i = variables.iterator();
+        while (i.hasNext()) {
+            VariableValue v = (VariableValue) i.next();
+            if (v.isToRead()) return true;
+        }
+        return false;
+    }

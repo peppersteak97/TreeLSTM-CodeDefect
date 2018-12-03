@@ -1,0 +1,5 @@
+  protected final void emit_ireturn() {
+    if (method.isSynchronized()) genSynchronizedMethodEpilogue();
+    peekInt(T0, 0);
+    genEpilogue();
+  }

@@ -1,0 +1,63 @@
+  private void _loadSettings() {
+    int f = _model.getCreateJarFlags();
+    _jarClasses.setSelected(((f & JAR_CLASSES) != 0));
+    _jarSources.setSelected(((f & JAR_SOURCES) != 0));
+    _jarAll.setSelected(((f & JAR_ALL) != 0));
+    _makeExecutable.setSelected(((f & MAKE_EXECUTABLE) != 0));
+    _customManifest.setSelected(((f & CUSTOM_MANIFEST) != 0));
+    
+    LOG.log("_customManifestText set off of "+_model);
+    _customManifestText = _model.getCustomManifest();
+    LOG.log("\tto: "+_customManifestText);
+    if(_customManifestText == null)
+      _customManifestText = "";
+    
+    boolean outOfSync = true;
+    if (_model.getBuildDirectory() != null) {
+      outOfSync = _model.hasOutOfSyncDocuments();
+    }
+    if ((_model.getBuildDirectory() == null) || (outOfSync)) {
+      _jarClasses.setSelected(false);
+      _jarClasses.setEnabled(false);
+      String s;
+      if ((_model.getBuildDirectory() == null) && (outOfSync)) {
+        s = "<html><center>A build directory must be specified in order to jar class files,<br>and the project needs to be compiled.</center></html>";
+      }
+      else
+        if (_model.getBuildDirectory() == null) {
+        s = "<html>A build directory must be specified in order to jar class files.</html>";
+      }
+      else {
+        s = "<html>The project needs to be compiled.</html>";
+      }
+      _cantJarClassesLabel.setText(s);
+    }
+    else {
+      _jarClasses.setEnabled(true);
+      _cantJarClassesLabel.setText(" ");
+      
+      _rootFile = _model.getBuildDirectory();
+      LOG.log("_loadSettings, rootFile="+_rootFile);
+      try {
+        _rootFile = _rootFile.getCanonicalFile();
+      } catch(IOException e) { }
+      
+      final File mc = _model.getMainClassContainingFile();
+      if (mc == null)  _mainClassField.setText("");
+      else {
+        try {
+          OpenDefinitionsDocument mcDoc = _model.getDocumentForFile(mc);
+          _mainClassField.setText(mcDoc.getQualifiedClassName());
+        }
+        catch(IOException ioe) { _mainClassField.setText(""); }
+        catch(edu.rice.cs.drjava.model.definitions.ClassNameNotFoundException e) { _mainClassField.setText(""); }
+      }
+    }
+    
+    _jarFileSelector.setFileField(_model.getCreateJarFile());
+    _mainClassField.getFileChooser().setCurrentDirectory(_rootFile);
+    
+    _okButton.setEnabled(_jarSources.isSelected() || _jarClasses.isSelected() || _jarAll.isSelected());
+    _setEnableExecutable(_jarClasses.isSelected());
+    _setEnableCustomManifest(_jarClasses.isSelected());
+  }

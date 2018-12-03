@@ -1,0 +1,12 @@
+  public String toString() {
+    StringBuilder buf = new StringBuilder("");
+
+    if (list.isEmpty()) {
+      buf.append("empty");
+    } else {
+      for (VariableMapElement ptr : list) {
+        buf.append(ptr.toString());
+      }
+    }
+    return buf.toString();
+  }

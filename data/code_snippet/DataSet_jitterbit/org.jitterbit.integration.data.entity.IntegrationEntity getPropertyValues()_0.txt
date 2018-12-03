@@ -1,0 +1,16 @@
+    public final String[] getPropertyValues() {
+        String[] keys = getPropertyKeys();
+        int N = keys.length;
+        String[] values = new String[N];
+        StringKeyValuePairs keyValues = getProperties();
+		
+        keyValues.put(getIdKey(), getID().toString());
+		keyValues.put(getNameKey(), getName().toString());
+		
+        for (int i = 0; i < N; ++i) {
+            String value = keyValues.get(keys[i]);
+            values[i] = value;
+        }
+
+        return values;
+    }

@@ -1,0 +1,3 @@
+    public EntityType getItemType() {
+        return m_itemType;
+    }

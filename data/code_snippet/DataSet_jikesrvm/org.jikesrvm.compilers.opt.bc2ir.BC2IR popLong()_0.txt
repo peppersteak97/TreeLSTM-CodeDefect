@@ -1,0 +1,6 @@
+  Operand popLong() {
+    Operand r = pop();
+    if (VM.VerifyAssertions) VM._assert(r.isLong());
+    popDummy();
+    return r;
+  }

@@ -1,0 +1,5 @@
+  public void cleanUp() {
+    _docIterator = null;
+    setFindWord("");
+    _doc = null;
+  }

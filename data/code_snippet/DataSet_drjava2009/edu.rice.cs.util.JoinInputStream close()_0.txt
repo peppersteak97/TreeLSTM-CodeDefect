@@ -1,0 +1,7 @@
+  public void close() throws IOException { 
+    for (int i = 0; i < nReaders; i++) { 
+      if (reader[i].available >= 0) { 
+        reader[i].close();
+      }
+    }
+  }

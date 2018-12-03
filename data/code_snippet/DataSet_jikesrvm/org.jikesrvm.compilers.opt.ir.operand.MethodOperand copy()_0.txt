@@ -1,0 +1,7 @@
+  public Operand copy() {
+    MethodOperand mo = new MethodOperand(memRef, target, type);
+    mo.isPreciseTarget = isPreciseTarget;
+    mo.isNonReturningCall = isNonReturningCall;
+    mo.isGuardedInlineOffBranch = isGuardedInlineOffBranch;
+    return mo;
+  }

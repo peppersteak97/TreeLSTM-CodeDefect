@@ -1,0 +1,12 @@
+    public List<JToolBar> getJToolBars() {
+        List<JToolBar> tbs = new ArrayList<JToolBar>();
+
+        for (ToolBarExtensionPoint p : ToolBarExtensionPoint.values()) {
+            ToolBar tb = getExtension(p);
+            if (tb != null) {
+                tbs.add(tb.createJToolBar());
+            }
+        }
+
+        return tbs;
+    }

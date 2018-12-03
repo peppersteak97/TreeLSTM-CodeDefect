@@ -1,0 +1,12 @@
+    private void onProcessesRunning() {
+        if( m_processesExist ) {
+            return;
+        }
+        m_processesExist = true;
+        if( m_useProgressBar ) {
+            m_progressBar.setIndeterminate(true);
+            m_progressBar.setVisible(true);
+        }
+        m_showConsoleAction.putValue(Action.SMALL_ICON, 
+                PackageResources.ProcessDisplayer.ON);
+    }

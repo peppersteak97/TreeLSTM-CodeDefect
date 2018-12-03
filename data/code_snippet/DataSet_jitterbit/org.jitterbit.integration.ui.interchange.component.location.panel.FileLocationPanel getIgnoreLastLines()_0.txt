@@ -1,0 +1,3 @@
+    public int getIgnoreLastLines() {
+        return m_ignoreLinesPanel.getIgnoreLast();
+    }

@@ -1,0 +1,4 @@
+    static public SerialDriverAdapter instance() {
+        if (mInstance == null) mInstance = new SerialDriverAdapter();
+        return mInstance;
+    }

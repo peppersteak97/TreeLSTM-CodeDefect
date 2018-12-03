@@ -1,0 +1,9 @@
+	private void resetTurnoutSize() {
+		turnoutBX = turnoutBXDefault;
+		turnoutCX = turnoutCXDefault;
+		turnoutWid = turnoutWidDefault;
+		xOverLong = xOverLongDefault;
+		xOverHWid = xOverHWidDefault;
+		xOverShort = xOverShortDefault;
+		setDirty(true);
+	}

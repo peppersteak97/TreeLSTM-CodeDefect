@@ -1,0 +1,3 @@
+  public Register getESP() {
+    return getGPR(ESP);
+  }

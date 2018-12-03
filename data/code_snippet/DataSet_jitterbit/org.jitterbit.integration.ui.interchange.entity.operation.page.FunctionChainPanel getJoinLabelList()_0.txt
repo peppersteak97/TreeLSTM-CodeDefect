@@ -1,0 +1,3 @@
+    List<JButton> getJoinLabelList() {
+        return new ArrayList<JButton>(m_joinLabels);
+    }

@@ -1,0 +1,6 @@
+  public void textRemoveTabs1() {
+    _doc.setIndent(1);
+    String test = "\t this \t\tis a \t\t\t\t\ttest\t\t";
+    String result = DefinitionsDocument._removeTabs(test);
+    assertEquals( "  this   is a      test  ", result);
+  }

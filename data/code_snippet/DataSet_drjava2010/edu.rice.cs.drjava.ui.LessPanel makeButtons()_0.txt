@@ -1,0 +1,12 @@
+  protected JComponent[] makeButtons() {
+    _updateNowButton = new JButton("Update");
+    _updateNowButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) { updateText(); }
+    });
+    _restartButton = new JButton("Restart");
+    _restartButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) { restartFollowing(); }
+    });
+    _restartButton.setEnabled(false);
+    return new JComponent[] { _updateNowButton, _restartButton };
+  }

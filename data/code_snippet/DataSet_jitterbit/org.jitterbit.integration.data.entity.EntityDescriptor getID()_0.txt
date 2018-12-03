@@ -1,0 +1,3 @@
+    public IntegrationEntityId getID() {
+        return m_id;
+    }

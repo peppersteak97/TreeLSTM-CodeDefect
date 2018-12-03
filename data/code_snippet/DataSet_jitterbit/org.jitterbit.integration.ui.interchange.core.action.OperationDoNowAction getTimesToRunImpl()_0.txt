@@ -1,0 +1,14 @@
+    private int getTimesToRunImpl() {
+        try {
+            Object message = IntegrationUiStyleSheet.DefaultText.makeJLabel(
+                            "How many times do you want to run the operation?");
+            String value = JOptionPane.showInputDialog(message);
+            return Math.max(1, Integer.valueOf(value));
+        }
+        catch (HeadlessException e) {
+            return -1;
+        }
+        catch (NumberFormatException e) {
+            return -1;
+        }
+    }

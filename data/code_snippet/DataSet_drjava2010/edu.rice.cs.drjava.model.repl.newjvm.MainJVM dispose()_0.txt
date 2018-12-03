@@ -1,0 +1,4 @@
+    public void dispose() {
+      if (_state.compareAndSet(this, new DisposedState())) { MainJVM.super.dispose(); }
+      else { _state.value().dispose(); }
+    }

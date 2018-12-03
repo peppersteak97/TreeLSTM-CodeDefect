@@ -1,0 +1,12 @@
+  public void testPrevStmtPrevLine() throws BadLocationException {
+    IndentRuleAction rule1 = new ActionStartPrevStmtPlus(0, true);
+    IndentRuleAction rule2 = new ActionStartPrevStmtPlus(2, true);
+
+    rule1.testIndentLine(_doc, 44, Indenter.IndentReason.OTHER);
+    assertEquals("prev stmt on prev line, no suffix",
+                 _doc.getText());
+    
+    rule2.testIndentLine(_doc, 44, Indenter.IndentReason.OTHER);
+    assertEquals("prev stmt on prev line, suffix two spaces",
+                 _doc.getText());
+  }

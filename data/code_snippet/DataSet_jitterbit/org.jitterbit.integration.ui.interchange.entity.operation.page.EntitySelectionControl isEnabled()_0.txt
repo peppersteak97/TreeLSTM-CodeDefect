@@ -1,0 +1,3 @@
+    boolean isEnabled() {
+        return m_comboBox.isEnabled();
+    }

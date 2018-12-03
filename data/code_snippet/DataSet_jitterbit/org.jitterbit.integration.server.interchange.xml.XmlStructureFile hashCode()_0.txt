@@ -1,0 +1,6 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 37 * hash + m_filePath.hashCode();
+        hash = 37 * hash + (m_contents == null ? 0 : m_contents.hashCode());
+        return hash;
+    }

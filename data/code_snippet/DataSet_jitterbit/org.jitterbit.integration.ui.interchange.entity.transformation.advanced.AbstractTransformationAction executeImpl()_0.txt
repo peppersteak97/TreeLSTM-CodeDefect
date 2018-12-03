@@ -1,0 +1,18 @@
+    private void executeImpl() {
+        Transformation tf = getActiveTransformation();
+        if (tf == null) {
+            failed("No transformation selected.");
+            return;
+        }
+        IPage page = m_view.getPageForEntity(tf);
+        if (page == null) {
+            failed("The transformation is not open.");
+            return;
+        }
+        if (m_saveFirst && page.isDirty()) {
+            saveAndRun(page);
+        }
+        else {
+            run();
+        }
+    }

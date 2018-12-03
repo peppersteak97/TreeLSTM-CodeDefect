@@ -1,0 +1,8 @@
+    public DbInsertMode getDbInsertMode() {
+        try {
+            return DbInsertMode.fromId(Integer.parseInt(mode));
+        }
+        catch (NumberFormatException e) {
+            return null;
+        }
+    }

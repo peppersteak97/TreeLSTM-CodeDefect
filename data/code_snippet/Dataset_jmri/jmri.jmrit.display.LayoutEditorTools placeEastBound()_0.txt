@@ -1,0 +1,15 @@
+	private void placeEastBound() {
+		if (testIcon == null)
+			testIcon = signalIconEditor.getIcon(0);
+		Point2D p = boundary.getCoords();
+		if (trackHorizontal) {
+			setSignalHeadOnPanel(2,eastBoundField.getText().trim(),
+				(int)(p.getX()-testIcon.getIconWidth()),
+				(int)(p.getY()+4) );
+		}
+		else if (trackVertical) {
+			setSignalHeadOnPanel(1,eastBoundField.getText().trim(),
+				(int)(p.getX()-2-testIcon.getIconWidth()),
+				(int)(p.getY()-testIcon.getIconHeight()) );
+		}
+	}

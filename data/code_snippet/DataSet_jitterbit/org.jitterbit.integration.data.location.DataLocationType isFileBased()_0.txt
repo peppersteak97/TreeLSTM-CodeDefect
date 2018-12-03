@@ -1,0 +1,13 @@
+    public boolean isFileBased() {
+        switch (this) {
+        case FTP:
+        case FileShare:
+        case HTTP:
+        case SCP:
+            return true;
+        case Database:
+            return false;
+        default:
+            return false;
+        }
+    }

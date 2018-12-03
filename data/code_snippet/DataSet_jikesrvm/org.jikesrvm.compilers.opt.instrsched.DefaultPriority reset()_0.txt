@@ -1,0 +1,4 @@
+  public final void reset() {
+    i = bb.firstInstruction();
+    instr = bb.forwardRealInstrEnumerator();
+  }

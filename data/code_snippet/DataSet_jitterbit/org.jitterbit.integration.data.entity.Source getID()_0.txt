@@ -1,0 +1,3 @@
+    public SourceId getID() {
+        return (SourceId) super.getID();
+    }

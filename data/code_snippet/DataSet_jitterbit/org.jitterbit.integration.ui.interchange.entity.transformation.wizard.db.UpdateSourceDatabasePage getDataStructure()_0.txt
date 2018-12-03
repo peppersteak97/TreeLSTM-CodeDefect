@@ -1,0 +1,7 @@
+    private DataStructure getDataStructure() {
+        DatabaseStructure s = new DatabaseStructure(m_dbLocation);
+        addTableInformation(s);
+        addSqlScriptInformation(s);
+        addFieldInformation(s);
+        return s;
+    }

@@ -1,0 +1,7 @@
+  public final BasicBlockEnumeration getExceptionHandlers() {
+    if (exceptionHandlers == null) {
+      return BasicBlockEnumeration.Empty;
+    } else {
+      return exceptionHandlers.enumerator();
+    }
+  }

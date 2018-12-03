@@ -1,0 +1,15 @@
+    public boolean isValid() {
+        if (hasEndDate()) {
+            if (m_endDate == null) {
+                return false;
+            }
+            Date start = getStartDate();
+            if (start != null) {
+                Date end = getEndDate();
+                if (end != null) {
+                    return !start.after(end);
+                }
+            }
+        }
+        return true;
+    }

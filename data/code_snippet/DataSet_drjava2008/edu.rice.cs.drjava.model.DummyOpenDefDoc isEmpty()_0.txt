@@ -1,0 +1,1 @@
+  public boolean isEmpty() { throw new UnsupportedOperationException("Dummy method"); }

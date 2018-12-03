@@ -1,0 +1,5 @@
+	public String toString() {
+		StringBuffer sb = new StringBuffer(m_illegalOwner.toString());
+		sb.append(m_illegalDependant.toString());
+		return sb.toString();
+	}

@@ -1,0 +1,11 @@
+    void setupReadingFile() throws java.io.IOException {
+        readingInput = null;
+        
+        readingFileChooser.rescanCurrentDirectory();
+        int retVal = readingFileChooser.showOpenDialog(this);
+
+    
+        java.io.Reader reader = new java.io.FileReader(
+                                        readingFileChooser.getSelectedFile());
+        readingInput = new com.csvreader.CsvReader(reader);
+    }

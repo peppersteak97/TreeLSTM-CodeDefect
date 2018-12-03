@@ -1,0 +1,5 @@
+    public Vector getPortNames() {
+    	portNameVector = new Vector();
+    	portNameVector.addElement(hostName);
+        return portNameVector;
+    }

@@ -1,0 +1,3 @@
+  public void report() {
+    super.report(new MethodNameFunction());
+  }

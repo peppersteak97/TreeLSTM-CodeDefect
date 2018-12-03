@@ -1,0 +1,15 @@
+    protected void updateLine5a() {
+    	if (prefs.getConnection3().equals("(none)"))
+    		return;
+    	if (ConnectionStatus.instance().isConnectionOk(prefs.getPort3())){
+    		cs5a.setForeground(Color.black);
+			cs5a.setText(getConnection3());
+		} else {
+			cs5a.setForeground(Color.red);
+			String cf = MessageFormat.format(rb.getString("ConnectionFailed"),
+					new String[] { prefs.getConnection3(), prefs.getPort3() });
+			cf = cf.toUpperCase();
+			cs5a.setText(cf);
+		}
+		this.revalidate();
+	}

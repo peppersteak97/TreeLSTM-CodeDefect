@@ -1,0 +1,6 @@
+    private void createList() {
+        IKongaListFactory factory = ComponentFactories.newKongaListFactory();
+        ListModel model = createListModel();
+        m_pageList = factory.newList(model);
+        ContainerDecor.decorate(m_pageList, m_listPanel, BorderLayout.CENTER);
+    }

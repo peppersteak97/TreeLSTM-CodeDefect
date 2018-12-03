@@ -1,0 +1,4 @@
+    public void delete() {
+        setUiParent(null);
+        getDataObject().removePropertyChangeListener(this);
+    }

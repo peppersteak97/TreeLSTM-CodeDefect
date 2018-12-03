@@ -1,0 +1,5 @@
+    private JCheckBox createCheckBox() {
+        JCheckBox cb = ComponentFactories.checkBoxFactory().newCheckBox();
+        cb.addActionListener(this);
+        return cb;
+    }

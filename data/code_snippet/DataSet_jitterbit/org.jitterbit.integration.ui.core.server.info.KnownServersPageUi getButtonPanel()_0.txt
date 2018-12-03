@@ -1,0 +1,17 @@
+    private JComponent getButtonPanel() {
+        JPanel p = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 0, 0, 10);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        IButtonFactory factory = ComponentFactories.buttonFactory();
+        LayoutUtils.layoutInGridBag(p, gbc, new Component[][] {
+            { factory.newButton(m_actions.login()), m_loginExplanation },
+            { factory.newButton(m_actions.remove()), m_removeServersActionExplanation },
+        });
+        JPanel p2 = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        p2.add(p);
+        return p2;
+    }

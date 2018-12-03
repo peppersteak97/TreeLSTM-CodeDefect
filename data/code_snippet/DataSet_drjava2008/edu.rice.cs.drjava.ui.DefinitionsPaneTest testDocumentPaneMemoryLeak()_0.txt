@@ -1,0 +1,95 @@
+  public void testDocumentPaneMemoryLeak()  throws InterruptedException, java.io.IOException {
+    
+    DocChangeListener listener = new DocChangeListener();
+    
+    _finalPaneCt = 0;
+    _finalDocCt = 0;
+    
+    FinalizationListener<DefinitionsPane> fl = new FinalizationListener<DefinitionsPane>() {
+      public void finalized(FinalizationEvent<DefinitionsPane> e) { _finalPaneCt++; }
+    };
+    
+    FinalizationListener<DefinitionsDocument> fldoc = new FinalizationListener<DefinitionsDocument>() {
+      public void finalized(FinalizationEvent<DefinitionsDocument> e) { _finalDocCt++; }
+    };
+    
+    final SingleDisplayModel _model = _frame.getModel();
+    _model.addListener(listener);
+    
+    listener.reset();
+    OpenDefinitionsDocument d1 = _model.newFile();
+    d1.addFinalizationListener(fldoc);
+    listener.waitDocChanged();
+    DefinitionsPane p1 = _frame.getCurrentDefPane();
+    p1.addFinalizationListener(fl);
+    assertEquals("Doc1 setup correctly", d1, p1.getOpenDefDocument());
+
+    listener.reset();
+    OpenDefinitionsDocument d2 = _model.newFile();
+    d2.addFinalizationListener(fldoc);
+    listener.waitDocChanged();
+    DefinitionsPane p2 = _frame.getCurrentDefPane();
+    p2.addFinalizationListener(fl);
+    assertEquals("Doc2 setup correctly", d2, p2.getOpenDefDocument());
+    
+    listener.reset();
+    OpenDefinitionsDocument d3 = _model.newFile();
+    d3.addFinalizationListener(fldoc);
+    listener.waitDocChanged();
+    DefinitionsPane p3 = _frame.getCurrentDefPane();
+    p3.addFinalizationListener(fl);
+    assertEquals("Doc3 setup correctly", d3, p3.getOpenDefDocument());
+       
+    listener.reset();
+    OpenDefinitionsDocument d4 = _model.newFile();
+    d4.addFinalizationListener(fldoc);
+    listener.waitDocChanged();
+    DefinitionsPane p4 = _frame.getCurrentDefPane();
+    p4.addFinalizationListener(fl);
+    assertEquals("Doc4 setup correctly", d4, p4.getOpenDefDocument());
+        
+    listener.reset();
+    OpenDefinitionsDocument d5 = _model.newFile();
+    d5.addFinalizationListener(fldoc);
+    listener.waitDocChanged();
+    DefinitionsPane p5 = _frame.getCurrentDefPane();
+    p5.addFinalizationListener(fl);
+    assertEquals("Doc5 setup correctly", d5, p5.getOpenDefDocument());   
+    
+    listener.reset();
+    OpenDefinitionsDocument d6 = _model.newFile();
+    d6.addFinalizationListener(fldoc);
+    listener.waitDocChanged();
+    DefinitionsPane p6 = _frame.getCurrentDefPane();
+    p6.addFinalizationListener(fl);
+    assertEquals("Doc6 setup correctly", d6, p6.getOpenDefDocument()); 
+    
+    p1 = p2 = p3 = p4 = p5 = p6 = null;
+    d1 = d2 = d3 = d4 = d5 = d6 = null;
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() { _model.closeAllFiles(); } });
+    Utilities.clearEventQueue();
+    
+    
+    int ct = 0;
+    do {  
+      Utilities.clearEventQueue();
+      Utilities.clearEventQueue();
+      
+      System.gc();
+      System.runFinalization();
+      System.gc();
+      ct++; 
+    }
+    while (ct < 10 && (_finalDocCt != 6 && _finalPaneCt != 6));
+    
+    if (ct == 10) fail("Failed to reclaim all documents; panes left = " + (6 - _finalPaneCt) + "; docs left = " + 
+                       (6 - _finalDocCt));
+    
+    if (ct > 1) System.out.println("testDocumentPaneMemoryLeak required " + ct + " iterations");
+
+    assertEquals("all the defdocs should have been garbage collected", 6, _finalDocCt);
+    System.out.println("_finalPaneCt = " + _finalPaneCt);
+    
+    _log.log("testDocumentPaneMemoryLeak completed");
+  }

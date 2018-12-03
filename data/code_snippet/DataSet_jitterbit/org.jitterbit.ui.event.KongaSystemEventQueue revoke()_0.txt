@@ -1,0 +1,6 @@
+	public synchronized void revoke() {
+		EventQueue q = Toolkit.getDefaultToolkit().getSystemEventQueue();
+		if( q == this ) {
+			pop();
+		}
+	}

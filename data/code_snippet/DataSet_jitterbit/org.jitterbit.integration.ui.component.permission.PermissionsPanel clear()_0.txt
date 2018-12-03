@@ -1,0 +1,8 @@
+    void clear() {
+        m_allowFullAccessCheck.setSelected(false);
+        m_denyFullAccessCheck.setSelected(false);
+        for (PermissionCheckBoxes cb : m_permissionChecks) {
+            cb.setState(null, null);
+        }
+        m_recursiveCheck.setSelected(false);
+    }

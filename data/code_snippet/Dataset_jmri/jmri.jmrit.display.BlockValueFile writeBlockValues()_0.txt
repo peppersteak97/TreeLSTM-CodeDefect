@@ -1,0 +1,52 @@
+	public void writeBlockValues() throws org.jdom.JDOMException, java.io.IOException {
+		log.debug("entered writeBlockValues");
+		List blocks = blockManager.getSystemNameList();
+		if (blocks.size()>0) {
+			root = new Element("block_values");
+			doc = newDocument(root, dtdLocation+"block-values.dtd");
+			boolean valuesFound = false;
+			
+			java.util.Map m = new java.util.HashMap();
+			m.put("type", "text/xsl");
+			org.jdom.ProcessingInstruction p = new org.jdom.ProcessingInstruction("xml-stylesheet", m);
+			doc.addContent(0,p);
+			
+			Element values = new Element("blockvalues");
+			for (int i = 0; i<blocks.size(); i++) {
+				String sname = (String)blocks.get(i);
+				Block b = blockManager.getBySystemName(sname);
+				if (b!=null) {
+					Object o = b.getValue();
+					if (o!=null) {
+						Element val = new Element("block");
+						val.setAttribute("systemname", sname);
+						val.setAttribute("value",o.toString());
+						int v = b.getDirection();
+						if (v!=jmri.Path.NONE) val.setAttribute("dir",""+v);
+						values.addContent(val);
+						valuesFound = true;
+					}
+				}
+				else log.error("Block "+sname+" was not found.");
+			}
+			root.addContent(values);
+			
+			if (valuesFound) {		
+				try {
+					if (!checkFile(defaultFileName)) {
+						File file = new File(defaultFileName);
+						file.createNewFile();
+					}
+					writeXML(findFile(defaultFileName),doc);
+				}
+				catch (java.io.IOException ioe) {
+					log.error("IO Exception "+ioe);
+					throw (ioe);
+				}
+				catch (org.jdom.JDOMException jde) {
+					log.error("JDOM Exception "+jde);
+					throw (jde);
+				}
+			}
+		}
+	}

@@ -1,0 +1,3 @@
+    EnumSet<DataLocationType> getSupportedTargetTypes() {
+        return m_targetTypes;
+    }

@@ -1,0 +1,1 @@
+    public int getSlot() { return slot;}  // cannot modify the slot number once created

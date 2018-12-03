@@ -1,0 +1,6 @@
+  public final void emitBCCTR() {
+
+    int mi = BCCTRtemplate;
+    mIP++;
+    mc.addInstruction(mi);
+  }

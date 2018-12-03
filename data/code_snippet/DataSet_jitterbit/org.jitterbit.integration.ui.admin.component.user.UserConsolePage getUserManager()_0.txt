@@ -1,0 +1,3 @@
+    ConsoleUserManager getUserManager() {
+        return m_userManager;
+    }

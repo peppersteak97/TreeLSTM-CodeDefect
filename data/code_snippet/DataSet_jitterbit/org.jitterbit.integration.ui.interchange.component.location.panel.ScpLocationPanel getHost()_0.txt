@@ -1,0 +1,3 @@
+    public String getHost() {
+        return m_host.getValue().trim();
+    }

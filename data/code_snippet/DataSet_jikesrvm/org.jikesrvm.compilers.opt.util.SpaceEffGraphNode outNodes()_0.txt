@@ -1,0 +1,3 @@
+  public final GraphNodeEnumeration outNodes() {
+    return new OutNodeEnumeration(this);
+  }

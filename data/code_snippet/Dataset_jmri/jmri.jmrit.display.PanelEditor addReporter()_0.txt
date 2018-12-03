@@ -1,0 +1,10 @@
+    void addReporter() {
+        ReporterIcon l = new ReporterIcon();
+        l.setReporter(nextReporter.getText());
+        setNextLocation(l);
+        l.setSize(l.getPreferredSize().width, l.getPreferredSize().height);
+        l.setDisplayLevel(REPORTERS);
+        putLabel(l);
+        l.setPositionable(true);
+        moveToFront(l);
+    }

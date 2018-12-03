@@ -1,0 +1,4 @@
+  private void prepare() {
+                                ir.desiredSSAOptions.getExcludeGuards());
+    live.perform(ir);
+  }

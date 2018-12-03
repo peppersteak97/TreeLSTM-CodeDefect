@@ -1,0 +1,26 @@
+    void updatedTextField() {
+        if (log.isDebugEnabled()) log.debug("CV "+getCvNum()+","+getSecondCvNum()+" enter updatedTextField in SplitVal");
+        CvValue cv1 = (CvValue)_cvVector.elementAt(getCvNum());
+        CvValue cv2 = (CvValue)_cvVector.elementAt(getSecondCvNum());
+
+        try { newEntry = Integer.valueOf(_value.getText()).intValue(); }
+        catch (java.lang.NumberFormatException ex) { newEntry = 0; }
+
+        int newVal = (newEntry-mOffset)/mFactor;
+
+        if (log.isDebugEnabled())
+            log.debug("CV "+getCvNum()+","+getSecondCvNum()+" lo cv was "+cv1.getValue()+" mask="+lowerbitmask+" offset="+lowerbitoffset);
+        int newCv1 = ( (newVal << lowerbitoffset) & lowerbitmask )
+                    | (~lowerbitmask & cv1.getValue());
+
+        if (log.isDebugEnabled())
+            log.debug("CV "+getCvNum()+","+getSecondCvNum()+" hi cv was "+cv2.getValue()+" mask="+upperbitmask+" offset="+upperbitoffset);
+        int newCv2 = (((newVal << upperbitoffset)>>8)&upperbitmask)
+                    | (~upperbitmask & cv2.getValue());
+        if (log.isDebugEnabled()) log.debug("CV "+getCvNum()+","+getSecondCvNum()+" new value "+newVal+" gives first="+newCv1+" second="+newCv2);
+
+        cv1.setValue(newCv1);
+        cv2.setValue(newCv2);
+        if (log.isDebugEnabled()) log.debug("CV "+getCvNum()+","+getSecondCvNum()+" exit updatedTextField");
+
+    }

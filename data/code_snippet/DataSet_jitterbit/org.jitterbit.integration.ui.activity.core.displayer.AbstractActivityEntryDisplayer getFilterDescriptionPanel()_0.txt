@@ -1,0 +1,3 @@
+    protected final FilterDescriptionPanel getFilterDescriptionPanel() {
+        return m_filterDescription;
+    }

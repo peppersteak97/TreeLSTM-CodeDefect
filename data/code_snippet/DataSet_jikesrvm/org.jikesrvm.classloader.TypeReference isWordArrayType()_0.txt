@@ -1,0 +1,6 @@
+  public boolean isWordArrayType() {
+    return this == WordArray ||
+           this == OffsetArray ||
+           this == AddressArray ||
+           this == ExtentArray;
+  }

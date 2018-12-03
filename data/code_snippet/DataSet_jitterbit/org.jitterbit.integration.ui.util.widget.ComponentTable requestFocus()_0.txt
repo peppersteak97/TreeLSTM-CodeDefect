@@ -1,0 +1,10 @@
+    public void requestFocus() {
+        for (JComponent[] row : m_rows) {
+            for (JComponent col : row) {
+                if (col.isFocusable()) {
+                    col.requestFocusInWindow();
+                    return;
+                }
+            }
+        }
+    }

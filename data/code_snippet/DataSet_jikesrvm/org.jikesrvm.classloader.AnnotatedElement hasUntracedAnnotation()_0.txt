@@ -1,0 +1,3 @@
+  public final boolean hasUntracedAnnotation() {
+    return isAnnotationDeclared(TypeReference.Untraced);
+  }

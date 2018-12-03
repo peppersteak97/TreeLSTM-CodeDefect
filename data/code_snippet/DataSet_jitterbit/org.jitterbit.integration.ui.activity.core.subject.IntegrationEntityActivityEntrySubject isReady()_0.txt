@@ -1,0 +1,6 @@
+    public boolean isReady() {
+        if (m_entity instanceof Folder) {
+            return m_entity.getNumberOfChildren() > 0;
+        }
+        return true;
+    }

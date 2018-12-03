@@ -1,0 +1,15 @@
+  private void sendErase() {
+    if (log.isDebugEnabled()) {
+      log.debug("Erase Flash " + eraseAddress);
+    }
+    msg = new SprogMessage(SprogMessage.MAXSIZE).getEraseFlash(eraseAddress,
+        rows);
+    bootState = ERASESENT;
+    statusBar.setText("Erase " + eraseAddress);
+    tc.sendSprogMessage(msg, this);
+    if (log.isDebugEnabled()) {
+      log.debug("Sent erase command to address " + eraseAddress);
+    }
+    eraseAddress += (rows * 64);
+    startLongTimer();
+  }

@@ -1,0 +1,5 @@
+    private void layoutComponents() {
+        InputField[] fields = { m_name, m_description, m_operationTypeBoxInput };
+
+        InputFieldLayoutUtils.layoutOneColumn(this, fields, false, true);
+    }

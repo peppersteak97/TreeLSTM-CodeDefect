@@ -1,0 +1,3 @@
+    public DbTranFilters getHierarchicalFilters() {
+        return m_treeFilters.getCopy();
+    }

@@ -1,0 +1,3 @@
+  public String getExternalBinTitle() {
+    throw new UnsupportedOperationException("Tried to call getExternalBinTitle on a Dummy");
+  }

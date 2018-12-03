@@ -1,0 +1,11 @@
+    private void layoutComponents() {
+        Layout layout = new Layout();
+        layout.addCaption(PackageResources.FlatFilterDefiner.Labels.ORIGINAL_SQL);
+        JScrollPane scroll = ComponentFactories.scrollFactory().newScrollPane(m_sqlArea);
+        UiUtils.setOpaqueRecursively(scroll, false);
+        layout.addTextComponent(scroll, false);
+        layout.addVerticalSpace();
+        layout.addCaption(PackageResources.FlatFilterDefiner.Labels.FILTER_TO_TEST);
+        layout.addTextComponent(m_whereClauseArea, true);
+        m_displayer = layout.getUi();
+    }

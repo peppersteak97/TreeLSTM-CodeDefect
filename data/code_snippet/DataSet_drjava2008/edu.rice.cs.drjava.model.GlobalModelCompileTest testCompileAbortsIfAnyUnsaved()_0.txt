@@ -1,0 +1,22 @@
+  public void testCompileAbortsIfAnyUnsaved() throws Exception {
+    final OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    final OpenDefinitionsDocument doc2 = setupDocument(BAR_TEXT);
+    
+    CompileShouldFailListener listener = new CompileShouldFailListener() {
+      public void saveBeforeCompile() {
+        assertModified(true, doc);
+        assertModified(true, doc2);
+        synchronized(this) { saveBeforeCompileCount++; }
+      }
+    };
+    
+    _model.addListener(listener);
+    listener.compile(doc);
+    listener.assertSaveBeforeCompileCount(1);
+    assertModified(true, doc);
+    assertModified(true, doc2);
+    assertContents(FOO_TEXT, doc);
+    assertContents(BAR_TEXT, doc2);
+    _model.removeListener(listener);
+    _log.log("testCompileAbortsIfAnyUnsaved complete");
+  }

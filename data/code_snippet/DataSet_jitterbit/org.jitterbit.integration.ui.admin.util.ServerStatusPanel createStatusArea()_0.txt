@@ -1,0 +1,4 @@
+    private void createStatusArea() {
+        m_statusArea = ComponentFactories.textFactory().newTextArea(4, 40);
+        m_statusArea.setEditable(false);
+    }

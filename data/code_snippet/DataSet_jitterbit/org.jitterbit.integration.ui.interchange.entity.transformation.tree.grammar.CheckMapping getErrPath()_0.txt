@@ -1,0 +1,1 @@
+	public String getErrPath(){return m_updatePath_errPath;}

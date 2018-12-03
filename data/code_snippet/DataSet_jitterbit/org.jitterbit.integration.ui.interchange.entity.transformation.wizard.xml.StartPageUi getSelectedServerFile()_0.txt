@@ -1,0 +1,3 @@
+    IServerXsdFileSelection getSelectedServerFile() {
+        return m_serverXsdSelector.getSelection();
+    }

@@ -1,0 +1,15 @@
+    protected List<JMenuItem> getMenuItems() {
+        IActionDictionary ad = WindowActionDictionary.DICTIONARY;
+        List<JMenuItem> items = new ArrayList<JMenuItem>();
+        items.add(getHelpItem(ad));
+        if (WebBrowserFactory.isPlatformSupported()) {
+            items.add(getGotoForumItem(ad));
+            items.add(getGotoTutorialItem(ad));
+        }
+        addExtensionItems(items, MenuExtensionPoint.EXTENSION_POINT_1);
+        items.add(null);
+        addExtensionItems(items, MenuExtensionPoint.EXTENSION_POINT_2);
+        items.add(null);
+        items.add(getAboutItem(ad));
+        return items;
+    }

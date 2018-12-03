@@ -1,0 +1,5 @@
+    public boolean isReady() {
+        String name = getName();
+        return (name != null && 
+                        name.equals(ServerManager.getManager().getCurrentServerName()));
+    }

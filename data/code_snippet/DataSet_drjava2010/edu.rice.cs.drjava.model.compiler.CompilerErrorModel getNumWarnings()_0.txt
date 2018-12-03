@@ -1,0 +1,1 @@
+  public int getNumWarnings() { return _numWarnings; }

@@ -1,0 +1,7 @@
+    public DataInputStream getInputStream() {
+        if (!opened) {
+            log.error("getInputStream called before load(), stream not available");
+            return null;
+        }
+        return new DataInputStream(serialStream);
+    }

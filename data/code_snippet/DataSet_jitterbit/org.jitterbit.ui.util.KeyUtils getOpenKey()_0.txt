@@ -1,0 +1,3 @@
+    public static KeyStroke getOpenKey() {
+        return getCtrlDown(KeyEvent.VK_O);
+    }

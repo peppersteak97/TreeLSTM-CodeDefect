@@ -1,0 +1,5 @@
+    public void dispose() {
+        m_comboBox.removeItemListener(m_editActionEnabler);
+        m_comboBox.dispose();
+        m_popupButton.dispose();
+    }

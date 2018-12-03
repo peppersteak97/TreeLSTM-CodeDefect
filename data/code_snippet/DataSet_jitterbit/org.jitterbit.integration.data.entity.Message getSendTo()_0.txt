@@ -1,0 +1,3 @@
+    public String getSendTo() {
+        return getProperty(SEND_TO_PROPERTY);
+    }

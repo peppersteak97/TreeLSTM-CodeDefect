@@ -1,0 +1,12 @@
+    private void layoutComponents() {
+        OneColumnPanel col = new OneColumnPanel();
+        col.setInsets(2, 0, 3, 5);
+        col.add(m_label);
+        col.setInsets(2, 5, 3, 5);
+        for (JRadioButton b : m_buttons.keySet()) {
+            col.add(b);
+        }
+        JComponent ui = getUi();
+        InvisiblePanel.convert(ui);
+        col.addToParent(ui, null);
+    }

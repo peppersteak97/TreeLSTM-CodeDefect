@@ -1,0 +1,8 @@
+  public int waitFor() throws InterruptedException {
+    if (_aborted) { return -1; }
+    int exitCode = 0;
+    for(int i = 0; i < _processes.length; ++i) {
+      exitCode = _processes[i].waitFor();
+    }
+    return exitCode;
+  }

@@ -1,0 +1,17 @@
+            public List<? extends IIntegrationLink> getLinks() {
+                WebServiceCall inputWs = getWebServiceFromStructure(
+                                m_tf.getInputStructure());
+                WebServiceCall outputWs = getWebServiceFromStructure(
+                                m_tf.getOutputStructure());
+                if (inputWs == null && outputWs == null) {
+                    return null;
+                }
+                List<IIntegrationLink> links = new ArrayList<IIntegrationLink>();
+                if (inputWs != null) {
+                    links.add(new TransformationWebServiceLink(inputWs, m_tf));
+                }
+                if (outputWs != null && outputWs != inputWs) {
+                    links.add(new TransformationWebServiceLink(outputWs, m_tf));
+                }
+                return links;
+            }

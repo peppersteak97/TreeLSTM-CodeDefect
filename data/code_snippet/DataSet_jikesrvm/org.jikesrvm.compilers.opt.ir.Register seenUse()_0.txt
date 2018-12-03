@@ -1,0 +1,1 @@
+  public boolean seenUse() { return (flags & SEEN_USE) != 0; }

@@ -1,0 +1,43 @@
+    public void dispose() {
+
+        if (log.isDebugEnabled()) log.debug("dispose local");
+
+        readChangesButton.removeItemListener(l1);
+        writeChangesButton.removeItemListener(l2);
+        readAllButton.removeItemListener(l3);
+        writeAllButton.removeItemListener(l4);
+        if (_programmingPane != null) _programmingPane.removePropertyChangeListener(this);
+
+        for (int i=0; i<paneList.size(); i++) {
+            PaneProgPane p = (PaneProgPane) paneList.get(i);
+            p.dispose();
+        }
+        paneList.clear();
+
+        _rPane.dispose();
+        variableModel.dispose();
+        cvModel.dispose();
+        iCvModel.dispose();
+
+        progStatus = null;
+        cvModel = null;
+        iCvModel = null;
+        variableModel = null;
+        _rosterEntry = null;
+        _rPane = null;
+
+        paneList.clear();
+        paneList = null;
+        _programmingPane = null;
+
+        tabPane = null;
+        readChangesButton = null;
+        writeChangesButton = null;
+        readAllButton = null;
+        writeAllButton = null;
+
+        if (log.isDebugEnabled()) log.debug("dispose superclass");
+        removeAll();
+        super.dispose();
+
+    }

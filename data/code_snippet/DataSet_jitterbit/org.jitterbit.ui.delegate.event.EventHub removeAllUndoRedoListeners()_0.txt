@@ -1,0 +1,4 @@
+	public void removeAllUndoRedoListeners() {
+		m_undoRedoHandlers.clear();
+		m_undoRedoHandlers = null;
+	}

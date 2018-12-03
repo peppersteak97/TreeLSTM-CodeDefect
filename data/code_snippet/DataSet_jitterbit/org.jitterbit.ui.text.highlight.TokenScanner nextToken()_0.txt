@@ -1,0 +1,24 @@
+    public Token nextToken() {
+        if (m_textToScan == null) {
+        }
+        if (m_matcher == null) {
+            return null;
+        }
+        if (m_matcher.find()) {
+            int start = m_matcher.start();
+            int end = m_matcher.end();
+            String s = m_textToScan.substring(start, end);
+            for (Map.Entry<ISyntaxToken, Pattern> e : m_groupTokens.entrySet()) {
+                if (e.getValue().matcher(s).matches()) {
+                    return createToken(e.getKey(), start, end);
+                }
+            }
+            for (Map.Entry<ISyntaxToken, Pattern> e : m_individualTokens.entrySet()) {
+                if (e.getValue().matcher(s).matches()) {
+                    return createToken(e.getKey(), start, end);
+                }
+            }
+        }
+        m_matcher = null;
+        return null;
+    }

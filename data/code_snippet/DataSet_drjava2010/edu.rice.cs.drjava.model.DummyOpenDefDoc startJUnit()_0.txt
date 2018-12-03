@@ -1,0 +1,3 @@
+  public void startJUnit() throws ClassNotFoundException, IOException {
+    throw new UnsupportedOperationException("Dummy method");
+  }

@@ -1,0 +1,11 @@
+  private void genMonitorEnter() {
+    if (method.isStatic()) {
+      Offset klassOffset = Offset.fromIntSignExtend(Statics.findOrCreateObjectLiteral(klass.getClassForType()));
+      asm.emitPUSH_Abs(Magic.getTocPointer().plus(klassOffset));
+    } else {
+      asm.emitPUSH_RegDisp(ESP, localOffset(0));
+    }
+    genParameterRegisterLoad(asm, 1);
+    asm.emitCALL_Abs(Magic.getTocPointer().plus(Entrypoints.lockMethod.getOffset()));
+    lockOffset = asm.getMachineCodeIndex();
+  }

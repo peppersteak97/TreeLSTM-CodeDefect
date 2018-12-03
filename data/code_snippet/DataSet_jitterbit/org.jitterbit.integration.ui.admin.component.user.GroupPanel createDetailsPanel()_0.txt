@@ -1,0 +1,16 @@
+    private void createDetailsPanel() {
+        m_detailsPanel = new GroupDetailsPanel(m_userManager);
+        m_detailsPanel.addChangeListener(m_inputSiteListener);
+        PropertyChangeListener nameLst = new PropertyChangeListener() {
+
+            public void propertyChange(PropertyChangeEvent e) {
+                m_page.repaintLists();
+            }
+        };
+        m_detailsPanel.addPropertyChangeListener(
+                        GroupDetailsPanel.NAME_PROPERTY, nameLst);
+        m_detailsPanel.setEnabled(false);
+        m_detailsLabel = IntegrationUiStyleSheet.DefaultBold.makeJLabel(
+                        PackageResources.GroupPanel.Labels.DETAILS);
+        m_detailsLabel.setEnabled(false);
+    }

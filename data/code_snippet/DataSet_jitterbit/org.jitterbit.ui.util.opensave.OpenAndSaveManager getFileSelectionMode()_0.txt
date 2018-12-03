@@ -1,0 +1,3 @@
+	public int getFileSelectionMode() {
+		return m_fileChooser.getFileSelectionMode();
+	}

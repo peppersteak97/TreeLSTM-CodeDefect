@@ -1,0 +1,3 @@
+  public Object next() {
+    throw new java.util.NoSuchElementException();
+  }

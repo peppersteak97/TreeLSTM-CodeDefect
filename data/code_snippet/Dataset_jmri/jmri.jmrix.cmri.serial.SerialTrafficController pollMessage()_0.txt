@@ -1,0 +1,29 @@
+    protected synchronized AbstractMRMessage pollMessage() {
+        if (getNumNodes()<=0) return null;
+        
+        curSerialNodeIndex ++;
+        if (curSerialNodeIndex>=getNumNodes()) {
+            curSerialNodeIndex = 0;
+        }
+        if (getMustInit(curSerialNodeIndex)) {
+            setMustInit(curSerialNodeIndex, false);
+            AbstractMRMessage m = getNode(curSerialNodeIndex).createInitPacket();
+            log.debug("send init message: "+m);
+            return m;
+        }
+        if (getNode(curSerialNodeIndex).mustSend()) {
+            log.debug("request write command to send");
+            getNode(curSerialNodeIndex).resetMustSend();
+            AbstractMRMessage m = getNode(curSerialNodeIndex).createOutPacket();
+            return m;
+        }
+        if ( getNode(curSerialNodeIndex).sensorsActive() ) {
+            SerialMessage m = SerialMessage.getPoll(
+                                getNode(curSerialNodeIndex).getNodeAddress());
+            if (curSerialNodeIndex>=getNumNodes()) curSerialNodeIndex = 0;
+            return m;
+        }
+        else {
+            return null;
+        }
+    }

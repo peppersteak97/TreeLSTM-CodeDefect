@@ -1,0 +1,8 @@
+    private void postRowAdded() {
+        ++m_leftConstraints.gridy;
+        ++m_rightConstraints.gridy;
+        m_leftConstraints.gridwidth = 1;
+        m_rightConstraints.gridwidth = 1;
+        m_leftConstraints.gridheight = 1;
+        m_rightConstraints.gridheight = 1;
+    }

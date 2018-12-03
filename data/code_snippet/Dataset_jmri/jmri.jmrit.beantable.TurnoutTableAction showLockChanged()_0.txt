@@ -1,0 +1,3 @@
+    void showLockChanged() {
+        showLock = showLockBox.isSelected();
+    }

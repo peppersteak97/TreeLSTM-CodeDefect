@@ -1,0 +1,3 @@
+    public IActionProvider getActionProvider() {
+        return m_actionProvider;
+    }

@@ -1,0 +1,9 @@
+  protected final void emit_freturn() {
+    if (method.isSynchronized()) genMonitorExit();
+    if (SSE2_FULL) {
+      asm.emitMOVSS_Reg_RegInd(XMM0, SP);
+    } else {
+      asm.emitFLD_Reg_RegInd(FP0, SP);
+    }
+    genEpilogue(WORDSIZE, 0);
+  }

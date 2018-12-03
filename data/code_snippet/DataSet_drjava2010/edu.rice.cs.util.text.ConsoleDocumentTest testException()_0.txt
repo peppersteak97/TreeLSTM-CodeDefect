@@ -1,0 +1,7 @@
+  public void testException() {
+    try {
+      _doc.insertText(5, "test", null);
+      fail("should have thrown an exception");
+    }
+    catch (EditDocumentException e) { /* Expected. Silently succeed. */ }
+  }

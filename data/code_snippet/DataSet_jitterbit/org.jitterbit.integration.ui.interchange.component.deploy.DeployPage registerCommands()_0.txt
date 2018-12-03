@@ -1,0 +1,3 @@
+    private void registerCommands() {
+        addCommand(IPageCommand.REFRESH, new RefreshCommand());
+    }

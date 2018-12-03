@@ -1,0 +1,1 @@
+  public void resetAttributes() { _attributes.clear(); }

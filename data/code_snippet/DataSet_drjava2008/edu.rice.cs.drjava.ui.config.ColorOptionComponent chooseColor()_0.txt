@@ -1,0 +1,7 @@
+  public void chooseColor() {
+    Color c = JColorChooser.showDialog(_parent, "Choose '" + getLabelText() + "'", _color);
+    if (c != null) {
+      notifyChangeListeners();
+      _updateField(c);
+    }    
+  }

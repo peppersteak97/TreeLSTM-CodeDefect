@@ -1,0 +1,2 @@
+     * enterProgMode() and enterNormalMode() return any message that 
+     * needs to be returned to the command station to change modes.

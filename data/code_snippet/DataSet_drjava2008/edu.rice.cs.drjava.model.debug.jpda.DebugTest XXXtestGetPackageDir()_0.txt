@@ -1,0 +1,13 @@
+  public void XXXtestGetPackageDir() {
+    String class1 = "edu.rice.cs.drjava.model.MyTest";
+    String class2 = "MyTest";
+    String sep = System.getProperty("file.separator");
+    
+    assertEquals("package dir with package",
+                 "edu" + sep + "rice" + sep + "cs" + sep +
+                 "drjava" + sep + "model" + sep,
+                 _debugger.getPackageDir(class1));
+    assertEquals("package dir without package",
+                 "",
+                 _debugger.getPackageDir(class2));
+  }

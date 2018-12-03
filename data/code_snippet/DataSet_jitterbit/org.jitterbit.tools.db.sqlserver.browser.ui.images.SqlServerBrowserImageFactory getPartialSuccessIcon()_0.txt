@@ -1,0 +1,3 @@
+    public static ImageIcon getPartialSuccessIcon() {
+        return PARTIAL_SUCCESS;
+    }

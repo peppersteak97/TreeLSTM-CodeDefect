@@ -1,0 +1,3 @@
+  public boolean isLongType() {
+    return this == Long;
+  }

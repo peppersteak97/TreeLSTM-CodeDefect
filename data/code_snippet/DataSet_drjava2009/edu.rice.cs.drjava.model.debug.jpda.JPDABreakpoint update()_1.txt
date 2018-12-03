@@ -1,0 +1,5 @@
+  public void update() {
+      int offset = _position.getOffset();
+      _startPos = _doc.createPosition(_doc._getLineStartPos(offset));
+      _endPos = _doc.createPosition(_doc._getLineEndPos(offset));
+    }

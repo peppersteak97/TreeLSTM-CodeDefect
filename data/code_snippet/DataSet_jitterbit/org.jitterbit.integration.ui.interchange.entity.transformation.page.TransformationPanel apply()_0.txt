@@ -1,0 +1,17 @@
+    public void apply() throws IntegrationDataPanelException {
+        try {
+            m_transformation.setName(m_nameField.getValue());
+        }
+        catch (IllegalNameException e) {
+            throw new IntegrationDataPanelException(e);
+        }
+
+        try {
+            m_treeMapper.saveMaps();
+            m_treeMapper.setDirty(false);
+        }
+        catch (CheckingException e) {
+            throw new IntegrationDataPanelException(e);
+        }
+        validateMappings();
+    }

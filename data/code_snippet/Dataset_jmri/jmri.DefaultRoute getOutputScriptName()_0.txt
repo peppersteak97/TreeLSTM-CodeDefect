@@ -1,0 +1,3 @@
+    public String getOutputScriptName() {
+        return scriptFilename;
+    }

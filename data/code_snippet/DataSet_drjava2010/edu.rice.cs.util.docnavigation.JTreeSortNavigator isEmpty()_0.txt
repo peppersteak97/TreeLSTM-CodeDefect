@@ -1,0 +1,1 @@
+    if (names.isEmpty()) { throw new GroupNotSelectedException("there is no top level group for the root of the tree"); }

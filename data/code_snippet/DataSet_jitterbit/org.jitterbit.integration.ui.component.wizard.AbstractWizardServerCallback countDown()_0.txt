@@ -1,0 +1,5 @@
+    protected final void countDown() {
+        if (m_latch != null) {
+            m_latch.countDown();
+        }
+    }

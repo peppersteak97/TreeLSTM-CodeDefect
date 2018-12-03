@@ -1,0 +1,7 @@
+  public final RVMMember peekResolvedMember() {
+    if (isFieldReference()) {
+      return this.asFieldReference().peekResolvedField();
+    } else {
+      return this.asMethodReference().peekResolvedMethod();
+    }
+  }

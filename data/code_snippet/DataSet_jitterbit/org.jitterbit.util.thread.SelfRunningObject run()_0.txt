@@ -1,0 +1,10 @@
+    public final void run() {
+        if (Thread.currentThread() != m_internalThread) {
+        }
+        try {
+            runJob();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }

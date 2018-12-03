@@ -1,0 +1,21 @@
+    public void consistSelected() {
+	if(log.isDebugEnabled()) log.debug("Consist Selected");
+	if(consistAdrBox.getSelectedIndex()==-1 && !(adrSelector.getAddress()==null)) {
+	   if(log.isDebugEnabled()) log.debug("No Consist Selected");
+	   adrSelector.setEnabled(false);
+	   recallConsist();
+	}
+	else if(consistAdrBox.getSelectedIndex()==-1 || 
+		consistAdrBox.getSelectedItem().equals("")) {
+	   if(log.isDebugEnabled()) log.debug("Null Consist Selected");
+	   adrSelector.reset();
+	   adrSelector.setEnabled(true);
+	   recallConsist();
+	} else 
+if(((DccLocoAddress)consistAdrBox.getSelectedItem())!=adrSelector.getAddress()) {
+    	   if(log.isDebugEnabled()) log.debug("Consist " + consistAdrBox.getSelectedItem().toString() +" Selected");
+	   adrSelector.setEnabled(false);
+	   adrSelector.setAddress((DccLocoAddress)consistAdrBox.getSelectedItem());
+	   recallConsist();
+	}
+    }

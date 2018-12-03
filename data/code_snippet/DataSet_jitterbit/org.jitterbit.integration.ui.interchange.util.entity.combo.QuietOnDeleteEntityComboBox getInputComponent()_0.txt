@@ -1,0 +1,3 @@
+    public IntegrationEntityComboBox getInputComponent() {
+        return (IntegrationEntityComboBox) super.getInputComponent();
+    }

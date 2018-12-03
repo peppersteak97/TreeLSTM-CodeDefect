@@ -1,0 +1,3 @@
+    public IntegrationEntityTreeNode getRoot() {
+        return (IntegrationEntityTreeNode) super.getRoot();
+    }

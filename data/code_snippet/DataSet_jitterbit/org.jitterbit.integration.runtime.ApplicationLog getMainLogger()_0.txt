@@ -1,0 +1,3 @@
+    public static Logger getMainLogger() {
+        return s_logger;
+    }

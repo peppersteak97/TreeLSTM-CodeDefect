@@ -1,0 +1,7 @@
+    public void dispose() {
+        super.dispose();
+        if (m_docListener != null) {
+            getTarget().getDocument().removeDocumentListener(m_docListener);
+            m_docListener = null;
+        }
+    }

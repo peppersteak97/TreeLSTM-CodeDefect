@@ -1,0 +1,3 @@
+    public boolean canBeSource() {
+        return m_bCanBeSource;
+    }

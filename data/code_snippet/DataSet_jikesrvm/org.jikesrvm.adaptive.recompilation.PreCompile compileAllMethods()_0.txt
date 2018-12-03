@@ -1,0 +1,52 @@
+  public static void compileAllMethods() {
+    VM.sysWriteln("Start precompile");
+    for (CompilerAdviceAttribute value : CompilerAdviceAttribute.values()) {
+
+      TypeReference tRef =
+          TypeReference.findOrCreate(RVMClassLoader.getApplicationClassLoader(), value.getClassName());
+      RVMClass cls = (RVMClass) tRef.peekType();
+      if (cls == null) {
+        try {
+          cls = tRef.resolve().asClass();
+          cls.resolve();
+          cls.instantiate();
+          cls.initialize();
+        } catch (NoClassDefFoundError cnf) {
+          VM.sysWriteln("Bad entry in the advice file");
+        }
+      }
+
+      if (cls != null) {
+        RVMMethod method = cls.findDeclaredMethod(value.getMethodName(), value.getMethodSig());
+
+        if ((method != null) &&
+            !method.hasNoOptCompileAnnotation() &&
+            (method instanceof org.jikesrvm.classloader.NormalMethod)) {
+          if ((((org.jikesrvm.compilers.opt.OptOptions) RuntimeCompiler.options).getOptLevel() >
+               value.getOptLevel()) || (Controller.options.DERIVED_MAX_OPT_LEVEL < value.getOptLevel())) {
+            method.compile();
+          } else {
+            CompilationPlan compPlan;
+            if (Controller.options.counters()) {
+              compPlan = InvocationCounts.createCompilationPlan((NormalMethod) method);
+              AOSLogging.logger.recompilationStarted(compPlan);
+              RuntimeCompiler.recompileWithOpt(compPlan);
+              AOSLogging.logger.recompilationCompleted(compPlan);
+            } else if (Controller.options.sampling()) {
+              compPlan =
+                  Controller.recompilationStrategy.createCompilationPlan((NormalMethod) method,
+                                                                            value.getOptLevel(),
+                                                                            null);
+              AOSLogging.logger.recompilationStarted(compPlan);
+              RuntimeCompiler.recompileWithOpt(compPlan);
+              AOSLogging.logger.recompilationCompleted(compPlan);
+            } else {
+              VM.sysWriteln("Compiler advice file is not followed  ");
+              method.compile();
+            }
+          }
+        }
+      }
+    }
+    AOSLogging.logger.compileAllMethodsCompleted();
+  }

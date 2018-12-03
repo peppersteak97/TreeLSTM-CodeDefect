@@ -1,0 +1,6 @@
+    public int getNumBytes() {
+        if (isExtended()) 
+            return _dataChars[9]-'0';
+        else
+            return _dataChars[4]-'0';
+    }

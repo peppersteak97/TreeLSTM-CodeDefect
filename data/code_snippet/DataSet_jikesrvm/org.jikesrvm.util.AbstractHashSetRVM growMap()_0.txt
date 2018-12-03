@@ -1,0 +1,13 @@
+  private void growMap() {
+    AbstractBucket<T>[] newBuckets = newBucketArray(buckets.length * 2 + 1);
+    for (AbstractBucket<T> cur : buckets) {
+      while (cur != null) {
+        AbstractBucket<T> next = cur.getNext();
+        int newIdx = bucketIndex(cur.getKey(), newBuckets.length);
+        cur = cur.setNext(newBuckets[newIdx]);
+        newBuckets[newIdx] = cur;
+        cur = next;
+      }
+    }
+    buckets = newBuckets;
+  }

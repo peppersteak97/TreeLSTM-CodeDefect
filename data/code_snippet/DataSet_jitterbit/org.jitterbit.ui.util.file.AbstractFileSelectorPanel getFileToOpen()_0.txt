@@ -1,0 +1,7 @@
+    private File getFileToOpen() {
+        return m_fileChooser.getFileToOpen(
+                        m_parentComponent, 
+                        m_fileFilter, 
+                        m_recentFiles, 
+                        m_title);
+    }

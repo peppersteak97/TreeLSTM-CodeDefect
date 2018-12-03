@@ -1,0 +1,3 @@
+	public boolean isTransferToSourceAllowed() {
+		return m_bTransferToSourceAllowed;
+	}

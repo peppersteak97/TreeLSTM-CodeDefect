@@ -1,0 +1,21 @@
+    private boolean promptSave() {
+        MessageDisplayer.Option choice = MessageDisplayer.showOption(
+                        this, 
+                        null, 
+                        PackageResources.Page.getSaveQuestion(m_displayedEntity.getDataObject()),
+                        PackageResources.Page.SAVE_TITLE,
+                        MessageDisplayer.YES_NO_CANCEL,
+                        MessageDisplayer.YES,
+                        MessageDisplayer.QUESTION);
+        switch (choice) {
+        case YES:
+            onApply();
+            break;
+        case NO:
+            onReset();
+            break;
+        case CANCEL:
+            return false;
+        }
+        return true;
+    }

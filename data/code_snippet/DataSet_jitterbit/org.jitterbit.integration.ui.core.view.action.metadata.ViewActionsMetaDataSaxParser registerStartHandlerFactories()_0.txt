@@ -1,0 +1,36 @@
+    private void registerStartHandlerFactories() {
+        IStartElementHandlerFactory factory = new IStartElementHandlerFactory() {
+            public IStartElementHandler getHandler() {
+                return m_menuExtensionHandler;
+            }
+        };
+        addStartElementHandlerFactory(MENU_EXTENSION, factory);
+
+        factory = new IStartElementHandlerFactory() {
+            public IStartElementHandler getHandler() {
+                return m_viewMenuHandler;
+            }
+        };
+        addStartElementHandlerFactory(VIEW_MENU, factory);
+
+        factory = new IStartElementHandlerFactory() {
+            public IStartElementHandler getHandler() {
+                return m_toolBarExtensionHandler;
+            }
+        };
+        addStartElementHandlerFactory(TOOLBAR_EXTENSION, factory);
+
+        factory = new IStartElementHandlerFactory() {
+            public IStartElementHandler getHandler() {
+                return m_viewToolBarHandler;
+            }
+        };
+        addStartElementHandlerFactory(VIEW_TOOLBAR, factory);
+
+        factory = new IStartElementHandlerFactory() {
+            public IStartElementHandler getHandler() {
+                return new PopupMenuHandler();
+            }
+        };
+        addStartElementHandlerFactory(POPUPMENU_ITEMS, factory);
+    }

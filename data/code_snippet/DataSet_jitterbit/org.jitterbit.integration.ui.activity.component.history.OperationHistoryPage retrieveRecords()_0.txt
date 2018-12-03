@@ -1,0 +1,4 @@
+    public void retrieveRecords() {
+        m_operationHistoryDisplayer.retrieveEntries();
+        m_sourceHistoryDisplayer.retrieveEntries();
+    }

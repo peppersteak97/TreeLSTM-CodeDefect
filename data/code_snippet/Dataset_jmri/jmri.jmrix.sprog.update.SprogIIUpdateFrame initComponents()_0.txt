@@ -1,0 +1,4 @@
+    public void initComponents() throws Exception {
+      addHelpMenu("package.jmri.jmrix.sprog.update.SprogIIUpdateFrame", true);
+      super.initComponents();
+    }

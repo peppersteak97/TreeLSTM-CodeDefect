@@ -1,0 +1,29 @@
+    private void registerEndElementHandlerFactories() {
+        IEndElementHandlerFactory factory = new IEndElementHandlerFactory() {
+            public IEndElementHandler getHandler() {
+                return m_menuExtensionHandler;
+            }
+        };
+        addEndElementHandlerFactory(MENU_EXTENSION, factory);
+
+        factory = new IEndElementHandlerFactory() {
+            public IEndElementHandler getHandler() {
+                return m_viewMenuHandler;
+            }
+        };
+        addEndElementHandlerFactory(VIEW_MENU, factory);
+
+        factory = new IEndElementHandlerFactory() {
+            public IEndElementHandler getHandler() {
+                return m_toolBarExtensionHandler;
+            }
+        };
+        addEndElementHandlerFactory(TOOLBAR_EXTENSION, factory);
+
+        factory = new IEndElementHandlerFactory() {
+            public IEndElementHandler getHandler() {
+                return m_viewToolBarHandler;
+            }
+        };
+        addEndElementHandlerFactory(VIEW_TOOLBAR, factory);
+    }

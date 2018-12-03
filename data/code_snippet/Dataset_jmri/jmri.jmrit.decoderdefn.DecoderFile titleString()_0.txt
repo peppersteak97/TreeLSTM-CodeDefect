@@ -1,0 +1,3 @@
+    public String titleString() {
+        return titleString(getModel(), getFamily());
+    }

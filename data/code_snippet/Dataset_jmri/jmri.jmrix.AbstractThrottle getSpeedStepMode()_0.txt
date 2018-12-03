@@ -1,0 +1,3 @@
+     public int getSpeedStepMode() {
+	    return speedStepMode;
+     }

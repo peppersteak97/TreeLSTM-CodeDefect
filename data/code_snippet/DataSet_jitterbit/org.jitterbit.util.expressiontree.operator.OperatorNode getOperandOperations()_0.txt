@@ -1,0 +1,3 @@
+	public OperandOperations getOperandOperations() {
+		return m_operations;
+	}

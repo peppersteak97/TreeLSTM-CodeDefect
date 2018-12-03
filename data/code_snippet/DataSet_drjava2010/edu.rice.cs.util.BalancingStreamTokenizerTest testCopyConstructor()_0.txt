@@ -1,0 +1,13 @@
+  public void testCopyConstructor() throws IOException{
+    BalancingStreamTokenizer tok = make("abc def\\ ghi 123\n456");
+    tok.defaultWhitespaceSetup();
+    String s1 = tok.getNextToken();
+    assertEquals("abc", s1);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    
+    BalancingStreamTokenizer copyTok = make("abc def\\ ghi 123\n456");
+    copyTok.setState(new BalancingStreamTokenizer.State(tok.getState()));
+    String s2 = copyTok.getNextToken();
+    assertEquals("abc", s2);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, copyTok.token());    
+  }

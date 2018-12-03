@@ -1,0 +1,20 @@
+    private void startValidation() {
+        final Runnable job = new Runnable() {
+
+            public void run() {
+                final boolean isValid = validateImpl();
+                EventQueue.invokeLater(new Runnable() {
+
+                    public void run() {
+                        handleValidationResult(isValid);
+                    }
+                });
+            }
+        };
+        EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                IntegrationRuntime.getRuntime().runJob(job, null, true);
+            }
+        });
+    }

@@ -1,0 +1,5 @@
+    public void deactivate() {
+        if (m_isActive) {
+            m_isActive = false;
+        }
+    }

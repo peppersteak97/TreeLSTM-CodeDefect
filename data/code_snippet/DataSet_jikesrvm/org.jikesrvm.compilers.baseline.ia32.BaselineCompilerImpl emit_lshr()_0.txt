@@ -1,0 +1,13 @@
+  protected final void emit_lshr() {
+    if (VM.BuildFor32Addr) {
+      if (VM.VerifyAssertions) VM._assert(ECX != T1);
+      asm.emitTEST_Reg_Imm(ECX, 32);
+      ForwardReference fr1 = asm.forwardJcc(Assembler.NE);
+      ForwardReference fr2 = asm.forwardJMP();
+      fr1.resolve(asm);
+      fr2.resolve(asm);
+    } else {
+      asm.emitPOP_Reg(ECX);
+      asm.emitSAR_RegInd_Reg_Quad(SP, ECX);
+    }
+  }

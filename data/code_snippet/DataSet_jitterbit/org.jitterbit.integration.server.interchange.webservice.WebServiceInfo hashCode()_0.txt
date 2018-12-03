@@ -1,0 +1,8 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 37 * hash + (m_identifier == null ? 0 : m_identifier.hashCode());
+        hash = 37 * hash + m_webServiceURL.hashCode();
+        hash = 37 * hash + m_wsdlFile.hashCode();
+        hash = 37 * hash + m_operations.hashCode();
+        return hash;
+    }

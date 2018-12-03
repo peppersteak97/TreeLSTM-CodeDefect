@@ -1,0 +1,34 @@
+  public void testGlassPaneHidesKeyEvents() {
+    SingleDisplayModel model = _frame.getModel();
+    
+    final OpenDefinitionsDocument doc1 = model.newFile();
+    final OpenDefinitionsDocument doc2 = model.newFile();
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() {
+        _pane1 = _frame._createDefScrollPane(doc1);
+        _pane2 = _frame._createDefScrollPane(doc2);
+        _defPane1 = (DefinitionsPane) _pane1.getViewport().getView();
+        _defPane2 = (DefinitionsPane) _pane2.getViewport().getView();
+        _frame.validate();
+        _frame.hourglassOn();
+        _defPane1.processKeyEvent(makeFindKeyEvent(_defPane1, 70));
+        _frame.validate();
+      }
+    });
+    Utilities.clearEventQueue();
+    
+    assertTrue("the find replace dialog should not come up", ! _frame.getFindReplaceDialog().isDisplayed());
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        _frame.getInteractionsPane().processKeyEvent(makeFindKeyEvent(_frame.getInteractionsPane(), 0));
+        _frame.validate();
+      }
+    });
+    Utilities.clearEventQueue();
+    
+    assertTrue("the find replace dialog should not come up", ! _frame.getFindReplaceDialog().isDisplayed());
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() { _frame.hourglassOff(); } });
+    _log.log("testGlassPaneHidesKeyEvents completed");
+  }

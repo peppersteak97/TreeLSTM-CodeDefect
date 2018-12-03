@@ -1,0 +1,6 @@
+  public void removeCurrentLocationHighlight() {
+    if (_currentLocationHighlight != null) {
+      _currentLocationHighlight.remove();
+      _currentLocationHighlight = null;
+    }
+  }

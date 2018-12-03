@@ -1,0 +1,3 @@
+    void prepareForDisplay() {
+        m_uiDelegate.getDataObject().addPropertyChangeListener(m_entityListener);
+    }

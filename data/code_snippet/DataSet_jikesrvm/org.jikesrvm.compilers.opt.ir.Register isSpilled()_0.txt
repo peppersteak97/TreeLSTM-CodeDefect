@@ -1,0 +1,3 @@
+  public boolean isSpilled() {
+    return (flags & SPILLED) != 0;
+  }

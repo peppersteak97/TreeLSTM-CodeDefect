@@ -1,0 +1,5 @@
+    void dataEntryComplete() {
+        m_dataLoader.dataEntryComplete(m_currentEntry);
+        m_currentEntry = null;
+        m_endElementHandlers.pop();
+    }

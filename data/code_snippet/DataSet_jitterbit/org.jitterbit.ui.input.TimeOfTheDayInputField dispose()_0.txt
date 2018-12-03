@@ -1,0 +1,4 @@
+    public void dispose() {
+        getInputComponent().removePropertyChangeListener(
+                        TimeOfTheDayControl.DISPLAYED_TIME, this);
+    }

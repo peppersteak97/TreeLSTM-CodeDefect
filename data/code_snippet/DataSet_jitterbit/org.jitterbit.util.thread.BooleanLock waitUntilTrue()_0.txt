@@ -1,0 +1,3 @@
+    public synchronized boolean waitUntilTrue() throws InterruptedException {
+        return waitUntilTrue(0);
+    }

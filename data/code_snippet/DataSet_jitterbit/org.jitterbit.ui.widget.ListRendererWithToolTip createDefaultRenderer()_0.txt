@@ -1,0 +1,3 @@
+    public static ListCellRenderer createDefaultRenderer() {
+        return new DefaultListRendererWithToolTip();
+    }

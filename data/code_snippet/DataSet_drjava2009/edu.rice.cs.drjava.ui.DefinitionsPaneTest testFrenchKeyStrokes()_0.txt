@@ -1,0 +1,62 @@
+  public void testFrenchKeyStrokes() throws IOException, InterruptedException {
+    
+    final KeyEvent ke1 = new KeyEvent(pane, TYPED, 0, 0, VK_UNDEF, 'T'); 
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        pane.processKeyEvent(ke1); 
+        _frame.validate();
+      } 
+    });
+    Utilities.clearEventQueue();
+    
+    assertFalse("The KeyEvent for pressing \"T\" should not involve an Alt Key if this fails we are in trouble!", 
+                pane.checkAltKey());
+    
+    final KeyEvent ke2 = new KeyEvent(pane, TYPED, 0, ALT, VK_UNDEF, '{'); 
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        pane.processKeyEvent(ke2); 
+        _frame.validate();   
+      } 
+    });
+    Utilities.clearEventQueue();
+        
+    assertTrue("Alt should have been registered and allowed to pass!", pane.checkAltKey());
+    
+    final KeyEvent ke3 = new KeyEvent(pane, TYPED, 0, ALT, VK_UNDEF, '}'); 
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        pane.processKeyEvent(ke3); 
+        _frame.validate();
+      } 
+    });
+    Utilities.clearEventQueue();
+    
+    assertTrue("Alt should have been registered and allowed to pass!", pane.checkAltKey());
+    
+    
+    final KeyEvent ke4 = new KeyEvent(pane, TYPED, 0, ALT, VK_UNDEF, '['); 
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        pane.processKeyEvent(ke4);
+        _frame.validate();
+      } 
+    });
+    Utilities.clearEventQueue();
+    
+    assertTrue("Alt should have been registered and allowed to pass!", pane.checkAltKey());
+    
+    final KeyEvent ke5 = new KeyEvent(pane, TYPED, 0, ALT, VK_UNDEF, ']'); 
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        pane.processKeyEvent(ke5); 
+        _frame.validate();
+      } 
+    });
+    Utilities.clearEventQueue();
+    
+    assertTrue("Alt should have been registered and allowed to pass!", pane.checkAltKey());
+    
+    _log.log("testFrenchKeyStrokes completed");
+  } 

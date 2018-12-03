@@ -1,0 +1,20 @@
+    public void publish() {
+        JFrame win = m_ui.getActiveFrame();
+        Container winCP = win.getContentPane();
+
+        m_north = Box.createVerticalBox();
+        m_north.add(Box.createVerticalGlue());
+        m_north.add(Box.createVerticalGlue());
+        winCP.add(m_north, BorderLayout.NORTH);
+        
+        m_centerScroll = ComponentFactories.scrollFactory().newScrollPane(m_center);
+        m_centerScroll.setBorder(BorderFactory.createEmptyBorder());
+        winCP.add(m_centerScroll, BorderLayout.CENTER);
+        
+        m_launchButtons.get(0).doClick();
+
+        win.getRootPane().validate();
+        win.getRootPane().repaint();
+        
+        m_isShowing = true;
+    }

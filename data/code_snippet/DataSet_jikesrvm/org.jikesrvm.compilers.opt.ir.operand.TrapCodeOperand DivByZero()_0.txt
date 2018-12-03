@@ -1,0 +1,3 @@
+  public static TrapCodeOperand DivByZero() {
+    return new TrapCodeOperand((byte) RuntimeEntrypoints.TRAP_DIVIDE_BY_ZERO);
+  }

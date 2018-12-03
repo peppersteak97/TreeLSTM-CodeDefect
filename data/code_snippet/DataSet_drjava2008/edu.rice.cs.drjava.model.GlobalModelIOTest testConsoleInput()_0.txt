@@ -1,0 +1,22 @@
+  public void testConsoleInput() throws EditDocumentException {
+    _model.getInteractionsModel().setInputListener(new InputListener() {
+      int n = 0;
+      public String getConsoleInput() {
+        n++;
+        if (n > 1) throw new IllegalStateException("Input should only be requested once!");
+      }
+    });
+    
+    String result = interpret("System.in.read()");
+    String expected = /* DefaultInteractionsModel.INPUT_REQUIRED_MESSAGE + */  String.valueOf((int)'i');
+    assertEquals("read() should prompt for input and return the first byte of \"input\"", expected, result);
+    
+    interpret("import java.io.*;");
+    interpret("BufferedReader br = new BufferedReader(new InputStreamReader(System.in))");
+    result = interpret("br.readLine()");
+    assertEquals("readLine() should return the rest of \"input\" without prompting for input",
+                 "\"nput\"", result);
+    
+    
+    _log.log("testConsoleInput completed");
+  }

@@ -1,0 +1,3 @@
+    public static synchronized boolean isUsingHttps() {
+        return s_useHttps;
+    }

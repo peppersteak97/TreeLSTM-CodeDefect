@@ -1,0 +1,7 @@
+  public T nextElement() {
+    if (first.hasMoreElements()) {
+      return first.nextElement();
+    } else {
+      return second.nextElement();
+    }
+  }

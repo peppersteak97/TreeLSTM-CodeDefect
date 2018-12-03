@@ -1,0 +1,3 @@
+  public boolean isStackOverflow() {
+    return trapCode == RuntimeEntrypoints.TRAP_STACK_OVERFLOW;
+  }

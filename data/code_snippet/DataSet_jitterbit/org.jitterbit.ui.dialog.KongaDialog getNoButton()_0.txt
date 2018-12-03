@@ -1,0 +1,3 @@
+    public JButton getNoButton() {
+		return m_btnNo;
+	}

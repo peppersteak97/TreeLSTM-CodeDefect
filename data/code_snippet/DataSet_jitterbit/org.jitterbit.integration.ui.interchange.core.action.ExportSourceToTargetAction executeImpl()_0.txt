@@ -1,0 +1,9 @@
+    private void executeImpl() {
+        ISourceUi sourceUi = getActiveSource();
+        if (sourceUi != null) {
+            exportImpl(sourceUi);
+        }
+        else {
+            cancelled(null);
+        }
+    }

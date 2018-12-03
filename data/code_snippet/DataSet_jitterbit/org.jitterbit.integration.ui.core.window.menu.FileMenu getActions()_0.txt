@@ -1,0 +1,10 @@
+        for (WindowActionFactory factory : getActions()) {
+            if (factory == null) {
+                items.add(null);
+            }
+            else {
+                IApplicationAction a = factory.get(getWindow());
+                items.add(MenuItemFactory.createMenuItem(a, 
+                                WindowActionDictionary.DICTIONARY));
+            }
+        }

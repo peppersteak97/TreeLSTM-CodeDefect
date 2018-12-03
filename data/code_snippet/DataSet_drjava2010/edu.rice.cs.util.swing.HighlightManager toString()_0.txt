@@ -1,0 +1,1 @@
+  public String toString() { return "HighLightManager(" + _highlights + ")"; }

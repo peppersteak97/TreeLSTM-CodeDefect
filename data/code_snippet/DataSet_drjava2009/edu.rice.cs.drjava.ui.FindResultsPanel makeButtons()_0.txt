@@ -1,0 +1,69 @@
+  protected JComponent[] makeButtons() {    
+    Action findAgainAction = new AbstractAction("Find Again") {
+      public void actionPerformed(ActionEvent ae) { _findAgain(); }
+    };
+    _findAgainButton = new JButton(findAgainAction);
+
+    Action goToAction = new AbstractAction("Go to") {
+      public void actionPerformed(ActionEvent ae) { goToRegion(); }
+    };
+    _goToButton = new JButton(goToAction);
+    
+    Action bookmarkAction = new AbstractAction("Bookmark") {
+      public void actionPerformed(ActionEvent ae) { _bookmark(); }
+    };
+    _bookmarkButton = new JButton(bookmarkAction);
+    
+    Action removeAction = new AbstractAction("Remove") {
+    };
+    _removeButton = new JButton(removeAction);
+    
+    final JPanel highlightPanel = new JPanel();
+    final Color normalColor = highlightPanel.getBackground();
+    highlightPanel.add(new JLabel("Highlight:"));
+    
+    int smallestIndex = 0;
+    int smallestUsage = DefinitionsPane.FIND_RESULTS_PAINTERS_USAGE[smallestIndex];
+    for(_lastIndex = 0; _lastIndex < OptionConstants.FIND_RESULTS_COLORS.length; ++_lastIndex) {
+      if (DefinitionsPane.FIND_RESULTS_PAINTERS_USAGE[_lastIndex] < smallestUsage) {
+        smallestIndex = _lastIndex;
+        smallestUsage = DefinitionsPane.FIND_RESULTS_PAINTERS_USAGE[smallestIndex];
+      }
+    }
+    _lastIndex = smallestIndex;
+    ++DefinitionsPane.FIND_RESULTS_PAINTERS_USAGE[_lastIndex];
+    _colorBox = new JComboBox();    
+    for (int i = 0; i < OptionConstants.FIND_RESULTS_COLORS.length; ++i) {
+      _colorBox.addItem(DrJava.getConfig().getSetting(OptionConstants.FIND_RESULTS_COLORS[i]));
+    }
+    _colorBox.addItem("None");
+    _colorBox.setRenderer(new ColorComboRenderer());
+    _colorBox.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        if (_lastIndex<OptionConstants.FIND_RESULTS_COLORS.length) {
+          --DefinitionsPane.FIND_RESULTS_PAINTERS_USAGE[_lastIndex];
+        }
+        _lastIndex = _colorBox.getSelectedIndex();
+        if (_lastIndex<OptionConstants.FIND_RESULTS_COLORS.length) {
+          ++DefinitionsPane.FIND_RESULTS_PAINTERS_USAGE[_lastIndex];
+          highlightPanel.setBackground(DrJava.getConfig().getSetting(OptionConstants.FIND_RESULTS_COLORS[_lastIndex]));
+        }
+        else highlightPanel.setBackground(normalColor);
+        
+        _frame.refreshFindResultsHighlightPainter(FindResultsPanel.this, 
+                                                  DefinitionsPane.FIND_RESULTS_PAINTERS[_lastIndex]);
+      }
+    });
+    _colorBox.setMaximumRowCount(OptionConstants.FIND_RESULTS_COLORS.length + 1);
+    _colorBox.addPopupMenuListener(new PopupMenuListener() {
+      public void popupMenuCanceled(PopupMenuEvent e) { _colorBox.revalidate(); }
+      public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { _colorBox.revalidate(); }
+      public void popupMenuWillBecomeVisible(PopupMenuEvent e) { _colorBox.revalidate(); }
+    });
+    _colorBox.setSelectedIndex(_lastIndex);
+    _frame.refreshFindResultsHighlightPainter(FindResultsPanel.this, 
+                                              DefinitionsPane.FIND_RESULTS_PAINTERS[_lastIndex]);
+    
+    updateButtons();
+    return new JComponent[] { _findAgainButton, _goToButton, _bookmarkButton, _removeButton, highlightPanel, _colorBox};
+  }

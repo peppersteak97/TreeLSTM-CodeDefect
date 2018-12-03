@@ -1,0 +1,50 @@
+  private void _dumpVariablesIntoInterpreterAndSwitch() throws DebugException {
+    _log.log(this + " invoked dumpVariablesIntoInterpreterAndSwitch");
+    List<ObjectReference> toRelease = new LinkedList<ObjectReference>();
+    try {
+      ThreadReference thread = _suspendedThreads.peek();
+      
+      String interpreterName = _getUniqueThreadName(thread);
+      ObjectReference mirroredName = _mirrorString(interpreterName, toRelease);
+      ObjectReference thisVal = thread.frame(0).thisObject();
+      ClassObjectReference thisClass = thread.frame(0).location().declaringType().classObject();
+      
+      List<ObjectReference> localVars = new LinkedList<ObjectReference>();
+      List<StringReference> localVarNames = new LinkedList<StringReference>();
+      List<ClassObjectReference> localVarClasses = new LinkedList<ClassObjectReference>();
+      try {
+        for (LocalVariable v : thread.frame(0).visibleVariables()) {
+          try {
+            Type t = v.type();
+            if (t instanceof ReferenceType) {
+              localVarClasses.add(((ReferenceType) t).classObject());
+            }
+            else {
+              localVarClasses.add(null);
+            }
+            localVarNames.add(_mirrorString(v.name(), toRelease));
+            Value val = thread.frame(0).getValue(v);
+            if (val == null || val instanceof ObjectReference) { localVars.add((ObjectReference) val); }
+            else { localVars.add(_box((PrimitiveValue) val, thread, toRelease)); }
+          }
+          catch (ClassNotLoadedException e) {
+          }
+        }
+      }
+      catch (AbsentInformationException e) { /* ignore -- we just won't include any local variables */ }
+      ArrayReference mirroredVars = _mirrorArray("java.lang.Object", localVars, thread, toRelease);
+      ArrayReference mirroredVarNames = _mirrorArray("java.lang.String", localVarNames, thread, toRelease);
+      ArrayReference mirroredVarClasses = _mirrorArray("java.lang.Class", localVarClasses, thread, toRelease);
+      
+      _invokeMethod(thread, _interpreterJVM, "addInterpreter", ADD_INTERPRETER_SIG,
+                    mirroredName, thisVal, thisClass, mirroredVars, mirroredVarNames, mirroredVarClasses);
+      
+      String prompt = _getPromptString(thread);
+      _log.log(this + " is setting active interpreter");
+      _model.getInteractionsModel().setActiveInterpreter(interpreterName, prompt);
+    }
+    catch (IncompatibleThreadStateException e) { throw new DebugException(e); }
+    finally {
+      for (ObjectReference ref : toRelease) { ref.enableCollection(); }
+    }
+  }

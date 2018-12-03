@@ -1,0 +1,6 @@
+    void validate() {
+        validateHost();
+        validateHostPath();
+        validateLogin();
+        validateFileFilter();
+    }

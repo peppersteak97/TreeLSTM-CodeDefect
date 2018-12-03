@@ -1,0 +1,9 @@
+    private void setInitialExpandState() {
+        IntegrationEntityTreeNode root = (IntegrationEntityTreeNode) getRootNode();
+        for (Enumeration<IKongaTreeNode> en = root.children(); en.hasMoreElements();) {
+            IntegrationEntityTreeNode child = (IntegrationEntityTreeNode) en.nextElement();
+            if (hasOnlyRootFolderChildren(child)) {
+                makeNodeExpanded(child);
+            }
+        }
+    }

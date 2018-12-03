@@ -1,0 +1,7 @@
+    private void prepareForDisplay() {
+        registerCommands();
+        m_ui.populateTextArea();
+        setMainPanel(createMainPanel());
+        createTitlePanel();
+        setToolBar(createToolBar());
+    }

@@ -1,0 +1,5 @@
+    private void createTitle() {
+        if (m_title != null && m_title.length() > 0) {
+            m_titleLabel = new JLabel(m_title);
+        }
+    }

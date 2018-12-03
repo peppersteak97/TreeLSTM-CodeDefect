@@ -1,0 +1,3 @@
+  public String getQualifiedClassName() throws ClassNameNotFoundException {
+    throw new UnsupportedOperationException("Dummy method");
+  }

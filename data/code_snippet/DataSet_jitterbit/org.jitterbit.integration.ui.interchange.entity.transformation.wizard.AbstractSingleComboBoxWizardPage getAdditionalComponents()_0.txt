@@ -1,0 +1,3 @@
+    protected Component[] getAdditionalComponents() {
+        return new Component[0];
+    }

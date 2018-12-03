@@ -1,0 +1,3 @@
+  protected final Register getCTR() {
+    return getIR().regpool.getPhysicalRegisterSet().getCTR();
+  }

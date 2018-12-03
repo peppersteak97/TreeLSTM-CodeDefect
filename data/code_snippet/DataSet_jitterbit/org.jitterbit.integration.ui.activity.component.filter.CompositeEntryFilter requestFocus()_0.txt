@@ -1,0 +1,5 @@
+    public void requestFocus() {
+        if (!m_filters.isEmpty()) {
+            m_filters.get(0).requestFocus();
+        }
+    }

@@ -1,0 +1,4 @@
+    public LogStatus getSelectedStatus() {
+        Object o = m_comboBox.getSelectedItem();
+        return (o instanceof StatusItem) ? ((StatusItem) o).getStatus() : null;
+    }

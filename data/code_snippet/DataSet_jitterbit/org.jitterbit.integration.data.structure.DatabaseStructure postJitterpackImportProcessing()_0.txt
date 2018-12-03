@@ -1,0 +1,6 @@
+    public void postJitterpackImportProcessing() {
+        super.postJitterpackImportProcessing();
+        if (m_location != null) {
+            m_location.postJitterpackImportProcessing();
+        }
+    }

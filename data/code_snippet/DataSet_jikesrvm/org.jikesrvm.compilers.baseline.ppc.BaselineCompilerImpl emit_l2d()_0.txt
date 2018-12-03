@@ -1,0 +1,5 @@
+  protected final void emit_l2d() {
+    popLong(T0, VM.BuildFor64Addr ? T0 : T1);
+    generateSysCall(8, Entrypoints.sysLongToDoubleIPField);
+    pushDouble(F0);
+  }

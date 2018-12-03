@@ -1,0 +1,9 @@
+    public void validateInput() throws InputPanelException {
+        try {
+            m_segmentModel.validateModel();
+        }
+        catch (TextDocumentDefinitionException e) {
+            throw new InputPanelException(e.getMessage());
+        }
+        super.validateInput();
+    }

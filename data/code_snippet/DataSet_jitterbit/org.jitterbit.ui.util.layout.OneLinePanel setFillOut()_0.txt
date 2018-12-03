@@ -1,0 +1,6 @@
+    public OneLinePanel setFillOut() {
+        setWeightX(1.0);
+        setWeightY(1.0);
+        setFill(BOTH);
+        return this;
+    }

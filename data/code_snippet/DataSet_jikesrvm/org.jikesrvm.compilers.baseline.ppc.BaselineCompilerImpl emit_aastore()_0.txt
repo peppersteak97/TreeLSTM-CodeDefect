@@ -1,0 +1,7 @@
+  protected final void emit_aastore() {
+    if (doesCheckStore) {
+      emit_resolved_invokestatic((MethodReference)Entrypoints.aastoreMethod.getMemberRef());
+    } else {
+      emit_resolved_invokestatic((MethodReference)Entrypoints.aastoreUninterruptibleMethod.getMemberRef());
+    }
+  }

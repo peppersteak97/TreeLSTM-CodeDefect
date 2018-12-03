@@ -1,0 +1,3 @@
+  public TypeReference[] getParameterTypes() {
+    return parameterTypes;
+  }

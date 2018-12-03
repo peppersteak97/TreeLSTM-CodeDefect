@@ -1,0 +1,13 @@
+    Set<DatabaseColumn> getSelectedKeys() {
+        Set<DatabaseColumn> selected = null;
+        if (wasOkPressed()) {
+            selected = new LinkedHashSet<DatabaseColumn>();
+            for (DbColumnEntry e : m_columnEntries) {
+                DatabaseColumn col = e.getPrimaryKey();
+                if (col != null) {
+                    selected.add(col);
+                }
+            }
+        }
+        return selected;
+    }

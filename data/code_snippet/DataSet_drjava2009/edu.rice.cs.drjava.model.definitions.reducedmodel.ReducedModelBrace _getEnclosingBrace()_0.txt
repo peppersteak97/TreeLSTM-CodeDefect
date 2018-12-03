@@ -1,0 +1,53 @@
+  protected BraceInfo _getEnclosingBrace() {
+    Stack<Brace> braceStack = new Stack<Brace>();
+    TokenList.Iterator iter = _cursor.copy();
+    resetWalkerLocationToCursor();
+    int relDistance = 0;
+    int distance = relDistance;
+    
+    
+    int offset = iter.getBlockOffset();
+    relDistance += offset;
+    distance += offset;
+    
+    if (iter.atStart() || iter.atFirstItem()) {
+      iter.dispose();
+      return BraceInfo.NULL;
+    }
+    
+    iter.prev();
+    
+    String braceType;
+    
+    while (! iter.atStart()) {
+      
+      ReducedToken curToken = iter.current();
+      int size = curToken.getSize();
+      distance += size;
+      relDistance += size;
+      
+      if (! curToken.isGap()) {
+        Brace curBrace = (Brace) curToken;
+        if (moveWalkerGetState(-relDistance) == FREE && ! curToken.isCommentStart()) {
+          if (curBrace.isOpenBrace()) {
+            if (braceStack.isEmpty()) {
+              braceType = curBrace.getType();
+              iter.dispose();
+              return new BraceInfo(braceType, distance);
+            }
+            Brace popped = braceStack.pop();
+            if (! curBrace.isMatch(popped)) {
+              iter.dispose();
+              return BraceInfo.NULL;
+            }
+          }
+          else braceStack.push(curBrace);
+        }
+        relDistance = 0;
+      }
+      iter.prev();
+    }
+    
+    iter.dispose();
+    return BraceInfo.NULL;
+  }  

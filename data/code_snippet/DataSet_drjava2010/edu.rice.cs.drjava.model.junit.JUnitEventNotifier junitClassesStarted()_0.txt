@@ -1,0 +1,5 @@
+  public void junitClassesStarted() {
+    _lock.startRead();
+    try { for (JUnitListener jul : _listeners) { jul.junitClassesStarted(); } }
+    finally { _lock.endRead(); }
+  }

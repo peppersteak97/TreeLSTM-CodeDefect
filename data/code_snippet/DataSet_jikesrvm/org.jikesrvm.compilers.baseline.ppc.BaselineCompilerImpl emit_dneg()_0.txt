@@ -1,0 +1,5 @@
+  protected final void emit_dneg() {
+    popDouble(F0);
+    asm.emitFNEG(F0, F0);
+    pushDouble(F0);
+  }

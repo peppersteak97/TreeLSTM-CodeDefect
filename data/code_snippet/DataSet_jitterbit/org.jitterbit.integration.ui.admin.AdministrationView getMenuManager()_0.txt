@@ -1,0 +1,3 @@
+    public IMenuManager getMenuManager() {
+        return m_menuManager;
+    }

@@ -1,0 +1,7 @@
+	public void clear() {
+		List<KongaGraphComponent> liItems = new ArrayList<KongaGraphComponent>(m_liRoutes);
+		liItems.addAll(m_liBubbles);
+		fireModelCleared(liItems);
+		m_liBubbles = new ArrayList<KongaGraphBubble>();
+		m_liRoutes = new ArrayList<KongaGraphRoute>();
+	}

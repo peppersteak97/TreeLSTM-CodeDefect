@@ -1,0 +1,1 @@
+    public int    getOutput()   { return isOutput; }

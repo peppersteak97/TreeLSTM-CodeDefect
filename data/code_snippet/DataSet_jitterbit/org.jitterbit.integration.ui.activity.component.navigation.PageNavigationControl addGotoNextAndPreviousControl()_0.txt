@@ -1,0 +1,6 @@
+    private void addGotoNextAndPreviousControl() {
+        JComponent buttons = Box.createHorizontalBox();
+        buttons.add(m_gotoPreviousPageButton);
+        buttons.add(m_gotoNextPageButton);
+        addControl(buttons, 40);
+    }

@@ -1,0 +1,3 @@
+    protected final MaxEntriesToGetFilterUi getMaxEntriesToGetFilterUi() {
+        return m_maxEntriesToGetFilter;
+    }

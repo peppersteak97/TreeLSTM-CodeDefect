@@ -1,0 +1,9 @@
+    private void layoutComponents() {
+        OneColumnPanel main = new OneColumnPanel();
+        main.setFill(OneColumnPanel.VERTICAL);
+        main.setInsets(5, 5, 2, 5);
+        layoutCaption(main);
+        layoutLocationDisplayer(main);
+        layoutDownloadButton(main);
+        layoutMainPanel(main);
+    }

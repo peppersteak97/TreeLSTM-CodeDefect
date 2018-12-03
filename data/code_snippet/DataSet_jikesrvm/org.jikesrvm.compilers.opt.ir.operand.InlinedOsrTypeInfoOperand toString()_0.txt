@@ -1,0 +1,22 @@
+  public String toString() {
+    StringBuffer buf = new StringBuffer("(");
+
+    for (int i = 0, n = methodids.length; i < n; i++) {
+      buf.append(bcindexes[i]).append("@").append(MemberReference.getMemberRef(methodids[i]).getName()).append(" : ");
+
+      for (int j = 0, m = localTypeCodes[i].length; j < m; j++) {
+        buf.append((char) localTypeCodes[i][j]);
+      }
+
+      buf.append(",");
+      for (int j = 0, m = stackTypeCodes[i].length; j < m; j++) {
+        buf.append((char) stackTypeCodes[i][j]);
+      }
+
+      if (i != n - 1) {
+        buf.append(" | ");
+      }
+    }
+    buf.append(")");
+    return new String(buf);
+  }

@@ -1,0 +1,3 @@
+  public final SpaceEffGraphNode firstNode() {
+    return _firstNode;
+  }

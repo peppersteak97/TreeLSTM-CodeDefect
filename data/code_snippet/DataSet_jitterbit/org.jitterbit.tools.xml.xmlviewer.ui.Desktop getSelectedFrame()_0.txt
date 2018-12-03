@@ -1,0 +1,3 @@
+    public XmlDocumentFrame getSelectedFrame() {
+        return (XmlDocumentFrame)super.getSelectedFrame();
+    }

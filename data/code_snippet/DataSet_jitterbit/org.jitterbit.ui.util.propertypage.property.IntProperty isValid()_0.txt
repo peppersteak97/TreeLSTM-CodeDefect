@@ -1,0 +1,11 @@
+	public boolean isValid() {
+		try {
+		    String s = ((Displayer)getComponentHolder()).getText();
+		    if( StringUtils.isNotBlank(s) )
+		        Integer.valueOf( ((Displayer)getComponentHolder()).getText() );
+			return true;
+		} 
+		catch (NumberFormatException e) {
+			return false;
+		}
+	}

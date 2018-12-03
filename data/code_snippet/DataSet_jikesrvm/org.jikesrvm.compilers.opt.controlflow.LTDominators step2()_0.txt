@@ -1,0 +1,38 @@
+  private void step2() {
+    if (DEBUG) { System.out.println(" ******* Beginning STEP 2 *******\n"); }
+
+    for (int i = DFSCounter; i > 1; i--) {
+      BasicBlock block = vertex[i];
+      LTDominatorInfo blockInfo = LTDominatorInfo.getInfo(block);
+
+      if (DEBUG) { System.out.println(" Processing: " + block + "\n"); }
+
+      BasicBlockEnumeration e = getPrevNodes(block);
+      while (e.hasMoreElements()) {
+        BasicBlock prev = e.next();
+        if (DEBUG) { System.out.println("    Inspecting prev: " + prev); }
+        BasicBlock u = EVAL(prev);
+        if (getSemi(u) != 0 && getSemi(u) < getSemi(block)) {
+          blockInfo.setSemiDominator(getSemi(u));
+        }
+      }  
+
+      LTDominatorInfo.getInfo(vertex[blockInfo.getSemiDominator()]).
+          addToBucket(block);
+
+      LINK(blockInfo.getParent(), block);
+
+      java.util.Iterator<BasicBlock> bucketEnum = LTDominatorInfo.getInfo(getParent(block)).getBucketIterator();
+      while (bucketEnum.hasNext()) {
+        BasicBlock block2 = bucketEnum.next();
+
+        BasicBlock u = EVAL(block2);
+
+        if (getSemi(u) < getSemi(block2)) {
+          LTDominatorInfo.getInfo(block2).setDominator(u);
+        } else {
+          LTDominatorInfo.getInfo(block2).setDominator(getParent(block));
+        }
+      }         
+    }           
+  }             

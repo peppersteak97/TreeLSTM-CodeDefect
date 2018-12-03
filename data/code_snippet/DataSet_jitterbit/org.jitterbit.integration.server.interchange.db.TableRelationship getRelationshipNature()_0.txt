@@ -1,0 +1,3 @@
+    public RelationshipCardinality getRelationshipNature() {
+        return m_nature;
+    }

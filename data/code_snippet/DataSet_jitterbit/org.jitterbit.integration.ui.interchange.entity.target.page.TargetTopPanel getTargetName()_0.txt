@@ -1,0 +1,3 @@
+    String getTargetName() {
+        return m_name.getValue();
+    }

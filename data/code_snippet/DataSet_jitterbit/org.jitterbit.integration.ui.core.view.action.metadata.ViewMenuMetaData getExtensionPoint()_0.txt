@@ -1,0 +1,3 @@
+    public final MenuExtensionPoint getExtensionPoint() {
+        return m_extensionPoint;
+    }

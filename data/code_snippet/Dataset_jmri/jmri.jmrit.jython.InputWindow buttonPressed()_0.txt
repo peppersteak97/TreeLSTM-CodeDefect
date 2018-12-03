@@ -1,0 +1,15 @@
+    void buttonPressed() {
+        PythonInterp.getPythonInterpreter();
+
+        String cmd = area.getText()+"\n";
+
+        while ((cmd.length()>1) && cmd.charAt(cmd.length()-2)=='\n')
+            cmd = cmd.substring(0, cmd.length()-1);
+
+        String echo = ">>> "+cmd;
+        echo = jmri.util.StringUtil.replaceAll(echo,"\n", "\n... ");
+        echo = echo.substring(0, echo.length()-4);
+        PythonInterp.getOutputArea().append(echo);
+
+        PythonInterp.execCommand(cmd);
+    }

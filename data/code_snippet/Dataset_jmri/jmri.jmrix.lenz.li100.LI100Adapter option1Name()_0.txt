@@ -1,0 +1,1 @@
+    public String option1Name() { return "LI100 connection uses "; }

@@ -1,0 +1,3 @@
+    boolean isUploadMode() {
+        return m_radioUpload.isSelected();
+    }

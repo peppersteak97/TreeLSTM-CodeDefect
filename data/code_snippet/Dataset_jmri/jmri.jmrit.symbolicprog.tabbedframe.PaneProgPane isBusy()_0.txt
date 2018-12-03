@@ -1,0 +1,6 @@
+                    if (_parentFrame.isBusy() == false) {
+                        prepReadPane(true);
+                        prepGlassPane(readChangesButton);
+                        _parentFrame.glassPane.setVisible(true);
+                        readPaneChanges();
+                    }

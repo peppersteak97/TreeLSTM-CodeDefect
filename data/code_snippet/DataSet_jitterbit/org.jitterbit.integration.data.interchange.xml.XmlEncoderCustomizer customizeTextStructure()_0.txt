@@ -1,0 +1,12 @@
+    private static void customizeTextStructure() throws IntrospectionException {
+        BeanInfo info = Introspector.getBeanInfo(Field.class);
+        BeanDescriptor desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(Segment.class);
+        desc = info.getBeanDescriptor();
+        info = Introspector.getBeanInfo(SimpleTextStructure.class);
+        desc = info.getBeanDescriptor();
+                        new SimpleTextStructurePersistenceDelegate());
+        info = Introspector.getBeanInfo(ComplexTextStructure.class);
+        desc = info.getBeanDescriptor();
+                        new ComplexTextStructurePersistenceDelegate());
+    }

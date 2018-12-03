@@ -1,0 +1,14 @@
+    public synchronized void start() {
+        if (m_timer != null) {
+            return;
+        }
+        
+        ActionListener action = new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                m_label.setText(getCurrentDisplayString());
+            }
+        };
+        m_timer = new Timer(m_delay, action);
+        m_timer.start();
+    }

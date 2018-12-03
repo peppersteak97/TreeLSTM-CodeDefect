@@ -1,0 +1,17 @@
+    private Point calculatePopupPosition() {
+        int x0 = m_showHideButton.getX();
+        int y0 = m_showHideButton.getY() + m_showHideButton.getHeight();
+        Point p1 = SwingUtilities.convertPoint(m_panel, x0, y0, null);
+        SwingUtilities.convertPointToScreen(p1, m_owner);
+
+        Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();
+        int wH = m_popupWindow.getHeight();
+        int wW = m_popupWindow.getWidth();
+        if (p1.y + wH > screenDim.height) {
+            p1.y -= (wH + m_showHideButton.getHeight());
+        }
+        if (p1.x + wW > screenDim.width) {
+            p1.x -= wW;
+        }
+        return p1;
+    }

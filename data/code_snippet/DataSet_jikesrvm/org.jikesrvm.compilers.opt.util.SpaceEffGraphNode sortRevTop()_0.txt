@@ -1,0 +1,5 @@
+  public final void sortRevTop() {
+    clearInFlags();
+    setDfsVisitedOnStack();
+    nextSorted = _sortRevTop(null);
+  }

@@ -1,0 +1,8 @@
+    private IIntegrationEntityUiDelegate unregisterOldEntity() {
+        IIntegrationEntityUiDelegate old = m_displayedEntity;
+        if (old != null) {
+            old.getDataObject().removePropertyChangeListener(
+                            IntegrationEntity.PROPERTY_NAME, m_nameListener);
+        }
+        return old;
+    }

@@ -1,0 +1,5 @@
+  private String getPackageQualifier() {
+    String packageName = getPackageName();
+    if ((packageName != null) && (! packageName.equals(""))) { packageName = packageName + "."; }
+    return packageName;
+  }

@@ -1,0 +1,9 @@
+  public int getOsrPrologueLength() {
+    if(isForOsrSpecialization()) {
+      synchronized(osrPrologues) {
+        return osrPrologues.get(this).length;
+      }
+    } else {
+      return 0;
+    }
+  }

@@ -1,0 +1,3 @@
+    public static OperationType[] getSupportedTypes() {
+        return SUPPORTED_TYPES;
+    }

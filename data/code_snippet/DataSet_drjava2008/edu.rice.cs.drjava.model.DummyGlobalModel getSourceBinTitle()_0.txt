@@ -1,0 +1,3 @@
+  public String getSourceBinTitle() {
+    throw new UnsupportedOperationException("Tried to call getSourceBinTitle on a Dummy");
+  }

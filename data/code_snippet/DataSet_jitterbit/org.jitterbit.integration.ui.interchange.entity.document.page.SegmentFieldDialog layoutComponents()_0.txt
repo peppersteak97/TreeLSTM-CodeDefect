@@ -1,0 +1,8 @@
+    private void layoutComponents() {
+        JPanel cp = new JPanel(new BorderLayout());
+        cp.setBackground(IntegrationUiStyleSheet.NEUTRAL_BACKGROUND);
+        getTablePanel().addToParent(cp, BorderLayout.CENTER);
+        cp.add(getButtons(), BorderLayout.SOUTH);
+        cp.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        setContentPane(cp);
+    }

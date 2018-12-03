@@ -1,0 +1,4 @@
+    void showRegButtonChanged() {
+        panel.setShowRegions(showRegButton.isSelected());
+        panel.repaint();
+    }

@@ -1,0 +1,1 @@
+	public TrackSegment getConnect2() {return connect2;}

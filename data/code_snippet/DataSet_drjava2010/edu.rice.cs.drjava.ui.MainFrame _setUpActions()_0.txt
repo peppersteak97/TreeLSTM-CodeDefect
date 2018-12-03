@@ -1,0 +1,163 @@
+  private void _setUpActions() {
+    _setUpAction(_newAction, "New", "Create a new document");
+    _setUpAction(_newJUnitTestAction, "New", "Create a new JUnit test case class");
+    _setUpAction(_newProjectAction, "New", "Make a new project");
+    _setUpAction(_openAction, "Open", "Open an existing file");
+    _setUpAction(_openFolderAction, "Open Folder", "OpenAll", "Open all files within a directory");
+    _setUpAction(_openFileOrProjectAction, "Open", "Open an existing file or project");
+    _setUpAction(_openProjectAction, "Open", "Open an existing project");
+    _setUpAction(_saveAction, "Save", "Save the current document");
+    _setUpAction(_saveAsAction, "Save As", "SaveAs", "Save the current document with a new name");
+    _setUpAction(_renameAction, "Rename", "Rename", "Rename the current document");
+    _setUpAction(_saveProjectAction, "Save", "Save", "Save the current project");
+    _saveProjectAction.setEnabled(false);
+    _setUpAction(_saveProjectAsAction, "Save As", "SaveAs", "Save current project to new project file");
+    _saveProjectAsAction.setEnabled(false);
+    _setUpAction(_exportProjectInOldFormatAction, "Export Project In Old \"" + OLD_PROJECT_FILE_EXTENSION +
+                 "\" Format", "SaveAs", "Export Project In Old \"" + OLD_PROJECT_FILE_EXTENSION + "\" Format");
+    _exportProjectInOldFormatAction.setEnabled(false);
+    _setUpAction(_revertAction, "Revert", "Revert the current document to the saved version");
+    
+    _setUpAction(_closeAction, "Close", "Close the current document");
+    _setUpAction(_closeAllAction, "Close All", "CloseAll", "Close all documents");
+    _setUpAction(_closeProjectAction, "Close", "CloseAll", "Close the current project");
+    _closeProjectAction.setEnabled(false);
+    
+    _setUpAction(_projectPropertiesAction, "Project Properties", "Preferences", "Edit Project Properties");
+    _projectPropertiesAction.setEnabled(false);    
+    
+    _setUpAction(_junitProjectAction, "Test Project", "Test the documents in the project source tree");
+    _junitProjectAction.setEnabled(false);
+    
+    _setUpAction(_compileProjectAction, "Compile Project", "Compile the documents in the project source tree");
+    _compileProjectAction.setEnabled(false);
+    
+    _setUpAction(_runProjectAction, "Run Project", "Run the project's main method");
+    _runProjectAction.setEnabled(false);
+    
+    _setUpAction(_jarProjectAction, "Jar", "Create a jar archive from this project");
+    _jarProjectAction.setEnabled(false);
+    
+    _setUpAction(_saveAllAction, "Save All", "SaveAll", "Save all open documents");
+    
+    _setUpAction(_cleanAction, "Clean", "Clean Build directory");
+    _cleanAction.setEnabled(false);
+    _setUpAction(_autoRefreshAction, "Auto-Refresh", "Auto-refresh project");
+    _autoRefreshAction.setEnabled(false);
+    _setUpAction(_compileAction, "Compile Current Document", "Compile the current document");
+    _setUpAction(_compileAllAction, "Compile", "Compile all open documents");
+    _setUpAction(_printDefDocAction, "Print", "Print the current document");
+    _setUpAction(_printConsoleAction, "Print", "Print the Console pane");
+    _setUpAction(_printInteractionsAction, "Print", "Print the Interactions pane");
+    _setUpAction(_pageSetupAction, "Page Setup", "PageSetup", "Change the printer settings");
+    _setUpAction(_printDefDocPreviewAction, "Print Preview", "PrintPreview", 
+                 "Preview how the document will be printed");
+    _setUpAction(_printConsolePreviewAction, "Print Preview", "PrintPreview", 
+                 "Preview how the console document will be printed");
+    _setUpAction(_printInteractionsPreviewAction, "Print Preview", "PrintPreview", 
+                 "Preview how the interactions document will be printed");    
+    
+    _setUpAction(_quitAction, "Quit", "Quit", "Quit DrJava");
+    
+    _setUpAction(_undoAction, "Undo", "Undo previous command");
+    _setUpAction(_redoAction, "Redo", "Redo last undo");
+    _undoAction.putValue(Action.NAME, "Undo Previous Command");
+    _redoAction.putValue(Action.NAME, "Redo Last Undo");
+    
+    _setUpAction(cutAction, "Cut", "Cut selected text to the clipboard");
+    _setUpAction(copyAction, "Copy", "Copy selected text to the clipboard");
+    _setUpAction(pasteAction, "Paste", "Paste text from the clipboard");
+    _setUpAction(_pasteHistoryAction, "Paste from History", "Paste text from the clipboard history");
+    _setUpAction(_selectAllAction, "Select All", "Select all text");
+    
+    cutAction.putValue(Action.NAME, "Cut");
+    copyAction.putValue(Action.NAME, "Copy");
+    pasteAction.putValue(Action.NAME, "Paste");
+    _pasteHistoryAction.putValue(Action.NAME, "Paste from History");
+    
+    _setUpAction(_indentLinesAction, "Indent Lines", "Indent all selected lines");
+    _setUpAction(_commentLinesAction, "Comment Lines", "Comment out all selected lines");
+    _setUpAction(_uncommentLinesAction, "Uncomment Lines", "Uncomment all selected lines");
+    
+    _setUpAction(completeWordUnderCursorAction, "Auto-Complete Word Under Cursor",
+                 "Auto-complete the word the cursor is currently located on");
+    _setUpAction(_bookmarksPanelAction, "Bookmarks", "Display the bookmarks panel");
+    _setUpAction(_toggleBookmarkAction, "Toggle Bookmark", "Toggle the bookmark at the current cursor location");
+    _setUpAction(_followFileAction, "Follow File", "Follow a file's updates");
+    _setUpAction(_executeExternalProcessAction, "Execute External", "Execute external process");
+    _setUpAction(_editExternalProcessesAction, "Preferences", "Edit saved external processes");
+    
+    _setUpAction(_findReplaceAction, "Find", "Find or replace text in the document");
+    _setUpAction(_findNextAction, "Find Next", "Repeats the last find");
+    _setUpAction(_findPrevAction, "Find Previous", "Repeats the last find in the opposite direction");
+    _setUpAction(_gotoLineAction, "Go to line", "Go to a line number in the document");
+    _setUpAction(_gotoFileAction, "Go to File", "Go to a file specified by its name");
+    _setUpAction(gotoFileUnderCursorAction, "Go to File Under Cursor",
+                 "Go to the file specified by the word the cursor is located on");
+    
+    _setUpAction(_switchToPrevAction, "Previous Document", "Up", "Switch to the previous document");
+    _setUpAction(_switchToNextAction, "Next Document", "Down", "Switch to the next document");
+    
+    _setUpAction(_browseBackAction, "Back", "Back", "Move back in the browser history");
+    _setUpAction(_browseForwardAction, "Forward", "Forward", "Move forward in the browser history");    
+    
+    _setUpAction(_switchToPreviousPaneAction, "Previous Pane", "Switch focus to the previous pane");
+    _setUpAction(_switchToNextPaneAction, "Next Pane", "Switch focus to the next pane");
+    _setUpAction(_gotoOpeningBraceAction, "Go to Opening Brace", 
+                 "Go th the opening brace of the block enclosing the cursor");
+    _setUpAction(_gotoClosingBraceAction, "Go to Closing Brace", 
+                 "Go th the closing brace of the block enclosing the cursor");
+    
+    _setUpAction(_editPreferencesAction, "Preferences", "Edit configurable settings in DrJava");
+    
+    _setUpAction(_junitAction, "Test Current", "Run JUnit over the current document");
+    _setUpAction(_junitAllAction, "Test", "Run JUnit over all open JUnit tests");
+    _setUpAction(_javadocAllAction, "Javadoc", "Create and save Javadoc for the packages of all open documents");
+    _setUpAction(_javadocCurrentAction, "Preview Javadoc Current", "Preview the Javadoc for the current document");
+    _setUpAction(_runAction, "Run", "Run the main method of the current document");
+    _setUpAction(_runAppletAction, "Run", "Run the current document as applet");
+    
+    _setUpAction(_openJavadocAction, "Open Java API Javadoc...", "Open the Java API Javadoc Web page for a class");
+    _setUpAction(_openJavadocUnderCursorAction, "Open Java API Javadoc for Word Under Cursor...", "Open the Java API " +
+                 "Javadoc Web page for the word under the cursor");
+    
+    _setUpAction(_executeHistoryAction, "Execute History", "Load and execute a history of interactions from a file");
+    _setUpAction(_loadHistoryScriptAction, "Load History as Script", 
+                 "Load a history from a file as a series of interactions");
+    _setUpAction(_saveHistoryAction, "Save History", "Save the history of interactions to a file");
+    _setUpAction(_clearHistoryAction, "Clear History", "Clear the current history of interactions");
+    
+    _setUpAction(_resetInteractionsAction, "Reset", "Reset the Interactions Pane");
+    _resetInteractionsAction.setEnabled(true);
+    _setUpAction(_closeSystemInAction, "Close System.in", "Close System.in Stream in Interactions Pane"); 
+
+    _setUpAction(_viewInteractionsClassPathAction, "View Interactions Classpath", 
+                 "Display the classpath in use by the Interactions Pane");
+    _setUpAction(_copyInteractionToDefinitionsAction, "Lift Current Interaction", 
+                 "Copy the current interaction into the Definitions Pane");
+    
+    _setUpAction(_clearConsoleAction, "Clear Console", "Clear all text in the Console Pane");
+    _setUpAction(_showDebugConsoleAction, "Show DrJava Debug Console", "<html>Show a console for debugging DrJava<br>" +
+                 "(with \"mainFrame\", \"model\", and \"config\" variables defined)</html>");
+    
+    if (_model.getDebugger().isAvailable()) {
+      _setUpAction(_toggleDebuggerAction, "Debug Mode", "Enable or disable DrJava's debugger");
+      _setUpAction(_toggleBreakpointAction, "Toggle Breakpoint", "Set or clear a breakpoint on the current line");
+      _setUpAction(_clearAllBreakpointsAction, "Clear Breakpoints", "Clear all breakpoints in all classes");
+      _setUpAction(_resumeDebugAction, "Resume", "Resume the current suspended thread");
+      _setUpAction(_automaticTraceDebugAction, "Automatic Trace", "Automatically trace through entire program");
+      _setUpAction(_stepIntoDebugAction, "Step Into", "Step into the current line or method call");
+      _setUpAction(_stepOverDebugAction, "Step Over", "Step over the current line or method call");
+      _setUpAction(_stepOutDebugAction, "Step Out", "Step out of the current method");
+      _setUpAction(_breakpointsPanelAction, "Breakpoints", "Display the breakpoints panel");
+    }
+    
+    _setUpAction(_helpAction, "Help", "Show documentation on how to use DrJava");
+    _setUpAction(_quickStartAction, "Help", "View Quick Start Guide for DrJava");
+    _setUpAction(_aboutAction, "About", "About DrJava");
+    _setUpAction(_checkNewVersionAction, "Check for New Version", "Find", "Check for New Version");
+    _setUpAction(_drjavaSurveyAction, "Send System Information", "About", 
+                 "Send anonymous system information to DrJava developers");
+    _setUpAction(_errorsAction, "DrJava Errors", "drjavaerror", "Show a window with internal DrJava errors");
+    _setUpAction(_forceQuitAction, "Force Quit", "Stop", "Force DrJava to quit without cleaning up");
+  }

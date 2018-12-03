@@ -1,0 +1,3 @@
+  public boolean checkAltKey() { // For tests only
+    return testVariable;
+  }

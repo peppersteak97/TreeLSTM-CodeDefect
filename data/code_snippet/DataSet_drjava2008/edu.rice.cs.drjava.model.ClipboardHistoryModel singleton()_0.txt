@@ -1,0 +1,4 @@
+  public static synchronized ClipboardHistoryModel singleton() {
+    if (ONLY == null) ONLY = new ClipboardHistoryModel(10);
+    return ONLY;
+  }

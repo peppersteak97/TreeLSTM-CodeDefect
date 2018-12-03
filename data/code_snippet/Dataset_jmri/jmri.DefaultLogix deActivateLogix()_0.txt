@@ -1,0 +1,14 @@
+    public void deActivateLogix() {
+		if (mBusy) {
+			mBusy = false;
+			if (mNumListeners>0) {
+				for (int index = 0;index<mNumListeners;index++) {
+					removeListener(index);
+				}
+			}
+			if (mFastClock!=null) {
+				mFastClock.removeMinuteChangeListener(mFastClockListener);
+				mFastClock = null;
+			}
+		}
+	}

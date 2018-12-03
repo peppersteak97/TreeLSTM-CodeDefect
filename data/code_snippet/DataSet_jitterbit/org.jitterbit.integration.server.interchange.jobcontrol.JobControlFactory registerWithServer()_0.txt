@@ -1,0 +1,10 @@
+    private static void registerWithServer() {
+        IntegrationServer server = IntegrationServer.getInstance();
+        IServerCallFactory<IJobControl> callFactory = new IServerCallFactory<IJobControl>() {
+
+            public IJobControl get() {
+                return new JobControlWsImpl();
+            }
+        };
+        server.registerCallFactory(IJobControl.class, callFactory);
+    }

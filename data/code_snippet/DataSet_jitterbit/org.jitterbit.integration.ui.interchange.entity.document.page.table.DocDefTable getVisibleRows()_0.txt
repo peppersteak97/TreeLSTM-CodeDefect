@@ -1,0 +1,3 @@
+    int getVisibleRows() {
+        return m_nVisibleRows;
+    }

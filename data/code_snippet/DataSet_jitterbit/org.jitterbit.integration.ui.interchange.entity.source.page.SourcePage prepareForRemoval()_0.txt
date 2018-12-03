@@ -1,0 +1,6 @@
+    protected void prepareForRemoval() {
+        for (IActiveObjectProvider ao : m_activeObjectActions) {
+            ao.removeActiveObjectProviderListener(getView());
+        }
+        super.prepareForRemoval();
+    }

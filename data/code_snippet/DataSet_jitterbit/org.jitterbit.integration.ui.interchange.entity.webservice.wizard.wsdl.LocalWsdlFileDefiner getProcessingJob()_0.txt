@@ -1,0 +1,4 @@
+    public IWsdlProcessingJob getProcessingJob() {
+        File file = m_fileSelector.getSelectedFile();
+        return (file != null) ? new ProcessLocalWsdlJob(file.getAbsolutePath()) : null;
+    }

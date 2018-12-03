@@ -1,0 +1,3 @@
+  protected void assertNotEmpty() {
+    assertTrue("number of documents", getSDModel().getOpenDefinitionsDocuments().size() > 0);
+  }

@@ -1,0 +1,4 @@
+  public void waitSlaveDone() {
+    try { synchronized(_masterJVMLock) { while (_monitorThread != null) _masterJVMLock.wait(); }}
+    catch(InterruptedException e) { throw new UnexpectedException(e); } 
+  }

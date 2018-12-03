@@ -1,0 +1,38 @@
+  public void safeJUnitAllWithNoValidTests() throws Exception {
+    
+    
+    JUnitNonTestListener listener = new JUnitNonTestListener(true);
+    _model.addListener(listener);
+    
+    listener.runJUnit(_model.getJUnitModel());
+    
+    listener.assertNonTestCaseCount(1);
+    listener.assertJUnitSuiteStartedCount(0);
+    listener.assertJUnitTestStartedCount(0);
+    listener.assertJUnitTestEndedCount(0);
+    _model.removeListener(listener);
+    
+    JUnitCompileBeforeTestListener listener2 = new JUnitCompileBeforeTestListener();
+    _model.addListener(listener2);
+    OpenDefinitionsDocument doc = setupDocument(NON_TESTCASE_TEXT);
+    File file = new File(_tempDir, "NonTestCase.java");
+    saveFile(doc, new FileSelector(file));
+    
+    listener2.compile(doc);
+    listener2.checkCompileOccurred();
+
+    listener2.resetCompileCounts();
+    
+    File file2 = new File(_tempDir, "MonkeyTestPass.java");
+    OpenDefinitionsDocument doc2 = setupDocument(MONKEYTEST_PASS_TEXT);
+    saveFile(doc2, new FileSelector(file2));
+    listener2.runJUnit(_model.getJUnitModel());
+    
+    listener2.assertNonTestCaseCount(0);
+    listener2.assertJUnitSuiteStartedCount(1);
+    listener2.assertJUnitTestStartedCount(1);
+    listener2.assertJUnitTestEndedCount(1);
+    _model.removeListener(listener2);
+    
+    _log.log("testJUnitAllWithNoValidTests completed");
+  }

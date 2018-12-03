@@ -1,0 +1,12 @@
+  public void testSimpleDocumentRegion() {
+    DummyOpenDefDoc doc1 = new DummyOpenDefDoc();
+    DummyOpenDefDoc doc2 = new DummyOpenDefDoc();
+    doc1.append("This is a test");
+    doc2.append("This is another test");
+    OrderedDocumentRegion r1 = new DocumentRegion(doc1, 5, 10);
+    OrderedDocumentRegion r2 = new DocumentRegion(doc1, 5, 10);
+    OrderedDocumentRegion r3 = new DocumentRegion(doc2, 5, 10);
+    assertEquals("equality test 1", r1, r1);
+    assertEquals("equality test 2", r1, r2);
+    assertFalse("equality test 3", r2.equals(r3));
+  }

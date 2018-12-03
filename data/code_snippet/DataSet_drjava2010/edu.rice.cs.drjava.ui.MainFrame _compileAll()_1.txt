@@ -1,0 +1,8 @@
+  private void _compileAll() {
+    _cleanUpDebugger();
+    hourglassOn();
+    try { _model.getCompilerModel().compileAll(); }
+    catch (FileMovedException fme) { _showFileMovedError(fme); }
+    catch (IOException ioe) { _showIOError(ioe); }
+    finally{ hourglassOff(); }
+  }

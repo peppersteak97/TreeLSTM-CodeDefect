@@ -1,0 +1,73 @@
+  public void testgetMainClassName() throws BadLocationException, ClassNameNotFoundException {
+    _doc.insertString(0, PUBLIC_CIE_TEXT, null);
+    assertEquals("C", _doc.getMainClassName());
+    _doc.remove(0, PUBLIC_CIE_TEXT.length());
+
+    _doc.insertString(0, PUBLIC_CEI_TEXT, null);
+    assertEquals("C", _doc.getMainClassName());
+    _doc.remove(0, PUBLIC_CEI_TEXT.length());
+
+    _doc.insertString(0, PUBLIC_ICE_TEXT, null);
+    assertEquals("I", _doc.getMainClassName());
+    _doc.remove(0, PUBLIC_ICE_TEXT.length());
+
+    _doc.insertString(0, PUBLIC_IEC_TEXT, null);
+    assertEquals("I", _doc.getMainClassName());
+    _doc.remove(0, PUBLIC_IEC_TEXT.length());
+
+    _doc.insertString(0, PUBLIC_ECI_TEXT, null);
+    assertEquals("E", _doc.getMainClassName());
+    _doc.remove(0, PUBLIC_ECI_TEXT.length());
+
+    _doc.insertString(0, PUBLIC_EIC_TEXT, null);
+    assertEquals("E", _doc.getMainClassName());
+    _doc.remove(0, PUBLIC_EIC_TEXT.length());
+
+    _doc.insertString(0, I_PUBLIC_CE_TEXT, null);
+    assertEquals("C", _doc.getMainClassName());
+    _doc.remove(0, I_PUBLIC_CE_TEXT.length());
+
+    _doc.insertString(0, E_PUBLIC_CI_TEXT, null);
+    assertEquals("C", _doc.getMainClassName());
+    _doc.remove(0, E_PUBLIC_CI_TEXT.length());
+
+    _doc.insertString(0, C_PUBLIC_IE_TEXT, null);
+    assertEquals("I", _doc.getMainClassName());
+    _doc.remove(0, C_PUBLIC_IE_TEXT.length());
+
+    _doc.insertString(0, E_PUBLIC_IC_TEXT, null);
+    assertEquals("I", _doc.getMainClassName());
+    _doc.remove(0, E_PUBLIC_IC_TEXT.length());
+
+    _doc.insertString(0, C_PUBLIC_EI_TEXT, null);
+    assertEquals("E", _doc.getMainClassName());
+    _doc.remove(0, C_PUBLIC_EI_TEXT.length());
+
+    _doc.insertString(0, I_PUBLIC_EC_TEXT, null);
+    assertEquals("E", _doc.getMainClassName());
+    _doc.remove(0, I_PUBLIC_EC_TEXT.length());
+    
+    _doc.insertString(0, CIE_TEXT, null);
+    assertEquals("C", _doc.getMainClassName());
+    _doc.remove(0, CIE_TEXT.length());
+
+    _doc.insertString(0, CEI_TEXT, null);
+    assertEquals("C", _doc.getMainClassName());
+    _doc.remove(0, CEI_TEXT.length());
+
+    _doc.insertString(0, ICE_TEXT, null);
+    assertEquals("I", _doc.getMainClassName());
+    _doc.remove(0, ICE_TEXT.length());
+
+    _doc.insertString(0, IEC_TEXT, null);
+    assertEquals("I", _doc.getMainClassName());
+    _doc.remove(0, IEC_TEXT.length());
+
+    _doc.insertString(0, ECI_TEXT, null);
+    assertEquals("E", _doc.getMainClassName());
+    _doc.remove(0, ECI_TEXT.length());
+
+    _doc.insertString(0, EIC_TEXT, null);
+    assertEquals("E", _doc.getMainClassName());
+    _doc.remove(0, EIC_TEXT.length());
+  }

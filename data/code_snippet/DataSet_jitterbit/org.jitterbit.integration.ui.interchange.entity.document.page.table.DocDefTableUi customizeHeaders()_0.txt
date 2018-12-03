@@ -1,0 +1,5 @@
+    private void customizeHeaders() {
+        getTableHeader().setReorderingAllowed(false);
+        getTableHeader().setResizingAllowed(true);
+        customizeHeaderRenderers();
+    }

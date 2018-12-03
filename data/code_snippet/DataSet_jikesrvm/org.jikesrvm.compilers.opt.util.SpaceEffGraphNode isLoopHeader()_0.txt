@@ -1,0 +1,1 @@
+  public final boolean isLoopHeader() { return (info & LOOP_HEADER) != 0; }

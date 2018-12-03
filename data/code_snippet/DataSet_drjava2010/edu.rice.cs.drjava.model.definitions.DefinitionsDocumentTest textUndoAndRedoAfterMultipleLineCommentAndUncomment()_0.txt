@@ -1,0 +1,35 @@
+  public void textUndoAndRedoAfterMultipleLineCommentAndUncomment()
+    throws BadLocationException {
+    String text =
+      "public class stuff {\n" +
+      "  private int _int;\n" +
+      "  private Bar _bar;\n" +
+      "  public void foo() {\n" +
+      "    _bar.baz(_int);\n" +
+      "  }\n" +
+      "}\n";
+    
+    String commented =
+    
+    _doc.addUndoableEditListener(_doc.getUndoManager());
+    DrJava.getConfig().setSetting(OptionConstants.INDENT_LEVEL,Integer.valueOf(2));
+    Utilities.clearEventQueue();
+    _doc.insertString(0,text,null);
+    assertEquals("insertion",text, _doc.getText());
+    
+    _doc.getUndoManager().startCompoundEdit();
+    _doc.commentLines(0,_doc.getLength());
+    assertEquals("commenting",commented, _doc.getText());
+    _doc.getUndoManager().undo();
+    assertEquals("undo commenting",text, _doc.getText());
+    _doc.getUndoManager().redo();
+    assertEquals("redo commenting",commented, _doc.getText());
+    
+    _doc.getUndoManager().startCompoundEdit();
+    _doc.uncommentLines(0,_doc.getLength());
+    assertEquals("uncommenting",text, _doc.getText());
+    _doc.getUndoManager().undo();
+    assertEquals("undo uncommenting",commented, _doc.getText());
+    _doc.getUndoManager().redo();
+    assertEquals("redo uncommenting",text, _doc.getText());
+  }

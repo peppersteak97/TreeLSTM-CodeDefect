@@ -1,0 +1,6 @@
+	public IPropertyComponentHolder getComponentHolder() {
+		if( m_componentHolder == null ) {
+			m_componentHolder = createComponentHolder();
+		}
+		return m_componentHolder;
+	}

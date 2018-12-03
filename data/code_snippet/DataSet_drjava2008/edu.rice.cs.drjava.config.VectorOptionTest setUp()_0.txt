@@ -1,0 +1,5 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    _svo = new VectorOption<String>("whatever", new StringOption("", null), (Vector<String>) null);
+    _bvo = new VectorOption<Boolean>("everwhat", new BooleanOption("", null), (Vector<Boolean>) null);
+  }

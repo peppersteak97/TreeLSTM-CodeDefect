@@ -1,0 +1,5 @@
+  public final Stack<T> shallowCopy() {
+    Stack<T> s = new Stack<T>();
+    s.stack.addAll(stack);
+    return s;
+  }

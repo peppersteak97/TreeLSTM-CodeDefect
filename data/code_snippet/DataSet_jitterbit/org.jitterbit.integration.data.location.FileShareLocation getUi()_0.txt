@@ -1,0 +1,3 @@
+    public IFileShareLocationUi getUi() {
+        return new DefaultFileShareLocationUi(this);
+    }

@@ -1,0 +1,3 @@
+    public static IDeployResultNotifier getSharedInstance() {
+        return DeployWorker.getInstance();
+    }

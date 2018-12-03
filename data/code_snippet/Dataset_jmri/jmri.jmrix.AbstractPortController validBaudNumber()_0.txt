@@ -1,0 +1,5 @@
+    public int[] validBaudNumber() { 
+        log.error("default validBaudNumber implementation should not be used");
+        new Exception().printStackTrace();
+        return null;
+    }

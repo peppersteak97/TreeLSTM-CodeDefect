@@ -1,0 +1,15 @@
+    public DbInsertMode getMode() {
+        if (m_insertUpdateRadio.isSelected()) {
+            return DbInsertMode.INSERT_UPDATE;
+        }
+        else if (m_insertOnlyRadio.isSelected()) {
+            return DbInsertMode.INSERT_ONLY;
+        }
+        else if (m_updateOnlyRadio.isSelected()) {
+            return DbInsertMode.UPDATE_ONLY;
+        }
+        else if (UPDATE_INSERT_SUPPORTED && m_updateInsertRadio.isSelected()) {
+            return DbInsertMode.UPDATE_INSERT;
+        }
+        throw new AssertionError();
+    }

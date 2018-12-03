@@ -1,0 +1,6 @@
+    private void installUndoRedo() {
+        m_undoRedoSupportManager = new UndoRedoSupportManager();
+        m_undoRedoSupportManager.enableUndoRedo(m_userNameField);
+        m_undoRedoSupportManager.enableUndoRedo(m_pwdField);
+        m_undoRedoSupportManager.enableUndoRedo(m_serverComboBox);
+    }

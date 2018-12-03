@@ -1,0 +1,16 @@
+    public void saveDeletedItemsInformation() {
+        final ICallbackResult callback = m_callbackResultFactory.getCallback();
+        Runnable job = new Runnable() {
+
+            public void run() {
+                try {
+                    m_delegate.saveDeletedItemsInformation();
+                    callback.succeeded(null);
+                }
+                catch (InterchangeSavingException ex) {
+                    callback.failed(ex);
+                }
+            }
+        };
+        submitJob(job);
+    }

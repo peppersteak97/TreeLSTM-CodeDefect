@@ -1,0 +1,19 @@
+  public void testCommentsAfterBrace() throws BadLocationException {
+    
+    _text = 
+      "   *          \n" +
+      "   */         \n" +
+      "  int field;  \n" +
+      "}";
+    
+    _setDocText(_text);
+    
+    assertTrue("START = 0.", !_rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("START = 0.", !_rule.testApplyRule(_doc, 14, Indenter.IndentReason.OTHER));
+    assertTrue("Only WS between START and open brace.", _rule.testApplyRule(_doc, 15, Indenter.IndentReason.OTHER));
+    assertTrue("Only WS between START and open brace.", _rule.testApplyRule(_doc, 30, Indenter.IndentReason.OTHER));
+    assertTrue("Only WS between START and open brace.", _rule.testApplyRule(_doc, 44, Indenter.IndentReason.OTHER));
+    assertTrue("Only comment and WS between START and open brace.", _rule.testApplyRule(_doc, 45, Indenter.IndentReason.OTHER));
+    assertTrue("Only comment and WS between START and open brace.", _rule.testApplyRule(_doc, 60, Indenter.IndentReason.OTHER));
+    assertTrue("Only comment and WS between START and open brace.", _rule.testApplyRule(_doc, 77, Indenter.IndentReason.OTHER));
+  }

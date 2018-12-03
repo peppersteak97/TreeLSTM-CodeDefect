@@ -1,0 +1,6 @@
+    String getNameString() {
+        String name;
+        if (element == null) name = "<Not connected>";
+        else name = "SE"+element.getNumber();
+        return name;
+    }

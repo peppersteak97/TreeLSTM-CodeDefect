@@ -1,0 +1,1 @@
+  public CompilerErrorModel getCompilerErrorModel() { return _compilerErrorModel; }

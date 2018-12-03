@@ -1,0 +1,3 @@
+    User getSelectedUser() {
+        return (m_currentSelection instanceof User) ? (User) m_currentSelection : null;
+    }

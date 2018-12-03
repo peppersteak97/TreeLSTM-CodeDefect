@@ -1,0 +1,3 @@
+  public File getBuildDirectory() {
+    throw new UnsupportedOperationException("Tried to call getBuildDirectory on a Dummy");
+  }

@@ -1,0 +1,6 @@
+    public void remove() {
+        if (m_mainEntityListener != null) {
+            m_mainEntity.removePropertyChangeListener(m_mainEntityListener);
+        }
+        removeRenameListener();
+    }

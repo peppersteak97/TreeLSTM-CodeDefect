@@ -1,0 +1,12 @@
+    static protected void initLog4J() {
+        String logFile = "default.lcf";
+        try {
+            if (new java.io.File(logFile).canRead()) {
+                org.apache.log4j.PropertyConfigurator.configure(logFile);
+            } else {
+                org.apache.log4j.BasicConfigurator.configure();
+                org.apache.log4j.Category.getRoot().setPriority(org.apache.log4j.Priority.ERROR);
+            }
+        }
+        catch (java.lang.NoSuchMethodError e) { log.error("Exception starting logging: "+e); }
+    }

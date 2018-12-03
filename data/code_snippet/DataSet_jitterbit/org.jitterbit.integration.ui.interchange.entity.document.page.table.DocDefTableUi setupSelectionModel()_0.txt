@@ -1,0 +1,6 @@
+    private void setupSelectionModel() {
+        setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        if (USE_ROW_SELECTOR) {
+            setupRowSelector();
+        }
+    }

@@ -1,0 +1,3 @@
+    public void collapseTree() {
+        m_tree.collapseAll();
+    }

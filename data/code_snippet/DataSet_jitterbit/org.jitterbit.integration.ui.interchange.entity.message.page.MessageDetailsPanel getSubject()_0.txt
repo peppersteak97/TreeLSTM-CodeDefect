@@ -1,0 +1,3 @@
+    private String getSubject() {
+        return m_subject.getValue().trim();
+    }

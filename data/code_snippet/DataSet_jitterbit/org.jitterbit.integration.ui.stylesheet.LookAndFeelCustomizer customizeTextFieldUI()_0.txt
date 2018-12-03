@@ -1,0 +1,4 @@
+    private static void customizeTextFieldUI() {
+        UIManager.put("TextField.font", 
+                        IntegrationUiStyleSheet.DefaultText.getFont());
+    }

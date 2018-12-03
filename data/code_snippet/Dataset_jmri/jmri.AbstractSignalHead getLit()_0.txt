@@ -1,0 +1,1 @@
+	public boolean getLit() {return mLit;}

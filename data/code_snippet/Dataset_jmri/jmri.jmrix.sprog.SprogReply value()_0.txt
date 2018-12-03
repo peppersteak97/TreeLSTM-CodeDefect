@@ -1,0 +1,17 @@
+        public int value() {
+          int index = 0;
+          index = skipWhiteSpace(index);
+          index = skipEqual(index);
+          index = skipWhiteSpace(index);
+          String s1 = ""+(char)getElement(index);
+          String s2 = ""+(char)getElement(index+1);
+          int val = -1;
+          try {
+            int sum = Integer.valueOf(s2,16).intValue();
+            sum += 16*Integer.valueOf(s1,16).intValue();
+          } catch (Exception e) {
+            log.error("Unable to get number from reply: \""+s1+s2+"\" index: "+index
+                      +" message: \""+toString()+"\"");
+          }
+          return val;
+        }

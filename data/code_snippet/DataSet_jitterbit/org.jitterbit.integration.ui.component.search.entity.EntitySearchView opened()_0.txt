@@ -1,0 +1,9 @@
+    protected void opened() {
+        installKeyBindings();
+        EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                m_ui.requestFocus();
+            }
+        });
+    }

@@ -1,0 +1,5 @@
+    private void createTargetBox() {
+        ComboBoxModel model = createTargetComboModel();
+        String label = strings.getString(resourceKey + "Label.Target");
+        m_targetTypeBox = createComboInput(model, label);
+    }

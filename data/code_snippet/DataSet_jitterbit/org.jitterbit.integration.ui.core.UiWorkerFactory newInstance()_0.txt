@@ -1,0 +1,3 @@
+    public static UiWorkerFactory newInstance() {
+        return new FactoryImpl();
+    }

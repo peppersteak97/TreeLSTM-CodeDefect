@@ -1,0 +1,10 @@
+  protected final void emit_aastore() {
+    Barriers.compileModifyCheck(asm, 8);
+    if (doesCheckStore) {
+      genParameterRegisterLoad(asm, 3);
+      asm.emitCALL_Abs(Magic.getTocPointer().plus(Entrypoints.aastoreMethod.getOffset()));
+    } else {
+      genParameterRegisterLoad(asm, 3);
+      asm.emitCALL_Abs(Magic.getTocPointer().plus(Entrypoints.aastoreUninterruptibleMethod.getOffset()));
+    }
+  }

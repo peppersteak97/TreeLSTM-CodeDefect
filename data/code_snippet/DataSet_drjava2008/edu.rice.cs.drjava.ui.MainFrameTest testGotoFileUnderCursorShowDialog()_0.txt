@@ -1,0 +1,58 @@
+  public void testGotoFileUnderCursorShowDialog() throws IOException {
+    String user = System.getProperty("user.name");
+    _tempDir = IOUtil.createAndMarkTempDirectory("DrJava-test-" + user, "");
+    
+    final File goto1_file = new File(_tempDir, "GotoFileUnderCursor3.java");
+    String goto1_string = "GotoFileUnderCursor";
+    IOUtil.writeStringToFile(goto1_file, goto1_string);
+    goto1_file.deleteOnExit();
+    
+    final File goto2_file = new File(_tempDir, "GotoFileUnderCursor4.java");
+    String goto2_string = "GotoFileUnderCursor3";
+    IOUtil.writeStringToFile(goto2_file, goto2_string);
+    goto2_file.deleteOnExit();
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() {
+        _frame.pack();
+        _frame.open(new FileOpenSelector() {
+          public File[] getFiles() { return new File[] { goto1_file, goto2_file }; }
+        });
+      }
+    });
+    
+    final int[] count = new int[2];
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() { 
+        _frame.initGotoFileDialog();
+        _frame._gotoFileDialog.addWindowListener(new WindowListener() {
+          public void windowActivated(WindowEvent e) { ++count[0]; }
+          public void windowClosed(WindowEvent e) { throw new RuntimeException("Should not close _gotoFileDialog"); }
+          public void windowClosing(WindowEvent e) { throw new RuntimeException("Should not be closing _gotoFileDialog"); }
+          public void windowDeactivated(WindowEvent e) { /* throw new RuntimeException("Should not deactivate _gotoFileDialog"); */ }
+          public void windowDeiconified(WindowEvent e) { throw new RuntimeException("Should not deiconify _gotoFileDialog"); }
+          public void windowIconified(WindowEvent e) { throw new RuntimeException("Should not iconify _gotoFileDialog"); }
+          public void windowOpened(WindowEvent e) { ++count[1]; }
+        });
+      }
+    });
+    
+    Utilities.clearEventQueue();
+    
+    SingleDisplayModel model = _frame.getModel();
+    OpenDefinitionsDocument goto1_doc = model.getDocumentForFile(goto1_file);
+    OpenDefinitionsDocument goto2_doc = model.getDocumentForFile(goto2_file);
+    model.setActiveDocument(model.getDocumentForFile(goto1_file));
+    
+    assertEquals("Document contains the incorrect text", goto1_string, model.getActiveDocument().getText());
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() { _frame._gotoFileUnderCursor(); } });                    
+    
+    
+    /* The following test was commented out before test following it was.  It presumably fails even if
+     * the "MainFrame.this.isVisible()" test mentioned below is removed from _gotoFileUnderCursor */
+    /* The following test was commented out after suppressing this display when _frame is not visible.  If it is 
+     * uncommented, then the "MainFrame.this.isVisible()" test in _gotoFileDialog must be removed. */
+    
+    _log.log("gotoFileUnderCursorShowDialog completed");
+  }

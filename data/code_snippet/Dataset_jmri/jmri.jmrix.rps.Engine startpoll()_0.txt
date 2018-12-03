@@ -1,0 +1,20 @@
+    void startpoll() {
+        pollThread = new Thread(){
+            public void run() {
+                log.debug("Polling starts");
+                while (true) {
+                    try {
+                        int i = selectNextPoll();
+                        log.debug("Poll "+i);
+                        setOn(i);
+                        synchronized (this) { wait(20); }
+                        setOff(i);
+                        synchronized (this) { wait(pollingInterval); }
+                    } catch (InterruptedException e) { 
+                        log.debug("Polling stops");
+                    }
+                }
+            }
+        };
+        pollThread.start();
+    }

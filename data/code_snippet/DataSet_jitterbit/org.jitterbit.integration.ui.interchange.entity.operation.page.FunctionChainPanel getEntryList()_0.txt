@@ -1,0 +1,3 @@
+    LinkedList<FunctionEntry> getEntryList() {
+        return new LinkedList<FunctionEntry>(m_entries);
+    }

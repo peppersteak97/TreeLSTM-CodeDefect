@@ -1,0 +1,3 @@
+    public InterchangeProject getDataModel() {
+        return m_dataModel;
+    }

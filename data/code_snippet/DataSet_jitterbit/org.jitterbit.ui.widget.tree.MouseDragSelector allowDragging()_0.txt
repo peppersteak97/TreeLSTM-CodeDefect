@@ -1,0 +1,5 @@
+	protected boolean allowDragging() {
+		return m_startRow == -1 && 
+					UiUtils.getDistance(getStartPoint(), getCurrentPoint()) > 
+						MINIMUM_DISTANCE_FOR_DRAGGING;
+	}

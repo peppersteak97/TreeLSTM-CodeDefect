@@ -1,0 +1,4 @@
+    private void createLabel() {
+        m_label = IntegrationUiStyleSheet.SmallBoldCaption.makeJLabel(
+                PackageResources.Ftp.TRANSFER_TYPE);
+    }

@@ -1,0 +1,16 @@
+    protected void setSerialPort() throws javax.comm.UnsupportedCommOperationException {
+        for (int i = 0; i<validSpeeds.length; i++ )
+            if (validSpeeds[i].equals(mBaudRate))
+                baud = validSpeedValues[i];
+        SerialUtil.setSerialPortParams(activeSerialPort, baud,
+                                       SerialPort.DATABITS_8,
+                                       SerialPort.STOPBITS_1,
+                                       SerialPort.PARITY_NONE);
+        
+        
+        if (!mOpt1.equals(validOption1[0]))
+            flow = 0;
+        activeSerialPort.setFlowControlMode(flow);
+        if (!mOpt2.equals(validOption2[0]))
+            CheckBuffer = false;    
+    }

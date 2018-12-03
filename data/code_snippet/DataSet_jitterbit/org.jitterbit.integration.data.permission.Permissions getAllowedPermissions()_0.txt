@@ -1,0 +1,4 @@
+    public EnumSet<Permission> getAllowedPermissions() {
+        return (m_allowed == null) ? 
+                        EnumSet.noneOf(Permission.class) : EnumSet.copyOf(m_allowed);
+    }

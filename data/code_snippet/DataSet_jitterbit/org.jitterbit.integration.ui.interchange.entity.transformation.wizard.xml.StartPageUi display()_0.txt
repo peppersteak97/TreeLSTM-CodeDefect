@@ -1,0 +1,9 @@
+    void display() {
+        m_focusManager.register();
+        
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                m_radioSelectExisting.setSelected(true);
+            }
+        });
+    }

@@ -1,0 +1,9 @@
+    public Iterable<XmlStructureFile> allFiles() {
+        final List<XmlStructureFile> list = new ArrayList<XmlStructureFile>(m_files.values());
+        return new Iterable<XmlStructureFile>() {
+
+            public Iterator<XmlStructureFile> iterator() {
+                return list.iterator();
+            }
+        };
+    }

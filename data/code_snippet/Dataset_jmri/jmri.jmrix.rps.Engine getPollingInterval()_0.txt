@@ -1,0 +1,1 @@
+    public int getPollingInterval() { return pollingInterval; }

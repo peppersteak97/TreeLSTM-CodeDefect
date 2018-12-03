@@ -1,0 +1,9 @@
+    public static synchronized void pullUp() {
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                INSTANCE.toFront();
+                INSTANCE.setInFront(true);
+            }
+        });
+    }

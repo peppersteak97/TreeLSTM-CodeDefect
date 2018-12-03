@@ -1,0 +1,4 @@
+    private IExportSettingsRunner getExporter() {
+        return new ExportSettingsRunner(m_propertySelector.getSelection(),
+                        getSelectedDestinations());
+    }

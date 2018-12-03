@@ -1,0 +1,5 @@
+    void stopScheduler() {
+        updateUI(EnumSet.of(ServerStatus.STOPPING), PackageResources.ConsoleWorker.STOPPING);
+        IUiJob p = new StopSchedulerJob(this);
+        IntegrationUi.getUi().getJobManager().submitForParallellProcessing(p);
+    }

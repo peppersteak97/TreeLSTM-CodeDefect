@@ -1,0 +1,5 @@
+    public boolean getScrollableTracksViewportHeight() {
+        Container parent = getParent();
+        return (parent == null) ? false
+                        : (parent.getHeight() > getPreferredSize().height);
+    }

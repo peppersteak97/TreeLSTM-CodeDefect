@@ -1,0 +1,8 @@
+    public boolean hasPrimaryKeys() {
+        for (DatabaseColumn c : m_columns) {
+            if (c.isPrimaryKey()) {
+                return true;
+            }
+        }
+        return false;
+    }

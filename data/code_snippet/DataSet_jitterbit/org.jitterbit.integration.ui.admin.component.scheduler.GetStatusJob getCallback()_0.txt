@@ -1,0 +1,3 @@
+    protected IServerCallback getCallback() {
+        return m_callback;
+    }

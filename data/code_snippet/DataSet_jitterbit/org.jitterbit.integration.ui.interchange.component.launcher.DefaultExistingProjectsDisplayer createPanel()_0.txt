@@ -1,0 +1,34 @@
+    private void createPanel() {
+        IPaintStrategy paintStrategy = PaintStrategies.horizontalGradient(
+                        LaunchScreen.s_leftColor, LaunchScreen.s_rightColor);
+        JPanel p = new PanelWithPaintStrategy(new GridBagLayout(), paintStrategy);
+
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.gridx = 0;
+
+        gbc.insets = new Insets(5, 25, 5, 2);
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        ComponentDecorFactory.gridBag(p, gbc, m_existingProjectsOption);
+
+        gbc.insets = new Insets(15, 25, 5, 0);
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0.0;
+        gbc.weighty = 0.0;
+        p.add(m_openButton, gbc);
+
+        gbc.gridx = 1;
+        gbc.insets = new Insets(15, 10, 5, 0);
+        p.add(m_cancelButton, gbc);
+
+        p.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createEtchedBorder(), BorderFactory
+                                        .createEmptyBorder(0, 10, 10, 20)));
+
+        m_panel = p;
+    }

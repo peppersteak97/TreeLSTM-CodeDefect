@@ -1,0 +1,9 @@
+  private void _closeInteractionsScript() {
+    if (_interactionsScriptController != null) {
+      _interactionsContainer.remove(_interactionsScriptPane);
+      _interactionsScriptController = null;
+      _interactionsScriptPane = null;
+      _tabbedPane.invalidate();
+      _tabbedPane.repaint();
+    }
+  }

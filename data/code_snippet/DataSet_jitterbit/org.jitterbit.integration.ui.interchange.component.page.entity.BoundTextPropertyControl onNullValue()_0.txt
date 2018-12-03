@@ -1,0 +1,9 @@
+    private void onNullValue() {
+        UiUtils.runOnEventThread(new Runnable() {
+            
+            public void run() {
+                if (m_field.getDocument().getLength() > 0) {
+                }
+            }
+        });
+    }

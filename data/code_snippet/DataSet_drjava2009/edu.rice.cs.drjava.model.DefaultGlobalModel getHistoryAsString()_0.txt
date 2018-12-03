@@ -1,0 +1,3 @@
+  public String getHistoryAsString() {
+    return _interactionsModel.getDocument().getHistoryAsString();
+  }

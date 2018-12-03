@@ -1,0 +1,4 @@
+    if (isSearchBackwards() == true) {
+      _machine.positionChanged();
+      findNext();
+    }

@@ -1,0 +1,4 @@
+  public void setAutomaticTraceMenuItemStatus() {
+      if (_automaticTraceMenuItem != null)
+          _automaticTraceMenuItem.setSelected(_model.getDebugger().isAutomaticTraceEnabled());
+  }

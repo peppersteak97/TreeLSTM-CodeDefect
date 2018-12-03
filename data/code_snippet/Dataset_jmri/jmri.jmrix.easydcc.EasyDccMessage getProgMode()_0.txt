@@ -1,0 +1,6 @@
+    static public EasyDccMessage getProgMode() {
+        EasyDccMessage m = new EasyDccMessage(1);
+        m.setBinary(false);
+        m.setOpCode('M');
+        return m;
+    }

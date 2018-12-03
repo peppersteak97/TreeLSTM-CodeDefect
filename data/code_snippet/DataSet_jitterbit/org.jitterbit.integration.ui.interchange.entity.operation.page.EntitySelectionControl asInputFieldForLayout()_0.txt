@@ -1,0 +1,5 @@
+    InputField asInputFieldForLayout() {
+        return m_controls.asInputFieldForLayout(
+                        m_inputField.getName(), 
+                        m_inputField.getLabel().getText());
+    }

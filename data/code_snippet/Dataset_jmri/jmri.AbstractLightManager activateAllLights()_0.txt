@@ -1,0 +1,14 @@
+    public void activateAllLights() {
+        java.util.Iterator iter =
+                                    getSystemNameList().iterator();
+        while (iter.hasNext()) {
+            String systemName = (String)iter.next();
+            if (systemName==null) { 
+                log.error("System name null during activation of Lights");
+            }
+            else {
+                log.debug("Activated Light system name is "+systemName);
+                getBySystemName(systemName).activateLight();
+            }
+        }
+    }

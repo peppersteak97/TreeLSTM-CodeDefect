@@ -1,0 +1,4 @@
+    public CallRestrictions getCallRestrictions() {
+        return (m_callRestriction == null) ? new CallRestrictions(this)
+                        : m_callRestriction.getCopy();
+    }

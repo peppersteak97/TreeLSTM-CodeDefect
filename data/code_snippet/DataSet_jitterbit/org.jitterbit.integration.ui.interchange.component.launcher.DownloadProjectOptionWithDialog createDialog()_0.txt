@@ -1,0 +1,7 @@
+    private void createDialog() {
+        m_dialog = new KongaDialog(
+                        IntegrationUi.getUi().getActiveFrame(), 
+                        PackageResources.DownloadOption.DIALOG_TITLE, 
+                        true);
+        m_dialog.setManageLocation(true);
+    }

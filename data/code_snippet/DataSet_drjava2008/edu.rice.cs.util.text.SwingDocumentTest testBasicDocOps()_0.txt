@@ -1,0 +1,14 @@
+  public void testBasicDocOps() throws EditDocumentException {
+    _doc.insertText(0, "one", null);
+    assertEquals("first doc contents", "one", _doc.getText());
+    
+    _doc.insertText(_doc.getLength(), " three", null);
+    assertEquals("second doc contents", "one three", _doc.getText());
+    
+    _doc.removeText(0, 3);
+    _doc.insertText(0, "two", null);
+    assertEquals("third doc contents", "two thr", _doc.getDocText(0, 7));
+    
+    _doc.append(" four", (String) null);
+    assertEquals("fourth doc contents", "two three four", _doc.getText());
+  }

@@ -1,0 +1,3 @@
+  public static IA32ConditionOperand LGE() {
+    return new IA32ConditionOperand(LGE);
+  }

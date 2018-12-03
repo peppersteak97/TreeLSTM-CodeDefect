@@ -1,0 +1,46 @@
+  public String toString() {
+    switch (value) {
+      case EQUAL:
+        return "==";
+      case NOT_EQUAL:
+        return "!=";
+      case LESS:
+        return "<";
+      case LESS_EQUAL:
+        return "<=";
+      case GREATER:
+        return ">";
+      case GREATER_EQUAL:
+        return ">=";
+      case HIGHER:
+        return ">U";
+      case LOWER:
+        return "<U";
+      case HIGHER_EQUAL:
+        return ">=U";
+      case LOWER_EQUAL:
+        return "<=U";
+      case CMPL_EQUAL:
+        return "==F";
+      case CMPL_GREATER:
+        return ">F";
+      case CMPG_LESS:
+        return "<F";
+      case CMPL_GREATER_EQUAL:
+        return ">=F";
+      case CMPG_LESS_EQUAL:
+        return "<=F";
+      case CMPL_NOT_EQUAL:
+        return "!=FU";
+      case CMPL_LESS:
+        return "<FU";
+      case CMPG_GREATER_EQUAL:
+        return ">=FU";
+      case CMPG_GREATER:
+        return ">FU";
+      case CMPL_LESS_EQUAL:
+        return "<=FU";
+      default:
+        return "UNKNOWN";
+    }
+  }

@@ -1,0 +1,3 @@
+    public DbInsertMode getInsertMode() {
+        return modeSelector.getMode();
+    }

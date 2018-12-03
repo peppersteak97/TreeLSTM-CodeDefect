@@ -1,0 +1,10 @@
+    public static synchronized String[] getAvailableFontFamilyNames() {
+        if (s_availableFontFamilyNames == null) {
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            s_availableFontFamilyNames = ge.getAvailableFontFamilyNames();
+            if (s_availableFontFamilyNames == null) {
+                s_availableFontFamilyNames = new String[0];
+            }
+        }
+        return s_availableFontFamilyNames;
+    }

@@ -1,0 +1,3 @@
+    public IntegrationData getMainObject() {
+        return m_main;
+    }

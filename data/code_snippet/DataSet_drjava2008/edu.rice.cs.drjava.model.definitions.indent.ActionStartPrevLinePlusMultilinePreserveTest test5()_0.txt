@@ -1,0 +1,5 @@
+  public void test5() throws BadLocationException {
+    helperCommentTest("/* This is code\n     and more */",
+                      16, 19,
+                      "/* This is code\n *      and more */\n */");
+  }

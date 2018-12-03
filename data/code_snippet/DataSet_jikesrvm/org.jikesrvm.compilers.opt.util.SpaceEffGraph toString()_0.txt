@@ -1,0 +1,47 @@
+  public String toString() {
+    StringBuilder res = new StringBuilder();
+    for (SpaceEffGraphNode n = firstNode(); n != null; n = n.getNext()) {
+      HashSet<SpaceEffGraphEdge> visitedNodes = new HashSet<SpaceEffGraphEdge>();
+      int duplicatedNodes = 0;
+      res.append("\nNode: ").append(n).append("\n");
+      res.append("In nodes:\n");
+      for (SpaceEffGraphEdge inEdge = n.firstInEdge(); inEdge != null; inEdge = inEdge.getNextIn()) {
+        if (visitedNodes.contains(inEdge)) {
+          duplicatedNodes ++;
+          res.append("(Duplicated edge " + inEdge.toNodeString() + ")");
+          if (duplicatedNodes > 5) {
+            break;
+          }
+        } else {
+          visitedNodes.add(inEdge);
+          res.append(inEdge.getTypeString());
+          res.append(" ");
+          res.append(inEdge.fromNode());
+          res.append("\n");
+        }
+      }
+      res.append("\n");
+      visitedNodes.clear();
+      duplicatedNodes=0;
+      res.append("Out nodes:\n");
+      for (SpaceEffGraphEdge out = n.firstOutEdge(); out != null; out = out.getNextOut()) {
+        if (visitedNodes.contains(out)) {
+          duplicatedNodes ++;
+          res.append("(Duplicated edge " + out.toNodeString() + ")");
+          if (duplicatedNodes > 5) {
+            break;
+          }
+        } else {
+          res.append(out.getTypeString());
+          res.append(" ");
+          res.append(out.toNode());
+          res.append("\n");
+        }
+      }
+      if (res.length() > 50000) {
+        res.append("....(giving up too long)\n");
+        break;
+      }
+    }
+    return res.toString();
+  }

@@ -1,0 +1,5 @@
+  public static void resetReportableObjects() {
+    for (Reportable obj : reportObjects) {
+      obj.reset();
+    }
+  }

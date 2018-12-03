@@ -1,0 +1,9 @@
+    public void setFilterPopup(){
+        String inputValue = JOptionPane.showInputDialog("Please enter a filter value");
+        try {
+            int filt = Integer.parseInt(inputValue);
+            setFilter(filt);
+        } catch (java.lang.NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid ID value, filter not set", "Alert", JOptionPane.ERROR_MESSAGE);
+        }
+    }

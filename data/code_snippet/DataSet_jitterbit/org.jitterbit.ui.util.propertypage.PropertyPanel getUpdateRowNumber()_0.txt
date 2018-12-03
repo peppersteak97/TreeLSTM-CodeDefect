@@ -1,0 +1,8 @@
+	private static int getUpdateRowNumber() {
+		switch( LAYOUT ) {
+			case LABEL_TO_THE_LEFT_LAYOUT:
+				return 1;
+			case LABEL_ON_TOP_LAYOUT:
+				return 2;
+		}
+	}

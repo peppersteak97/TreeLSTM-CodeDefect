@@ -1,0 +1,9 @@
+    protected void fireTreeSelectionChanged() {
+        if (!m_treeListenerList.isEmpty()) {
+            List<IKongaTreeNode> selectedNodes = getSelectedNodes();
+            KongaTreeEvent e = new KongaTreeEvent(this, selectedNodes);
+            for (IKongaTreeListener lst : m_treeListenerList) {
+                lst.selectionChanged(e);
+            }
+        }
+    }

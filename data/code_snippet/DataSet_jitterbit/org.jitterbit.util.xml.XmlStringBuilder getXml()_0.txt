@@ -1,0 +1,12 @@
+    public String getXml() {
+        if (!m_elements.isEmpty()) {
+        }
+        StringBuilder sb = new StringBuilder();
+        if (m_processingInstruction != null) {
+            sb.append(m_processingInstruction);
+        }
+        sb.append(LINE_BREAK);
+        if (m_root != null) {
+        }
+        return sb.toString();
+    }

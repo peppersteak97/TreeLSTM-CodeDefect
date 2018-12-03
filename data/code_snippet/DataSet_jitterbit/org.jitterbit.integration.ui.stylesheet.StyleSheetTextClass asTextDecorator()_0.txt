@@ -1,0 +1,16 @@
+    public ITextDecorator asTextDecorator() {
+        return new ITextDecorator() {
+
+            public Font getFont() {
+                return m_font;
+            }
+
+            public Color getTextColor() {
+                return m_color;
+            }
+
+            public Color getBackground() {
+                return Color.WHITE;
+            }
+        };
+    }

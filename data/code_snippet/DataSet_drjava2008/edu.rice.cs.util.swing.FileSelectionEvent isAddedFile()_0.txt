@@ -1,0 +1,1 @@
+  public boolean isAddedFile() { return _areNew[0]; }

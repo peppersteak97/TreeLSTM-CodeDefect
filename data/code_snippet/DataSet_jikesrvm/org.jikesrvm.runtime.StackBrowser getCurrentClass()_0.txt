@@ -1,0 +1,3 @@
+  public RVMClass getCurrentClass() {
+    return getMethod().getDeclaringClass();
+  }

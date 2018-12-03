@@ -1,0 +1,3 @@
+    public IEntityCollectionValidationResult getCurrentState() {
+        return m_currentState;
+    }

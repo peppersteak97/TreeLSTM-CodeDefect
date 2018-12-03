@@ -1,0 +1,27 @@
+    public List<JToolBar> getJToolBars() {
+        List<JToolBar> tbs = new ArrayList<JToolBar>();
+
+        String id = ApplicationWindowToolBars.FILE;
+        JToolBar jtb = getToolBar(id).createJToolBar();
+        put(id, jtb);
+        tbs.add(jtb);
+
+        id = ApplicationWindowToolBars.EDIT;
+        jtb = getToolBar(id).createJToolBar();
+        put(id, jtb);
+        tbs.add(jtb);
+        
+        id = ApplicationWindowToolBars.ACTIONS;
+        jtb = getToolBar(id).createJToolBar();
+        put(id, jtb);
+        tbs.add(jtb);
+
+        for (ToolBarExtensionPoint p : ToolBarExtensionPoint.values()) {
+            ToolBar tb = getExtension(p);
+            if (tb != null) {
+                tbs.add(tb.createJToolBar());
+            }
+        }
+
+        return tbs;
+    }

@@ -1,0 +1,3 @@
+    private void createDateTimeDisplayer() {
+        m_dateTimeDisplayer = new CurrentDateTimeDisplayer(DateFormat.MEDIUM, DateFormat.SHORT);
+    }

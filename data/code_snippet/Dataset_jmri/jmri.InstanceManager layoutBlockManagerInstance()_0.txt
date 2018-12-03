@@ -1,0 +1,5 @@
+    static public LayoutBlockManager layoutBlockManagerInstance()  {
+        if (instance().layoutBlockManager != null) return instance().layoutBlockManager;
+        instance().layoutBlockManager = new LayoutBlockManager();
+        return instance().layoutBlockManager;
+    }

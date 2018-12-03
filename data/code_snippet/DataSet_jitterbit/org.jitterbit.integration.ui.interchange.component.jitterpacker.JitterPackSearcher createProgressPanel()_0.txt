@@ -1,0 +1,6 @@
+    private void createProgressPanel() {
+        m_progressPanel = new ProgressListenerPanel(false);
+        ILabelDecorator decorator = 
+            IntegrationUiStyleSheet.DefaultText.asLabelDecorator(null);
+        m_progressPanel.decorateLabel(decorator);
+    }

@@ -1,0 +1,38 @@
+  private void _initThreadTable() {
+    _threadTable = new JTable(new ThreadTableModel());
+    _threadTable.addMouseListener(new ThreadMouseAdapter());
+    _rightPane.addTab("Threads", new JScrollPane(_threadTable));
+
+    TableColumn nameColumn;
+    TableColumn statusColumn;
+    nameColumn = _threadTable.getColumnModel().getColumn(0);
+    statusColumn = _threadTable.getColumnModel().getColumn(1);
+    nameColumn.setPreferredWidth(2*statusColumn.getPreferredWidth());
+
+    _currentThreadID = 0;
+    TableCellRenderer threadTableRenderer = new DefaultTableCellRenderer() {
+      public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                     boolean hasFocus, int row, int column) {
+        Component renderer =
+          super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        _setThreadCellFont(row);
+
+        return renderer;
+      }
+
+      /**
+       * Sets the font for a cell in the thread table.
+       * @param row the current row
+       */
+      private void _setThreadCellFont(int row) {
+        DebugThreadData currThread = _threads.get(row);
+        if (currThread.getUniqueID() == _currentThreadID &&
+            currThread.isSuspended()) {
+          setFont(getFont().deriveFont(Font.BOLD));
+        }
+      }
+    };
+    _threadTable.getColumnModel().getColumn(0).setCellRenderer(threadTableRenderer);
+    _threadTable.getColumnModel().getColumn(1).setCellRenderer(threadTableRenderer);
+  }

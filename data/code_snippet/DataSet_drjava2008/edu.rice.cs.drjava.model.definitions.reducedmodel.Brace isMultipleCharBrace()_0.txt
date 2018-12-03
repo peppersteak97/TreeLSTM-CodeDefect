@@ -1,0 +1,3 @@
+  public boolean isMultipleCharBrace() {
+    return isLineComment() || isBlockCommentStart() || isBlockCommentEnd() || isDoubleEscapeSequence();
+  }

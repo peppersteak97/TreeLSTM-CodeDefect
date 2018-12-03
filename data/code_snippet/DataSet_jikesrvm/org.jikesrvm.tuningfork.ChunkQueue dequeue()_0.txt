@@ -1,0 +1,12 @@
+  public synchronized RawChunk dequeue() {
+    if (head != null) {
+      RawChunk result = head.chunk;
+      head = head.next;
+      if (head == null) {
+        tail = null;
+      }
+      return result;
+    } else {
+      return null;
+    }
+  }

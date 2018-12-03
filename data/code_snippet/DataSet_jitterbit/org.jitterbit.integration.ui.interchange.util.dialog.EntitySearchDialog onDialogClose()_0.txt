@@ -1,0 +1,5 @@
+    protected void onDialogClose() {
+        m_ui.uninstallKeyBindings(getRootPane());
+        m_ui.dispose();
+        super.onDialogClose();
+    }

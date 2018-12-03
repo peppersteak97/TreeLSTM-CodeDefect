@@ -1,0 +1,4 @@
+    protected void connectionWarn() {
+        log.warn("sendMessage: no connection established for "+this.getClass().getName());
+        new Exception().printStackTrace();
+    }

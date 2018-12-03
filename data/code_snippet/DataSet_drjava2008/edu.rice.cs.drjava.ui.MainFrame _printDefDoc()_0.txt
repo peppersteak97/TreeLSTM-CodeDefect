@@ -1,0 +1,14 @@
+  private void _printDefDoc() {
+    try {
+      _model.getActiveDocument().print();
+    }
+    catch (FileMovedException fme) {
+      _showFileMovedError(fme);
+    }
+    catch (PrinterException e) {
+      _showError(e, "Print Error", "An error occured while printing.");
+    }
+    catch (BadLocationException e) {
+      _showError(e, "Print Error", "An error occured while printing.");
+    }
+  }

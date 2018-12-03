@@ -1,0 +1,3 @@
+    public AM_PM getAM_PM() {
+        return (m_amPmBox != null) ? m_amPmBox.getSelectedItem() : null;
+    }

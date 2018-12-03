@@ -1,0 +1,4 @@
+	public void dispose() {
+		SprogTrafficController.instance().removeSprogListener(this);
+		super.dispose();
+	}

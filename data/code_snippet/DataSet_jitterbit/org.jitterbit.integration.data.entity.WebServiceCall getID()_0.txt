@@ -1,0 +1,3 @@
+    public WebServiceCallId getID() {
+        return (WebServiceCallId) super.getID();
+    }

@@ -1,0 +1,5 @@
+    private void layoutComponents() {
+        m_displayer = InvisiblePanel.newPanel();
+        TwoColumnPanel layout = createLayout();
+        layout.addToParent(m_displayer, null);
+    }

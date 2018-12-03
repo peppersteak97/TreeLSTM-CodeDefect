@@ -1,0 +1,28 @@
+  public void testIndentBraces() throws BadLocationException {
+    String text =
+      "{\n" +
+      "class Foo\n" +
+      "extends F {\n" +
+      "int i;   \n" +
+      "void foo() {\n" +
+      "if (true) {\n" +
+      "bar();\n" +
+      "}\n" +
+      "}\n" +
+      "/* comment */ }\n" +
+      "class Bar {\n" +
+      "/* comment\n" +
+      "*/ }\n" +
+      "int i;\n" +
+      "}\n";
+    
+    String indented =
+      "{\n" +
+      "}\n";
+    
+    
+    _doc.insertString(0, text, null);
+    _assertContents(text, _doc);
+    safeIndentLines(0, _doc.getLength());
+    _assertContents(indented, _doc);
+  }

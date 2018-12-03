@@ -1,0 +1,3 @@
+    public boolean getF12Momentary() {
+        return f12Momentary;
+    }

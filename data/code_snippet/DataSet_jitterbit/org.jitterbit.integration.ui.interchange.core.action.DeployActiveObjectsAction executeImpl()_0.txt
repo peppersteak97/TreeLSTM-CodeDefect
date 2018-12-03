@@ -1,0 +1,15 @@
+    private void executeImpl() {
+        IManagedProject project = InterchangeViewUtils.getManagedProject(m_view);
+        Set<IntegrationEntity> toDeploy = 
+            getItemsToDeploy(project.getDependencyStore());
+        if (toDeploy == null) {
+            return;
+        }
+        IDeployItemValidator validator = 
+            DeployItemValidatorFactory.newPromptOnWarningValidator();
+        if (validator.validate(toDeploy)) {
+            submitForDeploy(toDeploy);
+        }
+        else {
+        }
+    }

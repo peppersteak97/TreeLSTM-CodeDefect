@@ -1,0 +1,3 @@
+    public boolean getCanRead() {
+		return (XNetTrafficController.instance().getCommandStation().getCommandStationType() != 0x10);
+    }

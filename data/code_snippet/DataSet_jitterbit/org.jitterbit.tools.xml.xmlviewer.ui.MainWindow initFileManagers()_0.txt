@@ -1,0 +1,5 @@
+	private void initFileManagers() {
+		m_fileManager = new FileManager();
+		String[] exts = { "xml", "xsd", "wsdl" };
+		m_openAndSaveManager = new OpenAndSaveManager(this, m_fileManager, m_fileManager, exts);
+	}

@@ -1,0 +1,10 @@
+    private String toStringWithoutComment() {
+        NumberFormat fmt = NUMBER_FORMAT.get();
+        Object[] values = {
+            fmt.format(getMajorVersion()),
+            fmt.format(getMinorVersion()),
+            fmt.format(getPatchLevel()),
+            fmt.format(getBuildNumber()),
+        };
+        return MessageFormat.format(STRING_FORMAT_NO_COMMENT, values);
+    }

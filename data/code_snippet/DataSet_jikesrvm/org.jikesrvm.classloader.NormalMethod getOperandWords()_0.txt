@@ -1,0 +1,3 @@
+  public int getOperandWords() {
+    return operandWords;
+  }

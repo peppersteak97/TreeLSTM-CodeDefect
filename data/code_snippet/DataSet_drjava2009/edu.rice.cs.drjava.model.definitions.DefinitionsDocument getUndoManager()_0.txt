@@ -1,0 +1,1 @@
+  public CompoundUndoManager getUndoManager() { return _undoManager; }

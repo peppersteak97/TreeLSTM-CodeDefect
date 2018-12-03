@@ -1,0 +1,8 @@
+    public static void customize() {
+        if (USE_SYSTEM_LF) {
+            setSystemLookAndFeel();
+        }
+        else {
+            customizeCrossPlatformUI();
+        }
+    }

@@ -1,0 +1,3 @@
+    public EntityIconRepository.Category getCategory() {
+        return m_category;
+    }

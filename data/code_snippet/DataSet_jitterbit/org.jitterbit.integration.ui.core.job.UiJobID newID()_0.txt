@@ -1,0 +1,3 @@
+    public static UiJobID newID() {
+        return new UiJobID();
+    }

@@ -1,0 +1,5 @@
+    private void customizeMoveNextAction() {
+        Action a = getAction(IWizardPage.MOVE_NEXT_COMMAND);
+        a.putValue(Action.SMALL_ICON, PackageResources.Wizard.PAGE_ICON);
+        a.putValue(Action.NAME, PackageResources.Wizard.DOWNLOAD_ACTION_NAME);
+    }

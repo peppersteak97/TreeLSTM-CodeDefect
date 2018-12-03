@@ -1,0 +1,5 @@
+    private IFileStore getClientFileStore() {
+        IManagedProject p = InterchangeViewUtils.getManagedProject(
+                        m_page.getWizard().getView());
+        return p.getFileStore();
+    }

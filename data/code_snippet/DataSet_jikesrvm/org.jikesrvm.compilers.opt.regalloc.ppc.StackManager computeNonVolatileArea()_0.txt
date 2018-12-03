@@ -1,0 +1,69 @@
+  public void computeNonVolatileArea() {
+    PhysicalRegisterSet phys = ir.regpool.getPhysicalRegisterSet();
+
+    if (ir.compiledMethod.isSaveVolatile()) {
+      int numGprNv = PhysicalRegisterSet.getNumberOfNonvolatileGPRs();
+      ir.compiledMethod.setNumberOfNonvolatileGPRs((short) numGprNv);
+
+      frameSize += numGprNv * BYTES_IN_ADDRESS;
+
+      int numFprNv = PhysicalRegisterSet.getNumberOfNonvolatileFPRs();
+      ir.compiledMethod.setNumberOfNonvolatileFPRs((short) numFprNv);
+      frameSize += numFprNv * BYTES_IN_DOUBLE;
+
+      setFrameRequired();
+
+      int i = 0;
+      for (Enumeration<Register> e = phys.enumerateVolatileGPRs(); e.hasMoreElements(); i++) {
+        e.nextElement();
+        saveVolatileGPRLocation[i] = allocateNewSpillLocation(INT_REG);
+      }
+
+      i = 0;
+      for (Enumeration<Register> e = phys.enumerateNonvolatileGPRs(); e.hasMoreElements(); i++) {
+        e.nextElement();
+        nonVolatileGPRLocation[i] = allocateNewSpillLocation(INT_REG);
+      }
+
+      saveXERLocation = allocateNewSpillLocation(INT_REG);
+      saveCTRLocation = allocateNewSpillLocation(INT_REG);
+      i = 0;
+
+      for (Enumeration<Register> e = phys.enumerateVolatileFPRs(); e.hasMoreElements(); i++) {
+        e.nextElement();
+        saveVolatileFPRLocation[i] = allocateNewSpillLocation(DOUBLE_REG);
+      }
+
+      int gprOffset = getNonvolatileGPROffset(0);
+      ir.compiledMethod.setUnsignedNonVolatileOffset(gprOffset);
+    } else {
+      int numGprNv = 0;
+      int i = 0;
+      for (Enumeration<Register> e = phys.enumerateNonvolatileGPRs(); e.hasMoreElements();) {
+        Register r = e.nextElement();
+        if (r.isTouched()) {
+          nonVolatileGPRLocation[i++] = allocateNewSpillLocation(INT_REG);
+          numGprNv++;
+        }
+      }
+      i = 0;
+      int numFprNv = 0;
+      for (Enumeration<Register> e = phys.enumerateNonvolatileFPRs(); e.hasMoreElements();) {
+        Register r = e.nextElement();
+        if (r.isTouched()) {
+          nonVolatileFPRLocation[i++] = allocateNewSpillLocation(DOUBLE_REG);
+          numFprNv++;
+        }
+      }
+      ir.compiledMethod.setNumberOfNonvolatileGPRs((short) numGprNv);
+      ir.compiledMethod.setNumberOfNonvolatileFPRs((short) numFprNv);
+      if (numGprNv > 0 || numFprNv > 0) {
+        int gprOffset = getNonvolatileGPROffset(0);
+        ir.compiledMethod.setUnsignedNonVolatileOffset(gprOffset);
+        setFrameRequired();
+      } else {
+        ir.compiledMethod.setUnsignedNonVolatileOffset(0);
+      }
+    }
+    frameSize = align(frameSize, STACKFRAME_ALIGNMENT);
+  }

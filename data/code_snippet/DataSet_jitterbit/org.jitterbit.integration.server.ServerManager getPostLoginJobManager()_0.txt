@@ -1,0 +1,3 @@
+    public IPostLoginJobManager getPostLoginJobManager() {
+        return m_postLoginJobMgr;
+    }

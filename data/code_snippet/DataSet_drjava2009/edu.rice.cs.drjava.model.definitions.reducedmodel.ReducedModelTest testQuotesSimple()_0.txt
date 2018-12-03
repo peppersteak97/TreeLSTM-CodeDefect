@@ -1,0 +1,11 @@
+  public void testQuotesSimple() {
+    model1.insertChar('\"');
+    model1.insertChar('\"');
+    model1.move(-2);
+    assertEquals("#0.0", "\"", model1.currentToken().getType());
+    assertEquals("#0.3", FREE, model1.currentToken().getState());
+    model1.move(1);
+    assertEquals("#0.1", "\"", model1.currentToken().getType());
+    assertEquals("#0.2", FREE, model1.currentToken().getState());
+    assertEquals("#0.4", INSIDE_DOUBLE_QUOTE, model1.getStateAtCurrent());
+  }

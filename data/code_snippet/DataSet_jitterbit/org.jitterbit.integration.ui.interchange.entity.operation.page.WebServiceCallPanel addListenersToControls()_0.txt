@@ -1,0 +1,8 @@
+    private void addListenersToControls() {
+        m_wsListener = new WebServiceControlListener();
+        m_wsCallControl.addActionListener(m_wsListener);
+        m_requestListener = new RequestControlListener();
+        m_requestControl.addActionListener(m_requestListener);
+        m_responseListener = new ResponseControlListener();
+        m_responseControl.addActionListener(m_responseListener);
+    }

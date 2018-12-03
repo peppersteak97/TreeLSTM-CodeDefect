@@ -1,0 +1,7 @@
+  protected final void emit_ishl() {
+    popInt(T1);
+    popInt(T0);
+    asm.emitANDI(T1, T1, 0x1F);
+    asm.emitSLW(T0, T0, T1);
+    pushInt(T0);
+  }

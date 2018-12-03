@@ -1,0 +1,5 @@
+    void initData() {
+        final int length = 512*4;
+        contents = new int[length];
+        for (int i=0; i<length; i++) contents[i]=0x3FFF;
+    }

@@ -1,0 +1,11 @@
+  public void testNoLeadingSpaces() throws BadLocationException {
+    IndentRuleAction rule = new ActionDoNothing();
+    String text = "foo();\nbar();";
+    
+    _setDocText(text);
+    rule.testIndentLine(_doc, 0, Indenter.IndentReason.OTHER);
+    _assertContents(text);
+    
+    rule.testIndentLine(_doc, 9, Indenter.IndentReason.OTHER);
+    _assertContents(text);
+  }

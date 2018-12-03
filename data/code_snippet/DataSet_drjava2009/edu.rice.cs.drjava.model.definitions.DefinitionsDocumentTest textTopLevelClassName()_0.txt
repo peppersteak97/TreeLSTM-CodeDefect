@@ -1,0 +1,7 @@
+  public void textTopLevelClassName() throws BadLocationException, ClassNameNotFoundException {
+    String weird = "package edu . rice\n./*comment!*/cs.drjava; class MyClass<T> implements O{";
+    String result = "MyClass";
+    _doc.insertString(0, weird, null);
+    
+    assertEquals("class name for weird: '" + weird + "'", result, _doc.getFirstTopLevelClassName());
+  }

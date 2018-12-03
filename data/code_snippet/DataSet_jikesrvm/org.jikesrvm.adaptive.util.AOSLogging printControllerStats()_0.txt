@@ -1,0 +1,52 @@
+  public void printControllerStats() {
+    if (Controller.options.LOGGING_LEVEL >= 1) {
+      int awoken = ControllerMemory.getNumAwoken();
+      int didNothing = ControllerMemory.getNumDidNothing();
+      int numMethodsConsidered = ControllerMemory.getNumMethodsConsidered();
+      int numMethodsScheduledForRecomp = ControllerMemory.getNumMethodsScheduledForRecomp();
+      int numOpt0 = ControllerMemory.getNumOpt0();
+      int numOpt1 = ControllerMemory.getNumOpt1();
+      int numOpt2 = ControllerMemory.getNumOpt2();
+      int numOpt3 = ControllerMemory.getNumOpt3();
+
+      synchronized (log) {
+        log.print(getTime() +
+                  "\n  Num times Controller thread is awoken: " +
+                  awoken +
+                  "\n  Num times did nothing: " +
+                  didNothing +
+                  " (" +
+                  ((int) ((float) didNothing / (float) awoken * 100)) +
+                  "%)\n  Num methods baseline compiled: " +
+                  ControllerMemory.getNumBase() +
+                  "\n  Num methods considered for recompilation: " +
+                  numMethodsConsidered +
+                  "\n  Num methods chosen to recompile: " +
+                  numMethodsScheduledForRecomp +
+                  " (" +
+                  ((int) ((float) numMethodsScheduledForRecomp / numMethodsConsidered * 100)) +
+                  "%)\n  Opt Levels Chosen: " +
+                  "\n\t Opt Level 0: " +
+                  numOpt0 +
+                  " (" +
+                  ((int) ((float) numOpt0 / numMethodsScheduledForRecomp * 100)) +
+                  "%)\n\t Opt Level 1: " +
+                  numOpt1 +
+                  " (" +
+                  ((int) ((float) numOpt1 / numMethodsScheduledForRecomp * 100)) +
+                  "%)\n" +
+                  "\t Opt Level 2: " +
+                  numOpt2 +
+                  " (" +
+                  ((int) ((float) numOpt2 / numMethodsScheduledForRecomp * 100)) +
+                  "%)\n" +
+                  "\t Opt Level 3: " +
+                  numOpt3 +
+                  " (" +
+                  ((int) ((float) numOpt3 / numMethodsScheduledForRecomp * 100)) +
+                  "%)\n\n");
+
+        ControllerMemory.printFinalMethodStats(log);
+      }
+    }
+  }

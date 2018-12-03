@@ -1,0 +1,12 @@
+    private void setRenderers() {
+        ComponentCustomizer.customizeTable(this);
+
+        setFont(IntegrationUiStyleSheet.SmallTableText.getFont());
+        setRowHeight((int) (getRowHeight() * 1.25));
+
+        setDefaultRenderer(Date.class, ActivityViewUtils.getDateCellRenderer());
+        TableColumn col = getColumnModel().getColumn(
+                        SourceHistoryTableModel.FILE_SIZE.getIndex());
+        col.setCellRenderer(ActivityViewUtils.getSizeRenderer(StorageSizeUnit.Bytes));
+
+    }

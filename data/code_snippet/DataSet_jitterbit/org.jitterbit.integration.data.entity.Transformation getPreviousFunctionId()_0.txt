@@ -1,0 +1,3 @@
+    public IntegrationId getPreviousFunctionId() {
+        return m_previousFunctionId;
+    }

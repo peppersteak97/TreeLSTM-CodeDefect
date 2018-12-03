@@ -1,0 +1,18 @@
+  public void testDeleteAndCombine() {
+    model0.insertChar('\\');
+    insertGap(model0, 2);
+    model0.insertChar('\'');
+    model0.move(-1);
+    assertEquals("#0.0", "\'", model0.currentToken().getType());
+    model0.delete(-2);
+    assertEquals("#1.0", "\\'", model0.currentToken().getType());
+    assertEquals("#1.1", 1, model0.absOffset());
+    model0.delete(1);
+    insertGap(model0, 2);
+    model0.insertChar('\\');
+    model0.move(-1);
+    assertEquals("#2.0", "\\", model0.currentToken().getType());
+    model0.delete(-2);
+    assertEquals("#3.0", "\\\\", model0.currentToken().getType());
+    assertEquals("#3.1", 2, model0.currentToken().getSize());
+  }

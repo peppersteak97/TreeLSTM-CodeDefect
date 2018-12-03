@@ -1,0 +1,8 @@
+  private void deleteExceptionalOut() {
+    for (SpaceEffGraphEdge e = _outEdgeStart; e != null; e = e.getNextOut()) {
+      BasicBlock out = (BasicBlock) e.toNode();
+      if (out.isExceptionHandlerBasicBlock()) {
+        deleteOut(e);
+      }
+    }
+  }

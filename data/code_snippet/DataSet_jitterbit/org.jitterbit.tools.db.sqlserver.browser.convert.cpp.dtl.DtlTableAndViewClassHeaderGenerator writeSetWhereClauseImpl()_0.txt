@@ -1,0 +1,5 @@
+    private void writeSetWhereClauseImpl() {
+        addLine("\tvoid SetWhereClause(const " + CppUtils.STRING + "& stWhereClause) {");
+        addLine("\t\tm_dtlRecSet.SetWhereClause(stWhereClause);");
+        addLine("\t}");
+    }

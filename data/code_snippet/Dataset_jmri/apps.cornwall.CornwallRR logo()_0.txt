@@ -1,0 +1,3 @@
+    protected String logo() {
+        return "resources/icons/cornwall/cornwall_logo.gif";
+    }

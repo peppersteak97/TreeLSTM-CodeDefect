@@ -1,0 +1,3 @@
+    void reset() {
+        m_invalidEntities = new HashSet<Key>();
+    }

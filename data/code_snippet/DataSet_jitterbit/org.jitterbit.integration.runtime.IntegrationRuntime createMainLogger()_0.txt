@@ -1,0 +1,3 @@
+    private void createMainLogger() {
+        s_logger = ApplicationLog.getMainLogger();
+    }

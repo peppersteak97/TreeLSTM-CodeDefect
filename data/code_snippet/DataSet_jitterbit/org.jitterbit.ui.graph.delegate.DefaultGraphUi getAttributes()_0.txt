@@ -1,0 +1,3 @@
+	public Map<String, Object> getAttributes() throws Exception {
+		return new HashMap<String, Object>();
+	}

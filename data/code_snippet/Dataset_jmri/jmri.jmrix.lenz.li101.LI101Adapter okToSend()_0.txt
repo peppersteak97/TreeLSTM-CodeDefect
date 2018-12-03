@@ -1,0 +1,20 @@
+    public boolean okToSend() {
+        if((activeSerialPort.getFlowControlMode() & SerialPort.FLOWCONTROL_RTSCTS_OUT) == SerialPort.FLOWCONTROL_RTSCTS_OUT) {
+            if(CheckBuffer) {
+                log.debug("CTS: " + activeSerialPort.isCTS() + " Buffer Empty: " + OutputBufferEmpty);
+                return (activeSerialPort.isCTS() && OutputBufferEmpty);
+            } else {
+                log.debug("CTS: " + activeSerialPort.isCTS());
+                return (activeSerialPort.isCTS());
+            }
+        }
+        else {
+            if(CheckBuffer) {
+                log.debug("Buffer Empty: " + OutputBufferEmpty);
+                return (OutputBufferEmpty);
+            } else {
+                log.debug("No Flow Control or Buffer Check");
+                return(true);
+            }
+        }
+    }

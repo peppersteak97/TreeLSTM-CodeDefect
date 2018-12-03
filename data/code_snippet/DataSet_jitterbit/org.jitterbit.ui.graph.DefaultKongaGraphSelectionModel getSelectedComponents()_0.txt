@@ -1,0 +1,3 @@
+	public List<KongaGraphComponent> getSelectedComponents() {
+		return new ArrayList<KongaGraphComponent>(m_setSelectedComponents);
+	}

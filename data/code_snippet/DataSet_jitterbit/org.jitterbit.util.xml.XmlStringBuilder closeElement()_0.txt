@@ -1,0 +1,1 @@
+     * All opened elements must be closed, by calling {@link #closeElement()}.

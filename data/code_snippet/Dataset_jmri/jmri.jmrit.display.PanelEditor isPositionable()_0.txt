@@ -1,0 +1,3 @@
+    public boolean isPositionable() {
+        return positionableBox.isSelected();
+    }

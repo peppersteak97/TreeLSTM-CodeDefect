@@ -1,0 +1,3 @@
+  public String getCurrentComboBoxValue() {
+    return _comboBox.getSelectedItem().toString();
+  }

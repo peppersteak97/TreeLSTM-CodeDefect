@@ -1,0 +1,3 @@
+    protected final BrowserObject getObject() {
+        return m_object;
+    }

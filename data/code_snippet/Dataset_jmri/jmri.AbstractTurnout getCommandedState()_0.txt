@@ -1,0 +1,3 @@
+	public int getCommandedState() {
+		return _commandedState;
+	}

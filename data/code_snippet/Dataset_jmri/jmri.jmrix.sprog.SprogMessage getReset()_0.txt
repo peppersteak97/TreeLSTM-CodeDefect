@@ -1,0 +1,7 @@
+    static public SprogMessage getReset() {
+      SprogMessage m = new SprogMessage(3);
+      m.setOpCode(0);
+      m.setLength(0);
+      m.setChecksum();
+      return m.frame();
+    }

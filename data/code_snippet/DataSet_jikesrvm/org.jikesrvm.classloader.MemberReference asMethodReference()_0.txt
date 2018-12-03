@@ -1,0 +1,3 @@
+  public final MethodReference asMethodReference() {
+    return (MethodReference) this;
+  }

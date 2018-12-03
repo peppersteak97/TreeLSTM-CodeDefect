@@ -1,0 +1,17 @@
+	public static synchronized void initialize() {
+	    if( s_initializedLock.isFalse() ) {
+	    	ERROR = ImageLoader.getImageIcon(IMAGE_PACKAGE, "error.gif");
+	    	WARNING = ImageLoader.getImageIcon(IMAGE_PACKAGE, "warning.gif");
+	    	
+	    	SUCCESS = ImageLoader.getImageIcon(IMAGE_PACKAGE, "success.gif");
+	    	PARTIAL_SUCCESS = ImageLoader.getImageIcon(IMAGE_PACKAGE, "partial_sucess.gif");
+	    	
+	    	SERVER_TREE = ImageLoader.getImageIcon(IMAGE_PACKAGE, "server.gif");
+	    	DATABASE_TREE = ImageLoader.getImageIcon(IMAGE_PACKAGE, "database.gif");
+	    	TABLE_TREE = ImageLoader.getImageIcon(IMAGE_PACKAGE, "table.gif");
+	    	VIEW_TREE = ImageLoader.getImageIcon(IMAGE_PACKAGE, "view.gif");
+	    	STORED_PROCEDURE_TREE = ImageLoader.getImageIcon(IMAGE_PACKAGE, "stored_procedure.gif");
+	    	PRIMARY_KEY_LIST = ImageLoader.getImageIcon(IMAGE_PACKAGE, "primary_key.gif");
+	        s_initializedLock.setValue(true);
+	    }
+	}

@@ -1,0 +1,10 @@
+  private void _resetUndo() {
+    if (_undoAction == null) _undoAction = new UndoAction();
+    if (_redoAction == null) _redoAction = new RedoAction();
+
+    _doc.resetUndoManager();
+    
+    getDocument().addUndoableEditListener(_undoListener);
+    _undoAction.updateUndoState();
+    _redoAction.updateRedoState();
+  }

@@ -1,0 +1,10 @@
+    void updateList() {
+        final ListModel model = getListModel();
+        Runnable job = new Runnable() {
+
+            public void run() {
+                m_userAndGroupList.setModel(model);
+            }
+        };
+        UiUtils.runOnEventThread(job);
+    }

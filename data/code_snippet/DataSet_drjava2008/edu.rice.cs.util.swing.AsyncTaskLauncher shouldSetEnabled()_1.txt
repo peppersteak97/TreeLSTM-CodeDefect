@@ -1,0 +1,2 @@
+        final boolean shouldUnlockUI = shouldSetEnabled() && lockUI;
+        final IAsyncProgress monitor = 

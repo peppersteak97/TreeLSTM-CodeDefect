@@ -1,0 +1,5 @@
+  private void initTabbedPanesFrame() {
+    if (DrJava.getConfig().getSetting(DIALOG_TABBEDPANES_STORE_POSITION).booleanValue()) {
+      _tabbedPanesFrame.setFrameState(DrJava.getConfig().getSetting(DIALOG_TABBEDPANES_STATE));  
+    }
+  }

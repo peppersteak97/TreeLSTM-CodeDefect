@@ -1,0 +1,4 @@
+    	if( waitUntilFalse() ) {
+    		setValue(true);
+    		return true;
+    	}

@@ -1,0 +1,3 @@
+    public int getIntValue() {
+        return ((Integer.valueOf(_value.getText()).intValue())-_Offset)/_Factor;
+    }

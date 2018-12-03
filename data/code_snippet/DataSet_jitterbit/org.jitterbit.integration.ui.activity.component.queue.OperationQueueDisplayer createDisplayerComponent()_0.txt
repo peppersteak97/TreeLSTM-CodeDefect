@@ -1,0 +1,13 @@
+    protected JComponent createDisplayerComponent() {
+        JPanel p = new JPanel(new BorderLayout());
+        p.add(createNorthComponent(), BorderLayout.NORTH);
+        p.add(createCenterComponent(), BorderLayout.CENTER);
+        p.add(createSouthComponent(), BorderLayout.SOUTH);
+        
+        JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+        split.setDividerSize(1);
+        split.setTopComponent(p);
+        
+        registerKeyBindings(split);
+        return split;
+    }

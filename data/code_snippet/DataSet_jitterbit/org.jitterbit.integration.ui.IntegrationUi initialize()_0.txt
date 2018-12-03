@@ -1,0 +1,5 @@
+    public void initialize() {
+        m_waitManager = new WaitManager(null);
+        createMainWindow();
+        m_waitManager.setImplementor(m_mainWindowFrame);
+    }

@@ -1,0 +1,4 @@
+    public List<MenuExtensionData> getMenuExtensions() {
+        return (m_menuExtensions == null) ? null : 
+            new ArrayList<MenuExtensionData>(m_menuExtensions);
+    }

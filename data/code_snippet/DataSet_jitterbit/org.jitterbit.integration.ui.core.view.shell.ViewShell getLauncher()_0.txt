@@ -1,0 +1,3 @@
+    public IViewLauncher getLauncher() {
+        return m_launcher;
+    }

@@ -1,0 +1,3 @@
+    private void disposeHelp() {
+        IntegrationUiHelp.getHelp().unregisterComponentHelpID(m_btnHelp1);
+    }

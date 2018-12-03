@@ -1,0 +1,6 @@
+    public String[] getFunctionPropertyValues() {
+        return new String[] { 
+            getFunctionID().toString(), 
+            getID().toString() 
+        };
+    }

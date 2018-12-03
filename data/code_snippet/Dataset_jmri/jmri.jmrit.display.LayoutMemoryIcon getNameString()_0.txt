@@ -1,0 +1,9 @@
+    String getNameString() {
+        String name;
+        if (memory == null) name = rb.getString("NotConnected");
+        else if (memory.getUserName()!=null)
+            name = memory.getUserName()+" ("+memory.getSystemName()+")";
+        else
+            name = memory.getSystemName();
+        return name;
+    }

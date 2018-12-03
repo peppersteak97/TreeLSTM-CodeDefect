@@ -1,0 +1,8 @@
+    public void close() throws DeployResultPersistorException {
+        try {
+            KongaIoUtils.createAndWrite(m_outputFile, m_output.toString());
+        }
+        catch (IOException ex) {
+            throw new DeployResultPersistorException(
+        }
+    }

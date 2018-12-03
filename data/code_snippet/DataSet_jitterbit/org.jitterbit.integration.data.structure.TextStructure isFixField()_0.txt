@@ -1,0 +1,3 @@
+    public boolean isFixField() {
+        return m_bFixField;
+    }

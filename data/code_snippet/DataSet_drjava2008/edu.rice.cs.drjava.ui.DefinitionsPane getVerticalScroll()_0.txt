@@ -1,0 +1,4 @@
+  public int getVerticalScroll() {
+    if (getDocument() == NULL_DOCUMENT) return _savedVScroll;
+    else return _scrollPane.getVerticalScrollBar().getValue();    
+  }

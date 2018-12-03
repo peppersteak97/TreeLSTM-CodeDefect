@@ -1,0 +1,22 @@
+  public Component _extraClassPathComponent() {
+    _extraClassPathList = new VectorAbsRelFileOptionComponent(null, "Extra Project Classpaths", this, null, true) {
+      protected Action _getAddAction() {
+        final Action a = super._getAddAction();
+        return new AbstractAction("Add") {
+          public void actionPerformed(ActionEvent ae) {
+            _mainFrame.removeModalWindowAdapter(ProjectPropertiesFrame.this);
+            a.actionPerformed(ae);
+            _mainFrame.installModalWindowAdapter(ProjectPropertiesFrame.this, LambdaUtil.NO_OP, CANCEL);
+          }
+        };
+      }
+    };
+    _extraClassPathList.setRows(5,5);
+    _extraClassPathList.addChangeListener(new OptionComponent.ChangeListener() {
+      public Object value(Object oc) {
+        _applyButton.setEnabled(true);
+        return null;
+      }
+    });
+    return _extraClassPathList.getComponent();
+  }

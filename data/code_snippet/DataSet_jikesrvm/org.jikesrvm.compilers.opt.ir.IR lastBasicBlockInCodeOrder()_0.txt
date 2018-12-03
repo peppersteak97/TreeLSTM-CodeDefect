@@ -1,0 +1,3 @@
+  public BasicBlock lastBasicBlockInCodeOrder() {
+    return cfg.lastInCodeOrder();
+  }

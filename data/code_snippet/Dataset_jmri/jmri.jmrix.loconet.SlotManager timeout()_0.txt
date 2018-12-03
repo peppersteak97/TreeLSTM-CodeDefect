@@ -1,0 +1,9 @@
+    synchronized protected void timeout() {
+        if (log.isDebugEnabled()) log.debug("timeout fires in state "+progState);
+        if (progState != 0) {
+            if (log.isDebugEnabled()) log.debug("timeout while programming");
+            progState = 0;
+                notifyProgListenerEnd(_slots[124].cvval(), jmri.ProgListener.NoAck);
+                notifyProgListenerEnd(_slots[124].cvval(), jmri.ProgListener.FailedTimeout);
+        }
+    }

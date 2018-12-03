@@ -1,0 +1,3 @@
+  protected final int getEdgeCounterIndex() {
+    return method.getId();
+  }

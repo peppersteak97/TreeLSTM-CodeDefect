@@ -1,0 +1,4 @@
+  public void close() throws IOException {
+    _output.flush();
+    _output.close();
+  }

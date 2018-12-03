@@ -1,0 +1,115 @@
+  protected void compile() {
+    if (shouldPrint) printStartHeader(method);
+
+    long start = 0;
+    ReferenceMaps refMaps;
+    try {
+      if (VM.MeasureCompilationPhases) {
+        start = Time.nanoTime();
+      }
+      refMaps = new ReferenceMaps((BaselineCompiledMethod) compiledMethod, stackHeights, localTypes);
+    } finally {
+      if (VM.MeasureCompilationPhases) {
+        long end = Time.nanoTime();
+        gcMapNanos += end - start;
+      }
+    }
+
+    /* reference map and stackheights were computed using original bytecodes
+     * and possibly new operand words
+     * recompute the stack height, but keep the operand words of the code
+     * generation consistent with reference map
+     * TODO: revisit this code as part of OSR redesign
+     */
+    boolean edge_counters = options.PROFILE_EDGE_COUNTERS;
+    try {
+      if (VM.MeasureCompilationPhases) {
+        start = Time.nanoTime();
+      }
+      if (VM.BuildForAdaptiveSystem && method.isForOsrSpecialization()) {
+        options.PROFILE_EDGE_COUNTERS = false;
+        System.arraycopy(stackHeights,
+                         0,
+                         stackHeights,
+                         method.getOsrPrologueLength(),
+
+        new BytecodeTraverser().prologueStackHeights(method, method.getOsrPrologue(), stackHeights);
+      }
+    } finally {
+      if (VM.MeasureCompilationPhases) {
+        long end = Time.nanoTime();
+        osrSetupNanos += end - start;
+      }
+    }
+
+    int[] bcMap;
+    MachineCode machineCode;
+    CodeArray instructions;
+    try {
+      if (VM.MeasureCompilationPhases) {
+        start = Time.nanoTime();
+      }
+
+      if (options.PROFILE_EDGE_COUNTERS &&
+          !method.getDeclaringClass().hasBridgeFromNativeAnnotation() &&
+          (method.hasCondBranch() || method.hasSwitch())) {
+      }
+
+      initializeCompiler();
+
+      machineCode = genCode();
+      instructions = machineCode.getInstructions();
+      bcMap = machineCode.getBytecodeMap();
+    } finally {
+      if (VM.MeasureCompilationPhases) {
+        long end = Time.nanoTime();
+        codeGenNanos += end - start;
+      }
+    }
+
+    /* adjust machine code map, and restore original bytecode
+     * for building reference map later.
+     * TODO: revisit this code as part of OSR redesign
+     */
+    try {
+      if (VM.MeasureCompilationPhases) {
+        start = Time.nanoTime();
+      }
+      if (VM.BuildForAdaptiveSystem && method.isForOsrSpecialization()) {
+        int[] newmap = new int[bcMap.length - method.getOsrPrologueLength()];
+        System.arraycopy(bcMap, method.getOsrPrologueLength(), newmap, 0, newmap.length);
+        machineCode.setBytecodeMap(newmap);
+        bcMap = newmap;
+        method.finalizeOsrSpecialization();
+        options.PROFILE_EDGE_COUNTERS = edge_counters;
+      }
+    } finally {
+      if (VM.MeasureCompilationPhases) {
+        long end = Time.nanoTime();
+        osrSetupNanos += end - start;
+      }
+    }
+
+    try {
+      if (VM.MeasureCompilationPhases) {
+        start = Time.nanoTime();
+      }
+      if (method.isSynchronized()) {
+        ((BaselineCompiledMethod) compiledMethod).setLockAcquisitionOffset(lockOffset);
+      }
+      ((BaselineCompiledMethod) compiledMethod).encodeMappingInfo(refMaps, bcMap);
+      compiledMethod.compileComplete(instructions);
+      if (edgeCounterIdx > 0) {
+        EdgeCounts.allocateCounters(method, edgeCounterIdx);
+      }
+      if (shouldPrint) {
+        ((BaselineCompiledMethod) compiledMethod).printExceptionTable();
+        printEndHeader(method);
+      }
+    } finally {
+      if (VM.MeasureCompilationPhases) {
+        long end = Time.nanoTime();
+        encodingNanos += end - start;
+      }
+    }
+  }

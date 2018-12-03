@@ -1,0 +1,4 @@
+    private void removeThisOptionFromUi() {
+        removePage();
+        m_launcher.activate(m_launcher.getDecor());
+    }

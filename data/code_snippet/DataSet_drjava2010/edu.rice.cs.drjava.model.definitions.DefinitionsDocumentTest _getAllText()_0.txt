@@ -1,0 +1,1 @@
+  private String _getAllText() throws BadLocationException { return _doc.getText(); }

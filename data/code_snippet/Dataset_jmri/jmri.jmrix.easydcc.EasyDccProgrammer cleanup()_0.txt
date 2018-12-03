@@ -1,0 +1,3 @@
+    void cleanup() {
+        controller().sendEasyDccMessage(EasyDccMessage.getExitProgMode(), this);
+    }

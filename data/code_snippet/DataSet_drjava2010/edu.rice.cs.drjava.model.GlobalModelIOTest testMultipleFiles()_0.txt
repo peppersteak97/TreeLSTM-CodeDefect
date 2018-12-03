@@ -1,0 +1,20 @@
+  public void testMultipleFiles() throws BadLocationException {
+    assertNumOpenDocs(1);
+    
+    OpenDefinitionsDocument doc1 = setupDocument(FOO_TEXT);
+    assertNumOpenDocs(2);
+    
+    OpenDefinitionsDocument doc2 = _model.newFile();
+    assertNumOpenDocs(3);
+    assertModified(true, doc1);
+    assertModified(false, doc2);
+    assertContents(FOO_TEXT, doc1);
+    assertLength(0, doc2);
+    
+    changeDocumentText(BAR_TEXT, doc2);
+    assertModified(true, doc2);
+    assertContents(FOO_TEXT, doc1);
+    assertContents(BAR_TEXT, doc2);
+    
+    _log.log(this + ".testMultipleFiles() completed");
+  }

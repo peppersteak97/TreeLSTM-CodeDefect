@@ -1,0 +1,3 @@
+	public OperatorNode makeOperator() {
+		return new NotOperator(getOperandOperations());
+	}

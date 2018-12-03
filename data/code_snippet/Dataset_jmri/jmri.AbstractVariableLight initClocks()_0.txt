@@ -1,0 +1,13 @@
+    private void initClocks(){
+        
+        internalClock = InstanceManager.timebaseInstance();
+        if (internalClock == null){
+            log.error("No Timebase Instance");
+        }
+        minuteChangeListener = new java.beans.PropertyChangeListener() {
+                public void propertyChange(java.beans.PropertyChangeEvent e) {
+                    newInternalMinute();
+                }
+            } ;
+        internalClock.addMinuteChangeListener(minuteChangeListener);
+    }

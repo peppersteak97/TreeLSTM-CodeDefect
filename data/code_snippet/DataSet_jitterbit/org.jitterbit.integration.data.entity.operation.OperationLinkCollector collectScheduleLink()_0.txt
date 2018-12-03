@@ -1,0 +1,6 @@
+    private void collectScheduleLink() {
+        IIntegrationLink link = m_scheduleLinkFactory.getLink();
+        if (link != null) {
+            m_links.add(link);
+        }
+    }

@@ -1,0 +1,4 @@
+    public boolean isOpsModePossible() {
+      if (mode == OPS) {return true;}
+      else return false;
+    }

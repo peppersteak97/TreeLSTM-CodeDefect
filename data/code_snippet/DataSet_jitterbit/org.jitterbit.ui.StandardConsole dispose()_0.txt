@@ -1,0 +1,8 @@
+    public void dispose() {
+        if (m_savedOut != null) {
+            System.setOut(m_savedOut);
+        }
+        if (m_savedErr != null) {
+            System.setErr(m_savedErr);
+        }
+    }

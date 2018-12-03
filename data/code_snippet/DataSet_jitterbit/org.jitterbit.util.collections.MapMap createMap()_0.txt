@@ -1,0 +1,5 @@
+	private Map<L, V> createMap() {
+		Map<L, V> map = m_isSynchronized ? (Map<L, V>)new Hashtable<L, V>(m_initialMapCapacity) :
+				(Map<L, V>)new HashMap<L, V>(m_initialMapCapacity);
+		return map;
+	}

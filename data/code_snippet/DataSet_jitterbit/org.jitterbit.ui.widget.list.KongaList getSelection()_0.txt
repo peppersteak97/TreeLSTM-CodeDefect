@@ -1,0 +1,3 @@
+    public IIndexedSelection getSelection() {
+        return m_selectionHandler.getSelection();
+    }

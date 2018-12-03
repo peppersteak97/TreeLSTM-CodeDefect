@@ -1,0 +1,11 @@
+	void Yes2()	{
+  		if(m_obj instanceof TreeMapper){
+			dispose();
+			try {
+				TreeMapper ap=(TreeMapper)m_obj;
+				ap.saveMaps();
+			} catch (CheckingException e) {
+				e.printStackTrace();
+			}
+  		}
+	}

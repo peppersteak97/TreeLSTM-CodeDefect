@@ -1,0 +1,3 @@
+    public int hashCode() {
+        return (int)(m_versionNumber ^ (m_versionNumber >>> 32));
+    }

@@ -1,0 +1,5 @@
+    private void createComponents() {
+        createGroupListPanel();
+        createDetailsPanel();
+        createMemberListPanel();
+    }

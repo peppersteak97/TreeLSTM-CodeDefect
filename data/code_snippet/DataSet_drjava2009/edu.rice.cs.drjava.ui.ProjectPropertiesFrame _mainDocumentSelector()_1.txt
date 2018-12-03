@@ -1,0 +1,76 @@
+  public JPanel _mainDocumentSelector() {
+    final File projRoot = _getProjRoot();
+
+    final FileChooser chooser = new FileChooser(projRoot);
+    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    chooser.setDialogType(JFileChooser.CUSTOM_DIALOG);
+
+    chooser.setDialogTitle("Select Main Class");
+    chooser.setCurrentDirectory(projRoot);
+    File   mainFile  = _getMainFile();
+    if (mainFile != FileOps.NULL_FILE){
+      chooser.setSelectedFile(mainFile);
+    }
+
+    chooser.setApproveButtonText("Select");
+
+    chooser.addChoosableFileFilter(new JavaSourceFilter());
+    _mainDocumentSelector = new JTextField(20){
+      public Dimension getMaximumSize() {
+        return new Dimension(Short.MAX_VALUE, super.getPreferredSize().height);
+      }
+    };
+
+    _mainDocumentSelector.setFont(_mainDocumentSelector.getFont().deriveFont(12f));
+    _mainDocumentSelector.setPreferredSize(new Dimension(22, 22));
+    
+    _mainDocumentSelector.getDocument().addDocumentListener(_applyListener);
+    
+    JButton selectFile = new JButton("...");
+    selectFile.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+        int ret = chooser.showOpenDialog(ProjectPropertiesFrame.this);
+        
+        if(ret != JFileChooser.APPROVE_OPTION)
+          return;
+        
+        File mainClass = chooser.getSelectedFile();
+        
+        File sourceRoot = new File(_projRootSelector.getFileField().getText());
+        
+        if(sourceRoot == null || mainClass == null)
+          return;
+        
+        if(!mainClass.getAbsolutePath().startsWith(sourceRoot.getAbsolutePath())){
+          JOptionPane.showMessageDialog(ProjectPropertiesFrame.this,
+                                        "Main Class must be in either Project Root or one of its sub-directories.", 
+                                        "Unable to set Main Class", JOptionPane.ERROR_MESSAGE);
+          
+          _mainDocumentSelector.setText("");
+          return;
+        }
+        
+        String qualifiedName = mainClass.getAbsolutePath().substring(sourceRoot.getAbsolutePath().length());
+        
+        if(qualifiedName.startsWith(""+File.separatorChar))
+          qualifiedName = qualifiedName.substring(1);
+        
+        if(qualifiedName.toLowerCase().endsWith(".java"))
+          qualifiedName = qualifiedName.substring(0, qualifiedName.length() - 5);
+          
+        _mainDocumentSelector.setText(qualifiedName.replace(File.separatorChar, '.'));
+      }
+    });
+    
+    
+    selectFile.setMaximumSize(new Dimension(22, 22));
+    selectFile.setMargin(new Insets(0, 5 ,0, 5));
+    
+    JPanel toRet = new JPanel();
+    javax.swing.BoxLayout layout = new javax.swing.BoxLayout(toRet, javax.swing.BoxLayout.X_AXIS);
+    toRet.setLayout(layout);
+    toRet.add(_mainDocumentSelector);
+    toRet.add(selectFile);
+    
+    return toRet;
+  }

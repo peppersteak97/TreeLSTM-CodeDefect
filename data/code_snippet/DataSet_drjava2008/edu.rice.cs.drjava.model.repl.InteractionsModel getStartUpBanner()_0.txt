@@ -1,0 +1,1 @@
+  public String getStartUpBanner() { return getBanner(_workingDirectory); }

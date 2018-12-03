@@ -1,0 +1,13 @@
+  private void printDFSNumbers() {
+    for (Enumeration<BasicBlock> bbEnum = cfg.basicBlocks(); bbEnum.hasMoreElements();) {
+      BasicBlock block = bbEnum.nextElement();
+      if (forward && block.isExit()) {
+        continue;
+      }
+      LTDominatorInfo info = (LTDominatorInfo) block.scratchObject;
+      System.out.println(" " + block + " " + info);
+    }
+    for (int i = 1; i <= DFSCounter; i++) {
+      System.out.println(" Vertex: " + i + " " + vertex[i]);
+    }
+  }

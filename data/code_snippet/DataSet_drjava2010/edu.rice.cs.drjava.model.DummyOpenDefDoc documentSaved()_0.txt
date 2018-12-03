@@ -1,0 +1,1 @@
+  public void documentSaved() { throw new UnsupportedOperationException("Dummy method"); }

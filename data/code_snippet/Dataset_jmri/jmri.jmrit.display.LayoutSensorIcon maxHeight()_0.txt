@@ -1,0 +1,8 @@
+    protected int maxHeight() {
+        return Math.max(
+                Math.max( (active!=null) ? active.getIconHeight() : 0,
+                        (inactive!=null) ? inactive.getIconHeight() : 0),
+                Math.max((unknown!=null) ? unknown.getIconHeight() : 0,
+                        (inconsistent!=null) ? inconsistent.getIconHeight() : 0)
+            );
+    }

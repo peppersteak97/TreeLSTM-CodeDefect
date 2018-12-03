@@ -1,0 +1,4 @@
+    protected void setInstance() {
+        log.error("Unexpected call to setInstance");
+        new Exception().printStackTrace();
+    }

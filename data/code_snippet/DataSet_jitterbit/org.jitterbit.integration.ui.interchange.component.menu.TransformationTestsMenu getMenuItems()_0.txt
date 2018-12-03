@@ -1,0 +1,10 @@
+    protected List<JMenuItem> getMenuItems() {
+        List<JMenuItem> items = new ArrayList<JMenuItem>();
+        for (InterchangeActionFactory factory : getActions()) {
+            IApplicationAction a = factory.get(m_view);
+            items.add(MenuItemFactory.createMenuItem(a, 
+                            InterchangeActionDictionary.DICTIONARY));
+        }
+
+        return items;
+    }

@@ -1,0 +1,10 @@
+  public boolean isCountableLoop() {
+    return (initialIteratorValue != null) &&
+           isConstant(initialIteratorValue) &&
+           (terminalIteratorValue != null) &&
+           isConstant(terminalIteratorValue) &&
+           (strideValue != null) &&
+           isConstant(strideValue) &&
+           (iteratorInstr != null) &&
+           ((iteratorInstr.operator.opcode == INT_ADD_opcode) || (iteratorInstr.operator.opcode == INT_SUB_opcode));
+  }

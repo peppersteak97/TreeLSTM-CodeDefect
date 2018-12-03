@@ -1,0 +1,9 @@
+    ProjectLocation getSelectedProject() {
+        int row = getSelectedRow();
+        if (row < 0) {
+            return null;
+        }
+        row = getTableSorter().getModelIndex(row);
+        Object o = ((RecentProjectsTableModel) getUnderlyingModel()).getRowObject(row);
+        return (o instanceof ProjectLocation) ? (ProjectLocation) o : null;
+    }

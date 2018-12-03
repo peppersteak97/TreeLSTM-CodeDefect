@@ -1,0 +1,5 @@
+	public static byte[] getNceEpromRev() {
+		byte[] retVal = new byte[1];
+		retVal[0] = (byte) (SW_REV_CMD);
+		return retVal;
+	}

@@ -1,0 +1,48 @@
+  public void testCurly() throws BadLocationException
+  {
+    /* (1) */
+    
+    _text =
+      "class X extends Base\n" +
+      "{\n" +
+      "}";
+    
+    _setDocText(_text);
+    
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 20, Indenter.IndentReason.OTHER));
+    assertTrue("START is curly brace.", !_rule.testApplyRule(_doc, 21, Indenter.IndentReason.OTHER));
+    assertTrue("START is close brace.", !_rule.testApplyRule(_doc, 23, Indenter.IndentReason.OTHER));
+    
+    /* (2) */
+    
+    _text =
+      "class X extends Base\n" +
+      "{\n" +
+      "    int bla() { return 44; }\n" +
+      "}";
+    
+    _setDocText(_text);
+    
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 20, Indenter.IndentReason.OTHER));
+    assertTrue("START is curly brace.", !_rule.testApplyRule(_doc, 21, Indenter.IndentReason.OTHER));
+    assertTrue("START's brace is curly brace.", !_rule.testApplyRule(_doc, 23, Indenter.IndentReason.OTHER));
+    assertTrue("START is close curly brace.", !_rule.testApplyRule(_doc, _text.length() - 1, Indenter.IndentReason.OTHER));
+    
+    /* (3) */
+    
+    _text =
+      "class X extends Base\n" +
+      "{}\n" +
+      "class Y extends Base\n" +
+      "{}";
+    
+    _setDocText(_text);
+    
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 20, Indenter.IndentReason.OTHER));
+    assertTrue("START is open curly brace.", !_rule.testApplyRule(_doc, 21, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 24, Indenter.IndentReason.OTHER));
+    assertTrue("START's brace is open curly brace.", !_rule.testApplyRule(_doc, _text.length() - 1, Indenter.IndentReason.OTHER));
+  }

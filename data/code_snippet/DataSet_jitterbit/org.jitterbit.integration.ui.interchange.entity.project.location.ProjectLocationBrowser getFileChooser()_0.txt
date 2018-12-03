@@ -1,0 +1,8 @@
+    private static JFileChooser getFileChooser() {
+        if (s_fileChooser == null) {
+            s_fileChooser = new JFileChooser();
+            s_fileChooser.setMultiSelectionEnabled(false);
+            s_fileChooser.setCurrentDirectory(s_newProjectLocation);
+        }
+        return s_fileChooser;
+    }

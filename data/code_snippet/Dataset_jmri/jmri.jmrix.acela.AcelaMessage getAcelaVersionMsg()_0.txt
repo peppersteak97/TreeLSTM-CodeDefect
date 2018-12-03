@@ -1,0 +1,6 @@
+    static public AcelaMessage getAcelaVersionMsg() {
+        AcelaMessage m = new AcelaMessage(1);
+        m.setBinary(true);
+        m.setElement(0, 0x19);
+        return m;
+    }

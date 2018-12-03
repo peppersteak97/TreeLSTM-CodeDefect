@@ -1,0 +1,3 @@
+	public Dimension getSize() {
+		return new Dimension(m_w, m_h);
+	}

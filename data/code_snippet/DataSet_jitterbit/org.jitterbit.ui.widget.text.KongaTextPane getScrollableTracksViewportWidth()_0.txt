@@ -1,0 +1,4 @@
+    public boolean getScrollableTracksViewportWidth() {
+       return m_isWrapping ? (getSize().width < getParent().getSize().width) :
+           super.getScrollableTracksViewportWidth();
+    }

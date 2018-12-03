@@ -1,0 +1,7 @@
+  public void testGetName() {
+    KeyStrokeOption io1 = new KeyStrokeOption("indent_size",null);
+    KeyStrokeOption io2 = new KeyStrokeOption("max_files",null);
+    
+    assertEquals("indent_size", io1.getName());
+    assertEquals("max_files",   io2.getName());
+  }

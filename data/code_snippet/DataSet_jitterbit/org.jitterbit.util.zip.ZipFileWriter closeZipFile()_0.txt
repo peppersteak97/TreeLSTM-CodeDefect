@@ -1,0 +1,5 @@
+	public synchronized void closeZipFile() throws FileNotFoundException, IOException {
+		m_zip.close();
+		m_zip = null;
+		m_buf = null;
+	}

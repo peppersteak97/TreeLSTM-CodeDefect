@@ -1,0 +1,3 @@
+  BitVector getDominanceFrontier() {
+    return dominanceFrontier;
+  }

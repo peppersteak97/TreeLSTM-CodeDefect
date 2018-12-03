@@ -1,0 +1,23 @@
+  private void _followFile() {
+    updateStatusField("Opening File for Following");
+    try {      
+      final File[] files = _openAnyFileSelector.getFiles();
+      if (files == null) { return; }
+      for (final File f: files) {
+        if (f == null) continue;
+        String end = f.getName();
+        int lastIndex = end.lastIndexOf(File.separatorChar);
+        if (lastIndex >= 0) end = end.substring(lastIndex+1);
+        final LessPanel panel = new LessPanel(this, "Follow: "+end, f);
+        _tabs.addLast(panel);
+        panel.getMainPanel().addFocusListener(new FocusAdapter() {
+          public void focusGained(FocusEvent e) { _lastFocusOwner = panel; }
+        });
+        panel.setVisible(true);
+        showTab(panel, true);
+        _tabbedPane.setSelectedComponent(panel);
+        EventQueue.invokeLater(new Runnable() { public void run() { panel.requestFocusInWindow(); } });
+      }
+    }
+    catch(OperationCanceledException oce) { /* ignore */ }
+  }

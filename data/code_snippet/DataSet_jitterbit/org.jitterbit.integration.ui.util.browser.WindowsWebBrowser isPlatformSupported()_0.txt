@@ -1,0 +1,3 @@
+    public boolean isPlatformSupported() {
+        return SystemUtils.IS_OS_WINDOWS;
+    }

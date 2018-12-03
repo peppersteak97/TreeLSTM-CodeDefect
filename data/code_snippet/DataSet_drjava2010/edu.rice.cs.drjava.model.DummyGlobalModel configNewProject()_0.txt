@@ -1,0 +1,3 @@
+  public void configNewProject() throws IOException {
+    throw new UnsupportedOperationException("Tried to call configNewProject on a Dummy");
+  }

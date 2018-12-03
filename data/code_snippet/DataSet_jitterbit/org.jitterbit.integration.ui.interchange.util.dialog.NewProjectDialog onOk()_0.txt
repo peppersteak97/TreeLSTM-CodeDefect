@@ -1,0 +1,15 @@
+    protected void onOk() {
+        try {
+            m_newProjectLocationDisplayer.validateProjectName();
+            if (checkNewProjectLocationValid()) {
+                super.onOk();
+            }
+        }
+        catch (IllegalNameException ex) {
+            MessageDisplayer.showErrorMessage(
+                            NewProjectDialog.this, 
+                            getOwner(), 
+                            ex.getMessage(), 
+                            PackageResources.NewProject.INVALID_PROJECT_NAME);
+        }
+    }

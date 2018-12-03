@@ -1,0 +1,85 @@
+  private void _completeWordUnderCursor() {
+    List<OpenDefinitionsDocument> docs = _model.getOpenDefinitionsDocuments();
+    
+    _completeJavaAPICheckbox.setSelected(DrJava.getConfig().getSetting(OptionConstants.DIALOG_COMPLETE_JAVAAPI));
+    _completeJavaAPICheckbox.setEnabled(true);
+    ClassNameAndPackageEntry currentEntry = null;
+    HashSet<ClassNameAndPackageEntry> set;
+    if ((DrJava.getConfig().getSetting(DIALOG_COMPLETE_SCAN_CLASS_FILES).booleanValue()) &&
+        (_completeClassSet.size() > 0)) {
+      set = new HashSet<ClassNameAndPackageEntry>(_completeClassSet);
+    }
+    else {
+      set = new HashSet<ClassNameAndPackageEntry>(docs.size());
+      for(OpenDefinitionsDocument d: docs) {
+        if (d.isUntitled()) continue;
+        String str = d.toString();
+        if (str.lastIndexOf('.')>=0) {
+          str = str.substring(0, str.lastIndexOf('.'));
+        }
+        GoToFileListEntry entry = new GoToFileListEntry(d, str);
+        if (d.equals(_model.getActiveDocument())) currentEntry = entry;
+        set.add(entry);
+      }
+    }
+    
+    if (DrJava.getConfig().getSetting(OptionConstants.DIALOG_COMPLETE_JAVAAPI)) {
+      addJavaAPIToSet(set);
+    }
+    
+    
+    PredictiveInputModel<ClassNameAndPackageEntry> pim = 
+      new PredictiveInputModel<ClassNameAndPackageEntry>(true, new PrefixStrategy<ClassNameAndPackageEntry>(), set);
+    OpenDefinitionsDocument odd = getCurrentDefPane().getOpenDefDocument();
+    try {
+      String mask = "";
+      int loc = getCurrentDefPane().getCaretPosition();
+      String s = odd.getText(0, loc);
+      
+      if ((loc<s.length()) && (!Character.isWhitespace(s.charAt(loc))) &&
+          ("()[]{}<>.,:;/*+-!~&|%".indexOf(s.charAt(loc)) == -1)) return;
+      
+      int start = loc;
+      while(start > 0) {
+        if (!Character.isJavaIdentifierPart(s.charAt(start-1))) { break; }
+        --start;
+      }
+      while((start<s.length()) && (!Character.isJavaIdentifierStart(s.charAt(start))) && (start < loc)) {
+        ++start;
+      }
+      
+      int end = loc-1;
+      
+      if ((start>=0) && (end < s.length())) {
+        mask = s.substring(start, end + 1);
+        pim.setMask(mask);
+      }
+      
+      if (pim.getMatchingItems().size() == 1) {
+        if (pim.getCurrentItem() != null) {
+          if (! s.substring(start, loc).equals(pim.getCurrentItem().toString())) {
+            odd.remove(start, loc - start);
+            odd.insertString(start, pim.getCurrentItem().toString(), null);
+          }
+          return;
+        }
+      }
+      else {
+        pim.setMask(mask);
+        if (pim.getMatchingItems().size() == 0) {
+          mask = pim.getMask();
+          while(mask.length() > 0) {
+            mask = mask.substring(0, mask.length() - 1);
+            pim.setMask(mask);
+            if (pim.getMatchingItems().size() > 0) { break; }
+          }
+        }       
+        initCompleteWordDialog();
+        _completeWordDialog.selectStrategy();
+        if (currentEntry != null) _completeWordDialog.setCurrentItem(currentEntry);
+        hourglassOn();
+        _completeWordDialog.setVisible(true);
+      }
+    }
+    catch(BadLocationException ble) { /* ignore, just don't auto-complete */ }
+  }

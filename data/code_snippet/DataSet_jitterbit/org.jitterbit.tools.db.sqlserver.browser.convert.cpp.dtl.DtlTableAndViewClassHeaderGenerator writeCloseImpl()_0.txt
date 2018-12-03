@@ -1,0 +1,5 @@
+   private void writeCloseImpl() {
+        addLine("\tvoid Close() {");
+        addLine("\t\tm_dtlRecSet.Close();");
+        addLine("\t}");
+    }

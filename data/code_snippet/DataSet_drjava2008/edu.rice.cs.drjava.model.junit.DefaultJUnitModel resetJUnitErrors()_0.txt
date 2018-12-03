@@ -1,0 +1,3 @@
+  public void resetJUnitErrors() {
+    _junitErrorModel = new JUnitErrorModel(new JUnitError[0], _model, false);
+  }

@@ -1,0 +1,6 @@
+    public void dispose() {
+        if (TIMEZONE_SUPPORT) {
+            m_timeZoneSelector.remove();
+        }
+        super.dispose();
+    }

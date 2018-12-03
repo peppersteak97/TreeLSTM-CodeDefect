@@ -1,0 +1,3 @@
+  public boolean isNO() {
+    return (code == Code.DECIDE_NO);
+  }

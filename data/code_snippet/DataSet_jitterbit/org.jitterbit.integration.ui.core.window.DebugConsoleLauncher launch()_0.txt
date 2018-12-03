@@ -1,0 +1,5 @@
+    public void launch() {
+        IDebugConsole console = m_consoleFactory.create();
+        IPage page = new DebugConsolePage(console);
+        m_window.getPageEditor().setActivePage(page);
+    }

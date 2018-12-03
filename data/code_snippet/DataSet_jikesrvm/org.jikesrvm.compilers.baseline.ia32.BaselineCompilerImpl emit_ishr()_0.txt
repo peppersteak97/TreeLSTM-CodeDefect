@@ -1,0 +1,4 @@
+  protected final void emit_ishr() {
+    asm.emitPOP_Reg(ECX);
+    asm.emitSAR_RegInd_Reg(SP, ECX);
+  }

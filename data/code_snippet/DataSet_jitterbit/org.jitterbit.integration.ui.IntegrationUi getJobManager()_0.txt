@@ -1,0 +1,6 @@
+    public synchronized IUiJobManager getJobManager() {
+        if (m_uiJobManager == null) {
+            m_uiJobManager = createUiJobManager();
+        }
+        return m_uiJobManager;
+    }

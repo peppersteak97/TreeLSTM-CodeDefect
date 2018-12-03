@@ -1,0 +1,1 @@
+  public boolean isTemp() { return (flags & LOCAL) == 0; }

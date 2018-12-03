@@ -1,0 +1,4 @@
+  public /* synchronized */ void documentSaved() {
+    endCompoundEdit();
+    _savePoint = editToBeUndone(); 
+  }

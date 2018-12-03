@@ -1,0 +1,3 @@
+    public Iterator<Object> items() {
+        return ITERATOR;
+    }

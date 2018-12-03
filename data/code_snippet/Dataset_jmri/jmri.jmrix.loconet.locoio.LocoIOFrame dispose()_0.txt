@@ -1,0 +1,16 @@
+    public void dispose() {
+        model.dispose();
+        super.dispose();
+        model          = null;
+        table          = null;
+        scroll         = null;
+        readAllButton  = null;
+        writeAllButton = null;
+        addrField      = null;
+        subAddrField   = null;
+        status         = null;
+        firmware       = null;
+        locobuffer     = null;
+        saveButton     = null;
+        openButton     = null;
+    }

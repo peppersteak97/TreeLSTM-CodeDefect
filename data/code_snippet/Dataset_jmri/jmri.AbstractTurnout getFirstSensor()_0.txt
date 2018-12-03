@@ -1,0 +1,3 @@
+	public Sensor getFirstSensor() {
+		return _firstSensor;
+	}

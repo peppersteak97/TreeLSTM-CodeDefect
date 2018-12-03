@@ -1,0 +1,8 @@
+  private static void checkAllocationCountDownToGC() {
+    if (canForceGC()) {
+      if (allocationCountDownToGC-- <= 0) {
+        allocationCountDownToGC = VM.StressGCAllocationInterval;
+        System.gc();
+      }
+    }
+  }

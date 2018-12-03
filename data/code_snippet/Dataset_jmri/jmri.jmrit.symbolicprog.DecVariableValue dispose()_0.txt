@@ -1,0 +1,7 @@
+    public void dispose() {
+        if (log.isDebugEnabled()) log.debug("dispose");
+        if (_value != null) _value.removeActionListener(this);
+        ((CvValue)_cvVector.elementAt(getCvNum())).removePropertyChangeListener(this);
+
+        _value = null;
+    }

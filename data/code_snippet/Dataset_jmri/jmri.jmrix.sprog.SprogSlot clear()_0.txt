@@ -1,0 +1,10 @@
+     public void clear() {
+       status = SprogConstants.SLOT_FREE;
+       length = 3;
+       addr = 0;
+       spd = 0;
+       payload[0] = 0;
+       payload[1] = 0;
+       payload[2] = 0;
+       notifySlotListeners();
+     }

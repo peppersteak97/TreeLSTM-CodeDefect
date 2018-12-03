@@ -1,0 +1,26 @@
+  public String toString() {
+    String s = code.toString();
+    if (testFailedOSR) {
+      s += "(OSR off-branch)";
+    }
+    s += ":" + rationale;
+    if (targets != null) {
+      for (int i = 0; i < targets.length; i++) {
+        s += " " + targets[i];
+        if (guards != null) {
+          switch (guards[i]) {
+            case OptOptions.INLINE_GUARD_METHOD_TEST:
+              s += " (method test)";
+              break;
+            case OptOptions.INLINE_GUARD_CLASS_TEST:
+              s += " (class test)";
+              break;
+            case OptOptions.INLINE_GUARD_CODE_PATCH:
+              s += " (code patch)";
+              break;
+          }
+        }
+      }
+    }
+    return s;
+  }

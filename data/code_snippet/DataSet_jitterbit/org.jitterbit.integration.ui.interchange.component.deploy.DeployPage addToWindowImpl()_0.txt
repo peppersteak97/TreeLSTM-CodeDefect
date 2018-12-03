@@ -1,0 +1,10 @@
+    private boolean addToWindowImpl() {
+        createComponents();
+        layoutWaitPanel();
+        setMainPanel(m_mainPanel);
+        setToolBar(createToolBar());
+        startWaitTimer();
+        m_treePanel.display();
+        startValidation();
+        return true;
+    }

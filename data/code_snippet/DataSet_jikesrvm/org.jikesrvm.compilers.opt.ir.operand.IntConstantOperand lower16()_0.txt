@@ -1,0 +1,3 @@
+  public int lower16() {
+    return Bits.lower16(value);
+  }

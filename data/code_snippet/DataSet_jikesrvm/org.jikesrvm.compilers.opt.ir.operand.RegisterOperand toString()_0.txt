@@ -1,0 +1,16 @@
+  public String toString() {
+    String s = getRegister().toString();
+    if (type != null) {
+      if (type != TypeReference.VALIDATION_TYPE) {
+        s = s + "(" + type.getName();
+        if (isExtant()) s += ",x";
+        if (isDeclaredType()) s += ",d";
+        if (isPreciseType()) s += ",p";
+        if (isPositiveInt()) s += ",+";
+        s += ")";
+      } else {
+        s += "(GUARD)";
+      }
+    }
+    return s;
+  }

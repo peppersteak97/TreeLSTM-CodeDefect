@@ -1,0 +1,3 @@
+  public List<OpenDefinitionsDocument> getSortedOpenDefinitionsDocuments() {
+    throw new UnsupportedOperationException("Tried to getSortedOpenDefinitionsDocuments on a Dummy!");
+  }

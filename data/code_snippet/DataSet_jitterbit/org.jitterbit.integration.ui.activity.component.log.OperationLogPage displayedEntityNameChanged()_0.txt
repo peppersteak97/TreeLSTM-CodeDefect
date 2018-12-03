@@ -1,0 +1,3 @@
+    protected void displayedEntityNameChanged() {
+        m_logDisplayer.getNavigationControl().setDisplayedSubject(getObject());
+    }

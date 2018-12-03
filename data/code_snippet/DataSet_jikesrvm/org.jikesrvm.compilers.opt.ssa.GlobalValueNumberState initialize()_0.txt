@@ -1,0 +1,10 @@
+  private void initialize() {
+    HashMap<Object, GVCongruenceClass> labelMap = new HashMap<Object, GVCongruenceClass>(10);
+    for (Enumeration<GraphNode> e = valueGraph.enumerateVertices(); e.hasMoreElements();) {
+      ValueGraphVertex v = (ValueGraphVertex) e.nextElement();
+      Object label = v.getLabel();
+      GVCongruenceClass c = findOrCreateCongruenceClass(label, labelMap);
+      c.addVertex(v);
+      v.setValueNumber(c.getValueNumber());
+    }
+  }

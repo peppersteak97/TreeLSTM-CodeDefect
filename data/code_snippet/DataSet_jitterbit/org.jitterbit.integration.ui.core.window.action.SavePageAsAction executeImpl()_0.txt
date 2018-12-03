@@ -1,0 +1,16 @@
+    private void executeImpl() {
+        IPageEditor mgr = getPageEditor();
+        IPage active = mgr.getActivePage();
+        if (active == null) {
+            return;
+        }
+
+        UndoableEditTimer.getTimer().sendNow();
+
+        if (savePage(active)) {
+            succeeded(null);
+        }
+        else {
+            handleError(active);
+        }
+    }

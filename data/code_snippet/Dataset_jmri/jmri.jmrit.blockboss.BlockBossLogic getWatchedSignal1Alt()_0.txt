@@ -1,0 +1,4 @@
+    public String getWatchedSignal1Alt() {
+        if (watchedSignal1Alt == null) return null;
+        return watchedSignal1Alt.getSystemName();
+    }

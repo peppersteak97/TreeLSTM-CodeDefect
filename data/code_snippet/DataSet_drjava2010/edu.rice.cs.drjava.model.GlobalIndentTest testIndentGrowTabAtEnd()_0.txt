@@ -1,0 +1,11 @@
+  public void testIndentGrowTabAtEnd() throws BadLocationException, OperationCanceledException {
+    OpenDefinitionsDocument openDoc = _getOpenDoc();
+    
+    openDoc.insertString(0, FOO_EX_1, null);
+    openDoc.insertString(FOO_EX_1.length(), " " + FOO_EX_2, null);
+    openDoc.setCurrentLocation(openDoc.getLength() - 1);
+    int loc = openDoc.getCurrentLocation();
+    openDoc.indentLines(loc, loc, Indenter.IndentReason.OTHER, null);
+    _assertContents(FOO_EX_1 + "  " + FOO_EX_2, openDoc);
+    _assertLocation(openDoc.getLength() - 1, openDoc);
+  }

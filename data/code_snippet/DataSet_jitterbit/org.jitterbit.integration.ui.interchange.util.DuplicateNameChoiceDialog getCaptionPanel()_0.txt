@@ -1,0 +1,23 @@
+    private JPanel getCaptionPanel() {
+        JPanel p = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(2, 0, 4, 0);
+        gbc.gridx = 0;
+
+        JLabel top = IntegrationUiStyleSheet.InfoTextHeader.makeJLabel(
+                        PackageResources.DuplicateNameDialog.Labels.TOP);
+        top.setIcon(PackageResources.DuplicateNameDialog.Labels.TOP_ICON);
+        p.add(top, gbc);
+
+        JTextArea text = ComponentFactories.textFactory().newTextArea(getCaptionText(), 2, 30);
+        text.setEditable(false);
+        p.add(text, gbc);
+
+        p.add(IntegrationUiStyleSheet.CaptionText.makeJLabel(
+                        PackageResources.DuplicateNameDialog.QUESTION), gbc);
+
+        p.setBackground(Color.WHITE);
+        p.setBorder(BorderUtils.getEmptyPaddedLineBorder(null, new Insets(5, 5, 5, 5)));
+        return p;
+    }

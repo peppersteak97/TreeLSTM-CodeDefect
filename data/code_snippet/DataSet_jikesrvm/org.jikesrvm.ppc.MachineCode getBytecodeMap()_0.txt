@@ -1,0 +1,3 @@
+  public int[] getBytecodeMap() {
+    return bytecode_2_machine;
+  }

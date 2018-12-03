@@ -1,0 +1,6 @@
+    public void dispose() {
+        m_wsCallControl.dispose();
+        m_firstTransformationControl.dispose();
+        m_secondTransformationControl.dispose();
+        super.dispose();
+    }

@@ -1,0 +1,11 @@
+        for (JComponent b : getButtons()) {
+            if (b == null) {
+                tb.addSeparator(new Dimension(5, 0));
+            }
+            else {
+                if (b instanceof JButton) {
+                    ((JButton) b).setFocusPainted(false);
+                }
+                tb.add(b);
+            }
+        }

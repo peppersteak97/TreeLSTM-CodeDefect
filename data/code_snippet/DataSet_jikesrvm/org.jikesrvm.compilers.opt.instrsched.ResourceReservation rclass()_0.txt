@@ -1,0 +1,3 @@
+  public int rclass() {
+    return (rclass & 0x7FFFFFFF);
+  }

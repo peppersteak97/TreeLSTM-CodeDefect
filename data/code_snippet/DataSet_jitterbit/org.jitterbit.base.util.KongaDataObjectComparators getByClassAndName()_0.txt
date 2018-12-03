@@ -1,0 +1,12 @@
+    public static <T extends KongaDataObject> Comparator<T> getByClassAndName() {
+        return new KongaComparator<T>() {
+            public int compare(T o1, T o2) {
+                int r = KongaClassUtils.getClassNameWithoutPackage(o1).compareTo(
+                        KongaClassUtils.getClassNameWithoutPackage(o2));
+                if (r == 0) {
+                    r = o1.getName().compareTo(o2.getName());
+                }
+                return r;
+            }
+        };
+    }

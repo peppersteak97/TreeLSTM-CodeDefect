@@ -1,0 +1,7 @@
+  public Address getNativeTOC() {
+    if (VM.BuildForPowerOpenABI) {
+      return nativeTOC;
+    } else {
+      return Address.zero();
+    }
+  }

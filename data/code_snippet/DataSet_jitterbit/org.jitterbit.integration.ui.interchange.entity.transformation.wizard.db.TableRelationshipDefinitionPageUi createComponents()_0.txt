@@ -1,0 +1,30 @@
+    private void createComponents() {
+        m_parentChildCombos = new ParentChildCombos(m_page);
+        
+        m_relationshipsBox = new PageComboBox();
+        m_relationshipsBox.addActionListener(new RelationshipSelectionAction());
+        
+        m_newRelationshipButton = 
+            TransformationWizard.getUtils().getButton(new NewRelationshipAction());
+        
+        m_deleteRelationshipAction = new DeleteRelationshipAction();
+        m_deleteRelationshipButton = 
+            TransformationWizard.getUtils().getButton(m_deleteRelationshipAction);
+        
+        m_addRelationshipButton = 
+            TransformationWizard.getUtils().getButton(new AddFieldRelationshipAction());
+        
+        m_removeFieldsAction = new RemoveFieldRelationshipAction();
+        m_removeFieldsButton = 
+            TransformationWizard.getUtils().getButton(m_removeFieldsAction);
+        
+        m_fieldRelationshipsList = ComponentFactories.listFactory().newList();
+        m_fieldRelationshipsList.setPrototypeCellValue("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        m_fieldRelationshipsList.setVisibleRowCount(6);
+        m_fieldRelationshipsList.addListSelectionListener(new FieldListListener());
+        m_fieldRelationshipsList.setCellRenderer(
+                        ListRendererWithToolTip.createDefaultRenderer());
+        IntegrationUiStyleSheet.DefaultListText.makeOver(m_fieldRelationshipsList);
+        
+        createInputPanel();
+    }

@@ -1,0 +1,3 @@
+    public void setInitialFocus() {
+        m_topPanel.setInitialFocus();
+    }

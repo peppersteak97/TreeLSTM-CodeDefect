@@ -1,0 +1,29 @@
+    private Map<String, IEndElementHandlerFactory> registerHandlerFactories() {
+        Map<String, IEndElementHandlerFactory> handlers = 
+            new HashMap<String, IEndElementHandlerFactory>();
+
+        IEndElementHandlerFactory factory = new IEndElementHandlerFactory() {
+
+            public IEndElementHandler getHandler() {
+                return new RootFolderElementHandler(m_currentEntry);
+            }
+        };
+        handlers.put(EntityTypeMetaDataXmlLoader.ROOT_FOLDER, factory);
+
+        factory = new IEndElementHandlerFactory() {
+
+            public IEndElementHandler getHandler() {
+                return new FolderElementHandler(m_currentEntry);
+            }
+        };
+        handlers.put(EntityTypeMetaDataXmlLoader.FOLDER, factory);
+
+        factory = new IEndElementHandlerFactory() {
+
+            public IEndElementHandler getHandler() {
+                return new IconElementHandler(m_currentEntry.getType());
+            }
+        };
+        handlers.put(EntityTypeMetaDataXmlLoader.ICONS, factory);
+        return handlers;
+    }

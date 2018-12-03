@@ -1,0 +1,3 @@
+	public Vector<Field> getFieldList(){
+        return (m_textStructure == null ) ? null : m_textStructure.getFieldList();
+	}

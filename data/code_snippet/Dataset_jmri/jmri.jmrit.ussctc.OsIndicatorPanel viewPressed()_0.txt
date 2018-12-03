@@ -1,0 +1,9 @@
+    void viewPressed() {
+        try {
+            OsIndicator o =  new OsIndicator(outputName.getText());
+            sensorName.setText(o.getOsSensorName());
+            lockName.setText(o.getLockName());
+        } catch (jmri.JmriException e) {
+            log.error("Exception trying to find existing OS Indicator: "+e);
+        }
+    }

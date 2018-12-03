@@ -1,0 +1,16 @@
+    private void runAndWait() {
+        Runnable job = new Runnable() {
+            
+            public void run() {
+                executeImpl();
+            }
+        };
+        IExceptionHandler<Exception> errorHandler = new IExceptionHandler<Exception>() {
+
+            public void caught(Exception ex) {
+                ex.printStackTrace();
+                m_result = IPageCommand.ERROR;
+            }
+        };
+        UiUtils.runOnEventThreadAndWait(job, errorHandler);
+    }

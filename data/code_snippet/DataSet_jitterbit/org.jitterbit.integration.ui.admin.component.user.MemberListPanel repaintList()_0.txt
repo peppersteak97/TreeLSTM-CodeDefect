@@ -1,0 +1,3 @@
+    void repaintList() {
+        m_memberList.repaint();
+    }

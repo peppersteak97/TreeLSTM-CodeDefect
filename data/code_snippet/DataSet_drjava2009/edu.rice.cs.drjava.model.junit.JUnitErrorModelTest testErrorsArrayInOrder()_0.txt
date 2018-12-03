@@ -1,0 +1,32 @@
+  public void testErrorsArrayInOrder() throws Exception {
+    debug.logStart();
+    _m = new JUnitErrorModel(new JUnitError[0], _model, false);
+    final OpenDefinitionsDocument doc = setupDocument(MONKEYTEST_FAIL_TEXT);
+    final File file = new File(_tempDir, "MonkeyTestFail.java");
+    saveFile(doc, new FileSelector(file));
+    
+    JUnitTestListener listener = new JUnitTestListener();
+    _model.addListener(listener);
+    
+    testStartCompile(doc);
+    
+    listener.waitCompileDone();
+    
+    if (_model.getCompilerModel().getNumErrors() > 0) fail("compile failed: " + getCompilerErrorString());
+    listener.checkCompileOccurred();
+    
+    listener.runJUnit(doc);
+    
+    listener.assertJUnitStartCount(1);
+    _model.getJUnitModel().getJUnitDocument().remove(0, _model.getJUnitModel().getJUnitDocument().getLength() - 1);
+    
+    _m = _model.getJUnitModel().getJUnitErrorModel();
+    
+    
+    assertEquals("the test results should have one error and one failure "+_m.getNumErrors(), 2, _m.getNumErrors());
+    
+    assertEquals("test case has one error reported" + _m.getError(0).message(), _m.getError(0).isWarning(), false);
+    
+    assertEquals("test case has one failure reported" + _m.getError(1).message(), _m.getError(1).isWarning(), true);
+    debug.logEnd();
+  }

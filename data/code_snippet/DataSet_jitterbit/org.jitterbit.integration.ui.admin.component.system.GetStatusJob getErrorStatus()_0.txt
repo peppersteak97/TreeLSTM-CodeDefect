@@ -1,0 +1,3 @@
+    protected EnumSet<ServerStatus> getErrorStatus() {
+        return EnumSet.of(ServerStatus.ERROR, ServerStatus.UNDEFINED);
+    }

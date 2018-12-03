@@ -1,0 +1,6 @@
+    public Iterator<Field> iterator() {
+        List<Field> fields = getFieldList();
+        return (fields == null) ? 
+                        KongaCollectionUtils.<Field>getEmptyIterator() : 
+                            new ArrayList<Field>(fields).iterator();
+    }

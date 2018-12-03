@@ -1,0 +1,14 @@
+  public void testAnonymousInnerClassArg() throws BadLocationException {
+    IndentRuleAction rule = new ActionStartPrevStmtPlus(0, false);
+    
+    _setDocText("setCommand(new Runnable() {\n" + 
+                "  public void run() { ... }\n" +
+                "});\n" +
+    rule.testIndentLine(_doc, 60, Indenter.IndentReason.OTHER);
+    assertEquals("After method call with anonymous inner class argument",
+                 "setCommand(new Runnable() {\n" + 
+                 "  public void run() { ... }\n" +
+                 "});\n" +
+                 "command.run();",
+                 _doc.getText());
+  } 

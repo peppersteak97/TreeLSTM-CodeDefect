@@ -1,0 +1,24 @@
+  public void testSwitchInterpreters() {
+    TestListener listener = new TestListener() {
+      public void interpreterChanged(boolean inProgress) {
+        assertTrue("should not be in progress", !inProgress);
+        interpreterChangedCount++;
+      }
+    };
+    _model.addListener(listener);
+    
+    final DefaultInteractionsModel dim = _model.getInteractionsModel();
+    
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        dim.addInterpreter("testInterpreter");
+        dim.setActiveInterpreter("testInterpreter", "myPrompt>"); 
+      }
+    });
+    
+    listener.assertInterpreterChangedCount(1);
+    _model.removeListener(listener);
+    
+    _log.log("testSwitchInterpreters() completed");
+  }

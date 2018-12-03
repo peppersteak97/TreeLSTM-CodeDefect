@@ -1,0 +1,3 @@
+    public IntegrationData getDependantObject() {
+        return m_dependant;
+    }

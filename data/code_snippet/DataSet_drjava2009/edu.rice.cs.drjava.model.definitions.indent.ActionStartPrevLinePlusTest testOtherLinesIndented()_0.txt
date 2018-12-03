@@ -1,0 +1,6 @@
+  public void testOtherLinesIndented() throws javax.swing.text.BadLocationException {
+    _setDocText(" foo\n  bar\n   blah");
+    _doc.setCurrentLocation(15);
+    assertEquals(20, _doc.getLength());
+    assertEquals(" foo\n  bar\n     blah", _doc.getText());
+  }

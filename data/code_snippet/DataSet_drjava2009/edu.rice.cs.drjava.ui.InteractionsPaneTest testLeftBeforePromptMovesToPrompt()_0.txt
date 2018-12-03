@@ -1,0 +1,11 @@
+  public void testLeftBeforePromptMovesToPrompt() {
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() {
+        _pane.setCaretPosition(1);
+        _controller.moveLeftAction.actionPerformed(null);
+      }
+    });
+    assertEquals("Left arrow doesn't move to prompt when caret is before prompt.",
+                 _doc.getPromptPos(),
+                 _pane.getCaretPosition());
+  }

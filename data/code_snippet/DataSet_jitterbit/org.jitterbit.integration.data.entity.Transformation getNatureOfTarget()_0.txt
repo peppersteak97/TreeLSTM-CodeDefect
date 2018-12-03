@@ -1,0 +1,4 @@
+    public StructureNature getNatureOfTarget() {
+        DataStructure struct = getOutputStructure();
+        return (struct == null) ? null : struct.getStructureNature();
+    }

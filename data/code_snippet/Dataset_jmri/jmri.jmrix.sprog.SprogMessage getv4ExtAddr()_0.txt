@@ -1,0 +1,11 @@
+    static public SprogMessage getv4ExtAddr() {
+      int l = 14;
+      int [] data = {0, 0};
+      SprogMessage m = new SprogMessage(l);
+      m.setV4Length(2);
+      m.setV4Address(0);
+      m.setV4RecType(4);
+      m.setV4Data(data);
+      m.setV4Checksum(0, 0, 4, data);
+      return m.v4frame();
+    }

@@ -1,0 +1,9 @@
+    private static void customizeWebServiceStructure() throws IntrospectionException {
+        BeanInfo info = Introspector.getBeanInfo(WebServiceRequestStructure.class);
+        BeanDescriptor desc = info.getBeanDescriptor();
+                        new WebServiceRequestStructurePersistenceDelegate());
+
+        info = Introspector.getBeanInfo(WebServiceResponseStructure.class);
+        desc = info.getBeanDescriptor();
+                        new WebServiceResponseStructurePersistenceDelegate());
+    }

@@ -1,0 +1,12 @@
+	private void loadShift() {
+		for (int i = 0; i < 3; i++) {
+			shiftOneLine(locoTextField5, adrButton5, dirButton5, locoTextField6,
+					adrButton6, dirButton6);
+			shiftOneLine(locoTextField4, adrButton4, dirButton4, locoTextField5,
+					adrButton5, dirButton5);
+			shiftOneLine(locoTextField3, adrButton3, dirButton3, locoTextField4,
+					adrButton4, dirButton4);
+			shiftOneLine(locoTextField2, adrButton2, dirButton2, locoTextField3,
+					adrButton3, dirButton3);
+		}
+	}

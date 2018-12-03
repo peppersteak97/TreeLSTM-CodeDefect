@@ -1,0 +1,8 @@
+    private void createComponents() {
+        createMinutesItem();
+        createHoursItem();
+        createEveryNumField();
+        createEveryHMBox();
+        createStartTimeField();
+        createEndTimeField();
+    }

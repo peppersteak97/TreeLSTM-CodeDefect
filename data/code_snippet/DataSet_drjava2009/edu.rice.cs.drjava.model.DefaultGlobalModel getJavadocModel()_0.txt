@@ -1,0 +1,1 @@
+  public JavadocModel getJavadocModel() { return _javadocModel; }

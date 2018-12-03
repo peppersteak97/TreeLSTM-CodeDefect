@@ -1,0 +1,3 @@
+  public synchronized void dumpGraph() {
+    dumpGraph(Controller.options.DYNAMIC_CALL_FILE_OUTPUT);
+  }

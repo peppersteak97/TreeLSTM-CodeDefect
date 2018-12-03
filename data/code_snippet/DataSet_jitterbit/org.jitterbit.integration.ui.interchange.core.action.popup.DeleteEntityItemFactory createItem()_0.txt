@@ -1,0 +1,4 @@
+    protected IPopupMenuItem createItem() {
+        Action a = InterchangeActionFactory.DELETE_ENTITY.get(m_view);
+        return new Item(a);
+    }

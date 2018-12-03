@@ -1,0 +1,3 @@
+	public KongaTitlePanel getTitlePanel() {
+		return m_titlePanel;
+	}

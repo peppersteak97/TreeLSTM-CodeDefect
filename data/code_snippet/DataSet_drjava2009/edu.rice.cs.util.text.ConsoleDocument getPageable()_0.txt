@@ -1,0 +1,1 @@
+  public Pageable getPageable() throws IllegalStateException { return _book; }

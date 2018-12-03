@@ -1,0 +1,6 @@
+  public void killFallThrough() {
+    BasicBlock fallThrough = getFallThroughBlock();
+    if (fallThrough != null) {
+      lastInstruction().insertBefore(Goto.create(GOTO, fallThrough.makeJumpTarget()));
+    }
+  }

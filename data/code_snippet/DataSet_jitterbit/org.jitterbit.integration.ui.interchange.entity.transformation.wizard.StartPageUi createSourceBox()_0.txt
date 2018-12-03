@@ -1,0 +1,5 @@
+    private void createSourceBox() {
+        ComboBoxModel model = createSourceComboModel();
+        String label = strings.getString(resourceKey + "Label.Source");
+        m_sourceTypeBox = createComboInput(model, label);
+    }

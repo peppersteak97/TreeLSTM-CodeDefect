@@ -1,0 +1,25 @@
+    public Vector getPortNames() {
+        portNameVector = null;
+        try {
+            try {
+                Class.forName("Serialio.SerialConfig");
+                log.debug("openPort using SerialIO");
+                InnerSerial inner = new InnerSerial();
+                inner.getPortNames();
+            } catch (ClassNotFoundException e) {
+                log.debug("openPort using javax.comm");
+                InnerJavaComm inner = new InnerJavaComm();
+                inner.getPortNames();
+            } catch (java.lang.UnsatisfiedLinkError e) {
+                log.debug("openPort using javax.comm");
+                InnerJavaComm inner = new InnerJavaComm();
+                inner.getPortNames();
+            }
+        }
+        catch (Exception ex) {
+            log.error("error listing port names");
+            ex.printStackTrace();
+        }
+
+        return portNameVector;
+    }

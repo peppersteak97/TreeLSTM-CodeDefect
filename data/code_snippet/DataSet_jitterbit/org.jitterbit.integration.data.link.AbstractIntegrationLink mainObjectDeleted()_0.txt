@@ -1,0 +1,6 @@
+    protected void mainObjectDeleted() {
+        if (isStrong()) {
+            m_dependant.delete();
+        }
+        delete();
+    }

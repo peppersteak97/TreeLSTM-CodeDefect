@@ -1,0 +1,3 @@
+    protected String getComboBoxLabel() {
+        return PackageResources.TargetStartPage.COMBO_LABEL;
+    }

@@ -1,0 +1,5 @@
+    private IDeployData createDeployData() {
+        IManagedProject managedProject = 
+            InterchangeProjectManager.getManager().getProject(m_project);
+        return new DeployData(managedProject, m_partialProject, true);
+    }

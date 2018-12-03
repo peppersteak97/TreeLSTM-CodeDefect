@@ -1,0 +1,6 @@
+    protected void generateScript() {
+        checkColumns();
+        writeHeader();
+        writeFactoryMethodImpl();
+        writeEditImpl();
+    }

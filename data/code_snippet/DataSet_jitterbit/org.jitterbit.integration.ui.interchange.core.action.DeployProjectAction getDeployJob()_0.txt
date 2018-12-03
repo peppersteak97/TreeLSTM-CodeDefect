@@ -1,0 +1,8 @@
+    private Runnable getDeployJob() {
+        return new Runnable() {
+
+            public void run() {
+                getDeployer().deploy(DeployProjectAction.this);
+            }
+        };
+    }

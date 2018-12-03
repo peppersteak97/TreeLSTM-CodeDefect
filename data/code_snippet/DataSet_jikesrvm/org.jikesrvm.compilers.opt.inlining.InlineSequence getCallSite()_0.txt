@@ -1,0 +1,3 @@
+  public Instruction getCallSite() {
+    return this.callSite;
+  }

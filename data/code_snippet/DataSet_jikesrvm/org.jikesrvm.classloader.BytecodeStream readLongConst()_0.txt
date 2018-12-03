@@ -1,0 +1,4 @@
+  public final long readLongConst() {
+    if (VM.VerifyAssertions) VM._assert(opcode == JBC_impdep1);
+    return readLong();
+  }

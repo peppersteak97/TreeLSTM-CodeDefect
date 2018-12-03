@@ -1,0 +1,4 @@
+    public List<? extends Object> getActiveObjects() {
+        return (m_activeObjects == null) ? new ArrayList<Object>()
+                        : new ArrayList<Object>(m_activeObjects);
+    }

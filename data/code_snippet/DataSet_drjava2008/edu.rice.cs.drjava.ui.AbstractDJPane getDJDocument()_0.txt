@@ -1,0 +1,2 @@
+    getDJDocument().setCurrentLocation(getCaretPosition());
+    

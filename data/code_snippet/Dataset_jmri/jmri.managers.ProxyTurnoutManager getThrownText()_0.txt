@@ -1,0 +1,6 @@
+	public String getThrownText() { 
+		if (mgrs.size()>0)
+			return ( (TurnoutManager)mgrs.get(0)).getThrownText(); 
+		else 
+			return rbt.getString("TurnoutStateThrown");
+	}

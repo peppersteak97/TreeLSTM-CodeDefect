@@ -1,0 +1,7 @@
+  public void testBothIndented() throws javax.swing.text.BadLocationException {
+    _setDocText("  foo\n  bar");
+    _doc.setCurrentLocation(9);
+    makeAction("").testIndentLine(_doc, Indenter.IndentReason.OTHER);
+    assertEquals(11, _doc.getLength());
+    assertEquals("  foo\n  bar", _doc.getText());
+  }

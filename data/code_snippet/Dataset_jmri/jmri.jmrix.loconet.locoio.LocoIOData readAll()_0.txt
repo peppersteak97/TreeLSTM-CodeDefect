@@ -1,0 +1,6 @@
+    public void readAll() {
+        for (int row=0; row<_numRows; row++) {
+            readState[row] = READ;
+        }
+        issueNextOperation();
+    }

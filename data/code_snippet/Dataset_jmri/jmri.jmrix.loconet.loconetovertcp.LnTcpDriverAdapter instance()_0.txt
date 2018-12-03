@@ -1,0 +1,4 @@
+    static public synchronized LnTcpDriverAdapter instance() {
+        if (mInstance == null) mInstance = new LnTcpDriverAdapter();
+        return mInstance;
+    }

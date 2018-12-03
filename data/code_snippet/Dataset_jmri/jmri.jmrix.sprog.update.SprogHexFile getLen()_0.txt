@@ -1,0 +1,3 @@
+  public int getLen() {
+    return len;
+  }

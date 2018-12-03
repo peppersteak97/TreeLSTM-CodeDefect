@@ -1,0 +1,13 @@
+  public void textTopLevelClassNameWithDelimiters() throws BadLocationException, ClassNameNotFoundException {
+    String weird1 = "package edu . rice\n./*comment!*/cs.drjava; \n" + " class MyClass<T> {";
+    String result1 = "MyClass";
+    _doc.insertString(0, weird1, null);
+    
+    assertEquals("generics should be removed: '" + weird1 + "'", result1, _doc.getFirstTopLevelClassName());
+    
+    String weird2 = "package edu . rice\n./*comment!*/cs.drjava; \n" + " class My_Class {";
+    String result2 = "My_Class";
+    _doc.insertString(0, weird2, null);
+    
+    assertEquals("underscores should remain: '" + weird1 + "'", result2, _doc.getFirstTopLevelClassName());
+  }

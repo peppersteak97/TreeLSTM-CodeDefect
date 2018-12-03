@@ -1,0 +1,4 @@
+	public LayoutBlock getLayoutBlockC() {
+			if (blockC!=null) return blockC;
+			return block;
+	}

@@ -1,0 +1,4 @@
+  protected void finalize() {
+    FinalizationEvent<DefinitionsPane> fe = new FinalizationEvent<DefinitionsPane>(this);
+    for (FinalizationListener<DefinitionsPane> fl: _finalizationListeners) fl.finalized(fe);
+  }

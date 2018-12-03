@@ -1,0 +1,8 @@
+	public boolean canRedo() {
+        for (IUndoRedoHandler handler : m_undoRedoHandlers) {
+            if (handler.canRedo()) {
+                return true;
+            }
+        }
+        return false;
+    }

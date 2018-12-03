@@ -1,0 +1,3 @@
+	public void block() {
+		m_bBlocked = true;
+	}

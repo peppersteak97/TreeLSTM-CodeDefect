@@ -1,0 +1,19 @@
+  public void saveSettings(){
+      String settingsFileName = jmri.jmrit.XmlFile.prefsDir() + SETTINGS_FILE_NAME;
+
+      try {
+        java.io.OutputStream outStream = new FileOutputStream(settingsFileName);
+        java.io.PrintStream settingsStream = new java.io.PrintStream(outStream);
+        settingsStream.println("# LocoNetOverTcp Configuration Settings");
+        settingsStream.println(AUTO_START_KEY+" = "+(autoStart?"1":"0"));
+        settingsStream.println(PORT_NUMBER_KEY+" = "+portNumber);
+
+        settingsStream.flush();
+        settingsStream.close();
+        settingsChanged = false;
+      }
+      catch (FileNotFoundException ex) {
+        log.warn( "Server: saveSettings exception: ", ex );
+      }
+      updateServerStateListener();
+  }

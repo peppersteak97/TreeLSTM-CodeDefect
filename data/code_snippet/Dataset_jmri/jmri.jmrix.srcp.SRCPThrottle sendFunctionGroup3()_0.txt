@@ -1,0 +1,3 @@
+    protected void sendFunctionGroup3() {
+        sendUpdate();
+    }

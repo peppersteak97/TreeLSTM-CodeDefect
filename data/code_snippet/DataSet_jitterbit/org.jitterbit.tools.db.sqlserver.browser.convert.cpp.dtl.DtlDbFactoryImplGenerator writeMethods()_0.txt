@@ -1,0 +1,14 @@
+    private void writeMethods() {
+        try {
+            for( Table t : getTables() ) {
+                writeMethod(t);
+            }
+            for( View v : getViews() ) {
+                writeMethod(v);
+            }
+        } 
+        catch (SqlServerBrowserException e) {
+            e.printStackTrace();
+            logError(getDatabase(), null, e.toString());
+        }
+    }

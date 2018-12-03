@@ -1,0 +1,11 @@
+    private void publishVerticalToolBar() {
+        List<JToolBar> verticalTBs = m_appWin.getVerticalToolBarManager().getJToolBars();
+        m_verticalToolBar.setToolBars(
+                        verticalTBs.toArray(new JToolBar[verticalTBs.size()]));
+        if (verticalTBs.size() == 0) {
+            removeComponent(BorderLayout.WEST);
+        }
+        else {
+            addVerticalToolBarComponent();
+        }
+    }

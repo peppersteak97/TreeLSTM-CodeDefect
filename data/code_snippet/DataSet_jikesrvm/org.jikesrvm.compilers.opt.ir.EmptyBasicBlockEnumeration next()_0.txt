@@ -1,0 +1,3 @@
+  public BasicBlock next() {
+    throw new java.util.NoSuchElementException("Empty BasicBlock Enumeration");
+  }

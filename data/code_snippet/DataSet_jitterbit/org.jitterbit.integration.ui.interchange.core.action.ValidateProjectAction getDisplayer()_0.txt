@@ -1,0 +1,7 @@
+    private IWindowSectionContentDisplayer getDisplayer() {
+        if (m_displayerFactory == null) {
+            IValidationViewContext context = m_view.getValidationContext();
+            m_displayerFactory = ValidationWindowDisplayerFactory.newFactory(context);
+        }
+        return m_displayerFactory.newDisplayer();
+    }

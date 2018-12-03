@@ -1,0 +1,3 @@
+  public boolean isExceptionHeapType() {
+    return type == SSADictionary.exceptionState;
+  }

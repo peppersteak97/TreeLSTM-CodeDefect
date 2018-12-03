@@ -1,0 +1,26 @@
+    public void scaleImage() {
+      int iconHeight;
+      int iconWidth;
+      int frameHeight = this.getContentPane().getSize().height;
+      int frameWidth = this.getContentPane().getSize().width;
+      if (frameWidth/frameHeight > aspect) {
+        iconHeight = frameHeight;
+        iconWidth = (int) (iconAspect * (float) iconHeight);
+      }
+      else {
+        iconWidth = (int) (frameWidth/4.5);
+        iconHeight = (int) (iconWidth/iconAspect);
+      }
+      for (int i = 0; i < 10; i++) {
+        Image scaledImage = baseTubes[i].getImage().getScaledInstance(iconWidth,iconHeight,Image.SCALE_SMOOTH);
+        tubes[i].setImage(scaledImage);
+      }
+      Image scaledImage = baseColon.getImage().getScaledInstance(iconWidth/2,iconHeight,Image.SCALE_SMOOTH);
+      colonIcon.setImage(scaledImage);
+
+      this.setVisible(false);
+      this.remove(b);
+      this.getContentPane().add(b);
+      this.setVisible(true);
+      return ;
+    }

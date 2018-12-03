@@ -1,0 +1,4 @@
+    private void setupListeners() {
+        m_tableUiListener = new TableUiListener();
+        m_tableUi.addChangeListener(m_tableUiListener);
+    }

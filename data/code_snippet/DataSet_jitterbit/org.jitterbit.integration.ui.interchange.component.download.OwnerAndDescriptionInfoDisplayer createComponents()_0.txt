@@ -1,0 +1,7 @@
+    private void createComponents() {
+        ITextComponentFactory factory = ComponentFactories.textFactory();
+        m_ownerField = factory.newTextField(20);
+        m_ownerField.setEditable(false);
+        m_descriptionArea = factory.newTextArea(4, 40);
+        m_descriptionArea.setEditable(false);
+    }

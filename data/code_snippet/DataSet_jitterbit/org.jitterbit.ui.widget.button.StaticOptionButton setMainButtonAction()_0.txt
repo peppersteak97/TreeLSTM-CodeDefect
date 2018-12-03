@@ -1,0 +1,23 @@
+	protected void setMainButtonAction() {
+		Action action = null;
+        if (m_defaultMainAction.isEnabled()) {
+            action = m_defaultMainAction;
+        }
+        else {
+            for (int i = 0; i < m_optionActions.length; ++i) {
+                if (m_optionActions[i].isEnabled()) {
+                    action = m_optionActions[i];
+                    break;
+                }
+            }
+        }
+
+        if (action != m_currentMainAction) {
+            m_btnMainAction.removeActionListener(m_currentMainAction);
+            m_btnMainAction.setToolTipText((String) action
+                            .getValue(Action.SHORT_DESCRIPTION));
+            Action old = m_currentMainAction;
+            m_currentMainAction = action;
+            firePropertyChange(CURRENT_ACTION_PROPERTY, old, action);
+        }
+	}

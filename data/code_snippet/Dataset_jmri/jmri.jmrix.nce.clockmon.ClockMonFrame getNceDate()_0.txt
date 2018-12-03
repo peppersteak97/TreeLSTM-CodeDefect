@@ -1,0 +1,9 @@
+    private Date getNceDate() {
+        Date now = internalClock.getTime();
+        if (lastClockReadPacket != null) {
+            now.setHours(lastClockReadPacket.getElement(CS_CLOCK_HOURS));
+            now.setMinutes(lastClockReadPacket.getElement(CS_CLOCK_MINUTES));
+            now.setSeconds(lastClockReadPacket.getElement(CS_CLOCK_SECONDS));
+        }
+        return(now);
+    }

@@ -1,0 +1,19 @@
+    private void layoutComponents() {
+        JPanel p = new JPanel(new BorderLayout(0, 10));
+
+        if (m_label != null) {
+            p.add(m_label, BorderLayout.NORTH);
+        }
+
+        p.add(ComponentFactories.scrollFactory().newScrollPane(m_list), BorderLayout.CENTER);
+
+        Box b = Box.createHorizontalBox();
+        b.add(Box.createHorizontalGlue());
+        b.add(ComponentFactories.buttonFactory().newButton(m_editAction));
+        b.add(Box.createHorizontalStrut(5));
+        b.add(ComponentFactories.buttonFactory().newButton(m_createNewAction));
+        p.add(b, BorderLayout.SOUTH);
+        p.setOpaque(false);
+
+        m_displayer = p;
+    }

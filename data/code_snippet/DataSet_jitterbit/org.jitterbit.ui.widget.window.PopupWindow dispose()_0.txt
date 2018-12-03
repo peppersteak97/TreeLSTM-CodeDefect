@@ -1,0 +1,1 @@
+     * showing. Once the window has been {@link #dispose() disposed}, it can be

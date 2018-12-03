@@ -1,0 +1,20 @@
+    void sendSDF() throws DelayException {
+        notify(res.getString("EngineSendSdf"));
+        
+        SpjFile.Header header = spjFile.findSdfHeader();
+        int handle = header.getHandle();
+        String name = header.getName();
+        byte[] contents = header.getByteArray();
+        
+        LocoNetMessage m;
+        
+        m = initTransfer(TYPE_SDF, handle, name, contents);
+        controller.sendLocoNetMessage(m);
+        throttleOutbound(m);
+        
+
+        while ( (m = nextTransfer()) != null) {
+            controller.sendLocoNetMessage(m);
+            throttleOutbound(m);
+        }
+    }

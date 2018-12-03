@@ -1,0 +1,3 @@
+    void setInitialFocus() {
+        m_name.getInputComponent().requestFocusInWindow();
+    }

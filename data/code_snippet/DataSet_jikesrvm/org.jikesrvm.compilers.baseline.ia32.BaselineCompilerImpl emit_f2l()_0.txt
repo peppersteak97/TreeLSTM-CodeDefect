@@ -1,0 +1,34 @@
+  protected final void emit_f2l() {
+    if (VM.BuildFor32Addr) {
+
+      asm.emitFLD_Reg_RegInd(FP0, SP);
+      asm.emitFLD_Reg_Abs(FP0, Magic.getTocPointer().plus(Entrypoints.maxlongFloatField.getOffset()));
+      asm.emitFUCOMIP_Reg_Reg(FP0, FP1);
+      ForwardReference fr1 = asm.forwardJcc(Assembler.LLE);
+      ForwardReference fr2 = asm.forwardJMP();
+      fr1.resolve(asm);
+      asm.emitMOV_RegInd_Imm(SP, 0x7FFFFFFF);
+      asm.emitPUSH_Imm(-1);
+      ForwardReference fr4 = asm.forwardJMP();
+      fr3.resolve(asm);
+      asm.emitMOV_RegInd_Imm(SP, 0);
+      asm.emitPUSH_Imm(0);
+      fr2.resolve(asm);
+      fr4.resolve(asm);
+    } else {
+      asm.emitMOVSS_Reg_Abs(XMM0, Magic.getTocPointer().plus(Entrypoints.maxlongFloatField.getOffset()));
+      asm.emitMOVSS_Reg_RegInd(XMM1, SP);
+      asm.emitUCOMISS_Reg_Reg(XMM0, XMM1);
+      ForwardReference fr1 = asm.forwardJcc(Assembler.LLE);
+      asm.emitCVTTSS2SI_Reg_Reg_Quad(T0, XMM1);
+      ForwardReference fr2 = asm.forwardJMP();
+      fr1.resolve(asm);
+      asm.emitMOV_Reg_Imm_Quad(T0, 0x7FFFFFFFFFFFFFFFL);
+      ForwardReference fr4 = asm.forwardJMP();
+      fr3.resolve(asm);
+      asm.emitXOR_Reg_Reg(T0, T0);
+      fr2.resolve(asm);
+      fr4.resolve(asm);
+      asm.emitPUSH_Reg(T0);
+    }
+  }

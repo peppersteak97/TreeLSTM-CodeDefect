@@ -1,0 +1,24 @@
+    private void fireActionEvent() {
+        int rowIndex = m_table.getSelectedRow();
+        if (rowIndex < 0) {
+            return;
+        }
+        rowIndex = m_table.getTableSorter().getModelIndex(rowIndex);
+        Object o = ((RecentProjectsTableModel) m_table.getUnderlyingModel()).getRowObject(rowIndex);
+        if (o instanceof ProjectLocation) {
+            if (!m_actionListeners.isEmpty()) {
+                final ActionEvent evt = new ActionEvent(this, ActionEvent.ACTION_PERFORMED,
+                                "open_selected_project");
+                m_actionListeners.visitAll(new ListenerVisitor<ActionListener>() {
+
+                    public void accept(ActionListener listener) {
+                        listener.actionPerformed(evt);
+                    }
+                });
+            }
+        }
+        else if (o instanceof Action) {
+            ((Action) o).actionPerformed(new ActionEvent(this,
+                            ActionEvent.ACTION_PERFORMED, "browse_existing_project"));
+        }
+    }

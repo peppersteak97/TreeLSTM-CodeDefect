@@ -1,0 +1,10 @@
+  public void testFormat()
+  {
+    BooleanOption bo1 = new BooleanOption("max_files",null);
+    BooleanOption bo2 = new BooleanOption("indent_size",null);
+    
+    assertEquals("true",  bo1.format(Boolean.TRUE));
+    assertEquals("true",  bo2.format(Boolean.TRUE));
+    assertEquals("false", bo1.format(Boolean.FALSE));
+    assertEquals("false", bo2.format(Boolean.FALSE));
+  }

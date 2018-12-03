@@ -1,0 +1,7 @@
+    private static GridBagConstraints getLeftColumnLabelConstraints() {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.gridx = 0;
+        return gbc;
+    }

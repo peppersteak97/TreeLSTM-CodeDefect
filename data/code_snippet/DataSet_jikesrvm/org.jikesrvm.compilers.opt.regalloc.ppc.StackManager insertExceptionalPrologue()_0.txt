@@ -1,0 +1,64 @@
+  final void insertExceptionalPrologue() {
+    if (VM.VerifyAssertions) {
+      VM._assert((frameSize & (STACKFRAME_ALIGNMENT - 1)) == 0, "Stack frame alignment error");
+    }
+    if (frameSize >= 0x7ff0) {
+      throw new OptimizingCompilerException("Stackframe size exceeded!");
+    }
+
+    PhysicalRegisterSet phys = ir.regpool.getPhysicalRegisterSet();
+    Register FP = phys.getFP();
+    Register TR = phys.getTR();
+    Register TSR = phys.getTSR();
+    Register R0 = phys.getTemp();
+    Register S1 = phys.getGPR(LAST_SCRATCH_GPR);
+    boolean interruptible = ir.method.isInterruptible();
+    boolean stackOverflow = interruptible;
+    boolean yp = hasPrologueYieldpoint();
+
+    Instruction ptr = ir.firstInstructionInCodeOrder().nextInstructionInCodeOrder();
+    if (VM.VerifyAssertions) VM._assert(ptr.getOpcode() == IR_PROLOGUE_opcode);
+
+    if (stackOverflow) {
+      ptr.insertBefore(MIR_Store.create(PPC_STAddr, A(S1), A(FP), IC(STACKFRAME_NEXT_INSTRUCTION_OFFSET)));
+      Offset offset = Entrypoints.stackLimitField.getOffset();
+      if (VM.VerifyAssertions) VM._assert(Bits.fits(offset, 16));
+      ptr.insertBefore(MIR_Load.create(PPC_LAddr, A(S1), A(phys.getTR()), IC(Bits.PPCMaskLower16(offset))));
+      ptr.insertBefore(MIR_Binary.create(PPC_ADDI, A(R0), A(S1), IC(frameSize)));
+      ptr.insertBefore(MIR_Load.create(PPC_LAddr, A(S1), A(FP), IC(STACKFRAME_NEXT_INSTRUCTION_OFFSET)));
+
+      MIR_Trap.mutate(ptr, PPC_TAddr, PowerPCTrapOperand.LESS(), A(FP), A(R0), TrapCodeOperand.StackOverflow());
+
+      ptr = ptr.nextInstructionInCodeOrder();
+
+    } else {
+      Instruction next = ptr.nextInstructionInCodeOrder();
+      ptr.remove();
+      ptr = next;
+    }
+
+    ptr.insertBefore(MIR_Move.create(PPC_MFSPR, A(R0), A(phys.getLR())));
+    ptr.insertBefore(MIR_StoreUpdate.create(PPC_STAddrU, A(FP), A(FP), IC(-frameSize)));
+    ptr.insertBefore(MIR_Store.create(PPC_STAddr, A(R0), A(FP), IC(frameSize + STACKFRAME_NEXT_INSTRUCTION_OFFSET)));
+
+    int cmid = ir.compiledMethod.getId();
+    if (cmid <= 0x7fff) {
+      ptr.insertBefore(MIR_Unary.create(PPC_LDI, I(R0), IC(cmid)));
+    } else {
+      ptr.insertBefore(MIR_Unary.create(PPC_LDIS, I(R0), IC(cmid >>> 16)));
+      ptr.insertBefore(MIR_Binary.create(PPC_ORI, I(R0), I(R0), IC(cmid & 0xffff)));
+    }
+    ptr.insertBefore(MIR_Store.create(PPC_STW, I(R0), A(FP), IC(STACKFRAME_METHOD_ID_OFFSET)));
+
+    if (ir.compiledMethod.isSaveVolatile()) {
+      saveVolatiles(ptr);
+    }
+    saveNonVolatiles(ptr);
+
+    if (yp) {
+      Offset offset = Entrypoints.takeYieldpointField.getOffset();
+      if (VM.VerifyAssertions) VM._assert(Bits.fits(offset, 16));
+      ptr.insertBefore(MIR_Load.create(PPC_LInt, I(R0), A(TR), IC(Bits.PPCMaskLower16(offset))));
+      ptr.insertBefore(MIR_Binary.create(PPC_CMPI, I(TSR), I(R0), IC(0)));
+    }
+  }

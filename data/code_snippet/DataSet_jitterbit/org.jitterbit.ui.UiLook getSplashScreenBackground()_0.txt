@@ -1,0 +1,4 @@
+	public static Color getSplashScreenBackground() {
+		return (o instanceof ColorUIResource) ? 
+                (ColorUIResource)o : COL_TITLE_PANEL_FOREGROUND[0];		
+	}

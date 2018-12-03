@@ -1,0 +1,8 @@
+	public String[] getValidOperationTypes() {
+		List typeList = new LinkedList();
+		for (int i=0; i<mgrs.size(); ++i) {
+			String[] thisTypes = ((TurnoutManager)mgrs.get(i)).getValidOperationTypes();
+			typeList.addAll(Arrays.asList(thisTypes));
+		}
+		return TurnoutOperationManager.concatenateTypeLists((String[])typeList.toArray(new String[0]));
+	}

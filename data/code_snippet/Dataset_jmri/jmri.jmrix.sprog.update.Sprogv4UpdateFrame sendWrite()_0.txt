@@ -1,0 +1,29 @@
+  private void sendWrite() {
+    if (hexFile.getAddress() < 2 * 0x700) {
+      if (log.isDebugEnabled()) {
+        log.debug("Send write Flash " + hexFile.getAddress());
+      }
+      msg = new SprogMessage(SprogMessage.MAXSIZE
+                             ).getV4WriteFlash(hexFile.getAddress(),
+                                               hexFile.getData(), 0);
+    }
+    else {
+      if (log.isDebugEnabled()) {
+        log.debug("null write " + hexFile.getAddress());
+      }
+      msg = null;
+    }
+    if (msg != null) {
+      bootState = WRITESENT;
+      statusBar.setText("Write " + hexFile.getAddress());
+      tc.sendSprogMessage(msg, this);
+      if (log.isDebugEnabled()) {
+        log.debug("Sent write command to address " + hexFile.getAddress());
+      }
+      startLongTimer();
+    }
+    else {
+      bootState = NULLWRITE;
+      startVShortTimer();
+    }
+  }

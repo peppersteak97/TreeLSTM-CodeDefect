@@ -1,0 +1,7 @@
+    public int hashCode() {
+        int hash = 17;
+        for (Relation rel : m_fieldRelations) {
+            hash = 37 * hash + rel.hashCode();
+        }
+        return hash;
+    }

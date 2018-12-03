@@ -1,0 +1,24 @@
+  public void testCorrectParse() throws SExpParseException {
+    String n = "\n";
+    String text = 
+      "; this is a comment line                      " + n +
+      "; this is another comment line                " + n +
+      "(Source                                       " + n +
+      "  (/sexp/Atom.java)                           " + n +
+      "  (/sexp/Cons.java)                           " + n +
+      "  (/sexp/Empty.java)                          " + n +
+      "  (/sexp/Lexer.java)                          " + n +
+      "  (/sexp/SExp.java)                           " + n +
+      "  (/sexp/SExpParser.java)                     " + n +
+      "  (/sexp/SExpVisitor.java)                    " + n +
+      "  (/sexp/Tokens.java)                         " + n +
+      ")                                             " + n +
+      "; This is the build directory.  Absolute path " + n +
+      "(BuildDir \"/home/javaplt/drjava/built\")     " + n +
+      "(MainFile \"/sexp/SExpParser.java\")          " + n +
+      "(Included                                     " + n +
+      ")";
+    
+    List<SEList> res = SExpParser.parse(text);
+    assertEquals("Should have four trees in forest", 4, res.size());
+  }

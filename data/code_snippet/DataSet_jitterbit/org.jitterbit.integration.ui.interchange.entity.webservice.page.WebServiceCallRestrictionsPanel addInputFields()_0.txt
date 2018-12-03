@@ -1,0 +1,6 @@
+    private void addInputFields() {
+        addInputField(m_delayField, m_delayField, m_delayField);
+        addInputField(m_dataLimitField, m_dataLimitField, m_dataLimitField);
+
+        addInputField(new ComboBoxInputField("Size", m_sizeUnitCombo, null));
+    }

@@ -1,0 +1,22 @@
+    private IDisposable installEscapeListener() {
+        final KeyEventDispatcher dispatcher = new KeyEventDispatcher() {
+
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    dispose();
+                    return m_consumeEscapeWhileVisible;
+                }
+                return false;
+            }
+        };
+        KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        kfm.addKeyEventDispatcher(dispatcher);
+        return new IDisposable() {
+
+            public void dispose() {
+                KeyboardFocusManager kfm = 
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager();
+                kfm.removeKeyEventDispatcher(dispatcher);
+            }
+        };
+    }

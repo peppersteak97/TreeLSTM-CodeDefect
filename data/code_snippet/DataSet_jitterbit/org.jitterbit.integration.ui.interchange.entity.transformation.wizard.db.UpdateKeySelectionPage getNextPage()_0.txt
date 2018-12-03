@@ -1,0 +1,12 @@
+    public IWizardPage getNextPage() {
+        Set<DatabaseColumn> cols = m_ui.getSelectedColumns();
+        if (cols.isEmpty()) {
+            return null;
+        }
+
+        IWizardPage page = getCachedNextPage(cols);
+        if (page == null) {
+            page = createNewNextPage(cols);
+        }
+        return page;
+    }

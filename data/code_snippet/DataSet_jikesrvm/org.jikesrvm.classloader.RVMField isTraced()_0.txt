@@ -1,0 +1,3 @@
+  public boolean isTraced() {
+    return (reference && !isUntraced()) || madeTraced;
+  }

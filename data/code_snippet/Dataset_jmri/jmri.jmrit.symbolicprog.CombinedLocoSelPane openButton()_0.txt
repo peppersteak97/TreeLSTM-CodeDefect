@@ -1,0 +1,9 @@
+    protected void openButton() {
+        if (locoBox != null && locoBox.getSelectedIndex()!=0) {
+            openKnownLoco();
+        } else if (isDecoderSelected()) {
+            openNewLoco();
+        } else {
+            log.error("openButton with neither combobox nonzero");
+        }
+    }

@@ -1,0 +1,3 @@
+    TransferSizeFilter getFileSizeFilter() {
+        return m_fileSizeFilter.getFilter();
+    }

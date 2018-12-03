@@ -1,0 +1,3 @@
+  public void resetLastErrors() {
+    _lastError = _secondToLastError = null;
+  }

@@ -1,0 +1,3 @@
+    public IFtpLocationUi getUi() {
+        return new DefaultFtpLocationUi(this);
+    }

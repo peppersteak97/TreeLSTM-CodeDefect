@@ -1,0 +1,21 @@
+  public void testRemoveLast(){
+   
+    History his = new History(5);
+    
+    assertEquals("Didn't return null for an empty history",null, his.removeLast());
+    
+    his.add("test string 1");
+    his.add("test string 2");
+    his.add("test string 3");
+    his.add("test string 4");
+    his.add("test string 5");
+    
+    assertEquals("Did not return expected last value","test string 5",his.removeLast());
+    
+    his.moveEnd();
+    
+    assertEquals("Did not return expected last value","test string 4",his.removeLast());
+    
+    assertEquals("Did not return expected last value","test string 2",his.lastEntry());
+    
+  }

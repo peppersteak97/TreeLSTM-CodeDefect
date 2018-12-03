@@ -1,0 +1,11 @@
+    private void registerListeners() {
+        IInputChangeListener nextPageEnabler = new IInputChangeListener() {
+
+            public void inputChanged(InputChangeEvent e) {
+                setNextPageEnabled(m_inputPanel.isInputValid());
+            }
+        };
+        
+        m_inputPanel.setSendInputChangeEvents(true);
+        m_inputPanel.addInputChangeListener(nextPageEnabler);
+    }

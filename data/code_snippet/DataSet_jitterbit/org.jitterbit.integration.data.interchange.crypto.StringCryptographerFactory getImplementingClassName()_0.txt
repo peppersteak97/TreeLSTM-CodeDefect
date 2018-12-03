@@ -1,0 +1,4 @@
+    private static String getImplementingClassName() {
+        IReadOnlyProperties props = IntegrationProperties.getInstance();
+        return props.getString(PROPERTY_KEY, null);
+    }

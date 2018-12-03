@@ -1,0 +1,162 @@
+	void initializeActionVariables() {
+		action1TypeBox.setSelectedIndex(actionType[0] - 1);
+		actionType[0] = 0;
+		actionTypeChanged(1);
+		action2TypeBox.setSelectedIndex(actionType[1] - 1);
+		actionType[1] = 0;
+		actionTypeChanged(2);
+		if (actionOption[0] == Conditional.ACTION_OPTION_ON_CHANGE_TO_TRUE) {
+			action1OnTrue.setSelected(true);
+		} else if (actionOption[0] == Conditional.ACTION_OPTION_ON_CHANGE_TO_FALSE) {
+			action1OnFalse.setSelected(true);
+		} else if (actionOption[0] == Conditional.ACTION_OPTION_ON_CHANGE) {
+			action1OnChange.setSelected(true);
+		}
+		if (actionOption[1] == Conditional.ACTION_OPTION_ON_CHANGE_TO_TRUE) {
+			action2OnTrue.setSelected(true);
+		} else if (actionOption[1] == Conditional.ACTION_OPTION_ON_CHANGE_TO_FALSE) {
+			action2OnFalse.setSelected(true);
+		} else if (actionOption[1] == Conditional.ACTION_OPTION_ON_CHANGE) {
+			action2OnChange.setSelected(true);
+		}
+		action1NameField.setText(actionName[0]);
+		action2NameField.setText(actionName[1]);
+		switch (actionType[0]) {
+		case Conditional.ACTION_SET_TURNOUT:
+			if (actionData[0] == Turnout.CLOSED) {
+				action1TurnoutSetBox.setSelectedIndex(0);
+			} else {
+				action1TurnoutSetBox.setSelectedIndex(1);
+			}
+			break;
+		case Conditional.ACTION_DELAYED_TURNOUT:
+		case Conditional.ACTION_RESET_DELAYED_TURNOUT:
+			if (actionData[0] == Turnout.CLOSED) {
+				action1TurnoutSetBox.setSelectedIndex(0);
+			} else {
+				action1TurnoutSetBox.setSelectedIndex(1);
+			}
+			action1DataField.setText(Integer.toString(actionDelay[0]));
+			break;
+		case Conditional.ACTION_CANCEL_TURNOUT_TIMERS:
+			break;
+		case Conditional.ACTION_SET_SIGNAL_APPEARANCE:
+			action1SignalSetBox
+					.setSelectedIndex(signalAppearanceToAppearanceIndex(actionData[0]));
+			break;
+		case Conditional.ACTION_SET_SENSOR:
+			if (actionData[0] == Sensor.ACTIVE) {
+				action1SensorSetBox.setSelectedIndex(0);
+			} else {
+				action1SensorSetBox.setSelectedIndex(1);
+			}
+			break;
+		case Conditional.ACTION_DELAYED_SENSOR:
+		case Conditional.ACTION_RESET_DELAYED_SENSOR:
+			if (actionData[0] == Sensor.ACTIVE) {
+				action1SensorSetBox.setSelectedIndex(0);
+			} else {
+				action1SensorSetBox.setSelectedIndex(1);
+			}
+			action1DataField.setText(Integer.toString(actionDelay[0]));
+			break;
+		case Conditional.ACTION_CANCEL_SENSOR_TIMERS:
+			break;
+		case Conditional.ACTION_SET_LIGHT:
+			if (actionData[0] == Light.ON) {
+				action1LightSetBox.setSelectedIndex(0);
+			} else {
+				action1LightSetBox.setSelectedIndex(1);
+			}
+			break;
+		case Conditional.ACTION_LOCK_TURNOUT:
+			if (actionData[0] == Turnout.UNLOCKED) {
+				action1LockSetBox.setSelectedIndex(0);
+			} else {
+				action1LockSetBox.setSelectedIndex(1);
+			}
+			break;
+		case Conditional.ACTION_SET_MEMORY:
+		case Conditional.ACTION_COPY_MEMORY:
+		case Conditional.ACTION_PLAY_SOUND:
+		case Conditional.ACTION_RUN_SCRIPT:
+			action1DataField.setText(actionString[0]);
+			break;
+		case Conditional.ACTION_SET_FAST_CLOCK_TIME:
+			action1DataField.setText(formatTime(actionData[0] / 60,
+							actionData[0] - ((actionData[0] / 60) * 60)));
+			break;
+		case Conditional.ACTION_START_FAST_CLOCK:
+		case Conditional.ACTION_STOP_FAST_CLOCK:	
+			break;
+		}
+		switch (actionType[1]) {
+		case Conditional.ACTION_SET_TURNOUT:
+			if (actionData[1] == Turnout.CLOSED) {
+				action2TurnoutSetBox.setSelectedIndex(0);
+			} else {
+				action2TurnoutSetBox.setSelectedIndex(1);
+			}
+			break;
+		case Conditional.ACTION_DELAYED_TURNOUT:
+		case Conditional.ACTION_RESET_DELAYED_TURNOUT:
+			if (actionData[1] == Turnout.CLOSED) {
+				action2TurnoutSetBox.setSelectedIndex(0);
+			} else {
+				action2TurnoutSetBox.setSelectedIndex(1);
+			}
+			action2DataField.setText(Integer.toString(actionDelay[1]));
+			break;
+		case Conditional.ACTION_CANCEL_TURNOUT_TIMERS:
+			break;
+		case Conditional.ACTION_SET_SIGNAL_APPEARANCE:
+			action2SignalSetBox
+					.setSelectedIndex(signalAppearanceToAppearanceIndex(actionData[1]));
+			break;
+		case Conditional.ACTION_SET_SENSOR:
+			if (actionData[1] == Sensor.ACTIVE) {
+				action2SensorSetBox.setSelectedIndex(0);
+			} else {
+				action2SensorSetBox.setSelectedIndex(1);
+			}
+			break;
+		case Conditional.ACTION_DELAYED_SENSOR:
+		case Conditional.ACTION_RESET_DELAYED_SENSOR:		
+			if (actionData[1] == Sensor.ACTIVE) {
+				action2SensorSetBox.setSelectedIndex(0);
+			} else {
+				action2SensorSetBox.setSelectedIndex(1);
+			}
+			action2DataField.setText(Integer.toString(actionDelay[1]));
+			break;
+		case Conditional.ACTION_CANCEL_SENSOR_TIMERS:
+			break;
+		case Conditional.ACTION_SET_LIGHT:
+			if (actionData[1] == Light.ON) {
+				action2LightSetBox.setSelectedIndex(0);
+			} else {
+				action2LightSetBox.setSelectedIndex(1);
+			}
+			break;
+		case Conditional.ACTION_LOCK_TURNOUT:
+			if (actionData[1] == Turnout.UNLOCKED) {
+				action2LockSetBox.setSelectedIndex(0);
+			} else {
+				action2LockSetBox.setSelectedIndex(1);
+			}
+			break;
+		case Conditional.ACTION_SET_MEMORY:
+		case Conditional.ACTION_COPY_MEMORY:
+		case Conditional.ACTION_PLAY_SOUND:
+		case Conditional.ACTION_RUN_SCRIPT:
+			action2DataField.setText(actionString[1]);
+			break;
+		case Conditional.ACTION_SET_FAST_CLOCK_TIME:
+			action2DataField.setText(formatTime(actionData[1] / 60,
+										actionData[1] - ((actionData[1] / 60) * 60)));
+			break;
+		case Conditional.ACTION_START_FAST_CLOCK:
+		case Conditional.ACTION_STOP_FAST_CLOCK:
+			break;
+		}
+	}

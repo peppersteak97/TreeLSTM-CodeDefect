@@ -1,0 +1,13 @@
+    private JComponent createDisplayer() {
+        JPanel p = new JPanel() {
+
+            @Override
+            public void setOpaque(boolean isOpaque) {
+                super.setOpaque(true);
+            }
+        };
+        p.add(createInner());
+        p.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        p.setBackground(new Color(255, 204, 204));
+        return p;
+    }

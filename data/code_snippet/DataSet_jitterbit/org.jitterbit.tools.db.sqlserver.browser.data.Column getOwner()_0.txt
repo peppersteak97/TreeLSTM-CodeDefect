@@ -1,0 +1,3 @@
+    public ColumnOwner getOwner() {
+        return m_owner;
+    }

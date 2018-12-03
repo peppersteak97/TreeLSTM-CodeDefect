@@ -1,0 +1,29 @@
+    private void createComponents() {
+        m_hourBox = (m_mode == TWELVE_HOUR_MODE) ? new ComboBoxWithChangeDetection(
+                        HOURS_12) : new ComboBoxWithChangeDetection(HOURS_24);
+        m_hourBox.addPropertyChangeListener(
+                        ComboBoxChangeDetector.COMBOSELECTION_CHANGE_PROPERTY, this);
+        m_minuteBox = new ComboBoxWithChangeDetection(MINUTES);
+        m_minuteBox.addPropertyChangeListener(
+                        ComboBoxChangeDetector.COMBOSELECTION_CHANGE_PROPERTY, this);
+        if (m_showSeconds) {
+            m_secondBox = new ComboBoxWithChangeDetection(SECONDS);
+            m_secondBox.addPropertyChangeListener(
+                            ComboBoxChangeDetector.COMBOSELECTION_CHANGE_PROPERTY, this);
+        }
+        if (m_mode == TWELVE_HOUR_MODE) {
+            m_amPmBox = new AM_PM_ComboBox();
+            m_amPmBox.addPropertyChangeListener(
+                            ComboBoxChangeDetector.COMBOSELECTION_CHANGE_PROPERTY, this);
+        }
+
+        Font font = UiResources.getDefault().getFont(FONT_RESOURCE_KEY);
+        if (font != null) {
+            m_hourBox.setFont(font);
+            m_minuteBox.setFont(font);
+            if (m_secondBox != null)
+                m_secondBox.setFont(font);
+            if (m_amPmBox != null)
+                m_amPmBox.setFont(font);
+        }
+    }

@@ -1,0 +1,6 @@
+	public IntegrationEntityId getEntityID() {
+        if (m_entity instanceof RootFolder) {
+            return m_entity.getParent().getID();
+        }
+		return m_entity.getID();
+	}

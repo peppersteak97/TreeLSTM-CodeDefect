@@ -1,0 +1,6 @@
+    private void createComponents() {
+        createDayNumBox();
+        createWeekDayBox();
+        createEvery_X_MonthPanel();
+        createFrontLabel();
+    }

@@ -1,0 +1,12 @@
+    private void onRecordsPerPageChanged() {
+        m_recordsPerPage = m_recordsPerPageCombo.getSelectedItem();
+        if (m_numberOfRecords > 0) {
+            m_numberOfPages = getNumberOfPages();
+            m_gotoPageCombo.setNewValues(1, m_numberOfPages);
+            m_currentPage = 1;
+            m_gotoPageListener.block();
+            m_gotoPageCombo.setSelectedItem(Integer.valueOf(m_currentPage));
+            m_gotoPageListener.unblock();
+            displayRange(0, m_recordsPerPage);
+        }
+    }

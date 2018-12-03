@@ -1,0 +1,8 @@
+    private List<IIntegrationEntityUiDelegate> getDependants() {
+        Class<? extends IntegrationEntity> depClass = 
+            EntityTypeMetaData.getInstance().getEntityClass(m_dependentType);
+        List<IntegrationEntity> deps = 
+            (List<IntegrationEntity>) m_owner.getChildren(depClass);
+        Collections.sort(deps, KongaDataObjectComparators.getByName());
+        return IntegrationUiUtils.getUiDelegateList(deps);
+    }

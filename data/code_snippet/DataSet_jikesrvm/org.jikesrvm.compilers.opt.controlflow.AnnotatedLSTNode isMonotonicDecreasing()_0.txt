@@ -1,0 +1,11 @@
+  public boolean isMonotonicDecreasing() {
+    if ((!isMonotonic()) ||
+        condition.isLESS() ||
+        condition.isLESS_EQUAL() ||
+        condition.isLOWER() ||
+        condition.isLOWER_EQUAL()) {
+      return false;
+    } else {
+      return getMonotonicStrideValue() < 0;
+    }
+  }

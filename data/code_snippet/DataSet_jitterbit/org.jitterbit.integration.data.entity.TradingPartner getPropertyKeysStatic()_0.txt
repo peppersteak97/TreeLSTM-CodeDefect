@@ -1,0 +1,3 @@
+	public static String[] getPropertyKeysStatic() {
+		return PROPERTIES;
+	}

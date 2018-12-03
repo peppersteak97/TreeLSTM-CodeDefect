@@ -1,0 +1,3 @@
+  public final boolean hasNoCheckStoreAnnotation() {
+    return isAnnotationDeclared(TypeReference.NoCheckStore);
+  }

@@ -1,0 +1,3 @@
+	protected final JFormattedTextField getFormattedTextField() {
+		return (JFormattedTextField)getComponentHolder();
+	}

@@ -1,0 +1,3 @@
+	public Class getPrimaryClass() {
+		return m_clsPrimary;
+	}

@@ -1,0 +1,11 @@
+  public final TypeReference getTypeReference() {
+    if (VM.VerifyAssertions) {
+      VM._assert(opcode == JBC_new ||
+                 opcode == JBC_anewarray ||
+                 opcode == JBC_checkcast ||
+                 opcode == JBC_instanceof ||
+                 opcode == JBC_multianewarray);
+    }
+    int index = readUnsignedShort();
+    return getDeclaringClass().getTypeRef(index);
+  }

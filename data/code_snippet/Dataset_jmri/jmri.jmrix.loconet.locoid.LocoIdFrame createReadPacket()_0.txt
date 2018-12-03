@@ -1,0 +1,10 @@
+    LocoNetMessage createReadPacket() {
+        LocoNetMessage m = new LocoNetMessage(6);
+        m.setElement(0, 0xDF);
+        m.setElement(1, 0x00);
+        m.setElement(2, 0x00);
+        m.setElement(3, 0x00);
+        m.setElement(4, 0x00);
+
+        return m;
+    }

@@ -1,0 +1,3 @@
+  public void branchLikelyPrefix() {
+    prefix = Prefix.LIKELY;
+  }

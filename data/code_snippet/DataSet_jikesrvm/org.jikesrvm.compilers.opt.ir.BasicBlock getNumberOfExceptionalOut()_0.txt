@@ -1,0 +1,12 @@
+  public final int getNumberOfExceptionalOut() {
+    int count = 0;
+    if (canThrowExceptions()) {
+      for (SpaceEffGraphEdge e = _outEdgeStart; e != null; e = e.getNextOut()) {
+        BasicBlock bb = (BasicBlock) e.toNode();
+        if (bb.isExceptionHandlerBasicBlock()) {
+          count++;
+        }
+      }
+    }
+    return count;
+  }

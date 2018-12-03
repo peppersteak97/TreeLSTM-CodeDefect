@@ -1,0 +1,3 @@
+    public boolean isPostOperationWorkDefined() {
+        return hasSelectedOperation() || hasSelectedMessage() || hasSelectedWorkflow();
+    }

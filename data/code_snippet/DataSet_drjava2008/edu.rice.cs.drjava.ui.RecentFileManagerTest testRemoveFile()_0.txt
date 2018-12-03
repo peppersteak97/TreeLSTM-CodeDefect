@@ -1,0 +1,20 @@
+  public void testRemoveFile() throws Exception {
+    final File tempFile = writeToNewTempFile(BAR_TEXT);
+    final File tempFile2 = writeToNewTempFile(FOO_TEXT);
+    _rfm.updateMax(2);
+    _rfm.updateOpenFiles(tempFile);
+    _rfm.updateOpenFiles(tempFile2);
+    Vector<File> vector = _rfm.getFileVector();
+    assertEquals("tempFile2 should be at top", vector.get(0), tempFile2);
+    
+    _rfm.removeIfInList(tempFile2);
+    assertEquals("number of recent files", 1, vector.size());
+    assertEquals("tempFile should be at top", vector.get(0), tempFile);
+    
+    _rfm.removeIfInList(tempFile2);
+    assertEquals("number of recent files", 1, vector.size());
+    assertEquals("tempFile should still be at top", vector.get(0), tempFile);
+    
+    _rfm.removeIfInList(tempFile);
+    assertEquals("number of recent files", 0, vector.size());
+  }

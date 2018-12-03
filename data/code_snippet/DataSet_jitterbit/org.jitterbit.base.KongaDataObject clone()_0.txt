@@ -1,0 +1,7 @@
+    protected KongaDataObject clone() throws CloneNotSupportedException {
+        KongaDataObject clone = (KongaDataObject)super.clone();
+        if( m_propChangeManager != null ) {
+            clone.m_propChangeManager = new PropertyChangeManager(clone);
+        }
+        return clone;
+    }

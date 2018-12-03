@@ -1,0 +1,7 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    DrJava.getConfig().resetToDefaults();
+    String user = System.getProperty("user.name");
+    _tempDir = IOUtil.createAndMarkTempDirectory("DrJava-test-" + user, "");
+    _history = new History();
+  }

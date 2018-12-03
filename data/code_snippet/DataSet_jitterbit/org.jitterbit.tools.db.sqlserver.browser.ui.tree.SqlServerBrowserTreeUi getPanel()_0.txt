@@ -1,0 +1,3 @@
+    public KongaTreePanel getPanel() {
+        return m_panel;
+    }

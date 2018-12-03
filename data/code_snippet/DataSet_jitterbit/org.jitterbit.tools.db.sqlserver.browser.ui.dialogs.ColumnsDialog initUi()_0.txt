@@ -1,0 +1,21 @@
+    private void initUi() {
+        JPanel pnlMain = new JPanel();
+        pnlMain.setLayout( new BorderLayout(0, 10) );
+        
+        JPanel pnlTable = new JPanel();
+        pnlTable.setLayout( new BorderLayout() );
+        KongaTable table = new ColumnTable(m_columnOwner);
+        
+        JScrollPane scroll = new JScrollPane(table);
+        pnlTable.add(scroll, BorderLayout.CENTER);
+        
+        JPanel pnlBtns = getButtonPanel( KongaDialog.CLOSE_ONLY, -1, 0, -1 );
+        pnlBtns.setBorder( new EmptyBorder(0, 0, 10, 0) );
+        
+        pnlMain.add( pnlTable, BorderLayout.CENTER );
+        pnlMain.add( pnlBtns, BorderLayout.SOUTH );
+        
+        getContentPane().add(pnlMain);
+        pack();
+        WindowUtils.centerWindowOnScreen(this);
+    }

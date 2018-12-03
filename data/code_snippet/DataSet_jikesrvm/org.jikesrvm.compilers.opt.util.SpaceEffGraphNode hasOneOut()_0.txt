@@ -1,0 +1,4 @@
+  public final boolean hasOneOut() {
+    SpaceEffGraphEdge first = _outEdgeStart;
+    return (first != null) && (first.nextOut == null);
+  }

@@ -1,0 +1,3 @@
+    EnumSet<DataLocationType> getSupportedTargetTypes() {
+        return EnumSet.copyOf(m_targetTypes);
+    }

@@ -1,0 +1,3 @@
+  public int getBytecodeIndex() {
+    return bcIndex;
+  }

@@ -1,0 +1,3 @@
+            public IJitterPackerUi create() {
+                return new DefaultJitterPackerUi();
+            }

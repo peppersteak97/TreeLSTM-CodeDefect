@@ -1,0 +1,3 @@
+  public boolean isBbInside() {
+    return !(operator == LABEL || operator == BBEND);
+  }

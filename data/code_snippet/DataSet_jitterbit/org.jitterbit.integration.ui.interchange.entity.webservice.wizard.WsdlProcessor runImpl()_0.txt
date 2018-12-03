@@ -1,0 +1,14 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus(PackageResources.WsdlProcessor.STARTED);
+        IUiWorker worker = IntegrationUi.getUi().getUiWorker();
+        Runnable task = new Runnable() {
+            
+            public void run() {
+                m_ui.processSelectedWsdlFile(WsdlProcessor.this, WsdlProcessor.this);
+            }
+        };
+        worker.submitForParallellAndWait(task, m_exceptionHandler);
+    }

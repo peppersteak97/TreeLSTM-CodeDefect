@@ -1,0 +1,6 @@
+    private int getMode() {
+        if (mOpsByteButton.isSelected())
+            return jmri.Programmer.OPSBYTEMODE;
+        else
+            return 0;
+    }

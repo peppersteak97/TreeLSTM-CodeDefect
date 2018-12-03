@@ -1,0 +1,6 @@
+  public void clearInstructionScratchObject() {
+    for (Instruction instr = firstInstructionInCodeOrder(); instr != null; instr =
+        instr.nextInstructionInCodeOrder()) {
+      instr.scratchObject = null;
+    }
+  }

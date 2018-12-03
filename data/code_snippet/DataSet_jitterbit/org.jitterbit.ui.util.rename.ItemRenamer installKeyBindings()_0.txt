@@ -1,0 +1,15 @@
+    private void installKeyBindings() {
+        KeyBindingInstaller installer = new KeyBindingInstaller(this);
+        installer.addBinding(KeyUtils.ENTER, "enter", new AbstractAction() { 
+            public void actionPerformed(ActionEvent e) {
+                focusLost(null);
+            }
+        });
+        installer.addBinding(KeyUtils.ESCAPE, "escape", new AbstractAction() { 
+            public void actionPerformed(ActionEvent e) {
+                m_listener.itemRenameCancelled();
+                removeFocusListener(ItemRenamer.this);
+            }
+        });
+        installer.install();
+    }

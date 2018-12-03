@@ -1,0 +1,4 @@
+    static Pattern getAllPattern() {
+        if (allPattern == null) allPattern = Pattern.compile(allRegex);
+        return allPattern;
+    }

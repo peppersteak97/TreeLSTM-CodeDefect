@@ -1,0 +1,21 @@
+    protected boolean handle() {
+        log.debug("Waiting for state change");
+
+        waitChange(inputs);
+
+        int oldAppearance = sig.getAppearance();
+        setOutput();
+
+        int newAppearance = sig.getAppearance();
+
+        if ( (oldAppearance != newAppearance) && log.isDebugEnabled()) {
+            switch (newAppearance) {
+            case DARK:   log.debug(sig.getUserName()+"set DARK"); break;
+            case RED:    log.debug(sig.getUserName()+"set RED");  break;
+            case YELLOW: log.debug(sig.getUserName()+"set YELLOW"); break;
+            case GREEN:  log.debug(sig.getUserName()+"set GREEN"); break;
+            default:     log.warn(sig.getUserName()+"set to unknown new appearance: "+newAppearance); break;
+            }
+        }
+
+    }

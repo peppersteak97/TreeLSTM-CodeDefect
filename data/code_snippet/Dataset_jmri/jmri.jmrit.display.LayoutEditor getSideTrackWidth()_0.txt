@@ -1,0 +1,4 @@
+	public int getSideTrackWidth() {
+		int wid = (int)sideTrackWidth;
+		return wid;
+	}

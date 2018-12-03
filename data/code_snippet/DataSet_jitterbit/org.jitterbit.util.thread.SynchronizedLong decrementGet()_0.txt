@@ -1,0 +1,1 @@
+    public synchronized long decrementGet() { return --m_lValue; }

@@ -1,0 +1,78 @@
+  private void scheduleBasicBlock() {
+    if (VERBOSE >= 2) {
+      debug("Scheduling " + bb);
+    }
+    if (VERBOSE >= 4) {
+      debug("**** START OF CURRENT BB BEFORE SCHEDULING ****");
+      for (InstructionEnumeration bi = bb.forwardInstrEnumerator(); bi.hasMoreElements();) {
+        debug(bi.next().toString());
+      }
+      debug("**** END   OF CURRENT BB BEFORE SCHEDULING ****");
+    }
+    for (DepGraphNode dgn = (DepGraphNode) dg.firstNode(); dgn != null; dgn = (DepGraphNode) dgn.getNext())
+    {
+      setGraphNode(dgn.instruction(), dgn);
+      if (VERBOSE >= 4) {
+        debug("Added node for " + dgn.instruction());
+      }
+    }
+    ResourceMap rmap = new ResourceMap();
+    int bl = 0;
+    Instruction fi = bb.firstInstruction();
+    if (VERBOSE >= 5) {
+      debug("Computing critical path for " + fi);
+    }
+    computeCriticalPath(getGraphNode(fi), 0);
+    int cp = SchedulingInfo.getCriticalPath(fi);
+    for (InstructionEnumeration ie = bb.forwardRealInstrEnumerator(); ie.hasMoreElements();) {
+      Instruction i = ie.next();
+      if (VERBOSE >= 5) {
+        debug("Computing critical path for " + i);
+      }
+      computeCriticalPath(getGraphNode(i), 0);
+      int d = SchedulingInfo.getCriticalPath(i);
+      if (d > cp) {
+        cp = d;
+      }
+      bl++;
+    }
+    cp++;
+    if (PRINT_CRITICAL_PATH_LENGTH) {
+      System.err.println("::: BL=" + bl + " CP=" + cp + " LOC=" + ir.method + ":" + bb);
+    }
+    Priority ilist = new DefaultPriority(bb);
+    int maxtime = 0;
+    for (ilist.reset(); ilist.hasMoreElements();) {
+      Instruction i = ilist.next();
+      if (VERBOSE >= 3) {
+        debug("Scheduling " + i + "[" + SchedulingInfo.getInfo(i) + "]");
+      }
+      int time = computeEarliestTime(i);
+      while (!rmap.schedule(i, time)) {
+        time++;
+      }
+      if (VERBOSE >= 5) {
+        debug("Scheduled " + i + " at time " + time);
+      }
+      if (time > maxtime) {
+        maxtime = time;
+      }
+    }
+    if (VERBOSE >= 2) {
+      debug("Done scheduling " + bb);
+    }
+    if (VERBOSE >= 3) {
+      debug(rmap.toString());
+    }
+    boolean changed = sortBasicBlock(maxtime);
+    if (changed && VERBOSE >= 2) {
+      debug("Basic block " + bb + " changed");
+    }
+    if (VERBOSE >= 4) {
+      debug("**** START OF CURRENT BB AFTER SCHEDULING ****");
+      for (InstructionEnumeration bi = bb.forwardInstrEnumerator(); bi.hasMoreElements();) {
+        debug(bi.next().toString());
+      }
+      debug("**** END   OF CURRENT BB AFTER SCHEDULING ****");
+    }
+  }

@@ -1,0 +1,5 @@
+	private void removeSourceMapping(){
+		m_sourceMapArea.removeMappings();
+		m_newSourceTree.repaint();
+		m_oldSourceTree.repaint();
+	}

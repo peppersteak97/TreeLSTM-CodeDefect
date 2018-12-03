@@ -1,0 +1,3 @@
+  public Offset getTSFPOffset() {
+    return this.tsFPOffset;
+  }

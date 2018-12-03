@@ -1,0 +1,3 @@
+    protected void onOk() {
+        m_ui.highlightSearchResult();
+    }

@@ -1,0 +1,18 @@
+    public void addMenuLevelExtensionsToWindow() {
+        IMenu fileMenu = m_appWinMenuMgr.getMenu(ApplicationWindowMenus.FILE);
+        m_fileMenuExtensions.addToMenu(fileMenu);
+
+        IMenu editMenu = m_appWinMenuMgr.getMenu(ApplicationWindowMenus.EDIT);
+        m_editMenuExtensions.addToMenu(editMenu);
+
+        IMenu actionsMenu = m_appWinMenuMgr.getMenu(ApplicationWindowMenus.ACTIONS);
+        m_actionsMenuExtensions.addToMenu(actionsMenu);
+
+        IMenu windowMenu = m_appWinMenuMgr.getMenu(ApplicationWindowMenus.WINDOWS);
+        m_windowMenuExtensions.addToMenu(windowMenu);
+
+        IMenu debugMenu = m_appWinMenuMgr.getMenu(ApplicationWindowMenus.DEBUG);
+        if (debugMenu != null) {
+            m_debugMenuExtensions.addToMenu(debugMenu);
+        }
+    }

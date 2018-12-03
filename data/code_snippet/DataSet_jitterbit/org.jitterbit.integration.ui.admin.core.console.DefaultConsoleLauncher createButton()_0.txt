@@ -1,0 +1,9 @@
+    private JButton createButton() {
+        IApplicationAction a = m_action.get(m_view);
+        JButton button = ComponentFactories.buttonFactory().newButton(a);
+        button.setIcon(AdminActionDictionary.DICTIONARY.getSmallIcon(m_action.getId()));
+        IntegrationUiStyleSheet.configureButtonForToolBar(button);
+        button.setFont(IntegrationUiStyleSheet.DefaultText.getFont().deriveFont(Font.BOLD));
+        button.setForeground(IntegrationUiStyleSheet.THEME_TEXT_COLOR_1);
+        return button;
+    }

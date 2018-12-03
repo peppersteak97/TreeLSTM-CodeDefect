@@ -1,0 +1,1 @@
+ * {@code quitSlave()}, for example, when it is known to have been matched by a successful

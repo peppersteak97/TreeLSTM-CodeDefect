@@ -1,0 +1,11 @@
+  public int balanceForward() {
+    int origPos = _currentLocation;
+    try {
+      int docLen = getLength();
+      if (_currentLocation == 0) return -1;
+      char prevChar = _getText(_currentLocation - 1, 1).charAt(0);
+      if (prevChar != '{' && prevChar != '(' && prevChar != '[') return -1;
+      return _reduced.balanceForward() ; 
+    }
+    finally { setCurrentLocation(origPos); }
+  }

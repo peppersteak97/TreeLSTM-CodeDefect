@@ -1,0 +1,1 @@
+  public int getLineStartOffset() { return _startPos.getOffset(); }

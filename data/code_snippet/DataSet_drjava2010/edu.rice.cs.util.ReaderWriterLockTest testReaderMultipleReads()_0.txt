@@ -1,0 +1,24 @@
+  public void testReaderMultipleReads() throws InterruptedException {
+    _lock.startRead();
+    _lock.startRead();
+    _lock.endRead();
+    _lock.endRead();
+
+    _lock.startRead();
+    Thread w = new Thread() {
+      public void run() {
+        synchronized(_lock) {
+          _lock.notifyAll();
+          _lock.startWrite();
+          _lock.endWrite();
+        }
+      }
+    };
+    synchronized(_lock) {
+      w.start();
+      _lock.wait();
+    }
+    _lock.startRead();
+    _lock.endRead();
+    _lock.endRead();
+  }

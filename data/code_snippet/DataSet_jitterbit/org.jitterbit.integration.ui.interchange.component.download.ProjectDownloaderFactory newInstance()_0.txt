@@ -1,0 +1,12 @@
+    public static ProjectDownloaderFactory newInstance() {
+        return new ProjectDownloaderFactory() {
+
+            @Override
+            public IProjectDownloader create(IApplicationWindow window, 
+                                             IPageDisplayer displayer, 
+                                             IProjectDownloadInvoker invoker, 
+                                             boolean useLoginPage) {
+                return new DownloadProjectWizard(window, displayer, invoker, useLoginPage);
+            }
+        };
+    }

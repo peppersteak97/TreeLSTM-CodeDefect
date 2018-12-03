@@ -1,0 +1,6 @@
+    private void createMainCaptionLabel() {
+        m_mainCaptionLabel = IntegrationUiStyleSheet.AdminHint.makeJLabel(
+                        PackageResources.DeployCheckerDialog.Labels.MAIN_CAPTION);
+        m_mainCaptionLabel.setIcon(
+                PackageResources.DeployCheckerDialog.Labels.MAIN_CAPTION_ICON);
+    }

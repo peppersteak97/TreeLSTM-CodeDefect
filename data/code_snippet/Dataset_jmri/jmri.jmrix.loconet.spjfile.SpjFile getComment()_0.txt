@@ -1,0 +1,3 @@
+    public String getComment() {
+        return h0.getComment();
+    }

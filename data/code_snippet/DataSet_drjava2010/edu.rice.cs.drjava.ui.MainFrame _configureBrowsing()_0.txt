@@ -1,0 +1,5 @@
+  private void _configureBrowsing() {
+    BrowserHistoryManager bm = _model.getBrowserHistoryManager();
+    _browseBackAction.setEnabled(!bm.isCurrentRegionFirst());
+    _browseForwardAction.setEnabled(!bm.isCurrentRegionLast());
+  }

@@ -1,0 +1,2 @@
+        if ( getNumDataElements() >= index+len-1
+             && 'C'== (char)getElement(index)

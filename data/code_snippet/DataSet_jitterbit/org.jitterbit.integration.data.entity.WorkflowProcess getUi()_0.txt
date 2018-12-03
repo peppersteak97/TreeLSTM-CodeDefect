@@ -1,0 +1,3 @@
+    public IWorkflowProcessUi getUi() {
+        return (IWorkflowProcessUi) super.getUi();
+    }

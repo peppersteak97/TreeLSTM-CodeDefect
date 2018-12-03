@@ -1,0 +1,7 @@
+  public Pair<Pair<Integer, Integer>, String>[] getStyles() { 
+    synchronized(_stylesList) {
+        @SuppressWarnings("unchecked")
+        Pair<Pair<Integer, Integer>, String>[] result = _stylesList.toArray(new Pair[0]);
+        return result;
+    }
+  }

@@ -1,0 +1,6 @@
+    public synchronized IOverwriteConfirmer getOverwriteConfirmer() {
+        if (m_confirmer == null) {
+            m_confirmer = new DefaultConfirmer();
+        }
+        return m_confirmer;
+    }

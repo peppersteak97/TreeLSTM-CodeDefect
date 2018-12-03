@@ -1,0 +1,22 @@
+  public void testGetLineEndPos() throws BadLocationException {
+    _setDocText("foo\nbar\nblah");
+    assertEquals("Returns position before the next newline",
+                 7,
+                 _getLineEndPos(5));
+    assertEquals("Returns position before the next newline when cursor " +
+                 "is at the position before the next newline",
+                 7,
+                 _getLineEndPos(7));
+    assertEquals("Returns the end of the document when there's no next newline",
+                 12,
+                 _getLineEndPos(9));
+    
+    _setDocText("abcdefghijk");
+    _doc.setCurrentLocation(3);
+    int reducedModelPos = _doc.getReduced().absOffset();
+    _getLineEndPos(5);
+    assertEquals("Check that position in reduced model is unaffected " +
+                 "after call to getLineEndPos",
+                 reducedModelPos,
+                 _doc.getReduced().absOffset());
+  }

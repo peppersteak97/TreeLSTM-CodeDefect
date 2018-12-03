@@ -1,0 +1,2 @@
+  public void compileAll() throws IOException;
+  

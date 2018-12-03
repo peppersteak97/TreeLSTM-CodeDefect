@@ -1,0 +1,27 @@
+  private BitVector[] getDefSets() {
+    int nBlocks = ir.getMaxBasicBlockNumber();
+    BitVector[] result = new BitVector[ir.getNumberOfSymbolicRegisters()];
+
+    for (int i = 0; i < result.length; i++) {
+      result[i] = new BitVector(nBlocks + 1);
+    }
+
+    for (BasicBlockEnumeration e = ir.getBasicBlocks(); e.hasMoreElements();) {
+      BasicBlock bb = e.next();
+      int bbNumber = bb.getNumber();
+      for (InstructionEnumeration ie = bb.forwardInstrEnumerator(); ie.hasMoreElements();) {
+        Instruction s = ie.next();
+        for (int j = 0; j < s.getNumberOfDefs(); j++) {
+          Operand operand = s.getOperand(j);
+          if (operand == null) continue;
+          if (!operand.isRegister()) continue;
+          if (operand.asRegister().getRegister().isSSA()) continue;
+          if (operand.asRegister().getRegister().isPhysical()) continue;
+
+          int reg = operand.asRegister().getRegister().getNumber();
+          result[reg].set(bbNumber);
+        }
+      }
+    }
+    return result;
+  }

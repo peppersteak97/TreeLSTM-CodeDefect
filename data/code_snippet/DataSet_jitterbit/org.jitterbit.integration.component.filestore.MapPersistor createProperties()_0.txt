@@ -1,0 +1,5 @@
+    private Properties createProperties() {
+        Properties props = new Properties();
+        populateProperties(props);
+        return props;
+    }

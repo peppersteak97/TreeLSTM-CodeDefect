@@ -1,0 +1,10 @@
+    private void layoutComponents() {
+        m_inputPanel = new OneColumnPanel();
+        m_inputPanel.setInsets(10, 5, 10, 5);
+        m_inputPanel.add(m_copyFileOption);
+        m_inputPanel.add(m_currentLocationUrlOption);
+        m_inputPanel.setInsets(5, 5, 0, 5);
+        m_inputPanel.add(m_customLocationUrlOption);
+        m_inputPanel.setInsets(5, 25, 5, 5);
+        m_inputPanel.add(m_customLocationField);
+    }

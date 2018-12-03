@@ -1,0 +1,6 @@
+	public TurnoutOperation[] getTurnoutOperations() {
+		synchronized (this) {
+			Collection entries = turnoutOperations.values();
+			return (TurnoutOperation[])entries.toArray(new TurnoutOperation[0]); 
+		}
+	}

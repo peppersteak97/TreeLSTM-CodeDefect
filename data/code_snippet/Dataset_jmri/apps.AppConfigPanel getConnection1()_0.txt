@@ -1,0 +1,4 @@
+    public static String getConnection1() {
+        if (p1 == null) p1 = JmrixConfigPane.instance(1);
+        return p1.getCurrentProtocolName();
+    }

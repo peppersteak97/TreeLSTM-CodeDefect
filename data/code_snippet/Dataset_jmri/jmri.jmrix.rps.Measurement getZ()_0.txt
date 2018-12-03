@@ -1,0 +1,3 @@
+    public double getZ(){
+        return z;
+    }

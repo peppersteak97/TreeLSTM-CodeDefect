@@ -1,0 +1,3 @@
+    public boolean isFolder() {
+        return getUserObject() instanceof Folder;
+    }

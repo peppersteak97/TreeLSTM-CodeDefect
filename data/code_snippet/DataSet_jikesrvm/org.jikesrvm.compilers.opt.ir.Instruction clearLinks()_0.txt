@@ -1,0 +1,4 @@
+  void clearLinks() {
+    next = null;
+    prev = null;
+  }

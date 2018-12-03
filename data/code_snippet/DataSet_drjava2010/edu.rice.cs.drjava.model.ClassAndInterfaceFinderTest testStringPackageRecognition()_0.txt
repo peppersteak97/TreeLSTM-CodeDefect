@@ -1,0 +1,10 @@
+  public void testStringPackageRecognition() {
+    try {
+      ClassAndInterfaceFinder finder = new ClassAndInterfaceFinder(r);
+      String s = finder.getClassOrInterfaceName();
+      assertEquals("stringNameRecognition","x.Aa.12_34", s);
+    }
+    catch (Exception e) {
+      fail("stringPackageRecognition threw " + e);
+    }
+  }

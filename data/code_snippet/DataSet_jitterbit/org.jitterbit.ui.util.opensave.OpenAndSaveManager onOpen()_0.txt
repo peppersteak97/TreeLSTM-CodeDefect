@@ -1,0 +1,11 @@
+	public void onOpen() {
+	    m_fileChooser.setFileFilter(m_openFileFilter);
+        int iVal = m_fileChooser.showOpenDialog(m_owner);
+        if (iVal == JFileChooser.APPROVE_OPTION) {
+            m_file = m_fileChooser.getSelectedFile();
+            if (m_fileOpener != null) {
+                m_fileOpener.openFile(m_file);
+                addRecentFile(m_file);
+            }
+        }
+	}

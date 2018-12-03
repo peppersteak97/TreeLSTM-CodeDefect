@@ -1,0 +1,3 @@
+  public static ConditionOperand LESS_EQUAL() {
+    return new ConditionOperand(LESS_EQUAL);
+  }

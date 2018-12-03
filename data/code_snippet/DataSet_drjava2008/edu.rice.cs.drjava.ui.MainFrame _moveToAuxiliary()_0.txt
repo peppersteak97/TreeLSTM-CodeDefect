@@ -1,0 +1,6 @@
+  void _moveToAuxiliary() {
+    Runnable1<OpenDefinitionsDocument> op =  new Runnable1<OpenDefinitionsDocument>() { 
+      public void run(OpenDefinitionsDocument d) { _model.addAuxiliaryFile(d); }
+    };
+    _processDocs(_model.getDocumentNavigator().getSelectedDocuments(), op);
+  }

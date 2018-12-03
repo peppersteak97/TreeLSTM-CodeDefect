@@ -1,0 +1,10 @@
+  public byte pop() {
+    if (top <= 0) {
+      VM.sysWrite("TypeStack.pop() : underflow!\n");
+    }
+    top--;
+    byte v = stack[top];
+    stack[top] = defv;
+
+    return v;
+  }

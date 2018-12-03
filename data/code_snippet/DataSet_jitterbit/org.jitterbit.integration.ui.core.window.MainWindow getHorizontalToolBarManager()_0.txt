@@ -1,0 +1,3 @@
+    public IToolBarManager getHorizontalToolBarManager() {
+        return m_horizontalToolBarManager;
+    }

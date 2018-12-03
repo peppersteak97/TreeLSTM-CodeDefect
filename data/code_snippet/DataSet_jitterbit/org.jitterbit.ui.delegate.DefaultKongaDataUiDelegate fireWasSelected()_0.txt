@@ -1,0 +1,3 @@
+    public void fireWasSelected() {
+        m_eventSenderSupport.fireUiDelegateSelected(this);
+    }

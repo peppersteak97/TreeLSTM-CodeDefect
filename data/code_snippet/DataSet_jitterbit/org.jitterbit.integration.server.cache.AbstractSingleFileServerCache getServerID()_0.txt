@@ -1,0 +1,3 @@
+    public ServerGuid getServerID() {
+        return m_serverId;
+    }

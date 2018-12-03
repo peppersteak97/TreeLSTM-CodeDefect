@@ -1,0 +1,3 @@
+    public boolean isAutoIncrement() {
+        return m_bAutoIncrement;
+    }

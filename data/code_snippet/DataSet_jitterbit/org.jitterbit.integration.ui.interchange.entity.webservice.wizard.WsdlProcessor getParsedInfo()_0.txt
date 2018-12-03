@@ -1,0 +1,3 @@
+    public WebServiceInfo getParsedInfo() {
+        return m_webServiceCallInfo;
+    }

@@ -1,0 +1,5 @@
+    public static String getConnection3() {
+        if (p2a == null) p2a = JmrixConfigPane.instance(3);
+        if (p2a == null) return none;
+        return p2a.getCurrentProtocolName();
+    }

@@ -1,0 +1,5 @@
+  private void _cancel() {
+    _lastState = new FrameState(this);
+    this.setVisible(false);
+    if (_cm != null) { _cm.signal(); }
+  }

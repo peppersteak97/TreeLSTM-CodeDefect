@@ -1,0 +1,4 @@
+	private void displayChanged() {
+		clock.set12HourDisplay(displayCheckBox.isSelected(),true);
+		changed = true;
+	}

@@ -1,0 +1,12 @@
+  protected final void emit_arraylength() {
+    if (JavaHeaderConstants.ARRAY_LENGTH_BYTES == 4) {
+      if (VM.BuildFor32Addr) {
+        asm.emitPUSH_RegDisp(T0, ObjectModel.getArrayLengthOffset());
+      } else {
+        asm.emitMOV_Reg_RegDisp(T0, T0, ObjectModel.getArrayLengthOffset());
+        asm.emitPUSH_Reg(T0);
+      }
+    } else {
+      asm.emitPUSH_RegDisp(T0, ObjectModel.getArrayLengthOffset());
+    }
+  }

@@ -1,0 +1,4 @@
+    public void writeBorders() {
+      write(this.linenum, 0, this.linenum + 1, 0);
+      write(this.linenum, this.chars_per_line + 1, this.linenum + 1, this.chars_per_line + 1);
+	}

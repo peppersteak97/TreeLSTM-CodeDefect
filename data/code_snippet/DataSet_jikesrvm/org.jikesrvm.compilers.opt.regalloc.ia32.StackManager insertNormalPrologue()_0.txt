@@ -1,0 +1,42 @@
+  public void insertNormalPrologue() {
+    PhysicalRegisterSet phys = ir.regpool.getPhysicalRegisterSet();
+    Register ESP = phys.getESP();
+    MemoryOperand fpHome =
+        MemoryOperand.BD(ir.regpool.makeTROp(),
+                             ArchEntrypoints.framePointerField.getOffset(),
+                             (byte) WORDSIZE,
+                             null,
+                             null);
+
+    Instruction plg = ir.firstInstructionInCodeOrder().nextInstructionInCodeOrder();
+    Instruction inst = plg.nextInstructionInCodeOrder();
+
+    int frameFixedSize = getFrameFixedSize();
+    ir.compiledMethod.setFrameFixedSize(frameFixedSize);
+
+    if (frameFixedSize >= 256) {
+      insertBigFrameStackOverflowCheck(plg);
+
+      inst.insertBefore(MIR_UnaryNoRes.create(IA32_PUSH, fpHome));
+
+      inst.insertBefore(MIR_Move.create(IA32_MOV, fpHome.copy(), new RegisterOperand(ESP, TypeReference.Int)));
+
+      int cmid = ir.compiledMethod.getId();
+      inst.insertBefore(MIR_UnaryNoRes.create(IA32_PUSH, IC(cmid)));
+    } else {
+      inst.insertBefore(MIR_UnaryNoRes.create(IA32_PUSH, fpHome));
+
+      inst.insertBefore(MIR_Move.create(IA32_MOV, fpHome.copy(), new RegisterOperand(ESP, TypeReference.Int)));
+
+      int cmid = ir.compiledMethod.getId();
+      inst.insertBefore(MIR_UnaryNoRes.create(IA32_PUSH, IC(cmid)));
+
+      insertNormalStackOverflowCheck(plg);
+    }
+
+    if (ir.compiledMethod.isSaveVolatile()) {
+      saveVolatiles(inst);
+      saveFloatingPointState(inst);
+    }
+    saveNonVolatiles(inst);
+  }

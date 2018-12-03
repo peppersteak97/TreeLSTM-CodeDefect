@@ -1,0 +1,23 @@
+    public void update() {
+        Date now = clock.getTime();
+        if (runMenu != null) {
+            runMenu.setText(getRun() ? "Stop" : "Start");
+        }
+        int hours = now.getHours();
+        int minutes = now.getMinutes();
+        minuteAngle = (double) minutes * 6.;
+        hourAngle = (double) hours * 30. + 30. * minuteAngle / 360.;
+        if (hours < 12) {
+            amPm = "AM " + (int) clock.userGetRate() + ":1";
+        }
+        else {
+            amPm = "PM " + (int) clock.userGetRate() + ":1";
+        }
+        if (hours == 12 && minutes == 0) {
+            amPm = "Noon";
+        }
+        if (hours == 0 && minutes == 0) {
+            amPm = "Midnight";
+        }
+        repaint();
+    }

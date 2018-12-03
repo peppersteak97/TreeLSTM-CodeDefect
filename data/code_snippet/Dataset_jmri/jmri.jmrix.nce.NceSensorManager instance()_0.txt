@@ -1,0 +1,4 @@
+    static public NceSensorManager instance() {
+        if (mInstance == null) new NceSensorManager();
+        return mInstance;
+    }

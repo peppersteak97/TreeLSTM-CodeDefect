@@ -1,0 +1,41 @@
+  private void handleProblemEdges() {
+    int remaining = 0;
+    for (int i = 0; i < numProblemEdges; i++) {
+      SpaceEffGraphEdge e = problemEdges[i];
+      SpaceEffGraphNode src = e.fromNode();
+      SpaceEffGraphNode dst = e.toNode();
+      SpaceEffGraphNode srcRoot = src.nextSorted;
+      if (srcRoot != dst) {
+        problemEdges[remaining++] = e;
+      }
+    }
+    numProblemEdges = remaining;
+    if (numProblemEdges == 0) return;
+
+    int searchnum = 0;
+    for (int i = 0; i < numProblemEdges; i++) {
+      SpaceEffGraphEdge e = problemEdges[i];
+      SpaceEffGraphNode src = e.fromNode();
+      SpaceEffGraphNode dst = e.toNode();
+      BURS_TreeNode n = (BURS_TreeNode) src.scratchObject;
+      SpaceEffGraphNode srcRoot = src.nextSorted;
+      SpaceEffGraphNode dstRoot = dst.nextSorted;
+      if (srcRoot == dstRoot && srcRoot != dst) {
+        if (!trueEdgeRedundant(src, dst, srcRoot)) {
+          if (DEBUG) {
+            VM.sysWrite("Potential intra-tree cycle with edge " + e + " forcing " + n + " to be a tree root\n");
+          }
+          makeTreeRoot(n);
+          problemEdgePrep(n, n.dg_node);
+        }
+      } else {
+        if (reachableRoot(dstRoot, srcRoot, ++searchnum)) {
+          if (DEBUG) {
+            VM.sysWrite("Potential inter-tree cycle with edge " + e + " forcing " + n + " to be a tree root\n");
+          }
+          makeTreeRoot(n);
+          problemEdgePrep(n, n.dg_node);
+        }
+      }
+    }
+  }

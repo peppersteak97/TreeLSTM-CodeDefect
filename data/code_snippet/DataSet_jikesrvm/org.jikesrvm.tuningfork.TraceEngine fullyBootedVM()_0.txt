@@ -1,0 +1,21 @@
+  public void fullyBootedVM() {
+    if (state != State.SHUT_DOWN) {
+      String traceFile = Options.TuningForkTraceFile;
+      if (!traceFile.endsWith(".trace")) {
+        traceFile = traceFile+".trace";
+      }
+
+      File f = new File(traceFile);
+      try {
+        outputStream = new FileOutputStream(f);
+      } catch (FileNotFoundException e) {
+        VM.sysWriteln("Unable to open trace file "+f.getAbsolutePath());
+        VM.sysWriteln("continuing, but TuningFork trace generation is disabled.");
+        state = State.SHUT_DOWN;
+        return;
+      }
+
+      createDaemonThreads();
+      writeInitialProperites();
+    }
+  }

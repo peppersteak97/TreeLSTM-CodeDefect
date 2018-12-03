@@ -1,0 +1,6 @@
+    private void init() {
+        setForeground(m_colEnabled);
+        setFocusPainted(false);
+        addMouseListener(this);
+        setRolloverEnabled(false);
+    }

@@ -1,0 +1,12 @@
+    private void setActiveObject() {
+        Runnable task = new Runnable() {
+            
+            public void run() {
+                IPage p = m_view.getActivePage();
+                if (p != null) {
+                    m_view.setActiveObject(p.getObject());
+                }
+            }
+        };
+        EventQueue.invokeLater(task);
+    }

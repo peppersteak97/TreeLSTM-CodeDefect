@@ -1,0 +1,3 @@
+  public int getCurrentOffset() { //return _current.getOffset(); 
+    return _current;
+  }

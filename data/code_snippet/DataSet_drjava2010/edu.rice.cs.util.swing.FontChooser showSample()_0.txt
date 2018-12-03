@@ -1,0 +1,13 @@
+  private void showSample() {
+    int g = 0;
+    try { g = Integer.parseInt(_sizeList.getSelectedValue()); }
+    catch (NumberFormatException nfe) { /* do nothing */ }
+    String st = _styleList.getSelectedValue();
+    int s = Font.PLAIN;
+    if (st.equalsIgnoreCase("Bold")) s = Font.BOLD;
+    if (st.equalsIgnoreCase("Italic")) s = Font.ITALIC;
+    if (st.equalsIgnoreCase("Bold Italic")) s = Font.BOLD | Font.ITALIC;
+    _sampleText.setFont(new Font(_fontList.getSelectedValue(), s, g));
+    _sampleText.setText("The quick brown fox jumped over the lazy dog.");
+    _sampleText.setVerticalAlignment(SwingConstants.TOP);
+  }

@@ -1,0 +1,4 @@
+    public static Distributor instance() {
+        if (instance == null) instance = new Distributor();
+        return instance;
+    }

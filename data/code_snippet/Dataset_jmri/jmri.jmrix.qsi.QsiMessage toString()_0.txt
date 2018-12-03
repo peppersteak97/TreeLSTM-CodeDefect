@@ -1,0 +1,13 @@
+    public String toString() {
+        String s = "";
+        if (!QsiTrafficController.instance().isSIIBootMode()) {
+            for (int i=0; i<_nDataChars; i++) {
+                s+=jmri.util.StringUtil.twoHexFromInt(_dataChars[i])+" ";
+            }
+        } else {
+            for (int i=0; i<_nDataChars; i++) {
+                s+="<"+(int)_dataChars[i]+">";
+            }
+        }
+        return s;
+    }

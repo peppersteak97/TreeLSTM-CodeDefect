@@ -1,0 +1,4 @@
+    void setPushed() {
+        double val = Double.parseDouble(newval.getText());
+        Engine.instance().setVSound(val);
+    }

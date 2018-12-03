@@ -1,0 +1,5 @@
+    static public ClockControl clockControlInstance()  {
+        if (instance().clockControl != null) return instance().clockControl;
+        instance().clockControl = new DefaultClockControl();
+        return instance().clockControl;
+    }

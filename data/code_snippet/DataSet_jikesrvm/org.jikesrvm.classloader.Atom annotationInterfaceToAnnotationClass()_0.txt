@@ -1,0 +1,8 @@
+  public Atom annotationInterfaceToAnnotationClass() {
+    byte[] annotationClassName_tmp = new byte[val.length + 2];
+    System.arraycopy(val, 0, annotationClassName_tmp, 0, val.length - 1);
+    annotationClassName_tmp[val.length - 1] = '$';
+    annotationClassName_tmp[val.length] = '$';
+    annotationClassName_tmp[val.length + 1] = ';';
+    return Atom.findOrCreateUtf8Atom(annotationClassName_tmp);
+  }

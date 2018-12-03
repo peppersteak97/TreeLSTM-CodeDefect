@@ -1,0 +1,7 @@
+	public List<IKongaUiDelegate> getAllUiDelegates() {
+		List<IKongaUiDelegate> ret = new ArrayList<IKongaUiDelegate>();
+		for( KongaObject ewO : m_bag.keySet() ) {
+		    ret.addAll( m_bag.get(ewO) );
+		}
+		return ret;
+	}

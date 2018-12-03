@@ -1,0 +1,4 @@
+    private void installUndoRedo() {
+        IUndoRedoSupportManager mgr = getUndoRedoSupportManager();
+        mgr.enableUndoRedo(m_entityBox.getInputComponent());
+    }

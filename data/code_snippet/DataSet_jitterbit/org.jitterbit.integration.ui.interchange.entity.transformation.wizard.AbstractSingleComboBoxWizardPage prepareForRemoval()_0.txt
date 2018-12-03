@@ -1,0 +1,4 @@
+    protected void prepareForRemoval() {
+        ((IntegrationEntityComboBox) m_entityBox.getInputComponent()).dispose();
+        super.prepareForRemoval();
+    }

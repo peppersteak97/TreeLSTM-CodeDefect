@@ -1,0 +1,13 @@
+  public void testRemove() {
+    ModelList<Integer>.ModelIterator itFull = fFull.getIterator();
+    assertTrue("#0.0", fEmpty.isEmpty());
+    assertEquals("#0.1", 0, fEmpty.length());
+    assertEquals("#0.2", 0, fFull.length());
+
+    itFull.insert(Integer.valueOf(5));
+    assertTrue("#2.0", !fFull.isEmpty());
+    assertEquals("#2.1", 1, fFull.length());
+    itFull.remove();
+    assertTrue("#3.0", fFull.isEmpty());
+    assertEquals("#3.1", 0, fFull.length());
+  }

@@ -1,0 +1,12 @@
+    public void confirmAll() {
+        setToRead(false);
+        if (_progState != IDLE) log.warn("Programming state "+_progState+", not IDLE, in read()");
+        if (((CvValue)_cvVector.elementAt(_row)).siVal() >= 0) {
+            _progState = WRITING_PI4C;
+        } else {
+            _progState = WRITING_SI4C;
+        }
+        retries = 0;
+        if (log.isDebugEnabled()) log.debug("invoke PI write for CV confirm");
+        ((CvValue)_cvVector.elementAt(_row)).writePI(_status);
+    }

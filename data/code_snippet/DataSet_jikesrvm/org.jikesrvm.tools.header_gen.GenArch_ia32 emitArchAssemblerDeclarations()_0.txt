@@ -1,0 +1,6 @@
+  public void emitArchAssemblerDeclarations() {
+    if (BaselineConstants.TR != BaselineConstants.ESI) {
+      throw new Error("Unexpected TR value");
+    }
+    p("#define TR %ESI;\n");
+  }

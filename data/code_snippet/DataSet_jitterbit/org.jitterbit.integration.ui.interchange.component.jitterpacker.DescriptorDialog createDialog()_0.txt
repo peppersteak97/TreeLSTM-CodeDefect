@@ -1,0 +1,3 @@
+    private KongaDialog createDialog() {
+        return createDialog(getOwner(), getDescriptorUi());
+    }

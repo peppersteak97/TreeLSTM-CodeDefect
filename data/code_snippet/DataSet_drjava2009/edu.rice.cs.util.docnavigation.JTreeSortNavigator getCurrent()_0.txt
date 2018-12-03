@@ -1,0 +1,5 @@
+  public ItemT getCurrent() {
+    NodeData<ItemT> current = _current;
+    if (current == null) return null;
+    return current.execute(_leafVisitor);
+  }

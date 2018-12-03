@@ -1,0 +1,4 @@
+    protected void sendFunctionGroup1() {
+        commandStation.function0Through4Packet(address,
+                                               getF0(), getF1(), getF2(), getF3(), getF4());
+    }

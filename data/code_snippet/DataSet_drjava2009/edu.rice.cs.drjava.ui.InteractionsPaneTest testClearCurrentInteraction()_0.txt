@@ -1,0 +1,9 @@
+  public void testClearCurrentInteraction() throws EditDocumentException {
+    _doc.append("typed text", InteractionsDocument.DEFAULT_STYLE);
+    Utilities.invokeAndWait(new Runnable() { public void run() { _controller.moveToEnd(); } });
+    
+    _doc.clearCurrentInteraction();
+    Utilities.clearEventQueue();
+    assertEquals("Caret is at the prompt after output cleared.", _doc.getPromptPos(), _pane.getCaretPosition());
+    assertEquals("Prompt is at the end after output cleared.", _doc.getLength(), _doc.getPromptPos());
+  }

@@ -1,0 +1,14 @@
+  public void chooseString() {
+    String s = (String)JOptionPane.showInputDialog(_parent,
+                                                   "Enter the value to add:",
+                                                   "Add",
+                                                   JOptionPane.QUESTION_MESSAGE,
+                                                   null,
+                                                   null,
+                                                   "");    
+    if ((s != null) && (s.length() > 0)) {
+      if (verify(s)) {
+        _addValue(s);
+      }
+    }
+  }

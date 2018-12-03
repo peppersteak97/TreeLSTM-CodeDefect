@@ -1,0 +1,3 @@
+    JComponent getDisplayer() {
+        return ComponentDecorFactory.centerBorder(m_list).getUi();
+    }

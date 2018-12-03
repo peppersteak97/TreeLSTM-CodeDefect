@@ -1,0 +1,3 @@
+  public Iterator<T> iterator() {
+    return new LinkedListIteratorRVM<T>(this);
+  }

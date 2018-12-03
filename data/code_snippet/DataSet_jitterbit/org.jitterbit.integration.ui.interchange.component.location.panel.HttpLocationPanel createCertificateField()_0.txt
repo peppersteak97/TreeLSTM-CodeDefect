@@ -1,0 +1,5 @@
+    private void createCertificateField() {
+        String sCertificate = PackageResources.Http.CERTIFICATE;
+        m_certificate = InputFieldFactory.getTextInputField(sCertificate, sCertificate,
+                        20, true);
+    }

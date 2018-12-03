@@ -1,0 +1,5 @@
+  public static void init() {
+    options = new OptOptions();
+    optimizationPlan = OptimizationPlanner.createOptimizationPlan(options);
+    options.ESCAPE_INVOKEE_THREAD_LOCAL = true;
+  }

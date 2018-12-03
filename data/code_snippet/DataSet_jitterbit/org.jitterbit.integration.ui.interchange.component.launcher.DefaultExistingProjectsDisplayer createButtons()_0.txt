@@ -1,0 +1,7 @@
+    private void createButtons() {
+        IButtonFactory factory = ComponentFactories.buttonFactory();
+        m_openButton = factory.newButton(PackageResources.Buttons.OPEN);
+        m_openButton.addActionListener(this);
+        m_cancelButton = factory.newButton(PackageResources.Buttons.CANCEL);
+        m_cancelButton.addActionListener(this);
+    }

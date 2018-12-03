@@ -1,0 +1,9 @@
+    private void createTableModel() {
+        List<IOperationLogEntry> entries = getDisplayedEntries();
+        if (entries == null || entries.isEmpty()) {
+            m_tableModel = OperationLogTableModel.createEmpty();
+        }
+        else {
+            m_tableModel = OperationLogTableModel.create(entries, false);
+        }
+    }

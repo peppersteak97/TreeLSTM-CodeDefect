@@ -1,0 +1,3 @@
+    public BezierGraphRoute getManagedRoute() {
+        return (BezierGraphRoute) super.getManagedRoute();
+    }

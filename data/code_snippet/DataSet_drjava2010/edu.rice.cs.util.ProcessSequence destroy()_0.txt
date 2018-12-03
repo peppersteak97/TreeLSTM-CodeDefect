@@ -1,0 +1,7 @@
+  public void destroy() {
+    _aborted = true;
+    for(int i = 0; i < _processes.length; ++i) {
+      if (_processes[i] != null) { _processes[i].destroy(); }
+    }
+    stopAllRedirectors();
+  }

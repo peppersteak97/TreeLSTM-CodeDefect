@@ -1,0 +1,5 @@
+    private void createPortField() {
+        String portLabel = PackageResources.Ftp.PORT;
+        m_port = InputFieldFactory.getIntegerInputField(
+                        portLabel, portLabel, 1, 65535, 5, true);
+    }

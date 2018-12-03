@@ -1,0 +1,4 @@
+    String immedVal() {
+        if (immed != 0) return "IMMED_DATA";
+        else return "TARGET_DATA";
+    }

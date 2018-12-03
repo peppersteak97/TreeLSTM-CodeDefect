@@ -1,0 +1,3 @@
+    public Set<Map.Entry<K, Collection<? extends V>>> entrySet() {
+        return m_hashBag.entrySet();
+    }

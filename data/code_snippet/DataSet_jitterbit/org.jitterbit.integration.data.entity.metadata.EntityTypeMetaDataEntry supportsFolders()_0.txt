@@ -1,0 +1,3 @@
+    public boolean supportsFolders() {
+        return m_folderData != null;
+    }

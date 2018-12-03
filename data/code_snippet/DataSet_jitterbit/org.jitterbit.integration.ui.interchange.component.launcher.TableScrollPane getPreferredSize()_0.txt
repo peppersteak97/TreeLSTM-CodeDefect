@@ -1,0 +1,5 @@
+    public Dimension getPreferredSize() {
+        Dimension d = super.getPreferredSize();
+        return LaunchScreen.EXPAND_TABLE ? 
+                new Dimension(m_width, d.height) : d;
+    }

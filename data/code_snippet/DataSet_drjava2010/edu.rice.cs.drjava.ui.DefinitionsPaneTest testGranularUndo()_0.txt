@@ -1,0 +1,135 @@
+  public void testGranularUndo() throws BadLocationException {
+    final DefinitionsPane defPane = _frame.getCurrentDefPane();
+    final OpenDefinitionsDocument doc = defPane.getOpenDefDocument();
+    
+    assertEquals("Should start out empty.", "",  doc.getText());
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        defPane.processKeyEvent(new KeyEvent(defPane, PRESSED, (new Date()).getTime(), 0, KeyEvent.VK_A, UNDEFINED));
+        defPane.processKeyEvent(new KeyEvent(defPane, TYPED, (new Date()).getTime(), 0, VK_UNDEF, 'a'));
+        defPane.processKeyEvent(new KeyEvent(defPane, RELEASED, (new Date()).getTime(), 0, KeyEvent.VK_A, UNDEFINED));
+        assertEquals("caret at line end", doc.getLength(), defPane.getCaretPosition());
+        
+        defPane.processKeyEvent(new KeyEvent(defPane, PRESSED, (new Date()).getTime(), 0, BANG, UNDEFINED));
+        defPane.processKeyEvent(new KeyEvent(defPane, TYPED, (new Date()).getTime(), 0, VK_UNDEF, '!'));
+        defPane.processKeyEvent(new KeyEvent(defPane, RELEASED, (new Date()).getTime(), 0, BANG, UNDEFINED));
+        assertEquals("caret at line end", doc.getLength(), defPane.getCaretPosition());
+        
+        defPane.processKeyEvent(new KeyEvent(defPane, PRESSED, (new Date()).getTime(), SHIFT, KeyEvent.VK_B, UNDEFINED));
+        defPane.processKeyEvent(new KeyEvent(defPane, TYPED, (new Date()).getTime(), 0, VK_UNDEF, 'B'));
+        defPane.processKeyEvent(new KeyEvent(defPane, RELEASED, (new Date()).getTime(), SHIFT, KeyEvent.VK_B, UNDEFINED));
+        assertEquals("caret at line end", doc.getLength(), defPane.getCaretPosition());
+        
+        defPane.processKeyEvent(new KeyEvent(defPane, PRESSED, (new Date()).getTime(), 0, KeyEvent.VK_9, UNDEFINED));
+        defPane.processKeyEvent(new KeyEvent(defPane, TYPED, (new Date()).getTime(), 0, VK_UNDEF, '9'));
+        defPane.processKeyEvent(new KeyEvent(defPane, RELEASED, (new Date()).getTime(), 0, KeyEvent.VK_9, UNDEFINED));
+        assertEquals("caret at line end", doc.getLength(), defPane.getCaretPosition());
+        _frame.validate();
+      } 
+    });
+    Utilities.clearEventQueue();
+    
+    assertEquals("The text should have been inserted", "a!B9",  doc.getText());
+    
+    final Vector<KeyStroke> ks = DrJava.getConfig().getSetting(OptionConstants.KEY_UNDO);
+    final Action a = KeyBindingManager.ONLY.get(ks.get(0));
+    
+    final KeyEvent e = new KeyEvent(defPane, PRESSED, 0, ks.get(0).getModifiers(), ks.get(0).getKeyCode(), UNDEFINED);
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+      defPane.processKeyEvent(e); 
+      _frame.validate();
+      } 
+    });
+    Utilities.clearEventQueue();
+  
+    assertEquals("Should have undone correctly.", "", doc.getText());
+    
+    /* Test bug #905405 Undo Alt+Anything Causes Exception */
+    
+    
+     Utilities.invokeAndWait(new Runnable() {
+       public void run() {
+         defPane.processKeyEvent(new KeyEvent(defPane, PRESSED, (new Date()).getTime(), ALT, KeyEvent.VK_Q, UNDEFINED));
+         defPane.processKeyEvent(new KeyEvent(defPane,
+                                                  TYPED,
+                                                  (new Date()).getTime(),
+                                                  ALT,
+                                                  VK_UNDEF, 'Q'));
+         defPane.processKeyEvent(new KeyEvent(defPane,
+                                                  RELEASED,
+                                                  (new Date()).getTime(),
+                                                  ALT,
+                                                  KeyEvent.VK_Q, UNDEFINED));
+         
+         /*
+          * If the bug is not fixed in DefinitionsPane.processKeyEvent, this test
+          * will not fail because the exception is thrown in another thread.
+          * However, the stack trace will get printed onto the console.  I don't
+          * know how to fix this problem in case someone unfixes the bug.
+          */
+         SwingUtilities.notifyAction(a, ks.get(0), e, e.getSource(), e.getModifiers());
+         _frame.validate();
+       }
+     });
+     Utilities.clearEventQueue();
+    
+    /* This part doesn't work right now because by just calling processKeyEvent we
+     * have to manually move the caret, and the UndoWithPosition is off by one.  This
+     * bites us since when the backspace is done, the backspace undo position is
+     * still at position 1 which doesn't exist in the document anymore.
+     *
+     * 
+     definitions.processKeyEvent(new KeyEvent(definitions,
+     PRESSED,
+     (new Date()).getTime(),
+     0,
+     VK_UNDEF, UNDEFINED));
+     definitions.processKeyEvent(new KeyEvent(definitions,
+     TYPED,
+     (new Date()).getTime(),
+     0,
+     VK_UNDEF, 'a'));
+     definitions.processKeyEvent(new KeyEvent(definitions,
+     RELEASED,
+     (new Date()).getTime(),
+     0,
+     VK_UNDEF, UNDEFINED));
+     definitions.setCaretPosition(doc.getLength());
+     
+     assertEquals("The text should have been inserted", "a",
+     doc.getText());
+     
+     definitions.processKeyEvent(new KeyEvent(definitions,
+     PRESSED,
+     (new Date()).getTime(),
+     0,
+     KeyEvent.VK_BACK_SPACE, UNDEFINED));
+     definitions.processKeyEvent(new KeyEvent(definitions,
+     TYPED,
+     (new Date()).getTime(),
+     0,
+     VK_UNDEF, '\010'));
+     definitions.processKeyEvent(new KeyEvent(definitions,
+     RELEASED,
+     (new Date()).getTime(),
+     0,
+     KeyEvent.VK_BACK_SPACE, UNDEFINED));
+     System.out.println(definitions.getCaretPosition());
+     definitions.setCaretPosition(doc.getLength());
+     
+     assertEquals("The text should have been deleted", "",
+     doc.getText());
+     
+     definitions.processKeyEvent(new KeyEvent(definitions,
+     PRESSED,
+     (new Date()).getTime(),
+     ks.getModifiers(),
+     ks.getKeyCode(), UNDEFINED));
+     assertEquals("Should have undone correctly.", "a",
+     doc.getText());*/
+     
+     _log.log("testGranularUndo completed");
+  }

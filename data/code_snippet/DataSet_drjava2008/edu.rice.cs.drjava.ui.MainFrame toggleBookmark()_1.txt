@@ -1,0 +1,7 @@
+  public void toggleBookmark() {
+    assert EventQueue.isDispatchThread();
+    addToBrowserHistory();
+    OpenDefinitionsDocument odd = getCurrentDefPane().getOpenDefDocument();
+    _model._toggleBookmark(_currentDefPane.getSelectionStart(), _currentDefPane.getSelectionEnd()); 
+    showTab(_bookmarksPanel, true);
+  }

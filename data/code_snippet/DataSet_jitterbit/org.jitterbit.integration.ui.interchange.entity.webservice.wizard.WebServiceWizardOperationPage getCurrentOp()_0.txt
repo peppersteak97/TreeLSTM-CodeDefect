@@ -1,0 +1,3 @@
+    synchronized WebServiceOperationInfo getCurrentOp() {
+        return m_currentOpInfo;
+    }

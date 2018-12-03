@@ -1,0 +1,7 @@
+    public String getWhereClause() {
+        String where = m_sqlTextArea.getText().trim();
+        if (where.toLowerCase().startsWith("where ")) {
+            where = where.substring(6);
+        }
+        return where;
+    }

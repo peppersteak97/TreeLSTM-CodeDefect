@@ -1,0 +1,3 @@
+	public Dimension getMaximumSize() {
+		return new Dimension( super.getMaximumSize().width, super.getPreferredSize().height );
+	}

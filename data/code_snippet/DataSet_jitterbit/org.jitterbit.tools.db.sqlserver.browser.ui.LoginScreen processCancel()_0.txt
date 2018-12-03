@@ -1,0 +1,4 @@
+    private void processCancel() {
+        m_frame.dispose();
+        m_listener.processLogin( new LoginEvent(this, LoginEvent.Status.CANCEL) );
+    }

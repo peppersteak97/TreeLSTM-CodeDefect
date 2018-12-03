@@ -1,0 +1,6 @@
+    protected void onAddNew() {
+        super.onAddNew();
+        if (m_recalculateAction != null) {
+            m_recalculateAction.setEnabled(getModel().getRowCount() > 0);
+        }
+    }

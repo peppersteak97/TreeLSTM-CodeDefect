@@ -1,0 +1,3 @@
+  public boolean hasBackwardsBranch() {
+    return (summaryFlags & HAS_BACK_BRANCH) != 0;
+  }

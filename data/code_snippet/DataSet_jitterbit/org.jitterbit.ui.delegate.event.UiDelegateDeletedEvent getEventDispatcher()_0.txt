@@ -1,0 +1,6 @@
+	public synchronized IUiDelegateEventDispatcher getEventDispatcher() {
+		if( m_dispatcher == null ) {
+			m_dispatcher = new EventAction();
+		}
+		return m_dispatcher;
+	}

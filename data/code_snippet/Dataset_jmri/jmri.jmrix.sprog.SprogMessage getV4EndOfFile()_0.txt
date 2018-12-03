@@ -1,0 +1,9 @@
+    static public SprogMessage getV4EndOfFile() {
+      int l = 10;
+      SprogMessage m = new SprogMessage(l);
+      m.setV4Length(0);
+      m.setV4Address(0);
+      m.setV4RecType(1);
+      m.setV4Checksum(0, 0, 1, new int [0]);
+      return m.v4frame();
+    }

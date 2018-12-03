@@ -1,0 +1,8 @@
+    private boolean hasSelectedKeys() {
+        for (DbObjectKeyDefiner def : m_keyDefiners) {
+            if (def.hasSelectedKeys()) {
+                return true;
+            }
+        }
+        return false;
+    }

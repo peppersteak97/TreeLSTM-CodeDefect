@@ -1,0 +1,6 @@
+    private void createComponents() {
+        String caption = PackageResources.Labels.LOG_WARNINGS_ERROR;
+        m_checkLogWarnings = InputFieldFactory.getCheckBoxInputField(caption, caption);
+        caption = PackageResources.Labels.HISTORY;
+        m_checkHistory = InputFieldFactory.getCheckBoxInputField(caption, caption);
+    }

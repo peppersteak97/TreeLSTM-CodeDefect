@@ -1,0 +1,5 @@
+  public boolean requestFocusInWindow() {
+    super.requestFocusInWindow();
+    _findField.selectAll();
+    return _findField.requestFocusInWindow();
+  }

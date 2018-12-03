@@ -1,0 +1,3 @@
+    public void validateModel() throws TextDocumentDefinitionException {
+        new FieldTableModelValidator(this).validate();
+    }

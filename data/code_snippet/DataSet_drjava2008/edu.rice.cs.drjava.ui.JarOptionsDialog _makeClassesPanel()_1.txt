@@ -1,0 +1,43 @@
+  private JPanel _makeClassesPanel() {
+    JPanel panel = new JPanel();
+    GridBagConstraints gridBagConstraints;
+    panel.setLayout(new GridBagLayout());
+    
+    _jarClasses = new JCheckBox(new AbstractAction("Jar classes") {
+      public void actionPerformed(ActionEvent e) {
+        _toggleClassOptions();
+        _okButton.setEnabled(_jarSources.isSelected() || _jarClasses.isSelected());
+      }
+    });
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.weightx = 1.0;
+    gridBagConstraints.anchor = GridBagConstraints.WEST;
+    panel.add(_jarClasses, gridBagConstraints);
+    
+    JPanel addclasses = new JPanel();
+    addclasses.setLayout(new GridBagLayout());
+    _makeExecutable = new JCheckBox(new AbstractAction("Make executable") {
+      public void actionPerformed(ActionEvent e) {
+        _toggleMainClass();        
+      }
+    });
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.anchor = GridBagConstraints.WEST;
+    addclasses.add(_makeExecutable, gridBagConstraints);
+    
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+    gridBagConstraints.insets = new Insets(0, 20, 0, 0);
+    addclasses.add(_makeMainClassSelectorPanel(), gridBagConstraints);
+    
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.anchor = GridBagConstraints.WEST;
+    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+    gridBagConstraints.insets = new Insets(0, 25, 0, 0);
+    panel.add(addclasses, gridBagConstraints);
+    
+    return panel;
+  }

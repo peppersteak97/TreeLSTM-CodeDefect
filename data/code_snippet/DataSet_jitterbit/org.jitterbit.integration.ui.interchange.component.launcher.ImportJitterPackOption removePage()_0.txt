@@ -1,0 +1,3 @@
+    private void removePage() {
+        m_importPage.removeFromWindow(true);
+    }

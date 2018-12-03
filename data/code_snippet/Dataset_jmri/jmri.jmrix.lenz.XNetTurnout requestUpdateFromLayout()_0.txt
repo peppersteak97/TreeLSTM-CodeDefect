@@ -1,0 +1,5 @@
+    public void requestUpdateFromLayout() {
+       XNetMessage msg = XNetMessage.getFeedbackRequestMsg(mNumber,
+                                                 (mNumber%4)<2); 
+       XNetTrafficController.instance().sendXNetMessage(msg, null);
+    }

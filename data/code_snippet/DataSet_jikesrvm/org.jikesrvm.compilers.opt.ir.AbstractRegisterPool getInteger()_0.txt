@@ -1,0 +1,5 @@
+  public Register getInteger() {
+    Register reg = makeNewReg();
+    reg.setInteger();
+    return reg;
+  }

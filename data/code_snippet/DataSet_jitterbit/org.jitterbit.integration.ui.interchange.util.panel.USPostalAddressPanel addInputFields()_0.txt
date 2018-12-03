@@ -1,0 +1,7 @@
+    private void addInputFields() {
+        addInputField(m_address_1);
+        addInputField(m_address_2);
+        addInputField(m_city);
+        addInputField(m_state);
+        addInputField(m_zip);
+    }

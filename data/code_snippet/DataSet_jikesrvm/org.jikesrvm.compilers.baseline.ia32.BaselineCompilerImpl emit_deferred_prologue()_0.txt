@@ -1,0 +1,24 @@
+  protected final void emit_deferred_prologue() {
+
+    if (VM.VerifyAssertions) VM._assert(method.isForOsrSpecialization());
+
+    if (isInterruptible) {
+      ThreadLocalState.emitMoveFieldToReg(asm, S0, Entrypoints.stackLimitField.getOffset());
+      if (VM.BuildFor32Addr) {
+        asm.emitSUB_Reg_Reg(S0, SP);
+        asm.emitADD_Reg_Imm(S0, method.getOperandWords() << LG_WORDSIZE);
+      } else {
+        asm.emitSUB_Reg_Reg_Quad(S0, SP);
+        asm.emitADD_Reg_Imm_Quad(S0, method.getOperandWords() << LG_WORDSIZE);
+      }
+      asm.emitBranchLikelyNextInstruction();
+      fr.resolve(asm);
+    } else {
+    }
+
+    /* never do monitor enter for synced method since the specialized
+     * code starts after original monitor enter.
+     */
+
+    genThreadSwitchTest(RVMThread.PROLOGUE);
+  }

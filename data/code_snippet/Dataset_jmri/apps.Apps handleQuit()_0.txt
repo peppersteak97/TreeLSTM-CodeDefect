@@ -1,0 +1,4 @@
+    static public void handleQuit() {
+        log.debug("Start handleQuit");
+        InstanceManager.shutDownManagerInstance().shutdown();
+    }

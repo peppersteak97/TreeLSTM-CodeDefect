@@ -1,0 +1,3 @@
+  public final OutEdgeEnumeration outEdges() {
+    return new OutEdgeEnumeration(this);
+  }

@@ -1,0 +1,53 @@
+  public static JComponent createCopyrightTab() {
+    final JPanel panel = new JPanel(new BorderLayout());
+
+    final StringBuilder sb = new StringBuilder("DrJava Version : ");
+    sb.append(Version.getVersionString());
+    sb.append("\nDrJava Build Time: ");
+    sb.append(Version.getBuildTimeString());
+    sb.append("\n\nDrJava Configuration File: ");
+    sb.append(DrJava.getPropertiesFile().getAbsolutePath());
+    sb.append("\n\nUsed memory: about ");
+    sb.append(StringOps.memSizeToString(Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()));
+    sb.append("\nFree memory: about ");
+    sb.append(StringOps.memSizeToString(Runtime.getRuntime().freeMemory()));
+    sb.append("\nTotal memory: about ");
+    sb.append(StringOps.memSizeToString(Runtime.getRuntime().totalMemory()));
+    sb.append("\nTotal memory can expand to: about ");
+    sb.append(StringOps.memSizeToString(Runtime.getRuntime().maxMemory()));
+    sb.append("\n\n");
+    sb.append(COPYRIGHT);
+    final JComponent copy = createTextScroller(sb.toString());
+    wrapBorder(copy,new EmptyBorder(0,0,5,0));
+
+    final LogoList logos = new LogoList();
+    logos.resizeLogos();
+
+    final JPanel logoPanel = new JPanel();
+    logoPanel.setLayout(new BoxLayout(logoPanel,BoxLayout.X_AXIS));
+    logoPanel.add(Box.createHorizontalGlue());
+    java.util.Iterator it = logos.iterator();
+    while(it.hasNext()) {
+      final JComponent l = (JComponent) it.next();
+      logoPanel.add(l);
+      l.setCursor(new Cursor(Cursor.HAND_CURSOR));
+      final String url = (String)l.getClientProperty("url");
+      if (url != null) {
+        l.setToolTipText(url);
+        l.addMouseListener(new MouseListener() {
+          public void mousePressed(MouseEvent e) { }        
+          public void mouseReleased(MouseEvent e) { }        
+          public void mouseEntered(MouseEvent e) { }        
+          public void mouseExited(MouseEvent e) { }        
+          public void mouseClicked(MouseEvent e) {
+            try { PlatformFactory.ONLY.openURL(new URL(url)); } 
+            catch(Exception ex) { /* ignore, just not open web page */ }          
+          }
+        });
+      }
+      logoPanel.add(Box.createHorizontalGlue());
+    }
+    panel.add(logoPanel,BorderLayout.SOUTH);
+    panel.add(copy,BorderLayout.CENTER);
+    return panel;
+  }

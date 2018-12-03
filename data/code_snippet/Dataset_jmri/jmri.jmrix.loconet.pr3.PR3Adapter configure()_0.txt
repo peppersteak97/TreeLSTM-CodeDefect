@@ -1,0 +1,38 @@
+    public void configure() {
+
+        if (commandStationName.startsWith("PR3")) {
+            jmri.jmrix.loconet.pr2.LnPacketizer packets = new jmri.jmrix.loconet.pr2.LnPacketizer();
+            packets.connectPort(this);
+    
+            configureCommandStation(mCanRead, mProgPowersOff, commandStationName);
+            configureManagersPR2();
+    
+            packets.startThreads();
+            jmri.jmrix.loconet.ActiveFlag.setActive();
+            
+            LocoNetMessage msg = new LocoNetMessage( 6 ) ;
+            msg.setOpCode( 0xD3 );
+            msg.setElement( 1, 0x10 );
+            msg.setElement( 3, 0 );
+            msg.setElement( 4, 0 );
+            LnTrafficController.instance().sendLocoNetMessage(msg);
+            
+        } else {
+            LnPacketizer packets = new LnPacketizer();
+            packets.connectPort(this);
+    
+            configureCommandStation(mCanRead, mProgPowersOff, commandStationName);
+            configureManagersMS100();
+    
+            packets.startThreads();
+            jmri.jmrix.loconet.ActiveFlag.setActive();
+            
+            LocoNetMessage msg = new LocoNetMessage( 6 ) ;
+            msg.setOpCode( 0xD3 );
+            msg.setElement( 1, 0x10 );
+            if (commandStationName.startsWith("Stand-alone"))
+            msg.setElement( 3, 0 );
+            msg.setElement( 4, 0 );
+            LnTrafficController.instance().sendLocoNetMessage(msg);
+        }
+    }

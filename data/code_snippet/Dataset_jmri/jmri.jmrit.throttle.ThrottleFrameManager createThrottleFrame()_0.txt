@@ -1,0 +1,9 @@
+	public ThrottleFrame createThrottleFrame()
+	{
+		ThrottleFrame tf = new ThrottleFrame();
+		tf.pack();
+		KeyListenerInstaller.installKeyListenerOnAllComponents(throttleCycler, tf);
+		throttleFrames.add(tf);
+		activeFrame = throttleFrames.indexOf(tf);
+		return tf;
+	}

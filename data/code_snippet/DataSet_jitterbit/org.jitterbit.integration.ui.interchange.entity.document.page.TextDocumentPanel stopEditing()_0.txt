@@ -1,0 +1,5 @@
+    public void stopEditing() {
+        for (TextDocumentDefiner definer : documentDefiners) {
+            definer.stopEditing();
+        }
+    }

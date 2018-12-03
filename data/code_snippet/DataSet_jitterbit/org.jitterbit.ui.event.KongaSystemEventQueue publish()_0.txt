@@ -1,0 +1,11 @@
+	public synchronized void publish() {
+        UiUtils.runOnEventThread(new Runnable() {
+            public void run() {
+                EventQueue q = Toolkit.getDefaultToolkit().getSystemEventQueue();
+                if( q != KongaSystemEventQueue.this ) {
+                    Toolkit.getDefaultToolkit().getSystemEventQueue().push(
+                            KongaSystemEventQueue.this);
+                }
+            }
+        });
+	}

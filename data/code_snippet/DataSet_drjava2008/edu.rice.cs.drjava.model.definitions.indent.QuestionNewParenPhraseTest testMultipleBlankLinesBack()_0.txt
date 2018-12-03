@@ -1,0 +1,9 @@
+  public void testMultipleBlankLinesBack() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionNewParenPhrase(null, null);
+    
+    _setDocText("for(\n\nint i;\n\n\ni > 0;;\n)");
+    assertTrue("line after open paren", rule.testApplyRule(_doc, 5, Indenter.IndentReason.OTHER));
+    assertTrue("two lines after open paren", rule.testApplyRule(_doc, 6, Indenter.IndentReason.OTHER));
+    assertTrue("line after semicolon", rule.testApplyRule(_doc, 13, Indenter.IndentReason.OTHER));
+    assertTrue("two lines after semicolon", rule.testApplyRule(_doc, 16, Indenter.IndentReason.OTHER));
+  }

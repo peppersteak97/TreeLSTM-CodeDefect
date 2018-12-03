@@ -1,0 +1,1 @@
+    public boolean isBootMode() {return gcState == BOOTMODE; }

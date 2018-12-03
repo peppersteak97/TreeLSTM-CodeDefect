@@ -1,0 +1,3 @@
+  public boolean isRuntimeServiceMethod() {
+    return (summaryFlags & IS_RS_METHOD) != 0;
+  }

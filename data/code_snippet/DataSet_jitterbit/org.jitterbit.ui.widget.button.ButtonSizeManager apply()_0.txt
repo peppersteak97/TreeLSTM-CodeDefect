@@ -1,0 +1,7 @@
+    public void apply() {
+        for (AbstractButton b : m_buttons) {
+            b.setPreferredSize(m_prefSize);
+            b.setMaximumSize(m_prefSize);
+            b.setMinimumSize(m_prefSize);
+        }
+    }

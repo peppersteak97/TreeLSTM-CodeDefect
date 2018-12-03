@@ -1,0 +1,4 @@
+    private void createFrontLabel() {
+        ResourceBundle res = SchedulePage.getResources();
+        m_frontLabel = InputLabelText.makeJLabel(res.getString("The"));
+    }

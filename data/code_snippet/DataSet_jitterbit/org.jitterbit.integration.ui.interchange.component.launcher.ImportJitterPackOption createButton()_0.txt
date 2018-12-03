@@ -1,0 +1,4 @@
+    private void createButton() {
+        m_startButton = ComponentFactories.buttonFactory().newButton(
+                new StartImportAction());
+    }

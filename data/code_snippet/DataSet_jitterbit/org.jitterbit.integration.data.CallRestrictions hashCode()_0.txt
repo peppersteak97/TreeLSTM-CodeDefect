@@ -1,0 +1,3 @@
+    public int hashCode() {
+        return m_data.hashCode();
+    }

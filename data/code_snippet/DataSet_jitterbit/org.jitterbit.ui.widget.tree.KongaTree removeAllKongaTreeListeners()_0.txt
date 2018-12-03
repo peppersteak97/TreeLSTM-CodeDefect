@@ -1,0 +1,3 @@
+    public void removeAllKongaTreeListeners() {
+        m_treeListenerList.clear();
+    }

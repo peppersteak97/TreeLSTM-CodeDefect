@@ -1,0 +1,4 @@
+    public void reset() {
+        box.setSelectedIndex(0);
+        text.setText("");
+    }

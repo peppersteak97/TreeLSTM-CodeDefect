@@ -1,0 +1,16 @@
+  public void testMisc() throws CloneNotSupportedException {
+    PropertyMaps pm = PropertyMaps.TEMPLATE.clone();
+    @SuppressWarnings("unused") DrJavaProperty p;
+
+    p = pm.getProperty("DrJava","drjava.current.time.millis");
+    
+    p = pm.getProperty("Misc","ignore");
+    
+    p = pm.getProperty("Config","process.separator");
+    
+    p = pm.getProperty("Misc","enclosing.djapp.file");
+    
+    p = pm.getProperty("Misc","drjava.file");
+    
+    p = pm.getProperty("Misc","echo");
+  }

@@ -1,0 +1,37 @@
+    private void kickoffLoadInputStructureJob() {
+        ILoadStructureInvoker invoker = new ILoadStructureInvoker() {
+
+            public void displayLoadedStructures(final IMappingTreeStructure inputJtr, 
+                                                final IMappingTreeStructure outputJtr) {
+                if (inputJtr != null) {
+                    EventQueue.invokeLater(new Runnable() {
+
+                        public void run() {
+                            m_expressionTreeComponent.readMappingStructure(inputJtr, "Source");
+                            updateDatabaseBinding();
+                        }
+                    });
+                }
+            }
+
+            public Transformation getTransformation() {
+                return m_TreeMapper.m_Transformation;
+            }
+
+            public boolean isAskingForInputStructure() {
+                return true;
+            }
+
+            public boolean isAskingForOutputStructure() {
+                return false;
+            }
+
+            public void jobHasBeenInitialized() {
+            }
+
+            public void jobHasCompleted() {
+            }
+        };
+        IUiJob job = new LoadStructuresJob(invoker, m_TreeMapper.getTreeStructureCache(), true);
+        IntegrationUi.getUi().getJobManager().submitForParallellProcessing(job);
+    }

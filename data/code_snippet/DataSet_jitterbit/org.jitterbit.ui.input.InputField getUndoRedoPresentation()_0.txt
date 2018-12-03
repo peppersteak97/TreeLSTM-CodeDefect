@@ -1,0 +1,3 @@
+    public String getUndoRedoPresentation() {
+        return m_undoRedoPresentation;
+    }

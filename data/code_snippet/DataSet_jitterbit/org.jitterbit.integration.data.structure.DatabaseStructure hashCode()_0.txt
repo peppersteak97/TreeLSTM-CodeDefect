@@ -1,0 +1,10 @@
+    public int hashCode() {
+        int hash = super.hashCode();
+        hash = 37 * hash + m_dbTables.hashCode();
+        hash = 37 * hash + m_dbFields.hashCode();
+        hash = 37 * hash + m_relations.hashCode();
+        hash = 37 * hash + m_treeFilters.hashCode();
+        hash = 37 * hash + m_sqlScript.hashCode();
+        hash = 37 * hash + (m_location == null ? 0 : m_location.hashCode());
+        return hash;
+    }

@@ -1,0 +1,8 @@
+	protected boolean deselectBubbles() {
+		if ( deselectOtherBubbles(null) ) {
+			this.revalidate();
+			this.repaint();
+			return true;
+		}
+		return false;
+	}

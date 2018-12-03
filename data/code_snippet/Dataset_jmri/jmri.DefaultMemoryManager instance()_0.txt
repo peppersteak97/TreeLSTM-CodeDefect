@@ -1,0 +1,4 @@
+   public static DefaultMemoryManager instance() {
+   	if (_instance == null) _instance = new DefaultMemoryManager();
+   	return _instance;
+   }

@@ -1,0 +1,6 @@
+    public final FindEvent getCurrentFindEvent() {
+        return new FindEvent(this, m_text.getText(), m_checkCase.isSelected(),
+                        m_checkWholeWords.isSelected(),
+                        m_radioDown.isSelected() ? SearchDirection.DOWN
+                                        : SearchDirection.UP);
+    }

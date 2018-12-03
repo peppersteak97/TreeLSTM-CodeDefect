@@ -1,0 +1,3 @@
+    public final void updateCursor() {
+        m_window.setCursor(m_cursor);
+    }

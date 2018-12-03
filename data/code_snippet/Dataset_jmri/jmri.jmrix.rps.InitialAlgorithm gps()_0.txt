@@ -1,0 +1,121 @@
+boolean gps()						{// GPS Position Solver
+  double    xie, yie, zie, rie, xje, yje, zje, rje;
+  double    xij, yij, zij, rij, xik, yik, zik, rik;
+  double    Ca, Cb, Cc, Cd, Ce, Cf, Ci, Cj, Cx, Cy, Cz;
+
+  x0 = y0 = z0 = r0 = 9.9999999e99;
+  
+  r01 = -1;
+  r02 = -1;
+  
+  if (ngps == 3)				{
+    xik = xi - xk;  yik = yi - yk;  zik = zi - zk;
+    log.debug("xik="+xik+" yik="+yik);
+    xjk = xj - xk;  yjk = yj - yk;  zjk = zj - zk;
+    log.debug("xjk="+xjk+" yjk="+yjk);
+    Ci = (xi*xi - xk*xk + yi*yi - yk*yk + zi*zi - zk*zk - ri*ri + rk*rk)/2;
+    Cj = (xj*xj - xk*xk + yj*yj - yk*yk + zj*zj - zk*zk - rj*rj + rk*rk)/2;
+    Dz = xik*yjk - xjk*yik;  Dy = zik*xjk - zjk*xik;  Dx = yik*zjk - yjk*zik;
+
+    if ((Math.abs(Dx) > Math.abs(Dy)) && (Math.abs(Dx) > Math.abs(Dz))) {
+      log.debug("case 1");
+      Ay = (zik*xjk - zjk*xik)/Dx;  By = (zjk*Ci - zik*Cj)/Dx;
+      Az = (yjk*xik - yik*xjk)/Dx;  Bz = (yik*Cj - yjk*Ci)/Dx;
+      Ax = Ay*Ay + Az*Az + 1.0			;
+      Bx = (Ay*(yk - By) + Az*(zk - Bz) + xk)/Ax;
+      Cx = Bx*Bx - (By*By+Bz*Bz-2*yk*By-2*zk*Bz+yk*yk+zk*zk+xk*xk-rk*rk)/Ax;
+      if (Cx < 0.0)	{ 
+        log.warn("Cx is "+Cx+", less than 0, in 3 sensor case");
+        return false;
+      }
+      x1 = Bx + Math.sqrt(Cx);  y1 = Ay*x1 + By;  z1 = Az*x1 + Bz;
+      x2 = 2*Bx - x1;      y2 = Ay*x2 + By;  z2 = Az*x2 + Bz;
+    }
+    else if (Math.abs(Dy) > Math.abs(Dz))		{
+      log.debug("case 2");
+      Az = (xik*yjk - xjk*yik)/Dy;  Bz = (xjk*Ci - xik*Cj)/Dy;
+      Ax = (zjk*yik - zik*yjk)/Dy;  Bx = (zik*Cj - zjk*Ci)/Dy;
+      Ay = Az*Az + Ax*Ax + 1.0			;
+      By = (Az*(zk - Bz) + Ax*(xk - Bx) + yk)/Ay;
+      Cy = By*By - (Bz*Bz+Bx*Bx-2*zk*Bz-2*xk*Bx+zk*zk+xk*xk+yk*yk-rk*rk)/Ay;
+      if (Cy < 0.0)	{
+        log.warn("Cy is "+Cy+", less than 0, in 3 sensor case");
+        return false;
+      }
+      y1 = By + Math.sqrt(Cy);  z1 = Az*y1 + Bz;  x1 = Ax*y1 + Bx;
+      y2 = 2*By - y1;      z2 = Az*y2 + Bz;  x2 = Ax*y2 + Bx;
+    }
+    else					{
+      log.debug("case 3");
+      if (Dz == 0.0) {
+        log.warn("Dz is 0 in 3 sensor case");
+        return false;
+      }
+      Ax = (yik*zjk - yjk*zik)/Dz;  Bx = (yjk*Ci - yik*Cj)/Dz;
+      Ay = (xjk*zik - xik*zjk)/Dz;  By = (xik*Cj - xjk*Ci)/Dz;
+      Az = Ax*Ax + Ay*Ay + 1.0			;
+      Bz = (Ax*(xk - Bx) + Ay*(yk - By) + zk)/Az;
+      Cz = Bz*Bz - (Bx*Bx+By*By-2*xk*Bx-2*yk*By+xk*xk+yk*yk+zk*zk-rk*rk)/Az;
+      if (Cz < 0.0)	{ 
+        log.warn("Cz is "+Cz+", less than 0, in 3 sensor case");
+        return false;
+      }
+      z1 = Bz + Math.sqrt(Cz);  x1 = Ax*z1 + Bx;  y1 = Ay*z1 + By;
+      z2 = 2*Bz - z1;      x2 = Ax*z2 + Bx;  y2 = Ay*z2 + By;
+      log.debug("x1 = "+x1);
+      log.debug("x2 = "+x2);
+    }
+  }
+  else if (ngps == 4)				{
+    xie = xi + 1e-9;  yie = yi - 7e-9;  zie = zi - 4e-9;  rie = ri + 6e-9;
+    xje = xj + 5e-9;  yje = yj - 3e-9;  zje = zj + 2e-9;  rje = rj - 8e-9;
+    xke = xk - 2e-9;  yke = yk - 6e-9;  zke = zk + 7e-9;  rke = rk - 5e-9;
+    xle = xl + 8e-9;  yle = yl + 4e-9;  zle = zl - 1e-9;  rle = rl + 3e-9;
+    xij = xie - xje;  xik = xie - xke;  xjk = xje - xke;  xkl = xke - xle;
+    yij = yie - yje;  yik = yie - yke;  yjk = yje - yke;  ykl = yke - yle;
+    zij = zie - zje;  zik = zie - zke;  zjk = zje - zke;  zkl = zke - zle;
+    rij = rie - rje;  rik = rie - rke;  rjk = rje - rke;  rkl = rke - rle;
+    Ci = (rik*(rij*rij+xie*xie-xje*xje+yie*yie-yje*yje+zie*zie-zje*zje)
+         -rij*(rik*rik+xie*xie-xke*xke+yie*yie-yke*yke+zie*zie-zke*zke))/2;
+    Cj = (rkl*(rjk*rjk+xke*xke-xje*xje+yke*yke-yje*yje+zke*zke-zje*zje)
+         +rjk*(rkl*rkl+xke*xke-xle*xle+yke*yke-yle*yle+zke*zke-zle*zle))/2;
+    Dx = rik*yij - rij*yik;  Dx = ((Dx != 0.0) ? Dx : 1e-12);
+    Dy = rjk*ykl - rkl*yjk;  Dy = ((Dy != 0.0) ? Dy : 1e-12);
+    Ca = (rij*xik-rik*xij)/Dx;  Cb = (rij*zik-rik*zij)/Dx;  Cc = Ci/Dx;
+    Cd = (rkl*xjk-rjk*xkl)/Dy;  Ce = (rkl*zjk-rjk*zkl)/Dy;  Cf = Cj/Dy;
+    Dx = Ca - Cd;	     Dx = ((Dx != 0.0) ? Dx : 1e-12);
+    Ax = (Ce-Cb)/Dx;  Bx = (Cf-Cc)/Dx;  Ay = (Ca*Ax)+Cb;  By = (Ca*Bx)+Cc;
+    Ci = rik*rik + xie*xie - xke*xke + yie*yie - yke*yke
+                 + zie*zie - zke*zke - 2*Bx*xik - 2*By*yik;
+    Cj = 2*(Ax*xik + Ay*yik + zik)		;
+    Dz = 4*rik*rik*(Ax*Ax+Ay*Ay+1)-Cj*Cj;  Dz = ((Dz != 0.0) ? Dz : 1e-12);
+    Bz = (4*rik*rik*(Ax*(xie-Bx)+Ay*(yie-By)+zie)-Ci*Cj)/Dz;
+    Cz = Math.abs(Bz*Bz
+          -(4*rik*rik*((xie-Bx)*(xie-Bx)+(yie-By)*(yie-By)+zie*zie)-Ci*Ci)/Dz);
+    z1 = Bz + Math.sqrt(Cz);  x1 = Ax*z1 + Bx;  y1 = Ay*z1 + By;
+    z2 = 2*Bz - z1;      x2 = Ax*z2 + Bx;  y2 = Ay*z2 + By;
+
+    r0l = Math.sqrt((xl-x1)*(xl-x1)+(yl-y1)*(yl-y1)+(zl-z1)*(zl-z1)) - rl;
+    r01 = (r0i + r0j + r0k + r0l)/4		;
+    e1 = Math.sqrt(((r0i-r01)*(r0i-r01) + (r0j-r01)*(r0j-r01)
+             + (r0k-r01)*(r0k-r01) + (r0l-r01)*(r0l-r01))/4);
+    log.debug("e1 = "+e1);
+    r0i = Math.sqrt((xi-x2)*(xi-x2)+(yi-y2)*(yi-y2)+(zi-z2)*(zi-z2)) - ri;
+    r0j = Math.sqrt((xj-x2)*(xj-x2)+(yj-y2)*(yj-y2)+(zj-z2)*(zj-z2)) - rj;
+    r0k = Math.sqrt((xk-x2)*(xk-x2)+(yk-y2)*(yk-y2)+(zk-z2)*(zk-z2)) - rk;
+    r0l = Math.sqrt((xl-x2)*(xl-x2)+(yl-y2)*(yl-y2)+(zl-z2)*(zl-z2)) - rl;
+    r02 = (r0i + r0j + r0k + r0l)/4		;
+    e2 = Math.sqrt(((r0i-r02)*(r0i-r02) + (r0j-r02)*(r0j-r02)
+                  + (r0k-r02)*(r0k-r02) + (r0l-r02)*(r0l-r02))/4);
+    log.debug("e2 = "+e2);
+  }
+  else		{ 
+    log.warn("ngps no good: "+ngps);
+    return false;
+  }
+  
+  if (e1 <= e2)					{
+    x0 = x1;  y0 = y1;  z0 = z1;  r0 = r01	;}
+  else						{
+    x0 = x2;  y0 = y2;  z0 = z2;  r0 = r02	;}
+}

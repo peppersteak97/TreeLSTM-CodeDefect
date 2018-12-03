@@ -1,0 +1,12 @@
+    private void initAccyFields() {
+    	initAccyRow(1, num1, textAccy1, accyTextField1, cmdButton1, deleteButton1);
+    	initAccyRow(2, num2, textAccy2, accyTextField2, cmdButton2, deleteButton2);
+    	initAccyRow(3, num3, textAccy3, accyTextField3, cmdButton3, deleteButton3);
+    	initAccyRow(4, num4, textAccy4, accyTextField4, cmdButton4, deleteButton4);
+    	initAccyRow(5, num5, textAccy5, accyTextField5, cmdButton5, deleteButton5);
+    	initAccyRow(6, num6, textAccy6, accyTextField6, cmdButton6, deleteButton6);
+    	initAccyRow(7, num7, textAccy7, accyTextField7, cmdButton7, deleteButton7);
+    	initAccyRow(8, num8, textAccy8, accyTextField8, cmdButton8, deleteButton8);
+    	initAccyRow(9, num9, textAccy9, accyTextField9, cmdButton9, deleteButton9);
+    	initAccyRow(10, num10, textAccy10, accyTextField10, cmdButton10, deleteButton10);
+	}

@@ -1,0 +1,8 @@
+  public int getNumberOfRealInstructions() {
+    int count = 0;
+    for (InstructionEnumeration e = forwardRealInstrEnumerator(); e.hasMoreElements(); e.next()) {
+      count++;
+    }
+
+    return count;
+  }

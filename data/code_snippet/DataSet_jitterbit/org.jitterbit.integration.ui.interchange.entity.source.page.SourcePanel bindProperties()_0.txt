@@ -1,0 +1,3 @@
+    private void bindProperties() {
+        m_sourcePage.getPageModel().bindProperties(m_topPanel.getBoundPropertyControls());
+    }

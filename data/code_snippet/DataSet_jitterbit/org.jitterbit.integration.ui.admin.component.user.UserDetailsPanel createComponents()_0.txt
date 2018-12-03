@@ -1,0 +1,14 @@
+    private void createComponents() {
+        m_loginField = new LoginField(20);
+        m_firstNameField = new UserInputField(20, User.FIRST_NAME,
+                        PackageResources.UserDetails.Labels.FIRST_NAME);
+        m_lastNameField = new UserInputField(20, User.LAST_NAME,
+                        PackageResources.UserDetails.Labels.LAST_NAME);
+        m_emailField = new UserInputField(30, User.EMAIL,
+                        PackageResources.UserDetails.Labels.EMAIL);
+        m_descriptionArea = new DescriptionField(4, 30);
+        registerTextListener(m_loginField.getInputComponent(), m_firstNameField.getField(), 
+                        m_lastNameField.getField(), m_emailField.getField(), 
+                        m_descriptionArea.getField());
+        m_passwordButton = ComponentFactories.buttonFactory().newButton(m_passwordAction);
+    }

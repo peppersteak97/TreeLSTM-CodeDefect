@@ -1,0 +1,3 @@
+	public void onApply() {
+		m_propertyPage.onApply();
+	}

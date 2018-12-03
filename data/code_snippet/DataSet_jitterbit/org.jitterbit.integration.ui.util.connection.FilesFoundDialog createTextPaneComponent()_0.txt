@@ -1,0 +1,6 @@
+    private static KongaTextPane createTextPaneComponent() {
+        KongaTextPane tp = new KongaTextPane();
+        tp.setWrapping(true);
+        tp.setEditable(false);
+        return tp;
+    }

@@ -1,0 +1,9 @@
+    protected List<JButton> getAdditionalToolBarButtons() {
+        List<JButton> btns = new ArrayList<JButton>();
+        ActiveObjectPageAction a = new ActiveObjectPageAction(
+                        getObject(), InterchangeActionFactory.TEST_CONNECTION, getView());
+        m_activeObjectActions = new ArrayList<ActiveObjectPageAction>();
+        m_activeObjectActions.add(a);
+        btns.add(createToolBarButton(a));
+        return btns;
+    }

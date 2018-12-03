@@ -1,0 +1,7 @@
+    public Iterator<IProfiledThread> getProfiledThreads() {
+        Collection<IProfiledThread> threads = null;
+        synchronized (LOCK) {
+            threads = new ArrayList<IProfiledThread>(m_threads.values());
+        }
+        return Collections.unmodifiableCollection(threads).iterator();
+    }

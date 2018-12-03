@@ -1,0 +1,253 @@
+    protected void init() {
+        portBox.setToolTipText("Select the port to use");
+        portBox.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        Vector v = getPortNames();
+        for (int i=0; i<v.size(); i++)
+            portBox.addItem(v.elementAt(i));
+        openPortButton.setText("Open");
+        openPortButton.setToolTipText("Configure program to use selected port");
+        openPortButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    openPortButtonActionPerformed(evt);
+                } catch (jmri.jmrix.SerialConfigException ex) {
+                    log.error("Error while opening port.  Did you select the right one?\n"+ex);
+                }
+                catch (java.lang.UnsatisfiedLinkError ex) {
+                    log.error("Error while opening port.  Did you select the right one?\n"+ex);
+                    }
+                }
+            });
+        getContentPane().add(new JSeparator());
+        JPanel p1 = new JPanel();
+        p1.setLayout(new FlowLayout());
+        p1.add(new JLabel("Serial port: "));
+        p1.add(portBox);
+        p1.add(openPortButton);
+        getContentPane().add(p1);
+
+        getContentPane().add(new JSeparator());
+        JPanel p2 = new JPanel();
+        {
+        JPanel p = new JPanel();
+			p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+			checkButton.setToolTipText("?");
+			checkButton.setEnabled(false); 
+			p.add(checkButton);
+			checkButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					sendBytes(new byte[] { (byte) '?'});
+				}
+			});
+			truncateCheckBox
+					.setToolTipText("Check this box to suppress identical packets");
+			p.add(truncateCheckBox);
+			p2.add(p);
+		}
+        
+        {
+            JPanel p = new JPanel();
+            p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+            ButtonGroup g = new ButtonGroup();
+            JRadioButton b;
+            b= new JRadioButton("Verbose");
+            b.setToolTipText("V");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'V'});
+                }
+            });
+            b= new JRadioButton("Hex with preamble symbol");
+            b.setToolTipText("H0");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'H',(byte)'0'});
+                }
+            });
+            p2.add(p);
+            b= new JRadioButton("Hex without preamble symbol");
+            b.setToolTipText("H2");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'H',(byte)'2'});
+                }
+            });
+            p2.add(p);
+            b= new JRadioButton("Hex with preamble in hex");
+            b.setToolTipText("H4");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'H',(byte)'4'});
+                }
+            });
+            p2.add(p);
+        }  
+
+        {	
+            JPanel p = new JPanel();
+            p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+            ButtonGroup g = new ButtonGroup();
+            JRadioButton b;
+            b= new JRadioButton("Hide acc packets");
+            b.setToolTipText("A-");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'A',(byte)'-'});
+                }
+            });
+            b= new JRadioButton("Show acc packets");
+            b.setToolTipText("A+");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'A',(byte)'+'});
+                }
+            });
+            p2.add(p);
+        }  
+        
+        {	
+            JPanel p = new JPanel();
+            p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+            ButtonGroup g = new ButtonGroup();
+            JRadioButton b;
+            b= new JRadioButton("Hide idle packets");
+            b.setToolTipText("I-");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'I',(byte)'-'});
+                }
+            });
+            b= new JRadioButton("Show idle packets");
+            b.setToolTipText("I+");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'I',(byte)'+'});
+                }
+            });
+            p2.add(p);
+        }  
+        
+        {	
+            JPanel p = new JPanel();
+            p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+            ButtonGroup g = new ButtonGroup();
+            JRadioButton b;
+            locoSpeedButton.setToolTipText("L-");
+            g.add(locoSpeedButton);
+            p.add(locoSpeedButton);
+            locoSpeedButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'L',(byte)'-'});
+                }
+            });
+            b= new JRadioButton("Show loco packets");
+            b.setToolTipText("L+");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'L',(byte)'+'});
+                }
+            });
+            p2.add(p);
+        }  
+
+        {	
+            JPanel p = new JPanel();
+            p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+            ButtonGroup g = new ButtonGroup();
+            JRadioButton b;
+            b= new JRadioButton("Hide reset packets");
+            b.setToolTipText("R-");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'R',(byte)'-'});
+                }
+            });
+            b= new JRadioButton("Show reset packets");
+            b.setToolTipText("R+");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'R',(byte)'+'});
+                }
+            });
+            p2.add(p);
+        }  
+ 
+        {	
+            JPanel p = new JPanel();
+            p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+            ButtonGroup g = new ButtonGroup();
+            JRadioButton b;
+            b= new JRadioButton("Hide signal packets");
+            b.setToolTipText("S-");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'S',(byte)'-'});
+                }
+            });
+            b= new JRadioButton("Show signal packets");
+            b.setToolTipText("S+");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'S',(byte)'+'});
+                }
+            });
+            p2.add(p);
+        }  
+        
+        {	
+            JPanel p = new JPanel();
+            p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+            JLabel t = new JLabel("Monitor Command");
+            p.add(t);
+            ButtonGroup g = new ButtonGroup();
+            JRadioButton b;
+            b= new JRadioButton("Acc addresses single");
+            b.setToolTipText("AS");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'A',(byte)'S'});
+                }
+            });
+            b= new JRadioButton("Acc addresses paired");
+            b.setToolTipText("AP");
+            g.add(b);
+            p.add(b);
+            b.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    sendBytes(new byte[]{(byte)'A',(byte)'P'});
+                }
+            });
+            p2.add(p);
+        }  
+
+
+        getContentPane().add(p2);
+    }

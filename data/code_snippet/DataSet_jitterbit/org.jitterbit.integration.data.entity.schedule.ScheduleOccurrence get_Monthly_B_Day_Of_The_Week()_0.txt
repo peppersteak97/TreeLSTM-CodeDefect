@@ -1,0 +1,3 @@
+    public DayOfTheWeek get_Monthly_B_Day_Of_The_Week() {
+        return m_Monthly_B_Day_Of_The_Week;
+    }

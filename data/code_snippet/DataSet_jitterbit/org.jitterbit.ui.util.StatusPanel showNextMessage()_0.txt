@@ -1,0 +1,11 @@
+	private void showNextMessage() {
+		if (m_messageStack.isEmpty()) {
+            setCurrentMessage(null);
+        }
+        else {
+            ApplicationMessageEvent top = m_messageStack.peek();
+            if (top != m_currentMessage) {
+                setCurrentMessage(top);
+            }
+        }
+	}

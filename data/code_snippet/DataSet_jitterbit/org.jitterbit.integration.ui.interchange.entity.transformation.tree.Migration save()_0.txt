@@ -1,0 +1,35 @@
+	void save(){
+		List<String[]> maplist=Utils.readMapFile(m_old.getMapList());
+		List<String> lines=new ArrayList<String>();
+		try {
+			Utils.migrateMapping(maplist,m_sourceTable, m_targetTable, this);
+			for(String[]pair:maplist){
+				if(pair[0]!=null&&pair[0].length()>0&&pair[1]!=null&&pair[1].length()>0){
+					String line=pair[0]+"\t"+pair[1];
+					lines.add(line);
+				}
+			}
+		}
+		catch(TreeMapperException ex){
+			MessageDisplayer.showErrorMessage(this, null, ex.getMessage(), "Error");
+			return;
+		}
+		try {
+			EntityChangePersistor persistor = new EntityChangePersistor(m_view, m_new);
+			IPage page = m_pageDisplayer.getOpenPage(m_new);
+			if (page instanceof TransformationPage) {
+				((TransformationPage) page).getTreeMapper().setMapList(lines, true);
+			}
+			m_new.setMapList(lines);
+			persistor.commit();
+			m_pageDisplayer.openPage(m_new);
+		}
+		catch (TreeMapperException ex) {
+			String msg = "Failed to apply the new mappings.";
+			ErrorLogger.getDefaultLogger().logAndShow(this, msg, ex);
+		}
+		catch (InterchangeSavingException ex) {
+			String msg = "Failed to apply the new mappings.";
+			ErrorLogger.getDefaultLogger().logAndShow(this, msg, ex);
+		}
+	}

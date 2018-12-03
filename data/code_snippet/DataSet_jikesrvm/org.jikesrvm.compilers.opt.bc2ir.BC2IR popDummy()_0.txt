@@ -1,0 +1,4 @@
+  void popDummy() {
+    Operand r = pop();
+    if (VM.VerifyAssertions) VM._assert(r == DUMMY);
+  }

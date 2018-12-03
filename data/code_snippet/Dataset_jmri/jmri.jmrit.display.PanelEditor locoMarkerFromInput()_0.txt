@@ -1,0 +1,19 @@
+    void locoMarkerFromInput() {
+		if (locoFrame == null) {
+			locoFrame = new JmriJFrame();
+			locoFrame.getContentPane().setLayout(new FlowLayout());
+			locoFrame.setTitle("Enter Loco Marker");
+			textId.setText("Loco ID:");
+			locoFrame.getContentPane().add(textId);
+			locoFrame.getContentPane().add(locoId);
+			okay.setText("OK");
+			okay.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					inputLoco();
+				}
+			});
+			locoFrame.getContentPane().add(okay);
+			locoFrame.pack();
+		}
+		locoFrame.setVisible(true);
+    }

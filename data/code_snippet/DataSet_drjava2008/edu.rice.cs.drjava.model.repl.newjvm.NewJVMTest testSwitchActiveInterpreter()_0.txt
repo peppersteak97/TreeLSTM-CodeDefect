@@ -1,0 +1,21 @@
+  public void testSwitchActiveInterpreter() throws InterruptedException {
+    debug.logStart();
+    
+    _jvm.interpret("int x = 6;");
+    _jvm.addInterpreter("monkey");
+
+    _jvm.interpret("x");
+    assertEquals("result", "6", _jvm.returnBuf);
+
+    _jvm.setActiveInterpreter("monkey");
+    _jvm.interpret("x");
+    assertNotNull("exception was thrown", _jvm.exceptionMsgBuf);
+
+    _jvm.interpret("int x = 3;");
+    _jvm.setToDefaultInterpreter();
+
+    _jvm.interpret("x");
+    assertEquals("result", "6", _jvm.returnBuf);
+
+    debug.logEnd();
+  }

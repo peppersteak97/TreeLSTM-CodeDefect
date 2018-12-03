@@ -1,0 +1,4 @@
+  public /* synchronized */ void redo() {
+    endCompoundEdit();
+    super.redo();
+  }

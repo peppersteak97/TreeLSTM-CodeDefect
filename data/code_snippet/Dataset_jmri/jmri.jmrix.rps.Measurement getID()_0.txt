@@ -1,0 +1,4 @@
+    public int getID() {
+        if (r==null) return -1;
+        return r.getID();
+    }

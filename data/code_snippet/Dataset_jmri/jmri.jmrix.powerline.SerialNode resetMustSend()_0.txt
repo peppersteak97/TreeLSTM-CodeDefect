@@ -1,0 +1,6 @@
+    public void resetMustSend() { 
+        for (int i = 0; i < outputBits[nodeType]; i++) {
+            if (outputBitChanged[i]) return;
+        }
+        needSend = false; 
+    }

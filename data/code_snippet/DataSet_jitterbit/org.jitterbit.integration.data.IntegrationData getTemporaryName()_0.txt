@@ -1,0 +1,3 @@
+    protected static synchronized String getTemporaryName() {
+        return String.valueOf(s_temporaryName++);
+    }

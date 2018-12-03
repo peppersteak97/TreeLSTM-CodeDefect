@@ -1,0 +1,13 @@
+  public void testColonInTernaryOpTwoStmtsOnOneLine() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionExistsCharInStmt('?', ':', null, null);
+
+    _setDocText("foo();\nreturn (test ? x : y); case default: break;\n");
+    _doc.setCurrentLocation(7);
+    assertTrue("colon in ternary op, two stmts on one line",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+    
+    _setDocText("foo();\ncase default: break; return test ? x : y;\n");
+    _doc.setCurrentLocation(7);
+    assertTrue("colon not in ternary op, two stmts on one line",
+        !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+  }

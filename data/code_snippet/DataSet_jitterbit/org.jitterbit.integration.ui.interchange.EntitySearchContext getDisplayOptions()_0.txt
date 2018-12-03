@@ -1,0 +1,3 @@
+    public IDisplayOption[] getDisplayOptions() {
+        return new IDisplayOption[] { new TreeDisplayer(), new PageDisplayer() };
+    }

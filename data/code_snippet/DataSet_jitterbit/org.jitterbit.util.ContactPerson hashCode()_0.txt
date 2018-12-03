@@ -1,0 +1,10 @@
+    public int hashCode() {
+        int hash = 13;
+        hash = hash*17 + m_sName.hashCode();
+        hash = hash*17 + m_sTitle.hashCode();
+        hash = hash*17 + m_sEmail.hashCode();
+        hash = hash*17 + m_sPhoneNumber.hashCode();
+        hash = hash*17 + m_sFaxNumber.hashCode();
+        hash = hash*17 + m_sNotes.hashCode();
+        return hash;
+    }

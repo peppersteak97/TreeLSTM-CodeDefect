@@ -1,0 +1,8 @@
+  private OpenDefinitionsDocument _getOpenDoc() {
+    _assertNumOpenDocs(1);
+    OpenDefinitionsDocument doc = _model.newFile();
+    doc.setIndent(2);
+    List<OpenDefinitionsDocument> docs = _model.getOpenDefinitionsDocuments();
+    _assertNumOpenDocs(2);
+    return docs.get(0);
+  }

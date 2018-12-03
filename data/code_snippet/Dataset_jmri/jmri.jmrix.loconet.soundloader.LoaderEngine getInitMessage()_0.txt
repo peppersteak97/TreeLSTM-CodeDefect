@@ -1,0 +1,5 @@
+    LocoNetMessage getInitMessage() {
+        LocoNetMessage m = new LocoNetMessage(new int[]{0xD3, 0x01, 0x00, 0x00, 0x00, 0x2D});
+        m.setParity();
+        return m;
+    }

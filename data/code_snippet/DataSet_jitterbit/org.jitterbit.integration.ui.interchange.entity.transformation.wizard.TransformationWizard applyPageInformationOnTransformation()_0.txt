@@ -1,0 +1,16 @@
+    private boolean applyPageInformationOnTransformation() {
+        try {
+            for (IWizardPage page : getAllApplicablePages()) {
+                assert (page instanceof ITransformationWizardPage);
+                ((ITransformationWizardPage) page).applyToTransformation(
+                                m_newTransformation);
+            }
+            return true;
+        }
+        catch (WizardPageException e) {
+            handlePageException(e.getMessage(), e);
+            onWizardCancelled();
+            m_transformationHasBeenSaved = true;
+            return false;
+        }
+    }

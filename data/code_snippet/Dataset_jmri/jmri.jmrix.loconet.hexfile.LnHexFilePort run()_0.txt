@@ -1,0 +1,33 @@
+    public void run() { // invoked in a new thread
+        while (true) {
+            if (sFile!= null) {
+                _running = true;
+                try {
+                    String s;
+                    byte bval;
+                    int ival;
+                    int len;
+                    while (sFile.available() > 3) {
+                        s = sFile.readLine();
+                        len = s.length();
+                        for (int i=0; i<len; i+=3) {
+                            ival = Integer.valueOf(s.substring(i,i+2),16).intValue();
+                            bval = (byte) ival;
+                            outpipe.writeByte(bval);
+                        }
+                        Thread.sleep(delay);
+                    }
+                } catch (Exception e) {
+                    log.error("run: Exception: "+e.toString());
+                }
+                log.info("normal finish to file");
+                sFile = null;
+                _running = false;
+            }
+            try {
+                Thread.sleep(3000);
+            } catch (java.lang.InterruptedException e) {
+                log.debug("woken from sleep");
+            }
+        }
+    }

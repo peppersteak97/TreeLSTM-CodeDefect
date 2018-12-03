@@ -1,0 +1,16 @@
+    public String getRootName() {
+        Set<String> possible = new HashSet<String>();
+        Set<String> disqualified = new HashSet<String>();
+        for (Relation rel : m_fieldRelations) {
+            String child = rel.getChildName();
+            disqualified.add(child);
+            possible.remove(child);
+            
+            String parent = rel.getParentName();
+            if (!disqualified.contains(parent)) {
+                possible.add(parent);
+            }
+        }
+        
+        return (possible.size() == 1) ? possible.iterator().next() : null;
+    }

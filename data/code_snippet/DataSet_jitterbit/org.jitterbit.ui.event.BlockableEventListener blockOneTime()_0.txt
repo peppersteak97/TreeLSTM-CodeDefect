@@ -1,0 +1,4 @@
+    public final void blockOneTime() {
+        m_isBlocked = true;
+        m_isOneTimeBlocked = true;
+    }

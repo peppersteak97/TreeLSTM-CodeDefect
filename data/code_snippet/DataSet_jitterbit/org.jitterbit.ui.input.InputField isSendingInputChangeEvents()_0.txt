@@ -1,0 +1,5 @@
+        if (isSendingInputChangeEvents()) {
+            InputChangeEvent evt = new InputChangeEvent(this, this, getName(), oldValue,
+                            newValue);
+            m_changeManager.sendChangeEvent(evt);
+        }

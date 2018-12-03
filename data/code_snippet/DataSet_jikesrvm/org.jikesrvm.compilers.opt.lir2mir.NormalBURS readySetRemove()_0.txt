@@ -1,0 +1,6 @@
+  private BURS_TreeNode readySetRemove() {
+    BURS_TreeNode ans = heap[1];
+    heap[1] = heap[numElements--];
+    heapify(1);
+    return ans;
+  }

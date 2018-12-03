@@ -1,0 +1,14 @@
+  public void testFormat() {
+    KeyStrokeOption io = new KeyStrokeOption("max_files",null);
+    KeyStroke ks = KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.ALT_MASK | InputEvent.META_MASK);
+    assertEquals(ks, io.parse(io.format(ks)));
+    ks = KeyStroke.getKeyStroke(KeyEvent.VK_NUMBER_SIGN, InputEvent.ALT_MASK | InputEvent.CTRL_MASK);
+    assertEquals(ks, io.parse(io.format(ks)));
+    
+    ks = KeyStroke.getKeyStroke(Character.valueOf('!'), InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK);
+    assertEquals(ks, io.parse(io.format(ks)));
+    ks = KeyStroke.getKeyStroke('!');
+    assertEquals(ks, io.parse(io.format(ks)));
+    ks = KeyStroke.getKeyStroke(KeyEvent.VK_F10, InputEvent.ALT_MASK | InputEvent.SHIFT_MASK, true);
+    assertEquals(ks, io.parse(io.format(ks)));
+  }

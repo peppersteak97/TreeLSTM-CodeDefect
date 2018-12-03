@@ -1,0 +1,8 @@
+    public DataLocation clone() {
+        try {
+            return (DataLocation) super.clone();
+        } 
+        catch (CloneNotSupportedException e) {
+            return null;
+        }
+    }

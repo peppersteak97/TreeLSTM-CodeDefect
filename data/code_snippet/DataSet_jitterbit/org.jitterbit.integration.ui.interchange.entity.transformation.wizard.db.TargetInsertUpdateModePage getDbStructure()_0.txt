@@ -1,0 +1,9 @@
+    private DatabaseStructure getDbStructure() {
+        DatabaseStructure s = new DatabaseStructure(m_dbLocation);
+        if (m_dbObjects.length > 1) {
+            s.setRelations(m_incomingStructure.getRelations());
+        }
+        s.setDbTables(m_incomingStructure.getDbTables());
+        s.setDbFields(createDbFields());
+        return s;
+    }

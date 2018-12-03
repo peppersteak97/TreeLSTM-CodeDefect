@@ -1,0 +1,1 @@
+    public int getFastClockOffHour() { return mFastClockOffHour; }

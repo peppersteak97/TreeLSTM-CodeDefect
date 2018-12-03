@@ -1,0 +1,3 @@
+    if (hasSpecialVersion()) {
+      return s + "\"" + spMethod + "\"";
+    }

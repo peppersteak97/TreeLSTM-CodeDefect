@@ -1,0 +1,16 @@
+    void exitField() {
+        if (!oldContents.equals(val.getText())) {
+            if (addMode == null || extendAddr == null || !addMode.getValueString().equals("1")) {
+                if (primaryAddr!=null) {
+                    ((DecVariableValue)primaryAddr).updatedTextField();
+                    val.setBackground(primaryAddr.getValue().getBackground());
+                    if (log.isDebugEnabled()) log.debug("set color: "+primaryAddr.getValue().getBackground());
+                }
+            }
+            else {
+                ((LongAddrVariableValue)extendAddr).updatedTextField();
+                val.setBackground(extendAddr.getValue().getBackground());
+                if (log.isDebugEnabled()) log.debug("set color: "+extendAddr.getValue().getBackground());
+            }
+        }
+    }

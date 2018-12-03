@@ -1,0 +1,4 @@
+    private void addInputFields() {
+        addInputField(m_decryption);
+        addInputField(m_passPhrase, m_passPhrase, m_passPhrase);
+    }

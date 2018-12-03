@@ -1,0 +1,15 @@
+    public void cancelButtonActionPerformed() {
+        editMode = false;
+        curNode = null;
+        addButton.setVisible(true);
+        editButton.setVisible(true);
+        deleteButton.setVisible(true);
+        doneButton.setVisible(true);
+        updateButton.setVisible(false);
+        cancelButton.setVisible(false);
+        nodeAddrField.setVisible(true);
+        nodeAddrStatic.setVisible(false);             
+        statusText1.setText(stdStatus1);
+        statusText2.setText(stdStatus2);
+        statusText3.setText(stdStatus3);
+    }

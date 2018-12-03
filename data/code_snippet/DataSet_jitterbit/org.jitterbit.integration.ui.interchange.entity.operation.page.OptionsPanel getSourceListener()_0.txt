@@ -1,0 +1,3 @@
+    PropertyChangeListener getSourceListener() {
+        return m_selectedSourceListener;
+    }

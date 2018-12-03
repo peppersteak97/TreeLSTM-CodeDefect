@@ -1,0 +1,38 @@
+	void Yes5(){
+		if(m_obj instanceof TreeMapper){
+			dispose();
+		}
+		else if(m_obj instanceof MapPairPanel){
+			MapPairPanel mp = (MapPairPanel) m_obj;
+			TreeMapper treemapper=mp.m_TreeMapper;
+			
+			String target=mp.m_targetDE;
+			TreeComponent.Node targetNode=treemapper.findTargetNode(target);
+			TreeComponent.Node parentNode=targetNode.m_parent;
+			treemapper.m_MapListPanel.removeMapPair(mp);
+			treemapper.m_MapListPanel.updateMappingFlag();
+			Enumeration<?> en=parentNode.m_children.elements();
+			while(en.hasMoreElements())
+			{
+				TreeComponent.Node node=(TreeComponent.Node)en.nextElement();
+				if(node.isPrecondition()){
+					parentNode.m_children.removeElement(node);
+					parentNode.m_children.trimToSize();
+					parentNode.setHasPreconditionFlag(false);
+					treemapper.removeTargetNode(node.m_deName);
+					treemapper.m_targetTreeComponent.repaint();
+					break;	
+				}
+			}
+		}
+		else if (m_obj instanceof TreeComponent.Node){
+			TreeComponent.Node node =(TreeComponent.Node) m_obj;
+			TreeComponent.Node parentNode=node.m_parent;
+			TreeMapper treemapper=node.getTreeMapper();
+			parentNode.m_children.removeElement(node);	
+			parentNode.m_children.trimToSize();
+			treemapper.removeTargetNode(node.m_deName);
+			node.RemoveEntireMappedFolder();
+			treemapper.m_MapListPanel.updateMappingFlag();
+		}
+	}

@@ -1,0 +1,14 @@
+    private void collectOperationLinks() {
+        OperationId successOpId = m_op.getSuccessOperationId();
+        OperationId failureOpId = m_op.getFailureOperationId();
+        if (successOpId == null && failureOpId == null) {
+            return;
+        }
+        if (KongaID.areEqual(successOpId, failureOpId)) {
+            onSameSuccessAndFailureOperation(successOpId);
+        }
+        else {
+            collectSuccessOperationLink(successOpId);
+            collectFailureOperationLink(failureOpId);
+        }
+    }

@@ -1,0 +1,14 @@
+    private void setInitialUserName() {
+        String user = null;
+        String server = (String) m_serverComboBox.getSelectedItem();
+        if (server != null && server.length() > 0) {
+            user = s_lastUserNameAttempt.get(server);
+            if (user == null) {
+                user = m_serverUserMap.get(server);
+            }
+        }
+        if (user == null || user.length() == 0) {
+            user = DEFAULT_USER;
+        }
+        m_userNameField.setText(user);
+    }

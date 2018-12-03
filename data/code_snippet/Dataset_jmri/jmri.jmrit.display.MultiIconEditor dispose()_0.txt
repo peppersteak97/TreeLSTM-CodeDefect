@@ -1,0 +1,6 @@
+    public void dispose() {
+        this.removeAll();
+        iconList = null;
+        buttonList = null;
+        catalog = null;
+    }

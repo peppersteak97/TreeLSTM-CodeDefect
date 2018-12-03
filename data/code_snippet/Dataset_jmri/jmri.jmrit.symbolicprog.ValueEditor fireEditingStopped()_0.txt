@@ -1,0 +1,7 @@
+    protected void fireEditingStopped() {
+        if (log.isDebugEnabled()) log.debug("fireEditingStopped");
+        ChangeEvent ce = new ChangeEvent(this);
+        for (int i = listeners.size() - 1; i >= 0; i--) {
+            ((CellEditorListener)listeners.elementAt(i)).editingStopped(ce);
+        }
+    }

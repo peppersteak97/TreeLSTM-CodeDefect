@@ -1,0 +1,1 @@
+  static ArrayList<String> getTrace() { return trace; }

@@ -1,0 +1,5 @@
+    void updateGroupList() {
+        if (m_selectedUser != null) {
+            m_userGroupListPanel.updateGroupList(m_selectedUser);
+        }
+    }

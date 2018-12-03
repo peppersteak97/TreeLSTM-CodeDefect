@@ -1,0 +1,7 @@
+    public void start() {
+        if (log.isDebugEnabled()) log.debug("identify begins");
+        if (state !=0) log.error("start with state "+state+", should have been zero");
+
+        state = 1;
+        test1();
+    }

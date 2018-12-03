@@ -1,0 +1,28 @@
+  public String toString() {
+    String s = "";
+    switch (type) {
+      case STATIC:
+        s += "static";
+        break;
+      case SPECIAL:
+        s += "special";
+        break;
+      case VIRTUAL:
+        s += "virtual";
+        break;
+      case INTERFACE:
+        s += "interface";
+        break;
+    }
+    if (isPreciseTarget && (type != STATIC)) {
+      s += "_exact";
+    }
+    if (hasSpecialVersion()) {
+      return s + "\"" + spMethod + "\"";
+    }
+    if (target != null) {
+      return s + "\"" + target + "\"";
+    } else {
+      return s + "<" + memRef + ">";
+    }
+  }

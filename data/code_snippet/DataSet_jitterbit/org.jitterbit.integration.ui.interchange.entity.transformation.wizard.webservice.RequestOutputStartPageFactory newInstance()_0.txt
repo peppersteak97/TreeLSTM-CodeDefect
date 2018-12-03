@@ -1,0 +1,3 @@
+    public static IStartPageFactory newInstance() {
+        return new RequestOutputStartPageFactory();
+    }

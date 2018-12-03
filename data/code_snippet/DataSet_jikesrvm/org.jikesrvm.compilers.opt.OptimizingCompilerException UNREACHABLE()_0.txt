@@ -1,0 +1,3 @@
+  public static void UNREACHABLE() throws OptimizingCompilerException {
+    throw new OptimizingCompilerException("Executed UNREACHABLE code");
+  }

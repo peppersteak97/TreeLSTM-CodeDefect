@@ -1,0 +1,3 @@
+  public OperandEnumeration getOperands() {
+    return new OE(this, 0, getNumberOfOperands() - 1, -1);
+  }

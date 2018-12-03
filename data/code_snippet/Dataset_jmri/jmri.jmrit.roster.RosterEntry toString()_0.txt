@@ -1,0 +1,16 @@
+    public String toString() {
+        String out = "[RosterEntry: "+_id+" "
+            +(_fileName!=null?_fileName:"<null>")
+            +" "+_roadName
+            +" "+_roadNumber
+            +" "+_mfg
+            +" "+_owner
+            +" "+_model
+            +" "+_dccAddress
+            +" "+_comment
+            +" "+_decoderModel
+            +" "+_decoderFamily
+            +" "+_decoderComment
+            +"]";
+        return out;
+    }

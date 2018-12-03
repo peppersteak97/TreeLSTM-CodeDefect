@@ -1,0 +1,1 @@
+  public static PrintStream consoleOut() { return  _consoleOut; }

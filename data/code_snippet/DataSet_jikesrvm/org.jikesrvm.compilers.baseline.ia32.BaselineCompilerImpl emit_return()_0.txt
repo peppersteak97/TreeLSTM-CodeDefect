@@ -1,0 +1,4 @@
+  protected final void emit_return() {
+    if (method.isSynchronized()) genMonitorExit();
+    genEpilogue(0, 0);
+  }

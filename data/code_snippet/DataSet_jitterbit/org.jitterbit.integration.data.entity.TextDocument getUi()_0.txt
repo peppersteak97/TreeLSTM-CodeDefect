@@ -1,0 +1,3 @@
+    public ITextDocumentUi getUi() {
+        return (ITextDocumentUi) super.getUi();
+    }

@@ -1,0 +1,39 @@
+    private void pollManager() {
+    	while (!stopPolling) {
+    		for (int a=0; a<activeAIUMax; ++a) {
+    			int aiuNo = activeAIUs[a];
+    			currentAIU = aiuArray[aiuNo];
+    			if (currentAIU != null) {				
+    				NceMessage m = makeAIUPoll(aiuNo);
+    				synchronized (this) {
+    					if (log.isDebugEnabled()) {
+    						log.debug("queueing poll request for AIU "+aiuNo);
+    					}
+    					NceTrafficController.instance().sendNceMessage(m, this);
+    					awaitingReply = true;
+    					try {
+    						wait(pollTimeout);
+    					} catch (InterruptedException e) { };
+    				}
+     	    		int delay = shortCycleInterval;
+    	    		if (aiuCycleCount>=2 &&
+    	    				lastMessageReceived>=System.currentTimeMillis()-maxSilentInterval) {
+    	    			delay = longCycleInterval;
+    	    		}
+    				if (awaitingReply) {
+    					log.warn("timeout awaiting poll response for AIU "+aiuNo);
+    					delay = pollTimeout;
+    				}
+   
+    	    		synchronized (this) {
+    	    			try {
+    	    				awaitingDelay = true;
+    	    				wait(delay);
+    	    			} catch (InterruptedException e) {
+    	    			} finally { awaitingDelay = false; }
+    	    		}
+    			}
+    		}
+    		++aiuCycleCount;
+    	}
+    }

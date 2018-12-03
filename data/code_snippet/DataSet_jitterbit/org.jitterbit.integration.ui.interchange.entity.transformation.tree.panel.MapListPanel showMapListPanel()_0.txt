@@ -1,0 +1,15 @@
+	public void showMapListPanel(){
+		for(MapPairPanel mp:m_mapList){
+			if(mp.m_isLabel){
+				mp.m_sourceLabel.setText("Source folder: "+mp.m_source);
+				mp.m_sourceText.setText("Source folder: "+mp.m_source);
+			} else {
+				mp.m_sourceLabel.setText(mp.m_source);
+				mp.m_sourceText.setText(mp.m_source);
+			}
+		}
+
+		m_TreeMapper.m_listScrollPane.setViewportView(this);
+		adjustSize();
+		m_TreeMapper.m_listScrollPane.validate();
+	}

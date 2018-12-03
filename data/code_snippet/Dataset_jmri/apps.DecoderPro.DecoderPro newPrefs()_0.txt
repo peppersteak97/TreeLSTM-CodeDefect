@@ -1,0 +1,3 @@
+    protected AppConfigPanel newPrefs() {
+        return new AppConfigPanel(configFilename, 1);
+    }

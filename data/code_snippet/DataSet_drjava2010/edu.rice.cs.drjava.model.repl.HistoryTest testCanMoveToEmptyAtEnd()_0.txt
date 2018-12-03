@@ -1,0 +1,12 @@
+  public void testCanMoveToEmptyAtEnd() {
+    String entry = "some text";
+    _history.add(entry);
+
+    _history.movePrevious("");
+    assertEquals("Prev did not move to correct item", entry, _history.getCurrent());
+
+    _history.moveNext(entry);
+    assertEquals("Can't move to blank line at end",
+                 "",
+                 _history.getCurrent());
+  }

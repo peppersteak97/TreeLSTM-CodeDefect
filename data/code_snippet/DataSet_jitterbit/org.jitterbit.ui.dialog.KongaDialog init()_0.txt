@@ -1,0 +1,19 @@
+	private void init() {
+        addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                onDialogClose();
+            }
+
+            @Override
+            public void windowOpened(WindowEvent e) {
+                onDialogOpened();
+            }
+        });
+
+        m_waitManagerImpl = GlassPaneWaitManager.newInstance(this);
+        setCancelOnEscape(true);
+
+        setButtonDimensions();
+    }

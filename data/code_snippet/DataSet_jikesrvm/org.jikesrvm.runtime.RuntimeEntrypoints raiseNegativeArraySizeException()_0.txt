@@ -1,0 +1,3 @@
+  private static void raiseNegativeArraySizeException() throws NegativeArraySizeException {
+    throw new NegativeArraySizeException();
+  }

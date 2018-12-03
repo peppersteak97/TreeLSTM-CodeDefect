@@ -1,0 +1,13 @@
+    private void executeImpl() {
+        List<IIntegrationEntityUiDelegate> activeObjects = getActiveObjects(IIntegrationEntityUiDelegate.class);
+        if (activeObjects.size() != 1) {
+            return;
+        }
+        Object o = activeObjects.get(0);
+        if (o instanceof ISourceUi) {
+            testSource((ISourceUi) o);
+        }
+        else if (o instanceof ITargetUi) {
+            testTarget((ITargetUi) o);
+        }
+    }

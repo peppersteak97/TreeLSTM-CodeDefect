@@ -1,0 +1,19 @@
+    boolean selectNewToEntryID() {
+        do {
+            mToID = JOptionPane.showInputDialog(mParent, "Enter id for new roster entry:");
+            if (mToID==null) return false;
+
+            if (mToID.equals("")) {
+                JOptionPane.showMessageDialog(mParent,
+                                          "The ID cannot be blank");
+                continue;
+            }
+                        
+            if (0 == Roster.instance().matchingList(null, null, null, null, null, null, mToID).size()) break;
+
+            JOptionPane.showMessageDialog(mParent,
+                                          "That entry already exists, please choose another");
+
+        } while (true);
+        return true;
+    }

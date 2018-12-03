@@ -1,0 +1,17 @@
+  public void testColonInTernaryOpIgnoreWhitespaceAndComments() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionExistsCharInStmt('?', ':', null, null);
+
+    _setDocText("foo;\nreturn test ?\n    \n \t \nx : y;\n");
+    _doc.setCurrentLocation(28);
+    assertTrue("colon in ternary op, multi-line stmt, ignores whitespace",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _doc.setCurrentLocation(42);
+    assertTrue("colon in ternary op, ignores single line comments",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+
+    _setDocText("foo();\nreturn test ? /* {\ncase 1 : bar();*/\nx() : y();\n");
+    _doc.setCurrentLocation(44);
+    assertTrue("colon in ternary op, ignores multi-line comments",
+        rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+  }

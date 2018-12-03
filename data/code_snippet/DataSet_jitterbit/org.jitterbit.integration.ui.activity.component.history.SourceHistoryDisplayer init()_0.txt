@@ -1,0 +1,5 @@
+    private void init() {
+        m_historyDeleter = new SourceHistoryDeleter(this);
+        createTable();
+        createActions();
+    }

@@ -1,0 +1,15 @@
+				if( updateDisplayAfterApply() ) {
+				    /*
+				    SwingUtilities.invokeLater( new Runnable() {
+				        public void run() {
+							try {
+							    setDisplayedValue( getUnderlyingValue() );
+							}
+							catch( SetPropertyException e ) {
+								JOptionPane.showMessageDialog(null, e.longDescription(), 
+										"Error", JOptionPane.ERROR_MESSAGE);
+							}
+				        }
+				    });
+				    */
+				}

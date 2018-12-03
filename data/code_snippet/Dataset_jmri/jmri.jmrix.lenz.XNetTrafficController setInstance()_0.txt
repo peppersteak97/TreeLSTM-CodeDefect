@@ -1,0 +1,3 @@
+	protected void setInstance() {
+		if(self==null) self=this;
+	}

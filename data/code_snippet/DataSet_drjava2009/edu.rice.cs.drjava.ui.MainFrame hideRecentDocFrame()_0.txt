@@ -1,0 +1,10 @@
+  private void hideRecentDocFrame() {
+    if (_recentDocFrame.isVisible()) {
+      _recentDocFrame.setVisible(false);
+      OpenDefinitionsDocument doc = _recentDocFrame.getDocument();
+      if (doc != null) {
+        addToBrowserHistory();
+        _model.setActiveDocument(doc);
+      }
+    }
+  }

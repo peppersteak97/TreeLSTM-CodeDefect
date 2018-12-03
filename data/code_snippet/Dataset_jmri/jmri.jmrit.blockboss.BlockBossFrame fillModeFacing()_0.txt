@@ -1,0 +1,128 @@
+    JPanel fillModeFacing() {
+        modeFacing.setLayout(new GridBagLayout());
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.EAST;
+        constraints.gridheight = 1;
+        constraints.gridwidth = 1;
+        constraints.ipadx = 0;
+        constraints.ipady = 0;
+        constraints.insets = insets;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        insets.top = 9;
+        insets.bottom = 9;
+        modeFacing.add(new JLabel("Protects Sensor/s"), constraints);        
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 1;
+        fSensorField1.setToolTipText(sensorFieldTooltip);
+        modeFacing.add(fSensorField1, constraints);
+        constraints.gridx = 2;
+        fSensorField2.setToolTipText(sensorFieldTooltip);
+        modeFacing.add(fSensorField2, constraints);
+        constraints.gridx = 3;
+        fSensorField3.setToolTipText(sensorFieldTooltip);
+        modeFacing.add(fSensorField3, constraints);
+        constraints.gridx = 4;
+        fSensorField4.setToolTipText(sensorFieldTooltip);
+        modeFacing.add(fSensorField4, constraints);
+
+        insets.top = 2;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        insets.bottom = 9;
+        modeFacing.add(new JLabel("Watches Turnout"), constraints);        
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 1;
+        fProtectTurnoutField.setToolTipText(turnoutFieldTooltip);
+        modeFacing.add(fProtectTurnoutField, constraints);
+
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        insets.bottom = 2;
+        modeFacing.add(new JLabel("To Protect Signal"), constraints);
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 1;
+        fNextSignalField1.setToolTipText(highSignalFieldTooltip);
+        modeFacing.add(fNextSignalField1, constraints);
+        constraints.gridx = 2;
+        fNextSignalField1Alt.setToolTipText(nextSignalFieldTooltip);
+        modeFacing.add(fNextSignalField1Alt, constraints);
+        constraints.gridx = 3;
+        constraints.gridwidth = 2;
+        fmLimitBox.setToolTipText(limitBoxTooltip);
+        modeFacing.add(fmLimitBox, constraints);
+
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridwidth = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        insets.bottom = 9;
+        modeFacing.add(new JLabel("And Sensor/s"), constraints);
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 1;
+        fNextSensorField1.setToolTipText(sensorFieldTooltip);
+        modeFacing.add(fNextSensorField1, constraints);
+        constraints.gridx = 2;
+        fNextSensorField1Alt.setToolTipText(sensorFieldTooltip);
+        modeFacing.add(fNextSensorField1Alt, constraints);
+        constraints.gridx = 3;
+        constraints.gridwidth = 2;
+        modeFacing.add(new JLabel("When Turnout is "+InstanceManager.turnoutManagerInstance().getClosedText()), constraints);
+        constraints.gridwidth = 1;
+
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        insets.bottom = 2;
+        modeFacing.add(new JLabel("And Protect Signal"), constraints);
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 1;
+        fNextSignalField2.setToolTipText(highSignalFieldTooltip);
+        modeFacing.add(fNextSignalField2, constraints);
+        constraints.gridx = 2;
+        fNextSignalField2Alt.setToolTipText(nextSignalFieldTooltip);
+        modeFacing.add(fNextSignalField2Alt, constraints);
+        constraints.gridx = 3;
+        constraints.gridwidth = 2;
+        fdLimitBox.setToolTipText(limitBoxTooltip);
+        modeFacing.add(fdLimitBox, constraints);
+
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridwidth = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 5;
+        insets.bottom = 9;
+        modeFacing.add(new JLabel("And Sensor/s"), constraints);
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 1;
+        fNextSensorField2.setToolTipText(sensorFieldTooltip);
+        modeFacing.add(fNextSensorField2, constraints);
+        constraints.gridx = 2;
+        fNextSensorField2Alt.setToolTipText(sensorFieldTooltip);
+        modeFacing.add(fNextSensorField2Alt, constraints);
+        constraints.gridx = 3;
+        constraints.gridwidth = 2;
+        modeFacing.add(new JLabel("When Turnout is "+InstanceManager.turnoutManagerInstance().getThrownText()), constraints);
+        constraints.gridwidth = 1;
+
+        constraints.gridy = 6;
+        constraints.gridx = 1;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.WEST;
+        insets.bottom = 9;
+        fFlashBox.setToolTipText(flashBoxTooltip);
+        modeFacing.add(fFlashBox, constraints);
+
+        constraints.gridx = 3;
+        fDistantBox.setToolTipText(distantBoxTooltip);
+        modeFacing.add(fDistantBox, constraints);
+        
+        return modeFacing;
+    }

@@ -1,0 +1,8 @@
+    public boolean hasDeletableEntries() {
+        for (int row = 0, rows = getRowCount(); row < rows; ++row) {
+            if (getHistoryEntry(row) != null) {
+                return true;
+            }
+        }
+        return false;
+    }

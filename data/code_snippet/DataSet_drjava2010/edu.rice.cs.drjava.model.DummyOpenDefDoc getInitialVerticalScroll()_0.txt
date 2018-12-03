@@ -1,0 +1,1 @@
+  public int getInitialVerticalScroll() { throw new UnsupportedOperationException("Dummy method"); }

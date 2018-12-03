@@ -1,0 +1,6 @@
+    public boolean allowsRemoval() {
+        if (!modelAllowsRemoval()) {
+            return false;
+        }
+        return super.allowsRemoval();
+    }

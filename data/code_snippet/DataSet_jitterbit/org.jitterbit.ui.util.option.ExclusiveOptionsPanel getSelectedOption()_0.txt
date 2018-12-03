@@ -1,0 +1,4 @@
+    public T getSelectedOption() {
+        List<T> selected = getSelectedOptions();
+        return selected.isEmpty() ? null : selected.get(0);
+    }

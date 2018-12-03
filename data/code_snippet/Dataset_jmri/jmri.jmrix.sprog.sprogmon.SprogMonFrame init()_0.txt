@@ -1,0 +1,3 @@
+	protected void init() {
+		SprogTrafficController.instance().addSprogListener(this);
+	}

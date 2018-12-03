@@ -1,0 +1,7 @@
+    private void createTextInputField() {
+        JTextField base = getTextField();
+        FileDropSupport.install(base, IFileDropStrategy.SET_FULL_PATH);
+        base.addActionListener(new TextActionSender());
+        installToolTip(base);
+        m_panel.addInputField(m_textField, m_textField, m_textField);
+    }

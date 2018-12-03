@@ -1,0 +1,7 @@
+    public IPrimaryKeys[] getPrimaryKeys() {
+        List<IPrimaryKeys> keys = new ArrayList<IPrimaryKeys>();
+        for (DbObjectKeyDefiner d : m_keyDefiners) {
+            keys.add(d.getDefinedKeys());
+        }
+        return keys.toArray(new IPrimaryKeys[keys.size()]);
+    }

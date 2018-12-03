@@ -1,0 +1,16 @@
+    private void storeProperties() {
+        OutputStream out = null;
+        try {
+            out = new FileOutputStream(m_file);
+            m_properties.store(out, "");
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            KongaIoUtils.close(out);
+        }
+    }

@@ -1,0 +1,30 @@
+  void _switchDefScrollPane() {
+    assert EventQueue.isDispatchThread();
+    _currentDefPane.notifyInactive();
+    
+    OpenDefinitionsDocument activeDoc = _model.getActiveDocument();
+    _currentDefDoc = activeDoc.getDocument();
+    JScrollPane scroll = _defScrollPanes.get(activeDoc);
+    
+    if (scroll == null) scroll = _createDefScrollPane(activeDoc);
+    
+    _reenableScrollBar();
+    
+    int oldLocation = _docSplitPane.getDividerLocation();
+    _docSplitPane.setDividerLocation(oldLocation);
+    
+    if (_currentDefPane.isEditable()) {
+      _currentDefPane = (DefinitionsPane) scroll.getViewport().getView();
+      _currentDefPane.notifyActive();
+    }
+    else {
+      try { _currentDefPane.setEditable(true); }
+      catch(NoSuchDocumentException e) { /* It's OK */ }
+      
+      _currentDefPane = (DefinitionsPane) scroll.getViewport().getView();
+      _currentDefPane.notifyActive();
+      _currentDefPane.setEditable(false);
+    }
+    resetUndo();
+    _updateDebugStatus();
+  }

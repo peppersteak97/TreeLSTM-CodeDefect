@@ -1,0 +1,5 @@
+    void onValidProject() {
+        m_statusLabel.setIcon(PackageResources.VALID_ICON);
+        m_statusLabel.setText(PackageResources.DeployPage.Labels.VALID);
+        m_resultReportArea.setText(PackageResources.DeployPage.Messages.VALID);
+    }

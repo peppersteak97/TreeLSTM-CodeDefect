@@ -1,0 +1,3 @@
+    MouseDragSelector getMouseDragSelector() {
+        return m_mouseDragSelector;
+    }

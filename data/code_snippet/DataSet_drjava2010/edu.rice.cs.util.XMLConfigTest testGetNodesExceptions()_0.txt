@@ -1,0 +1,30 @@
+  public void testGetNodesExceptions() throws Exception{
+    XMLConfig xc = 
+      new XMLConfig(new StringReader(
+                                     "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><concutest>\n"
+                                       +" <name type=\"only\" value=\"true\"/>\n"
+                                       +" <thread value=\"false\" />\n"
+                                       +" <node value=\"on\" /> \n"
+                                       +" <dot value=\"off\" /> \n"
+                                       +" <class name=\"sample.threadCheck.ThreadCheckSample4\"/>\n"
+                                       +"</concutest>"));
+    
+    try{
+      xc.getNodes("somePath.attr.subAttr");
+      Assert.fail("Shouldn't be able to refer to sub attributes");
+    }catch(XMLConfig.XMLConfigException e){
+      Assert.assertEquals("Didn't get expected exception message",
+                          "An attribute cannot have subparts (foo.bar.fum and foo.bar/fum not allowed)",
+                          e.getMessage());
+    }
+    
+    try{
+      xc.getNodes("somePath.attr/subAttr");
+      Assert.fail("Shouldn't be able to refer to a path relative to an attribute");
+    }catch(XMLConfig.XMLConfigException e){
+      Assert.assertEquals("Didn't get expected exception message",
+                          "An attribute cannot have subparts (foo.bar.fum and foo.bar/fum not allowed)",
+                          e.getMessage());
+    }
+    
+  }

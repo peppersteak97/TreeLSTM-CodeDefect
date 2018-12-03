@@ -1,0 +1,2 @@
+      if (_saveProjectAs()) {  // asks user for new project file name; sets _projectFile in global model to this value
+      }

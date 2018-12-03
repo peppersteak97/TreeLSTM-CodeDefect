@@ -1,0 +1,9 @@
+    public void exitedBlock() {
+        long start = System.currentTimeMillis();
+        try {
+            exitedBlockImpl();
+        }
+        finally {
+            addProfilingTime(start);
+        }
+    }

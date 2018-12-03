@@ -1,0 +1,16 @@
+    private JPanel createNamePanel() {
+        InputPanel namePanel = new InputPanel() {
+
+            @Override
+            public Dimension getMaximumSize() {
+                return getPreferredSize();
+            }
+        };
+        namePanel.setOpaque(false);
+        InputFieldLayoutUtils.layoutOneColumn(namePanel,
+                        new InputField[] { m_nameField }, true, false);
+        JPanel capsule = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        capsule.add(namePanel.getUi());
+        capsule.setOpaque(false);
+        return capsule;
+    }

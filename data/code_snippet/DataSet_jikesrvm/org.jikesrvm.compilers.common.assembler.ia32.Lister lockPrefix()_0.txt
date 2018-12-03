@@ -1,0 +1,3 @@
+  public void lockPrefix() {
+    prefix = Prefix.LOCK;
+  }

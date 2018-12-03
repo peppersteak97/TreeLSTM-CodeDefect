@@ -1,0 +1,9 @@
+  public void testAddRemove() {
+    hm.addHighlight(0,0,p);
+    hm.addHighlight(0,1,p);
+    assertEquals("HighlightManager add Test", 2, hm.size());
+    hm.removeHighlight(0,0,p);
+    assertEquals("HighlightManager remove Test 1", 1, hm.size());
+    hm.removeHighlight(0,1,p);
+    assertEquals("HighlightManager remove Test 1", 0, hm.size());
+  }

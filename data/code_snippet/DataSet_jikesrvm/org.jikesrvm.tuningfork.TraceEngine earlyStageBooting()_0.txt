@@ -1,0 +1,9 @@
+  public void earlyStageBooting() {
+    if (Options.TuningForkTraceFile == null) {
+      /* tracing not enabled on this run, shut down engine to minimize overhead */
+      RVMThread.getCurrentFeedlet().enabled = false;
+      state = State.SHUT_DOWN;
+    } else {
+      unwrittenMetaChunks.enqueue(new SpaceDescriptorChunk());
+    }
+  }

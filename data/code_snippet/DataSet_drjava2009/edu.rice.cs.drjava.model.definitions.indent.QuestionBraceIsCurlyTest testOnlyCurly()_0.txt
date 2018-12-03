@@ -1,0 +1,54 @@
+  public void testOnlyCurly() throws BadLocationException {
+    /* (1) */
+    
+    _text =
+      "{ /* block1 */ }\n" +
+      "{ /* block2 */ }\n" +
+      "{ /* block3 */ }";
+    
+    _setDocText(_text);
+    
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 28, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 30, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, _text.length() - 1, Indenter.IndentReason.OTHER));
+    
+    /* (2) */
+    
+    _text =
+      "{\n" +
+      "    {\n" +
+      "        {}\n" +
+      "    }\n" +
+      "}";
+    
+    _setDocText(_text);
+    
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("START's brace is an open curly brace.", _rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+    assertTrue("START's brace is an open curly brace.", _rule.testApplyRule(_doc, 18, Indenter.IndentReason.OTHER));
+    assertTrue("START's brace is an open curly brace.", _rule.testApplyRule(_doc, 19, Indenter.IndentReason.OTHER));
+    assertTrue("START's brace is an open curly brace.", _rule.testApplyRule(_doc, _text.length() - 1, Indenter.IndentReason.OTHER));
+    
+    /* (3) */
+    
+    _text =
+      "class Foo {\n" +
+      "}";
+    _setDocText(_text);
+    
+    assertTrue("Close brace immediately after open brace.", _rule.testApplyRule(_doc, 12, Indenter.IndentReason.OTHER));
+    
+    /* (4) */
+    
+    _text =
+      "class Foo {\n" +
+      "  method m()\n" +
+      "  {\n" +
+      "  }\n" +
+      "}";
+    _setDocText(_text);
+    
+    assertTrue("Close brace immediately after open brace.", _rule.testApplyRule(_doc, 29, Indenter.IndentReason.OTHER));
+  }

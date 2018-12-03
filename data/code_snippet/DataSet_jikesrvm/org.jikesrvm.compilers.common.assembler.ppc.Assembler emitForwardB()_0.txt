@@ -1,0 +1,10 @@
+  public final ForwardReference emitForwardB() {
+    ForwardReference fr;
+    if (compiler != null) {
+      fr = new AssemblerShortBranch(mIP, compiler.spTopOffset);
+    } else {
+      fr = new ForwardReference.ShortBranch(mIP);
+    }
+    _emitB(0);
+    return fr;
+  }

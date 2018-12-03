@@ -1,0 +1,4 @@
+    private void registerProjectManagerListener() {
+        InterchangeProjectManager mgr = InterchangeProjectManager.getManager();
+        mgr.addInterchangeProjectManagerListener(this);
+    }

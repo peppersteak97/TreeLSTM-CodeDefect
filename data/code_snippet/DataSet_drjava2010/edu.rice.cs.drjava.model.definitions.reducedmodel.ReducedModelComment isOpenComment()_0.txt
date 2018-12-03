@@ -1,0 +1,5 @@
+  public boolean isOpenComment() {
+    if (_cursor.atStart() || ! _cursor.atEnd()) return false;
+    ReducedToken curToken = _cursor.current();
+    return curToken.isCommentStart();
+  }

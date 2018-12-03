@@ -1,0 +1,19 @@
+    private void createComponents() {
+        IKongaListFactory listFactory = ComponentFactories.newKongaListFactory();
+        listFactory.setVisibleRowCount(12);
+        listFactory.setPrototypeValue("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        m_wsdlList = listFactory.newList();
+        m_wsdlList.setSelectionMode(ListSelectionMode.SINGLE_SELECTION);
+        m_wsdlList.setDefaultAction(new AbstractSelectionAction() {
+
+            public void actionPerformed(ActionEvent e) {
+                fireActionEvent();
+            }
+        });
+        m_wsdlList.addSelectionListener(new ISelectionListener() {
+
+            public void selectionChanged(SelectionChangedEvent evt) {
+                fireInputChanged();
+            }
+        });
+    }

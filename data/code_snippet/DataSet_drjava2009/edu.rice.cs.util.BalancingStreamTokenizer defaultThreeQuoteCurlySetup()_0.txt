@@ -1,0 +1,8 @@
+  public void defaultThreeQuoteCurlySetup() {
+    wordRange(0,255);
+    whitespaceRange(0,32);
+    addQuotes("\"", "\"");
+    addQuotes("'", "'");
+    addQuotes("`", "`");
+    addQuotes("{", "}");
+  }

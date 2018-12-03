@@ -1,0 +1,3 @@
+    private synchronized String getCurrentFile() {
+        return m_currentFile;
+    }

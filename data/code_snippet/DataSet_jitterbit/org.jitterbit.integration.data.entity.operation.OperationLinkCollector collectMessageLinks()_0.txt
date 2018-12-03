@@ -1,0 +1,14 @@
+    private void collectMessageLinks() {
+        EmailMessageId successMsgId = m_op.getSuccessMessageId();
+        EmailMessageId failureMsgId = m_op.getFailureMessageId();
+        if (successMsgId == null && failureMsgId == null) {
+            return;
+        }
+        if (KongaID.areEqual(successMsgId, failureMsgId)) {
+            onSameSuccessAndFailureMessage(successMsgId);
+        }
+        else {
+            collectSuccessMessageLink(successMsgId);
+            collectFailureMessageLink(failureMsgId);
+        }
+    }

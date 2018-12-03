@@ -1,0 +1,12 @@
+    protected void openNewLoco() {
+        DecoderFile decoderFile = DecoderIndexFile.instance().fileFromTitle(selectedDecoderType());
+        if (log.isDebugEnabled()) log.debug("decoder file: "+decoderFile.getFilename());
+
+        RosterEntry re = new RosterEntry();
+        re.setDecoderFamily(decoderFile.getFamily());
+        re.setDecoderModel(decoderFile.getModel());
+        re.setId("<new loco>");
+        Roster.instance().addEntry(re);
+
+        startProgrammer(decoderFile, re, (String)programmerBox.getSelectedItem());
+    }

@@ -1,0 +1,3 @@
+    public boolean isDefault() {
+        return (m_rawAddress[0] == 0 && m_rawAddress[1] == 0 && m_rawAddress[2] == 0 && m_rawAddress[3] == 0);
+    }

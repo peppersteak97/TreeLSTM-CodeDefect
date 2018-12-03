@@ -1,0 +1,3 @@
+    if (mayThrowUncaughtException()) {
+      VM.sysWrite("\tMay throw uncaught exceptions, implicit edge to EXIT\n");
+    }

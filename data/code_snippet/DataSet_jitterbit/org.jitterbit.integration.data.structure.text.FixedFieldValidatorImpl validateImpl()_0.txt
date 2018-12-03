@@ -1,0 +1,5 @@
+    private Collection<IValidationIssue> validateImpl() {
+        List<IValidationIssue> issues = new ArrayList<IValidationIssue>();
+        collectValidationErrors(issues);
+        return issues;
+    }

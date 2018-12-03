@@ -1,0 +1,5 @@
+    private void createActions() {
+        m_openAction = new OpenAction();
+        m_removeSelectedProjectAction = new RemoveSelectedProjectAction();
+        m_browseAction = new BrowseExistingProject();
+    }

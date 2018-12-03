@@ -1,0 +1,3 @@
+    public static SystemTarget[] getSystemTargets() {
+        return new SystemTarget[] { WEB_SERVICE_CALL, };
+    }

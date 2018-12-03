@@ -1,0 +1,6 @@
+    private void layoutComponents() {
+        JPanel p = new JPanel();
+        m_name.layoutVertically(p);
+        setLayout(new FlowLayout(FlowLayout.LEADING, 5, 0));
+        getUi().add(p);
+    }

@@ -1,0 +1,7 @@
+  private void _updateNormalColor() {
+    Color norm = DrJava.getConfig().getSetting(DEFINITIONS_NORMAL_COLOR);
+    
+    _model.getDocCollectionWidget().setForeground(norm);
+    
+    _repaintLineNums();
+  }

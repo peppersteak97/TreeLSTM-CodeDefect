@@ -1,0 +1,9 @@
+    private JList createFileList() {
+        JList list = ComponentFactories.listFactory().newList(
+                        new ListDoubleClickListener());
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.setVisibleRowCount(20);
+        list.setPrototypeCellValue("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        list.setCellRenderer(new DefaultListDecorRenderer());
+        return list;
+    }

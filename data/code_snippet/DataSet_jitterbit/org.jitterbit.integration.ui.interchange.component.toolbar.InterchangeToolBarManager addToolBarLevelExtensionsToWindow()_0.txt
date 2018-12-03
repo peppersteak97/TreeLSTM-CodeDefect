@@ -1,0 +1,16 @@
+    public void addToolBarLevelExtensionsToWindow() {
+        ToolBar fileTb = m_appWinToolBarManagerHorizontal.getToolBar(
+                        ApplicationWindowToolBars.FILE);
+        ToolBarExtensionPoint extPt = ToolBarExtensionPoint.EXTENSION_POINT_1;
+        fileTb.addExtension(extPt, m_fileToolBarExtension.getButtons(extPt));
+
+        ToolBar editTb = m_appWinToolBarManagerHorizontal.getToolBar(
+                        ApplicationWindowToolBars.EDIT);
+        extPt = ToolBarExtensionPoint.EXTENSION_POINT_1;
+        editTb.addExtension(extPt, m_editToolBarExtension.getButtons(extPt));
+        
+        ToolBar serverTb = m_appWinToolBarManagerHorizontal.getToolBar(
+                        ApplicationWindowToolBars.ACTIONS);
+        extPt = ToolBarExtensionPoint.EXTENSION_POINT_1;
+        serverTb.addExtension(extPt, m_actionToolBarExtension.getButtons(extPt));
+    }

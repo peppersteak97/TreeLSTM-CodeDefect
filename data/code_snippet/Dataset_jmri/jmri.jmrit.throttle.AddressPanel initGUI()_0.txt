@@ -1,0 +1,96 @@
+	private void initGUI() {
+		JPanel mainPanel = new JPanel();
+		this.setContentPane(mainPanel);
+		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
+		mainPanel.setLayout(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.anchor = GridBagConstraints.CENTER;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
+		constraints.insets = new Insets(2, 2, 2, 2);
+		constraints.weightx = 1;
+		constraints.weighty = 0;
+		constraints.gridx = 0;
+		constraints.gridy = 0;
+
+		constraints.ipadx = constraints.ipady = -16;
+		addrSelector.setVariableSize(true);
+		mainPanel.add(addrSelector.getCombinedJPanel(), constraints);
+
+		setButton = new JButton(rb.getString("ButtonSet"));
+		constraints.gridx = GridBagConstraints.RELATIVE;
+		constraints.fill = GridBagConstraints.NONE;
+		constraints.weightx = 0;
+		constraints.ipadx = constraints.ipady = 0;
+		mainPanel.add(setButton, constraints);
+
+		setButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				consistAddress = null;
+				changeOfAddress();
+			}
+		});
+
+		rosterBox = Roster.instance().fullRosterComboBox();
+		rosterBox.insertItemAt(new NullComboBoxItem(), 0);
+		rosterBox.setSelectedIndex(0);
+		rosterBox.setToolTipText(rb.getString("SelectLocoFromRosterTT"));
+		rosterBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rosterItemSelected();
+			}
+		});
+		constraints.gridx = 0;
+		constraints.gridy = GridBagConstraints.RELATIVE;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
+		constraints.weightx = 1;
+		constraints.weighty = 0;
+		mainPanel.add(rosterBox, constraints);
+
+		conRosterBox = NceConsistRoster.instance().fullRosterComboBox();
+		if (NceConsistRoster.instance().numEntries() > 0) {
+			conRosterBox.insertItemAt(new NullComboBoxConsist(), 0);
+			conRosterBox.setSelectedIndex(0);
+			conRosterBox.setToolTipText(rb.getString("SelectConsistFromRosterTT"));
+			conRosterBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					consistRosterSelected();
+				}
+			});
+			constraints.gridx = 0;
+			constraints.gridy = GridBagConstraints.RELATIVE;
+			constraints.fill = GridBagConstraints.HORIZONTAL;
+			constraints.weightx = 1;
+			constraints.weighty = 0;
+			mainPanel.add(conRosterBox, constraints);
+		}
+
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new FlowLayout());
+		dispatchButton = new JButton(rb.getString("ButtonDispatch"));
+		buttonPanel.add(dispatchButton);
+		dispatchButton.setEnabled(false);
+		dispatchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispatchAddress();
+			}
+		});
+
+		releaseButton = new JButton(rb.getString("ButtonRelease"));
+		buttonPanel.add(releaseButton);
+		releaseButton.setEnabled(false);
+		releaseButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				releaseAddress();
+			}
+		});
+
+		constraints.gridx = 0;
+		constraints.gridy = GridBagConstraints.RELATIVE;
+		constraints.gridwidth = 2;
+		constraints.weighty = 0;
+		constraints.insets = new Insets(0, 0, 0, 0);
+		mainPanel.add(buttonPanel, constraints);
+
+		pack();
+	}

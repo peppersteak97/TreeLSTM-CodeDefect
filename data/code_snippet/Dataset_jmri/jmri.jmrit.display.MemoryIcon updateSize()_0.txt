@@ -1,0 +1,5 @@
+    public void updateSize() {
+    	height = -1;
+    	width = -1;
+        super.updateSize();
+    }

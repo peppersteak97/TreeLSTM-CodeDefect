@@ -1,0 +1,14 @@
+	public void run() {
+		try {
+			operatorCheck();
+			myTurnout.forwardCommandChangeToLayout();
+			while (++tries < maxTries) {
+				try {
+					Thread.sleep(interval);
+				} catch (InterruptedException e) { };
+				operatorCheck();
+				myTurnout.forwardCommandChangeToLayout();
+			}
+			myTurnout.setKnownStateToCommanded();
+		} catch (TurnoutOperatorException e) { };
+	}

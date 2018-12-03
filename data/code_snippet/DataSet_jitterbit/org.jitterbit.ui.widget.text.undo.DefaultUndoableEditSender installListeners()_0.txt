@@ -1,0 +1,5 @@
+    private void installListeners() {
+        m_focusHandler = new FocusHandler();
+        m_focusHandler.install(m_textComponent);
+        m_textComponent.getDocument().addUndoableEditListener(this);
+    }

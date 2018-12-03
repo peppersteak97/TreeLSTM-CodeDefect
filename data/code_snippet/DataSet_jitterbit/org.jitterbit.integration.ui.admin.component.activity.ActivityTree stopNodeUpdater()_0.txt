@@ -1,0 +1,6 @@
+    synchronized void stopNodeUpdater() {
+        if (m_waitNodeUpdater != null) {
+            m_waitNodeUpdater.stop();
+            m_waitNodeUpdater = null;
+        }
+    }

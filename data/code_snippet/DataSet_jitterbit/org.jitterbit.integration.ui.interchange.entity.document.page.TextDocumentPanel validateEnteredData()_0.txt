@@ -1,0 +1,11 @@
+    private void validateEnteredData() throws IntegrationDataPanelException {
+        try {
+            validateInput();
+        }
+        catch (ValidationAbortedException ex) {
+            throw new ApplyAbortedException(ex.getMessage());
+        }
+        catch (InputPanelException ex) {
+            throw new IntegrationDataPanelException(ex.getMessage());
+        }
+    }

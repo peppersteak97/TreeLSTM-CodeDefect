@@ -1,0 +1,8 @@
+    public IPage getSelectedPage() {
+        IIndexedSelection selection = m_pageList.getSelection();
+        Object o = selection.head();
+        if (o instanceof PageListDecorator) {
+            return ((PageListDecorator) o).getPage();
+        }
+        return null;
+    }

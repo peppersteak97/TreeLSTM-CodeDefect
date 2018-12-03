@@ -1,0 +1,8 @@
+    public boolean checkPathSet() {
+		if (_beans.size()==0) return true;
+		for (int i = 0;i<_beans.size();i++) {
+			if (!((BeanSetting)_beans.get(i)).check()) 
+				return false;
+		}
+		return true;
+    }

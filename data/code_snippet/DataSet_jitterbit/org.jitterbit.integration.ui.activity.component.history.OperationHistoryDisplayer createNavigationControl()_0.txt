@@ -1,0 +1,5 @@
+    protected FilteredPageNavigationControl<IOperationHistoryEntry> createNavigationControl() {
+        OperationHistoryNavigationControl c = new OperationHistoryNavigationControl(this);
+        c.setEnabled(false);
+        return c;
+    }

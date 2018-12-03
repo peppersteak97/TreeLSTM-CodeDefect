@@ -1,0 +1,3 @@
+    public List<Database> getDatabases() {
+        return new ArrayList<Database>(m_liDatabases);
+    }

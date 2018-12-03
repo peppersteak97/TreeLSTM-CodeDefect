@@ -1,0 +1,4 @@
+	public int getBottomOffset() {
+		Rectangle r = getTextRect();
+		return ( r.y + r.height - getY() - getHeight());
+	}

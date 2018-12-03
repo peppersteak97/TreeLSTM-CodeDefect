@@ -1,0 +1,3 @@
+    if (fd.clickedOK()) {
+      chosenFont = fd.getFont();
+    }

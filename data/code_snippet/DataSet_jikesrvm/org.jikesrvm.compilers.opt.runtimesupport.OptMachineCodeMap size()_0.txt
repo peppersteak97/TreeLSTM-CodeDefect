@@ -1,0 +1,7 @@
+  int size() {
+    int size = TYPE.peekType().asClass().getInstanceSize();
+    if (MCInformation != null) size += RVMArray.IntArray.getInstanceSize(MCInformation.length);
+    if (inlineEncoding != null) size += RVMArray.IntArray.getInstanceSize(inlineEncoding.length);
+    if (gcMaps != null) size += RVMArray.IntArray.getInstanceSize(gcMaps.length);
+    return size;
+  }

@@ -1,0 +1,13 @@
+    public TransformationId getTransformationId() {
+        String sId = this.getProperty(TRANSFORMATION_ID);
+        if (sId == null || sId.length() == 0) {
+            return TransformationId.UNDEFINED_ID;
+        }
+
+        try {
+            return new TransformationId(sId);
+        }
+        catch (IllegalArgumentException e) {
+            return null;
+        }
+    }

@@ -1,0 +1,13 @@
+    private void validateInput() {
+        boolean enabled = false;
+        IServerXsdFileSelection selection = m_serverXsdSelector.getSelection();
+        if (selection != null) {
+            if( m_radioSelectExisting.isSelected() ) {
+                enabled = (selection.getFile() != null);
+            }
+            else if( m_radioUpload.isSelected() ) {
+                enabled = m_uploadFilePanel.isInputValid();
+            }
+        }
+        m_page.setNextPageEnabled(enabled);
+    }

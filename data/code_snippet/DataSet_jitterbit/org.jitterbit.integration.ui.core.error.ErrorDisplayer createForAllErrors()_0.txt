@@ -1,0 +1,3 @@
+    public static ErrorDisplayer createForAllErrors() {
+        return new ErrorDisplayer(ErrorLogger.getDefaultLogger().getAllErrors());
+    }

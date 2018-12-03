@@ -1,0 +1,37 @@
+    public void instantiate() {
+        String nameT = namePrefix+"T"+nameDivider+output;
+        String nameC = namePrefix+"C"+nameDivider+output;
+
+        RouteManager rm = InstanceManager.routeManagerInstance();
+        
+        Route rt = rm.getBySystemName(nameT);
+        if (rt != null) {
+            rt.deActivateRoute();
+            rm.deleteRoute(rt);
+        }
+        Route rc = rm.getBySystemName(nameC);
+        if (rc != null) {
+            rc.deActivateRoute();
+            rm.deleteRoute(rc);
+        }
+        
+        rt = new DefaultRoute(nameT);
+        rc = new DefaultRoute(nameC);
+
+        rt.addSensorToRoute(sensor, invert ? Route.ONINACTIVE : Route.ONACTIVE);
+        rc.addSensorToRoute(sensor, !invert ? Route.ONINACTIVE : Route.ONACTIVE);
+        
+        if (!veto.equals("")) {
+            rt.addSensorToRoute(veto, Route.VETOACTIVE);
+            rc.addSensorToRoute(veto, Route.VETOACTIVE);
+        }
+        
+        rt.addOutputTurnout(output, Turnout.THROWN);
+        rc.addOutputTurnout(output, Turnout.CLOSED);
+        
+        rt.activateRoute();
+        rc.activateRoute();
+        rm.register(rt);
+        rm.register(rc);
+        
+    }

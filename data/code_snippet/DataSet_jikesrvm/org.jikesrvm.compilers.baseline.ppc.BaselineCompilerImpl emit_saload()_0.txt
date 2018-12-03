@@ -1,0 +1,4 @@
+  protected final void emit_saload() {
+    genBoundsCheck();
+    pushInt(T2);
+  }

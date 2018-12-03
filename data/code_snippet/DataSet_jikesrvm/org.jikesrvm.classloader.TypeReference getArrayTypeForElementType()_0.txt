@@ -1,0 +1,4 @@
+  public TypeReference getArrayTypeForElementType() {
+    Atom arrayDescriptor = name.arrayDescriptorFromElementDescriptor();
+    return findOrCreate(classloader, arrayDescriptor);
+  }

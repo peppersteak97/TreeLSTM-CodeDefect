@@ -1,0 +1,5 @@
+    private void startTableNamespace() {
+        addLine();
+        addLine("namespace " + DtlCppUtils.getDtlTableNamespace(getNamespace()) + " {");
+        addLine();
+    }

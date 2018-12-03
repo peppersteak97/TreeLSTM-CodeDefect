@@ -1,0 +1,3 @@
+    public IWindowSection getWindowSection() {
+        return m_winSection;
+    }

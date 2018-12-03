@@ -1,0 +1,3 @@
+    protected int asInt() {
+        return _high*256+_low*2+(_as!=0 ? 1 : 0);
+    }

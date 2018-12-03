@@ -1,0 +1,4 @@
+	public Description getDescription() {
+		Description desc = new Description(m_text.getText());
+		return desc;
+	}

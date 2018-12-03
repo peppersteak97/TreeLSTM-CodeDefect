@@ -1,0 +1,16 @@
+    private void createControlPanel() {
+        m_launchButtons = new ArrayList<JToggleButton>();
+        ButtonSizeManager btnSizeMgr = new ButtonSizeManager();
+        ButtonGroup grp = new ButtonGroup();
+        for (IViewLauncher launcher : m_launchers) {
+            JToggleButton btn = new JToggleButton(launcher.getName());
+            btn.addActionListener(new LauncherActivator(launcher));
+            m_launchButtons.add(btn);
+            btnSizeMgr.add(btn);
+            grp.add(btn);
+        }
+        btnSizeMgr.apply();
+        
+        m_controlPanel = new JPanel(new BorderLayout());
+        m_controlPanel.add(getControlButtonRow());
+    }

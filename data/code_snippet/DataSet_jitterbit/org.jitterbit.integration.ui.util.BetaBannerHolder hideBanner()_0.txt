@@ -1,0 +1,6 @@
+    private void hideBanner() {
+        assert m_isBannerVisible;
+        m_isBannerVisible = false;
+        m_holder.removeAll();
+        m_layoutSupport.fireLayoutChanged();
+    }

@@ -1,0 +1,11 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append(LINE_BREAK);
+        if (!m_operations.isEmpty()) {
+            for (OperationId opId : m_operations) {
+                sb.append(LINE_BREAK);
+                sb.append(opId);
+            }
+        }
+        return sb.toString();
+    }

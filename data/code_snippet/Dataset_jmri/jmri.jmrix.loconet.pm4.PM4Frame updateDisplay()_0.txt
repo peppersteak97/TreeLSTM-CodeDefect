@@ -1,0 +1,15 @@
+    protected void updateDisplay() {
+        setDisplaySpeed(3, slow1);
+        rev1.setSelected(opsw[6]);
+        setDisplaySpeed(11, slow2);
+        rev2.setSelected(opsw[14]);
+        setDisplaySpeed(19, slow3);
+        rev3.setSelected(opsw[22]);
+        setDisplaySpeed(27, slow4);
+        rev4.setSelected(opsw[30]);
+        int index = 0;
+        if (opsw[2]) index += 4;
+        if (opsw[1]) index += 2;
+        if (!opsw[9]) index += 1;
+        current.setSelectedIndex(index);
+    }

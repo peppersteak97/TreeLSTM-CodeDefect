@@ -1,0 +1,3 @@
+  public final boolean isExceptionHandlerBasicBlock() {
+    return (flags & EXCEPTION_HANDLER) != 0;
+  }

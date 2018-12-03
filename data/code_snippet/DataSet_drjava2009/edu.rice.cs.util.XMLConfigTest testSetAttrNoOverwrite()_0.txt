@@ -1,0 +1,17 @@
+  public void testSetAttrNoOverwrite() throws Exception {
+    XMLConfig xc = new XMLConfig();
+    xc.set("foo/bar.fee", "abc", false);
+    
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                             "  <bar fee=\"abc\"/>"+NL+"</foo>"+NL), xc.toString());
+    assertEquals("abc", xc.get("foo/bar.fee"));
+    
+    xc.set("foo/bar.fee", "def", false);
+    
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                             "  <bar fee=\"abc\"/>"+NL+"  <bar fee=\"def\"/>"+NL+"</foo>"+NL), xc.toString());
+    List<String> r = xc.getMultiple("foo/bar.fee");
+    assertEquals(2, r.size());
+    assertEquals("abc", r.get(0));
+    assertEquals("def", r.get(1));
+  }

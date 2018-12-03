@@ -1,0 +1,3 @@
+    public synchronized void startWait() {
+        m_isInWaitState = true;
+    }

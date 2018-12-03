@@ -1,0 +1,7 @@
+    private void createMainPanel() {
+        setMainPanel(TransformationWizard.getUtils().createPageMainPanel(
+                getMainCaption(), 
+                "", 
+                m_objectSearcher, 
+                m_objectSelector));
+    }

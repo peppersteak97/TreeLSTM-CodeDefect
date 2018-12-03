@@ -1,0 +1,6 @@
+    private void addInputFields() {
+        addInputField(m_webServiceUrl, m_webServiceUrl, m_webServiceUrl);
+
+        String soap = PackageResources.Labels.SOAP_ACTION;
+        addInputField(new TextInputField(soap, m_soapAction, null));
+    }

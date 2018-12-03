@@ -1,0 +1,3 @@
+    public String getFilename() {
+        return m_sFactoryName;
+    }

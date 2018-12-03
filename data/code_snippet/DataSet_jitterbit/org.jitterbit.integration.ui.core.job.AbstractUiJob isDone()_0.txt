@@ -1,0 +1,5 @@
+    public final boolean isDone() {
+        synchronized (m_lock) {
+            return m_isDone;
+        }
+    }

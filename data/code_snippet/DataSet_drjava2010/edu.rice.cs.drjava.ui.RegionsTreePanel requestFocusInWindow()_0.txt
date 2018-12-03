@@ -1,0 +1,4 @@
+  public boolean requestFocusInWindow() {
+    assert EventQueue.isDispatchThread();
+    return super.requestFocusInWindow();
+  }

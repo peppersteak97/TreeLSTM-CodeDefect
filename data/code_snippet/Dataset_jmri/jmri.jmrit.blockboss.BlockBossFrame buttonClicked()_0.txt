@@ -1,0 +1,26 @@
+    void buttonClicked() {
+        modeSingle.setVisible(false);
+        modeTrailMain.setVisible(false);
+        modeTrailDiv.setVisible(false);
+        modeFacing.setVisible(false);
+        if (buttonSingle.isSelected())
+            modeSingle.setVisible(true);
+        else if (buttonTrailMain.isSelected())
+            modeTrailMain.setVisible(true);
+        else if (buttonTrailDiv.isSelected())
+            modeTrailDiv.setVisible(true);
+        else if (buttonFacing.isSelected())
+            modeFacing.setVisible(true);
+        else {
+            log.debug("no button selected?");
+        }
+        modeSingle.validate();
+        modeTrailMain.validate();
+        modeTrailDiv.validate();
+        modeFacing.validate();
+        pack();
+        modeSingle.repaint();
+        modeTrailMain.repaint();
+        modeTrailDiv.repaint();
+        modeFacing.repaint();
+    }

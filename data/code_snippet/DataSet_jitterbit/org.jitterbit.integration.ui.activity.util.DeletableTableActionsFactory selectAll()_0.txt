@@ -1,0 +1,3 @@
+    public static <T extends IActivityEntry> IDeletableTableAction<T> selectAll() {
+        return new SelectAllAction<T>();
+    }

@@ -1,0 +1,1 @@
+	public boolean getDashed() {return dashed;}

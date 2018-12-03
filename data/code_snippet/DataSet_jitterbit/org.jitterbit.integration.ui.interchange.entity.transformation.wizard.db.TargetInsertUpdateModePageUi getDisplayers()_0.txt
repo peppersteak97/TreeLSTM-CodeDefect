@@ -1,0 +1,6 @@
+    JComponent[] getDisplayers() {
+        return new JComponent[] {
+            createModeSelectorDecor(),
+            createPrimaryKeyDefinerDecor(),
+        };
+    }

@@ -1,0 +1,3 @@
+    public int supportedSpeedModes() {
+    	return(DccThrottle.SpeedStepMode128 | DccThrottle.SpeedStepMode28);
+        }

@@ -1,0 +1,10 @@
+	protected JButton createNoButton() {
+        Action action = new AbstractAction(UiResourceBundle.getString("No")) {  
+            public void actionPerformed(ActionEvent e) {
+                onNo();
+            }
+        };
+        JButton btn = getButton(action, m_buttonSize);
+		m_btnNo = btn;
+		return btn;
+	}

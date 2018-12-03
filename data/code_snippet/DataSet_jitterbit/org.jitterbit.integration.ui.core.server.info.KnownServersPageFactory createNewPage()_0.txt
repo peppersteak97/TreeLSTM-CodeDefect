@@ -1,0 +1,3 @@
+    public IPage createNewPage() {
+        return new KnownServersPage(PageIdGenerator.get(KnownServersPage.class));
+    }

@@ -1,0 +1,9 @@
+    public void apply() throws IntegrationDataPanelException {
+        HttpLocation loc = getDisplayedObject();
+        loc.setLogin(getLogin());
+        loc.setPassword(getPassword());
+        loc.setUrl(getUrl());
+        loc.setCertificate(getCertificateName());
+        loc.setHttpVerb(m_verbSelectionPanel.getSelectedValue());
+        m_responseTargetSelector.applyTo(loc);
+    }

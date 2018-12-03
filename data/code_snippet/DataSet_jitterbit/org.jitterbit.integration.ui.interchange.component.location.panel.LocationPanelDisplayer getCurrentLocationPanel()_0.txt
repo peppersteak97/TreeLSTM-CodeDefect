@@ -1,0 +1,3 @@
+    public DataLocationPanel getCurrentLocationPanel() {
+        return m_locationPanel;
+    }

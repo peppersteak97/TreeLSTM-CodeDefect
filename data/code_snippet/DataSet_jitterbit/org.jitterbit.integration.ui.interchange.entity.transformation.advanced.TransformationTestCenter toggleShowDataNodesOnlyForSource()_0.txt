@@ -1,0 +1,10 @@
+    public boolean toggleShowDataNodesOnlyForSource() {
+        if (m_activeTransformation == null) {
+            return false;
+        }
+        TransformationId tfId = m_activeTransformation.getID();
+        if (!m_showOnlyDataNodesSource.remove(tfId)) {
+            m_showOnlyDataNodesSource.add(tfId);
+        }
+        return updateShowDataNodesOnly();
+    }

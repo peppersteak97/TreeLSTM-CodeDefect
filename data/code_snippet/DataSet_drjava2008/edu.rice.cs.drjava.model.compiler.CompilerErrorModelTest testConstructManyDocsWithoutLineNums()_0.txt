@@ -1,0 +1,30 @@
+  public void testConstructManyDocsWithoutLineNums() {
+    setupDocs();
+    errors = new CompilerError[] { 
+      new CompilerError(files[0], "Test error with File", false),
+      new CompilerError(files[2], "Test warning with File", true),
+      new CompilerError(files[4], "Test warning with File", true),
+      new CompilerError(files[1], "Test error with File", false),
+      new CompilerError(files[3], "Test warning with File", true),
+      new CompilerError(files[3], "Test error with File", false),
+      new CompilerError(files[4], "Test error with File", false),
+      new CompilerError(files[0], "Test error with File", false) 
+    };
+    
+    CompilerError[] copy = new CompilerError[errors.length];
+    for (int i = 0; i < errors.length; i++) copy[i] = errors[i];
+    model = new CompilerErrorModel(copy, getter);
+    
+    assertEquals("Should have 8 compiler errors.", 8, model.getNumErrors());
+    assertEquals("Should have 3 warnings" , 3, model.getNumWarnings());
+    assertEquals("Should have 5 compiler errors" , 5, model.getNumCompErrors());
+    assertEquals("Errors should be sorted.", errors[0], model.getError(0));
+    assertEquals("Errors should be sorted.", errors[7], model.getError(1));
+    assertEquals("Errors should be sorted.", errors[3], model.getError(2));
+    assertEquals("Errors should be sorted.", errors[1], model.getError(3));
+    assertEquals("Errors should be sorted.", errors[5], model.getError(4));
+    assertEquals("Errors should be sorted.", errors[4], model.getError(5));
+    assertEquals("Errors should be sorted.", errors[6], model.getError(6));
+    assertEquals("Errors should be sorted.", errors[2], model.getError(7));
+    assertTrue("hasOnlyWarnings should return false.", !model.hasOnlyWarnings());
+  }

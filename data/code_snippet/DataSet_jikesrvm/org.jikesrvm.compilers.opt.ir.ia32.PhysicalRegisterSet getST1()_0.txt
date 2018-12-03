@@ -1,0 +1,4 @@
+  public Register getST1() {
+    if (VM.VerifyAssertions) VM._assert(ArchConstants.SSE2_FULL);
+    return reg[ST1];
+  }

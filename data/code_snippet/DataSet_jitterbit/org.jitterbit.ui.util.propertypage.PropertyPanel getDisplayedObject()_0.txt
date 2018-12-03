@@ -1,0 +1,3 @@
+	IDisplayableInPropertyPage getDisplayedObject() {
+		return m_displayedObject;
+	}

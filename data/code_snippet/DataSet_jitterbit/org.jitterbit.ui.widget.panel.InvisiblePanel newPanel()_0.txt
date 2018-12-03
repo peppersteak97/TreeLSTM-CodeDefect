@@ -1,0 +1,3 @@
+    public static JPanel newPanel() {
+        return new JPanel(getLayout());
+    }

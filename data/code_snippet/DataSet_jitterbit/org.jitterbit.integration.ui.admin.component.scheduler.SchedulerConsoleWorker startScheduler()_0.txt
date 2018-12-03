@@ -1,0 +1,6 @@
+    void startScheduler() {
+        updateUI(EnumSet.of(ServerStatus.STARTING), 
+                        PackageResources.ConsoleWorker.STARTING);
+        IUiJob p = new StartSchedulerJob(this);
+        IntegrationUi.getUi().getJobManager().submitForParallellProcessing(p);
+    }

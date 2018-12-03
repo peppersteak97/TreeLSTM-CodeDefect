@@ -1,0 +1,3 @@
+  public IDocumentNavigator<OpenDefinitionsDocument> getDocumentNavigator() {
+    throw new UnsupportedOperationException("Tried to call getDocumentNavigator on a Dummy");
+  }

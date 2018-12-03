@@ -1,0 +1,6 @@
+  private Register makeNewReg() {
+    Register reg = new Register(currentNum);
+    currentNum++;
+    registerListappend(reg);
+    return reg;
+  }

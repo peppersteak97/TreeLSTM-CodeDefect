@@ -1,0 +1,6 @@
+    private int getTimesToRun() {
+        if (DebugMode.IS_ENABLED && isDebugTriggerOn()) {
+            return getTimesToRunImpl();
+        }
+        return 1;
+    }

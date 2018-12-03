@@ -1,0 +1,17 @@
+    void removeMarkers() {
+		log.debug("Remove markers");
+		for (int i = 0; i < contents.size(); i++) {
+			try {
+				LocoIcon il = (LocoIcon) contents.get(i);
+				if (il != null) {
+					if (il.isActive()) {
+						il.remove();
+						il.dispose();
+					}
+				}
+			} catch (Exception e) {
+
+			}
+
+		}
+	}

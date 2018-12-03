@@ -1,0 +1,16 @@
+  public void textTabRemovalOnInsertString2() throws BadLocationException {
+    String[] inputs = {
+      "\tif (token != ')')\n",
+      "\t  throw new ParseException(\"wrong number of arguments to |\");\n",
+    };
+    
+    String expected =
+      " if (token != ')')\n" +
+      "   throw new ParseException(\"wrong number of arguments to |\");\n";
+    
+    for (int i = 0; i < inputs.length; i++) {
+      _doc.insertString(_doc.getLength(), inputs[i], null);
+    }
+    
+    assertEquals(expected, _getAllText());
+  }

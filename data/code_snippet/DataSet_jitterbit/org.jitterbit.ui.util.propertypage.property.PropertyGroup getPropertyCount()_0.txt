@@ -1,0 +1,3 @@
+	public int getPropertyCount() {
+		return m_liProperties.size();
+	}

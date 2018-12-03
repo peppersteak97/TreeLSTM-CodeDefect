@@ -1,0 +1,3 @@
+  public int getLineStartOffset() { 
+    throw new UnsupportedOperationException("DocumentRegion does not suppport getLineStart()"); 
+  }

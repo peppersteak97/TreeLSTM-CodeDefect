@@ -1,0 +1,6 @@
+  protected final void emit_dup2() {
+    peekAddr(T0, 0);
+    peekAddr(T1, 1);
+    pushAddr(T1);
+    pushAddr(T0);
+  }

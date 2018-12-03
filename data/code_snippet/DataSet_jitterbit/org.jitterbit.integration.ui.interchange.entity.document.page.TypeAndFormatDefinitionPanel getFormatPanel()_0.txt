@@ -1,0 +1,8 @@
+    private Container getFormatPanel() {
+        Box box = Box.createVerticalBox();
+        box.setBorder(IntegrationUiStyleSheet.getDefaultTitleBorder(resources.getString("Title.DocumentFormat")));
+        box.add(delimitedOption);
+        box.add(Box.createVerticalStrut(10));
+        box.add(fixedOption);
+        return box;
+    }

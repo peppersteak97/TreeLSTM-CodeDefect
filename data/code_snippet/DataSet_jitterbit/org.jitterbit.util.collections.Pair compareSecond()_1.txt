@@ -1,0 +1,8 @@
+    public static <T, V extends Comparable<V>> Comparator<Pair<T, V>> compareSecond() {
+        return new Comparator<Pair<T, V>>() {
+
+            public int compare(Pair<T, V> o1, Pair<T, V> o2) {
+                return o1.m_second.compareTo(o2.m_second);
+            }
+        };
+    }

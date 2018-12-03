@@ -1,0 +1,9 @@
+	public boolean isMainlineAC() {
+		if ( ((connectA != null) && (((TrackSegment)connectA).getMainline())) ||
+			((connectB != null) && (((TrackSegment)connectB).getMainline())) ) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}

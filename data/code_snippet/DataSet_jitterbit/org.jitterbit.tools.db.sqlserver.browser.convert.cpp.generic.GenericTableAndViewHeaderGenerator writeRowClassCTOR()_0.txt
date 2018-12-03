@@ -1,0 +1,43 @@
+    private void writeRowClassCTOR() {
+        List<Column> liColumns = getValidColumns();
+        if( liColumns.isEmpty() ) {
+            addLine("\t" + getRowClassName() + "() {}");
+        }
+        else {
+            addLine("\t" + getRowClassName() + "() : ");
+            int count = 0;
+            StringBuffer sb = new StringBuffer();
+            for( Column c : liColumns ) {
+                if( count > 0 ) {
+                    sb.append(",");
+                    sb.append( KongaIoUtils.LINE_BREAK );
+                }
+                if( SqlToCppTypeConverter.isNumericType(c) ) {
+                    sb.append("\t\t\t" + CppUtils.getColumnMemberName(c) + "(" + 
+                            SqlToCppTypeConverter.getInitialValue(c) + ")," + KongaIoUtils.LINE_BREAK);
+                }
+                sb.append("\t\t\t" + CppUtils.getIsColumnNullMemberName(c) + "(true),");
+                sb.append(KongaIoUtils.LINE_BREAK);
+                sb.append("\t\t\t" + CppUtils.getIsColumnPKMemberName(c) + "(" + c.isPrimaryKey() + "),");
+                sb.append(KongaIoUtils.LINE_BREAK);
+                sb.append("\t\t\t" + CppUtils.getIsColumnDirtyMemberName(c) + "(false)");
+                ++count;
+            }
+            addLine(sb.toString());
+            addLine("\t{");
+            for( Column c : liColumns ) {
+                if( SqlToCppTypeConverter.isTimestampStruct(c) ) {
+                    String sMemName = CppUtils.getColumnMemberName(c);
+                    addLine("\t\t" + sMemName + ".year = 0;");
+                    addLine("\t\t" + sMemName + ".month = 0;");
+                    addLine("\t\t" + sMemName + ".day = 0;");
+                    addLine("\t\t" + sMemName + ".hour = 0;");
+                    addLine("\t\t" + sMemName + ".minute = 0;");
+                    addLine("\t\t" + sMemName + ".second = 0;");
+                    addLine("\t\t" + sMemName + ".fraction = 0;");
+                }
+            }
+            addLine("\t}");
+        }
+        addLine();
+    }

@@ -1,0 +1,10 @@
+    private void setupChangeListening() {
+        ChangeListener lst = new ChangeListener() {
+            
+            public void stateChanged(ChangeEvent evt) {
+                setDirty();
+            }
+        };
+        m_userPanel.addChangeListener(lst);
+        m_groupPanel.addChangeListener(lst);
+    }

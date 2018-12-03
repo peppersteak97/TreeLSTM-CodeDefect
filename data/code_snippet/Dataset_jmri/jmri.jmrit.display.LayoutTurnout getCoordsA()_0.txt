@@ -1,0 +1,17 @@
+	public Point2D getCoordsA() {
+		if ( (type==DOUBLE_XOVER) || (type==LH_XOVER) || (type==RH_XOVER) ) {
+			double x = center.getX() - dispC.getX();
+			double y = center.getY() - dispC.getY();
+			return new Point2D.Double(x,y);
+		}
+		else if (type==WYE_TURNOUT) {
+			double x = center.getX() - (0.5*(dispB.getX() + dispC.getX()));
+			double y = center.getY() - (0.5*(dispB.getY() + dispC.getY()));
+			return new Point2D.Double(x,y);
+		}
+		else {
+			double x = center.getX() - dispB.getX();
+			double y = center.getY() - dispB.getY();
+			return new Point2D.Double(x,y);
+		}
+	}

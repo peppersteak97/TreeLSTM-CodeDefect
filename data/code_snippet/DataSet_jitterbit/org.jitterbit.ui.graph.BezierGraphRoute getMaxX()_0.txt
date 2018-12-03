@@ -1,0 +1,8 @@
+	public int getMaxX() {
+		int xMax = 0;
+		for( int i = 0; i<3; ++i ) {
+			if ( getControlPoint(i).x > xMax )
+				xMax = getControlPoint(i).x;
+		}
+		return xMax;
+	}

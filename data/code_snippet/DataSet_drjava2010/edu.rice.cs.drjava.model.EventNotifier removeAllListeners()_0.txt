@@ -1,0 +1,16 @@
+  public void removeAllListeners() {
+    try { 
+      _lock.startWrite();
+      try { _listeners.clear(); }
+      finally { _lock.endWrite(); }
+    }
+    catch(ReaderWriterLock.DeadlockException e) {
+      new Thread(new Runnable() {
+        public void run() {
+          _lock.startWrite();
+          try { _listeners.clear(); }
+          finally { _lock.endWrite(); }
+        }
+      }, "Pending Listener Removal").start();
+    }
+  }

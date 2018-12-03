@@ -1,0 +1,9 @@
+  protected final void emit_dconst_1() {
+    if (VM.BuildFor32Addr) {
+      asm.emitPUSH_Imm(0x3ff00000);
+      asm.emitPUSH_Imm(0x00000000);
+    } else {
+      adjustStack(-WORDSIZE, true);
+      asm.emitPUSH_Abs(Magic.getTocPointer().plus(Entrypoints.oneDoubleField.getOffset()));
+    }
+  }

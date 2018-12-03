@@ -1,0 +1,7 @@
+    public DataLocationType getSelectedLocationType() {
+        Object selected = m_comboBox.getSelectedItem();
+        if (selected != null) {
+            return ((ComboItem) selected).getLocationType();
+        }
+        return null;
+    }

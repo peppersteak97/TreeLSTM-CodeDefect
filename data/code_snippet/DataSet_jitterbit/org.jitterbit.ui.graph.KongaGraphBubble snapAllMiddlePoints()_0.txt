@@ -1,0 +1,6 @@
+	private void snapAllMiddlePoints() {
+		if ( m_bSnapRoutes )
+		{
+			snapRoute();
+		}
+	}

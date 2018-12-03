@@ -1,0 +1,3 @@
+    if (_document.hasPrompt()) {
+      int promptStart = _promptPos - _prompt.length();
+    }

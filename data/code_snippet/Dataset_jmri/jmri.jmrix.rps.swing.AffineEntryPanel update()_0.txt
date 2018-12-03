@@ -1,0 +1,11 @@
+    void update() {
+        AffineTransform oldt = t;
+        double v00 = Double.parseDouble(m00.getText());
+        double v01 = Double.parseDouble(m01.getText());
+        double v02 = Double.parseDouble(m02.getText());
+        double v10 = Double.parseDouble(m10.getText());
+        double v11 = Double.parseDouble(m11.getText());
+        double v12 = Double.parseDouble(m12.getText());
+        t = new AffineTransform(v00, v10, v01, v11, v02, v12);
+        firePropertyChange("value", oldt, t);
+    }

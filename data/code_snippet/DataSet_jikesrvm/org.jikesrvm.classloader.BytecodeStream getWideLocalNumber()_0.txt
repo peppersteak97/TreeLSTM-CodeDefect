@@ -1,0 +1,9 @@
+  public final int getWideLocalNumber() {
+    if (VM.VerifyAssertions) {
+      VM._assert(wide &&
+                 ((opcode >= JBC_iload && opcode <= JBC_aload) ||
+                  (opcode >= JBC_istore && opcode <= JBC_astore) ||
+                  opcode == JBC_iinc));
+    }
+    return readUnsignedShort();
+  }

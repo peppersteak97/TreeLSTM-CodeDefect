@@ -1,0 +1,4 @@
+    private void createGotoPreviousPageButton() {
+        m_gotoPreviousPageAction = new GotoPreviousPageAction();
+        m_gotoPreviousPageButton = createToolBarButton(m_gotoPreviousPageAction);
+    }

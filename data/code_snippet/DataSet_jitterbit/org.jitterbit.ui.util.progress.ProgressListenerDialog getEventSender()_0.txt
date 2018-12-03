@@ -1,0 +1,3 @@
+    protected IProgressEventSender getEventSender() {
+        return m_eventSender;
+    }

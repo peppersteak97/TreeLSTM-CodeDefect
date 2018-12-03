@@ -1,0 +1,17 @@
+  public void performDefaultImports() {
+    java.util.Vector<String> classes = DrJava.getConfig().getSetting(OptionConstants.INTERACTIONS_AUTO_IMPORT_CLASSES);
+    final StringBuilder sb = new StringBuilder();
+    
+    for(String s: classes) {
+      String name = s.trim();
+      if (s.length() > 0) {
+        sb.append("import ");
+        sb.append(s.trim());
+        sb.append("; ");
+      }
+    }
+    if (sb.length() > 0) {
+      interpret(sb.toString());
+      _document.insertBeforeLastPrompt("Default imports: "+sb.toString() + "\n", InteractionsDocument.DEBUGGER_STYLE);
+    }
+  }

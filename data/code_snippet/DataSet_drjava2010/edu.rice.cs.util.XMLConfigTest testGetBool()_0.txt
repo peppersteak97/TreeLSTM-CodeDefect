@@ -1,0 +1,43 @@
+  public void testGetBool() throws Exception {
+    XMLConfig xc = 
+      new XMLConfig(new StringReader(
+                                     "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><concutest>\n"
+                                       +" <name type=\"only\" value=\"true\"/>\n"
+                                       +" <thread value=\"false\" />\n"
+                                       +" <node value=\"on\" /> \n"
+                                       +" <dot value=\"off\" /> \n"
+                                       +" <class name=\"sample.threadCheck.ThreadCheckSample4\"/>\n"
+                                       +"</concutest>")); 
+    Boolean b = xc.getBool("concutest/name.value") && !xc.getBool("concutest/thread.value") && xc.getBool("concutest/node.value") && !xc.getBool("concutest/dot.value");
+    Assert.assertTrue("Should be true",b);
+    
+    try{
+      xc.getBool("concutest/class.name");
+      Assert.fail("Should have thrown exception");
+    }
+    catch(IllegalArgumentException e){}
+    
+    
+    Node root = xc.getNodes("concutest").get(0);
+    b = xc.getBool("name.value",root) && !xc.getBool("thread.value", root) && xc.getBool("node.value", root) && !xc.getBool("dot.value", root);
+    Assert.assertTrue("Should be true",b);
+    
+    try{
+      xc.getBool("class.name", root);
+      Assert.fail("Should have thrown exception");
+    }
+    catch(IllegalArgumentException e){}
+    
+    b = xc.getBool("concutest/name.name",true);
+    Assert.assertTrue("Want to get default value", b);
+    
+    b = xc.getBool("concutest/name.value",false);
+    Assert.assertTrue("Do Not Want to get default value", b);
+    
+    
+    b = xc.getBool("name.name", root, true);
+    Assert.assertTrue("Want to get default value", b);
+    
+    b = xc.getBool("name.value", root, false);
+    Assert.assertTrue("Do Not Want to get default value", b);
+  }

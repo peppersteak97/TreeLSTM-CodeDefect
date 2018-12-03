@@ -1,0 +1,37 @@
+  public void testNarrowingWithExtend() {
+    PredictiveInputModel<String> pim = new PredictiveInputModel<String>(false,
+                                                                        new PredictiveInputModel.PrefixStrategy<String>(),
+                                                                        "AboutDialog.java",
+                                                                        "FileOps.java",
+                                                                        "FileOpsTest.java",
+                                                                        "Utilities.java");
+    pim.setMask("F");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("F", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+    assertEquals("ileOps", pim.getSharedMaskExtension());
+
+    pim.extendMask(pim.getSharedMaskExtension());
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("FileOps", pim.getMask());
+    assertEquals(2, pim.getMatchingItems().size());
+    assertEquals("", pim.getSharedMaskExtension());
+
+    pim.extendMask(".");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("FileOps.", pim.getMask());
+    assertEquals(1, pim.getMatchingItems().size());
+    assertEquals("java", pim.getSharedMaskExtension());
+
+    pim.extendMask("x");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("FileOps.x", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+    assertEquals("", pim.getSharedMaskExtension());
+
+    pim.extendMask("y");
+    assertEquals("FileOps.java", pim.getCurrentItem());
+    assertEquals("FileOps.xy", pim.getMask());
+    assertEquals(0, pim.getMatchingItems().size());
+    assertEquals("", pim.getSharedMaskExtension());
+  }

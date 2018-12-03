@@ -1,0 +1,19 @@
+  public void testLargeSuffix() throws BadLocationException
+  {
+    _action = new ActionBracePlus(3);
+    
+    
+    _text = 
+     "var = method(foo.\n"+
+     "  bar(), arg3) + 4;";
+
+    _aligned = 
+     "var = method(foo.\n"+
+     "               bar(), arg3) + 4;";
+ 
+    _setDocText(_text);
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("Line aligned to open paren.", _aligned.length(), _doc.getLength());
+    assertEquals("Line aligned to open paren.", _aligned, _doc.getText());
+  }

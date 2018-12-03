@@ -1,0 +1,6 @@
+	protected XNetTrafficController controller() {
+		if (_controller == null) {
+			_controller = XNetTrafficController.instance();
+		}
+		return _controller;
+	}

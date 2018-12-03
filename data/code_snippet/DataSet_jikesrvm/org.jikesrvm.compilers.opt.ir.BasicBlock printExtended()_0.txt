@@ -1,0 +1,81 @@
+  public final void printExtended() {
+    VM.sysWrite("Basic block " + toString() + "\n");
+
+    BasicBlock bb2;
+    BasicBlockEnumeration e2 = getIn();
+    VM.sysWrite("\tin: ");
+    if (!e2.hasMoreElements()) {
+      VM.sysWrite("<none>\n");
+    } else {
+      bb2 = e2.next();
+      VM.sysWrite(bb2.toString());
+      while (e2.hasMoreElements()) {
+        bb2 = e2.next();
+        VM.sysWrite(", " + bb2.toString());
+      }
+      VM.sysWrite("\n");
+    }
+
+    e2 = getNormalOut();
+    VM.sysWrite("\tnormal out: ");
+    if (!e2.hasMoreElements()) {
+      VM.sysWrite("<none>\n");
+    } else {
+      bb2 = e2.next();
+      VM.sysWrite(bb2.toString());
+      while (e2.hasMoreElements()) {
+        bb2 = e2.next();
+        VM.sysWrite(", " + bb2.toString());
+      }
+      VM.sysWrite("\n");
+    }
+
+    e2 = getExceptionalOut();
+    VM.sysWrite("\texceptional out: ");
+    if (!e2.hasMoreElements()) {
+      VM.sysWrite("<none>\n");
+    } else {
+      bb2 = e2.next();
+      VM.sysWrite(bb2.toString());
+      while (e2.hasMoreElements()) {
+        bb2 = e2.next();
+        VM.sysWrite(", " + bb2.toString());
+      }
+      VM.sysWrite("\n");
+    }
+
+    if (mayThrowUncaughtException()) {
+      VM.sysWrite("\tMay throw uncaught exceptions, implicit edge to EXIT\n");
+    }
+
+    if (hasExceptionHandlers()) {
+      VM.sysWrite("\tIn scope exception handlers: ");
+      e2 = getExceptionHandlers();
+      if (e2.hasMoreElements()) {
+        bb2 = e2.next();
+        VM.sysWrite(bb2.toString());
+        while (e2.hasMoreElements()) {
+          bb2 = e2.next();
+          VM.sysWrite(", " + bb2.toString());
+        }
+      } else {
+        VM.sysWrite("<none>");
+      }
+      VM.sysWrite("\n");
+    }
+
+    if (getNext() != null) {
+      VM.sysWrite("\tNext in code order: " + getNext().toString() + "\n");
+    }
+
+    if (start != null) {
+      VM.sysWrite("\tInstructions:\n");
+      Instruction inst = start;
+      while (inst != end) {
+        VM.sysWrite(inst.bcIndex + ":\t" + inst + "\n");
+        inst = inst.getNext();
+      }
+      VM.sysWrite(inst.bcIndex + ":\t" + inst + "\n");
+    }
+    VM.sysWrite("\n");
+  }

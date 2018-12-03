@@ -1,0 +1,5 @@
+  public void compileStarted() {
+    _lock.startRead();
+    try { for (CompilerListener cl : _listeners) { cl.compileStarted(); } }
+    finally { _lock.endRead(); }
+  }

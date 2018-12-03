@@ -1,0 +1,3 @@
+    public LocoAddress getLocoAddress() {
+        log.error("getLocoAddress not fully implemented yet");
+    }

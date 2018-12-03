@@ -1,0 +1,9 @@
+    public TextDocument clone() throws CloneNotSupportedException {
+        TextDocument clone = (TextDocument)super.clone();
+        clone.m_sErr1 = null;
+        clone.m_sErr2 = null;
+        if( m_textStructure != null ) {
+            clone.m_textStructure = (TextStructure) m_textStructure.clone();
+        }
+        return clone;
+    }

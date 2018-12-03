@@ -1,0 +1,39 @@
+    public void checkTurnoutAlignment(){
+        
+        
+        if (mTurnoutsAlignedSensor!="" && mNumOutputTurnouts>0) {
+            boolean aligned = true;
+            for (int k = 0; k < DefaultRoute.MAX_OUTPUT_TURNOUTS_PER_ROUTE; k++) {
+                Turnout t = getOutputTurnout(k);
+                if (t!=null) {
+                    if (!t.isConsistentState()) {
+                        aligned= false;
+                        break;
+                    }
+                    int targetState = getOutputTurnoutState(k);
+                    if (targetState!=-1 && targetState!=Route.TOGGLE) {
+                        if (targetState!=t.getKnownState()) {
+                            aligned= false;
+                            break;
+                        }
+                    }
+                } else {
+                    break;
+                }
+            }
+            Sensor s = InstanceManager.sensorManagerInstance().provideSensor(mTurnoutsAlignedSensor);
+            if (aligned){
+                try {
+                    s.setKnownState(jmri.Sensor.ACTIVE);
+                } catch (JmriException ex) {
+                    log.warn("Exception setting sensor "+s.getSystemName()+" in route");
+                }
+            } else {
+                try {
+                    s.setKnownState(jmri.Sensor.INACTIVE);
+                } catch (JmriException ex) {
+                    log.warn("Exception setting sensor "+s.getSystemName()+" in route");
+                }
+            }
+        }
+    }

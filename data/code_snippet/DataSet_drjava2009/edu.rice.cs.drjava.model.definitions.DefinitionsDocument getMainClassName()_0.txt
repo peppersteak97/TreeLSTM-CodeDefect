@@ -1,0 +1,26 @@
+  public String getMainClassName() throws ClassNameNotFoundException {
+      final int oldPos = _currentLocation;
+      
+      try {
+        setCurrentLocation(0);
+        
+        final int indexOfClass = _findKeywordAtToplevel("class", text, 0);
+        final int indexOfInterface = _findKeywordAtToplevel("interface", text, 0);
+        final int indexOfEnum = _findKeywordAtToplevel("enum", text, 0);
+        final int indexOfPublic = _findKeywordAtToplevel("public", text, 0);
+        
+        if (indexOfPublic == -1)  return getFirstClassName(indexOfClass, indexOfInterface, indexOfEnum);
+        
+        
+        final int afterPublic = indexOfPublic + "public".length();
+        final String subText = text.substring(afterPublic);
+        setCurrentLocation(afterPublic);
+        if (indexOfPublicClass != -1) indexOfPublicClass += afterPublic;
+        if (indexOfPublicInterface != -1) indexOfPublicInterface += afterPublic;
+        if (indexOfPublicEnum != -1) indexOfPublicEnum += afterPublic;
+        
+        return getFirstClassName(indexOfPublicClass, indexOfPublicInterface, indexOfPublicEnum);
+        
+      }
+      finally { setCurrentLocation(oldPos); }
+  }

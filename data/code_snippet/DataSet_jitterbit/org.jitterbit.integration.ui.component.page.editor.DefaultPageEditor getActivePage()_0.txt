@@ -1,0 +1,3 @@
+    public final IPage getActivePage() {
+        return m_ui.getActivePage();
+    }

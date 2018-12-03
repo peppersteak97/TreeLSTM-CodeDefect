@@ -1,0 +1,5 @@
+    public String toString() {
+        sb.append(m_first);
+        sb.append(m_second);
+        return sb.toString();
+    }

@@ -1,0 +1,4 @@
+  public int getLineNumber() {
+    update();
+    return _lineNumber;
+  }

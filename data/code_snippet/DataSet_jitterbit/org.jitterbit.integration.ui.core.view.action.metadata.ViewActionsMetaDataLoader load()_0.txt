@@ -1,0 +1,3 @@
+    public void load() throws ViewActionsMetaDataException {
+        m_saxParser.loadData();
+    }

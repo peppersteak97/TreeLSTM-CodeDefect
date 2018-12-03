@@ -1,0 +1,3 @@
+    protected AbstractMRMessage enterProgMode() {
+        return null;
+    }

@@ -1,0 +1,3 @@
+    public static ICheckBoxFactory checkBoxFactory() {
+        return CHECK_BOX_FACTORY;
+    }

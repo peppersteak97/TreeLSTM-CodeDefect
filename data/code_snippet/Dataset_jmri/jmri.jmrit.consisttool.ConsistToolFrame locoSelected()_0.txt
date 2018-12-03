@@ -1,0 +1,7 @@
+    public void locoSelected() {
+	if (!(locoRosterBox.getSelectedItem().equals(""))){
+           String rosterEntryTitle = locoRosterBox.getSelectedItem().toString();
+           RosterEntry entry = Roster.instance().entryFromTitle(rosterEntryTitle);
+		locoSelector.setAddress(entry.getDccLocoAddress());
+        }
+    }

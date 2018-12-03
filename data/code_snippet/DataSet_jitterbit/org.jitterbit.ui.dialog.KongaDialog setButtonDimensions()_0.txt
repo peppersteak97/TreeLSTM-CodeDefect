@@ -1,0 +1,6 @@
+	private void setButtonDimensions() {
+		FontMetrics fm = getFontMetrics(dummy.getFont());
+		int buttonW = 40 + Math.max(fm.stringWidth(s1), fm.stringWidth(s2));
+		int buttonH = dummy.getPreferredSize().height;
+		m_buttonSize = new Dimension(buttonW, buttonH);
+	}

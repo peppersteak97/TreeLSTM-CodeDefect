@@ -1,0 +1,5 @@
+    public synchronized List<?> getAll() {
+        LinkedList<Object> list = m_list;
+        m_list = new LinkedList<Object>();
+        return list;
+    }

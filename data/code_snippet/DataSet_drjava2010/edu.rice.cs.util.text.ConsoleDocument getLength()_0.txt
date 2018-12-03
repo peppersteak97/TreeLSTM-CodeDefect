@@ -1,0 +1,1 @@
+  public String getText() { return _document.getDocText(0, getLength()); }

@@ -1,0 +1,3 @@
+    public final synchronized boolean isDone() {
+        return m_isDone;
+    }

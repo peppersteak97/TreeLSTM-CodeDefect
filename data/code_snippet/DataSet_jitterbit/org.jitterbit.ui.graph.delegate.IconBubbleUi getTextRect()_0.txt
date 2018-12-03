@@ -1,0 +1,6 @@
+	private synchronized Rectangle getTextRect() {
+		if ( m_textRect == null ) {
+			m_textRect = new Rectangle(getX(), getY(), 0, 0);
+		}
+		return new Rectangle(m_textRect);
+	}

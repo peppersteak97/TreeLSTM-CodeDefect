@@ -1,0 +1,17 @@
+  public static synchronized void doDeferredSpecializations() {
+    if (specializationInProgress) {
+      return;
+    }
+    specializationInProgress = true;
+    Iterator<SpecializedMethod> methods = deferredMethods.iterator();
+    while (methods.hasNext()) {
+      SpecializedMethod m = methods.next();
+      if (m.getCompiledMethod() == null) {
+        m.compile();
+        registerCompiledMethod(m);
+      }
+      deferredMethods.remove(m);
+      methods = deferredMethods.iterator();
+    }
+    specializationInProgress = false;
+  }

@@ -1,0 +1,27 @@
+    protected List<JButton> createToolBarButtons() {
+        IApplicationWindow window = getView().getWindow();
+        m_optionsButton = createPopupMenuToolBarButton();
+        JButton active = m_dependencies.getActiveButton();
+        JButton save = createToolBarButton(
+                        WindowActionFactory.SAVE.get(window));
+        JButton access = createToolBarButton(
+                        InterchangeActionFactory.SET_PERMISSIONS.get(getView()));
+
+        List<JButton> buttons = new ArrayList<JButton>();
+        buttons.add(m_optionsButton);
+        buttons.add(null);
+        buttons.add(active);
+        buttons.add(save);
+        buttons.add(access);
+        List<JButton> additionalButtons = getAdditionalToolBarButtons();
+        if (additionalButtons != null) {
+            buttons.addAll(additionalButtons);
+        }
+        
+        List<JButton> genericButtons = super.createToolBarButtons();
+        if (!genericButtons.isEmpty()) {
+            buttons.add(null);
+            buttons.addAll(genericButtons);
+        }
+        return buttons;
+    }

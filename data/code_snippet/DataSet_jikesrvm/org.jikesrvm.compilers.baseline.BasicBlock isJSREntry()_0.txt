@@ -1,0 +1,3 @@
+  public boolean isJSREntry() {
+    return ((state & JSRENTRY) == JSRENTRY);
+  }

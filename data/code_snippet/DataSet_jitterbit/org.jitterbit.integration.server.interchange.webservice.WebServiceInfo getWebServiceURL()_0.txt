@@ -1,0 +1,3 @@
+    public String getWebServiceURL() {
+        return m_webServiceURL;
+    }

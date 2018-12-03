@@ -1,0 +1,4 @@
+  public void flipBranchProbability() {
+    if (VM.VerifyAssertions) VM._assert(isTwoWayBranch());
+    setBranchProbability(1.0f - getBranchProbability());
+  }

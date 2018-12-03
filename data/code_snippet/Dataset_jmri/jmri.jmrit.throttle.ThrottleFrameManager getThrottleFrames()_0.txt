@@ -1,0 +1,4 @@
+	public Iterator getThrottleFrames()
+	{
+		return throttleFrames.iterator();
+	}

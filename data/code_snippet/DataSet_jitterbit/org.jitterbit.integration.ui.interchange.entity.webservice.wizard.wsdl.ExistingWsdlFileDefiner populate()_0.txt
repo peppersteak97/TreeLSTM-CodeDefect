@@ -1,0 +1,10 @@
+    private void populate() {
+        if (m_isPopulated) {
+            return;
+        }
+        
+        IUiJob job = new GetWsdlFilesJob(this);
+        IUiJobProgressDisplayer displayer = UiJobProgressDialogDisplayer.createDisplayer(job);
+        IUiJobManager mgr = IntegrationUi.getUi().getJobManager();
+        mgr.submitForParallellProcessing(job, KongaListUtils.asList(displayer));
+    }

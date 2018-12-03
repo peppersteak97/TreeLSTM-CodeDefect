@@ -1,0 +1,3 @@
+  public boolean isDoubleType() {
+    return this == Double;
+  }

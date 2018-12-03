@@ -1,0 +1,15 @@
+  public void testEncodeHTML() {
+    assertEquals("", StringOps.encodeHTML(""));
+    assertEquals("abc", StringOps.encodeHTML("abc"));
+    assertEquals("&amp;", StringOps.encodeHTML("&"));
+    assertEquals("&lt;", StringOps.encodeHTML("<"));
+    assertEquals("&gt;", StringOps.encodeHTML(">"));
+    assertEquals("<br>", StringOps.encodeHTML(System.getProperty("line.separator")));
+    assertEquals("<br>", StringOps.encodeHTML("\n"));
+    assertEquals("&amp;&lt;&gt;<br><br>", StringOps.encodeHTML("&<>" + System.getProperty("line.separator") + "\n"));
+    assertEquals("&amp;&amp;", StringOps.encodeHTML("&&"));
+    assertEquals("&lt;&lt;", StringOps.encodeHTML("<<"));
+    assertEquals("&gt;&gt;", StringOps.encodeHTML(">>"));
+    assertEquals("<br><br>", StringOps.encodeHTML(System.getProperty("line.separator") + System.getProperty("line.separator")));
+    assertEquals("<br><br>", StringOps.encodeHTML("\n\n"));
+  }

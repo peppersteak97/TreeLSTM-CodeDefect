@@ -1,0 +1,3 @@
+  public void touchRegister() {
+    flags |= TOUCHED;
+  }

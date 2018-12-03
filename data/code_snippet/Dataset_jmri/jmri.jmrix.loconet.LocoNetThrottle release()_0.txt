@@ -1,0 +1,8 @@
+    public void release() {
+        if (!active) log.warn("release called when not active");
+
+        LnTrafficController.instance().sendLocoNetMessage(
+                slot.writeStatus(LnConstants.LOCO_COMMON));
+
+        dispose();
+    }

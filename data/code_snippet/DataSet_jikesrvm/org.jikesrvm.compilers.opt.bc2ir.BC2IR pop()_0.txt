@@ -1,0 +1,3 @@
+  Operand pop() {
+    return stack.pop();
+  }

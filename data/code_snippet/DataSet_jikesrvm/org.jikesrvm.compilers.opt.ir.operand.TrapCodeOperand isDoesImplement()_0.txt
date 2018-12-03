@@ -1,0 +1,3 @@
+  public boolean isDoesImplement() {
+    return trapCode == RuntimeEntrypoints.TRAP_MUST_IMPLEMENT;
+  }

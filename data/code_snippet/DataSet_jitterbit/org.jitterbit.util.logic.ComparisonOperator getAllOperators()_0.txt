@@ -1,0 +1,7 @@
+	public static ComparisonOperator[] getAllOperators() {
+		KongaEnum[] ewAr = UNDEFINED.getAllValues();
+		ComparisonOperator[] ar = new ComparisonOperator[ewAr.length];
+		for(int i=0; i<ewAr.length; ++i)
+			ar[i] = (ComparisonOperator)ewAr[i];
+		return ar;
+	}

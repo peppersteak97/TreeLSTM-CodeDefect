@@ -1,0 +1,21 @@
+    void preloadShells() {
+        if (!acquireViewLoaderLock(true)) {
+            return;
+        }
+        try {
+            if (m_viewShells.isEmpty()) {
+                ApplicationLog.getMainLogger().warning(
+                return;
+            }
+            try {
+                ViewShellPreloader preLoader = new ViewShellPreloader(m_viewShells);
+                preLoader.preload();
+            }
+            catch (ViewLoadingException ex) {
+                ex.printStackTrace();
+            }
+        }
+        finally {
+            m_viewLoaderLock.release();
+        }
+    }

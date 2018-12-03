@@ -1,0 +1,22 @@
+  public static String getBootstrapClasses() {
+    String[] vmClassesAll = getArgs(PrefixType.BOOTSTRAP_CLASSES_ARG);
+    String[] prependClasses = getArgs(PrefixType.BOOTCLASSPATH_P_ARG);
+    String[] appendClasses = getArgs(PrefixType.BOOTCLASSPATH_A_ARG);
+
+    String vmClasses = null;
+    if (vmClassesAll.length > 0) {
+      vmClasses = vmClassesAll[vmClassesAll.length - 1];
+    }
+
+    String result = vmClasses;
+
+    for(int c = 0; c < prependClasses.length; c++) {
+      result = prependClasses[c] + ":" + result;
+    }
+
+    for(int c = 0; c < appendClasses.length; c++) {
+      result = result + ":" + appendClasses[c];
+    }
+
+    return result;
+  }

@@ -1,0 +1,11 @@
+    public void endSaving() throws PermissionsSavingException {
+        for (PermissionsSaver saver : m_savers.values()) {
+            try {
+                saver.close();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        m_savers = null;
+    }

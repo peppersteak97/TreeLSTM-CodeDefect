@@ -1,0 +1,9 @@
+    void controlTypeChanged() {
+        setUpControlType( (String)typeBox.getSelectedItem() );
+		Dimension sz = addFrame.getSize();
+		addFrame.pack();
+		Dimension nsz = addFrame.getSize();
+		if (nsz.width>sz.width) sz.width = nsz.width;
+		if (nsz.height>sz.height) sz.height = nsz.height;
+		addFrame.setSize(sz);
+    }

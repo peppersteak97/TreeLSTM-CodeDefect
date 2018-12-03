@@ -1,0 +1,11 @@
+    private void fireConnectionChanged() {
+        if (m_listeners == null) {
+            return;
+        }
+        ServerInfo serverInfo = (m_connectionStatus == ConnectionStatus.CONNECTED) ?
+                        new ServerInfo(m_serverGuid, m_serverName, m_serverVersion) : null;
+        for (IServerConnectionListener lst : m_listeners) {
+            lst.serverConnectionChanged(
+                            m_connectionStatus, serverInfo, m_userId, m_userName);
+        }
+    }

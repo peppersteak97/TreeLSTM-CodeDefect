@@ -1,0 +1,3 @@
+    public EnumSet<DataLocationType> getSupportedTargetTypes() {
+        return m_dataLoader.getSupportedTargetTypes();
+    }

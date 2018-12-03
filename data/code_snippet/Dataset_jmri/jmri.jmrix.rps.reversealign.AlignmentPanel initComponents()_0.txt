@@ -1,0 +1,80 @@
+    void initComponents() {
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        lines = new Line[NREADINGS];
+        
+        for (int i = 0; i<NREADINGS; i++) {
+            lines[i] = new Line();
+            add(lines[i]);
+        }
+        
+        JPanel p;
+        p = new JPanel();
+        algorithm = Algorithms.algorithmBox();
+        p.add(algorithm);
+        p.add(new JLabel("Vs: "));
+        p.add(vs);
+        vs.setText("0.01345");
+        p.add(calc);
+        calc.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent event) {
+                        calculate();
+                }
+        });
+        add(p);
+        
+        p = new JPanel();
+        p.add(new JLabel("X:"));
+        p.add(x1l);
+        p.add(x2l);
+        p.add(x3l);
+        p.add(x4l);
+        add(p);
+        
+        p = new JPanel();
+        p.add(new JLabel("Y:"));
+        p.add(y1l);
+        p.add(y2l);
+        p.add(y3l);
+        p.add(y4l);
+        add(p);
+        
+        p = new JPanel();
+        p.add(new JLabel("Z:"));
+        p.add(z1l);
+        p.add(z2l);
+        p.add(z3l);
+        p.add(z4l);
+        add(p);
+        
+        p = new JPanel();
+        p.add(new JLabel("S:"));
+        p.add(stat1);
+        p.add(stat2);
+        p.add(stat3);
+        p.add(stat4);
+        add(p);
+        
+        p = new JPanel();
+        JButton b1;
+        b1 = new JButton("Store...");
+        b1.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent event) {
+                        store();
+                }
+        });
+        p.add(b1);
+    
+        b1 = new JButton("Load...");
+        b1.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent event) {
+                        load();
+                }
+        });
+        p.add(b1);
+
+        add(new JSeparator());
+        add(p);
+
+        dummy3();
+    }

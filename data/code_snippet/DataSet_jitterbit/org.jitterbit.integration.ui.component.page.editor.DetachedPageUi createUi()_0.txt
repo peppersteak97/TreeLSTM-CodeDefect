@@ -1,0 +1,7 @@
+    private void createUi() {
+        m_pageWindow = new KongaDialog(IntegrationUi.getUi().getActiveFrame(), 
+                        m_page.getTitle(), false);
+        m_pageWindow.setCancelOnEscape(false);
+        decorateDialog();
+        m_pageWindow.pack();
+    }

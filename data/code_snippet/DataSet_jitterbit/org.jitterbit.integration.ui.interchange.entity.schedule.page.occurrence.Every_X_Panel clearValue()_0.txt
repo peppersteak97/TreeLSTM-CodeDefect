@@ -1,0 +1,3 @@
+    public void clearValue() {
+        m_input.setValue("");
+    }

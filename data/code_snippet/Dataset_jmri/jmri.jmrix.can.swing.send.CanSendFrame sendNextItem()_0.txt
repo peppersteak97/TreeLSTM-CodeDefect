@@ -1,0 +1,15 @@
+    void sendNextItem() {
+        if (!mRunButton.isSelected()) return;
+        if (mNextSequenceElement>=MAXSEQUENCE) {
+            mNextSequenceElement = 0;
+        }
+        if (mUseField[mNextSequenceElement].isSelected()) {
+            CanMessage m = createPacket(mPacketField[mNextSequenceElement].getText());
+            mNextEcho = m;
+            log.debug("sendNextItem: "+m);
+            tc.sendCanMessage(m, this);
+        } else {
+            mNextSequenceElement++;
+            sendNextItem();
+        }
+    }

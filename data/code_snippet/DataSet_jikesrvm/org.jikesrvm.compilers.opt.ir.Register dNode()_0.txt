@@ -1,0 +1,3 @@
+  public org.jikesrvm.compilers.opt.depgraph.DepGraphNode dNode() {
+    return (org.jikesrvm.compilers.opt.depgraph.DepGraphNode) scratchObject;
+  }

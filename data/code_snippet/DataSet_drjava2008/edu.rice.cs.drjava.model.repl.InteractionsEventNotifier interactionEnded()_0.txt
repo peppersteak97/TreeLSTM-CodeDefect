@@ -1,0 +1,8 @@
+  public void interactionEnded() {
+    _lock.startRead();
+    try {
+      int size = _listeners.size();
+      for (int i = 0; i < size; i++) _listeners.get(i).interactionEnded();
+    }
+    finally { _lock.endRead(); }
+  }

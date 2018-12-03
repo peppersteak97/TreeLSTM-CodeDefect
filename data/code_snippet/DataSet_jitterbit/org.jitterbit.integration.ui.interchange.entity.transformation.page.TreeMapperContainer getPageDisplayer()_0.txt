@@ -1,0 +1,3 @@
+    public IEntityPageDisplayer getPageDisplayer() {
+        return new EntityPageDisplayer(m_panel.getPage().getView());
+    }

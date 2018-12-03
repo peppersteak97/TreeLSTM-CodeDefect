@@ -1,0 +1,15 @@
+    public Element getXml()
+    {
+        Element me = new Element("ControlPanel");
+        me.setAttribute("displaySpeedSlider",String.valueOf(this._displaySlider));		
+        me.setAttribute("speedMode",String.valueOf(this._speedStepMode));
+        me.setAttribute("trackSlider", String.valueOf(this.trackSlider));
+        me.setAttribute("trackSliderMinInterval", String.valueOf(this.trackSliderMinInterval));
+        Element window = new Element("window");
+        WindowPreferences wp = new WindowPreferences();
+        java.util.ArrayList children =
+            new java.util.ArrayList(1);
+        children.add(wp.getPreferences(this));
+        me.setContent(children);
+        return me;
+    }

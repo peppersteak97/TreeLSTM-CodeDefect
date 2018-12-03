@@ -1,0 +1,7 @@
+  public void resetAutoImportDialogPosition() {
+    _initAutoImportDialog();
+    _autoImportDialog.setFrameState("default");
+    if (DrJava.getConfig().getSetting(DIALOG_AUTOIMPORT_STORE_POSITION).booleanValue()) {
+      DrJava.getConfig().setSetting(DIALOG_AUTOIMPORT_STATE, "default");
+    }
+  }

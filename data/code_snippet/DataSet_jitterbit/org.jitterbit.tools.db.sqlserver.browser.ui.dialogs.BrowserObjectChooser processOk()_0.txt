@@ -1,0 +1,42 @@
+    private void processOk() {
+        List<Table> liTables = null;
+        if( m_liTableItems != null ) {
+            liTables = new ArrayList<Table>();
+            for( TableItem ti : m_liTableItems ) {
+                if( ti.isChecked() )
+                    liTables.add( (Table)ti.getObject() );
+            }
+        }
+        List<View> liViews = null;
+        if( m_liViewItems != null ) {
+            liViews = new ArrayList<View>();
+            for( TableItem ti : m_liViewItems ) {
+                if( ti.isChecked() )
+                    liViews.add( (View)ti.getObject() );
+            }
+        }
+        List<StoredProcedure> liSPs = null;
+        if( m_liSPItems != null ) {
+            liSPs = new ArrayList<StoredProcedure>();
+            for( TableItem ti : m_liSPItems ) {
+                if( ti.isChecked() )
+                    liSPs.add( (StoredProcedure)ti.getObject() );
+            }
+        }
+        
+        if( m_scriptType == ScriptType.SQL ) {
+            DatabaseType dbType = m_sqlScriptTypePanel.getDatabaseType();
+            boolean bCreateDrop = m_sqlOptionsPanel.getCreateDrop();
+            new SQLScriptCreator(dbType, false, bCreateDrop).createSQLScripts(
+                    liTables, liViews, liSPs, m_sqlOptionsPanel.getDirectory(),
+                    m_sqlOptionsPanel.getCreateSubFolders());
+        }
+        else {
+            CppLibrary cppLibrary = m_cppScriptTypePanel.getCppLibrary();
+            new CppClassCreator(cppLibrary).createCppClasses(
+                    liTables, liViews, liSPs, 
+                    m_cppOptionsPanel.getNamespace(), m_cppOptionsPanel.getDirectory(),
+                    m_cppOptionsPanel.getCreateSubFolders());
+        }
+        closeDialog();
+    }

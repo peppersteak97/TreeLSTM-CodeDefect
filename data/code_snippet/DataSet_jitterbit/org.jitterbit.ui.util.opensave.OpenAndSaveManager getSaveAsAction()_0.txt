@@ -1,0 +1,6 @@
+	public synchronized Action getSaveAsAction() {
+	    if (m_saveAsAction == null) {
+            m_saveAsAction = new SaveAsAction();
+        }
+	    return m_saveAsAction;
+	}

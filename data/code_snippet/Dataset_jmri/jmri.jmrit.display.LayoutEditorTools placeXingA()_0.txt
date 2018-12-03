@@ -1,0 +1,25 @@
+	private void placeXingA() {
+		if (testIcon == null)
+			testIcon = signalIconEditor.getIcon(0);
+		Point2D p = levelXing.getCoordsA();
+		if (levelXingACHorizontal && levelXingALeft) {
+			setSignalHeadOnPanel(2,aField.getText().trim(),
+				(int)(p.getX()-testIcon.getIconWidth()),
+				(int)(p.getY()+4) );
+		}
+		else if (levelXingACHorizontal && (!levelXingALeft) ) {
+			setSignalHeadOnPanel(0,aField.getText().trim(),
+				(int)(p.getX()),
+				(int)(p.getY()-4-testIcon.getIconHeight()) );
+		}
+		else if (levelXingACVertical && levelXingAUp) {
+			setSignalHeadOnPanel(1,aField.getText().trim(),
+				(int)(p.getX()-2-testIcon.getIconWidth()),
+				(int)(p.getY()-testIcon.getIconHeight()) );
+		}
+		else if (levelXingACVertical && (!levelXingAUp) ) {
+			setSignalHeadOnPanel(3,aField.getText().trim(),
+				(int)(p.getX()+4),
+				(int)(p.getY()+2) );
+		}
+	}

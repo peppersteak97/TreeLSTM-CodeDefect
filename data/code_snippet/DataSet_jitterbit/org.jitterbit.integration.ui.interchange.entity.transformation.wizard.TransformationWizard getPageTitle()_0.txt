@@ -1,0 +1,8 @@
+    public String getPageTitle() {
+        String title = m_title;
+        if (title == null) {
+            title = (m_newTransformation == null) ? getStringResources().getString(
+                            "Title") : m_newTransformation.getName();
+        }
+        return title;
+    }

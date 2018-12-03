@@ -1,0 +1,3 @@
+  public final void clearActiveOnStack() {
+    flags &= ~ACTIVE_ON_STACK;
+  }

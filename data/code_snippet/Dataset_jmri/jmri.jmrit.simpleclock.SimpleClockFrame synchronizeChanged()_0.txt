@@ -1,0 +1,4 @@
+	private void synchronizeChanged() {
+		clock.setSynchronize(synchronizeCheckBox.isSelected(),true);
+		changed = true;
+	}

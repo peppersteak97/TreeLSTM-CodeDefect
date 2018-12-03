@@ -1,0 +1,5 @@
+    public OperationOptions getOperationConfiguration() {
+        boolean trace = getIntProperty(TRACE, 1) == 1;
+        boolean ignoreHistory = getIntProperty(IGNORE_HISTORY, 0) == 1;
+        return new OperationOptions(trace, ignoreHistory);
+    }

@@ -1,0 +1,18 @@
+  public void testSetNodeNoOverwriteDelegate() throws Exception {
+    XMLConfig xcParent = new XMLConfig();
+    xcParent.set("foo/bar", "abc", false);
+    XMLConfig xc = new XMLConfig(xcParent, xcParent.getNodes("foo").get(0));
+    
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                             "  <bar>abc</bar>"+NL+"</foo>"+NL), xc.toString());
+    assertEquals("abc", xc.get("bar"));
+    
+    xc.set("bar", "def", false);
+    
+    assertEquals(remove16XML("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+NL+"<foo>"+NL+
+                             "  <bar>abc</bar>"+NL+"  <bar>def</bar>"+NL+"</foo>"+NL), xc.toString());
+    List<String> r = xc.getMultiple("bar");
+    assertEquals(2, r.size());
+    assertEquals("abc", r.get(0));
+    assertEquals("def", r.get(1));
+  }

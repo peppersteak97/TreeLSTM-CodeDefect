@@ -1,0 +1,4 @@
+	public void clearSelection() {
+		m_mainPanel.clearSelection();
+		m_arSelectedClasses = EMPTY_ARRAY;
+	}

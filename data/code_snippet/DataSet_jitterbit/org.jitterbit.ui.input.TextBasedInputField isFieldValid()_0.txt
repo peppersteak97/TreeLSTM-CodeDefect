@@ -1,0 +1,3 @@
+    public boolean isFieldValid() {
+        return isFieldValid(this);
+    }

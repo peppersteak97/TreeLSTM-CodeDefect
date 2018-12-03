@@ -1,0 +1,3 @@
+    public boolean isPreviousPageEnabled() {
+        return (m_previousAction != null) && m_previousAction.isEnabled();
+    }

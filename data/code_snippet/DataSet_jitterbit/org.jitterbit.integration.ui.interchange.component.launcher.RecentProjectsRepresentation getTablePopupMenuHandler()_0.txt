@@ -1,0 +1,10 @@
+    private IPopupMenuRequestHandler getTablePopupMenuHandler() {
+        IEnabledStateGate enabledState = new IEnabledStateGate() {
+
+            public boolean isEnabled() {
+                return (m_table.getSelectedProject() != null);
+            }
+        };
+        Action[] actions = { m_openAction, m_removeAction };
+        return PopupMenuRequestHandlerFactory.fromActions(actions, enabledState);
+    }

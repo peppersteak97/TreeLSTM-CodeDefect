@@ -1,0 +1,3 @@
+    private JButton createSearchButton() {
+        return ComponentFactories.toolbarButtonFactory().newButton(m_searchAction);
+    }

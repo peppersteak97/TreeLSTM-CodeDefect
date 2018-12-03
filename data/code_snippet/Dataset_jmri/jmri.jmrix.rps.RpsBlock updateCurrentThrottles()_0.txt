@@ -1,0 +1,14 @@
+    void updateCurrentThrottles() {
+        List l = sensor.getContents();
+        if (l.size() == 0) return;
+        if (l.size() > 1) log.warn("More than one address present!");
+        for (int i = 0; i<l.size(); i++) {
+            Integer num = (Integer) l.get(i);
+            DccThrottle t = (DccThrottle) throttleTable.get(num);
+            if (t!= null) 
+                updateOneThrottle(t);
+            else
+                log.warn("Throttle not yet available for: "+num);
+        }
+        
+    }

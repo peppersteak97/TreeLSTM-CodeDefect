@@ -1,0 +1,10 @@
+  public void testReplaceCreatesMatchBackwards() throws BadLocationException {
+    _doc.insertString(0, "hhelloello", null);
+    _initFrm(1);
+    _frm.setFindWord("hello");
+    _frm.setMatchCase(false);
+    _frm.setSearchBackwards(true);
+    _frm.setReplaceWord("");
+    replaceAll();
+    assertEquals("replace creates new match", "hello", _doc.getText());
+  }

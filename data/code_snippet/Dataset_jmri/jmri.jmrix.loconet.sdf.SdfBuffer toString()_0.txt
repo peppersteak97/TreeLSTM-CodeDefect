@@ -1,0 +1,9 @@
+    public String toString() {
+        String out ="";
+        for (int i = 0; i<ops.size(); i++) {
+            SdfMacro m = (SdfMacro)ops.get(i);
+
+            out += m.allInstructionString("    ");
+        }
+        return out;
+    }

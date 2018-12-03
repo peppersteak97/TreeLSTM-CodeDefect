@@ -1,0 +1,4 @@
+	public void synchronize() {
+		setText(getDisplayName());
+		super.synchronize();
+	}

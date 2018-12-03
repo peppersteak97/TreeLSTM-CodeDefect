@@ -1,0 +1,3 @@
+    public String getEffectiveSearchString() {
+        return m_bMatchCase ? m_sSearchString : m_sSearchString.toLowerCase();
+    }

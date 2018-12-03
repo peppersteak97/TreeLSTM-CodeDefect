@@ -1,0 +1,3 @@
+    public static DialogLocationManager getManager() {
+        return s_instance;
+    }

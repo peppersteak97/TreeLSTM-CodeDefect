@@ -1,0 +1,4 @@
+    public void startup() {
+        m_pageEditorListener = new PageListener();
+        m_view.addPageEditorListener(m_pageEditorListener);
+    }

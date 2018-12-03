@@ -1,0 +1,6 @@
+    private void createCaption() {
+        m_caption = new JPanel();
+        m_caption.add(IntegrationUiStyleSheet.AdminHint.makeJLabel(
+                        PackageResources.CacheUi.CAPTION));
+        m_caption.setBorder(BorderFactory.createEmptyBorder(2, 0, 2, 0));
+    }

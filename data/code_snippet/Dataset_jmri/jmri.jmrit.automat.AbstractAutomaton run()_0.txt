@@ -1,0 +1,10 @@
+    public void run() {
+        inThread = true;
+        init();
+        while (handle()) {
+        	count++;
+        	summary.loop(this);
+        }
+        currentThread = null;
+        done();
+    }

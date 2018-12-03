@@ -1,0 +1,8 @@
+    void search() {
+        mode = SEARCH;
+        reset();
+        searchButton.setSelected(true);
+        scanning = true;
+        next = 0;
+        select("0");
+    }

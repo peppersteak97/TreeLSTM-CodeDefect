@@ -1,0 +1,10 @@
+    private void customizeUi() {
+        m_ui.installKeyBindings(getRootPane());
+        m_ui.runWhenDone(new Runnable() {
+
+            public void run() {
+                m_ui.runWhenDone(null);
+                EntitySearchDialog.super.onOk();
+            }
+        });
+    }

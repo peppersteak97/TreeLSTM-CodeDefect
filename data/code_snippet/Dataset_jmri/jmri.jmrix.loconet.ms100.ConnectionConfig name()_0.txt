@@ -1,0 +1,6 @@
+    public String name() { 
+    	if (System.getProperty("os.name","<unknown>").toLowerCase().equals("mac os x"))
+    		return "(LocoNet MS100 not available)";
+    	else
+    		return "LocoNet MS100"; 
+    }

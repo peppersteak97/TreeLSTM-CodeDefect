@@ -1,0 +1,7 @@
+    private static IMenuDictionary createDictionary() {
+        return NewResourceBasedMenuDictionary.newDictionary(
+                        STRING_RESOURCES, 
+                        Resources.MNEMONIC_FACTORY, 
+                        ICON_RESOURCES, 
+                        null);
+    }

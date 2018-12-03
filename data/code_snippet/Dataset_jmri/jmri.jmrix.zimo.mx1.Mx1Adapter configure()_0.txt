@@ -1,0 +1,12 @@
+	public void configure() {
+            Mx1Packetizer packets = new Mx1Packetizer(new Mx1CommandStation());
+            packets.connectPort(this);
+
+            jmri.jmrix.zimo.Mx1Programmer.instance();
+            jmri.InstanceManager.setPowerManager(new jmri.jmrix.zimo.Mx1PowerManager());
+
+             packets.startThreads();
+
+             jmri.jmrix.zimo.ActiveFlag.setActive();
+
+	}

@@ -1,0 +1,10 @@
+    private MessageDisplayer.Option promptUpload() {
+        return MessageDisplayer.showOption(
+                        this, 
+                        null, 
+                        PackageResources.UploadPrompter.MESSAGE, 
+                        PackageResources.UploadPrompter.TITLE, 
+                        MessageDisplayer.YES_NO_CANCEL,
+                        MessageDisplayer.YES, 
+                        MessageDisplayer.QUESTION);
+    }

@@ -1,0 +1,3 @@
+    boolean isSelected() {
+        return m_check.isSelected();
+    }

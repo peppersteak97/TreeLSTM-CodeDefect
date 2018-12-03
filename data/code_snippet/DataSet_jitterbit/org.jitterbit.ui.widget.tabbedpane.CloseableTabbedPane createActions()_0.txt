@@ -1,0 +1,5 @@
+    private void createActions() {
+        m_closeCurrentAction = new CloseCurrentAction();
+        m_closeOthersAction = new CloseOthersAction();
+        m_closeAllAction = new CloseAllAction();
+    }

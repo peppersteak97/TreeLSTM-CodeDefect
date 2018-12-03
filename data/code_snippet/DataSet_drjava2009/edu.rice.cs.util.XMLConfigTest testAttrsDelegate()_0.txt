@@ -1,0 +1,10 @@
+  public void testAttrsDelegate() throws Exception {
+    XMLConfig xcParent = new XMLConfig(new StringReader(
+                                                        "<?xml version=\"1.0\" encoding=\"UTF-8\"?><foo a=\"foo.a\">\n"
+                                                          + "  <bar>abc</bar>\n"
+                                                          + "  <fum fee=\"xyz\">def</fum>\n"
+                                                          + "</foo>"));
+    XMLConfig xc = new XMLConfig(xcParent, xcParent.getNodes("foo").get(0));
+    assertEquals("foo.a", xc.get(".a"));
+    assertEquals("xyz", xc.get("fum.fee"));
+  }

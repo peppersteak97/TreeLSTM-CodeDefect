@@ -1,0 +1,3 @@
+	public void removeUndoAction() {
+		m_undoAction = null;
+	}

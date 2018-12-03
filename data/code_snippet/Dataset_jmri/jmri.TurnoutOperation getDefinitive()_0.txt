@@ -1,0 +1,6 @@
+	public TurnoutOperation getDefinitive() {
+		String[] myClass = jmri.util.StringUtil.split(this.getClass().getName(), ".");
+		String finalClass = myClass[myClass.length-1];
+		String mySubclass = finalClass.substring(0, finalClass.indexOf("TurnoutOperation"));
+		return TurnoutOperationManager.getInstance().getOperation(mySubclass);
+	}

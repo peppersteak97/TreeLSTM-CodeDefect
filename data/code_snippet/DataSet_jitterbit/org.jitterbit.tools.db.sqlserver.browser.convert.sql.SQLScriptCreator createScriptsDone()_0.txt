@@ -1,0 +1,44 @@
+    protected void createScriptsDone() {
+        if( m_bCreateSingleFile ) {
+            List<File> files = getCreatedFiles();
+            System.out.println("number of files: " + files.size());
+            Set<File> setFiles = new HashSet<File>(files);
+            
+            BufferedWriter writer = null;
+            try {
+                writer = new BufferedWriter( new FileWriter(m_singleFile) );
+                for( File f : getCreatedFiles() ) {
+                    System.out.println(f.getName());
+                    BufferedReader reader = null;
+                    try {
+                        reader = new BufferedReader( new FileReader(f) );
+                        String sLine = null;
+                        while( (sLine = reader.readLine()) != null ) {
+                            writer.write(sLine);
+                            writer.newLine();
+                        }
+                    } 
+                    catch( Exception e ) {
+                        e.printStackTrace();
+                        return;
+                    }
+                    finally {
+                        setFiles.remove(f);
+                        if( reader != null )
+                            KongaIoUtils.close(reader);
+                    }
+                }
+            } 
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            finally {
+                if( writer != null )
+                    KongaIoUtils.close(writer);
+                System.out.println("files in set: " + setFiles.size());
+                for( File f : getCreatedFiles() ) {
+                    f.delete();
+                }
+            }
+        }
+    }

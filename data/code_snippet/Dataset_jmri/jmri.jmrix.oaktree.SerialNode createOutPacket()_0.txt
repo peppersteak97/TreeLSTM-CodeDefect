@@ -1,0 +1,23 @@
+    public AbstractMRMessage createOutPacket() {
+        if (log.isDebugEnabled()) log.debug("createOutPacket for nodeType "
+            +nodeType+" with "
+            +outputByteChanged[0]+" "+outputArray[0]+";"
+            +outputByteChanged[1]+" "+outputArray[1]+";"
+            +outputByteChanged[2]+" "+outputArray[2]+";"
+            +outputByteChanged[3]+" "+outputArray[3]+";");
+            
+        SerialMessage m = new SerialMessage(1);
+        m.setElement(1,17);          
+        for (int i = 0; i < outputBytes[nodeType]; i++) {
+            if (outputByteChanged[i]) {
+                outputByteChanged[i] = false;
+                m.setElement(2, i);
+                m.setElement(3, outputArray[i]);
+                return m;
+            }
+        }
+        
+        m.setElement(2,0);
+        m.setElement(3,outputArray[0]);
+        return m;
+    }

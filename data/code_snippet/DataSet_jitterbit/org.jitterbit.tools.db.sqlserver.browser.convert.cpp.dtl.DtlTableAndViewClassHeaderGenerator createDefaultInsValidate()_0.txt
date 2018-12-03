@@ -1,0 +1,21 @@
+    private void createDefaultInsValidate() {
+        addLine("template<> class DefaultInsValidate<" + getQualifiedRowClassName() + ">");
+        addLine("{");
+        addLine("public:");
+        addLine("\tbool operator()(BoundIOs &cols, " + getQualifiedRowClassName() + " &r)");
+        addLine("\t{");
+        for( Column c : getValidColumns() ) {
+            if( c.isAutoIncrement() ) {
+                continue;
+            }
+            addLine("\t\tif( r." + CppUtils.getIsColumnNullMemberName(c) + " )");
+            addLine("\t\t\tcols[\"" + c.getName() + "\"].SetNull();");
+            addLine("\t\telse");
+            addLine("\t\t\tcols[\"" + c.getName() + "\"].ClearNull();");
+        }
+        writeSkippedColumns();
+        addLine("\t\treturn true;");
+        addLine("\t}");
+        addLine("};");
+        addLine();
+    }

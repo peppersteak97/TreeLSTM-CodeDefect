@@ -1,0 +1,21 @@
+  public final synchronized CodeArray getCurrentEntryCodeArray() {
+    RVMClass declaringClass = getDeclaringClass();
+    if (VM.VerifyAssertions) VM._assert(declaringClass.isResolved());
+    if (isCompiled()) {
+      return currentCompiledMethod.getEntryCodeArray();
+    } else if (!VM.writingBootImage || isNative()) {
+      if (!isStatic() && !isObjectInitializer() && !isPrivate()) {
+        if (declaringClass.isJavaLangObjectType() ||
+            declaringClass.getSuperClass().findVirtualMethod(getName(), getDescriptor()) == null) {
+          return Entrypoints.lazyMethodInvokerMethod.getCurrentEntryCodeArray();
+        } else {
+          return LazyCompilationTrampoline.instructions;
+        }
+      } else {
+        return Entrypoints.lazyMethodInvokerMethod.getCurrentEntryCodeArray();
+      }
+    } else {
+      compile();
+      return currentCompiledMethod.getEntryCodeArray();
+    }
+  }

@@ -1,0 +1,67 @@
+    private void turnoutUpdate() {
+		while (turnoutUpdateValid) {
+			if (!recData) {
+				synchronized (this) {
+					try {
+						wait(POLL_TIME * 5);
+					} catch (InterruptedException e) {};
+				}
+			} else {
+				recData = false;
+				for (int block = 0; block < NUM_BLOCK; block++) {
+					if (validBlock[block]) {
+						for (int byteIndex = 0; byteIndex < REPLY_LEN; byteIndex++) {
+							byte recMemByte = dataBuffer[byteIndex + block * BLOCK_LEN];
+							if (recMemByte != csAccMemCopy[byteIndex + block * BLOCK_LEN]
+									|| newTurnouts[block] == true) {
+
+								for (int i = 0; i < 8; i++) {
+									int NTnum = 1 + i + byteIndex * 8 + (block * 128);
+
+									if (NceConnectionStatus.nceEpromMarch2007) {
+										if (i == 3)
+											monitorActionCommanded(NTnum - 3,
+													recMemByte, i);
+
+										if (i == 7)
+									}
+									monitorActionCommanded(NTnum, recMemByte, i);
+								}
+							}
+						}
+						synchronized (this) {
+							try {
+								wait(POLL_TIME);
+							} catch (InterruptedException e) {};
+						}
+						for (int byteIndex = 0; byteIndex < REPLY_LEN; byteIndex++) {
+							byte recMemByte = dataBuffer[byteIndex + block * BLOCK_LEN];
+							if (recMemByte != csAccMemCopy[byteIndex + block * BLOCK_LEN]
+									|| newTurnouts[block] == true) {
+
+								csAccMemCopy[byteIndex + block * BLOCK_LEN] = recMemByte;
+
+								for (int i = 0; i < 8; i++) {
+									int NTnum = 1 + i + byteIndex * 8 + (block * 128);
+
+									if (NceConnectionStatus.nceEpromMarch2007) {
+										if (!sentWarnMessage){
+											log.warn("The installed NCE Command Station EPROM has problems when using turnout MONITORING feedback");
+											sentWarnMessage = true;
+										}
+										if (i == 3)
+											monitorActionKnown(NTnum - 3,
+													recMemByte, i);
+
+										if (i == 7)
+									}
+									monitorActionKnown(NTnum, recMemByte, i);
+								}
+							}
+						}
+						newTurnouts[block] = false;
+					}
+				}
+			}
+		}
+	}

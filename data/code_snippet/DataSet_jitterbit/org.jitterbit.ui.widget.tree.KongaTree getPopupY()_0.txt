@@ -1,0 +1,3 @@
+    protected int getPopupY() {
+        return m_mouseClickListener.getY();
+    }

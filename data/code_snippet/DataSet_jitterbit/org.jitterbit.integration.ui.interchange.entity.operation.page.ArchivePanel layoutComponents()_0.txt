@@ -1,0 +1,5 @@
+    private void layoutComponents() {
+        InputField[] fields = { m_sourceAndTargetCombos.getSourceFieldForLayout(),
+                        m_sourceAndTargetCombos.getTargetFieldForLayout() };
+        InputFieldLayoutUtils.layoutOneColumn(this, fields, true, false);
+    }

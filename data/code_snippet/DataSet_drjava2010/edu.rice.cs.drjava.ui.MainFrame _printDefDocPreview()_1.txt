@@ -1,0 +1,15 @@
+  private void _printDefDocPreview() {
+    try {
+      _model.getActiveDocument().preparePrintJob();
+      new PreviewDefDocFrame(_model, this);
+    }
+    catch (FileMovedException fme) {
+      _showFileMovedError(fme);
+    }
+    catch (BadLocationException e) {
+      _showError(e, "Print Error", "An error occured while preparing the print preview.");
+    }
+    catch (IllegalStateException e) {
+      _showError(e, "Print Error", "An error occured while preparing the print preview.");
+    }
+  }

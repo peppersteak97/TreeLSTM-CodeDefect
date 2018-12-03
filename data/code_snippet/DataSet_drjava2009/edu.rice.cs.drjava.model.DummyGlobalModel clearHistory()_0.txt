@@ -1,0 +1,3 @@
+  public void clearHistory() {
+    throw new UnsupportedOperationException("Tried to call clearHistory on a Dummy");
+  }

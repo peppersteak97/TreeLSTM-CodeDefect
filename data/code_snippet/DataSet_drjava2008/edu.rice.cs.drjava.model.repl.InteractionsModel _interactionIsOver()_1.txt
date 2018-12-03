@@ -1,0 +1,11 @@
+  public void _interactionIsOver() {
+    Utilities.invokeLater(new Runnable() {
+      public void run() {
+        _document.addToHistory(_toAddToHistory);
+        _document.setInProgress(false);
+        _document.insertPrompt();
+        _notifyInteractionEnded();
+      }
+    });
+    scrollToCaret();
+  }

@@ -1,0 +1,12 @@
+    protected void replaceLayoutBlockManager() {
+        if (InstanceManager.layoutBlockManagerInstance().getClass().getName()
+                .equals(LayoutBlockManager.class.getName()))
+            return;
+        if (InstanceManager.layoutBlockManagerInstance() != null)
+            InstanceManager.configureManagerInstance().deregister(
+                InstanceManager.layoutBlockManagerInstance() );
+
+        LayoutBlockManager pManager = LayoutBlockManager.instance();
+        InstanceManager.setLayoutBlockManager(pManager);
+        InstanceManager.configureManagerInstance().registerConfig(pManager);
+    }

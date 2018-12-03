@@ -1,0 +1,3 @@
+    public final IPopupMenuManager getPopupMenuManager() {
+        return m_popupMenuManager;
+    }

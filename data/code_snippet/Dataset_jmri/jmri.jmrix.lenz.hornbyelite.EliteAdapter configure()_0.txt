@@ -1,0 +1,9 @@
+    public void configure() {
+        AbstractMRTrafficController packets = (AbstractMRTrafficController) (new XNetPacketizer(new HornbyEliteCommandStation()));
+        packets.connectPort(this);
+        
+        
+        new EliteXNetInitilizationManager();
+	
+        jmri.jmrix.lenz.ActiveFlag.setActive();
+    }

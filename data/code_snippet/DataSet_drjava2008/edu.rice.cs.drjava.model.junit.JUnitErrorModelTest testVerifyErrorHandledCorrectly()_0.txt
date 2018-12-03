@@ -1,0 +1,37 @@
+  public void testVerifyErrorHandledCorrectly() throws Exception {
+    OpenDefinitionsDocument doc = setupDocument(ABC_CLASS_ONE);
+    final File file = new File(_tempDir, "ABC1.java");
+    saveFile(doc, new FileSelector(file));
+    
+    OpenDefinitionsDocument doc2 = setupDocument(ABC_TEST);
+    final File file2 = new File(_tempDir, "ABCTest.java");
+    saveFile(doc2, new FileSelector(file2));
+    
+    _model.getCompilerModel().compileAll();
+    
+    final OpenDefinitionsDocument doc3 = setupDocument(ABC_CLASS_TWO);
+    final File file3 = new File(_tempDir, "ABC2.java");
+    saveFile(doc3, new FileSelector(file3));
+    
+    JUnitTestListener listener = new JUnitNonTestListener();
+    
+    _model.addListener(listener);
+    
+    listener.compile(doc3);
+
+    if (_model.getCompilerModel().getNumErrors() > 0) {
+      fail("compile failed: " + getCompilerErrorString());
+    }
+    listener.resetCounts();
+    
+    listener.assertClassFileErrorCount(0);
+    listener.runJUnit(doc2);
+    listener.waitJUnitDone();
+    
+    double version = Double.valueOf(System.getProperty("java.specification.version"));
+    if (version < 1.5) listener.assertClassFileErrorCount(1);
+    else 
+      assertEquals("Should report one error", 1, _model.getJUnitModel().getJUnitErrorModel().getNumErrors());
+    
+    _model.removeListener(listener);
+  }

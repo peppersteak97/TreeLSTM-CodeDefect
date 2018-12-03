@@ -1,0 +1,8 @@
+    private JComponent createTopPanel() {
+        Box top = Box.createHorizontalBox();
+        top.add(createCaption());
+        top.add(Box.createHorizontalStrut(10));
+        top.add(createRefreshButton());
+        top.add(Box.createHorizontalGlue());
+        return top;
+    }

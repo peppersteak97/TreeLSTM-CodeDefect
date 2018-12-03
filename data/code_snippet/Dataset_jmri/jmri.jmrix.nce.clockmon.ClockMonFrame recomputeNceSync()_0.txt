@@ -1,0 +1,59 @@
+    private void recomputeNceSync() {
+        Date now = internalClock.getTime();
+        double sumDiff = 0;
+        double currError = 0;
+        double diffError = 0;
+        if (priorDiffs.size() > 0) {
+            currError = ((Double) priorDiffs.get(priorDiffs.size() - 1)).doubleValue();
+            diffError = ((Double) priorDiffs.get(priorDiffs.size() - 1)).doubleValue() - ((Double) priorDiffs.get(0)).doubleValue();
+        }
+        for (int i = 0; i < priorDiffs.size(); i++) {
+            sumDiff = sumDiff + ((Double) priorDiffs.get(i)).doubleValue();
+        }
+        double corrDiff = 0;
+        if (priorCorrections.size() > 0) {
+            corrDiff = ((Double) priorCorrections.get(priorCorrections.size() - 1)).doubleValue() - ((Double) priorCorrections.get(0)).doubleValue();
+        }
+        double pCorr = currError * ncePidGainPv;
+        double iCorr = diffError * ncePidGainIv;
+        double dCorr = corrDiff * ncePidGainDv;
+        double newRateAdj = pCorr + iCorr + dCorr;
+        while (priorCorrections.size() >= MAX_ERROR_ARRAY) {
+            priorCorrections.remove(0);
+        }
+        priorCorrections.add(new Double(newRateAdj));
+        double oldInternalRate = internalClock.getRate();
+        double newInternalRate = oldInternalRate + newRateAdj;
+        if (Math.abs(currError) > 60){
+            nceSyncInitStateCounter = 1;
+            nceSyncInitStates();
+        } else if (oldInternalRate != newInternalRate) {
+            try {
+                internalClock.setRate(newInternalRate);
+                if (log.isDebugEnabled()){
+                    log.debug("changing internal rate: " + newInternalRate);
+                }
+            } catch (TimebaseRateException e) {
+                log.error("recomputeNceSync: Failed setting new internal rate: " + newInternalRate);
+                nceSyncInitStateCounter = 1;
+                nceSyncInitStates();
+            }
+        }
+        if (log.isDebugEnabled() && false) {
+            String txt = "";
+            for (int i = priorDiffs.size() - 1; i >= 0 ; i--) {
+                txt = txt + " " + threeDigits.format(priorDiffs.get(i));
+            }
+            log.debug("priorDiffs: " + txt);
+            txt = "";
+            for (int i = priorCorrections.size() - 1; i >= 0 ; i--) {
+                txt = txt + " " + threeDigits.format(priorCorrections.get(i));
+            }
+            log.debug("priorCorrections: " + txt);
+            log.debug("currError: " + fiveDigits.format(currError) +
+                      " pCorr: " + fiveDigits.format(pCorr) +
+                      " iCorr: " + fiveDigits.format(iCorr) +
+                      " dCorr: " + fiveDigits.format(dCorr) +
+                      " newInternalRate: " + threeDigits.format(newInternalRate));
+        }
+    }

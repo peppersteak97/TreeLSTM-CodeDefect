@@ -1,0 +1,12 @@
+    public int hashCode() {
+        int hash = 17;
+        StringKeyValuePairs data = m_data;
+        for (String key : data.getKeys()) {
+            String prop = data.get(key);
+            if (prop != null)
+                hash = hash * 31 + prop.hashCode();
+            else
+                hash = hash * 31;
+        }
+        return hash;
+    }

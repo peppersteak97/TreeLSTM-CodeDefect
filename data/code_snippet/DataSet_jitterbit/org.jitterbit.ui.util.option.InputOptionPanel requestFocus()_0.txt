@@ -1,0 +1,9 @@
+    public void requestFocus() {
+        int n = 0;
+        for (IOptionSelector s : m_selectors) {
+            if (s.isSelected()) {
+                m_options[n].requestFocus();
+            }
+            ++n;
+        }
+    }

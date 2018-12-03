@@ -1,0 +1,3 @@
+    public void fireLayoutChanged() {
+        fireLayoutChanged(m_source);
+    }

@@ -1,0 +1,10 @@
+    private boolean login() {
+        LoginJob job = createAndSubmitLoginJob();
+        try {
+            job.waitUntilDone();
+            return job.wasSuccessful();
+        }
+        catch (InterruptedException e) {
+            return false;
+        }
+    }

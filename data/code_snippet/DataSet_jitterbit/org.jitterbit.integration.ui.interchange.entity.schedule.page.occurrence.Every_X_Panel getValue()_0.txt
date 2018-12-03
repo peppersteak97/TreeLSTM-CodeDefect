@@ -1,0 +1,8 @@
+    public int getValue() throws NumberFormatException {
+        try {
+            return Integer.parseInt(m_input.getValue());
+        }
+        catch (NumberFormatException e) {
+            return 0;
+        }
+    }

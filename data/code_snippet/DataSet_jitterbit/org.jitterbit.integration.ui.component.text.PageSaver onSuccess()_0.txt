@@ -1,0 +1,3 @@
+    protected void onSuccess() {
+        m_page.setClean();
+    }

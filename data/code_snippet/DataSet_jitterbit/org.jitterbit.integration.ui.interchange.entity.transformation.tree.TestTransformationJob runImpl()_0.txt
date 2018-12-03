@@ -1,0 +1,17 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        setStatus(PackageResources.TestTransformation.STARTING);
+
+        Runnable task = new Runnable() {
+            
+            public void run() {
+                IntegrationServer server = IntegrationServer.getInstance();
+                ITreeMapperInfoProvider call = server.getServerCall(ITreeMapperInfoProvider.class);
+                call.testTransformation(m_transformation.getID(), m_sourceData, TestTransformationJob.this);
+            }
+        };
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallellAndWait(task, this);
+    }

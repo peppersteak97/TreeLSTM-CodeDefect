@@ -1,0 +1,11 @@
+    private void createComponents() {
+        assert (m_problems != null);
+        m_treeModel = new ValidationTreeModel(m_problems);
+        if (m_tree == null) {
+            m_tree = new ValidationTree(m_context, m_treeModel);
+        }
+        else {
+            m_tree.setModel(m_treeModel);
+        }
+        m_tree.displayInvalidNodes();
+    }

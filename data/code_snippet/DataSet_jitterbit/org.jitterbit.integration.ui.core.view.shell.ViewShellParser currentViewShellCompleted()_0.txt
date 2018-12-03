@@ -1,0 +1,6 @@
+    void currentViewShellCompleted() {
+        if (m_currentViewShell != null) {
+            m_shells.add(m_currentViewShell);
+            m_currentViewShell = null;
+        }
+    }

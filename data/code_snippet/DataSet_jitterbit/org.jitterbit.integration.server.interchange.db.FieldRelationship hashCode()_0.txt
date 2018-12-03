@@ -1,0 +1,6 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = hash*37 + ((m_parentColumn == null) ? 0 : m_parentColumn.hashCode());
+        hash = hash*37 + ((m_childColumn == null) ? 0 : m_childColumn.hashCode());
+        return hash;
+    }

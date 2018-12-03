@@ -1,0 +1,11 @@
+	public Dimension getMaximumSize() {
+        Dimension size = null;
+        if (m_iUserDefinedHeight <= 0) {
+            size = super.getMaximumSize();
+        }
+        else {
+            Dimension dim = super.getMaximumSize();
+            size = new Dimension(dim.width, getHeightToUse());
+        }
+        return size;
+	}

@@ -1,0 +1,19 @@
+  public void testComplexBraceInsertion() {
+    model1.insertChar('\n');
+    model1.insertChar('\n');
+    model1.move(-1);
+    assertEquals("#0.0", false, model1.atEnd());
+    model1.insertChar('{');
+    model1.insertChar('\n');
+    model1.insertChar('\n');
+    model1.insertChar('}');
+    model1.move(-2);
+    assertEquals("#0.1", FREE, model1.currentToken().getState());
+    model1.insertChar('{');
+    model1.insertChar('{');
+    model1.insertChar('}');
+    model1.insertChar('}');
+    assertEquals("#1.0", 4, model1.balanceBackward());
+    model1.move(-1);
+    assertEquals("#1.1", 2, model1.balanceBackward());
+  }

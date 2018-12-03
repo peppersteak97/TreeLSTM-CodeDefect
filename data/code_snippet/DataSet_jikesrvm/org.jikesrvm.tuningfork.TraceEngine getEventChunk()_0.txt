@@ -1,0 +1,3 @@
+  EventChunk getEventChunk() {
+    return availableEventChunks.dequeue();
+  }

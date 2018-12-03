@@ -1,0 +1,13 @@
+	public void savePreferences() {
+	    if (s_uiPreferences != null) {
+            s_uiPreferences.putFile(PREF_CURRENT_DIR, 
+                            m_fileChooser.getCurrentDirectory());
+            s_uiPreferences.putInt(PREF_RECENT_FILE_LIST_LENGTH,
+                            m_nRecentFileListMaxLength);
+            int n = 0;
+            for (RecentFileMenuItem f : m_liRecentFiles) {
+                s_uiPreferences.putFile(PREF_RECENT_FILE + n, f.getFile());
+                ++n;
+            }
+        }
+	}

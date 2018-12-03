@@ -1,0 +1,60 @@
+    void dummy3() {
+        int i;
+        
+        i = 0;
+        lines[i].xl.setText("70.1"); lines[i].yl.setText("21.2"); lines[i].zl.setText("2");
+        lines[i].s1l.setText(""+1282);
+        lines[i].s2l.setText(""+3818);
+        lines[i].s3l.setText(""+5209);
+        lines[i].s4l.setText(""+4677);
+        
+        i = 1;
+        lines[i].xl.setText("25.6"); lines[i].yl.setText("14.1"); lines[i].zl.setText("2");
+        lines[i].s1l.setText(""+4412);
+        lines[i].s2l.setText(""+1334);
+        lines[i].s3l.setText(""+1956);
+        lines[i].s4l.setText(""+3362);
+        
+        i = 2;
+        lines[i].xl.setText("32.2"); lines[i].yl.setText("4.2"); lines[i].zl.setText("2");
+        lines[i].s1l.setText(""+4010);
+        lines[i].s2l.setText(""+1119);
+        lines[i].s3l.setText(""+2876);
+        lines[i].s4l.setText(""+4177);
+        
+        i = 3;
+        lines[i].xl.setText("14.2"); lines[i].yl.setText("47.4"); lines[i].zl.setText("2");
+        lines[i].s1l.setText(""+5762);
+        lines[i].s2l.setText(""+3634);
+        lines[i].s3l.setText(""+1607);
+        lines[i].s4l.setText(""+1340);
+        
+        i = 4;
+        lines[i].xl.setText("70.1"); lines[i].yl.setText("21.2"); lines[i].zl.setText("7.5");
+        lines[i].s1l.setText(""+1083);
+        lines[i].s2l.setText(""+3765);
+        lines[i].s3l.setText(""+5247);
+        lines[i].s4l.setText(""+4216);
+
+        i = 5;
+        lines[i].xl.setText("25.6"); lines[i].yl.setText("14.1"); lines[i].zl.setText("7.5");
+        lines[i].s1l.setText(""+4328);
+        lines[i].s2l.setText(""+1091);
+        lines[i].s3l.setText(""+2312);
+        lines[i].s4l.setText(""+3333);
+        
+        i = 6;
+        lines[i].xl.setText("32.2"); lines[i].yl.setText("4.2"); lines[i].zl.setText("7.5");
+        lines[i].s1l.setText(""+3959);
+        lines[i].s2l.setText(""+831);
+        lines[i].s3l.setText(""+3165);
+        lines[i].s4l.setText(""+4148);
+
+        i = 7;
+        lines[i].xl.setText("14.2"); lines[i].yl.setText("47.4"); lines[i].zl.setText("7.5");
+        lines[i].s1l.setText(""+5741);
+        lines[i].s2l.setText(""+3599);
+        lines[i].s3l.setText(""+1509);
+        lines[i].s4l.setText(""+1119);
+        
+    }

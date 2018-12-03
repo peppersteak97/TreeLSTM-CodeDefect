@@ -1,0 +1,3 @@
+    public final long getElapsedTime() {
+        return System.currentTimeMillis() - m_startTime;
+    }

@@ -1,0 +1,28 @@
+    public void getPollValues() {
+        Element e = root.getChild("poll");
+        
+        Attribute a = e.getAttribute("active");
+        boolean poll = false;
+        if (a != null && a.getValue().equals("true")) poll = true;
+        Engine.instance().setPolling(poll);
+        
+        a = e.getAttribute("interval");
+        int value = 0;
+        try {
+            if (a != null) value = a.getIntValue();
+        } catch (org.jdom.DataConversionException ex) {}
+        Engine.instance().setPollingInterval(value);
+
+        Engine.instance().setDirectPollMode();
+    
+        a = e.getAttribute("bscpoll");
+        boolean bscpoll = false;
+        if (a != null && a.getValue().equals("true")) bscpoll = true;
+        if (bscpoll) Engine.instance().setBscPollMode();
+
+        a = e.getAttribute("throttlepoll");
+        boolean throttlepoll = false;
+        if (a != null && a.getValue().equals("true")) throttlepoll = true;
+        if (throttlepoll) Engine.instance().setThrottlePollMode();
+
+    }

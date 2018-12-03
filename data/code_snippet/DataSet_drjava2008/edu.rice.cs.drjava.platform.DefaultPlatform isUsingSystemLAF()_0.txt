@@ -1,0 +1,5 @@
+  public boolean isUsingSystemLAF() {
+    String sysLAF = UIManager.getSystemLookAndFeelClassName();
+    String curLAF = UIManager.getLookAndFeel().getClass().getName();
+    return (sysLAF.equals(curLAF));
+  }

@@ -1,0 +1,17 @@
+    protected void continueRead() {
+        if (log.isDebugEnabled()) log.debug("Start continueRead");
+        
+        Iterator i = variables.iterator();
+        while (i.hasNext()) {
+            VariableValue v = (VariableValue) i.next();
+            if (v.isToRead() && (!readingChanges || v.isChanged())) {
+                setBusy(true);
+                if (readingChanges) v.readChanges();
+                else v.readAll();
+            }
+        }
+        amReading = false;
+        super.setState(READ);
+        setBusy(false);
+        log.debug("End continueRead, nothing to do");        
+    }

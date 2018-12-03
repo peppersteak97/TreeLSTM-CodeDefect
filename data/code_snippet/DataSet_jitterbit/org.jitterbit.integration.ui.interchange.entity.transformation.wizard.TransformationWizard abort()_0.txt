@@ -1,0 +1,9 @@
+    private synchronized void abort() {
+        m_aborted = true;
+        if (m_view.closePage(m_displayPage)) {
+            m_displayPage.pageWasCancelled();
+        }
+        m_newTransformation.delete();
+        fireWizardCancelled(null);
+        dispose();
+    }

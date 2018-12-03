@@ -1,0 +1,17 @@
+    private void runAndWait() {
+        Runnable job = new Runnable() {
+
+            public void run() {
+                executeImpl();
+            }
+        };
+        IExceptionHandler<Exception> errorHandler = new IExceptionHandler<Exception>() {
+
+            public void caught(Exception ex) {
+                m_result = IPageCommand.ERROR;
+                ErrorLogger.getDefaultLogger().logAndShow(m_page,
+                                PackageResources.Saver.INVOKE_AND_WAIT_ERROR, ex);
+            }
+        };
+        UiUtils.runOnEventThreadAndWait(job, errorHandler);
+    }

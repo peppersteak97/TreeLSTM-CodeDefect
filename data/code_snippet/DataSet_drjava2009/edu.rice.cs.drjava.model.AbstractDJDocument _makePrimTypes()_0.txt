@@ -1,0 +1,8 @@
+  protected static HashSet<String> _makePrimTypes() {
+    final String[] words =  {
+      "boolean", "char", "byte", "short", "int", "long", "float", "double", "void",
+    };
+    HashSet<String> prims = new HashSet<String>();
+    for (String w: words) { prims.add(w); }
+    return prims;
+  }

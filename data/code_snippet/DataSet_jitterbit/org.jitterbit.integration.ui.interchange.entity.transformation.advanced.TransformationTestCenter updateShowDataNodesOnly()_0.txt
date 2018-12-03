@@ -1,0 +1,11 @@
+    private boolean updateShowDataNodesOnly() {
+        IPage p = m_view.getPageForEntity(m_activeTransformation);
+        if (p instanceof TransformationPage) {
+            TransformationId tfId = m_activeTransformation.getID();
+            ((TransformationPage) p).getTreeMapper().showOnlyData(
+                            m_showOnlyDataNodesSource.contains(tfId) ? 1 : 0,
+                            m_showOnlyDataNodesTarget.contains(tfId) ? 1 : 0);
+            return true;
+        }
+        return false;
+    }

@@ -1,0 +1,6 @@
+    protected List<JButton> getAdditionalToolBarButtons() {
+        List<JButton> buttons = new ArrayList<JButton>();
+        m_refreshStructuresAction = new RefreshTreeStructuresAction();
+        buttons.add(createToolBarButton(m_refreshStructuresAction));
+        return buttons;
+    }

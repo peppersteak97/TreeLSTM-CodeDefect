@@ -1,0 +1,3 @@
+    public static JFrame getMainFrame() {
+        return s_mainFrame;
+    }

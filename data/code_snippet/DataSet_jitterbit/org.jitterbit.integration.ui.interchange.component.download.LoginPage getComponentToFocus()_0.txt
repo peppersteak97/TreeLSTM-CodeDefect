@@ -1,0 +1,3 @@
+    public JComponent getComponentToFocus() {
+        return null;
+    }

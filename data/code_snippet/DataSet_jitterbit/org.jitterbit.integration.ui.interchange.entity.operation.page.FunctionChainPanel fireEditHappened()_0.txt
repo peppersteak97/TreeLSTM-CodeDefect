@@ -1,0 +1,4 @@
+    private void fireEditHappened() {
+        UndoableEdit edit = m_editFactory.createEdit();
+        fireUndoableEditEvent(new UndoableEditEvent(this, edit));
+    }

@@ -1,0 +1,13 @@
+  public OutputStream getOutputStream() {
+    return new BufferedOutputStream(new OutputStream() {
+      public void write(int b) throws IOException {
+        _combinedOutputStream.write(b);
+      }
+      public void flush() throws IOException {
+        _combinedOutputStream.flush();
+      }
+      public void close() throws IOException {
+        _combinedOutputStream.close();
+      }
+    });
+  }

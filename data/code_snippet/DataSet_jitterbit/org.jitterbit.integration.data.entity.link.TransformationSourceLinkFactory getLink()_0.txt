@@ -1,0 +1,11 @@
+            public IIntegrationLink getLink() {
+                SourceId srcId = m_tf.getSourceId();
+                if (srcId != null) {
+                    Source src = (Source) m_dataLookup.getInstance(srcId);
+                    if (src != null) {
+                        return new TransformationSourceLink(src, m_tf);
+                    }
+                    logMissingLink(m_tf, EntityType.Source, srcId);
+                }
+                return null;
+            }

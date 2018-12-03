@@ -1,0 +1,3 @@
+  public int getBcIndex() {
+    return this.curmpc;
+  }

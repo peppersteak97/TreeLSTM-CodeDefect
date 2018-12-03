@@ -1,0 +1,3 @@
+  public final DoubleConstantOperand asDoubleConstant() {
+    return (DoubleConstantOperand) this;
+  }

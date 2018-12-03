@@ -1,0 +1,10 @@
+    private void writeAddNewImpl() {
+        addLine("\tvoid AddNew() {");
+        if( getColumnOwner().hasAutoIncrementColumns() ) {
+            addLine("\t\tm_dtlRecSet.AddNew(&m_insertBinder);");
+        }
+        else {
+            addLine("\t\tm_dtlRecSet.AddNew();");
+        }
+        addLine("\t}");
+    }

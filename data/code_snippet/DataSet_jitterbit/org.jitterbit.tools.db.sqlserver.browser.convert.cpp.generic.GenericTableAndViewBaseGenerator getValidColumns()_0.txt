@@ -1,0 +1,3 @@
+    protected final List<Column> getValidColumns() {
+        return m_liValidColumns;
+    }

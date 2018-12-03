@@ -1,0 +1,3 @@
+    public boolean hasAutoIncrementColumns() {
+        return m_bHasAutoIncrementColumns;
+    }

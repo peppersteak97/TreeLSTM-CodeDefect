@@ -1,0 +1,18 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Source: ");
+        sb.append(sourceIsValid ? "valid" : "invalid");
+        sb.append(LINE_BREAK);
+        sb.append("Target: ");
+        sb.append(targetIsValid ? "valid" : "invalid");
+        sb.append(LINE_BREAK);
+        for (int n = 0; n < functionJoinIsValid.length; ++n) {
+            sb.append("Function Join ");
+            sb.append((n + 1));
+            sb.append("-");
+            sb.append((n + 2));
+            sb.append(": ");
+            sb.append(functionJoinIsValid[n] ? "valid" : "invalid");
+            sb.append(LINE_BREAK);
+        }
+        return sb.toString();
+    }

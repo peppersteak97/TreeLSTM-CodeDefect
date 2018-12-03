@@ -1,0 +1,11 @@
+	public void dispose() {
+		if (_firstSensor != null) {
+			_firstSensor.removePropertyChangeListener(this);
+		}
+		_firstSensor = null;
+		if (_secondSensor != null) {
+			_secondSensor.removePropertyChangeListener(this);
+		}
+		_secondSensor = null;
+		super.dispose();
+	}

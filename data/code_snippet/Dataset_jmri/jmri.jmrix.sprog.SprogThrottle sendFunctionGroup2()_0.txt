@@ -1,0 +1,7 @@
+    protected void sendFunctionGroup2() {
+
+        byte[] result = jmri.NmraPacket.function5Through8Packet(address, (address>=100),
+                                         getF5(), getF6(), getF7(), getF8());
+
+        station.sendPacket(result, 1);
+    }

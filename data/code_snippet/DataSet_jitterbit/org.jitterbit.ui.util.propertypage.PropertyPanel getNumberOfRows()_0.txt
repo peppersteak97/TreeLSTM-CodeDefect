@@ -1,0 +1,3 @@
+	public int getNumberOfRows() {
+		return m_nRows;
+	}

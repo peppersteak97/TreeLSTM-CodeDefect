@@ -1,0 +1,12 @@
+    public void apply() throws IntegrationDataPanelException {
+        DatabaseLocation loc = getDisplayedObject();
+        loc.setManualConnectionString(m_manualConnectionStringField.getValue());
+        loc.setManualMode(m_manualConnectionStringChoice.isSelected());
+        loc.setDriver(m_driver);
+        loc.setServer(getServer());
+        loc.setDatabase(getDatabase());
+        loc.setLogin(getLogin());
+        loc.setPassword(getPassword());
+        loc.setConnectParameters(getConnectParameters());
+        loc.setTimeout(getTimeout());
+    }

@@ -1,0 +1,10 @@
+    private static void registerWithServer() {
+        IntegrationServer server = IntegrationServer.getInstance();
+        IServerCallFactory<IUserAdmin> callFactory = new IServerCallFactory<IUserAdmin>() {
+
+            public IUserAdmin get() {
+                return new UserAdminWsImpl();
+            }
+        };
+        server.registerCallFactory(IUserAdmin.class, callFactory);
+    }

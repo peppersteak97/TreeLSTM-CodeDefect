@@ -1,0 +1,4 @@
+  private void isLinked() {
+    VM._assert(prev.next == this, "is_linked: failure (1)");
+    VM._assert(next.prev == this, "is_linked: failure (2)");
+  }

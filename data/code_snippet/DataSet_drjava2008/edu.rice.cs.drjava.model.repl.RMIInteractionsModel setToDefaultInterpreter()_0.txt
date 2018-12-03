@@ -1,0 +1,9 @@
+  public void setToDefaultInterpreter() {
+    String currName = _jvm.getCurrentInterpreterName();
+    boolean printPrompt = !MainJVM.DEFAULT_INTERPRETER_NAME.equals(currName);
+    
+    boolean inProgress = _jvm.setToDefaultInterpreter();
+    
+    _updateDocument(InteractionsDocument.DEFAULT_PROMPT, inProgress, printPrompt);
+    _notifyInterpreterChanged(inProgress);
+  }

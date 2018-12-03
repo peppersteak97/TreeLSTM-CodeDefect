@@ -1,0 +1,5 @@
+  protected final void emit_arraylength() {
+    popAddr(T0);
+    asm.emitLIntOffset(T1, T0, ObjectModel.getArrayLengthOffset());
+    pushInt(T1);
+  }

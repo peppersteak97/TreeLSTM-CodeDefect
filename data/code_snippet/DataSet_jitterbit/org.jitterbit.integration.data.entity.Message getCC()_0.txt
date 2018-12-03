@@ -1,0 +1,3 @@
+    public String getCC() {
+        return getProperty(CC_PROPERTY);
+    }

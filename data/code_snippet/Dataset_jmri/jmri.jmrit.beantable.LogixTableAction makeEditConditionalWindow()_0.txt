@@ -1,0 +1,372 @@
+	void makeEditConditionalWindow() {
+		conditionalSystemName.setText(curConditional.getSystemName());
+		conditionalUserName.setText(curConditional.getUserName());
+		cStatus.setText(" ");
+		if (editConditionalFrame == null) {
+			editConditionalFrame = new JmriJFrame(rbx
+					.getString("TitleEditConditional"));
+			editConditionalFrame.addHelpMenu(
+					"package.jmri.jmrit.beantable.ConditionalAddEdit", true);
+			editConditionalFrame.setLocation(50, 40);
+			Container contentPane = editConditionalFrame.getContentPane();
+			contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+			JPanel panel1 = new JPanel();
+			panel1.setLayout(new FlowLayout());
+			panel1.add(conditionalSystemNameLabel);
+			panel1.add(conditionalSystemName);
+			contentPane.add(panel1);
+			JPanel panel2 = new JPanel();
+			panel2.setLayout(new FlowLayout());
+			panel2.add(conditionalUserNameLabel);
+			panel2.add(conditionalUserName);
+			conditionalUserName.setToolTipText(rbx
+					.getString("ConditionalUserNameHint"));
+			contentPane.add(panel2);
+			JPanel logicPanel = new JPanel();
+			logicPanel.setLayout(new BoxLayout(logicPanel, BoxLayout.Y_AXIS));
+			JPanel varTitle = new JPanel();
+			varTitle.setLayout(new FlowLayout());
+			varTitle.add(new JLabel(rbx.getString("StateVariableTableTitle")
+					+ " " + Conditional.MAX_STATE_VARIABLES + " )"));
+			logicPanel.add(varTitle);
+			vt = new JPanel();
+			JComboBox notCombo = new JComboBox();
+			notCombo.addItem(" ");
+			notCombo.addItem(rbx.getString("LogicNOT"));
+			JComboBox typeCombo = new JComboBox();
+			for (int i = 1; i <= Conditional.NUM_STATE_VARIABLE_TYPES; i++) {
+				typeCombo.addItem(stateVariableTypeToString(i));
+			}
+			variableTableModel = new VariableTableModel();
+			JTable variableTable = new JTable(variableTableModel);
+			variableTable.setRowSelectionAllowed(false);
+			variableTable
+					.setPreferredScrollableViewportSize(new java.awt.Dimension(
+							720, 150));
+			TableColumnModel variableColumnModel = variableTable
+					.getColumnModel();
+			TableColumn andColumn = variableColumnModel
+					.getColumn(VariableTableModel.AND_COLUMN);
+			andColumn.setResizable(false);
+			andColumn
+					.setPreferredWidth(new JTextField(3).getPreferredSize().width);
+			TableColumn notColumn = variableColumnModel
+					.getColumn(VariableTableModel.NOT_COLUMN);
+			notColumn.setCellEditor(new DefaultCellEditor(notCombo));
+			variableTable.setRowHeight(notCombo.getPreferredSize().height);
+			notColumn.setPreferredWidth(notCombo.getPreferredSize().width);
+			notColumn.setResizable(false);
+			TableColumn typeColumn = variableColumnModel
+					.getColumn(VariableTableModel.TYPE_COLUMN);
+			typeColumn.setCellEditor(new DefaultCellEditor(typeCombo));
+			typeColumn.setPreferredWidth(typeCombo.getPreferredSize().width);
+			typeColumn.setResizable(false);
+			TableColumn sysNameColumn = variableColumnModel
+					.getColumn(VariableTableModel.SNAME_COLUMN);
+			sysNameColumn.setResizable(true);
+			sysNameColumn.setMinWidth(105);
+			sysNameColumn.setMaxWidth(160);
+			TableColumn data1Column = variableColumnModel
+					.getColumn(VariableTableModel.DATA1_COLUMN);
+			data1Column.setResizable(true);
+			data1Column.setMinWidth(65);
+			data1Column.setMaxWidth(90);
+			TableColumn data2Column = variableColumnModel
+					.getColumn(VariableTableModel.DATA2_COLUMN);
+			data2Column.setResizable(true);
+			data2Column.setMinWidth(65);
+			data2Column.setMaxWidth(90);
+			TableColumn stateColumn = variableColumnModel
+					.getColumn(VariableTableModel.STATE_COLUMN);
+			stateColumn.setResizable(false);
+			stateColumn.setPreferredWidth(60);
+			TableColumn triggersColumn = variableColumnModel
+					.getColumn(VariableTableModel.TRIGGERS_COLUMN);
+			triggersColumn.setResizable(true);
+			triggersColumn.setMinWidth(65);
+			triggersColumn.setMaxWidth(200);
+			TableColumn deleteColumn = variableColumnModel
+					.getColumn(VariableTableModel.DELETE_COLUMN);
+			ButtonRenderer buttonRenderer = new ButtonRenderer();
+			variableTable.setDefaultRenderer(JButton.class, buttonRenderer);
+			TableCellEditor buttonEditor = new ButtonEditor(new JButton());
+			variableTable.setDefaultEditor(JButton.class, buttonEditor);
+			JButton testButton = new JButton("Delete");
+			variableTable.setRowHeight(testButton.getPreferredSize().height);
+			deleteColumn
+					.setPreferredWidth(testButton.getPreferredSize().width + 5);
+			deleteColumn.setResizable(false);
+			JScrollPane variableTableScrollPane = new JScrollPane(variableTable);
+			vt.add(variableTableScrollPane, BorderLayout.CENTER);
+			logicPanel.add(vt);
+			vt.setVisible(true);
+			JPanel panel41 = new JPanel();
+			panel41.setLayout(new FlowLayout());
+			panel41.add(cStatus);
+			logicPanel.add(panel41);
+			JPanel panel42 = new JPanel();
+			panel42.setLayout(new FlowLayout());
+			panel42.add(addVariableButton = new JButton(rbx
+					.getString("AddVariableButton")));
+			addVariableButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					addVariablePressed(e);
+				}
+			});
+			addVariableButton.setToolTipText(rbx
+					.getString("AddVariableButtonHint"));
+			panel42.add(checkVariableButton = new JButton(rbx
+					.getString("CheckVariableButton")));
+			checkVariableButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					checkVariablePressed(e);
+				}
+			});
+			checkVariableButton.setToolTipText(rbx
+					.getString("CheckVariableButtonHint"));
+			logicPanel.add(panel42);
+			Border logicPanelBorder = BorderFactory.createEtchedBorder();
+			Border logicPanelTitled = BorderFactory.createTitledBorder(
+					logicPanelBorder, rbx.getString("TitleLogicalExpression"));
+			logicPanel.setBorder(logicPanelTitled);
+			contentPane.add(logicPanel);
+			JPanel actionPanel = new JPanel();
+			actionPanel.setLayout(new BoxLayout(actionPanel, BoxLayout.Y_AXIS));
+			JPanel action1Title = new JPanel();
+			action1Title.setLayout(new FlowLayout());
+			action1Title.add(new JLabel(rbx.getString("Action1Title")));
+			action1Group = new ButtonGroup();
+			action1OnTrue = new JRadioButton(rbx.getString("OnChangeToTrue"),
+					true);
+			action1OnTrue.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionOption[0] = Conditional.ACTION_OPTION_ON_CHANGE_TO_TRUE;
+				}
+			});
+			action1Group.add(action1OnTrue);
+			action1Title.add(action1OnTrue);
+			action1OnFalse = new JRadioButton(rbx.getString("OnChangeToFalse"),
+					false);
+			action1OnFalse.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionOption[0] = Conditional.ACTION_OPTION_ON_CHANGE_TO_FALSE;
+				}
+			});
+			action1Group.add(action1OnFalse);
+			action1Title.add(action1OnFalse);
+			action1OnChange = new JRadioButton(rbx.getString("OnChange"), false);
+			action1OnChange.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionOption[0] = Conditional.ACTION_OPTION_ON_CHANGE;
+				}
+			});
+			action1Group.add(action1OnChange);
+			action1Title.add(action1OnChange);
+			actionPanel.add(action1Title);
+			JPanel action1Data = new JPanel();
+			action1Data.setLayout(new FlowLayout());
+			action1Data.add(new JLabel(rbx.getString("Action1Type")));
+			action1TypeBox = new JComboBox();
+			for (int i = 1; i <= Conditional.NUM_ACTION_TYPES; i++) {
+				action1TypeBox.addItem(actionTypeToString(i));
+			}
+			action1TypeBox.setToolTipText(rbx.getString("ActionTypeHint"));
+			action1Data.add(action1TypeBox);
+			action1TypeBox.setSelectedIndex(0);
+			action1NameField = new JTextField(8);
+			action1Data.add(action1NameField);
+			action1NameField.setVisible(false);
+			action1TurnoutSetBox = new JComboBox(new String[] {
+					rbx.getString("TurnoutClosed"),
+					rbx.getString("TurnoutThrown") });
+			action1Data.add(action1TurnoutSetBox);
+			action1TurnoutSetBox
+					.setToolTipText(rbx.getString("TurnoutSetHint"));
+			action1TurnoutSetBox.setVisible(false);
+			action1SensorSetBox = new JComboBox(new String[] {
+					rbx.getString("SensorActive"),
+					rbx.getString("SensorInactive") });
+			action1Data.add(action1SensorSetBox);
+			action1SensorSetBox.setToolTipText(rbx.getString("SensorSetHint"));
+			action1SensorSetBox.setVisible(false);
+			action1LightSetBox = new JComboBox(new String[] {
+					rbx.getString("LightOn"), rbx.getString("LightOff") });
+			action1Data.add(action1LightSetBox);
+			action1LightSetBox.setToolTipText(rbx.getString("LightSetHint"));
+			action1LightSetBox.setVisible(false);
+			action1SignalSetBox = new JComboBox();
+			for (int i = 0; i < 7; i++) {
+				action1SignalSetBox.addItem(signalAppearanceIndexToString(i));
+			}
+			action1Data.add(action1SignalSetBox);
+			action1SignalSetBox.setToolTipText(rbx.getString("SignalSetHint"));
+			action1SignalSetBox.setVisible(false);
+			action1SetButton = new JButton("Set");
+			action1SetButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					setFileLocation(1);
+				}
+			});
+			action1Data.add(action1SetButton);
+			action1SetButton.setVisible(false);
+			action1DataField = new JTextField(20);
+			action1Data.add(action1DataField);
+			action1DataField.setVisible(false);
+			action1LockSetBox = new JComboBox(new String[] {
+					rbx.getString("TurnoutUnlock"),
+					rbx.getString("TurnoutLock") });
+			action1Data.add(action1LockSetBox);
+			action1LockSetBox.setToolTipText(rbx.getString("LockSetHint"));
+			action1LockSetBox.setVisible(false);
+			action1TypeBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionTypeChanged(1);
+				}
+			});
+			actionPanel.add(action1Data);
+			JPanel actionSpace = new JPanel();
+			actionSpace.setLayout(new FlowLayout());
+			actionSpace.add(new JLabel("   "));
+			actionPanel.add(actionSpace);
+			JPanel action2Title = new JPanel();
+			action2Title.setLayout(new FlowLayout());
+			action2Title.add(new JLabel(rbx.getString("Action2Title")));
+			action2Group = new ButtonGroup();
+			action2OnTrue = new JRadioButton(rbx.getString("OnChangeToTrue"),
+					true);
+			action2OnTrue.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionOption[1] = Conditional.ACTION_OPTION_ON_CHANGE_TO_TRUE;
+				}
+			});
+			action2Group.add(action2OnTrue);
+			action2Title.add(action2OnTrue);
+			action2OnFalse = new JRadioButton(rbx.getString("OnChangeToFalse"),
+					false);
+			action2OnFalse.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionOption[1] = Conditional.ACTION_OPTION_ON_CHANGE_TO_FALSE;
+				}
+			});
+			action2Group.add(action2OnFalse);
+			action2Title.add(action2OnFalse);
+			action2OnChange = new JRadioButton(rbx.getString("OnChange"), false);
+			action2OnChange.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionOption[1] = Conditional.ACTION_OPTION_ON_CHANGE;
+				}
+			});
+			action2Group.add(action2OnChange);
+			action2Title.add(action2OnChange);
+			actionPanel.add(action2Title);
+			JPanel action2Data = new JPanel();
+			action2Data.setLayout(new FlowLayout());
+			action2Data.add(new JLabel(rbx.getString("Action2Type")));
+			action2TypeBox = new JComboBox();
+			for (int i = 1; i <= Conditional.NUM_ACTION_TYPES; i++) {
+				action2TypeBox.addItem(actionTypeToString(i));
+			}
+			action2TypeBox.setToolTipText(rbx.getString("ActionTypeHint"));
+			action2Data.add(action2TypeBox);
+			action2TypeBox.setSelectedIndex(0);
+			action2NameField = new JTextField(8);
+			action2Data.add(action2NameField);
+			action2NameField.setVisible(false);
+			action2TurnoutSetBox = new JComboBox(new String[] {
+					rbx.getString("TurnoutClosed"),
+					rbx.getString("TurnoutThrown") });
+			action2Data.add(action2TurnoutSetBox);
+			action2TurnoutSetBox
+					.setToolTipText(rbx.getString("TurnoutSetHint"));
+			action2TurnoutSetBox.setVisible(false);
+			action2SensorSetBox = new JComboBox(new String[] {
+					rbx.getString("SensorActive"),
+					rbx.getString("SensorInactive") });
+			action2Data.add(action2SensorSetBox);
+			action2SensorSetBox.setToolTipText(rbx.getString("SensorSetHint"));
+			action2SensorSetBox.setVisible(false);
+			action2LightSetBox = new JComboBox(new String[] {
+					rbx.getString("LightOn"), rbx.getString("LightOff") });
+			action2Data.add(action2LightSetBox);
+			action2LightSetBox.setToolTipText(rbx.getString("LightSetHint"));
+			action2LightSetBox.setVisible(false);
+			action2SignalSetBox = new JComboBox();
+			for (int i = 0; i < 7; i++) {
+				action2SignalSetBox.addItem(signalAppearanceIndexToString(i));
+			}
+			action2Data.add(action2SignalSetBox);
+			action2SignalSetBox.setToolTipText(rbx.getString("SignalSetHint"));
+			action2SignalSetBox.setVisible(false);
+			action2SetButton = new JButton("Set");
+			action2SetButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					setFileLocation(2);
+				}
+			});
+			action2Data.add(action2SetButton);
+			action2SetButton.setVisible(false);
+			action2DataField = new JTextField(20);
+			action2Data.add(action2DataField);
+			action2DataField.setVisible(false);
+			action2LockSetBox = new JComboBox(new String[] {
+					rbx.getString("TurnoutUnlock"),
+					rbx.getString("TurnoutLock") });
+			action2Data.add(action2LockSetBox);
+			action2LockSetBox.setToolTipText(rbx.getString("LockSetHint"));
+			action2LockSetBox.setVisible(false);
+			action2TypeBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionTypeChanged(2);
+				}
+			});
+			actionPanel.add(action2Data);
+			Border actionPanelBorder = BorderFactory.createEtchedBorder();
+			Border actionPanelTitled = BorderFactory.createTitledBorder(
+					actionPanelBorder, rbx.getString("TitleAction"));
+			actionPanel.setBorder(actionPanelTitled);
+			contentPane.add(actionPanel);
+			JPanel panel5 = new JPanel();
+			panel5.setLayout(new FlowLayout());
+			panel5.add(updateConditional = new JButton(rbx
+					.getString("UpdateConditionalButton")));
+			updateConditional.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					updateConditionalPressed(e);
+				}
+			});
+			updateConditional.setToolTipText(rbx
+					.getString("UpdateConditionalButtonHint"));
+			panel5.add(cancelConditional = new JButton(rbx
+					.getString("CancelButton")));
+			cancelConditional.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					cancelConditionalPressed(e);
+				}
+			});
+			cancelConditional.setToolTipText(rbx
+					.getString("CancelConditionalButtonHint"));
+			panel5.add(deleteConditional = new JButton(rbx
+					.getString("DeleteConditionalButton")));
+			deleteConditional.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					deleteConditionalPressed(e);
+				}
+			});
+			deleteConditional.setToolTipText(rbx
+					.getString("DeleteConditionalButtonHint"));
+
+			contentPane.add(panel5);
+		}
+		editConditionalFrame
+				.addWindowListener(new java.awt.event.WindowAdapter() {
+					public void windowClosing(java.awt.event.WindowEvent e) {
+						if (inEditConditionalMode)
+							cancelConditionalPressed(null);
+					}
+				});
+		variableTableModel.fireTableDataChanged();
+		initializeActionVariables();
+		editConditionalFrame.pack();
+		editConditionalFrame.setVisible(true);
+		inEditConditionalMode = true;
+	}

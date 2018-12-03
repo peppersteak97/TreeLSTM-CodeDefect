@@ -1,0 +1,2 @@
+        throw new IllegalArgumentException("No such document " + doc.toString() + " found in collection of open documents");
+      if ( i + 1 == _model.size()) return doc;

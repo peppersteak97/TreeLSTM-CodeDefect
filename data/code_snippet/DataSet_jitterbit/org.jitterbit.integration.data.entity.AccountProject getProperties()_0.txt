@@ -1,0 +1,9 @@
+    public StringKeyValuePairs getProperties() {
+        StringKeyValuePairs keyValues = super.getProperties();
+        IntegrationEntity owner = getParent();
+        String ownerID = (owner == null) ? null : owner.getID().toString();
+        keyValues.put(TradingPartner.ACCOUNT_ID, ownerID);
+        keyValues.put(PROJECT_NAME, getName());
+        keyValues.put(DESCRIPTION, getDescription());
+        return keyValues;
+    }

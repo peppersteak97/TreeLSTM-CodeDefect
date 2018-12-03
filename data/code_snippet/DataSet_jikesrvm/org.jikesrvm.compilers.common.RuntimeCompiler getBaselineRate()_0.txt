@@ -1,0 +1,3 @@
+  public static double getBaselineRate() {
+    return Math.exp(totalLogOfRates[BASELINE_COMPILER] / totalLogValueMethods[BASELINE_COMPILER]);
+  }

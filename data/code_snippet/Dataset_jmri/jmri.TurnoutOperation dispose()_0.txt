@@ -1,0 +1,6 @@
+	public void dispose() {
+		if (!isDefinitive()) {
+			TurnoutOperationManager.getInstance().removeOperation(this);
+			name = "*deleted";
+		}
+	}

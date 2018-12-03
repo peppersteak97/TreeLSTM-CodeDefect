@@ -1,0 +1,18 @@
+  public void testNoParameters() throws BadLocationException {
+    
+    String _text =
+      "method(\n"+
+      ")\n";
+    
+    String _aligned =
+      "method(\n"+
+      ")\n";
+    
+    _doc.insertString(0, _text, null);
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    assertEquals("START has no brace.", _text.length(), _doc.getLength());
+    
+    
+    _assertContents(_aligned, _doc);
+    assertEquals("Line aligned to open paren.", _aligned.length(), _doc.getLength());
+  }

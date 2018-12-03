@@ -1,0 +1,6 @@
+    void stopServer() {
+        updateUI(EnumSet.of(ServerStatus.STOPPING), 
+                        PackageResources.ConsoleWorker.STOPPING);
+        IUiJob p = new StopServerJob(this);
+        IntegrationUi.getUi().getJobManager().submitForParallellProcessing(p);
+    }

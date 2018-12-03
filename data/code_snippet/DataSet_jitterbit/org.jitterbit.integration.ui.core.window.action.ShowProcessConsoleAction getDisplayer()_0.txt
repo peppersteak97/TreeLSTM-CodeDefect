@@ -1,0 +1,6 @@
+    private IWindowSectionContentDisplayer getDisplayer() {
+        if (m_displayerFactory == null) {
+            m_displayerFactory = new JobConsoleWindowDisplayerFactory();
+        }
+        return m_displayerFactory.newDisplayer();
+    }

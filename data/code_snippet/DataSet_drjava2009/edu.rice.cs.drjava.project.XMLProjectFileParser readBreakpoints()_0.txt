@@ -1,0 +1,28 @@
+  protected List<DebugBreakpointData> readBreakpoints() {
+    List<DebugBreakpointData> bpList = new ArrayList<DebugBreakpointData>();
+    List<Node> defs = _xc.getNodes("breakpoints/breakpoint");
+    for(Node n: defs) {
+      String name = _xc.get(".file", n);
+      final int lnr = _xc.getInt(".line", n);
+      final boolean enabled = _xc.getBool(".enabled", n);
+      DebugBreakpointData dbd;
+      if ((_srcFileBase == null) || (new File(name).isAbsolute())) {
+        final File f = new File(name);
+        dbd = new DebugBreakpointData() {
+          public File getFile() { return f; }
+          public int getLineNumber() { return lnr; }
+          public boolean isEnabled() { return enabled; }
+        };
+      }
+      else {
+        final File f = new File(_srcFileBase, name);
+        dbd = new DebugBreakpointData() {
+          public File getFile() { return f; }
+          public int getLineNumber() { return lnr; }
+          public boolean isEnabled() { return enabled; }
+        };
+      }
+      bpList.add(dbd);
+    }
+    return bpList;
+  }

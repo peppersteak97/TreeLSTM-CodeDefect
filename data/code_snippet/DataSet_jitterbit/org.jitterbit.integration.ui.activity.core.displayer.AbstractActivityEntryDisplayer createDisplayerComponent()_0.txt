@@ -1,0 +1,11 @@
+    protected JComponent createDisplayerComponent() {
+        JPanel p = new JPanel(new BorderLayout());
+        JComponent navDisplayer = m_navigationControl.getDisplayer();
+        FocusUtils.makeComponentMouseFocusable(navDisplayer);
+        p.add(navDisplayer, BorderLayout.NORTH);
+        p.add(ComponentFactories.scrollFactory().newScrollPane(getTable()), 
+                        BorderLayout.CENTER);
+        m_filterDescription.addToContainer(p, BorderLayout.SOUTH);
+        registerKeyBindings(p);
+        return p;
+    }

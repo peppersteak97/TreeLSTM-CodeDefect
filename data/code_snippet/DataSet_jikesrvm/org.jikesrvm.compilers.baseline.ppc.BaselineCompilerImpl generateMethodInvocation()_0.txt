@@ -1,0 +1,6 @@
+  private void generateMethodInvocation() {
+
+    asm.emitLAddrToc(S0, ArchEntrypoints.reflectiveMethodInvokerInstructionsField.getOffset());
+    asm.emitMTCTR(S0);
+    asm.emitBCCTRL();
+  }

@@ -1,0 +1,4 @@
+    public String getName() {
+        String name = (String) m_properties.get(Property.NAME);
+        return (name == null) ? getServerNamePre095() : name;
+    }

@@ -1,0 +1,22 @@
+  private void initComponents() {
+    JPanel main = _makePanel();
+    super.getContentPane().setLayout(new BorderLayout());
+    super.getContentPane().add(main, BorderLayout.NORTH);
+    
+    Action okAction = new AbstractAction("OK") { public void actionPerformed(ActionEvent e) { _ok(); } };
+    _okButton = new JButton(okAction);
+    
+    Action cancelAction = new AbstractAction("Cancel") { public void actionPerformed(ActionEvent e) { _cancel(); } };
+    _cancelButton = new JButton(cancelAction);
+    
+    JPanel bottom = new JPanel();
+    bottom.setBorder(new EmptyBorder(5, 5, 5, 5));
+    bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
+    bottom.add(Box.createHorizontalGlue());
+    bottom.add(_okButton);
+    bottom.add(_cancelButton);
+    bottom.add(Box.createHorizontalGlue());
+    
+    super.getContentPane().add(bottom, BorderLayout.SOUTH);
+    super.setResizable(false); 
+  }

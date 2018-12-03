@@ -1,0 +1,3 @@
+  public Throwable getContainedThrowable() {
+    return _value;
+  }

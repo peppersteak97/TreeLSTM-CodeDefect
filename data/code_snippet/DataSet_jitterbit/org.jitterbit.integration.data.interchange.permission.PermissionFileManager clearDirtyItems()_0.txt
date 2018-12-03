@@ -1,0 +1,6 @@
+    public void clearDirtyItems() {
+        File permissionsFolder = new File(m_projectManager.getCurrentProjectLocation(),
+                        Constants.FOLDER_NAME);
+        File dirty = new File(permissionsFolder, Constants.DIRTY_ENTITIES_FILE);
+        dirty.delete();
+    }

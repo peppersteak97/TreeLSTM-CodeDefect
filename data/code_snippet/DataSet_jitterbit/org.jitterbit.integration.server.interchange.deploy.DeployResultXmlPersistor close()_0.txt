@@ -1,0 +1,9 @@
+    public void close() throws DeployResultPersistorException {
+        m_xmlBuilder.closeElement();
+        try {
+            KongaIoUtils.createAndWrite(m_outputFile, m_xmlBuilder.getXml());
+        }
+        catch (IOException ex) {
+            throw new DeployResultPersistorException(
+        }
+    }

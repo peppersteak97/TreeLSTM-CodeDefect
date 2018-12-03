@@ -1,0 +1,3 @@
+    public void fireWasCreated() {
+        m_eventSenderSupport.fireUiDelegateCreated(this);
+    }

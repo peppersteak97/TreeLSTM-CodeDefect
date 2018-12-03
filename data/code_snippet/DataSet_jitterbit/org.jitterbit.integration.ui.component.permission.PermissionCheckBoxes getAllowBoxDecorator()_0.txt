@@ -1,0 +1,12 @@
+    IUiProvider getAllowBoxDecorator() {
+        return new IUiProvider() {
+
+            public void decorate(IUiDecor decor) {
+                decor.display(m_allowBox);
+            }
+
+            public void requestFocus() {
+                m_allowAllBox.requestFocusInWindow();
+            }
+        };
+    }

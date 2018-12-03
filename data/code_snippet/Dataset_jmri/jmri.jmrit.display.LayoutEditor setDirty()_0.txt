@@ -1,0 +1,8 @@
+	public void resetDirty() { 
+		setDirty(false);
+		savedEditMode = editMode;
+		savedPositionable = positionable;
+		savedControlLayout = controlLayout;
+		savedAnimatingLayout = animatingLayout;					
+		savedShowHelpBar = showHelpBar;
+	}

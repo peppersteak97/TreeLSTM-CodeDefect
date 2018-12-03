@@ -1,0 +1,18 @@
+    protected void displayPage() {
+        if (pagenum > pageImages.size())pagenum = pageImages.size();
+        if (pagenum < 1) pagenum = 1;
+        previousButton.setEnabled(true);
+        nextButton.setEnabled(true);
+        if (pagenum == pageImages.size())nextButton.setEnabled(false);
+        if (pagenum == 1) previousButton.setEnabled(false);
+        previewImage = (Image) pageImages.elementAt(pagenum-1);
+        previewFrame.setVisible(false);
+        previewIcon.setImage(previewImage);
+        previewLabel.setIcon(previewIcon);
+        previewPanel.add(previewLabel);
+        pageCount.setText("" + pagenum);
+        totalPages.setText("" + pageImages.size() + "     ");
+        previewFrame.invalidate();
+        previewFrame.validate();
+        previewFrame.setVisible(true);
+    }

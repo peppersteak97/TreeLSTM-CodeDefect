@@ -1,0 +1,13 @@
+  public void testReplaceAllSameWord() throws BadLocationException {
+    _doc.insertString(0, "cool cool", null);
+    _initFrm(3);
+    _frm.setFindWord("cool");
+    _frm.setMatchCase(false);
+    _frm.setSearchBackwards(false);
+    _frm.setReplaceWord("cool");
+    replaceAll();
+    assertEquals("replace all with the same word", "cool cool", _doc.getText());
+    _frm.setSearchBackwards(true);
+    replaceAll();
+    assertEquals("replace all backward with the same word", "cool cool", _doc.getText());
+  }

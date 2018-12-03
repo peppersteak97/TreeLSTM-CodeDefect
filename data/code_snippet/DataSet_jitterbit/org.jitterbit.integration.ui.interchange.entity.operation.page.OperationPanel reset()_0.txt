@@ -1,0 +1,19 @@
+    public void reset() {
+        m_topPanel.setOperation(m_operation);
+        if (m_transformationPanel != null) {
+            m_transformationPanel.setOperation(m_operation);
+        }
+        if (m_wsCallPanel != null) {
+            m_wsCallPanel.setOperation(m_operation);
+        }
+        if (m_hostedWsCallPanel != null) {
+            m_hostedWsCallPanel.setOperation(m_operation);
+        }
+        if (m_archivePanel != null) {
+            m_archivePanel.setOperation(m_operation);
+        }
+        m_optionsPanel.setOperation(m_operation);
+        m_onSuccessPanel.setOperation(m_operation);
+        m_onFailurePanel.setOperation(m_operation);
+        m_schedulePanel.setOperation(m_operation);
+    }

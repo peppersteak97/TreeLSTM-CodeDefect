@@ -1,0 +1,12 @@
+    private JPanel createDetailsPanel() {
+        final JPanel p = new JPanel(new BorderLayout());
+        JLabel lbl = IntegrationUiStyleSheet.DefaultText.makeJLabel(
+                        PackageResources.Displayer.DETAILS_LABEL);
+        Border outside = BorderFactory.createBevelBorder(BevelBorder.RAISED);
+        Border inside = BorderFactory.createEmptyBorder(2, 2, 2, 2);
+        lbl.setBorder(BorderFactory.createCompoundBorder(outside, inside));
+
+        p.add(lbl, BorderLayout.NORTH);
+        ContainerDecor.decorate(m_messageDisplayer, p, BorderLayout.CENTER);
+        return p;
+    }

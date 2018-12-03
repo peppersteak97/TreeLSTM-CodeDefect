@@ -1,0 +1,5 @@
+    public String getRenameFileTo() {
+        return m_deleteSourceFileOption.isSelected() ? 
+                        FileLocation.DELETE_SOURCE_MARKER : 
+                            m_renameFileTo.getValue().trim();
+    }

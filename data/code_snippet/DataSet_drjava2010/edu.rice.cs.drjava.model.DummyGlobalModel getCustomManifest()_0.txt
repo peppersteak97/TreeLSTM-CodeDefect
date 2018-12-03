@@ -1,0 +1,3 @@
+  public String getCustomManifest() {
+    throw new UnsupportedOperationException("Tried to call getCustomManifest on a Dummy!");
+  }

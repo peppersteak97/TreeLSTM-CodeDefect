@@ -1,0 +1,13 @@
+    IPrimaryKeys getDefinedKeys() {
+        final DatabaseColumn[] columns = getKeyColumns();
+        return new IPrimaryKeys() {
+
+            public DatabaseObject getDatabaseObject() {
+                return m_dbObject;
+            }
+
+            public DatabaseColumn[] getPrimaryKeys() {
+                return columns;
+            }
+        };
+    }

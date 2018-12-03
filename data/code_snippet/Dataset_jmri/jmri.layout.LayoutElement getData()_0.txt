@@ -1,0 +1,4 @@
+    public synchronized LayoutEventData getData()
+    {
+        return mData ;
+    }

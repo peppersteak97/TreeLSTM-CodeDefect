@@ -1,0 +1,28 @@
+	public synchronized Dimension getPreferredSize() {
+		Dimension d = getMinimumSize();
+		int h = d.height, w = d.width;
+		
+		for( int k = 0, n = m_model.getNumberOfBubbles(); k < n; ++k ) {
+			KongaGraphBubble bubble = m_model.getBubble(k);
+			int i = bubble.getRightMidPoint().x + bubble.getRightOffset();
+			if ( i > w )
+				w = i;
+			i = bubble.getBottomMidPoint().y + bubble.getBottomOffset();
+			if ( i > h )
+				h = i;
+		}
+		
+		for( int k = 0, n = m_model.getNumberOfRoutes(); k < n; ++k ) {
+			KongaGraphRoute route = m_model.getRoute(k);
+			int i = route.getMaxX();
+			if ( i > w )
+				w = i;
+			i = route.getMaxY();
+			if ( i > h )
+				h = i;
+		}
+
+		if ( DEBUG ) {
+			if ( h > d.height || w > d.width )
+		}
+	}	

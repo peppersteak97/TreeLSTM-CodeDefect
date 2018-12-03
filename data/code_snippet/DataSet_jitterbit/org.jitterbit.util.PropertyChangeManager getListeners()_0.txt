@@ -1,0 +1,6 @@
+    public PropertyChangeListener[] getListeners() {
+        return (m_propChangeSupport != null) ? 
+                m_propChangeSupport.getPropertyChangeListeners() :
+                    new PropertyChangeListener[0];
+                
+    }

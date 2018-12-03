@@ -1,0 +1,3 @@
+    public int getRowHeight() {
+        return (int) (super.getRowHeight() * 1.25);
+    }

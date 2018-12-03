@@ -1,0 +1,14 @@
+    public int getHourOfTheDay() {
+        if (m_mode == TWENTYFOUR_HOUR_MODE) {
+            return m_hourBox.getSelectedIndex();
+        }
+        int hour = m_hourBox.getSelectedIndex() + 1;
+        AM_PM ap = getAM_PM();
+        if (ap == AM_PM.AM && hour == 12) {
+            hour = 0;
+        }
+        else if (ap == AM_PM.PM && hour != 12) {
+            hour += 12;
+        }
+        return hour;
+    }

@@ -1,0 +1,3 @@
+    public void setDefaultMode() {
+        mServicePane.setButtonMode(Programmer.PAGEMODE);
+    }

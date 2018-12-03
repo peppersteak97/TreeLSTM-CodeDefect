@@ -1,0 +1,8 @@
+  public static synchronized void stop() {
+    timerMethodListeners = new MethodListener[0];
+    timerContextListeners = new ContextListener[0];
+    timerNullListeners = new NullListener[0];
+
+    cbsMethodListeners = new MethodListener[0];
+    cbsContextListeners = new ContextListener[0];
+  }

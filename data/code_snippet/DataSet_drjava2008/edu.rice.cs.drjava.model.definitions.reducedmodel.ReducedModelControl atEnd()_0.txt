@@ -1,0 +1,16 @@
+    if (_rmc._cursor.atEnd()) {
+      _rmc.prev();
+      _rmb.prev();
+      if (_rmc._cursor.atStart()) {
+      }
+      
+      if (_rmc.current().getSize() < _rmb.current().getSize()) {
+        size = -_rmc.current().getSize();
+      }
+      else {
+        size = -_rmb.current().getSize();
+      }
+      _rmc.next();
+      _rmb.next();
+      move(size);
+    }

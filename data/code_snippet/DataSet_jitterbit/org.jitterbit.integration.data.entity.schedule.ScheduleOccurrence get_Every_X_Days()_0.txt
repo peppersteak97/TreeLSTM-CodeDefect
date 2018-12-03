@@ -1,0 +1,3 @@
+    public int get_Every_X_Days() {
+        return m_Every_X_Days;
+    }

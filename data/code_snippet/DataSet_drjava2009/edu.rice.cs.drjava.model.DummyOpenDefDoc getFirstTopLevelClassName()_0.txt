@@ -1,0 +1,3 @@
+  public String getFirstTopLevelClassName() throws ClassNameNotFoundException {
+    throw new UnsupportedOperationException("Dummy method");
+  }

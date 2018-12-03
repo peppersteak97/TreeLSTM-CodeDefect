@@ -1,0 +1,5 @@
+  public void interactionContinues() {
+    _document.setInProgress(false);
+    _notifyInteractionEnded();
+    _notifyInteractionIncomplete();
+  }

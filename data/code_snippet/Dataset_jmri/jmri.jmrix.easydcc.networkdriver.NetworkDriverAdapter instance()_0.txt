@@ -1,0 +1,4 @@
+    static public NetworkDriverAdapter instance() {
+        if (mInstance == null) mInstance = new NetworkDriverAdapter();
+        return mInstance;
+    }

@@ -1,0 +1,9 @@
+    private void layoutComponents() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setInsets(1, 1, 3, 1);
+        p.add(InputFieldFactory.getCapsule(m_decryption));
+        p.setInsets(IntegrationUiStyleSheet.DEFAULT_GBC_INSETS_LEFT);
+        p.add(InputFieldFactory.getCapsule(m_passPhrase));
+        p.setOpaque(false, false);
+        wrap(p);
+    }

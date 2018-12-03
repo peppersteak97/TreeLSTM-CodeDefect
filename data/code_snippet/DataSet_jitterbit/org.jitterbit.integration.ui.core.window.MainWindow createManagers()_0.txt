@@ -1,0 +1,6 @@
+    private void createManagers() {
+        m_menuManager = ApplicationWindowMenuManager.getManager(this);
+        m_horizontalToolBarManager = HorizontalToolBarManager.getManager(this);
+        m_verticalToolBarManager = VerticalToolBarManager.getManager(this);
+        m_activeObjectManager = new DefaultActiveObjectManager();
+    }

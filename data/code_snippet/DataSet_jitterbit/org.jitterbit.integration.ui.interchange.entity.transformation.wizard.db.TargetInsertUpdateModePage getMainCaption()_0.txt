@@ -1,0 +1,3 @@
+    protected String getMainCaption() {
+        return PackageResources.TargetInsertUpdateModePage.MAIN_CAPTION;
+    }

@@ -1,0 +1,10 @@
+    private void checkFunctions() {
+        int nFncs = functions.size();
+        if (nFncs < 2) {
+            return;
+        }
+        for (int index = 0; index < (nFncs - 1); ++index) {
+            boolean match = functionFunctionMatches(index, index + 1);
+            functionJoinIsValid[index] = match;
+        }
+    }

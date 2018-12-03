@@ -1,0 +1,50 @@
+  public void testMatchBraceText() {
+
+    final DefinitionsPane defPane = _frame.getCurrentDefPane();
+    final OpenDefinitionsDocument doc = defPane.getOpenDefDocument();
+    Utilities.clearEventQueue();
+    
+    _assertDocumentEmpty(doc, "before testing");
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        doc.append( 
+                   "{\n" +
+                   "  }\n" +
+                   "}" +
+                   "}"
+                     , null);
+        
+        defPane.setCaretPosition(4); 
+      } 
+    });
+    
+    /* Ensure that DocumentListeners complete. */
+    Utilities.invokeAndWait(new Runnable() { public void run() {  _result = _frame.getFileNameField(); } });
+    
+    final String taggedFileName = "Editing " + doc.getCompletePath();
+    assertEquals("Should display the document path", taggedFileName, _result);
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() {  defPane.setCaretPosition(115); } });
+    Utilities.invokeAndWait(new Runnable() { public void run() {  _result = _frame.getFileNameField(); } });
+    assertEquals("Should display the line matched", "Bracket matches:      new Object() {", _result);
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() { defPane.setCaretPosition(102);  } });
+    Utilities.invokeAndWait(new Runnable() { public void run() {  _result = _frame.getFileNameField(); } });
+    assertEquals("Should display the document matched", "Bracket matches:      new Object(", _result);
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() { defPane.setCaretPosition(119); } });
+    Utilities.invokeAndWait(new Runnable() { public void run() {  _result = _frame.getFileNameField(); } });
+    assertEquals("Should display the line matched", "Bracket matches:   private void _method()...{", _result);
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() { defPane.setCaretPosition(121); } });
+    Utilities.invokeAndWait(new Runnable() { public void run() {  _result = _frame.getFileNameField(); } });
+    assertEquals("Should display the line matched", "Bracket matches: public class Foo {", _frame.getFileNameField());
+    
+    Utilities.invokeAndWait(new Runnable() { public void run() { defPane.setCaretPosition(122); } });
+    Utilities.invokeAndWait(new Runnable() { public void run() {  _result = _frame.getFileNameField(); } });
+    assertEquals("Should display only one brace when matching an open brace that is the first character in a line",
+                 "Bracket matches: {", _result);
+    
+    _log.log("testMatchBraceTest completed");
+  }

@@ -1,0 +1,6 @@
+  private void _updateActions() {
+    _nextPageAction.setEnabled(_print.getNumberOfPages() > (_pageNumber + 1));
+    _prevPageAction.setEnabled(_pageNumber > 0);
+    try { _pageChanger.update(_pageNumber + 1); }
+    catch(Exception e) { /* ignore */ }
+  }

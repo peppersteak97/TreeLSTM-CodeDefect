@@ -1,0 +1,3 @@
+	protected final DescriptionDisplayer getDescriptionDisplayer() {
+		return (DescriptionDisplayer)getComponentHolder();
+	}

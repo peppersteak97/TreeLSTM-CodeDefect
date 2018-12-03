@@ -1,0 +1,7 @@
+    private AffineTransform getComponentToArrowTransformation() {
+        try {
+            return getArrowToComponentTransformation().createInverse();
+        } 
+        catch (NoninvertibleTransformException e) {
+        }
+    }

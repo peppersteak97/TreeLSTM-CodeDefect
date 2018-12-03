@@ -1,0 +1,4 @@
+    public static NormalAndBoldTextPane newEditable() {
+        return new NormalAndBoldTextPane(getDefaultFontFamily(),
+                        getDefaultFontSize());
+    }

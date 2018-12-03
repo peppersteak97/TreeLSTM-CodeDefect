@@ -1,0 +1,39 @@
+    public String showOccupancy() {
+        String s = "";
+        switch (currentDsStateHere) {
+            case Sensor.ACTIVE: s+="o"; break;
+            case Sensor.INACTIVE: s+="u"; break;
+            case Sensor.UNKNOWN: s+="?"; break;
+            case Sensor.INCONSISTENT: s+="i"; break;
+            default: s+="x"; break;
+        }
+
+        s += " A:";
+        switch (currentDsStateOnA) {
+            case Sensor.ACTIVE: s+="o"; break;
+            case Sensor.INACTIVE: s+="u"; break;
+            case Sensor.UNKNOWN: s+="?"; break;
+            case Sensor.INCONSISTENT: s+="i"; break;
+            default: s+="x"; break;
+        }
+
+        s += " B:";
+        switch (currentDsStateOnB) {
+            case Sensor.ACTIVE: s+="o"; break;
+            case Sensor.INACTIVE: s+="u"; break;
+            case Sensor.UNKNOWN: s+="?"; break;
+            case Sensor.INCONSISTENT: s+="i"; break;
+            default: s+="x"; break;
+        }
+
+        s += " C:";
+        switch (currentDsStateOnC) {
+            case Sensor.ACTIVE: s+="o"; break;
+            case Sensor.INACTIVE: s+="u"; break;
+            case Sensor.UNKNOWN: s+="?"; break;
+            case Sensor.INCONSISTENT: s+="i"; break;
+            default: s+="x"; break;
+        }
+
+        return s;
+    }

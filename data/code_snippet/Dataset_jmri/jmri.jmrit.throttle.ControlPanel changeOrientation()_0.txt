@@ -1,0 +1,15 @@
+    private void changeOrientation()
+    {
+        if (this.getWidth() > this.getHeight())
+            {
+                speedSlider.setOrientation(JSlider.HORIZONTAL);
+                this.remove(buttonPanel);
+                this.getContentPane().add(buttonPanel, BorderLayout.EAST);
+            }
+        else
+            {
+                speedSlider.setOrientation(JSlider.VERTICAL);
+                this.remove(buttonPanel);
+                this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+            }
+    }

@@ -1,0 +1,5 @@
+    private void createMainPanel() {
+        UiUtils.setOpaqueRecursivelySkipDefaults(m_inputPanel.getUi(), false);
+        setMainPanel(TransformationWizard.getUtils().createPageMainPanel(
+                        getMainCaption(), getSubCaption(), m_inputPanel.getUi()));
+    }

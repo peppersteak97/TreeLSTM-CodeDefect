@@ -1,0 +1,3 @@
+  static void raiseAbstractMethodError() {
+    throw new java.lang.AbstractMethodError();
+  }

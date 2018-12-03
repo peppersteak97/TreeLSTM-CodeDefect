@@ -1,0 +1,9 @@
+    public static JitterPackerUiFactory newInstance() {
+        return new JitterPackerUiFactory() {
+
+            @Override
+            public IJitterPackerUi create() {
+                return new DefaultJitterPackerUi();
+            }
+        };
+    }

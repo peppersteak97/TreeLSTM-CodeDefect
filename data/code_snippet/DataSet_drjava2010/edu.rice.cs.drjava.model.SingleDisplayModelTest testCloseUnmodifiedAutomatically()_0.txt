@@ -1,0 +1,37 @@
+  public void testCloseUnmodifiedAutomatically() throws BadLocationException, IOException,
+    OperationCanceledException, AlreadyOpenException {
+    
+    OpenDefinitionsDocument doc = getSDModel().getActiveDocument();
+    assertModified(false, doc);
+    assertLength(0, doc);
+
+    final File tempFile = writeToNewTempFile(BAR_TEXT);
+
+    SDTestListener listener = new SDTestListener() {
+      public void fileOpened(OpenDefinitionsDocument doc) {
+        File file = FileOps.NULL_FILE;
+        try { file = doc.getFile(); }
+        catch (FileMovedException fme) {
+          fail("file does not exist");
+        }
+        try {
+          assertEquals("file to open", tempFile.getCanonicalFile(), file.getCanonicalFile());
+          synchronized(this) { openCount++; }
+        }
+        catch (IOException ioe) { fail("could not get canonical file"); }
+      }
+      public synchronized void fileClosed(OpenDefinitionsDocument doc) { closeCount++; }
+      public synchronized void activeDocumentChanged(OpenDefinitionsDocument doc) { switchCount++; }
+    };
+    getSDModel().addListener(listener);
+
+    doc = getSDModel().openFile(new FileSelector(tempFile));
+    listener.assertOpenCount(1);
+    listener.assertCloseCount(1);
+    listener.assertSwitchCount(1);
+    assertNumOpenDocs(1);
+    assertModified(false, doc);
+    assertContents(BAR_TEXT, doc);
+    getSDModel().removeListener(listener);
+    _log.log("testCloseUnmodifiedAutomatically completed");
+  }

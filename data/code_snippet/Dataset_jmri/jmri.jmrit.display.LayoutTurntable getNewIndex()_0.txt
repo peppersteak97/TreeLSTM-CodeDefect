@@ -1,0 +1,14 @@
+	private int getNewIndex() {
+		int index = -1;
+		if (rayList.size()==0) return 0;
+		boolean found = true;
+		while (found) {
+			index ++;
+			found = false;
+			for (int i = 0; (i<rayList.size()) && !found; i++) {
+				if (index==((RayTrack)rayList.get(i)).getConnectionIndex()) 
+					found = true;
+			}
+		}
+		return index;
+	}		

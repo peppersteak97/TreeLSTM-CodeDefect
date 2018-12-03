@@ -1,0 +1,6 @@
+  public void resetUndo() {
+    _doc.getUndoManager().discardAllEdits();
+
+    _undoAction.updateUndoState();
+    _redoAction.updateRedoState();
+  }

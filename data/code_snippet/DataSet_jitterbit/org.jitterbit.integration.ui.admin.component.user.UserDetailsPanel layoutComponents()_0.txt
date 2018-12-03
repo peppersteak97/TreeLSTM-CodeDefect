@@ -1,0 +1,9 @@
+    private void layoutComponents() {
+        TwoColumnPanel p = new TwoColumnPanel();
+        m_loginField.layoutIn(p);
+        p.addRow(null, m_passwordButton);
+        m_firstNameField.layoutIn(p);
+        m_lastNameField.layoutIn(p);
+        m_emailField.layoutIn(p);
+        m_uiRepresentation = ComponentDecorFactory.invisible(p).getUi();
+    }

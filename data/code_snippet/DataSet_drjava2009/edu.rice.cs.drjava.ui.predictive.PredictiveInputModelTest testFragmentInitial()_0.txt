@@ -1,0 +1,12 @@
+  public void testFragmentInitial() {
+    PredictiveInputModel<String> pim = new PredictiveInputModel<String>(false,
+                                                                        new PredictiveInputModel.FragmentStrategy<String>(),
+                                                                        "AboutDialog.java",
+                                                                        "FileOps.java",
+                                                                        "FileOpsTest.java",
+                                                                        "Utilities.java");
+    assertEquals("AboutDialog.java", pim.getCurrentItem());
+    assertEquals("", pim.getMask());
+    assertEquals(4, pim.getMatchingItems().size());
+    assertEquals("", pim.getSharedMaskExtension());
+  }

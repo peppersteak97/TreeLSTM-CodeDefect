@@ -1,0 +1,4 @@
+    public Target getTarget() {
+        Object o = m_targetBox.getSelectedEntity();
+        return (o instanceof ITargetUi) ? ((ITargetUi) o).getDataObject() : null;
+    }

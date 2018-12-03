@@ -1,0 +1,3 @@
+    public String getRootNodeName() {
+        return m_rootNode;
+    }

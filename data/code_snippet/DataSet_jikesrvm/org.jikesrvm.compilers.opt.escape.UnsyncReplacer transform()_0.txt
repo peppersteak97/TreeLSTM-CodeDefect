@@ -1,0 +1,10 @@
+  public void transform() {
+    synchronized (context) {
+      for (RegisterOperand def = reg.defList; def != null; def = def.getNext()) {
+        transform(def);
+      }
+      for (RegisterOperand use = reg.useList; use != null; use = use.getNext()) {
+        transform(use);
+      }
+    }
+  }

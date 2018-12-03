@@ -1,0 +1,3 @@
+            if (getSelectedFile() == null) {
+                setDefaultSelection();
+            }

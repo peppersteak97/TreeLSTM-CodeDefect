@@ -1,0 +1,5 @@
+  protected boolean _requestFocusInWindow() {
+    updatePanel();
+    updateButtons();
+    return super.requestFocusInWindow();
+  }

@@ -1,0 +1,3 @@
+    public static OperationHistoryTableModel emptyModel() {
+        return new OperationHistoryTableModel();
+    }

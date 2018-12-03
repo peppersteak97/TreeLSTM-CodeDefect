@@ -1,0 +1,3 @@
+    public boolean status() { 
+        return (ostream != null & istream != null);
+    }

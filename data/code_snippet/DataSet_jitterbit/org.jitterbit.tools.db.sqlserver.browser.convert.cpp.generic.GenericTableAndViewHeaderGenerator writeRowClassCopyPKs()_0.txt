@@ -1,0 +1,22 @@
+    private void writeRowClassCopyPKs() {
+        addLine("\tvoid CopyPKs(const " + getRowClassName() + "& r)");
+        addLine("\t{");
+        boolean bPKsExist = false;
+        for( Column c : getValidColumns() ) {
+            if( c.isPrimaryKey() ) {
+                addLine("\t\t" + CppUtils.getColumnMemberName(c) + " = r." +
+                        CppUtils.getColumnMemberName(c) + ";");
+                addLine("\t\t" + CppUtils.getIsColumnNullMemberName(c) + " = r." +
+                        CppUtils.getIsColumnNullMemberName(c) + ";");
+                addLine("\t\t" + CppUtils.getIsColumnDirtyMemberName(c) + " = r." +
+                        CppUtils.getIsColumnDirtyMemberName(c) + ";");
+                addLine();
+                bPKsExist = true;
+            }
+        }
+        if( !bPKsExist ) {
+            addLine("\t\tCopy(r);");
+        }
+        addLine("\t}");
+        addLine();
+    }

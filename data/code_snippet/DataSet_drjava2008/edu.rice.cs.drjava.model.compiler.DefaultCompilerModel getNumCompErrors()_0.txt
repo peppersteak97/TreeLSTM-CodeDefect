@@ -1,0 +1,2 @@
+    _model.setNumCompErrors(_compilerErrorModel.getNumCompErrors());  // cache number of compiler errors in global model
+  }

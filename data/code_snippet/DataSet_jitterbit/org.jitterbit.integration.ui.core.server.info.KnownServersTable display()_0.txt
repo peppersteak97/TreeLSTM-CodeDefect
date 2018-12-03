@@ -1,0 +1,1 @@
+ * Users of this class must call {@link #display()} before displaying the table,

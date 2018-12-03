@@ -1,0 +1,3 @@
+    public static boolean hasLock() {
+        return s_lock.getOwner() == Thread.currentThread();
+    }

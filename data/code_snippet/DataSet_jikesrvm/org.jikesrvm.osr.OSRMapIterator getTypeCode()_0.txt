@@ -1,0 +1,3 @@
+  public byte getTypeCode() {
+    return (byte)((maps[curidx] & TCODE_MASK) >> TCODE_SHIFT);
+  }

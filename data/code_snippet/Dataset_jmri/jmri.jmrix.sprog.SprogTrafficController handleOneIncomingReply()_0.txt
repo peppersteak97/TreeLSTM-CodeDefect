@@ -1,0 +1,29 @@
+        void handleOneIncomingReply() throws java.io.IOException {
+
+          SprogReply msg = new SprogReply();
+          int i;
+          for (i = 0; i < SprogReply.maxSize; i++) {
+            byte char1 = istream.readByte();
+            msg.setElement(i, char1);
+            if (endReply(msg)) break;
+          }
+
+          if (log.isDebugEnabled()) log.debug("dispatch reply of length "+i);
+          {
+            final SprogReply thisMsg = msg;
+            if (unsolicited) {
+              log.debug("Unsolicited Reply");
+              thisMsg.setUnsolicited();
+            }
+            final SprogTrafficController thisTC = this;
+            Runnable r = new Runnable() {
+              SprogReply msgForLater = thisMsg;
+              SprogTrafficController myTC = thisTC;
+              public void run() {
+                log.debug("Delayed notify starts");
+                myTC.notifyReply(msgForLater);
+              }
+            };
+            javax.swing.SwingUtilities.invokeLater(r);
+          }
+        }

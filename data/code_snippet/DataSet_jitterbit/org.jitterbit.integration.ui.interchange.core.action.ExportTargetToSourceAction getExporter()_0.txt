@@ -1,0 +1,6 @@
+    private ITargetToSourceExporter getExporter() {
+        if (m_exporterFactory == null) {
+            m_exporterFactory = new TargetToSourceExporterFactory();
+        }
+        return m_exporterFactory.newExporter(m_view);
+    }

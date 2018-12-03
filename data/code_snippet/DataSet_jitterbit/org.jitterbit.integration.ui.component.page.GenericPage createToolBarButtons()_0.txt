@@ -1,0 +1,12 @@
+    protected List<JButton> createToolBarButtons() {
+        List<JButton> buttons = new ArrayList<JButton>();
+        String helpId = getHelpId();
+        if (helpId != null) {
+            buttons.add(createHelpButton(helpId));
+            buttons.add(null);
+        }
+        if (!IntegrationUiUtils.USE_TABBED_PANE_CLOSE_BUTTON) {
+            buttons.add(createCloseButton());
+        }
+        return buttons;
+    }

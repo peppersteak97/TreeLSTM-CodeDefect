@@ -1,0 +1,6 @@
+    public int value() {
+    	if (isBinary()) {
+    	} else {
+    	    return super.value();
+    	}
+    }

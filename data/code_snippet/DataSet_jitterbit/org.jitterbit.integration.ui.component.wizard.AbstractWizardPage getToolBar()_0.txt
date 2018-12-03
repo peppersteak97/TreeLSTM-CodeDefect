@@ -1,0 +1,3 @@
+    public WizardToolBar getToolBar() {
+        return (WizardToolBar) super.getToolBar();
+    }

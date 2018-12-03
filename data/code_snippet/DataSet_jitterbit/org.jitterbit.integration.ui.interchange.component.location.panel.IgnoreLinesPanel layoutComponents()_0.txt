@@ -1,0 +1,6 @@
+    private void layoutComponents() {
+        setLayout(new BoxLayout(getUi(), BoxLayout.LINE_AXIS));
+        add(getSubPanel(m_ignoreFirst));
+        add(Box.createHorizontalStrut(20));
+        add(getSubPanel(m_ignoreLast));
+    }

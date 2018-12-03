@@ -1,0 +1,5 @@
+  void moveToEnd() { 
+    assert EventQueue.isDispatchThread();
+    int len = getConsoleDoc().getLength();
+    _pane.setCaretPosition(len);
+  }

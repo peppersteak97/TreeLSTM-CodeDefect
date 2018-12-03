@@ -1,0 +1,3 @@
+  public File getCreateJarFile() {
+    throw new UnsupportedOperationException("Tried to call getCreateJarFile on a Dummy");
+  }

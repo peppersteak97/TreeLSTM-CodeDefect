@@ -1,0 +1,3 @@
+  public int available() {
+    return length.minus(offset).toInt();
+  }

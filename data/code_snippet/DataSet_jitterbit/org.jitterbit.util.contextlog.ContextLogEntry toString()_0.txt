@@ -1,0 +1,12 @@
+	public String toString() {
+		StringBuffer sb = new StringBuffer('[');
+		sb.append(m_logContextEnum.toString());
+		if ( m_LogInstanceId != null ) {
+			sb.append(m_LogInstanceId.toString());
+		}
+		sb.append(new Date(m_lTimeStamp));
+		sb.append(m_level.toString());
+		sb.append(m_stMessage);
+		sb.append(']');
+		return sb.toString();
+	}

@@ -1,0 +1,2 @@
+  /** Returns whether the GlobalModel can abandon this document, asking listeners if isModifiedSinceSave() is true.
+   *  @return true if this document can be abandoned

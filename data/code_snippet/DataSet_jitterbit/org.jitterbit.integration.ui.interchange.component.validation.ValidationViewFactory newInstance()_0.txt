@@ -1,0 +1,10 @@
+    public static ValidationViewFactory newInstance() {
+        return new ValidationViewFactory() {
+
+            @Override
+            public IValidationView create(IWindowSection windowSection, 
+                                          IValidationViewContext context) {
+                return new ValidationViewImpl(windowSection, context);
+            }
+        };
+    }

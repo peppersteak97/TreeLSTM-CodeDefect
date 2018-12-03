@@ -1,0 +1,3 @@
+    public static ImageIcon getSuccessIcon() {
+        return SUCCESS;
+    }

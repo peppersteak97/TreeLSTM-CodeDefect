@@ -1,0 +1,8 @@
+  public void testFormat() {
+    ForcedChoiceOption fco = new ForcedChoiceOption("javadoc_access",
+                                                    "protected",
+                                                    null);
+    
+    assertTrue("Formatting \"private\"", "private".equals(fco.format("private")));
+    assertTrue("Formatting \"public\"", "public".equals(fco.format("public")));
+  }

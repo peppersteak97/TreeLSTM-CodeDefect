@@ -1,0 +1,4 @@
+  public void dispose() {
+    ensureJVMStarterFinished();
+    _jvm.dispose();
+  }

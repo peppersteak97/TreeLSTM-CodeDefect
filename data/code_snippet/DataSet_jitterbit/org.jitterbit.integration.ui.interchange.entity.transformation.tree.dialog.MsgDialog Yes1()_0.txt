@@ -1,0 +1,21 @@
+	void Yes1(){
+  		if(m_obj instanceof TreeMapper){
+			try {
+				TreeMapper ap=(TreeMapper)m_obj;
+				ap.saveMaps();
+			} catch (CheckingException e) {
+				e.printStackTrace();
+			}
+		}
+		else if(m_obj instanceof TreeComponent.Node){
+			TreeComponent.Node taget=(TreeComponent.Node)m_obj;
+			taget.insertMultipleMapping(1);
+		}
+		else if(m_obj instanceof ResolveDialog)	{
+			ResolveDialog dlg=(ResolveDialog)m_obj;
+			String conflictSourcePath=dlg.getCheckMapping().getNextSourceLoopPath(dlg.m_conflictSourcePath);
+			if(dlg.m_generator.startsWith(conflictSourcePath))conflictSourcePath=null;
+			dlg.setConflictPath(conflictSourcePath);
+			dlg.setOneAtATimeMode();
+		}
+	}

@@ -1,0 +1,3 @@
+	public Class getSecondaryClass() {
+		return m_clsSecondary;
+	}

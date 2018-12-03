@@ -1,0 +1,5 @@
+  public RegisterOperand makeTempValidation() {
+    Register reg = getValidation();
+    reg.setValidation();
+    return new RegisterOperand(reg, TypeReference.VALIDATION_TYPE);
+  }

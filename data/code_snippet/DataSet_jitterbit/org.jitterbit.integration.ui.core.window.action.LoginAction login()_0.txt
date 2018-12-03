@@ -1,0 +1,13 @@
+    private void login() {
+        setEnabled(false);
+        final LoginDialog dlg = new LoginDialog();
+        dlg.setVisible(true);
+
+        ILoginCredentials credentials = dlg.getCredentials();
+        if (credentials == null) {
+            handleLoginCancelled();
+        }
+        else {
+            loginWithCredentials(credentials);
+        }
+    }

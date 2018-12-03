@@ -1,0 +1,7 @@
+    private void validateCallRestrictions() {
+        CallRestrictions restrictions = m_wsCall.getCallRestrictions();
+        validateCallDelay(restrictions);
+        validatePostingSize(restrictions);
+        validateRetries(restrictions);
+        validateRetryDelay(restrictions);
+    }

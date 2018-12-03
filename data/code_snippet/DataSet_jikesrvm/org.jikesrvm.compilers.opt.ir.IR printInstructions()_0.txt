@@ -1,0 +1,13 @@
+  public void printInstructions() {
+    for (InstructionEnumeration e = forwardInstrEnumerator(); e.hasMoreElements();) {
+      Instruction i = e.next();
+      System.out.print(i.bcIndex + "\t" + i);
+
+      if (i.operator() == LABEL) {
+        BasicBlock bb = i.getBasicBlock();
+        System.out.print("   Frequency:  " + bb.getExecutionFrequency());
+      }
+
+      System.out.println();
+    }
+  }

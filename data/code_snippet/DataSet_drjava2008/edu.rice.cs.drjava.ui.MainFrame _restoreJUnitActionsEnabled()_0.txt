@@ -1,0 +1,15 @@
+  private void _restoreJUnitActionsEnabled() {
+    
+    _compileProjectAction = _junit_compileProjectDecoratedAction.getUpdatedDecoree();
+    _compileAllAction = _junit_compileAllDecoratedAction.getUpdatedDecoree();
+    _compileFolderAction = _junit_compileFolderDecoratedAction.getUpdatedDecoree();
+    _junitFolderAction = _junit_junitFolderDecoratedAction.getUpdatedDecoree();
+    _junitAllAction = _junit_junitAllDecoratedAction.getUpdatedDecoree();
+    _junitAction = _junit_junitDecoratedAction.getUpdatedDecoree();
+    _junitProjectAction = _junit_junitOpenProjectFilesDecoratedAction.getUpdatedDecoree();
+    _cleanAction = _junit_cleanDecoratedAction.getUpdatedDecoree();
+    _autoRefreshAction = _junit_autoRefreshDecoratedAction.getUpdatedDecoree();
+    _projectPropertiesAction = _junit_projectPropertiesDecoratedAction.getUpdatedDecoree();
+    _runProjectAction = _junit_runProjectDecoratedAction.getUpdatedDecoree();
+    _runAction = _junit_runDecoratedAction.getUpdatedDecoree();
+  }

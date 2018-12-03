@@ -1,0 +1,3 @@
+    List<File> getRequiredFiles() {
+        return new ArrayList<File>(m_requiredFiles);
+    }

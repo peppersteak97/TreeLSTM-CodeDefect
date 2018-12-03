@@ -1,0 +1,3 @@
+	public int getFieldListsize(){
+        return (m_textStructure == null) ? 0 : m_textStructure.getFieldListsize();
+	}

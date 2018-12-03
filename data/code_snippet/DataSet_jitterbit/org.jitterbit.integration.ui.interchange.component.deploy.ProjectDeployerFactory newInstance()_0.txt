@@ -1,0 +1,9 @@
+    public static ProjectDeployerFactory newInstance() {
+        return new ProjectDeployerFactory() {
+
+            @Override
+            public IProjectDeployer create(InterchangeView view) {
+                return new ProjectDeployerImpl(view);
+            }
+        };
+    }

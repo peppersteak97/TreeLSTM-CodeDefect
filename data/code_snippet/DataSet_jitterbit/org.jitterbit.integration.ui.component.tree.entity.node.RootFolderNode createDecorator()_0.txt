@@ -1,0 +1,33 @@
+    protected ITreeNodeDecorator<IIntegrationTreeNodeDecor> createDecorator() {
+        return new DefaultIntegrationTreeNodeDecorator(this) {
+            
+            @Override
+            protected Icon getIcon(IIntegrationTreeNodeDecor decor) {
+                if (IntegrationEntityTree.USE_ROOT_FOLDER_ICONS) {
+                    IntegrationEntityTreeNode node = getNode();
+                    RootFolder rf = (RootFolder) node.getDataObject();
+                    if (rf == null) {
+                        return null;
+                    }
+                    EntityIconRepository.Category category = EntityIconRepository.Category.VALID;
+                    if(decor.isDecoratingInvalidNodes()) {
+                        category = EntityIconRepository.Category.fromValidationStatus(
+                                        node.getValidationStatus());
+                    }
+                    return ICONS.getIcon(
+                                    rf.getItemType(), 
+                                    EntityIconRepository.Level.ROOT,
+                                    category, 
+                                    EntityIconRepository.Size.SMALL);
+                }
+                return super.getIcon(decor);
+            }
+            
+            @Override
+            protected StyleSheetTextClass getStyleSheetClass(IIntegrationTreeNodeDecor decor) {
+                return (decor.isDecoratingDeployDirtyNodes() && isDeployDirty()) ?
+                                IntegrationUiStyleSheet.TreeDeployDirtyRootFolderText :
+                                    IntegrationUiStyleSheet.TreeRootFolderText;
+            }
+        };
+    }

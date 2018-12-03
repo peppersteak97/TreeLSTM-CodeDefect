@@ -1,0 +1,14 @@
+	public static void setSystemLookAndFeelIgnoreErrors() {
+		try {
+            String sClassName = UIManager.getSystemLookAndFeelClassName();
+            UIManager.setLookAndFeel(sClassName);           
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+	}

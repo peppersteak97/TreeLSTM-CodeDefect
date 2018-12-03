@@ -1,0 +1,16 @@
+  public void testMultipleReaders() throws InterruptedException {
+    final StringBuilder buf = new StringBuilder();
+
+    ReaderThread r1 = new PrinterReaderThread("r1 ", buf);
+    ReaderThread r2 = new PrinterReaderThread("r2 ", buf);
+    ReaderThread r3 = new PrinterReaderThread("r3 ", buf);
+
+    _notifyCount = 3;
+
+    synchronized(_notifyObject) {
+      r1.start();
+      r2.start();
+      r3.start();
+      _notifyObject.wait();
+    }
+  }

@@ -1,0 +1,11 @@
+    private void handleCleanPages() {
+        for (IPage page : m_cleanPages) {
+            m_editor.setActivePage(page);
+            if (m_editor.closePage(page)) {
+                ++m_pagesThatWereClosed;
+            }
+            else {
+                break;
+            }
+        }
+    }

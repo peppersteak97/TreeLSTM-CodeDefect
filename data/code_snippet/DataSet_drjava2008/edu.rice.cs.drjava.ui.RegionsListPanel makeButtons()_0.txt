@@ -1,0 +1,3 @@
+  protected JComponent[] makeButtons() {        
+    return new JComponent[0];    
+  }

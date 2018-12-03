@@ -1,0 +1,1 @@
+  public PropertyMaps getPropertyMaps() { return _props; }

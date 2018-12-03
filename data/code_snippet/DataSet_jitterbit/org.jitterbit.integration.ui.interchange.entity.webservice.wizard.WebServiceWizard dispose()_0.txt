@@ -1,0 +1,6 @@
+    public void dispose() {
+        m_startPage = null;
+        m_displayPage.removeFromWindow(true);
+        m_displayPage = null;
+        super.dispose();
+    }

@@ -1,0 +1,4 @@
+    static public AcelaSensorManager instance() {
+        if (_instance == null) _instance = new AcelaSensorManager();
+        return _instance;
+    }

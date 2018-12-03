@@ -1,0 +1,5 @@
+    public T max() {
+        if (m_max == null) {
+        }
+        return m_max;
+    }

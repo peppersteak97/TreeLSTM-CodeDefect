@@ -1,0 +1,13 @@
+    private void checkAllTablesInUse() throws RelationshipException {
+        Set<DatabaseObject> usedTables = new HashSet<DatabaseObject>();
+        for (DatabaseObject parent : m_relationships.keySet()) {
+            usedTables.add(parent);
+            for (TableRelationship rel : m_relationships.get(parent)) {
+                usedTables.add(rel.getChildObject());
+            }
+        }
+        if (usedTables.size() < m_dbObjects.length) {
+            throw new RelationshipException(
+                        PackageResources.RelationshipDefinitionPage.Errors.MULTIPLE_ROOTS);
+        }
+    }

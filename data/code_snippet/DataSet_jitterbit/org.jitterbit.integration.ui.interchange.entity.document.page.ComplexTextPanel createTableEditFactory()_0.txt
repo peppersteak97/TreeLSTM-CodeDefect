@@ -1,0 +1,8 @@
+    private void createTableEditFactory() {
+        try {
+            m_editFactory = new TableUndoableEditFactory(this, m_segmentTable);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }

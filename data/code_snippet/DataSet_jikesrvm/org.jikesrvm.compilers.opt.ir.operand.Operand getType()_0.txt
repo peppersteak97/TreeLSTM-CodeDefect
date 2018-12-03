@@ -1,0 +1,3 @@
+  public TypeReference getType() {
+    throw new OptimizingCompilerException("Getting the type for this operand has no defined meaning: " + this);
+  }

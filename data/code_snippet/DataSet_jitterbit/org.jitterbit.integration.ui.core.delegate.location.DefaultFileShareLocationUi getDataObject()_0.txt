@@ -1,0 +1,3 @@
+    public FileShareLocation getDataObject() {
+        return (FileShareLocation)super.getDataObject();
+    }

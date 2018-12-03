@@ -1,0 +1,2 @@
+ * <dt>oneInstructionString()<dd>The entire single instruction in MPASM from, 
+ *    with a terminating newline

@@ -1,0 +1,3 @@
+    public boolean hasEndDate() {
+        return m_bHasEndDate;
+    }

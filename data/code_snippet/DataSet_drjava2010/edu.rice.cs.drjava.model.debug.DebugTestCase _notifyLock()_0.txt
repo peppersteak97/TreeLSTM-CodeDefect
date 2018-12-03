@@ -1,0 +1,10 @@
+  protected void _notifyLock() {
+    synchronized(_notifierLock) {
+      _pendingNotifies--;
+      _log.log("notified; count = " + _pendingNotifies);     
+      if (_pendingNotifies == 0) {
+        _log.log("Notify count reached 0 -- notifying!");
+      }
+      if (_pendingNotifies < 0) fail("Notified too many times");
+    }
+  }

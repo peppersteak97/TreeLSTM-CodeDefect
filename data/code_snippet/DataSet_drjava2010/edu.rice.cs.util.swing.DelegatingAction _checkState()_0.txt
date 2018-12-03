@@ -1,0 +1,5 @@
+  private void _checkState() {
+    if (_delegatee == null) {
+      throw new IllegalStateException("delegatee is null!");
+    }
+  }

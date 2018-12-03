@@ -1,0 +1,6 @@
+    private void collectTargetLink() {
+        IIntegrationLink link = m_targetLinkFactory.getLink();
+        if (link != null) {
+            m_links.add(link);
+        }
+    }

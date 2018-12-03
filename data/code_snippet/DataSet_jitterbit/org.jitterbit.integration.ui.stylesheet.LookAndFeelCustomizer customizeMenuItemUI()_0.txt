@@ -1,0 +1,4 @@
+    private static void customizeMenuItemUI() {
+        UIManager.put("MenuItem.font", 
+                        IntegrationUiStyleSheet.DefaultMenuText.getFont());
+    }

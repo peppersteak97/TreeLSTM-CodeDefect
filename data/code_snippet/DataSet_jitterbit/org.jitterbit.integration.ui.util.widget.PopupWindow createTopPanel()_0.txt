@@ -1,0 +1,21 @@
+    private void createTopPanel() {
+        m_topPanel = new JPanel();
+        m_topPanel.setLayout(new BoxLayout(m_topPanel, BoxLayout.X_AXIS));
+
+        m_closeButton = ComponentFactories.buttonFactory().newButton(
+        m_closeButton.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        IntegrationUiStyleSheet.configureButtonForToolBar(m_closeButton);
+
+        layoutTopPanel();
+
+        m_topPanel.setBorder(BorderFactory.createCompoundBorder(BorderFactory
+                        .createEtchedBorder(), BorderFactory
+                        .createEmptyBorder(2, 2, 2, 2)));
+
+        add(m_topPanel, BorderLayout.NORTH);
+    }

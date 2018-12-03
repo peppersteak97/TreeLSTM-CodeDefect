@@ -1,0 +1,4 @@
+    private ComboBoxModel createComboBoxModel() {
+        IRecentFileStore recentFiles = getRecentFiles();
+        return new DefaultComboBoxModel(recentFiles.recentFiles());
+    }

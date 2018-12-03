@@ -1,0 +1,1 @@
+ * ({@link #firstInCodeOrder()}, {@link #lastInCodeOrder()})

@@ -1,0 +1,10 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 31 * hash + m_frequencyType;
+        hash = 31 * hash + (m_Frequency_Once_Time != null ? m_Frequency_Once_Time.hashCode() : 0);
+        hash = 31 * hash + m_Frequency_Every_Num;
+        hash = 31 * hash + m_Frequency_Every_HM;
+        hash = 31 * hash + (m_Frequency_Start_Time != null ? m_Frequency_Start_Time.hashCode() : 0);
+        hash = 31 * hash + (m_Frequency_End_Time != null ? m_Frequency_End_Time.hashCode() : 0);
+        return hash;
+    }

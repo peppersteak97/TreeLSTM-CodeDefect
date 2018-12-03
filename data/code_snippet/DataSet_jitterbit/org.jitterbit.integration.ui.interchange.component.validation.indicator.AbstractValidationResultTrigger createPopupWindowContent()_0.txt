@@ -1,0 +1,5 @@
+    private JComponent createPopupWindowContent() {
+        IUiProvider displayer =
+            EntityValidationResultDisplayerFactory.newTreeDisplayer(m_validationResult);
+        return ComponentDecorFactory.centerBorder(displayer).getUi();
+    }

@@ -1,0 +1,3 @@
+    protected JTextComponent getTarget() {
+        return (JTextComponent) super.getTarget();
+    }

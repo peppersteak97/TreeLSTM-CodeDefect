@@ -1,0 +1,3 @@
+    String helpTarget() {
+        return "package.jmri.jmrit.beantable.SensorTable";
+    }

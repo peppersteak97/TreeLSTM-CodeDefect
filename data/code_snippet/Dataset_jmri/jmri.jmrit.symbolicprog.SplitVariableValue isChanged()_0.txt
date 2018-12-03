@@ -1,0 +1,5 @@
+    public boolean isChanged() {
+        CvValue cv1 = ((CvValue)_cvVector.elementAt(getCvNum()));
+        CvValue cv2 = ((CvValue)_cvVector.elementAt(getSecondCvNum()));
+        return (considerChanged(cv1)||considerChanged(cv2));
+    }

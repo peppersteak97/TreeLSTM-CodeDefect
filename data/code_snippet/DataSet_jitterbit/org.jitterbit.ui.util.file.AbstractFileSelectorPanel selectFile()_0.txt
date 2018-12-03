@@ -1,0 +1,12 @@
+    private void selectFile() {
+        File file = null;
+        if (m_mode == Mode.OPEN) {
+            file = getFileToOpen();
+        }
+        else {
+            file = getFileToSave();
+        }
+        if (file != null) {
+            setSelectedFile(file);
+        }
+    }

@@ -1,0 +1,7 @@
+    public IKongaTreeNode getMatch() {
+        IKongaTreeNode startNode = m_startNode;
+        if (checkTreeNodeMatch(startNode, m_findEvent)) {
+            startNode = getNextNode(startNode, m_findEvent.getDirection() );
+        }
+        return searchTree(startNode, m_findEvent);
+    }

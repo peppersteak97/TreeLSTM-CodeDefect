@@ -1,0 +1,5 @@
+    private void writeSelectImpl() {
+        addLine("\tvoid Select(const " + CppUtils.STRING + "& stWhereClause = \"\") {");
+        addLine("\t\t m_dtlRecSet.Select(stWhereClause);");
+        addLine("\t}");
+    }

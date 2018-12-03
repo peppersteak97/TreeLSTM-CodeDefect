@@ -1,0 +1,6 @@
+  public byte[] getBytes() {
+    byte[] codes = initBytes(bsize, PSEUDO_InvokeCompiledMethod);
+    int2bytes(codes, 2, cmid);
+    int2bytes(codes, 6, origIdx);
+    return codes;
+  }

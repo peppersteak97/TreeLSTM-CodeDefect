@@ -1,0 +1,3 @@
+  public boolean isShortType() {
+    return this == Short;
+  }

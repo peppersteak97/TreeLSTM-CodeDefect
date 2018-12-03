@@ -1,0 +1,12 @@
+  public static String getStackTrace() {
+    catch (Exception e) {
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      StackTraceElement[] stes = e.getStackTrace();
+      int skip = 1;
+      for(StackTraceElement ste: stes) {
+        if (skip > 0) { --skip; } else { pw.print("at "); pw.println(ste); }
+      }
+      return sw.toString();
+    }
+  }

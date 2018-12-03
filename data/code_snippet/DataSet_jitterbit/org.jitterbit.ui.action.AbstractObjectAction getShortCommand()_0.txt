@@ -1,0 +1,3 @@
+	public String getShortCommand() {
+		return m_sShortCommand;
+	}

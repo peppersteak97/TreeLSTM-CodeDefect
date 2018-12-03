@@ -1,0 +1,4 @@
+    public void undo() throws CannotUndoException {
+        super.undo();
+        setState(!m_newValue);
+    }

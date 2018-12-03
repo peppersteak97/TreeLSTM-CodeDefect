@@ -1,0 +1,4 @@
+    public boolean activeTransformationHasSourceData() {
+        return (m_activeTransformation != null)
+                        && m_hasSourceData.contains(m_activeTransformation.getID());
+    }

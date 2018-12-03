@@ -1,0 +1,5 @@
+    private JComponent createCaption() {
+        JLabel label = IntegrationUiStyleSheet.DefaultText.makeJLabel(
+                        PackageResources.FoundFilesDialog.CAPTION);
+        return InvisiblePanel.newPanel(label);
+    }

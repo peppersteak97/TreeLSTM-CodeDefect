@@ -1,0 +1,10 @@
+  static void displayUsage() {
+    System.out.println("Usage: java -jar drjava.jar [OPTIONS] [FILES]\n");
+    System.out.println("where options include:");
+    System.out.println("  -config [FILE]        use a custom config file");
+    System.out.println("  -new                  force the creation of a new DrJava instance;");
+    System.out.println("                        do not connect to existing instance");
+    System.out.println("  -help | -?            print this help message");
+    System.out.println("  -X<jvmOption>         specify a JVM configuration option for the master DrJava JVM");      
+    System.out.println("  -D<name>[=<value>]    set a Java property for the master DrJava JVM");
+  }

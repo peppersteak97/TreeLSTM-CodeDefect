@@ -1,0 +1,6 @@
+    public boolean stopCellEditing() {
+        if (log.isDebugEnabled()) log.debug("stopCellEditing");
+        removeFocusListener();
+        fireEditingStopped();
+        return true;
+    }

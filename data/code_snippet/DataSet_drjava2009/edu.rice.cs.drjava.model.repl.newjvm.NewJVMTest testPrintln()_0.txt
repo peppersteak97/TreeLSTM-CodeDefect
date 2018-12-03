@@ -1,0 +1,21 @@
+  public void testPrintln() throws Throwable {
+    debug.logStart();
+    _log.log("NewJVMTest.testPrintln executing");
+    
+    _jvm.resetFlags();
+    assertTrue(_jvm.interpret("System.err.print(\"err\");"));
+    assertEquals("system err buffer", "err", _jvm.errBuf());
+    assertEquals("void return flag", true, _jvm.voidReturnFlag());
+
+    _jvm.resetFlags();
+    assertTrue(_jvm.interpret("System.err.print(\"err2\");"));
+    assertEquals("system err buffer", "err2", _jvm.errBuf());
+    assertEquals("void return flag", true, _jvm.voidReturnFlag());
+
+    _jvm.resetFlags();
+    assertTrue(_jvm.interpret("System.out.print(\"out\");"));
+    assertEquals("system out buffer", "out", _jvm.outBuf());
+    assertEquals("void return flag", true, _jvm.voidReturnFlag());
+    
+    debug.logEnd();
+  }

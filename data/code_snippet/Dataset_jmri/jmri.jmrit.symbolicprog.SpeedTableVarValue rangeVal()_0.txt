@@ -1,0 +1,4 @@
+    public Object rangeVal() {
+        log.warn("rangeVal doesn't make sense for a speed table");
+        return new String("Speed table");
+    }

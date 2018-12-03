@@ -1,0 +1,1 @@
+  public void documentModified() { throw new UnsupportedOperationException("Dummy method"); }

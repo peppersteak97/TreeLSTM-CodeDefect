@@ -1,0 +1,8 @@
+    private List<JMenuItem> createSecondExtension() {
+        List<JMenuItem> items = new ArrayList<JMenuItem>();
+        IApplicationAction a = InterchangeActionFactory.IMPORT_JITTERPACK.get(m_view);
+        items.add(MenuItemFactory.createMenuItem(a, InterchangeActionDictionary.DICTIONARY));
+        a = InterchangeActionFactory.EXPORT_JITTERPACK.get(m_view);
+        items.add(MenuItemFactory.createMenuItem(a, InterchangeActionDictionary.DICTIONARY));
+        return items;
+    }

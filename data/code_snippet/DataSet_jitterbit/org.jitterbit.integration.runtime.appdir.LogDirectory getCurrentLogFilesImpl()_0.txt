@@ -1,0 +1,5 @@
+    private static File[] getCurrentLogFilesImpl() {
+        File[] files = s_directory.listFiles(LOG_FILE_FILTER);
+        Arrays.sort(files, FileUtils.getModifiedDateComparator());
+        return files;
+    }

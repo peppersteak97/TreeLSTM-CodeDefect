@@ -1,0 +1,8 @@
+	public synchronized String getAsString() throws IOException{		
+		StringBuilder sb = new StringBuilder();
+		String sLine = null;
+		while ( (sLine = getNextLine()) != null ) {
+			sb.append(sLine);
+		}
+		return sb.toString();
+	}

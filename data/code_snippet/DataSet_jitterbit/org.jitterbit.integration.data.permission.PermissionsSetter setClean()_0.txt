@@ -1,0 +1,3 @@
+    void setClean() {
+        m_dirtyEntities = new HashSet<IntegrationEntityId>();
+    }

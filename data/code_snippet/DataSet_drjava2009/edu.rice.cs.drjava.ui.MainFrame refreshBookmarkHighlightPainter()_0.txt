@@ -1,0 +1,5 @@
+  void refreshBookmarkHighlightPainter() {
+    for(HighlightManager.HighlightInfo hi: _documentBookmarkHighlights.values()) {
+      hi.refresh(DefinitionsPane.BOOKMARK_PAINTER);
+    }
+  }

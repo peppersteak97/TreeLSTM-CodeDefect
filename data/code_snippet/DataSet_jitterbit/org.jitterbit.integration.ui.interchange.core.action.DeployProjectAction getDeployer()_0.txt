@@ -1,0 +1,7 @@
+    private IProjectDeployer getDeployer() {
+        if (m_deployer == null) {
+            ProjectDeployerFactory f = ProjectDeployerFactory.newInstance();
+            m_deployer = f.create(m_view);
+        }
+        return m_deployer;
+    }

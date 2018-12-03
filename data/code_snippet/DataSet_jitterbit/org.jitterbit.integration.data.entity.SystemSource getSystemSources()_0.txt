@@ -1,0 +1,4 @@
+    public static SystemSource[] getSystemSources() {
+        return new SystemSource[] { /*SOURCE_FROM_PREVIOUS_OPERATION, */
+                                    WEB_SERVICE_CALL, };
+    }

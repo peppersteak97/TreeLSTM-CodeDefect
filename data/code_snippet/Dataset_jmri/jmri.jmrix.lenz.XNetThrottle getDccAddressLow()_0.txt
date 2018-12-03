@@ -1,0 +1,4 @@
+                    if(getDccAddressHigh()==l.getElement(2) && getDccAddressLow()==l.getElement(3)) {
+                        log.info("Loco " +getDccAddress() + " In use by another device");
+                        setIsAvailable(false);
+		   }

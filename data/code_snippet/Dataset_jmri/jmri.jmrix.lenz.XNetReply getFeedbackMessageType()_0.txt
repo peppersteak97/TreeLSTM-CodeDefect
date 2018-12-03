@@ -1,0 +1,7 @@
+    public int getFeedbackMessageType() {
+        if (this.isFeedbackMessage()) {
+            int a2 = this.getElement(2);
+            return((a2 & 0x60) / 32);            
+	}
+        else return -1;
+    }

@@ -1,0 +1,4 @@
+  public void tearDown() throws Exception {
+    IOUtil.deleteOnExitRecursively(parent);
+    super.tearDown();
+  }

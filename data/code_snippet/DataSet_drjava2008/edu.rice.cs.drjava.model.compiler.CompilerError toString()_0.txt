@@ -1,0 +1,4 @@
+  public String toString() {
+    return this.getClass().toString() + "(file=" + fileName() + ", line=" + _lineNumber + ", col=" + _startColumn + 
+      ", msg=" + _message + ")";
+  }

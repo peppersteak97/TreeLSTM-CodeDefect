@@ -1,0 +1,34 @@
+  public void testInteractionsLiveUpdateClassPath() throws BadLocationException, EditDocumentException,
+    IOException, InterruptedException {
+    
+    OpenDefinitionsDocument doc = setupDocument(FOO_TEXT);
+    Utilities.clearEventQueue();
+    
+    File f = tempFile();
+    
+    doCompile(doc, f);
+    
+    String tempPath = f.getParent();
+    File tempDir = makeCanonical(new File(tempPath));
+    tempDir.renameTo(makeCanonical(new File(tempPath + "a")));
+    
+    String result = interpret("new DrJavaTestFoo().getClass().getName()");
+    
+    assertFalse("interactions should have an error, not the correct answer", "\"DrJavaTestFoo\"".equals(result));
+    
+    Vector<File> cp = new Vector<File>();
+    cp.add(makeCanonical(new File(tempPath + "a")));
+    DrJava.getConfig().setSetting(EXTRA_CLASSPATH, cp);
+    
+    Utilities.clearEventQueue();
+    _model.resetInteractionsClassPath();
+    
+    result = interpret("new DrJavaTestFoo().getClass().getName()");
+    
+    assertEquals("interactions result", "\"DrJavaTestFoo\"", result);
+    
+    tempDir = makeCanonical(new File(tempPath + "a"));
+    boolean renamed = tempDir.renameTo(makeCanonical(new File(tempPath)));
+    
+    _log.log("testInteractionsLiveUpdateClasspath() completed");
+  }

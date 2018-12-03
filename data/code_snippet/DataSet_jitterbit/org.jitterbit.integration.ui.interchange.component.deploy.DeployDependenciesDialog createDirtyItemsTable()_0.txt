@@ -1,0 +1,8 @@
+    private void createDirtyItemsTable() {
+        List<IIntegrationEntityUiDelegate> uiDelegates =
+            IntegrationUiUtils.getUiDelegateList(m_dirtyItems);
+        m_dirtyItemsTable = new SelectorTable<IIntegrationEntityUiDelegate>(
+                        uiDelegates.toArray(new IIntegrationEntityUiDelegate[m_dirtyItems.size()]),
+                        PackageResources.DeployCheckerDialog.TABLE_COLUMN_NAME);
+        m_dirtyItemsTable.setObjectCellRenderer(new IntegrationEntitySelectorTableRenderer());
+    }

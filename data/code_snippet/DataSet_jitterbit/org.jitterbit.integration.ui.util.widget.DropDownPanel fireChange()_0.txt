@@ -1,0 +1,12 @@
+    private void fireChange() {
+        if (m_changeListeners.isEmpty()) {
+            return;
+        }
+        final ChangeEvent evt = new ChangeEvent(this);
+        m_changeListeners.visitAll(new ListenerVisitor<ChangeListener>() {
+
+            public void accept(ChangeListener listener) {
+                listener.stateChanged(evt);
+            }
+        });
+    }

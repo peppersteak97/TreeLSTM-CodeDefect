@@ -1,0 +1,3 @@
+  public String toString() {
+    return "LoadDouble 0x" + Long.toHexString(dbits) + " : " + Double.longBitsToDouble(dbits);
+  }

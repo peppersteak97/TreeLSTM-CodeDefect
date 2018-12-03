@@ -1,0 +1,3 @@
+    public ServerInfo getServer() {
+        return m_server;
+    }

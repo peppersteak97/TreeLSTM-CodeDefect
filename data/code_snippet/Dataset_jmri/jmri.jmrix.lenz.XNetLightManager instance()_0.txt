@@ -1,0 +1,4 @@
+    static public XNetLightManager instance() {
+        if (_instance == null) _instance = new XNetLightManager();
+        return _instance;
+    }

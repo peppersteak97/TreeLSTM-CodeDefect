@@ -1,0 +1,1 @@
+  public boolean isRegTrue() { return (scratch & REG_TRUE) != 0; }

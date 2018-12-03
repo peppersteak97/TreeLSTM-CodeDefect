@@ -1,0 +1,12 @@
+    UndoableEdit getEdit() {
+        List<String> mappings = getCurrentMappings();
+        if (mappings == null) {
+            return null;
+        }
+        if (new HashSet<String>(m_currentMappings).equals(new HashSet<String>(mappings))) {
+            return null;
+        }
+        UndoableEdit e = new MappingUndoableEdit(m_mappingRestorer, m_currentMappings, mappings);
+        m_currentMappings = mappings;
+        return e;
+    }

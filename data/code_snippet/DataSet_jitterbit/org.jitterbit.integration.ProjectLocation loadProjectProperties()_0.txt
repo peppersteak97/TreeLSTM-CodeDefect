@@ -1,0 +1,19 @@
+    private Properties loadProjectProperties() {
+        InputStream in = null;
+        Properties p;
+        try {
+            in = new FileInputStream(m_file);
+            p = new Properties();
+            p.load(in);
+            return p;
+        }
+        catch (FileNotFoundException e) {
+            return null;
+        }
+        catch (IOException e) {
+            return null;
+        }
+        finally {
+            KongaIoUtils.close(in);
+        }
+    }

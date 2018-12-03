@@ -1,0 +1,74 @@
+    public void defineIO() {
+        NamedBean[] tempArray = new NamedBean[10];
+        int n = 0;
+        
+        if (watchTurnout!=null ) {
+            tempArray[n]= watchTurnout;
+            n++;
+        }
+        if (watchSensor1 != null) {
+            tempArray[n]= watchSensor1;
+            n++;
+        }
+        if (watchSensor2 != null) {
+            tempArray[n]= watchSensor2;
+            n++;
+        }
+        if (watchSensor3 != null) {
+            tempArray[n]= watchSensor3;
+            n++;
+        }
+        if (watchSensor4 != null) {
+            tempArray[n]= watchSensor4;
+            n++;
+        }
+        if (watchedSignal1 != null) {
+            tempArray[n]= watchedSignal1;
+            n++;
+        }
+        if (watchedSignal1Alt != null) {
+            tempArray[n]= watchedSignal1Alt;
+            n++;
+        }
+        if (watchedSignal2 != null) {
+            tempArray[n]= watchedSignal2;
+            n++;
+        }
+        if (watchedSignal2Alt != null) {
+            tempArray[n]= watchedSignal2Alt;
+            n++;
+        }
+        if (watchedSensor1 != null) {
+            tempArray[n]= watchedSensor1;
+            n++;
+        }
+        if (watchedSensor1Alt != null) {
+            tempArray[n]= watchedSensor1Alt;
+            n++;
+        }
+        if (watchedSensor2 != null) {
+            tempArray[n]= watchedSensor2;
+            n++;
+        }
+        if (watchedSensor2Alt != null) {
+            tempArray[n]= watchedSensor2Alt;
+            n++;
+        }
+        if (approachSensor1 != null) {
+            tempArray[n]= approachSensor1;
+            n++;
+        }
+        
+        inputs = new NamedBean[n];
+        for (int i = 0; i< inputs.length; i++)
+            inputs[i] = tempArray[i];
+        
+        outputs = new NamedBean[]{driveSignal};
+        
+        driveSignal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+                public void propertyChange(java.beans.PropertyChangeEvent e) {
+                    if (e.getPropertyName().equals("Held"))
+                        setOutput();
+                }
+            });
+    }

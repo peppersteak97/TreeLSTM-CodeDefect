@@ -1,0 +1,12 @@
+    public File[] getSelectedFiles() {
+        List<File> files = null;
+        for (IKongaTreeNode node : m_tree.getSelectedNodes()) {
+            if (node instanceof LogFileNode) {
+                if (files == null) {
+                    files = new ArrayList<File>();
+                }
+                files.add(((LogFileNode) node).getUserObject());
+            }
+        }
+        return (files == null) ? new File[0] : files.toArray(new File[files.size()]);
+    }

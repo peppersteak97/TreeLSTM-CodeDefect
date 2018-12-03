@@ -1,0 +1,5 @@
+  @SuppressWarnings("unchecked") public java.util.List<ItemT> getSelectedDocuments() {
+    ArrayList<ItemT> l = new ArrayList<ItemT>(1);
+    l.add((ItemT)getSelectedValue());
+    return l;
+  }

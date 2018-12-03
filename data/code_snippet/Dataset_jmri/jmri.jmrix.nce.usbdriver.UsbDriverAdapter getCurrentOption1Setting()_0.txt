@@ -1,0 +1,7 @@
+		if (getCurrentOption1Setting().equals(validOption1()[0])) {
+			NceUSB.setUsbSystem(NceUSB.USB_SYSTEM_POWERCAB);
+		} else if (getCurrentOption1Setting().equals(validOption1()[1])) {
+			NceUSB.setUsbSystem(NceUSB.USB_SYSTEM_SB3);
+		} else{
+			NceUSB.setUsbSystem(NceUSB.USB_SYSTEM_POWERHOUSE);
+		}

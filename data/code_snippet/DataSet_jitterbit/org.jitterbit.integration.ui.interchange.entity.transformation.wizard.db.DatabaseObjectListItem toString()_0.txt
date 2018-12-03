@@ -1,0 +1,3 @@
+    public String toString() {
+        return (Item == null) ? "" : Item.getName();
+    }

@@ -1,0 +1,7 @@
+    public void remove() {
+        m_owner.removePropertyChangeListener(IntegrationEntity.CHILD_ADDED_PROPERTY,
+                        m_dependentsListener);
+        m_owner.removePropertyChangeListener(IntegrationEntity.CHILD_REMOVED_PROPERTY,
+                        m_dependentsListener);
+        removeRenameListener();
+    }

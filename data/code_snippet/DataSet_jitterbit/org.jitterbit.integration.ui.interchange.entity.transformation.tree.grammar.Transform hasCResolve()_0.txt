@@ -1,0 +1,12 @@
+	public boolean hasCResolve(){
+		for(Token token:m_stackVector){
+			if(token.m_id==t_Fcn)
+			{
+				TreeComponent.Node fcn=
+					m_TreeMapper.m_fcnTreeComponent.m_deHashtable.get(token.m_str.toUpperCase());
+				if(fcn==null||fcn.m_link1==null)continue;
+				if(fcn.m_link1.endsWith("#"))return true;
+			}
+		}
+		return false;
+	}

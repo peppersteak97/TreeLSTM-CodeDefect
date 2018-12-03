@@ -1,0 +1,57 @@
+  private void _editManifest(){
+    final JDialog editDialog = new JDialog(this, "Custom Manifest", true);
+    editDialog.setSize(300,400);
+    
+    JButton okButton = new JButton("OK");
+    JButton cancelButton = new JButton("Cancel");
+    
+    editDialog.setLayout(new BorderLayout());
+    
+    JPanel bottom = new JPanel();
+    bottom.setBorder(new EmptyBorder(5, 5, 5, 5));
+    bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
+    bottom.add(Box.createHorizontalGlue());
+    bottom.add(okButton);
+    bottom.add(cancelButton);
+    bottom.add(Box.createHorizontalGlue());
+    
+    editDialog.add(bottom, BorderLayout.SOUTH);
+    
+    final JTextArea manifest = new JTextArea();
+    JScrollPane pane = new JScrollPane(manifest);
+    pane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+    
+    pane.getHorizontalScrollBar().setUnitIncrement(10);
+    pane.getVerticalScrollBar().setUnitIncrement(10);
+    
+    editDialog.add(pane, BorderLayout.CENTER);
+    
+    manifest.setText(_customManifestText);
+    okButton.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+        editDialog.setVisible(false);
+      }
+    });
+      
+    cancelButton.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+        manifest.setText(_customManifestText);
+        editDialog.setVisible(false);
+      }
+    });
+    
+    editDialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+    editDialog.addWindowListener(new WindowAdapter(){
+      public void WindowClosed(WindowEvent e){
+        manifest.setText(_customManifestText);
+        editDialog.setVisible(false);
+      }
+    });
+    
+    
+    editDialog.setLocationRelativeTo(this);
+    editDialog.setVisible(true);
+    
+    _customManifestText = manifest.getText();
+  }

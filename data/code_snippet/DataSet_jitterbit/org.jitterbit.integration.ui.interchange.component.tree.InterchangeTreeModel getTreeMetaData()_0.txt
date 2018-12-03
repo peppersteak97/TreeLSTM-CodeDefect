@@ -1,0 +1,3 @@
+    protected IEntityTreeMetaData getTreeMetaData() {
+        return s_treeMetaData;
+    }

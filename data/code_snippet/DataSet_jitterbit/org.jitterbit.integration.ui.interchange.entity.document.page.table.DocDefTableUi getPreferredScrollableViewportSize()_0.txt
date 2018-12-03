@@ -1,0 +1,4 @@
+    public Dimension getPreferredScrollableViewportSize() {
+        return new Dimension(super.getPreferredScrollableViewportSize().width,
+                        (getRowHeight() + getRowMargin()) * m_table.getVisibleRows());
+    }

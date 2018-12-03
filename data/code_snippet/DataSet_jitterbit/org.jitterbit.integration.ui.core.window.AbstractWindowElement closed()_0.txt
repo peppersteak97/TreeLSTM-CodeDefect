@@ -1,0 +1,6 @@
+    protected void closed() {
+        for (IWindowElement child : getChildElements()) {
+            child.revokeState(WindowElementState.OPEN);
+        }
+        removeStateListener(m_stateListener);
+    }

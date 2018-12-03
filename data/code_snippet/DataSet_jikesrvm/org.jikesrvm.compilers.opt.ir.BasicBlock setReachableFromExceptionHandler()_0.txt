@@ -1,0 +1,3 @@
+  public final void setReachableFromExceptionHandler() {
+    flags |= REACHABLE_FROM_EXCEPTION_HANDLER;
+  }

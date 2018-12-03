@@ -1,0 +1,1 @@
+  public File getCurrentProject() { return _currentProjFile;  }

@@ -1,0 +1,45 @@
+    public List<String[]> getFlatDefinition() {
+        List<String[]> retval = new ArrayList<String[]>();
+        Vector<Segment> segments = getSegmentList();
+        if ( segments.size() == 0 ) return retval;
+        
+        int id = 0;
+        int idBeginPos = -1;
+        int idEndPos = -1;
+        for( Segment segment : segments ) {
+            Field idField = segment.findIdentField();
+            if (idField != null) {
+                idBeginPos = idField.getBeginPosition();
+                idEndPos = idField.getEndPosition();
+                break;
+            }
+        }
+        for( Segment segment : segments ) {
+            segment.setId(++id);
+            
+            String[] data = new String[12];
+            data[1] = Integer.toString( segment.getId() );
+            Segment parent = segment.findParent(this);
+            if ( parent == null )
+            else
+                data[2] =  Integer.toString( parent.getId() );
+            
+            data[3] = segment.getName();
+            Segment aliasSegment = segment.getAlias();
+            if ( aliasSegment != null )
+                data[4] = Integer.toString( aliasSegment.getId() );
+            else
+            data[6] = String.valueOf(idBeginPos);
+            data[7] = String.valueOf(idEndPos);
+            data[8] = Integer.toString( segment.getOccurenceID() );
+            retval.add(data);
+            
+            Vector<Field> fields = segment.getFieldList();
+            for( Field field : fields ) {
+                field.setId(++id);
+                retval.add(field.getFlatDefinition(segment));
+            }
+        }
+        
+        return retval;
+    }

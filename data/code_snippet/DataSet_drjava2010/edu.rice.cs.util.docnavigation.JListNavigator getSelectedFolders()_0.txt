@@ -1,0 +1,1 @@
+  public java.util.List<File> getSelectedFolders() { return new ArrayList<File>(); }

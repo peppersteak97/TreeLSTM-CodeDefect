@@ -1,0 +1,5 @@
+  protected static final SimpleAttributeSet _getBoldAttributes() {
+    SimpleAttributeSet s = new SimpleAttributeSet();
+    StyleConstants.setBold(s, true);
+    return s;
+  }

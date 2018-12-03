@@ -1,0 +1,11 @@
+  public void testApplyDoesChangeConfig() {
+    Color testColor = Color.decode("#ABCDEF");
+
+    _option.setValue(testColor);
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+    assertEquals("Apply (updateConfig) should write change to file",
+                 testColor,
+                 DrJava.getConfig().getSetting(OptionConstants.DEFINITIONS_NORMAL_COLOR));
+  }

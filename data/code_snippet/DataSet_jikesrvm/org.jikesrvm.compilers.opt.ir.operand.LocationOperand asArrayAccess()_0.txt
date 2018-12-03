@@ -1,0 +1,1 @@
+  public LocationOperand asArrayAccess() { return this; }

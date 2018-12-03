@@ -1,0 +1,6 @@
+    public void dispose() {
+        if (m_focusManager != null) {
+            m_focusManager.unregister();
+            m_focusManager = null;
+        }
+    }

@@ -1,0 +1,3 @@
+    public String[] validBaudRates() {
+        return validSpeeds;
+    }

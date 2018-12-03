@@ -1,0 +1,25 @@
+  public void updateData() {
+    assert EventQueue.isDispatchThread();
+    if (_debugger.isReady()) {
+      try {
+        _watches = _debugger.getWatches();
+        
+        if (_debugger.isCurrentThreadSuspended())  _stackFrames = _debugger.getCurrentStackFrameData();
+        else  _stackFrames = new ArrayList<DebugStackData>();
+        
+        _threads = _debugger.getCurrentThreadData();
+      }
+      catch (DebugException de) {
+        _frame._showDebugError(de);
+      }
+    }
+    else {
+      _watches = new ArrayList<DebugWatchData>();
+      _threads = new ArrayList<DebugThreadData>();
+      _stackFrames = new ArrayList<DebugStackData>();
+    }
+
+    ((AbstractTableModel)_watchTable.getModel()).fireTableDataChanged();
+    ((AbstractTableModel)_stackTable.getModel()).fireTableDataChanged();
+    ((AbstractTableModel)_threadTable.getModel()).fireTableDataChanged();
+  }

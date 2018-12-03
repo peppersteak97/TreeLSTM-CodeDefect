@@ -1,0 +1,17 @@
+    private void layoutComponents() {
+        List<InputField> fields = new ArrayList<InputField>();
+        if (EMAIL_MESSAGES_SUPPORTED) {
+            InputField msgFieldLayout = m_messageControl.asInputFieldForLayout();
+            fields.add(msgFieldLayout);
+        }
+        if (OPERATIONS_SUPPORTED) {
+            InputField opFieldLayout = m_operationControl.asInputFieldForLayout();
+            fields.add(opFieldLayout);
+        }
+        if (WORKFLOW_SUPPORTED) {
+            InputField wfFieldLayout = m_workflowControl.asInputFieldForLayout();
+            fields.add(wfFieldLayout);
+        }
+        InputField[] toAdd = fields.toArray(new InputField[fields.size()]);
+        InputFieldLayoutUtils.layoutOneColumn(this, toAdd, true, false);
+    }

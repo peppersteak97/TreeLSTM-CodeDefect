@@ -1,0 +1,1 @@
+  public static String[] getFilesToOpen() { return _filesToOpen.toArray(new String[0]); }

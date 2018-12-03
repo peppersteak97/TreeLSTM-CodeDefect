@@ -1,0 +1,5 @@
+    private static WizardConfiguration createNewInstance() throws WizardConfigurationException {
+        WizardConfiguration conf = new WizardConfiguration();
+        conf.load();
+        return conf;
+    }

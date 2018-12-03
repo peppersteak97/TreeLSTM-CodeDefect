@@ -1,0 +1,7 @@
+		if (!isDefinitive() && mgr.getOperation(newName)==null) {
+			mgr.removeOperation(this);
+			name = newName;
+			setNonce(false);
+			mgr.addOperation(this);
+			result = true;
+		}

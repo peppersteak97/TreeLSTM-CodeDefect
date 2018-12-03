@@ -1,0 +1,5 @@
+    private void prepareForRemoval() {
+        uninstallChangeListener();
+        IViewManager viewMgr = IntegrationUi.getUi().getViewManager();
+        viewMgr.removeView(m_view.getID());
+    }

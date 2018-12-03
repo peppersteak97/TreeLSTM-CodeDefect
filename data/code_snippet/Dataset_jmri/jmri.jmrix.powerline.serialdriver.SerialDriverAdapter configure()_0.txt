@@ -1,0 +1,22 @@
+    public void configure() {
+        String opt1 = getCurrentOption1Setting();
+        if (opt1.equals("CM11")) {
+            SerialTrafficController.checkInstance(new jmri.jmrix.powerline.cm11.SpecificTrafficController());
+            jmri.InstanceManager.setLightManager(new jmri.jmrix.powerline.cm11.SpecificLightManager());
+        } else if (opt1.equals("CP290")) {
+            SerialTrafficController.checkInstance(new jmri.jmrix.powerline.cp290.SpecificTrafficController());
+            jmri.InstanceManager.setLightManager(new jmri.jmrix.powerline.cp290.SpecificLightManager());
+        } else {
+            log.warn("protocol option "+opt1+" defaults to CM11");
+            SerialTrafficController.checkInstance(new jmri.jmrix.powerline.cm11.SpecificTrafficController());
+        }    
+
+        SerialTrafficController.instance().connectPort(this);
+
+        jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.powerline.SerialTurnoutManager());
+
+        SerialSensorManager s;
+        jmri.InstanceManager.setSensorManager(s = new jmri.jmrix.powerline.SerialSensorManager());
+        SerialTrafficController.instance().setSensorManager(s);
+        jmri.jmrix.powerline.ActiveFlag.setActive();
+    }

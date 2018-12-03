@@ -1,0 +1,11 @@
+  public boolean isUNSIGNED() {
+    switch (value) {
+      case HIGHER:
+      case LOWER:
+      case HIGHER_EQUAL:
+      case LOWER_EQUAL:
+        return true;
+      default:
+        return false;
+    }
+  }

@@ -1,0 +1,4 @@
+    public int getState() {
+        log.warn("Unexpected call to getState in DefaultLogix.");
+        return UNKNOWN;
+    }

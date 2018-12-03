@@ -1,0 +1,4 @@
+	public final KongaEnum[] getAllValues() {
+		ClassSpecificInfo info = getClassInfo();
+		return info.getAllValues();
+	}

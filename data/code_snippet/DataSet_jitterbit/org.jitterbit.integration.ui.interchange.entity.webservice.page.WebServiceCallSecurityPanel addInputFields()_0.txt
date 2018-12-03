@@ -1,0 +1,4 @@
+    private void addInputFields() {
+        addInputField(new TextInputField("Name", m_userNameField, null));
+        addInputField(new ComboBoxInputField("Certificates", m_certificatesBox, null));
+    }

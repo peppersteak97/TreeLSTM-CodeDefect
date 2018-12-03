@@ -1,0 +1,14 @@
+  public void testTokenizeAndStringify() {
+    _assertTokenized("a b c",
+                     new String[]{"\"a\"", "\"b\"", "\"c\""},
+                     true);
+    _assertTokenized("\\",
+                     new String[]{"\"\\\\\""},
+                     true);
+    _assertTokenized("\\\"",
+                     new String[]{"\"\\\"\""},
+                     true);
+    _assertTokenized("\"\\n\"",
+                     new String[]{"\"\\\\n\""},
+                     true);
+  }

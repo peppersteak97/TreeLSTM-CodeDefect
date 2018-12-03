@@ -1,0 +1,16 @@
+    private void createTree() {
+        try {
+            InterchangeTreeMetaData.initialize(this);
+        }
+        catch (XmlTreeMetaDataException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        try {
+            m_treeModel = new InterchangeTreeModel(this);
+        }
+        catch (IntegrationEntityTreeNodeCreatorException e) {
+            e.printStackTrace();
+        }
+    }

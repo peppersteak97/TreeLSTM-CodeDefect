@@ -1,0 +1,6 @@
+  Annotation getValue() {
+    if (value == null) {
+      value = createValue();
+    }
+    return value;
+  }

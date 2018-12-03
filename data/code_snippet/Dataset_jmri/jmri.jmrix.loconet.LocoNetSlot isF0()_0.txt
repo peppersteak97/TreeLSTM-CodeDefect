@@ -1,0 +1,1 @@
+    public boolean isF0()	{ return 0!=(dirf&LnConstants.DIRF_F0); }

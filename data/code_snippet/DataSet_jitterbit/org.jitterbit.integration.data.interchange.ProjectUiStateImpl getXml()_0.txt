@@ -1,0 +1,12 @@
+    public String getXml() {
+        XmlStringBuilder builder = new XmlStringBuilder();
+        builder.addElement(XmlConstants.Elements.UI_STATE);
+        if (m_displayOnStartUp != null) {
+            appendOpenPagesXml(builder);
+        }
+        if (m_expandedOnStartUp != null) {
+            appendExpandedNodesXml(builder);
+        }
+        builder.closeElement();
+        return builder.getXml();
+    }

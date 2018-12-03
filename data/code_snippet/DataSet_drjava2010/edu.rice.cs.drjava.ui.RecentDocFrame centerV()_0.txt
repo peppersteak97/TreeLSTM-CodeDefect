@@ -1,0 +1,5 @@
+  private void centerV() {
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    Dimension frameSize = getSize();
+    setLocation((int)getLocation().getX(), (screenSize.height - frameSize.height) / 2);
+  }

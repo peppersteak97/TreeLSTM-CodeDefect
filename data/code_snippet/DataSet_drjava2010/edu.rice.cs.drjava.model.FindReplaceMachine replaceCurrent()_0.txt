@@ -1,0 +1,19 @@
+  public boolean replaceCurrent() {
+    
+    assert EventQueue.isDispatchThread();
+    
+    if (! onMatch()) return false;
+    try {
+      int offset = getCurrentOffset();
+      
+      
+      _doc.remove(offset, _findWord.length());
+      
+      
+      if (_isForward) setPosition(offset + _replaceWord.length());
+      else setPosition(offset);
+      
+      return true;
+    }
+    catch (BadLocationException e) { throw new UnexpectedException(e); }
+  }

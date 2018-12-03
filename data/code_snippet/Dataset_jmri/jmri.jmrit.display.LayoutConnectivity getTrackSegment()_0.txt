@@ -1,0 +1,1 @@
+	public TrackSegment getTrackSegment() {return track1;}

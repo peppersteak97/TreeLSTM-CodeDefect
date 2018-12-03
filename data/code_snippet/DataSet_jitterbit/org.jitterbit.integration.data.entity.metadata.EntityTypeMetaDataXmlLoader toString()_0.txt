@@ -1,0 +1,13 @@
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        boolean bFirst = true;
+        for (EntityTypeMetaDataEntry entry : m_data) {
+            if (entry != null) {
+                if (!bFirst) {
+                }
+                sb.append(entry.toString());
+                bFirst = false;
+            }
+        }
+        return sb.toString();
+    }

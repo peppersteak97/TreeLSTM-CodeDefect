@@ -1,0 +1,13 @@
+    private FieldTable createDelimitedTable() {
+        return new DelimitedFieldTable((DelimitedFieldTableModel) m_tableModel) {
+
+            @Override
+            protected void setEditors(DocDefTableUi ui) {
+                super.setEditors(ui);
+                TableColumn column = ui.getColumnModel().getColumn(2);
+                JComboBox editor = ComponentFactories.comboBoxFactory().newComboBox(
+                                FieldDataType.getVisibleTypes(false));
+                column.setCellEditor(new DefaultCellEditor(editor));
+            }
+        };
+    }

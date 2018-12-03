@@ -1,0 +1,9 @@
+  public void moveToNext() {
+    if (VM.VerifyAssertions) VM._assert(this.hasMore());
+
+    this.moreElemnt = (maps[curidx] & NEXT_BIT) != 0;
+    this.curidx += 2;
+    if (!hasMoreElements() && hasMoreMethodId()) {
+      moveToNextMethodId();
+    }
+  }

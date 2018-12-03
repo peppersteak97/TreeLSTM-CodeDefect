@@ -1,0 +1,13 @@
+  private void _updateLineNums() {
+    if (DrJava.getConfig().getSetting(LINEENUM_ENABLED).booleanValue()) {
+      
+      for (JScrollPane spane: _defScrollPanes.values()) { 
+        
+        LineEnumRule ler = (LineEnumRule) spane.getRowHeader().getView();
+        ler.updateFont();
+        ler.revalidate();
+      }
+      
+      _repaintLineNums();
+    }
+  }

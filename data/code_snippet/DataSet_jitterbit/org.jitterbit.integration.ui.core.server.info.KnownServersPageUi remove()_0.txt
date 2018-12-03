@@ -1,0 +1,4 @@
+    void remove() {
+        m_tableUi.removeChangeListener(m_tableUiListener);
+        m_tableUi.remove();
+    }

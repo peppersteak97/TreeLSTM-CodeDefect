@@ -1,0 +1,7 @@
+  public static int createSpecializedMethodID() {
+    specializedMethodCount++;
+    if (specializedMethodCount >= specializedMethods.length) {
+      growSpecializedMethods();
+    }
+    return specializedMethodCount;
+  }

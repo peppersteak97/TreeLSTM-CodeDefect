@@ -1,0 +1,5 @@
+    private static void customizeWindowsButtonUI() {
+        if (USE_WINDOWS_BUTTONS_ON_WINDOWS) {
+            UIManager.put("ButtonUI", "com.sun.java.swing.plaf.windows.WindowsButtonUI");
+        }
+    }

@@ -1,0 +1,22 @@
+    public void prepareForRemoval() {
+        super.prepareForRemoval();
+
+        m_transformationTestCenter.shutdown();
+        m_pageManager.prepareForRemoval();
+
+        IPageEditor pageEditor = getWindow().getPageEditor();
+        pageEditor.removeActiveObjectProviderListener(this);
+        pageEditor.removePageEditorListener(this);
+
+        m_transientEntityManager.shutDown(getEventHub(), m_saveWorker, pageEditor);
+        
+        if (m_dataModelUi != null) {
+            removeDataModelUi(m_dataModelUi);
+        }
+
+        m_menuManager.removeTopLevelExtensionsFromWindow();
+        m_menuManager.removeMenuLevelExtensionsFromWindow();
+        
+        m_toolBarManager.removeTopLevelExtensionsFromWindow();
+        m_toolBarManager.removeToolBarLevelExtensionsToWindow();
+    }

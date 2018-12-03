@@ -1,0 +1,9 @@
+    public StringKeyValuePairs getProperties() {
+        StringKeyValuePairs keyValues = new StringKeyValuePairs();
+
+        keyValues.putAll(super.getProperties());
+        keyValues.put(WEB_SERVICE_ID, getID().toString());
+        keyValues.put(WSDL_LOCATOR, getWsdlFile().getLocator());
+        keyValues.put(WEB_SERVICE_NAME, getName());
+        return keyValues;
+    }

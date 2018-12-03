@@ -1,0 +1,4 @@
+  protected final void emit_laload() {
+    genBoundsCheck();
+    pushLongAsDouble(F0);
+  }

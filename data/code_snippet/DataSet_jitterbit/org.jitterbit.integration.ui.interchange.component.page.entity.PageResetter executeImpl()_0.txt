@@ -1,0 +1,13 @@
+    private void executeImpl() {
+        m_page.getDetailsPanel().setSendUndoEvents(false);
+        m_page.getDetailsPanel().setSendInputChangeEvents(false);
+        try {
+            m_page.getDetailsPanel().reset();
+            m_page.setClean();
+            m_result = IPageCommand.SUCCESS;
+        }
+        finally {
+            m_page.getDetailsPanel().setSendUndoEvents(true);
+            m_page.getDetailsPanel().setSendInputChangeEvents(true);
+        }
+    }

@@ -1,0 +1,3 @@
+  public static BranchProfileOperand unlikely() {
+    return new BranchProfileOperand(UNLIKELY);
+  }

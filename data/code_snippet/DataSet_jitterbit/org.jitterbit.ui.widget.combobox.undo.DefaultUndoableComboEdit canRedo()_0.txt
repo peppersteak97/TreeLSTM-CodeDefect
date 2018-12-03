@@ -1,0 +1,3 @@
+    public boolean canRedo() {
+        return canBeAppliedToCombo(m_newValue);
+    }

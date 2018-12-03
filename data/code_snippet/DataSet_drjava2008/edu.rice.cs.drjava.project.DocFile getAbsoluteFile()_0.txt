@@ -1,0 +1,5 @@
+  public DocFile getAbsoluteFile() {
+    if (isAbsolute()) return this;
+    else
+      return new DocFile(super.getAbsoluteFile(), _sel, _scroll, _active, _package);
+  }

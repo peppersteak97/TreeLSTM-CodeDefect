@@ -1,0 +1,5 @@
+    public static StringCryptographerFactory newInstance() throws FactoryConfigurationError {
+        String className = getImplementingClassName();
+        Class<? extends StringCryptographerFactory> clazz = getImplementingClass(className);
+        return createInstance(clazz);
+    }

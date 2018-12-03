@@ -1,0 +1,59 @@
+  protected void updateText() {
+    Utilities.invokeLater(new Runnable() {
+      public void run() {
+        if ((_fr != null) &&
+            (_updateNowButton.isEnabled())) {
+          _updateNowButton.setEnabled(false);
+          int changeCount = 0;
+          long newSize = _f.length();
+          if (_totalRead!=newSize) {
+            if (_totalRead>newSize) {
+              _textArea.setText("");
+              _totalRead = 0;
+            }
+            StringBuilder sb = new StringBuilder(_textArea.getText());
+            try {
+              _fr.close();
+              _fr = new FileReader(_f);
+              _fr.skip(_totalRead);
+              while((changeCount<=BUFFER_READS_PER_TIMER) && ((_red = _fr.read(_buf))>=0)) {
+                _totalRead += _red;
+                sb.append(new String(_buf, 0, _red));
+                ++changeCount;
+              }
+              if ((_red > 0) && (changeCount<BUFFER_READS_PER_TIMER)) {
+                _totalRead += _red;
+                sb.append(new String(_buf, 0, _red));
+                ++changeCount;
+              }
+            }
+            catch(IOException ioe) {
+              sb.append("\n\nI/O Exception reading file "+_f+"\n");
+              ++changeCount;
+              abortActionPerformed(null);
+            }
+            finally {
+              if (changeCount > 0) {
+                _textArea.setText(sb.toString());
+                int maxLines = edu.rice.cs.drjava.DrJava.getConfig().
+                  getSetting(edu.rice.cs.drjava.config.OptionConstants.FOLLOW_FILE_LINES);
+                  try {
+                    int start = 0;
+                    int len = _textArea.getText().length();
+                    int curLines = _textArea.getLineCount();
+                    if (curLines>maxLines) {
+                      start = _textArea.getLineStartOffset(curLines-maxLines);
+                      len -= start;
+                      sb = new StringBuilder(_textArea.getText(start,len));
+                      _textArea.setText(sb.toString());
+                    }
+                  }
+                  catch(javax.swing.text.BadLocationException e) { /* ignore, do not truncate */ }
+                }
+              }
+            }
+          }
+        }
+        updateButtons();
+      }
+    });

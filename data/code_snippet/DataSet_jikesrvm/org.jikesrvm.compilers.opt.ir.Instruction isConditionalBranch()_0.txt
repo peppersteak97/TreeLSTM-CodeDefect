@@ -1,0 +1,3 @@
+  public boolean isConditionalBranch() {
+    return operator.isConditionalBranch();
+  }

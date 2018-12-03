@@ -1,0 +1,7 @@
+    private JComponent createDisplayer() {
+        OneColumnPanel col = new OneColumnPanel();
+        col.setInsets(10, 0, 10, 0);
+        col.add(includeTestDataSelector);
+        col.add(securityDefiner);
+        return InvisiblePanel.newPanel(col);
+    }

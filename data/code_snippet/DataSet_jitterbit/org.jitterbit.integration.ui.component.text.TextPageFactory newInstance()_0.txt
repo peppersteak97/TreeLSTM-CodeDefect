@@ -1,0 +1,14 @@
+    public static TextPageFactory newInstance() {
+        return new TextPageFactory() {
+
+            @Override
+            public ITextPage fromString(String mainTitle, String subTitle, String contents) {
+                return new TextPageImpl(mainTitle, subTitle, contents);
+            }
+
+            @Override
+            public ITextPage openFile(String mainTitle, File file) {
+                return new TextPageImpl(mainTitle, file);
+            }
+        };
+    }

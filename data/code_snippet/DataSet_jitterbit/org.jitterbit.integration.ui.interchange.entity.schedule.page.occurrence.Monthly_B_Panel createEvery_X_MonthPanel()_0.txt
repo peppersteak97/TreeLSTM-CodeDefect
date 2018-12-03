@@ -1,0 +1,5 @@
+    private void createEvery_X_MonthPanel() {
+        ResourceBundle res = SchedulePage.getResources();
+        m_every_X_month_panel = new Every_X_Panel(res.getString("Label.Month"), 
+                res.getString("Label.ofEvery"), res.getString("Label.Month"), 1, 12);
+    }

@@ -1,0 +1,15 @@
+    private IntegrationEntity getActiveEntity() {
+        IntegrationEntity entity = null;
+        List<IntegrationEntity> entities = getActiveObjects(IntegrationEntity.class);
+        if (entities.size() == 1) {
+            entity = null;
+        }
+        else {
+            List<IIntegrationEntityUiDelegate> uiDels = 
+                getActiveObjects(IIntegrationEntityUiDelegate.class);
+            if (uiDels.size() == 1) {
+                entity = uiDels.get(0).getDataObject();
+            }
+        }
+        return entity;
+    }

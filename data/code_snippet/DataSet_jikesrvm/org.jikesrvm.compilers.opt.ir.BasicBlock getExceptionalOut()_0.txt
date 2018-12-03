@@ -1,0 +1,7 @@
+  public final BasicBlockEnumeration getExceptionalOut() {
+    if (canThrowExceptions()) {
+      return new ExceptionOutEdgeEnum(this);
+    } else {
+      return BasicBlockEnumeration.Empty;
+    }
+  }

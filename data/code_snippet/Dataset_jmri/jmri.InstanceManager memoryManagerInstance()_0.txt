@@ -1,0 +1,4 @@
+    static public MemoryManager memoryManagerInstance()  { 
+    	if (instance().memoryManager == null) instance().memoryManager = DefaultMemoryManager.instance();
+    	return instance().memoryManager; 
+    }

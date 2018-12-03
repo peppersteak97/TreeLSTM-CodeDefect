@@ -1,0 +1,15 @@
+    private void createOptionPanel() {
+        createRadioButtons();
+        
+        OneColumnPanel p = new OneColumnPanel();
+        p.setFill(OneColumnPanel.NONE);
+        p.setInsets(5, 0, 10, 0);
+        for (JRadioButton btn : m_optionMap.keySet()) {
+            p.add(btn);
+        }
+        p.setBorder(BorderFactory.createEmptyBorder(5, 5, 0, 5));
+
+        m_optionPanel = InvisiblePanel.newPanel();
+        p.addToParent(m_optionPanel, null);
+        UiUtils.setOpaqueRecursively(m_optionPanel, false);
+    }

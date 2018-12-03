@@ -1,0 +1,13 @@
+    private void layoutComponents() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setOpaque(true, false);
+        p.setInsets(IntegrationUiStyleSheet.DEFAULT_GBC_INSETS_LEFT);
+        p.add(getTypeCapsule());
+        if (m_delimQualifierPanel != null) {
+            p.add(m_delimQualifierPanel.getUi());
+        }
+        p.add(IntegrationUiStyleSheet.InfoTextHeader.makeJLabel(RESOURCES
+                        .getString("Title.FieldTable")));
+        p.add(m_fieldTable.getDisplayer());
+        wrap(p);
+    }

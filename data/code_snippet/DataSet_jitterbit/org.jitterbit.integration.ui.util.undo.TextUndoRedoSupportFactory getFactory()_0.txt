@@ -1,0 +1,3 @@
+    public static ITextUndoRedoSupportFactory getFactory() {
+        return INSTANCE;
+    }

@@ -1,0 +1,11 @@
+    private void createDialog() {
+        Border bd = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+        JComponent north = createTopPanel();
+        north.setBorder(bd);
+        JComponent center = createFileListDisplay();
+        center.setBorder(bd);
+        JComponent south = getButtonPanel(OK_ONLY, 0);
+        south.setBorder(bd);
+        createContentPane(north, center, south);
+        getRootPane().setDefaultButton(getOKButton());
+    }

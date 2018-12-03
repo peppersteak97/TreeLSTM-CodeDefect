@@ -1,0 +1,3 @@
+  public static TrapCodeOperand ArrayBounds() {
+    return new TrapCodeOperand((byte) RuntimeEntrypoints.TRAP_ARRAY_BOUNDS);
+  }

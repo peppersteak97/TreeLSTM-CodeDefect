@@ -1,0 +1,3 @@
+    public static boolean isCtrlDown() {
+        return g_ctrlDown;
+    }

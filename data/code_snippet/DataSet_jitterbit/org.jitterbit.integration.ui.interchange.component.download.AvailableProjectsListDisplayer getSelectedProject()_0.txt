@@ -1,0 +1,3 @@
+    public InterchangeProjectForDownload getSelectedProject() {
+        return m_selectedProject;
+    }

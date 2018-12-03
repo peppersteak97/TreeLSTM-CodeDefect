@@ -1,0 +1,10 @@
+    private void addInputFields() {
+        addInputField(m_sendTo, m_sendTo, m_sendTo);
+        addInputField(m_servers);
+        addInputField(m_sentFrom);
+        addInputField(m_replyTo);
+        addInputField(m_subject);
+        addInputField(m_cc);
+        addInputField(m_bcc);
+        addInputField(m_text);
+    }

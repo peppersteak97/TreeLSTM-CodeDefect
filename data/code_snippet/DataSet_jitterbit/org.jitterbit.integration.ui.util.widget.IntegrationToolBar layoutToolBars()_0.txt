@@ -1,0 +1,5 @@
+    private void layoutToolBars() {
+        m_panel = new JPanel();
+        m_panel.setOpaque(false);
+        layoutToolBarPanel(m_panel);
+    }

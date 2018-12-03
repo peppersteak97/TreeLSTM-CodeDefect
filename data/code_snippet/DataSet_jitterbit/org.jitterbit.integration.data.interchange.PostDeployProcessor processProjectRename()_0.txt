@@ -1,0 +1,7 @@
+    private void processProjectRename() throws IllegalNameException, InterchangeSavingException {
+        InterchangeProject p = m_currentProject.getProject();
+        DeployRename dr = m_itemRenames.get(p.getID());
+        if (dr != null) {
+            m_currentProject.renameProject(dr.getNewName());
+        }
+    }

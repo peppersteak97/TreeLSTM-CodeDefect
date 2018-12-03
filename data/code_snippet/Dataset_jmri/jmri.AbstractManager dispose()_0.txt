@@ -1,0 +1,6 @@
+    public void dispose() {
+        if (InstanceManager.configureManagerInstance()!= null)
+            InstanceManager.configureManagerInstance().deregister(this);
+        _tsys.clear();
+        _tuser.clear();
+    }

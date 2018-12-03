@@ -1,0 +1,8 @@
+    DatabaseDriverDescription getSelectedDriver() {
+        IIndexedSelection selection = m_list.getSelection();
+        Object o = selection.head();
+        if (o instanceof DriverListItem) {
+            return ((DriverListItem) o).m_driver;
+        }
+        return null;
+    }

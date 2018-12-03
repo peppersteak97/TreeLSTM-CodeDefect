@@ -1,0 +1,3 @@
+  public void clearAllocationFlags() {
+    flags &= ~(PINNED | TOUCHED | ALLOCATED | SPILLED);
+  }

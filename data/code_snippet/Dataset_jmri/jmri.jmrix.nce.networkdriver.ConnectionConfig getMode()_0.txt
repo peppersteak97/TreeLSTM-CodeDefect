@@ -1,0 +1,3 @@
+    public String getMode() {
+        return opt2Box.getSelectedItem().toString();
+    }

@@ -1,0 +1,5 @@
+    void validate() {
+        validatePath();
+        validateLogin();
+        validateFilter();
+    }

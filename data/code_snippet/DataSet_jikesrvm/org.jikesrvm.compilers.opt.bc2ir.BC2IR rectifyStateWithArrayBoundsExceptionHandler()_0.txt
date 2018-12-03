@@ -1,0 +1,3 @@
+  private BasicBlock rectifyStateWithArrayBoundsExceptionHandler() {
+    return rectifyStateWithArrayBoundsExceptionHandler(false);
+  }

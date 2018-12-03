@@ -1,0 +1,48 @@
+  protected void updatePanes() {
+    Pair<String,DrJavaProperty> sel = getSelected();
+    String selCategory = null;
+    if (sel != null) {
+      selCategory = _tabbedPane.getTitleAt(_tabbedPane.getSelectedIndex());
+    }
+    _tabbedPane.removeAll();
+    for (String category: PropertyMaps.TEMPLATE.getCategories()) {
+      _tabbedPane.addTab(category, createPane(category, PropertyMaps.TEMPLATE.getProperties(category)));
+    }
+    if (sel != null) {
+      if (selCategory == null) { sel = null; } else {
+        int i;
+        for (i = 0; i < _tabbedPane.getTabCount(); ++i) {
+          if (_tabbedPane.getTitleAt(i).equals(selCategory)) { _tabbedPane.setSelectedIndex(i); break; }
+        }
+        if (i == _tabbedPane.getTabCount()) { sel = null; } else {
+          DefaultTableModel tm = _varTableModel.get(selCategory);
+          for (i = 0; i < tm.getRowCount(); ++i) {
+            String key = tm.getValueAt(i,0).toString();
+            if (key.equals(sel.second().getName())) {
+              _varTable.get(selCategory).getSelectionModel().setSelectionInterval(i,i);
+              break;
+            }
+          }
+          if (i==tm.getRowCount()) {
+            _varTable.get(selCategory).getSelectionModel().setSelectionInterval(0,0);
+          }
+          _varValueField.setText(sel.second().toString());
+          _helpPane.setText(sel.second().getHelp());
+          _helpPane.setCaretPosition(0);
+          _selected = sel;
+        }
+      }
+    }
+    if (sel == null) {
+      _tabbedPane.setSelectedIndex(0);
+      String category = _tabbedPane.getTitleAt(_tabbedPane.getSelectedIndex());
+      Map<String, DrJavaProperty> properties = PropertyMaps.TEMPLATE.getProperties(category);
+      _varTable.get(category).getSelectionModel().setSelectionInterval(0,0);
+      String key = _varTableModel.get(category).getValueAt(_varTable.get(category).getSelectedRow(),0).toString();
+      DrJavaProperty value = properties.get(key);
+      _varValueField.setText(value.toString());
+      _helpPane.setText(value.getHelp());
+      _helpPane.setCaretPosition(0);
+      _selected = Pair.make(key, value);
+    }
+  }

@@ -1,0 +1,6 @@
+    private IFileCollisionResolver getCollisionResolver() {
+        if (m_collisionResolver == null) {
+            m_collisionResolver = createCollisionResolver();
+        }
+        return m_collisionResolver;
+    }

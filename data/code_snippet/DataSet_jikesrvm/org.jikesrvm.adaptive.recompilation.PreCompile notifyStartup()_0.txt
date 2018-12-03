@@ -1,0 +1,7 @@
+  public void notifyStartup() {
+    if (Controller.options.ENABLE_PRECOMPILE) {
+      VM.sysWrite("Start precompiling");
+      compileAllMethods();
+      VM.sysWrite("Finish precompiling");
+    }
+  }

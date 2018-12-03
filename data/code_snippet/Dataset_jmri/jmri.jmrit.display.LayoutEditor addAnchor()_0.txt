@@ -1,0 +1,16 @@
+    public void addAnchor() {
+		numAnchors ++;
+		String name = "";
+		boolean duplicate = true;
+		while (duplicate) {
+			name = "A"+numAnchors;
+			if (findPositionablePointByName(name)==null) duplicate = false;
+			if (duplicate) numAnchors ++;
+		}
+		PositionablePoint o = new PositionablePoint(name, 
+							PositionablePoint.ANCHOR, currentPoint, this);
+		if (o!=null) {
+			pointList.add(o);
+			setDirty(true);
+		}
+	}

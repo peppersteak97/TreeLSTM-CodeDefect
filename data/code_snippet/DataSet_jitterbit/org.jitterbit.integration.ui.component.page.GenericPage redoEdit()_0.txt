@@ -1,0 +1,7 @@
+    public void redoEdit() {
+        if (canRedo()) {
+            m_undoManager.redo();
+            ++m_currentSavePointDistance;
+            setDirty();
+        }
+    }

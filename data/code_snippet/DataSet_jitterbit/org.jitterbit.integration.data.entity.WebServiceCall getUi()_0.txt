@@ -1,0 +1,3 @@
+    public IWebServiceCallUi getUi() {
+        return (IWebServiceCallUi) super.getUi();
+    }

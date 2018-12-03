@@ -1,0 +1,2 @@
+    public void savePermissions() throws PermissionsSavingException {
+    }

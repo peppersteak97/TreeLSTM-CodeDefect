@@ -1,0 +1,10 @@
+    private DatabaseLocation getDatabaseLocation() {
+        Source source = getSource();
+        if (source != null) {
+            DataLocation dataLocation = source.getLocation();
+            if (dataLocation.getDataLocationType() == DataLocationType.Database) {
+                return (DatabaseLocation) dataLocation;
+            }
+        }
+        return null;
+    }

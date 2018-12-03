@@ -1,0 +1,9 @@
+  public void testLineDoesNotContainColon() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionLineContains(':', null, null);
+    
+    _setDocText("foo();\nreturn test ? x : y;\n}\n");
+    _doc.setCurrentLocation(6);
+    assertTrue("no colon", !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+    _doc.setCurrentLocation(28);
+    assertTrue("line of close brace (no colon in text)", !rule.testApplyRule(_doc, Indenter.IndentReason.OTHER));
+  }

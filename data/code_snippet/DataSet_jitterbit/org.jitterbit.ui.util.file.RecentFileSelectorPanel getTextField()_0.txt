@@ -1,0 +1,7 @@
+    protected JTextField getTextField() {
+        createComboInputField();
+        ComboBoxEditor editor = m_comboInputField.getInputComponent().getEditor();
+        JTextField text = (JTextField) editor.getEditorComponent();
+        KongaTextComponentCustomizer.customize(text);
+        return text;
+    }

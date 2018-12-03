@@ -1,0 +1,5 @@
+    protected void onDialogOpened() {
+        m_editorListener = new EditorListener();
+        m_pageEditor.addPageEditorListener(m_editorListener);
+        super.onDialogOpened();
+    }

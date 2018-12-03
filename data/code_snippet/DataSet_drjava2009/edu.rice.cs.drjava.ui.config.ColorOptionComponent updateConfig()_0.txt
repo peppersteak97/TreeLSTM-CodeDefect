@@ -1,0 +1,4 @@
+  public boolean updateConfig() {
+    if (!_color.equals(DrJava.getConfig().getSetting(_option))) { DrJava.getConfig().setSetting(_option, _color); }
+    return true;
+  }

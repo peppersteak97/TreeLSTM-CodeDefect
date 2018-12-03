@@ -1,0 +1,7 @@
+    public synchronized boolean waitToSetTrue() throws InterruptedException {
+    	if( waitUntilFalse() ) {
+    		setValue(true);
+    		return true;
+    	}
+    	return false;
+    }

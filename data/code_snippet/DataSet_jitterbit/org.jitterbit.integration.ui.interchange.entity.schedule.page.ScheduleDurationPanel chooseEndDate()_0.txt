@@ -1,0 +1,12 @@
+    private void chooseEndDate() {
+        final Date end = m_dateChooser.chooseDate(getUi());
+        if (end != null) {
+            m_endDate.getInputComponent().requestFocusInWindow();
+            EventQueue.invokeLater(new Runnable() {
+                
+                public void run() {
+                    m_endDate.setDate(end);
+                }
+            });
+        }
+    }

@@ -1,0 +1,4 @@
+        private void saveEntitiesImpl() {
+            IUiWorker worker = IntegrationUi.getUi().getUiWorker();
+            worker.submitForParallell(new SaveJob(entitiesToSave));
+        }

@@ -1,0 +1,11 @@
+  public void testCancelDoesNotChangeConfig() {
+    KeyStroke testKeyStroke = KeyStrokeOption.NULL_KEYSTROKE;
+
+    _option.setValue(testKeyStroke);
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    assertEquals("Cancel (resetToCurrent) should not change the config",
+                 OptionConstants.KEY_FOR_UNIT_TESTS_ONLY.getDefault(),
+                 DrJava.getConfig().getSetting(OptionConstants.KEY_FOR_UNIT_TESTS_ONLY));
+  }

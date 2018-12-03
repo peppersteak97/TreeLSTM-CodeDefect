@@ -1,0 +1,10 @@
+    private static KongaTextPane createTextComponent() {
+        KongaTextPane text = new KongaTextPane();
+        text.setCaret(new CustomizedCaret());
+        text.setEditable(false);
+        text.setMargin(new Insets(2, 4, 2, 4));
+        Border outside = BorderFactory.createLineBorder(new Color(25, 25, 25));
+        Border inside = BorderFactory.createEmptyBorder(2, 2, 2, 2);
+        text.setBorder(BorderFactory.createCompoundBorder(outside, inside));
+        return text;
+    }

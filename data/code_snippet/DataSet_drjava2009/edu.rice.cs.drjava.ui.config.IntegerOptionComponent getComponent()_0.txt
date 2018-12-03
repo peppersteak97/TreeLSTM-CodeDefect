@@ -1,0 +1,1 @@
+  public JComponent getComponent() { return _jtf; }

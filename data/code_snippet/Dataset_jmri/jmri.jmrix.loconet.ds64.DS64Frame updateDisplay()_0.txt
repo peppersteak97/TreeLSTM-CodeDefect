@@ -1,0 +1,23 @@
+    protected void updateDisplay() {
+        opsw1.setSelected(opsw[ 1]);
+        opsw2.setSelected(opsw[ 2]);
+        opsw3.setSelected(opsw[ 3]);
+        opsw4.setSelected(opsw[ 4]);
+        opsw5.setSelected(opsw[ 5]);
+        opsw6.setSelected(opsw[ 6]);
+        opsw7.setSelected(opsw[ 7]);
+        opsw8.setSelected(opsw[ 8]);
+        opsw9.setSelected(opsw[ 9]);
+        opsw10.setSelected(opsw[ 10]);
+        opsw11.setSelected(opsw[ 11]);
+        opsw12.setSelected(opsw[ 12]);
+        opsw13.setSelected(opsw[ 13]);
+        opsw14.setSelected(opsw[ 14]);
+        opsw15.setSelected(opsw[ 15]);
+        opsw16.setSelected(opsw[ 16]);
+        opsw17.setSelected(opsw[ 17]);
+        opsw18.setSelected(opsw[ 18]);
+        opsw19.setSelected(opsw[ 19]);
+        opsw20.setSelected(opsw[ 20]);
+        opsw21.setSelected(opsw[ 21]);
+    }

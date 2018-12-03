@@ -1,0 +1,18 @@
+    public IListDecorator getListUi() {
+        if (m_listUi == null) {
+            m_listUi = new IListDecorator() {
+
+                public void decorate(IListDecor decor) {
+                    decor.setText(getDataObject().getName());
+                    
+                    EntityTypeMetaData md = EntityTypeMetaData.getInstance();
+                    EntityIconRepository icons = md.getIconRepository();
+                    decor.setIcon(icons.getIcon(getDataObject().getEntityType(), 
+                                    EntityIconRepository.Size.SMALL));
+                    
+                    decor.setToolTip(getDataObject().getPathFromRoot(true));
+                }
+            };
+        }
+        return m_listUi;
+    }

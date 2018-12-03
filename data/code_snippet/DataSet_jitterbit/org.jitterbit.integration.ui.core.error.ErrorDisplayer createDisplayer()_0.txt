@@ -1,0 +1,5 @@
+    private JComponent createDisplayer() {
+        Box b = Box.createVerticalBox();
+        populateDisplayer(b);
+        return b;
+    }

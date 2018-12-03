@@ -1,0 +1,4 @@
+    public InterchangeProjectUi getProjectUi() {
+        InterchangeView view = m_panel.getPage().getView();
+        return view.getDataModelUi();
+    }

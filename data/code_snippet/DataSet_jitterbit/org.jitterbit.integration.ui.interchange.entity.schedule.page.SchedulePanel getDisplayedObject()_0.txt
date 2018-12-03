@@ -1,0 +1,3 @@
+    public Schedule getDisplayedObject() {
+        return m_schedule;
+    }

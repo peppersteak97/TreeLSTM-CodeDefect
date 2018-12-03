@@ -1,0 +1,8 @@
+  public void testNotifyInsert() {
+    ModelList<Integer>.ModelIterator itFull2 = fFull.getIterator();
+
+    itFull2.insert(Integer.valueOf(0));
+    ModelList<Integer>.ModelIterator itFull = itFull2.copy();
+    itFull2.insert(Integer.valueOf(1));
+    assertEquals(Integer.valueOf(0), itFull.current());
+  }

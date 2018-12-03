@@ -1,0 +1,10 @@
+    protected void stopWraparoundTest() {
+        if (testRunning && wrapTest) {
+            wrapTimer.stop();
+            statusText1.setText("Wraparound Test Stopped, "+Integer.toString(numErrors)+
+                                                                " Errors Found");
+            statusText1.setVisible(true);
+            statusText2.setText(Integer.toString(numIterations)+" Cycles Completed");
+            statusText2.setVisible(true);
+        }
+    }

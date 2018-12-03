@@ -1,0 +1,7 @@
+    public void expandSelectedBranch() {
+    	TreePath path = getSelectionPath();
+    	if( path == null )
+    		expandAll();
+    	else
+    		expandAll(path, true);
+    }

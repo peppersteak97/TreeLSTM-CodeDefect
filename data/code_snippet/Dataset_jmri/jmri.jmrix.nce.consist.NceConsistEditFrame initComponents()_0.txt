@@ -1,0 +1,173 @@
+	public void initComponents() throws Exception {
+
+		textConsist.setText("Consist");
+		textConsist.setVisible(true);
+
+		textStatus.setText("Status:");
+		textStatus.setVisible(true);
+
+		consistStatus.setText(UNKNOWN);
+		consistStatus.setVisible(true);
+
+		previousButton.setText("Previous");
+		previousButton.setVisible(true);
+		previousButton.setToolTipText("Search for consist incrementing");
+
+		nextButton.setText("   Next   ");
+		nextButton.setVisible(true);
+		nextButton.setToolTipText("Search for consist decrementing");
+
+		getButton.setText("  Get  ");
+		getButton.setVisible(true);
+		getButton.setToolTipText("Read consist from NCE CS");
+
+		consistTextField.setText(Integer.toString(CONSIST_MAX));
+		consistTextField.setToolTipText(ToolTipConsist);
+		consistTextField.setMaximumSize(new Dimension(consistTextField
+				.getMaximumSize().width,
+				consistTextField.getPreferredSize().height));
+
+		textLocomotive.setText("Locomotive");
+		textLocomotive.setVisible(true);
+		textRoster.setText("Roster");
+		textRoster.setVisible(true);
+		textAddress.setText("Address");
+		textAddress.setVisible(true);
+		textAddrType.setText("Type");
+		textAddrType.setVisible(true);
+		textDirection.setText("Direction");
+		textDirection.setVisible(true);
+
+		textConRoster.setText("Consist");
+		textConRoster.setVisible(true);
+		textConRoadName.setText(EMPTY);
+		textConRoadName.setVisible(true);
+		textConRoadNumber.setText(EMPTY);
+		textConRoadNumber.setVisible(true);
+		textConModel.setText(EMPTY);
+		textConModel.setVisible(true);
+		
+		throttleButton.setText("Throttle");
+		throttleButton.setVisible(true);
+		throttleButton.setEnabled(true);
+		throttleButton.setToolTipText(ToolTipThrottle);
+
+		clearCancelButton.setText(CLEAR);
+		clearCancelButton.setVisible(true);
+		clearCancelButton.setEnabled(false);
+		clearCancelButton.setToolTipText(ToolTipClear);
+
+		saveLoadButton.setText(SAVE);
+		saveLoadButton.setVisible(false);
+		saveLoadButton.setEnabled(false);
+		saveLoadButton.setToolTipText(ToolTipSave);
+
+		deleteButton.setText("Delete");
+		deleteButton.setVisible(false);
+		deleteButton.setEnabled(false);
+		deleteButton.setToolTipText("Press to remove consist from roster");
+
+		backUpButton.setText(" Backup ");
+		backUpButton.setVisible(true);
+		backUpButton.setToolTipText("Save all consists to a file");
+
+		restoreButton.setText(" Restore");
+		restoreButton.setVisible(true);
+		restoreButton.setToolTipText("Restore all consists from a file");
+
+		checkBoxEmpty.setText("Empty consist");
+		checkBoxEmpty.setVisible(true);
+		checkBoxEmpty.setToolTipText("Check to search for empty consists");
+
+		checkBoxVerify.setText("Verify loco     ");
+		checkBoxVerify.setVisible(true);
+		checkBoxVerify.setSelected(true);
+		checkBoxVerify
+				.setToolTipText("Verify that add loco isn't already a consist lead or rear loco");
+
+		checkBoxConsist.setText("Consist roster");
+		checkBoxConsist.setVisible(true);
+		checkBoxConsist.setSelected(true);
+		checkBoxConsist.setToolTipText("Check to build a consist roster");
+
+		space1.setText("            ");
+		space1.setVisible(true);
+		space2.setText(" ");
+		space2.setVisible(true);
+		space3.setText(" ");
+		space3.setVisible(true);
+
+		initLocoFields();
+
+		setTitle("Edit NCE Consist");
+		getContentPane().setLayout(new GridBagLayout());
+
+		addItem(textConsist, 2, 0);
+		addItem(previousButton, 1, 1);
+		addItem(consistTextField, 2, 1);
+		addItem(nextButton, 3, 1);
+		addItem(checkBoxEmpty, 5, 1);
+		addItem(textStatus, 0, 2);
+		addItem(consistStatus, 1, 2);
+		addItem(getButton, 2, 2);
+		addItem(checkBoxVerify, 5, 2);
+		addItem(space3, 1, 3);
+		addItem(textConRoster, 1, 4);
+		addItem(conRosterBox, 1, 5);
+		addItem (textConRoadName, 2, 5);
+		addItem (textConRoadNumber, 3, 5);
+		addItem (textConModel, 4, 5);
+		addItem(checkBoxConsist, 5, 5);
+		initConsistRoster(conRosterBox);
+
+		addItem(space1, 1, 6);
+		addItem(textLocomotive, 0, 7);
+		addItem(textRoster, 1, 7);
+		addItem(textAddress, 2, 7);
+		addItem(textAddrType, 3, 7);
+		addItem(textDirection, 4, 7);
+
+		addLocoRow(textLoco1, locoRosterBox1, locoTextField1, adrButton1,
+				dirButton1, cmdButton1, 8);
+		addLocoRow(textLoco2, locoRosterBox2, locoTextField2, adrButton2,
+				dirButton2, cmdButton2, 9);
+		addLocoRow(textLoco3, locoRosterBox3, locoTextField3, adrButton3,
+				dirButton3, cmdButton3, 10);
+		addLocoRow(textLoco4, locoRosterBox4, locoTextField4, adrButton4,
+				dirButton4, cmdButton4, 11);
+		addLocoRow(textLoco5, locoRosterBox5, locoTextField5, adrButton5,
+				dirButton5, cmdButton5, 12);
+		addLocoRow(textLoco6, locoRosterBox6, locoTextField6, adrButton6,
+				dirButton6, cmdButton6, 13);
+
+		addItem(space2, 2, 15);
+		addItem(throttleButton, 0, 16);
+		addItem(clearCancelButton, 1, 16);
+		addItem(saveLoadButton, 2, 16);
+		addItem(deleteButton, 3, 16);
+		addItem(backUpButton, 4, 16);
+		addItem(restoreButton, 5, 16);
+
+		addButtonAction(previousButton);
+		addButtonAction(nextButton);
+		addButtonAction(getButton);
+		addButtonAction(throttleButton);
+		addButtonAction(clearCancelButton);
+		addButtonAction(saveLoadButton);
+		addButtonAction(deleteButton);
+		addButtonAction(backUpButton);
+		addButtonAction(restoreButton);
+
+		addCheckBoxAction(checkBoxConsist);
+		checkBoxConsist ();
+		
+		JMenuBar menuBar = new JMenuBar();
+		JMenu toolMenu = new JMenu("Tools");
+		toolMenu.add(new NceConsistRosterMenu("Roster", jmri.jmrit.roster.RosterMenu.MAINMENU, this));
+		menuBar.add(toolMenu);
+		setJMenuBar(menuBar);
+		addHelpMenu("package.jmri.jmrix.nce.consist.NceConsistEditFrame", true);
+
+		pack();
+		if ( (getWidth()<450) && (getHeight()<380)) setSize(450, 380);
+	}

@@ -1,0 +1,3 @@
+    public TransferSizeFilter getFilter() {
+        return m_filter;
+    }

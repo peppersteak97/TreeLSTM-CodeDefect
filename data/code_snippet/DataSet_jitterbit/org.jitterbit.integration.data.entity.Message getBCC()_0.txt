@@ -1,0 +1,3 @@
+    public String getBCC() {
+        return getProperty(BCC_PROPERTY);
+    }

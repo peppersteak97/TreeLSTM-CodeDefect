@@ -1,0 +1,7 @@
+    		if(_instance.checkFile(defaultNceConsistRosterFilename())){
+    			try {
+    				_instance.readFile(defaultNceConsistRosterFilename());
+    			} catch (Exception e) {
+    				log.error("Exception during ConsistRoster reading: "+e);
+    			}
+    		}

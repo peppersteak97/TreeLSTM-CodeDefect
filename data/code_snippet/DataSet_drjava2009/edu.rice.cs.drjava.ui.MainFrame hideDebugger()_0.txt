@@ -1,0 +1,4 @@
+  public void hideDebugger() {
+    _setDebugMenuItemsEnabled(false);
+    _hideDebuggerPanel();
+  }

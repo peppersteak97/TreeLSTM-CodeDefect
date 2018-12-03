@@ -1,0 +1,15 @@
+    private void layoutComponents() {
+        TwoColumnPanel p = new TwoColumnPanel();
+        layoutField(p, PackageResources.UserProfile.Labels.LOGIN, m_loginField);
+        layoutField(p, null, ComponentFactories.buttonFactory().newButton(m_passwordAction));
+        layoutField(p, PackageResources.UserProfile.Labels.FIRST_NAME, m_firstNameField);
+        layoutField(p, PackageResources.UserProfile.Labels.LAST_NAME, m_lastNameField);
+        layoutField(p, PackageResources.UserProfile.Labels.EMAIL, m_emailField);
+
+        /* We do not support descriptions for users in this version
+         p.add(ssc.makeJLabel(Resources.CommonStrings.getString("Description")), left);
+         p.add(new JScrollPane(m_descriptionArea), right);
+         */
+
+        m_controlPanel = p;
+    }

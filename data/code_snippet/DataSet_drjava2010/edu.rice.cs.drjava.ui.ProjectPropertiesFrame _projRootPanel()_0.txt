@@ -1,0 +1,17 @@
+  public JPanel _projRootPanel() {
+    DirectoryChooser dirChooser = new DirectoryChooser(this);
+    dirChooser.setSelectedFile(_getProjRoot());
+    dirChooser.setDialogTitle("Select Project Root Folder");
+    dirChooser.setApproveButtonText("Select");
+    _projRootSelector = new DirectorySelectorComponent(this, dirChooser, 20, 12f) {
+      protected void _chooseFile() {
+        _mainFrame.removeModalWindowAdapter(ProjectPropertiesFrame.this);
+        super._chooseFile();
+        _mainFrame.installModalWindowAdapter(ProjectPropertiesFrame.this, LambdaUtil.NO_OP, CANCEL);
+      }
+    };
+    
+    _projRootSelector.getFileField().getDocument().addDocumentListener(_applyListener);
+
+    return _projRootSelector;
+  }

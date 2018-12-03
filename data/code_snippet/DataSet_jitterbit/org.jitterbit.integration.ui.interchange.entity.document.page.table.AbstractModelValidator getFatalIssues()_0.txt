@@ -1,0 +1,13 @@
+    private List<IValidationIssue> getFatalIssues() {
+        List<IValidationIssue> fatalIssues = null;
+        Collection<? extends IValidationIssue> issues = getValidator().validate();
+        for (IValidationIssue issue : issues) {
+            if (issue.preventsSave()) {
+                if (fatalIssues == null) {
+                    fatalIssues = new ArrayList<IValidationIssue>();
+                }
+                fatalIssues.add(issue);
+            }
+        }
+        return fatalIssues;
+    }

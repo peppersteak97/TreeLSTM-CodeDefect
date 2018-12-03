@@ -1,0 +1,11 @@
+    private void createInitialData() {
+        int nObjects = m_page.getNumberOfObjects();
+        m_parentObjects = new ComboItem[nObjects + 1];
+        m_childObjects = new ComboItem[nObjects + 1];
+        m_parentObjects[0] = SELECT_ITEM;
+        m_childObjects[0] = SELECT_ITEM;
+        for (int n = 1; n <= nObjects; ++n) {
+            m_parentObjects[n] = new DatabaseObjectComboItem(m_page.getObject(n - 1));
+            m_childObjects[n] = new DatabaseObjectComboItem(m_page.getObject(n - 1));
+        }
+    }

@@ -1,0 +1,5 @@
+	void No2(){
+  		if(m_obj instanceof TreeMapper){
+			dispose();
+		}
+	}

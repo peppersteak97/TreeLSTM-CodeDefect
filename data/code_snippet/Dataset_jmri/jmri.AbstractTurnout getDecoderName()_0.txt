@@ -1,0 +1,3 @@
+	public String getDecoderName() {
+		return _decoderName;
+	}

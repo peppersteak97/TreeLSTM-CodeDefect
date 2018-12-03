@@ -1,0 +1,3 @@
+  public boolean hasCondBranch() {
+    return (summaryFlags & HAS_COND_BRANCH) != 0;
+  }

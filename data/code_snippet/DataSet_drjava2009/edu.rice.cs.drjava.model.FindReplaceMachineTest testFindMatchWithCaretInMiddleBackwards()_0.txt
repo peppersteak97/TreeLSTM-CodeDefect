@@ -1,0 +1,9 @@
+  public void testFindMatchWithCaretInMiddleBackwards() throws BadLocationException {
+    _doc.insertString(0, "hello hello", null);
+    _initFrm(8);
+    _frm.setFindWord("helLo");
+    _frm.setMatchCase(false);
+    _frm.setSearchBackwards(true);
+    _testFindNextSucceeds(_frm, 8, 0);
+    _testFindNextSucceeds(_frm, 8, 6);
+  }

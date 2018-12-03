@@ -1,0 +1,3 @@
+  public final BranchOperand asBranch() {
+    return (BranchOperand) this;
+  }

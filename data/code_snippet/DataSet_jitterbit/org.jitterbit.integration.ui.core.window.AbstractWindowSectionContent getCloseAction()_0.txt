@@ -1,0 +1,3 @@
+    public final Action getCloseAction() {
+        return m_closeAction;
+    }

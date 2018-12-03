@@ -1,0 +1,37 @@
+    void addSignalHead() {
+		String tName = nextSignalHead.getText().trim();
+        SignalHead mHead = null;
+		if ( (tName!=null) && (tName!="") ) {
+			mHead = InstanceManager.signalHeadManagerInstance().getBySystemName(tName.toUpperCase());
+			if (mHead == null) 
+				mHead = InstanceManager.signalHeadManagerInstance().getByUserName(tName);
+			else 
+				nextSignalHead.setText(mHead.getSystemName());
+		}
+        if (mHead == null) {
+			JOptionPane.showMessageDialog(thisPanel,
+					java.text.MessageFormat.format(rb.getString("Error9"),
+					new String[]{tName}),
+					rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+        LayoutSignalHeadIcon l = new LayoutSignalHeadIcon();
+        l.setRedIcon(signalIconEditor.getIcon(0));
+        l.setFlashRedIcon(signalIconEditor.getIcon(1));
+        l.setYellowIcon(signalIconEditor.getIcon(2));
+        l.setFlashYellowIcon(signalIconEditor.getIcon(3));
+        l.setGreenIcon(signalIconEditor.getIcon(4));
+        l.setFlashGreenIcon(signalIconEditor.getIcon(5));
+        l.setDarkIcon(signalIconEditor.getIcon(6));
+        l.setHeldIcon(signalIconEditor.getIcon(7));
+        l.setSignalHead(nextSignalHead.getText().trim());
+		SignalHead xSignal = l.getSignalHead();
+		if (xSignal != null) {
+			if ( !(xSignal.getUserName().equals(nextSignalHead.getText().trim())) ) {
+				nextSignalHead.setText(xSignal.getSystemName());
+			}
+		}
+        setNextLocation(l);
+		setDirty(true);
+        putSignal(l);
+    }

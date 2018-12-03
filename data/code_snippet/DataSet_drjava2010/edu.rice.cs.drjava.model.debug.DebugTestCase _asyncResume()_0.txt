@@ -1,0 +1,11 @@
+  protected void _asyncResume() {
+    new Thread("asyncResume Thread") {
+      public void run() {
+        try { _debugger.resume(); }
+        catch(DebugException dbe) {
+          dbe.printStackTrace();
+          listenerFail("Debugger couldn't be resumed!\n" + dbe);
+        }
+      }
+    }.start();
+  }

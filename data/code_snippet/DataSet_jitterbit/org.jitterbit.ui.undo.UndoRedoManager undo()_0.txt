@@ -1,0 +1,9 @@
+	public void undo() {
+		if (!undoIsEnabled())
+			return;
+		
+		m_iCurrentVersion--;
+		m_current = m_current.getPrevious();
+		restore(m_current.getChange());
+		updateActions();
+	}

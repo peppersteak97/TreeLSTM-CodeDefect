@@ -1,0 +1,3 @@
+    public final DataLocationType getLocationType() {
+        return m_location.getDataLocationType();
+    }

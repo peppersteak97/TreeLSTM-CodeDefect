@@ -1,0 +1,7 @@
+    public InterchangeProject getPartialProject() {
+        IDeployOption option = m_controlPanel.getActiveOption();
+        if (option instanceof DeployIndividualItemsOption) {
+            return ((DeployIndividualItemsOption) option).getPartialProject();
+        }
+        return null;
+    }

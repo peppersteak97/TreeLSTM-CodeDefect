@@ -1,0 +1,7 @@
+    private void layoutComponents() {
+        IComponentDecor<JComponent> decor = ComponentDecorFactory.invisible(
+                        m_fileSelector);
+        JComponent displayer = decor.getUi();
+        displayer.setBorder(BorderUtils.getEmptyBorder(FIELD_INSETS));
+        setDisplayer(decor.getUi());
+    }

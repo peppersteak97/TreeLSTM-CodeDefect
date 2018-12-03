@@ -1,0 +1,5 @@
+    public void waitForInitialization() throws InterruptedException {
+        if (m_backgroundPreparer != null) {
+            m_backgroundPreparer.waitUntilRequiredInitializtionIsDone();
+        }
+    }

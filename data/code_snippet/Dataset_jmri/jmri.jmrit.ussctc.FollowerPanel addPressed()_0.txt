@@ -1,0 +1,11 @@
+    void addPressed() {
+        boolean ok = true;
+        ok &= validateTurnout(outputName.getText());
+        ok &= validateSensor(sensorName.getText());
+        if (!vetoName.getText().equals(""))
+            ok &= validateSensor(vetoName.getText());
+        
+        if (!ok) return;
+        new Follower(outputName.getText(), sensorName.getText(), invert.isSelected(), vetoName.getText())
+                    .instantiate();
+    }

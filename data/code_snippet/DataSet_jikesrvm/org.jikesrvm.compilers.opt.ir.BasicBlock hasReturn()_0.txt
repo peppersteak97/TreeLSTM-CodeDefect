@@ -1,0 +1,4 @@
+  public final boolean hasReturn() {
+    if (isEmpty()) return false;
+    return Return.conforms(lastRealInstruction()) || MIR_Return.conforms(lastRealInstruction());
+  }

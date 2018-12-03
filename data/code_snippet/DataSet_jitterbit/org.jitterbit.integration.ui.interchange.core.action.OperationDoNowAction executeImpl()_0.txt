@@ -1,0 +1,14 @@
+    private void executeImpl() {
+        List<IOperationUi> ops = getActiveObjects(IOperationUi.class);
+        if (ops.size() != 1) {
+            return;
+        }
+        int timesToRun = getTimesToRun();
+        if (timesToRun <= 0) {
+            cancelled(null);
+        }
+        else {
+            IOperationRunner runner = OperationRunnerFactory.newRunner(m_view);
+            runner.run(ops.get(0), timesToRun, new InternalActionCallback(this));
+        }
+    }

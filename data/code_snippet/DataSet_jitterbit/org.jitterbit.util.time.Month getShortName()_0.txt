@@ -1,0 +1,3 @@
+    public String getShortName() {
+        return m_sShortName;
+    }

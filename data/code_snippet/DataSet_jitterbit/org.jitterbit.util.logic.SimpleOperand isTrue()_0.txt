@@ -1,0 +1,3 @@
+	public boolean isTrue() {
+		return m_b;
+	}

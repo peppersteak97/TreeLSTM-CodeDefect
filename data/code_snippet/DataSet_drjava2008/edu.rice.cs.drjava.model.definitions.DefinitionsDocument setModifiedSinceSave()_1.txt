@@ -1,0 +1,5 @@
+  private void _setModifiedSinceSave() {
+    if (! _isModifiedSinceSave) {
+      _isModifiedSinceSave = true;
+    }    
+  }

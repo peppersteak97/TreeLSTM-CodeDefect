@@ -1,0 +1,4 @@
+    public IIndexedSelection getSelection() {
+        ISelection sel = super.getSelection();
+        return (sel == null) ? IIndexedSelection.EMPTY : (IIndexedSelection) sel;
+    }

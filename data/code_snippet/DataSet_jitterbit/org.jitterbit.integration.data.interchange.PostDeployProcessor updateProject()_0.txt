@@ -1,0 +1,10 @@
+    private void updateProject() {
+        InterchangeProject p = m_currentProject.getProject();
+        DeployState state = new DeployState();
+        if (p.hasBeenDeployed()) {
+            state.setDeployed();
+        }
+        collectDeployState(p, state, false);
+        p.setDeployed(state.isDeployed());
+        p.setDeployDirty(state.isDirty());
+    }

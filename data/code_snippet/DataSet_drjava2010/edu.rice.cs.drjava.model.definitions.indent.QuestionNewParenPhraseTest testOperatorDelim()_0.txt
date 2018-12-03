@@ -1,0 +1,7 @@
+  public void testOperatorDelim() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionNewParenPhrase(null, null);
+    
+    _setDocText("foo(x +\ny\n)");
+    assertTrue("line after operator", rule.testApplyRule(_doc, 8, Indenter.IndentReason.OTHER));
+    assertTrue("line after comma", !rule.testApplyRule(_doc, 10, Indenter.IndentReason.OTHER));
+  }

@@ -1,0 +1,7 @@
+    public void apply() {
+        QueueStatus old = m_status;
+        m_status = m_statusCombo.getSelectedStatus();
+        if (m_status != old) {
+            fireFilterChanged(this);
+        }
+    }

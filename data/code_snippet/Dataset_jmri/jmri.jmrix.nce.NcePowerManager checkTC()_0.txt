@@ -1,0 +1,3 @@
+    private void checkTC() throws JmriException {
+        if (tc == null) throw new JmriException("attempt to use NcePowerManager after dispose");
+    }

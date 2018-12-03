@@ -1,0 +1,9 @@
+    public int hashCode() {
+        int hash = 17;
+        hash = 37 * hash + (m_dataIsFormattedWithCLRF ? 1 : 0);
+        hash = 37 * hash + m_segmentTerminator.hashCode();
+        hash = 37 * hash + m_elementTerminator.hashCode();
+        hash = 37 * hash + m_compositeElementTerminator.hashCode();
+        hash = 37 * hash + m_releaseIndicator.hashCode();
+        return hash;
+    }

@@ -1,0 +1,3 @@
+    User getUser() {
+        return m_user;
+    }

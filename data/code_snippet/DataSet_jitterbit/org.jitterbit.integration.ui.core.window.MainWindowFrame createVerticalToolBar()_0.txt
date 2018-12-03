@@ -1,0 +1,3 @@
+    private void createVerticalToolBar() {
+        m_verticalToolBar = new IntegrationToolBar(new JButton[0], JToolBar.VERTICAL);
+    }

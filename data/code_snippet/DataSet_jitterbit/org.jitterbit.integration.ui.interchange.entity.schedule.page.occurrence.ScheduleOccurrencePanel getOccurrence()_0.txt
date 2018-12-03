@@ -1,0 +1,25 @@
+    public ScheduleOccurrence getOccurrence() {
+        ScheduleOccurrence occ = new ScheduleOccurrence();
+        int type = m_typeSelectionPanel.getSelectedType();
+        if (type == ScheduleOccurrence.DAILY) {
+            occ.setDailyOccurrence(m_every_X_days_panel.getValue());
+        }
+        else if (type == ScheduleOccurrence.WEEKLY) {
+            occ.setWeeklyOccurrence(m_every_X_weeks_panel.getValue(),
+                            m_dayOfTheWeekCheckBoxPanel.getSelectedDays());
+        }
+        else if (type == ScheduleOccurrence.MONTHLY) {
+            if (m_monthlyPanel.getMonthlyType() == 0) {
+                occ.setMonthlyOccurrence(
+                                m_monthly_A_panel.getDay(), 
+                                m_monthly_A_panel.getMonth());
+            }
+            else {
+                occ.setMonthlyOccurence(
+                                m_monthly_B_panel.getDayNum(), 
+                                m_monthly_B_panel.getDay(), 
+                                m_monthly_B_panel.get_Every_X_Month());
+            }
+        }
+        return occ;
+    }

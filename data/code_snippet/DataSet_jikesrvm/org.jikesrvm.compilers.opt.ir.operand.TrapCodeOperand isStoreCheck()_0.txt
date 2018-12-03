@@ -1,0 +1,3 @@
+  public boolean isStoreCheck() {
+    return trapCode == RuntimeEntrypoints.TRAP_STORE_CHECK;
+  }

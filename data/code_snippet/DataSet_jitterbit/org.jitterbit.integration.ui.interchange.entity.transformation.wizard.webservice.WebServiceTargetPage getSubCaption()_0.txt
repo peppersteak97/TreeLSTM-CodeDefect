@@ -1,0 +1,3 @@
+    protected String getSubCaption() {
+        return PackageResources.TargetPage.SUB_CAPTION;
+    }

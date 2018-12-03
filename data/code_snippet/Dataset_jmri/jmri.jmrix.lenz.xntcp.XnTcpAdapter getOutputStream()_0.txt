@@ -1,0 +1,11 @@
+	public DataOutputStream getOutputStream() {
+		if (!opened) log.error("getOutputStream called before load(), stream not available");
+		try {
+				outTcpStream = (new OutputTcpStream(tcpSocket.getOutputStream()));
+				return new DataOutputStream(outTcpStream);
+     		}
+     	catch (java.io.IOException e) {
+     		log.error("getOutputStream exception: "+e.getMessage());
+     	}
+     	return null;
+	}

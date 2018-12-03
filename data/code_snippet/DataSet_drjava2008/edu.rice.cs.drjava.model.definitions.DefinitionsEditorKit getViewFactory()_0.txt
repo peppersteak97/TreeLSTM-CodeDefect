@@ -1,0 +1,1 @@
+  public final ViewFactory getViewFactory() { return _factory; }

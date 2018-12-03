@@ -1,0 +1,7 @@
+        if (doFileTransfer()) {
+            XmlStructureFile file = getSelectedFile();
+            if (!m_rootElementManager.isCached(file)) {
+                m_rootElementManager.retrieveRootNames(file);
+            }
+            return true;
+        }

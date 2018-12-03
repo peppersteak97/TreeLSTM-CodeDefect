@@ -1,0 +1,62 @@
+  public void testUnsavedAndUnCompiledChanges() throws Exception {
+    if (printMessages) System.out.println("-----testUnsavedAndUnCompiledChanges-----");
+    
+    OpenDefinitionsDocument doc = setupDocument(MONKEYTEST_PASS_TEXT);
+    final File file = new File(_tempDir, "MonkeyTestPass.java");
+    saveFile(doc, new FileSelector(file));
+    
+    List<OpenDefinitionsDocument> docs = _model.getSortedOpenDefinitionsDocuments();
+    
+    final OpenDefinitionsDocument untitled = docs.get(0);
+    
+    
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() { 
+        untitled.quitFile();
+        _model.closeFileWithoutPrompt(untitled);
+      }
+    });
+    
+    JUnitTestListener listener = new JUnitCompileBeforeTestListener();
+    _model.addListener(listener);
+    
+    testStartCompile(doc);
+    
+    listener.waitCompileDone();
+    
+    listener.resetCompileCounts();
+    
+    changeDocumentText(MONKEYTEST_PASS_ALT_TEXT, doc);
+    
+    listener.runJUnit(doc);
+    
+    
+    /* Unsaved document forces both saveBeforeCompile and compileBeforeTest */
+    
+    listener.assertSaveBeforeCompileCount(1);
+    listener.assertCompileBeforeJUnitCount(1);
+    listener.assertNonTestCaseCount(0);
+    listener.assertJUnitStartCount(1);
+    listener.assertJUnitEndCount(1);
+    listener.assertJUnitSuiteStartedCount(1);
+    listener.assertJUnitTestStartedCount(1);
+    listener.assertJUnitTestEndedCount(1);
+    
+    if (printMessages) System.out.println("after test");
+    _model.removeListener(listener);
+    
+    assertEquals("test case should have no errors reported after modifying", 0,
+                 _model.getJUnitModel().getJUnitErrorModel().getNumErrors());
+    
+    saveFile(doc, new FileSelector(file));
+    
+    listener = new JUnitTestListener();
+    _model.addListener(listener);
+    
+    
+    assertEquals("test case should have no errors reported after saving", 0,
+                 _model.getJUnitModel().getJUnitErrorModel().getNumErrors());
+    _model.removeListener(listener);
+    
+    _log.log("testUnsavedAndUnCompiledChanges completed");
+  }

@@ -1,0 +1,3 @@
+    public boolean isCtrlShiftDown() {
+        return isKeyDown(KeyEvent.VK_CONTROL) && isKeyDown(KeyEvent.VK_SHIFT);   
+    }

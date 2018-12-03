@@ -1,0 +1,1 @@
+  public boolean inProgress() { return ! _document.hasPrompt(); }

@@ -1,0 +1,3 @@
+	public KongaDataObject getDataObject() {
+		return m_baseUiDelegate.getDataObject();
+	}

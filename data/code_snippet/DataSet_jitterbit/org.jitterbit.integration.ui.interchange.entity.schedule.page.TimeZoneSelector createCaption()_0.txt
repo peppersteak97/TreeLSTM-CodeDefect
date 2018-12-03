@@ -1,0 +1,5 @@
+    private void createCaption() {
+        ResourceBundle res = SchedulePage.getResources();
+        String caption = res.getString("Caption.TimeZone");
+        m_caption = IntegrationUiStyleSheet.AdminHint.makeJLabel(caption);
+    }

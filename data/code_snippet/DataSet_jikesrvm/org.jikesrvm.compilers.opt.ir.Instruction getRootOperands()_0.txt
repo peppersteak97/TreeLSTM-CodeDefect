@@ -1,0 +1,3 @@
+  public OperandEnumeration getRootOperands() {
+    return new ROE(this, 0, getNumberOfOperands() - 1);
+  }

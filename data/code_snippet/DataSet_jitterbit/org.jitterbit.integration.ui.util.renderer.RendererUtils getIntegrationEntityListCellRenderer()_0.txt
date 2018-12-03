@@ -1,0 +1,3 @@
+    public static ListCellRenderer getIntegrationEntityListCellRenderer() {
+        return INTEGRATION_ENTITY_LIST_CELL_RENDERER;
+    }

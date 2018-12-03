@@ -1,0 +1,3 @@
+    public void saveUiState() throws InterchangeSavingException {
+        m_projectSaver.saveUiState(m_uiState);
+    }

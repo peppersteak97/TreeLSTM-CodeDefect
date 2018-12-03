@@ -1,0 +1,15 @@
+  public void testStartsWithPrefixNoText() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionCurrLineStartsWith("{", null, null);
+    
+    _setDocText("foo();\n{\nbar();\n");
+    assertTrue("line before brace (no space)", !rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("just before brace (no space)", rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+    assertTrue("just after brace (no space)", rule.testApplyRule(_doc, 8, Indenter.IndentReason.OTHER));
+    assertTrue("line after brace (no space)", !rule.testApplyRule(_doc, 10, Indenter.IndentReason.OTHER));
+    
+    _setDocText("foo();\n   {\nbar();\n");
+    assertTrue("line before brace (with space)", !rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("just before brace (with space)", rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+    assertTrue("just after brace (with space)", rule.testApplyRule(_doc, 11, Indenter.IndentReason.OTHER));
+    assertTrue("line after brace (with space)", !rule.testApplyRule(_doc, 14, Indenter.IndentReason.OTHER));
+  }

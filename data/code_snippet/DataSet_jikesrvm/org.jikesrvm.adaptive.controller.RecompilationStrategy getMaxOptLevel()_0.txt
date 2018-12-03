@@ -1,0 +1,3 @@
+  int getMaxOptLevel() {
+    return Controller.options.DERIVED_MAX_OPT_LEVEL;
+  }

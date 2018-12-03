@@ -1,0 +1,3 @@
+	public void unblockEventFiring() {
+		m_bEventFiringBlocked = false;
+	}

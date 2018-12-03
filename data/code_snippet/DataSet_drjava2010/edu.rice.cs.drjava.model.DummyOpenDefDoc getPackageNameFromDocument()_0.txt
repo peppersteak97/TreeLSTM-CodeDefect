@@ -1,0 +1,1 @@
+  public String getPackageNameFromDocument() { throw new UnsupportedOperationException("Dummy method"); }

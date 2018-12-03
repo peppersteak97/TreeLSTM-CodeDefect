@@ -1,0 +1,6 @@
+    private void layoutComponents() {
+        setLayout(new BoxLayout(getUi(), BoxLayout.PAGE_AXIS));
+        add(getSubComponentPanel(m_topPanel));
+        add(getSubComponentPanel(m_detailsPanel));
+        add(Box.createVerticalGlue());
+    }

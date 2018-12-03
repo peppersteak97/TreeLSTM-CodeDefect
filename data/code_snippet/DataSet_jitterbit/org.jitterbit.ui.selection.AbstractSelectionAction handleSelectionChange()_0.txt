@@ -1,0 +1,1 @@
+ * override the method {@link #handleSelectionChange()} which is called

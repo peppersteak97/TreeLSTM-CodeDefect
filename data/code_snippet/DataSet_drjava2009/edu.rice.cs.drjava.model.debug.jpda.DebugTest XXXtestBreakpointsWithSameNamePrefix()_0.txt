@@ -1,0 +1,44 @@
+  public synchronized void XXXtestBreakpointsWithSameNamePrefix() throws Exception {
+    _log.log("----testBreakpointsWithSameNamePrefix----");
+    BreakpointTestListener debugListener = new BreakpointTestListener();
+    _debugger.addListener(debugListener);
+    
+    OpenDefinitionsDocument doc = _startupDebugger("DrJavaDebugClass.java",
+                                                   DEBUG_CLASS);
+    
+    _debugger.toggleBreakpoint(doc,DEBUG_CLASS.indexOf("Bar Line 1"),true);
+    
+    Utilities.clearEventQueue();
+    debugListener.assertRegionAddedCount(1);
+    
+    synchronized(_notifierLock) {
+      interpretIgnoreResult("new DrJavaDebugClass2().baz()");
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    
+    _log.log("----After breakpoint:\n" + getInteractionsText());
+    
+    debugListener.assertCurrThreadResumedCount(0);
+    debugListener.assertCurrThreadDiedCount(0);
+    assertInteractionsContains("Baz Line 1");
+    assertInteractionsDoesNotContain("Bar Line 1");
+    
+    InterpretListener interpretListener = new InterpretListener();
+    _model.addListener(interpretListener);
+    synchronized(_notifierLock) {
+      _log.log("-------- Resuming --------");
+      _asyncResume();
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    interpretListener.assertInteractionEndCount(1);
+    _model.removeListener(interpretListener);
+    
+    _log.log("----After second resume:\n" + getInteractionsText());
+    debugListener.assertBreakpointReachedCount(1);
+    debugListener.assertThreadLocationUpdatedCount(1);
+    debugListener.assertCurrThreadSuspendedCount(1);
+    assertInteractionsContains("Bar Line 2");
+    
+    _shutdownWithoutSuspendedInteraction();
+    _debugger.removeListener(debugListener);
+  }

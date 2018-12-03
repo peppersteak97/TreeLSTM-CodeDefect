@@ -1,0 +1,25 @@
+  protected void initializeLatticeCells() {
+    if (Dominators.COMPUTE_POST_DOMINATORS) {
+      BasicBlock exit = ir.cfg.exit();
+      DominatorCell last = (DominatorCell) getCell(exit);
+      for (final DF_LatticeCell latticeCell : cells.values()) {
+        DominatorCell cell = (DominatorCell) latticeCell;
+        if (cell == last) {
+          cell.addSingleBlock(cell.block);
+        } else {
+          cell.setTOP(ir);
+        }
+      }
+    } else {
+      BasicBlock start = ir.cfg.entry();
+      DominatorCell first = (DominatorCell) getCell(start);
+      for (final DF_LatticeCell latticeCell : cells.values()) {
+        DominatorCell cell = (DominatorCell) latticeCell;
+        if (cell == first) {
+          cell.addSingleBlock(cell.block);
+        } else {
+          cell.setTOP(ir);
+        }
+      }
+    }
+  }

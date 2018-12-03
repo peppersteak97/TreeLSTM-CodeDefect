@@ -1,0 +1,3 @@
+  final boolean getAbort() {
+    return abort;
+  }

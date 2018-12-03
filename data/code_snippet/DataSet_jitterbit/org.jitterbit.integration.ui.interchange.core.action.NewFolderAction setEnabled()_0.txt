@@ -1,0 +1,3 @@
+    private void setEnabled() {
+        setEnabled(m_parentUi != null && m_itemType != null);
+    }

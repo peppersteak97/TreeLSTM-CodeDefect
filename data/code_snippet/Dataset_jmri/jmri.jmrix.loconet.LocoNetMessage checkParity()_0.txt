@@ -1,0 +1,21 @@
+    public boolean checkParity() {
+        int len = getNumDataElements();
+        int chksum = 0xff;  /* the seed */
+        int loop;
+
+        if (getOpCode() == 0xD3 && len > 6 ) {
+            int sum = 0xFF;
+            for (loop = 0; loop< 5; loop++) sum = sum ^ getElement(loop);
+            if (getElement(5) != sum) return false;
+            sum = 0xFF;
+            for (loop = 6; loop< len-1; loop++) sum = sum ^ getElement(loop);
+            if (getElement(len-1) != sum) return false;
+            return true;            
+        }
+        
+
+    	for(loop = 0; loop < len-1; loop++) {  
+            chksum ^= getElement(loop);
+        }
+        return (chksum == getElement(len-1));
+    }

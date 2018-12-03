@@ -1,0 +1,1 @@
+  public void stopInterpreterJVM() { _state.value().stop(); }

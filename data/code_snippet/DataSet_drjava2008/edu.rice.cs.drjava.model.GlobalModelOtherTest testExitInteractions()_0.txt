@@ -1,0 +1,23 @@
+  public void testExitInteractions() throws EditDocumentException, InterruptedException {
+    InteractionListener listener = new InteractionListener() {
+      
+    };
+    
+    _model.addListener(listener);
+    
+    listener.logInteractionStart();
+    interpretIgnoreResult("System.exit(23);"); 
+    listener.waitInteractionDone();
+    listener.waitResetDone();
+    Utilities.clearEventQueue();
+    
+    _model.removeListener(listener);
+    
+    listener.assertInteractionStartCount(1);
+    listener.assertInterpreterResettingCount(1);
+    listener.assertInterpreterReadyCount(1);
+    listener.assertInterpreterExitedCount(1);
+    assertEquals("exit status", 23, listener.getLastExitStatus());
+    
+    _log.log("testExitInteractions() completed");
+  }

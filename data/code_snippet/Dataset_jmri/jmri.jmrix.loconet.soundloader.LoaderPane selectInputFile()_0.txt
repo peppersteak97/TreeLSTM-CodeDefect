@@ -1,0 +1,15 @@
+    void selectInputFile() {
+        String name = inputFileName.getText();
+        if (name.equals("")) {
+            name = jmri.jmrit.XmlFile.userFileLocationDefault();
+        }
+        if (chooser == null) chooser = new JFileChooser(name);
+        int retVal = chooser.showOpenDialog(this);
+        inputFileName.setText(chooser.getSelectedFile().getName());
+
+        readButton.setEnabled(true);
+        readButton.setToolTipText(res.getString("TipReadEnabled"));
+        loadButton.setEnabled(false);
+        loadButton.setToolTipText(res.getString("TipLoadDisabled"));
+        status.setText(res.getString("StatusReadFile"));
+    }

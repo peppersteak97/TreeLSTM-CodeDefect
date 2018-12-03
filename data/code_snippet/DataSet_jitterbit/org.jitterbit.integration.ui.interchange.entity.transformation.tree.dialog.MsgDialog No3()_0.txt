@@ -1,0 +1,9 @@
+	void No3(){
+ 		if(m_obj instanceof TreeMapper){
+ 			TreeMapper treemapper=(TreeMapper)m_obj;
+			dispose();
+			synchronized(treemapper){
+				treemapper.notify();
+			}
+		}
+	}

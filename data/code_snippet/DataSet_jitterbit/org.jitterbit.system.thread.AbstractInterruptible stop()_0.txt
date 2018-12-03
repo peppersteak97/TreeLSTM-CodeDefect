@@ -1,0 +1,13 @@
+    public final synchronized boolean stop() {
+        if (m_stopHasBeenGranted) {
+            return true;
+        }
+        if (canBeStopped()) {
+            m_stopHasBeenGranted = true;
+            if (!isInState(DONE)) {
+                appendStatus(STOPPING);
+            }
+            return true;
+        }
+        return false;
+    }

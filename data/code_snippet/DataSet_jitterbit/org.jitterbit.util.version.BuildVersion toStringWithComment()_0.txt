@@ -1,0 +1,11 @@
+    private String toStringWithComment() {
+        NumberFormat fmt = NUMBER_FORMAT.get();
+        Object[] values = {
+            fmt.format(getMajorVersion()),
+            fmt.format(getMinorVersion()),
+            fmt.format(getPatchLevel()),
+            fmt.format(getBuildNumber()),
+            m_comment
+        };
+        return MessageFormat.format(STRING_FORMAT_WITH_COMMENT, values);
+    }

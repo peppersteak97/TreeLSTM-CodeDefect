@@ -1,0 +1,38 @@
+    public void initComponents() throws Exception {
+
+        jLabel1.setText("  Macro: ");
+        jLabel1.setVisible(true);
+        
+        macroText.setText("  Reply: "); 
+        macroText.setVisible(true);
+        
+        macroReply.setText("unknown"); 
+        macroReply.setVisible(true);
+
+        sendButton.setText("Send");
+        sendButton.setVisible(true);
+        sendButton.setToolTipText("Execute NCE macro");
+
+        packetTextField.setText("");
+		packetTextField.setToolTipText("Enter macro 0 to 255");
+		packetTextField.setMaximumSize(new Dimension(packetTextField
+				.getMaximumSize().width, packetTextField.getPreferredSize().height));
+
+        
+        setTitle("Execute NCE macro");
+        getContentPane().setLayout(new GridLayout(4,2));
+
+        getContentPane().add(jLabel1);
+        getContentPane().add(packetTextField);
+        getContentPane().add(macroText);
+        getContentPane().add(macroReply);
+        getContentPane().add(sendButton);
+ 
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    sendButtonActionPerformed(e);
+                }
+            });
+  
+        pack();
+    }

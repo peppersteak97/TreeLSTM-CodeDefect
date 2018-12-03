@@ -1,0 +1,60 @@
+  public String toString() {
+    StringBuilder result = new StringBuilder("    ");
+    if (isPEI()) {
+      result.setCharAt(0, 'E');
+    }
+    if (isGCPoint()) {
+      result.setCharAt(1, 'G');
+    }
+
+    if (operator == LABEL) {
+      result.append("LABEL").append(Label.getBlock(this).block.getNumber());
+      if (Label.getBlock(this).block.getInfrequent()) result.append(" (Infrequent)");
+      return result.toString();
+    }
+
+    result.append(operator);
+    Operand op;
+    int N = getNumberOfOperands();
+    int numDefs = getNumberOfDefs();
+
+    int defsPrinted = 0;
+    for (int i = 0; i < numDefs; i++) {
+      op = getOperand(i);
+      if (op != null) {
+        if (defsPrinted > 0) result.append(", ");
+        if (defsPrinted % 10 == 9) result.append('\n');
+        result.append(op);
+        defsPrinted++;
+      }
+    }
+
+    result.append(PhysicalDefUse.getString(operator.implicitDefs));
+    defsPrinted += operator.getNumberOfImplicitDefs();
+
+    if (defsPrinted > 0) {
+      if (operator.getNumberOfDefUses() == 0) {
+        result.append(" = ");
+      } else {
+        result.append(" <-- ");
+      }
+    }
+
+    int usesPrinted = 0;
+    for (int i = numDefs; i < N; i++) {
+      op = getOperand(i);
+      if (usesPrinted > 0) result.append(", ");
+      if ((defsPrinted + usesPrinted) % 10 == 9) result.append('\n');
+      usesPrinted++;
+      if (op != null) {
+        result.append(op);
+      } else {
+        result.append("<unused>");
+      }
+    }
+
+    result.append(PhysicalDefUse.getString(operator.implicitUses));
+    usesPrinted += operator.getNumberOfImplicitUses();
+
+    return result.toString();
+  }

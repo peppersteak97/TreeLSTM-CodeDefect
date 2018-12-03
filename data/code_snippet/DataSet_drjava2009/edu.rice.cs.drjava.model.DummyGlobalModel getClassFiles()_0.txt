@@ -1,0 +1,3 @@
+  public List<File> getClassFiles()  {
+    throw new UnsupportedOperationException("Tried to call getClassFiles on a Dummy");
+  }

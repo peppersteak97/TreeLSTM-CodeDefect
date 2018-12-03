@@ -1,0 +1,33 @@
+    void doRead() {
+        if (inputFileName.getText() == "") {
+            JOptionPane.showMessageDialog(this, res.getString("ErrorNoInputFile"),
+                                      res.getString("ErrorTitle"),
+                                      JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        loadButton.setEnabled(false);
+        loadButton.setToolTipText(res.getString("TipLoadDisabled"));
+        
+        try {
+            file = new SpjFile(chooser.getSelectedFile());
+            file.read();
+        } catch (FileNotFoundException f) {
+            JOptionPane.showMessageDialog(this, res.getString("ErrorFileNotFound"),
+                                      res.getString("ErrorTitle"),
+                                      JOptionPane.ERROR_MESSAGE);
+            return;
+        } catch (IOException f) {
+            JOptionPane.showMessageDialog(this, res.getString("ErrorIOError"),
+                                      res.getString("ErrorTitle"),
+                                      JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        comment.setText(file.getComment());
+        
+        loadButton.setEnabled(true);
+        loadButton.setToolTipText(res.getString("TipLoadEnabled"));
+        status.setText(res.getString("StatusDoDownload"));
+
+    }

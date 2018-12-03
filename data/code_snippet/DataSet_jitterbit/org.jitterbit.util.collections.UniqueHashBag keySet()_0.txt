@@ -1,0 +1,3 @@
+    public Set<K> keySet() {
+        return m_hashBag.keySet();
+    }

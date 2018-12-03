@@ -1,0 +1,9 @@
+    protected void opened() {
+        super.opened();
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                requestFocus();
+            }
+        });
+    }

@@ -1,0 +1,19 @@
+    public int getRowCount() {
+        if (_allSlots) {
+            if (_systemSlots)
+                return 128;
+            else
+        }
+        int n = 0;
+        int nMin = 1;
+        int nMax = 120;
+        if (_systemSlots) {
+            nMin = 0;
+            nMax = 128;
+        }
+        for (int i=nMin; i<nMax; i++) {
+            LocoNetSlot s = SlotManager.instance().slot(i);
+            if (s.slotStatus() != LnConstants.LOCO_FREE ||
+        }
+        return n;
+    }

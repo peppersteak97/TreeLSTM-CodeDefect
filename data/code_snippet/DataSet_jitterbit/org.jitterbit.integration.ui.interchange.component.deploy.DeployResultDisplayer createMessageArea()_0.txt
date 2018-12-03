@@ -1,0 +1,4 @@
+    private void createMessageArea() {
+        m_messageArea = ComponentFactories.textFactory().newTextArea(6, 50);
+        m_messageArea.setEditable(false);
+    }

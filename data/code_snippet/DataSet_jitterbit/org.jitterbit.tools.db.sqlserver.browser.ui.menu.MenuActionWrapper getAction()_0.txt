@@ -1,0 +1,3 @@
+    public SqlServerBrowserAction getAction() {
+        return m_action;
+    }

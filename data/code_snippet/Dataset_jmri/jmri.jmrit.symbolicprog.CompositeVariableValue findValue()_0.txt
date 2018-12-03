@@ -1,0 +1,13 @@
+    void findValue() {
+        if (log.isDebugEnabled()) log.debug("findValue invoked on "+label());
+        for (int i=0; i<_value.getItemCount(); i++) {
+            String choice = (String)_value.getItemAt(i);
+            SettingList sl = (SettingList) choiceHash.get(choice);
+            if (sl.match()) {
+                if (log.isDebugEnabled()) log.debug("  match in "+i);
+                _value.setSelectedItem(choice);
+                return;
+            }
+        }
+        if (log.isDebugEnabled()) log.debug("   no match");
+    }

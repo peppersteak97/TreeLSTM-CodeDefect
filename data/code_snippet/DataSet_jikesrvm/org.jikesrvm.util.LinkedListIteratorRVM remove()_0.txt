@@ -1,0 +1,8 @@
+  public void remove() {
+    if (canRemove) {
+      l.removeInternal(cursor);
+      canRemove = false;
+    } else {
+      throw new IllegalStateException();
+    }
+  }

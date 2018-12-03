@@ -1,0 +1,7 @@
+	private void deleteRoster() {
+		String entry = conRosterBox.getSelectedItem().toString();
+		log.debug("remove consist " + entry + " from roster ");
+		NceConsistRoster.instance().removeEntry(
+				NceConsistRoster.instance().entryFromTitle(entry));
+		writeRosterFile();
+	}

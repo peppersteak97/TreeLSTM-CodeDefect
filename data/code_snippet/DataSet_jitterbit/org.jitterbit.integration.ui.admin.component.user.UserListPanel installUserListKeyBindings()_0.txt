@@ -1,0 +1,5 @@
+    private void installUserListKeyBindings() {
+        KeyBindingInstaller installer = new KeyBindingInstaller(m_userList);
+        installer.addBinding(KeyUtils.getCtrlDown(KeyEvent.VK_N),
+        installer.install();
+    }

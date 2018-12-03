@@ -1,0 +1,5 @@
+    private SAXParserFactory getParserFactory() {
+        SAXParserFactory f = SAXParserFactory.newInstance();
+        f.setNamespaceAware(true);
+        return f;
+    }

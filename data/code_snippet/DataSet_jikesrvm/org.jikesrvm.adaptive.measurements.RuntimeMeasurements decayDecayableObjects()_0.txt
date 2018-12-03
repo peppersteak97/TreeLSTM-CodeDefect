@@ -1,0 +1,8 @@
+  public static void decayDecayableObjects() {
+    decayEventCounter++;
+    AOSLogging.logger.decayingCounters();
+
+    for (Decayable obj : decayObjects) {
+      obj.decay();
+    }
+  }

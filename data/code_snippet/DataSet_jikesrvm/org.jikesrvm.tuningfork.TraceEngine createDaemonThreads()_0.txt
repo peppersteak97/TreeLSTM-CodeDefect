@@ -1,0 +1,21 @@
+  private void createDaemonThreads() {
+    /* Create primary I/O thread */
+    Thread ioThread = new Thread(new Runnable() {
+      public void run() {
+        ioThreadMainLoop();
+      }}, "TuningFork Primary I/O thread");
+    ioThread.setDaemon(true);
+    ioThread.start();
+
+    /* Install shutdown hook that will delay VM exit until I/O completes. */
+    Callbacks.addExitMonitor(new ExitMonitor(){
+      public void notifyExit(int value) {
+        state = State.SHUTTING_DOWN;
+        while (state == State.SHUTTING_DOWN) {
+          try {
+            Thread.sleep(1);
+          } catch (InterruptedException e) {
+          }
+        }
+      }});
+  }

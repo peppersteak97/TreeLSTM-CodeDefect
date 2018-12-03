@@ -1,0 +1,19 @@
+  public void testRemembersMultipleEditedEntries() {
+    _history.add("some text");
+    _history.add("some more text");
+    _history.movePrevious("");
+
+    String newEntry1 = "some more different text";
+    String newEntry2 = "some different text";
+
+    _history.movePrevious(newEntry1);
+    _history.moveNext(newEntry2);
+
+    Utilities.clearEventQueue();
+    assertEquals("Did not remember the edited entry correctly.", newEntry1, _history.getCurrent());
+
+    _history.movePrevious(newEntry1);
+    
+    Utilities.clearEventQueue();
+    assertEquals("Did not remember the edited entry correctly.", newEntry2, _history.getCurrent());
+  }

@@ -1,0 +1,9 @@
+    private File getFileToSave() {
+    	File suggested = getSelectedFile(false);
+        return m_fileChooser.getFileToSave(
+                        m_parentComponent, 
+                        m_fileFilter, 
+                        m_recentFiles, 
+                        m_title,
+                        suggested);
+    }

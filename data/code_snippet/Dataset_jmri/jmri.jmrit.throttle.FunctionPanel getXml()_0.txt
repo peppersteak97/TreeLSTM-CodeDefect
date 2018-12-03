@@ -1,0 +1,15 @@
+    public Element getXml()
+    {
+        Element me = new Element("FunctionPanel");
+        Element window = new Element("window");
+        WindowPreferences wp = new WindowPreferences();
+        java.util.ArrayList children =
+                new java.util.ArrayList(1);
+        children.add(wp.getPreferences(this));
+        for (int i=0; i<this.NUM_FUNCTION_BUTTONS; i++)
+        {
+            children.add(functionButton[i].getXml());
+        }
+        me.setContent(children);
+        return me;
+    }

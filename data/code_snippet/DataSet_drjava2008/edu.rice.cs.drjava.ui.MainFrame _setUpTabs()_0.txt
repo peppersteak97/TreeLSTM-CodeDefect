@@ -1,0 +1,130 @@
+  private void _setUpTabs() {
+    
+    _interactionsController.setPrevPaneAction(_switchToPreviousPaneAction);
+    _interactionsController.setNextPaneAction(_switchToNextPaneAction);
+    
+    JScrollPane interactionsScroll = 
+      new BorderlessScrollPane(_interactionsPane, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                               JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    _interactionsContainer.add(interactionsScroll, BorderLayout.CENTER);
+    
+    if (_showDebugger) {
+      _model.getBreakpointManager().addListener(new RegionManagerListener<Breakpoint>() {
+        /* Called when a breakpoint is added. Only runs in event thread. */
+        public void regionAdded(final Breakpoint bp) {
+          DefinitionsPane bpPane = getDefPaneGivenODD(bp.getDocument());
+          _documentBreakpointHighlights.
+            put(bp, bpPane.getHighlightManager().
+                  addHighlight(bp.getStartOffset(), bp.getEndOffset(), 
+                               bp.isEnabled() ? DefinitionsPane.BREAKPOINT_PAINTER
+                                 : DefinitionsPane.DISABLED_BREAKPOINT_PAINTER));
+          _updateDebugStatus();
+        }
+        
+        /** Called when a breakpoint is changed. Only runs in event thread. */
+        public void regionChanged(Breakpoint bp) { 
+          regionRemoved(bp);
+          regionAdded(bp);
+        }
+        
+        /** Called when a breakpoint is removed. Only runs in event thread. */
+        public void regionRemoved(final Breakpoint bp) {      
+          HighlightManager.HighlightInfo highlight = _documentBreakpointHighlights.get(bp);
+          if (highlight != null) highlight.remove();
+          _documentBreakpointHighlights.remove(bp);
+        }
+      });
+    }
+    
+    _model.getBookmarkManager().addListener(new RegionManagerListener<MovingDocumentRegion>() { 
+      public void regionAdded(MovingDocumentRegion r) {
+        DefinitionsPane bpPane = getDefPaneGivenODD(r.getDocument());
+        _documentBookmarkHighlights.
+          put(r, bpPane.getHighlightManager().
+                addHighlight(r.getStartOffset(), r.getEndOffset(), DefinitionsPane.BOOKMARK_PAINTER));
+      }
+      public void regionChanged(MovingDocumentRegion r) { 
+        regionRemoved(r);
+        regionAdded(r);
+      }
+      public void regionRemoved(MovingDocumentRegion r) {
+        HighlightManager.HighlightInfo highlight = _documentBookmarkHighlights.get(r);
+        if (highlight != null) highlight.remove();
+        _documentBookmarkHighlights.remove(r);
+      }
+    });
+    
+    _tabbedPane.addChangeListener(new ChangeListener () {
+      /* Only runs in the event thread. */
+      public void stateChanged(ChangeEvent e) {
+        clearStatusMessage();
+        
+        if (_tabbedPane.getSelectedIndex() == INTERACTIONS_TAB) {
+          EventQueue.invokeLater(new Runnable() { 
+            public void run() { _interactionsContainer.requestFocusInWindow(); } 
+          });
+        }
+        else if (_tabbedPane.getSelectedIndex() == CONSOLE_TAB) {
+          EventQueue.invokeLater(new Runnable() { public void run() { _consoleScroll.requestFocusInWindow(); } });
+        }
+        if (_currentDefPane != null) {
+          int pos = _currentDefPane.getCaretPosition();
+          _currentDefPane.getErrorCaretListener().updateHighlight(pos);
+        }
+      }
+    });
+    
+    _tabbedPane.add("Interactions", _interactionsContainer);
+    _tabbedPane.add("Console", _consoleScroll);
+    
+    _interactionsPane.addKeyListener(_historyListener);
+    _interactionsPane.addFocusListener(_focusListenerForRecentDocs);
+    
+    _consoleScroll.addKeyListener(_historyListener);
+    _consoleScroll.addFocusListener(_focusListenerForRecentDocs);
+    
+    
+    _tabs.addLast(_compilerErrorPanel);
+    _tabs.addLast(_junitErrorPanel);
+    _tabs.addLast(_javadocErrorPanel);
+    _tabs.addLast(_findReplace);
+    if (_showDebugger) { _tabs.addLast(_breakpointsPanel); }
+    _tabs.addLast(_bookmarksPanel);
+    
+    _interactionsContainer.addFocusListener(new FocusAdapter() {
+      public void focusGained(FocusEvent e) { 
+        EventQueue.invokeLater(new Runnable() { 
+          public void run() {
+            _interactionsPane.requestFocusInWindow(); 
+          }
+        });
+      }
+    });
+    
+    _interactionsPane.addFocusListener(new FocusAdapter() {
+      public void focusGained(FocusEvent e) { _lastFocusOwner = _interactionsContainer; }
+    });
+    _consolePane.addFocusListener(new FocusAdapter() {
+      public void focusGained(FocusEvent e) { _lastFocusOwner = _consoleScroll; }
+    });
+    _compilerErrorPanel.getMainPanel().addFocusListener(new FocusAdapter() {
+      public void focusGained(FocusEvent e) { _lastFocusOwner = _compilerErrorPanel; }
+    });
+    _junitErrorPanel.getMainPanel().addFocusListener(new FocusAdapter() {
+      public void focusGained(FocusEvent e) { _lastFocusOwner = _junitErrorPanel; }
+    });
+    _javadocErrorPanel.getMainPanel().addFocusListener(new FocusAdapter() {
+      public void focusGained(FocusEvent e) { _lastFocusOwner = _javadocErrorPanel; }
+    });
+    _findReplace.getFindField().addFocusListener(new FocusAdapter() {
+      public void focusGained(FocusEvent e) { _lastFocusOwner = _findReplace; }
+    });
+    if (_showDebugger) {
+      _breakpointsPanel.getMainPanel().addFocusListener(new FocusAdapter() {
+        public void focusGained(FocusEvent e) { _lastFocusOwner = _breakpointsPanel; }
+      });
+    }
+    _bookmarksPanel.getMainPanel().addFocusListener(new FocusAdapter() { 
+      public void focusGained(FocusEvent e) { _lastFocusOwner = _bookmarksPanel; }
+    });
+  }

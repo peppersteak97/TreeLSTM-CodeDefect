@@ -1,0 +1,5 @@
+    static public AcelaMessage getAcelaPollSensorsMsg() {
+        AcelaMessage m = new AcelaMessage(1);
+        m.setBinary(true);
+        return m;
+    }

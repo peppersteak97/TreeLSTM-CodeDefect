@@ -1,0 +1,9 @@
+  public void testWordCharsFunction() throws IOException {
+    BalancingStreamTokenizer tok = make("Hel lo\tWor ld");
+    tok.defaultThreeQuoteDollarCurlySetup();
+    tok.wordChars(32);
+    String s = tok.getNextToken();
+    assertEquals("Hel lo",s);
+    s = tok.getNextToken();
+    assertEquals("Wor ld",s);
+  }

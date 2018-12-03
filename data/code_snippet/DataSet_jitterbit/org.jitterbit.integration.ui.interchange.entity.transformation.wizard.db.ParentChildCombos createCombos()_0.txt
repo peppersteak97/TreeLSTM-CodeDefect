@@ -1,0 +1,17 @@
+    private void createCombos() {
+        m_parentBox = new PageComboBox(m_parentObjects);
+        m_parentBox.setMaximumRowCount(Math.min(16, m_parentObjects.length));
+        m_parentBox.addActionListener(new ParentObjectSelectedAction());
+        
+        m_childBox = new PageComboBox(m_childObjects);
+        m_childBox.setMaximumRowCount(Math.min(16, m_childObjects.length));
+        m_childBox.addActionListener(new ChildObjectSelectedAction());
+
+        m_parentFieldBox = new PageComboBox( new Object[] { SELECT_ITEM });
+        m_parentFieldBox.setEnabled(false);
+        m_parentFieldBox.addActionListener(new ParentFieldSelectedAction());
+        
+        m_childFieldBox = new PageComboBox( new Object[] { SELECT_ITEM });
+        m_childFieldBox.setEnabled(false);
+        m_childFieldBox.addActionListener(new ChildFieldSelectedAction());
+    }

@@ -1,0 +1,15 @@
+  public void testApplyThenResetDefault() {
+    Integer testInteger = Integer.valueOf(10);
+
+    _option.setValue(testInteger);
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    _option.updateConfig();
+    Utilities.clearEventQueue();
+
+    assertEquals("Apply (updateConfig) should write change to file",
+                 OptionConstants.INDENT_LEVEL.getDefault(),
+                 DrJava.getConfig().getSetting(OptionConstants.INDENT_LEVEL));
+  }

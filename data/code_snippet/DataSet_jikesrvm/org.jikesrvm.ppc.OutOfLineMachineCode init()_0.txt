@@ -1,0 +1,8 @@
+  public static void init() {
+    reflectiveMethodInvokerInstructions = generateReflectiveMethodInvokerInstructions();
+    saveThreadStateInstructions = generateSaveThreadStateInstructions();
+    threadSwitchInstructions = generateThreadSwitchInstructions();
+    restoreHardwareExceptionStateInstructions = generateRestoreHardwareExceptionStateInstructions();
+    saveVolatilesInstructions = generateSaveVolatilesInstructions();
+    restoreVolatilesInstructions = generateRestoreVolatilesInstructions();
+  }

@@ -1,0 +1,15 @@
+  public void addNewEquationsToWorkList() {
+    if (DEBUG) {
+      System.out.println("new equations:");
+    }
+    for (DF_Equation eq : newEquations) {
+      if (DEBUG) {
+        System.out.println(eq.toString());
+      }
+      addToWorkList(eq);
+    }
+    newEquations.clear();
+    if (DEBUG) {
+      System.out.println("end of new equations");
+    }
+  }

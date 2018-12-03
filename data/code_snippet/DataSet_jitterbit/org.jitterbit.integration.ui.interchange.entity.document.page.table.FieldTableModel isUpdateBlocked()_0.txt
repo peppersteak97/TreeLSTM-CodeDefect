@@ -1,0 +1,3 @@
+    protected final boolean isUpdateBlocked() {
+        return m_updateObjectBlocked;
+    }

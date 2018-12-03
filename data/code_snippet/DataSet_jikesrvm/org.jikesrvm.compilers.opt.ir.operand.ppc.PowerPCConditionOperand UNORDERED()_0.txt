@@ -1,0 +1,3 @@
+  public static PowerPCConditionOperand UNORDERED() {
+    return new PowerPCConditionOperand(UNORDERED);
+  }

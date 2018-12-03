@@ -1,0 +1,1 @@
+  public static JButton getButton() { return _errorsButton; }  

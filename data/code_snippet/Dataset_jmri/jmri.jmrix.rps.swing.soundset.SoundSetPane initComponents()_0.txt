@@ -1,0 +1,65 @@
+    public void initComponents() {
+        nf = java.text.NumberFormat.getInstance();
+        nf.setMinimumFractionDigits(1);
+        nf.setMaximumFractionDigits(5);
+        nf.setGroupingUsed(false);
+
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        
+        JPanel p = new JPanel();
+        p.setLayout(new FlowLayout());
+        p.add(new JLabel("Current sound velocity: "));
+        vsound = new JTextField(5);
+        vsound.setEnabled(false);
+        vsound.setText(nf.format(Engine.instance().getVSound()));
+        p.add(vsound);
+        this.add(p);
+        
+        this.add(new JSeparator());
+
+        p = new JPanel();
+        p.setLayout(new FlowLayout());
+        p.add(new JLabel("New sound velocity: "));
+        newval = new JTextField(8);
+        p.add(newval);
+        JButton b = new JButton("Set");
+        b.addActionListener(new ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                setPushed();
+            }
+        });
+        p.add(b);
+        this.add(p);
+        
+        this.add(new JSeparator());
+
+        p = new JPanel();
+        p.setLayout(new FlowLayout());
+        p.add(new JLabel("Known Distance: "));
+        dist = new JTextField(5);
+        p.add(dist);
+        p.add(new JLabel("Transmitter ID: "));
+        id = new JTextField(5);
+        p.add(id);
+        p.add(new JLabel("Receiver Number: "));
+        rcvr = new JTextField(3);
+        p.add(rcvr);
+        this.add(p);
+        p = new JPanel();
+        p.setLayout(new FlowLayout());
+        p.add(new JLabel("Measured Speed: "));
+        speed = new JTextField(8);
+        speed.setEnabled(false);
+        p.add(speed);
+        auto = new JCheckBox("Auto Set");
+        p.add(auto);
+        p.add(new JLabel("Damping: "));
+        gain = new JTextField(3);
+        gain.setText("10.");
+        p.add(gain);
+        this.add(p);
+        
+        Distributor.instance().addReadingListener(this);
+        Distributor.instance().addMeasurementListener(this);
+        Engine.instance().addPropertyChangeListener(this);
+    }

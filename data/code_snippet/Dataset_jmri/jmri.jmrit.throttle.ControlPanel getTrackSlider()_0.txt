@@ -1,0 +1,3 @@
+    public boolean getTrackSlider() {
+        return trackSlider;
+    }

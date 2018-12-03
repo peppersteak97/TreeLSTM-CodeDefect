@@ -1,0 +1,8 @@
+	private void parse() throws ParserConfigurationException, IOException, SAXException {
+		if( m_file == null )
+			return;
+		
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder domBuilder = factory.newDocumentBuilder();
+		m_domDocument = domBuilder.parse(m_file);
+	}

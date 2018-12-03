@@ -1,0 +1,11 @@
+	private void rosterItemSelected() {
+		if (!(rosterBox.getSelectedItem() instanceof NullComboBoxItem)) {
+			String rosterEntryTitle = rosterBox.getSelectedItem().toString();
+			RosterEntry entry = Roster.instance().entryFromTitle(
+					rosterEntryTitle);
+
+			addrSelector.setAddress(entry.getDccLocoAddress());
+			consistAddress = null;
+			changeOfAddress();
+		}
+	}

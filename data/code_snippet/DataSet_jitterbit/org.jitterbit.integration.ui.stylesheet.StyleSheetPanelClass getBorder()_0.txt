@@ -1,0 +1,3 @@
+    public Border getBorder() {
+        return m_border;
+    }

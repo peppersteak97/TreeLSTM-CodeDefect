@@ -1,0 +1,30 @@
+    if (getCompilerType() == JNI || getCompilerType() == TRAP) {
+      return Offset.zero();
+    } else {
+      Offset offset = ip.diff(Magic.objectAsAddress(instructions));
+      int max = (instructions.length() + 1) << ArchitectureSpecific.ArchConstants.LG_INSTRUCTION_WIDTH;
+      if (!offset.toWord().LT(Word.fromIntZeroExtend(max))) {
+        Address instructionStart = Magic.objectAsAddress(instructions);
+        VM.sysWriteln("\nIn thread ",RVMThread.getCurrentThreadSlot()," getInstructionOffset: ip is not within compiled code for method: ",ip);
+        VM.sysWrite("\tsupposed method is ");
+        VM.sysWrite(method);
+        VM.sysWriteln();
+        VM.sysWriteln("\tcode for this method starts at ", instructionStart);
+        VM.sysWriteln("\t and has last valid return address of ", instructionStart.plus(max));
+        VM.sysWriteln("The requested instruction address was ", ip);
+        CompiledMethod realCM = CompiledMethods.findMethodForInstruction(ip);
+        if (realCM == null) {
+          VM.sysWriteln("\tUnable to find compiled method corresponding to this return address");
+        } else {
+          VM.sysWrite("\tFound compiled method ");
+          VM.sysWrite(realCM.getMethod());
+          VM.sysWriteln(" whose code contains this return address");
+        }
+        if (dieOnFailure) {
+          VM.sysWriteln("Attempting to dump virtual machine state before exiting");
+          RVMThread.dumpVirtualMachine();
+          VM.sysFail("Terminating VM due to invalid request for instruction offset");
+        }
+      }
+      return offset;
+    }

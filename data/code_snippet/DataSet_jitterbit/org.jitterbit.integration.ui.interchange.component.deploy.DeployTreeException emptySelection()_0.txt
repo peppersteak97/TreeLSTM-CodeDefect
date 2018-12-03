@@ -1,0 +1,4 @@
+    public static DeployTreeException emptySelection() {
+        return new DeployTreeException(PackageResources.Tree.Exception.EMPTY_SELECTION, 
+                        true, null);
+    }

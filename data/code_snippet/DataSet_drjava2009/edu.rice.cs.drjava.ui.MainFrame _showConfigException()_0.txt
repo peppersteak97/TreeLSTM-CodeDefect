@@ -1,0 +1,13 @@
+  private void _showConfigException() {
+    if (DrJava.getConfig().hadStartupException()) {
+      try {
+        DrJava.getConfig().saveConfiguration();
+      }
+      catch(IOException ioe) { /* ignore */ }
+      Exception e = DrJava.getConfig().getStartupException();
+      _showError(e, "Error in Config File",
+                 "Could not read the '.drjava' configuration file\n" +
+                 "in your home directory.  Starting with default\n" +
+                 "values instead.\n\n" + "The problem was:\n");
+    }
+  }

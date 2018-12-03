@@ -1,0 +1,7 @@
+    private void executeImpl() {
+        if (m_loaderFactory == null) {
+            m_loaderFactory = NewProjectLoaderFactory.newInstance();
+        }
+        INewProjectLoader loader = m_loaderFactory.newLoader(m_view);
+        loader.loadNewProject(new InternalActionCallback(this));
+    }

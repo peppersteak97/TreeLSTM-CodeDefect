@@ -1,0 +1,7 @@
+    private GridBagConstraints getInitialConstraints() {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(2, 0, 2, 0);
+        gbc.gridx = 0;
+        return gbc;
+    }

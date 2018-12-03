@@ -1,0 +1,7 @@
+  private void _replaceCurrentLineFromHistory() {
+    try {
+      _clearCurrentInputText();
+      append(_history.getCurrent(), DEFAULT_STYLE);
+    }
+    catch (EditDocumentException ble) { throw new UnexpectedException(ble); }
+  }

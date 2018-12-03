@@ -1,0 +1,3 @@
+    public AM_PM getSelectedItem() {
+        return (AM_PM)super.getSelectedItem();
+    }

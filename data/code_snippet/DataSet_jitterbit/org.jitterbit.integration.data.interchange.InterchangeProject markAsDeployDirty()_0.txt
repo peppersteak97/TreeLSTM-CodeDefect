@@ -1,0 +1,5 @@
+    public void markAsDeployDirty() {
+        for (RootFolder f : m_mapRootFolders.values()) {
+            markAsDeployDirtyImpl(f);
+        }
+    }

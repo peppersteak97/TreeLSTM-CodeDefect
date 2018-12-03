@@ -1,0 +1,7 @@
+    private void issueClockStart() {
+        byte [] cmd = jmri.jmrix.nce.NceBinaryCommand.accStartClock();
+        NceMessage cmdNce = jmri.jmrix.nce.NceMessage.createBinaryMessage(cmd, CMD_CLOCK_SET_REPLY_SIZE);
+        waiting++;
+        waitingForCmdStart = true;
+        jmri.jmrix.nce.NceTrafficController.instance().sendNceMessage(cmdNce, this);
+    }

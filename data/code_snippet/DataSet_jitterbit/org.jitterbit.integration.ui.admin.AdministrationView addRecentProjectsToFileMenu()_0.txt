@@ -1,0 +1,8 @@
+    private void addRecentProjectsToFileMenu() {
+        RecentProjectsMenuBuilder menuBuilder = 
+            new RecentProjectsMenuBuilder(IntegrationUi.getUi().getViewManager(),
+                            getWindow().getMenuManager());
+        menuBuilder.setErrorLogger(ErrorLogger.getDefaultLogger());
+        IRecentProjectManager mgr = IntegrationUi.getUi().getRecentProjectManager();
+        mgr.buildRecentProjectsRepresentation(menuBuilder);
+    }

@@ -1,0 +1,3 @@
+  public static IA32ConditionOperand NE() {
+    return new IA32ConditionOperand(NE);
+  }

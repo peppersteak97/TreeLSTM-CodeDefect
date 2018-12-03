@@ -1,0 +1,9 @@
+    private void updateWizardTitle() {
+        UiUtils.runOnEventThread(new Runnable() {
+            
+            public void run() {
+                setTitle(m_ui.getName());
+                getWizard().setPageTitle(m_ui.getName());
+            }
+        });
+    }

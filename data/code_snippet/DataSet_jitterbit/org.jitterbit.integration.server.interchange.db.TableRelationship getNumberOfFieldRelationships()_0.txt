@@ -1,0 +1,3 @@
+    public int getNumberOfFieldRelationships() {
+        return m_fields.size();
+    }

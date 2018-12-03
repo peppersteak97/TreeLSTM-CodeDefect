@@ -1,0 +1,9 @@
+    private XmlStructure createXmlStructure() {
+        XmlStructure xml = new XmlStructure();
+        xml.setFilePath(m_structureFile.getFilePath());
+        String root = m_ui.getSelectedRoot();
+        if (root.length() > 0) {
+            xml.setRootNodeName(root);
+        }
+        return xml;
+    }

@@ -1,0 +1,3 @@
+    public List<ConversionWarning> getWarnings() {
+        return m_logger.getWarnings();
+    }

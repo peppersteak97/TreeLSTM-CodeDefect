@@ -1,0 +1,21 @@
+  public void testEmptyConfiguration() throws IOException {  
+    SavableConfiguration emptyConfig = new SavableConfiguration(new DefaultOptionMap());
+    
+    emptyConfig.saveConfiguration(outputBytes, "header");
+    
+    String outputString = outputBytes.toString();
+    String[] lines = outputString.split("\n");
+    
+    assertTrue("Data exists", outputString.length() > 0);
+    assertEquals("Number of lines", 2, lines.length);
+    assertEquals("Starts with \"#header\"", "#header", lines[0]);
+    try {
+      String bareDate = lines[1].substring(1, lines[1].length());
+      Date readInDate = dateFormat.parse(bareDate);
+      assertTrue("Embedded date less than now",
+                 readInDate.compareTo(new Date()) <= 0);
+    }
+    catch (ParseException pe) {
+      fail("Could not parse second line into a date."); 
+    }
+  }

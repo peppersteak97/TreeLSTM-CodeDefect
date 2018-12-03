@@ -1,0 +1,9 @@
+    public StringKeyValuePairs getPropertiesForTarget() {
+        StringKeyValuePairs data = super.getPropertiesForSource();
+        if (isManualMode()) {
+            data.put(CONNECT_STRING_PROPERTY, getManualConnectionString());
+        }
+        else {
+        }
+        return data;
+    }

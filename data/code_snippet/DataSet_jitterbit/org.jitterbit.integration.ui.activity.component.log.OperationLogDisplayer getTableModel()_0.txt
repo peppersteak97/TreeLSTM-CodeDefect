@@ -1,0 +1,3 @@
+    protected IKongaTableModel getTableModel() {
+        return m_tableModel;
+    }

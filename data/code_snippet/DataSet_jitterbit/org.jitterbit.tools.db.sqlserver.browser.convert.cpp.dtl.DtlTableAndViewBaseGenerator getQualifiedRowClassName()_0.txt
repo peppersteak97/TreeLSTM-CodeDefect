@@ -1,0 +1,4 @@
+    protected final String getQualifiedRowClassName() {
+        String sNamespace = getNamespace();
+        return sNamespace.length() > 0 ? sNamespace + "::" + getRowClassName() : getRowClassName();
+    }

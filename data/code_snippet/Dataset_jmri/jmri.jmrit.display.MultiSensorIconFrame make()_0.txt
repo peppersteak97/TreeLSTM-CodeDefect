@@ -1,0 +1,17 @@
+    void make() {
+        MultiSensorIcon m = new MultiSensorIcon();
+        m.setUnknownIcon(defaultIcons.getIcon(0));
+        m.setInconsistentIcon(defaultIcons.getIcon(1));
+        m.setInactiveIcon(defaultIcons.getIcon(2));
+        
+        for (int i = 0; i< content.getComponentCount(); i++) {
+            Entry e = (Entry)content.getComponent(i);
+            m.addEntry(e.sensor.getText(), e.ed.getIcon(0));
+        }
+        m.setUpDown(updown.isSelected());
+
+		if (panelEditor!=null)
+			panelEditor.addMultiSensor(m);
+		else if (layoutEditor!=null)
+			layoutEditor.addMultiSensor(m);
+    }

@@ -1,0 +1,17 @@
+    public String toString() {
+        if (m_startDate == null) {
+        }
+        else {
+            sb.append(m_startDate);
+        }
+        if (m_bHasEndDate) {
+            if (m_endDate == null) {
+            }
+            else {
+                sb.append(m_endDate);
+            }
+        }
+        else {
+        }
+        return sb.toString();
+    }

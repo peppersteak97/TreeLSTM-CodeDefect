@@ -1,0 +1,5 @@
+    private void setComparators() {
+        m_serverTable.setClassComparator(ServerName.class, TableComparators.getNameComparator());
+        m_serverTable.setClassComparator(ServerGuid.class, TableComparators.getGuidComparator());
+        m_serverTable.setClassComparator(Date.class, TableComparators.getDateComparator());
+    }

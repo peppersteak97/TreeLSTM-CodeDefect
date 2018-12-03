@@ -1,0 +1,15 @@
+  public String toString() {
+    StringBuilder buf = new StringBuilder("OsrTypeInfo(");
+    for (int i = 0, n = localTypeCodes.length; i < n; i++) {
+      buf.append((char) localTypeCodes[i]);
+    }
+
+    buf.append(",");
+    for (int i = 0, n = stackTypeCodes.length; i < n; i++) {
+      buf.append((char) stackTypeCodes[i]);
+    }
+
+    buf.append(")");
+
+    return buf.toString();
+  }

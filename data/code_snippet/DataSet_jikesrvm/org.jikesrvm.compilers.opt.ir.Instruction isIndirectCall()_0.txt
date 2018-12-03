@@ -1,0 +1,3 @@
+  public boolean isIndirectCall() {
+    return operator.isIndirectCall();
+  }

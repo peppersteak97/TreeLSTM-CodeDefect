@@ -1,0 +1,3 @@
+    public void removeAllEntries() {
+        m_entries.clear();
+    }

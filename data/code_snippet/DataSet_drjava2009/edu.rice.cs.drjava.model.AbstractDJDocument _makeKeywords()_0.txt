@@ -1,0 +1,11 @@
+  protected static HashSet<String> _makeKeywords() {
+    final String[] words =  {
+      "import", "native", "package", "goto", "const", "if", "else", "switch", "while", "for", "do", "true", "false",
+      "null", "this", "super", "new", "instanceof", "return", "static", "synchronized", "transient", "volatile", 
+      "final", "strictfp", "throw", "try", "catch", "finally", "throws", "extends", "implements", "interface", "class",
+      "break", "continue", "public", "protected", "private", "abstract", "case", "default", "assert", "enum"
+    };
+    HashSet<String> keywords = new HashSet<String>();
+    for (int i = 0; i < words.length; i++) { keywords.add(words[i]); }
+    return  keywords;
+  }

@@ -1,0 +1,3 @@
+    public int value() {
+        return getElement(5)&0xFF;
+    }

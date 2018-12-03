@@ -1,0 +1,4 @@
+    protected void dependantObjectDeleted() {
+        getMainObject().setProject(null);
+        super.dependantObjectDeleted();
+    }

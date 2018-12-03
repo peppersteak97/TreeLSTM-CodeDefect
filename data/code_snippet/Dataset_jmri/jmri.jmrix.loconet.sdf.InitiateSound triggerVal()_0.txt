@@ -1,0 +1,5 @@
+    String triggerVal() {
+        String trigName = jmri.util.StringUtil.getNameFromState(trigger, triggerCodes, triggerNames);
+        if (trigName!=null) return trigName;
+        return "(trigger = 0x"+jmri.util.StringUtil.twoHexFromInt(trigger)+")";
+    }

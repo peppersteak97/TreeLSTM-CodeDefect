@@ -1,0 +1,7 @@
+    private boolean shouldLoginPageBeUsed() {
+        if (m_useLoginPage) {
+            ServerManager sm = ServerManager.getManager();
+            return sm.getConnectionStatus() == ConnectionStatus.DISCONNECTED;
+        }
+        return false;
+    }

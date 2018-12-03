@@ -1,0 +1,3 @@
+    public TreePanel getPanel() {
+        return m_treePanel;
+    }

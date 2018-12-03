@@ -1,0 +1,4 @@
+	public void displayResult() {
+	    ConversionResultDialog dlg = new ConversionResultDialog(this);
+	    dlg.setVisible(true);
+	}

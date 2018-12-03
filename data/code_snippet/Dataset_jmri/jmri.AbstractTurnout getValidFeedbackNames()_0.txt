@@ -1,0 +1,3 @@
+	public String[] getValidFeedbackNames() {
+		return _validFeedbackNames;
+	}

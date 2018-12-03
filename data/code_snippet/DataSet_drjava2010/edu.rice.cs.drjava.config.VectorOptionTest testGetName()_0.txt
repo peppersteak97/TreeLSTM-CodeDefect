@@ -1,0 +1,4 @@
+  public void testGetName() {
+    assertEquals("whatever", _svo.getName());
+    assertEquals("everwhat", _bvo.getName());
+  }

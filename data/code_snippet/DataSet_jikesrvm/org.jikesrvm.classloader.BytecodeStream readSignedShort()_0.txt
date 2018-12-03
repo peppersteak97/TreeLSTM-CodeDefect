@@ -1,0 +1,6 @@
+  private int readSignedShort() {
+    if (VM.VerifyAssertions) VM._assert(bcIndex <= bcLength);
+    int i = bcodes[bcIndex++] << BITS_IN_BYTE;
+    i |= (bcodes[bcIndex++] & 0xFF);
+    return i;
+  }

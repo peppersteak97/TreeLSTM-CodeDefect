@@ -1,0 +1,1 @@
+  public boolean hasWarnedAboutModified() { return _hasWarnedAboutModified; }

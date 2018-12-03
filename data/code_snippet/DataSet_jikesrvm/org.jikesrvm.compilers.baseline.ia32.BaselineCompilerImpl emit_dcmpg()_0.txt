@@ -1,0 +1,10 @@
+  protected final void emit_dcmpg() {
+    if (SSE2_BASE) {
+    } else {
+    }
+    ForwardReference fr2 = asm.forwardJMP();
+    fr1.resolve(asm);
+    fr2.resolve(asm);
+    if (!SSE2_BASE) {
+    }
+  }

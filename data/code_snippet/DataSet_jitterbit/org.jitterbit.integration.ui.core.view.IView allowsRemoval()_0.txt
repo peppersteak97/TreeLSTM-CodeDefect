@@ -1,0 +1,1 @@
+     * removed from the UI. {@link #allowsRemoval()} will always have been

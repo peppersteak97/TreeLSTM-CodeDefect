@@ -1,0 +1,3 @@
+    public static IButtonFactory toolbarButtonFactory() {
+        return TOOLBAR_BUTTON_FACTORY;
+    }

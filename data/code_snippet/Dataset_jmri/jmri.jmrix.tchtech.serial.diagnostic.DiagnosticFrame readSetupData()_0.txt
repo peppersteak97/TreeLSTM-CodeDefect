@@ -1,0 +1,12 @@
+            if ( readSetupData() ) {
+                if (outTest) {
+                    if (initializeOutputTest()) {
+                        runOutputTest();
+                    }
+                }
+                else if (wrapTest) {
+                    if (initializeWraparoundTest()) {
+                        runWraparoundTest();
+                    }
+                }
+            }

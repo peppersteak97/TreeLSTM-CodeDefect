@@ -1,0 +1,3 @@
+    public void validateField() throws InputFieldException {
+        validateField(this);
+    }

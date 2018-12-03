@@ -1,0 +1,4 @@
+    public List<IIntegrationEntityUiDelegate> getSelectedItems() {
+        return (m_selectedItems == null) ? new ArrayList<IIntegrationEntityUiDelegate>()
+                        : new ArrayList<IIntegrationEntityUiDelegate>(m_selectedItems);
+    }

@@ -1,0 +1,10 @@
+  protected final void emit_lneg() {
+    popLong(T1, T0);
+    if (VM.BuildFor64Addr) {
+      asm.emitNEG(T0, T0);
+    } else {
+      asm.emitSUBFIC(T0, T0, 0x0);
+      asm.emitSUBFZE(T1, T1);
+    }
+    pushLong(T1, T0);
+  }

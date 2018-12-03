@@ -1,0 +1,7 @@
+    protected List<JButton> getAdditionalToolBarButtons() {
+        List<JButton> btns = new ArrayList<JButton>();
+        m_testConnectionAction = createTestConnectionAction();
+        m_activeObjectActions = KongaListUtils.asList(m_testConnectionAction);
+        btns.add(createToolBarButton(m_testConnectionAction));
+        return btns;
+    }

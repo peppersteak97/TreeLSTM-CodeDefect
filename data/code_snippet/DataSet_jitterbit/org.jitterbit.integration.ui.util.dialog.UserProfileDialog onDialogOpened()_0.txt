@@ -1,0 +1,6 @@
+    protected void onDialogOpened() {
+        super.onDialogOpened();
+        m_currentProcessID = 
+            IntegrationUi.getUi().getJobManager().submitForParallellProcessing(
+                        m_downloadProcess, KongaListUtils.asList(m_downloadDisplayer));
+    }

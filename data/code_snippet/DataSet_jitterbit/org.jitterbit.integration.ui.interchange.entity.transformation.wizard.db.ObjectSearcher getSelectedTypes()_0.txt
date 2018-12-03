@@ -1,0 +1,13 @@
+    private EnumSet<DatabaseObjectType> getSelectedTypes() {
+        EnumSet<DatabaseObjectType> set = EnumSet.noneOf(DatabaseObjectType.class);
+        if (m_tableCheck.isSelected()) {
+            set.add(DatabaseObjectType.TABLE);
+        }
+        if (m_viewCheck.isSelected()) {
+            set.add(DatabaseObjectType.VIEW);
+        }
+        if (m_synonymCheck.isSelected()) {
+            set.add(DatabaseObjectType.SYNONYM);
+        }
+        return set;
+    }

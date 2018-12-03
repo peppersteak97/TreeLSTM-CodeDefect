@@ -1,0 +1,3 @@
+    public IDbDriverChooser newChooser() {
+        return new DbDriverChooserImpl();
+    }

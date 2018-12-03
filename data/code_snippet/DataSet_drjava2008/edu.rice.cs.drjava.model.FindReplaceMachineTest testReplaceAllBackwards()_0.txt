@@ -1,0 +1,10 @@
+  public void testReplaceAllBackwards() throws BadLocationException {
+    _doc.insertString(0, "hElo helO", null);
+    _initFrm(3);
+    _frm.setFindWord("heLo");
+    _frm.setReplaceWord("cool");
+    _frm.setMatchCase(false);
+    _frm.setSearchBackwards(true);
+    replaceAll();
+    assertEquals("backwards replace", "cool cool", _doc.getText());
+  }

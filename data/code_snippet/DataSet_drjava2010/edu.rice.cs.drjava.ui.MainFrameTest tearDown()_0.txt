@@ -1,0 +1,6 @@
+  public void tearDown() throws Exception {
+        _frame.dispose();
+        _frame = null;
+        /* try { */ MainFrameTest.super.tearDown(); /* } */
+    super.tearDown();
+  }

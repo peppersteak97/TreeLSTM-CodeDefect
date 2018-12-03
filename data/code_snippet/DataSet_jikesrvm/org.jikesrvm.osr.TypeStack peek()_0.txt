@@ -1,0 +1,3 @@
+  public byte peek() {
+    return stack[top - 1];
+  }

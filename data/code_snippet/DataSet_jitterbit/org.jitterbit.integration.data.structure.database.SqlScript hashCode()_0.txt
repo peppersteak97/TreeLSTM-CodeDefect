@@ -1,0 +1,7 @@
+    public int hashCode() {
+        int hash = 17;
+        for (Entry e : m_entries) {
+            hash = 37 * hash + (e == null ? 0 : e.hashCode());
+        }
+        return hash;
+    }

@@ -1,0 +1,4 @@
+    static public final QsiProgrammer instance() {
+        if (self == null) self = new QsiProgrammer();
+        return self;
+    }

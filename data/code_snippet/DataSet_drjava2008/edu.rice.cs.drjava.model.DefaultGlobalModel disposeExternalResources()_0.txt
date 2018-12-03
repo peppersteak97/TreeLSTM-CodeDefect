@@ -1,0 +1,3 @@
+  public void disposeExternalResources() {
+    _jvm.killInterpreter(null);
+  }

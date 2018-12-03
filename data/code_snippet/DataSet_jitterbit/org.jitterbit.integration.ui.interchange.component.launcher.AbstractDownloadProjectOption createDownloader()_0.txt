@@ -1,0 +1,6 @@
+    private IProjectDownloader createDownloader() {
+        IPageDisplayer displayer = getDownloadWizardPageDisplayer();
+        ProjectDownloaderFactory f = ProjectDownloaderFactory.newInstance();
+        IApplicationWindow window = getLauncher().getWindow();
+        return f.create(window, displayer, this, true);
+    }

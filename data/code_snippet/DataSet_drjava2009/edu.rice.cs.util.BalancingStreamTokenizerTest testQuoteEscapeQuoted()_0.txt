@@ -1,0 +1,10 @@
+  public void testQuoteEscapeQuoted() throws IOException {
+    BalancingStreamTokenizer tok = make("'test'", '\'');
+    tok.defaultTwoQuoteSetup();
+    String s = tok.getNextToken();
+    assertEquals("'test'", s);
+    assertEquals(BalancingStreamTokenizer.Token.QUOTED, tok.token());
+    s = tok.getNextToken();
+    assertEquals(null, s);
+    assertEquals(BalancingStreamTokenizer.Token.END, tok.token());
+  }

@@ -1,0 +1,8 @@
+    private void executeImpl() {
+        if (m_uiFactory == null) {
+            m_uiFactory = TrashCanUiFactory.newInstance();
+        }
+        IManagedProject project = InterchangeViewUtils.getManagedProject(m_view);
+        ITrashCanUi ui = project.exploreTrashCan(m_uiFactory);
+        ui.explore(m_view);
+    }

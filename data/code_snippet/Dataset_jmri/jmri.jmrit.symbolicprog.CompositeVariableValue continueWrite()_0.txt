@@ -1,0 +1,19 @@
+    protected void continueWrite() {
+        if (log.isDebugEnabled()) log.debug("Start continueWrite");
+        
+        Iterator i = variables.iterator();
+        while (i.hasNext()) {
+            VariableValue v = (VariableValue) i.next();
+            if (v.isToWrite() && (!writingChanges || v.isChanged())) {
+                setBusy(true);
+                log.debug("request write of "+v.label()+" writing changes "+writingChanges);
+                if (writingChanges) v.writeChanges();
+                else v.writeAll();
+                log.debug("return from starting write request");
+            }
+        }
+        amWriting = false;
+        super.setState(STORED);
+        setBusy(false);
+        log.debug("End continueWrite, nothing to do");        
+    }

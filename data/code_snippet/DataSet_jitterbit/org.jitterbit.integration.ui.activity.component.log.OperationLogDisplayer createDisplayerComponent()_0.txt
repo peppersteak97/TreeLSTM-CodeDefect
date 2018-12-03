@@ -1,0 +1,6 @@
+    protected JComponent createDisplayerComponent() {
+        JPanel p = new JPanel(new BorderLayout());
+        p.add(createSplitPane(), BorderLayout.CENTER);
+        registerKeyBindings(p);
+        return p;
+    }

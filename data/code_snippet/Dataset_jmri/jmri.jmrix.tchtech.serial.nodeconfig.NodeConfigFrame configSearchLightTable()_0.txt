@@ -1,0 +1,9 @@
+    void configSearchLightTable() {
+        searchlightConfigTable.setRowSelectionAllowed(false);
+        searchlightConfigTable.sizeColumnsToFit(true);
+        searchlightConfigTable.setPreferredScrollableViewportSize(new java.awt.Dimension(275,200));
+        TableColumnModel searchlightColumnModel = searchlightConfigTable.getColumnModel();
+        TableColumn portColumn = searchlightColumnModel.getColumn(SearchlightConfigModel.PORT_COLUMN);
+        portColumn.setMinWidth(90);
+        portColumn.setMaxWidth(100);
+    }

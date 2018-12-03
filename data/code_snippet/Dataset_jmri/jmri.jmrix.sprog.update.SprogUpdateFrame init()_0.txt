@@ -1,0 +1,5 @@
+  protected void init() {
+    tc = SprogTrafficController.instance();
+    tc.addSprogListener(this);
+    tc.setSprogState(SprogTrafficController.NORMAL);
+  }

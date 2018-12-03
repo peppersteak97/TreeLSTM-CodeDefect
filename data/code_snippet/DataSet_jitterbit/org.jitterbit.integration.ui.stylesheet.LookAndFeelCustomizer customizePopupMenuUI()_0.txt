@@ -1,0 +1,4 @@
+    private static void customizePopupMenuUI() {
+        UIManager.put("PopupMenu.font", 
+                        IntegrationUiStyleSheet.DefaultMenuText.getFont());
+    }

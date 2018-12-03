@@ -1,0 +1,13 @@
+    public void dispose() {
+        log.debug("dispose");
+
+        mRefreshTimer.stop();
+
+        slot.removeSlotListener(this);
+
+        mRefreshTimer = null;
+        slot = null;
+        network = null;
+
+        super.dispose();
+     }

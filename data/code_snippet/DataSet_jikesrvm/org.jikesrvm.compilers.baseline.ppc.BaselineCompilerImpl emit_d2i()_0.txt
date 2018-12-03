@@ -1,0 +1,5 @@
+  protected final void emit_d2i() {
+    popDouble(F0);
+    asm.emitFCTIWZ(F0, F0);
+    pushLowDoubleAsInt(F0);
+  }

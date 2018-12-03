@@ -1,0 +1,41 @@
+    protected void updateOutput() {
+        SerialNode tNode = SerialAddress.getNodeFromSystemName(tSystemName);
+        if (tNode == null) {
+            log.error("Can't find node for "+tSystemName+", command ignored");
+            return;
+        }
+
+        boolean high = (output>=12);
+        int tOut = output;
+        if (high) tOut = output-12;
+        if ( (bank<0)||(bank>4) ) {
+            log.error("invalid bank "+bank+" for signal "+getSystemName());
+            bank = 0;
+        }
+
+        int cmd;
+        if (mLit) 
+            switch (mAppearance) {
+                    case RED:           cmd = 6; break;
+                    case FLASHRED:      cmd = 7; break;
+                    case YELLOW:        cmd = 2; break;
+                    case FLASHYELLOW:   cmd = 3; break;
+                    case GREEN:         cmd = 0; break;
+                    case FLASHGREEN:    cmd = 1; break;
+                    case DARK:          cmd = 4; break;
+                    default:
+                        log.warn("Unexpected new appearance: "+mAppearance);
+            }
+        else 
+            
+
+
+        SerialMessage m = new SerialMessage(high?8:4);
+        int i = 0;
+        if (high) {
+            m.setParity(i-4);
+        }
+        m.setElement(i++, (tOut<<3)|cmd);
+        m.setParity(i-4);
+        SerialTrafficController.instance().sendSerialMessage(m, null);
+    }

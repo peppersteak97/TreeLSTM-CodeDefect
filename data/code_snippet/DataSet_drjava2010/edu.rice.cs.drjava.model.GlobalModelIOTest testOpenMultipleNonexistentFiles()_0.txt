@@ -1,0 +1,18 @@
+  public void testOpenMultipleNonexistentFiles() throws IOException {
+    
+    final File tempFile1 = writeToNewTempFile(FOO_TEXT);
+    
+    TestListener listener = new TestFileIOListener(tempFile1) {
+      public synchronized void filesNotFound(File... f) { fileNotFoundCount++; }
+    };
+    
+    _model.addListener(listener);
+    
+    OpenDefinitionsDocument[] docs = null;
+    try { docs = _model.openFiles(new FileSelector(tempFile1, new File("fake-file"))); }
+    assertTrue("one file was opened", docs != null && docs.length == 1);
+    listener.assertOpenCount(1);
+    listener.assertFileNotFoundCount(1);
+    
+    _log.log("testOpenMultipleNonexistentFiles completed");
+  }

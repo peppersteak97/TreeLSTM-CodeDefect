@@ -1,0 +1,1 @@
+    protected String title() { return "RPS Debugger"; }  // product name, not translated

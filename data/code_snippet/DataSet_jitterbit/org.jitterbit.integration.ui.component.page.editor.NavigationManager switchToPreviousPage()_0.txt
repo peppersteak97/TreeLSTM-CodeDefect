@@ -1,0 +1,3 @@
+    void switchToPreviousPage() {
+        ActionUtils.run(m_previousPageAction, this, "previous_page");
+    }

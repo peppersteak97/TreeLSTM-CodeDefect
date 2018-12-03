@@ -1,0 +1,8 @@
+    private void createDialog() {
+        m_displayer = new DefaultUiJobProgressDisplayer(m_job, false);
+        createButtons();
+        JPanel cp = IntegrationUiStyleSheet.getDialogContentPane();
+        ContainerDecor.decorate(m_displayer, cp, BorderLayout.CENTER);
+        cp.add(m_buttonPanel, BorderLayout.SOUTH);
+        setContentPane(cp);
+    }

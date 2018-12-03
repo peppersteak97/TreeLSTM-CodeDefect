@@ -1,0 +1,129 @@
+    protected JPanel layoutDecoderSelection() {
+        JPanel pane1a = new JPanel();
+        pane1a.setLayout(new BoxLayout(pane1a, BoxLayout.X_AXIS));
+        pane1a.add(new JLabel(rbt.getString("LabelDecoderInstalled")));
+        dRoot = new DefaultMutableTreeNode("Root");
+        dModel = new DefaultTreeModel(dRoot);
+        dTree = new JTree(dModel){
+            public String getToolTipText(MouseEvent evt) {
+                if (getRowForLocation(evt.getX(), evt.getY()) == -1) return null;
+                TreePath curPath = getPathForLocation(evt.getX(), evt.getY());
+                return ((DecoderTreeNode)curPath.getLastPathComponent()).getToolTipText();
+            }
+        };
+        dTree.setToolTipText("");
+
+        List decoders = DecoderIndexFile.instance().matchingDecoderList(null, null, null, null, null, null);
+        int len = decoders.size();
+        DefaultMutableTreeNode mfgElement = null;
+        DefaultMutableTreeNode familyElement = null;
+        for (int i = 0; i<len; i++) {
+            DecoderFile decoder = (DecoderFile) decoders.get(i);
+            String mfg = decoder.getMfg();
+            String family = decoder.getFamily();
+            String model = decoder.getModel();
+            log.debug(" process "+mfg+"/"+family+"/"+model
+                        +" on nodes "
+                        +(mfgElement==null ? "<null>":mfgElement.toString()+"("+mfgElement.getChildCount()+")")+"/"
+                        +(familyElement==null ? "<null>":familyElement.toString()+"("+familyElement.getChildCount()+")")
+                    );
+            if (mfgElement==null || !mfg.equals(mfgElement.toString()) ) {
+                mfgElement = new DecoderTreeNode(mfg,
+                    "CV8 = "+DecoderIndexFile.instance().mfgIdFromName(mfg), "");
+                dModel.insertNodeInto(mfgElement, dRoot, dRoot.getChildCount());
+                familyElement = null;
+            }
+        	String famComment = ((DecoderFile) decoders.get(i)).getFamilyComment();
+        	String verString = ((DecoderFile) decoders.get(i)).getVersionsAsString();
+        	String hoverText = "";
+        	if (famComment == "" || famComment == null) {
+        		if (verString != "") {
+            		hoverText = "CV7=" + verString;
+        		}
+        	} else {
+        		if (verString == "") {
+            		hoverText = famComment;
+        		} else {
+            		hoverText = famComment + "  CV7=" + verString;
+        		}
+        	}
+            if (familyElement==null || !family.equals(familyElement.toString()) ) {
+                if ( (i+2>=len) ||
+                        ((DecoderFile) decoders.get(i+2)).getFamily().equals(family) ||
+                        !((DecoderFile) decoders.get(i+1)).getModel().equals(family)
+                    ) {
+                    log.debug("normal family update case: "+family);
+                    familyElement = new DecoderTreeNode(family,
+                    									hoverText,
+                                                        ((DecoderFile) decoders.get(i)).titleString());
+                    dModel.insertNodeInto(familyElement, mfgElement, mfgElement.getChildCount());
+                    continue;
+                } else {
+                    log.debug("short case, i="+i+" family="+family+" next "+
+                                ((DecoderFile) decoders.get(i+1)).getModel() );
+                    if (i+1 > len) log.error("Unexpected single entry for family: "+family);
+                    family = ((DecoderFile) decoders.get(i+1)).getModel();
+                    familyElement = new DecoderTreeNode(family,
+                    									hoverText,
+                                                        ((DecoderFile) decoders.get(i)).titleString());
+                    dModel.insertNodeInto(familyElement, mfgElement, mfgElement.getChildCount());
+                    i = i+1;
+                    continue;
+                }
+            }
+            if (!family.equals(model)){
+                dModel.insertNodeInto(new DecoderTreeNode(model,
+                                                        hoverText,
+                                                        ((DecoderFile) decoders.get(i)).titleString()),
+                                    familyElement, familyElement.getChildCount());
+            }
+        }  
+
+        pane1a.add(new JScrollPane(dTree));
+        dTree.expandPath(new TreePath(dRoot));
+        dTree.setRootVisible(false);
+        dTree.setShowsRootHandles(true);
+        dTree.setScrollsOnExpand(true);
+        jmri.util.JTreeUtil.setExpandsSelectedPaths(dTree,true);
+
+        dTree.getSelectionModel().setSelectionMode(DefaultTreeSelectionModel.SINGLE_TREE_SELECTION);
+        dTree.addTreeSelectionListener(dListener = new TreeSelectionListener() {
+            public void valueChanged(TreeSelectionEvent e) {
+                if (!dTree.isSelectionEmpty() && dTree.getSelectionPath()!=null &&
+                        dTree.getSelectionPath().getPathCount()>2 &&
+                        dTree.getSelectionCount()<2) {
+                    log.debug("Selection event with "+dTree.getSelectionPath().toString());
+                    if (locoBox != null) locoBox.setSelectedIndex(0);
+                    go2.setEnabled(true);
+                    go2.setRequestFocusEnabled(true);
+                    go2.requestFocus();
+                    go2.setToolTipText(rbt.getString("TipClickToOpen"));
+                } else {
+                    go2.setEnabled(false);
+                    go2.setToolTipText(rbt.getString("TipSelectLoco"));
+                }
+            }
+        });
+        
+        dTree.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent me){
+             if (_statusLabel != null) _statusLabel.setText(rbt.getString("StateIdle"));
+             dTree.getSelectionModel().setSelectionMode(DefaultTreeSelectionModel.SINGLE_TREE_SELECTION);
+            	
+             /* check for both double click and that it's a decoder 
+             that is being clicked on.  If it's just a Family, the programmer
+             button is enabled by the TreeSelectionListener, but we don't
+             want to automatically open a programmer so a user has the opportunity
+             to select an individual decoder
+             */
+             if (me.getClickCount() == 2){
+                 if (go2.isEnabled() && ((TreeNode)dTree.getSelectionPath().getLastPathComponent()).isLeaf()) go2.doClick();
+                }
+             }
+            } );
+
+        iddecoder = addDecoderIdentButton();
+        if (iddecoder!=null) pane1a.add(iddecoder);
+        pane1a.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+        return pane1a;
+    }

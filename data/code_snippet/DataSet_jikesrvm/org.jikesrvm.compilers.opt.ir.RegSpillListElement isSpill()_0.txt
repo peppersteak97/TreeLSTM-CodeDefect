@@ -1,0 +1,3 @@
+  public final boolean isSpill() {
+    return (value > 0);
+  }

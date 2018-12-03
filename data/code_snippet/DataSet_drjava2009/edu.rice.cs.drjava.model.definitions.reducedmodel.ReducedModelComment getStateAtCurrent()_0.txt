@@ -1,0 +1,7 @@
+               getStateAtCurrent() == INSIDE_BLOCK_COMMENT &&
+               special.equals("/")) {
+        _cursor.prevItem().setType("*" + special);
+        _cursor.prevItem().setState(FREE);
+        _updateBasedOnCurrentState();
+        return;
+      }

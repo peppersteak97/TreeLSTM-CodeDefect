@@ -1,0 +1,4 @@
+    private void addInputComponents() {
+        addInputPanel(m_fileLocationPanel);
+        addInputField(m_path, m_path, m_path);
+    }

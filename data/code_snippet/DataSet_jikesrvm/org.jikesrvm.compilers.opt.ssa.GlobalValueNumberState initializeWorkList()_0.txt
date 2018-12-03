@@ -1,0 +1,16 @@
+  private void initializeWorkList() {
+    for (GVCongruenceClass c : B) {
+      if (c.size() == 1) {
+        continue;
+      }
+      Iterator<ValueGraphVertex> i = c.iterator();
+      ValueGraphVertex first = i.next();
+      while (i.hasNext()) {
+        ValueGraphVertex v = i.next();
+        if (!checkCongruence(first, v)) {
+          workList.push(c);
+          break;
+        }
+      }
+    }
+  }

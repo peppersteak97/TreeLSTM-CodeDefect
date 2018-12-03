@@ -1,0 +1,3 @@
+	public String getTargetNamespace() {
+		return m_sTargetNamespace;
+	}

@@ -1,0 +1,22 @@
+  public void testSetBuildDirectory() throws MalformedProjectFileException, IOException {
+    
+    
+    File f = FileOps.NULL_FILE;
+    _model.setBuildDirectory(f);
+    assertEquals("Build directory should not have been set", FileOps.NULL_FILE, _model.getBuildDirectory());
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        try { _model.openProject(_projFile); }
+        catch(Exception e) { throw new UnexpectedException(e); }
+      } 
+    });
+    
+    Utilities.clearEventQueue();
+
+    assertEquals("Build directory should not have been set", FileOps.NULL_FILE, _model.getBuildDirectory());
+    
+    _model.setBuildDirectory(f);
+    Utilities.clearEventQueue();
+    assertEquals("Build directory should have been set", f, _model.getBuildDirectory());
+  }

@@ -1,0 +1,22 @@
+  private void doneWriting() {
+    if (log.isDebugEnabled()) {
+      log.debug("Done writing");
+    }
+    statusBar.setText("Write Complete");
+    connectButton.setEnabled(true);
+    openFileChooserButton.setEnabled(false);
+    programButton.setEnabled(false);
+
+    if (log.isDebugEnabled()) {
+      log.debug("Send end of file ");
+    }
+    msg = new SprogMessage(SprogMessage.MAXSIZE).getV4EndOfFile();
+    bootState = EOFSENT;
+    statusBar.setText("Write End Of File");
+    tc.sendSprogMessage(msg, this);
+    if (log.isDebugEnabled()) {
+      log.debug("Sent end of file ");
+    }
+    startLongTimer();
+
+  }

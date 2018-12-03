@@ -1,0 +1,4 @@
+    synchronized protected void timeout() {
+	layout_spd = -1;
+        setSpeedSetting(speedSetting);
+    }

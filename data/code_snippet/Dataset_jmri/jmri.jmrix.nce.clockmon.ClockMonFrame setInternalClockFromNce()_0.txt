@@ -1,0 +1,7 @@
+    private void setInternalClockFromNce() {
+        Date newTime = getNceDate();
+        internalClock.setTime(newTime);
+        if (log.isDebugEnabled()) {
+            log.debug("setInternalClockFromNce nceClock: " + newTime);
+        }
+    }

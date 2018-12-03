@@ -1,0 +1,11 @@
+    private String getGlobalWarningsText() {
+        if (!globalWarningsExist()) {
+            return PackageResources.ResultDisplayer.Global.NO_GLOBAL_WARNINGS;
+        }
+        StringBuilder sb = new StringBuilder(
+                        PackageResources.ResultDisplayer.Global.WARNINGS_HEADER);
+        for( String s : m_globalWarnings) {
+            sb.append(s);
+        }
+        return sb.toString();
+    }

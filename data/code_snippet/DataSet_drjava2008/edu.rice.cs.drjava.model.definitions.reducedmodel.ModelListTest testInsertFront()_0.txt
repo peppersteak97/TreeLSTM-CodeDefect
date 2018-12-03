@@ -1,0 +1,11 @@
+  public void testInsertFront() {
+    fFull.insertFront(Integer.valueOf(3));
+    fFull.insertFront(Integer.valueOf(2));
+    fFull.insertFront(Integer.valueOf(1));
+    fFull.insertFront(Integer.valueOf(0));
+    ModelList<Integer>.ModelIterator itFull = fFull.getIterator();
+    for (int i = 0; i < 4; i++) {
+      itFull.next();
+      assertEquals(Integer.valueOf(i), itFull.current());
+    }
+  }

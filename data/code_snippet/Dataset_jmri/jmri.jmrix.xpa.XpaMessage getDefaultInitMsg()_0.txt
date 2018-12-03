@@ -1,0 +1,4 @@
+    static XpaMessage getDefaultInitMsg() {
+	XpaMessage m=new XpaMessage("ATX0E0;");
+	return m;
+    }

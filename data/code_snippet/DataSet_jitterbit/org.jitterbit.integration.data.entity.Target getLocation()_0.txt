@@ -1,0 +1,3 @@
+    public DataLocation getLocation() {
+        return m_location;
+    }

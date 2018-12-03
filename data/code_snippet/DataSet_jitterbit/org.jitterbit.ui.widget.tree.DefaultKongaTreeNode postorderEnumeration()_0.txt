@@ -1,0 +1,3 @@
+    public Enumeration<IKongaTreeNode> postorderEnumeration() {
+        return new EnumImpl(super.postorderEnumeration());
+    }

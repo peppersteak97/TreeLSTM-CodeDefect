@@ -1,0 +1,6 @@
+    private void loadFromDisk() {
+        File file = getFile();
+        if (file.canRead()) {
+            new XmlLoader().parse(file);
+        }
+    }

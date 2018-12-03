@@ -1,0 +1,3 @@
+	public char getCharRepresentation() {
+		return m_charRepresentation;
+	}

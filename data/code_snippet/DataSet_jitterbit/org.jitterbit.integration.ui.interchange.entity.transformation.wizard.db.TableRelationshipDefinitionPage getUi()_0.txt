@@ -1,0 +1,3 @@
+    TableRelationshipDefinitionPageUi getUi() {
+        return m_ui;
+    }

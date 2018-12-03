@@ -1,0 +1,3 @@
+  static void unexpectedInterfaceMethodCall() {
+    VM.sysFail("interface method dispatching error");
+  }

@@ -1,0 +1,4 @@
+    private void customizeColumnRenderers() {
+        TableColumn column = getColumnModel().getColumn(0);
+        column.setCellRenderer(new TableRenderers.IndexRenderer());
+    }

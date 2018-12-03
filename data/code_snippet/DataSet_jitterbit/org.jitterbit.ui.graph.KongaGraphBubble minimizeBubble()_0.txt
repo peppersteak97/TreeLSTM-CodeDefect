@@ -1,0 +1,10 @@
+	protected void minimizeBubble() {
+		if ( m_bMinimizable ) {
+			Dimension d = m_rect.getActualTextBounds();
+			int ix = (int)Math.round(Math.sqrt(iA/k));
+			int iy = (int)Math.round(k*ix);
+			setSize(ix, iy);
+	
+			reportRepaint();
+		}
+	}

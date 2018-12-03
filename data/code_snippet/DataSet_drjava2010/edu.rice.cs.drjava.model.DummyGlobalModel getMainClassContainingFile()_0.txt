@@ -1,0 +1,3 @@
+  public File getMainClassContainingFile(){
+    throw new UnsupportedOperationException("Tried to call getMainClass on a Dummy");
+  }

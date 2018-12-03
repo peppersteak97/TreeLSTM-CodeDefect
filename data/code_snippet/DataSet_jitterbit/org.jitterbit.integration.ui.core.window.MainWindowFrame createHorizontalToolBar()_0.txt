@@ -1,0 +1,5 @@
+    private void createHorizontalToolBar() {
+        m_horizontalToolBarPanel = new IntegrationToolBar(new JButton[0]);
+        m_horizontalToolBarPanel.setToolBarOpaque(true);
+        m_topPanel = new TopPanel();
+    }

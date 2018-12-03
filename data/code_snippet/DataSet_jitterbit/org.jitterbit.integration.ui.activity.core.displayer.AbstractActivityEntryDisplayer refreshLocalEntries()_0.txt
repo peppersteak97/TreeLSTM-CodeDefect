@@ -1,0 +1,5 @@
+    public final void refreshLocalEntries() {
+        createDisplayedEntriesList();
+        updateTable(false);
+        m_navigationControl.setNumberOfRecords(m_filteredEntries.size(), true);
+    }

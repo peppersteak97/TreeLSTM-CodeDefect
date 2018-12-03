@@ -1,0 +1,16 @@
+    public void setToEndOfDay() {
+        int hours = m_hourBox.getItemCount();
+        if (hours == 12) {
+            m_hourBox.setSelectedIndex(m_hourBox.getItemCount() - 2);
+        }
+        else {
+            m_hourBox.setSelectedIndex(m_hourBox.getItemCount() - 1);
+        }
+        m_minuteBox.setSelectedIndex(m_minuteBox.getItemCount() - 1);
+        if (m_showSeconds) {
+            m_secondBox.setSelectedIndex(m_secondBox.getItemCount() - 1);
+        }
+        if (m_amPmBox != null) {
+            m_amPmBox.setSelectedItem(AM_PM.PM);
+        }
+    }

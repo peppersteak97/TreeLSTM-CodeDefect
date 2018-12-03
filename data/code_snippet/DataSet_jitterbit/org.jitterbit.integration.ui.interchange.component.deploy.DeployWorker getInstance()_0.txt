@@ -1,0 +1,3 @@
+    static DeployWorker getInstance() {
+        return INSTANCE;
+    }

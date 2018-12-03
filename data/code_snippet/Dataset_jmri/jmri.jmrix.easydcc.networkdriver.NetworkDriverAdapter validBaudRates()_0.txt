@@ -1,0 +1,4 @@
+    public String[] validBaudRates() {
+        log.error("Unexpected call to validBaudRates");
+        return null;
+    }

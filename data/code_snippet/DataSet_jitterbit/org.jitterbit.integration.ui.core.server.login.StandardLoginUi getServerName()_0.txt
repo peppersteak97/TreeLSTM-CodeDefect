@@ -1,0 +1,4 @@
+    private String getServerName() {
+        JTextComponent field = (JTextComponent) m_serverComboBox.getEditor().getEditorComponent();
+        return field.getText().trim();
+    }

@@ -1,0 +1,22 @@
+    private void initUi() {
+        JPanel pnlMain = new JPanel();
+        pnlMain.setLayout( new BoxLayout(pnlMain, BoxLayout.Y_AXIS) );
+
+        JPanel pnlScript = new JPanel();
+        pnlScript.setLayout( new BorderLayout() );
+        pnlScript.add( new JLabel("Script:"), BorderLayout.NORTH);
+        WordWrapTextArea text = new WordWrapTextArea( m_sp.getSqlScript(), 40, 75 );
+        pnlScript.add( new JScrollPane(text), BorderLayout.CENTER );
+        pnlScript.setBorder( new EmptyBorder(5, 5, 5, 5) );
+        pnlMain.add( pnlScript);
+        pnlMain.add( Box.createVerticalStrut(10) );
+        
+        JPanel pnlBtns = getButtonPanel( KongaDialog.CLOSE_ONLY, -1, 0, -1 );
+        pnlBtns.setBorder( new EmptyBorder(0, 0, 10, 0) );
+        
+        pnlMain.add( pnlBtns, BorderLayout.SOUTH );
+        
+        getContentPane().add(pnlMain);
+        pack();
+        WindowUtils.centerWindowOnScreen(this);
+    }

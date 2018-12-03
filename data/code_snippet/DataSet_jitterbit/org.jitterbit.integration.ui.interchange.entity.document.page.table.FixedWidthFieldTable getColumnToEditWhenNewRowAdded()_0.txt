@@ -1,0 +1,3 @@
+    protected int getColumnToEditWhenNewRowAdded() {
+        return FixedWidthFieldTableModel.NAME.getIndex();
+    }

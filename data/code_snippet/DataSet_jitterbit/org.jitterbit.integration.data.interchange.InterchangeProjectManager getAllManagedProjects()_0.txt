@@ -1,0 +1,5 @@
+    synchronized List<ManagedProjectImpl> getAllManagedProjects() {
+        synchronized (m_lock) {
+            return new ArrayList<ManagedProjectImpl>(m_projects.values());
+        }
+    }

@@ -1,0 +1,12 @@
+    private JComponent createControlPanel() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setWeightX(1.0);
+        p.setInsets(IntegrationUiStyleSheet.DEFAULT_GBC_INSETS_LEFT);
+        for (IActivityEntryFilterUi<T> f : m_filters) {
+            p.add(ComponentDecorFactory.invisible(f).getUi());
+        }
+        p.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(Color.BLACK), 
+                        BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        return ComponentDecorFactory.invisible(p).getUi();
+    }

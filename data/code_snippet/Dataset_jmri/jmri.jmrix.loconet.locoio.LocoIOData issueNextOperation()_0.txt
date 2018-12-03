@@ -1,0 +1,69 @@
+    protected void issueNextOperation() {
+        stopTimer();
+        for (int i=0; i<_numRows; i++) {
+            currentPin = i;
+            if (readState[i]!=NONE) {
+                switch (readState[i]) {
+                case READVALUE1:
+                case READINGVALUE1:
+                    readState[i] = READINGVALUE1;
+                    lastOpCv = i*3+4;
+                    setStatus("read SV"+lastOpCv+" (port"+i+" v1)");
+                    sendReadCommand(unitAddress, unitSubAddress, lastOpCv);
+                    return;
+                case READVALUE2:
+                case READINGVALUE2:
+                    readState[i] = READINGVALUE2;
+                    lastOpCv = i*3+5;
+                    setStatus("read SV"+lastOpCv+" (port "+i+" v2)");
+                    sendReadCommand(unitAddress, unitSubAddress, lastOpCv);
+                    return;
+                case READMODE:
+                case READINGMODE:
+                    readState[i] = READINGMODE;
+                    lastOpCv = i*3+3;
+                    setStatus("read SV"+lastOpCv+" (port "+i+" mode)");
+                    sendReadCommand(unitAddress, unitSubAddress, lastOpCv);
+                    return;
+                default:
+                    log.error("found an unexpected state: "+readState[1]+" on port "+i);
+                    return;
+                }
+            }
+        }
+        for (int i=0; i<_numRows; i++) {
+            currentPin = i;
+            if (writeState[i]!=NONE) {
+                switch (writeState[i]) {
+                case WRITEVALUE1:
+                case WRITINGVALUE1:
+                    writeState[i] = WRITINGVALUE1;
+                    lastOpCv = i*3+4;
+                    setStatus("write SV"+lastOpCv+" ( port "+i+" v1)");
+                    sendWriteCommand(unitAddress, unitSubAddress, lastOpCv, getV1(i));
+                    return;
+                case WRITEVALUE2:
+                case WRITINGVALUE2:
+                    writeState[i] = WRITINGVALUE2;
+                    lastOpCv = i*3+5;
+                    setStatus("write SV"+lastOpCv+" (port"+i+" v2)");
+                    sendWriteCommand(unitAddress, unitSubAddress, lastOpCv, getV2(i));
+                    return;
+                case WRITEMODE:
+                case WRITINGMODE:
+                    writeState[i] = WRITINGMODE;
+                    lastOpCv = i*3+3;
+                    setStatus("write SV"+lastOpCv+" (port"+i+" mode)");
+                    sendWriteCommand(unitAddress, unitSubAddress, lastOpCv, getSV(i));
+                    return;
+
+                default:
+                    log.error("found an unexpected state: "+writeState[1]+" on port "+i);
+                    return;
+                }
+            }
+        }
+        setStatus("OK");
+        lastOpCv = -1;
+        currentPin = 0;
+    }

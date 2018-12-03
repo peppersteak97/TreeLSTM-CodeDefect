@@ -1,0 +1,6 @@
+  void debuggerResume() throws DebugException {
+    if (isDebuggerReady()) {
+      _model.getDebugger().resume();
+      removeCurrentLocationHighlight();
+    }
+  }

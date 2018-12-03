@@ -1,0 +1,3 @@
+    public final long getFinalExecutionTime() {
+        return m_endTime - m_startTime;
+    }

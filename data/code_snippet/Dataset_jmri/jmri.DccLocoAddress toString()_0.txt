@@ -1,0 +1,4 @@
+    public String toString() {
+        if (isLong) return ""+number+"(L)";
+        else return ""+number+"(S)";
+    }

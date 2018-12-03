@@ -1,0 +1,6 @@
+  public T getItem() {
+    if (!_force && _pim.getMatchingItems().size() == 0) return null;
+    @SuppressWarnings("unchecked") 
+    T item = (T)_matchList.getSelectedValue();
+    return item;
+  }

@@ -1,0 +1,9 @@
+    public void clearColoredRegions() {
+        EventQueue.invokeLater(new Runnable() {
+            
+            public void run() {
+                m_document.setCharacterAttributes(0, m_document.getLength(), 
+                                m_defaultStyle, true);
+            }
+        });
+    }

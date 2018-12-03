@@ -1,0 +1,4 @@
+  public void testSpaces() throws javax.swing.text.BadLocationException {
+    _setDocText("/*\n        \n*/");
+    assertTrue("only spaces", _rule.testApplyRule(_doc, 6, Indenter.IndentReason.OTHER));
+  }

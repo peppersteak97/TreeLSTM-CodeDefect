@@ -1,0 +1,14 @@
+    private Row[] getViewToModel() {
+        if (m_viewToModel == null) {
+            int tableModelRowCount = m_tableModel.getRowCount();
+            m_viewToModel = new Row[tableModelRowCount];
+            for (int row = 0; row < tableModelRowCount; row++) {
+                m_viewToModel[row] = new Row(row);
+            }
+
+            if (isSorting()) {
+                Arrays.sort(m_viewToModel);
+            }
+        }
+        return m_viewToModel;
+    }

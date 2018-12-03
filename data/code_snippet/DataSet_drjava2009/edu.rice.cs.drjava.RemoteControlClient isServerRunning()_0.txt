@@ -1,0 +1,9 @@
+  public static synchronized boolean isServerRunning() {
+    if (_serverRunning == null) {
+      try {
+        openFile(null);
+      }
+      catch(IOException e) { _serverRunning = false; }
+    }
+    return _serverRunning;
+  }

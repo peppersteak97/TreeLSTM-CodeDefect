@@ -1,0 +1,3 @@
+    public JLabel getLabel() {
+        return m_label;
+    }

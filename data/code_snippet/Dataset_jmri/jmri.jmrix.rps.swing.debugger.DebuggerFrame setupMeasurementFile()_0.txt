@@ -1,0 +1,11 @@
+    void setupMeasurementFile() throws java.io.IOException {
+        measurementInput = null;
+        
+        measurementFileChooser.rescanCurrentDirectory();
+        int retVal = measurementFileChooser.showOpenDialog(this);
+
+    
+        java.io.Reader reader = new java.io.FileReader(
+                                        measurementFileChooser.getSelectedFile());
+        measurementInput = new com.csvreader.CsvReader(reader);
+    }

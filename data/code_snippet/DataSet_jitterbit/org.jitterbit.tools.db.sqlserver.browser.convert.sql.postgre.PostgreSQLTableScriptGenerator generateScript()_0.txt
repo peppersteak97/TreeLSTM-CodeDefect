@@ -1,0 +1,39 @@
+    protected void generateScript() {
+        if( m_bCreateDropScript ) {
+            addLine( PostgreSQLConstants.DROP_TABLE + getTable().getName() + ";");
+        }
+		StringBuffer sb = getStringBuffer();
+		sb.append( PostgreSQLConstants.CREATE_TABLE );
+		sb.append( getTable().getName() + " (");
+		sb.append( KongaIoUtils.LINE_BREAK );
+		
+		int nCol = 0;
+		for( Column col : getTable().getColumns() ) {
+		    if( col.getTypeName().equalsIgnoreCase(SQLServerConstants.UNIQUE_IDENTIFIER) ) {
+		        logWarning( getObject(), col, "Not included in script: Unsupported data type: '" + 
+		                col.getTypeName() +"'.");
+		        continue;
+		    }
+			if( nCol++ > 0 )
+				sb.append("," + KongaIoUtils.LINE_BREAK);
+			addColumn(col, sb);
+		}
+		
+		if( m_bCompoundKey ) {
+			sb.append("," + KongaIoUtils.LINE_BREAK );
+			sb.append("\t");
+			sb.append( PostgreSQLConstants.PRIMARY_KEY );
+			sb.append("(");
+			int n = 0;
+			for( Column col : m_liPrimaryKeys ) {
+				if( n++ > 0 )
+					sb.append(", ");
+				sb.append(col.getName());
+			}
+			sb.append(")");
+		}
+		sb.append(KongaIoUtils.LINE_BREAK);
+		sb.append(");");
+		sb.append(KongaIoUtils.LINE_BREAK);
+		sb.append(KongaIoUtils.LINE_BREAK);
+    }

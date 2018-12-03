@@ -1,0 +1,26 @@
+  public void startupRendezvous() {
+
+
+    CollectorThread th = Magic.threadAsCollectorThread(RVMThread.getCurrentThread());
+    int myNumber = th.getGCOrdinal();
+
+    if (verbose > 0) {
+      VM.sysWriteln("GC Message: SynchronizationBarrier.startupRendezvous: thr ",
+                    th.getThreadSlot(),
+                    " ordinal ",
+                    myNumber);
+    }
+
+    if (myNumber > 1) {
+      if (verbose > 0) VM.sysWriteln("GC Message: startupRendezvous  leaving as ", myNumber);
+    }
+
+    int numParticipating = RVMThread.numProcessors;
+
+    if (verbose > 0) {
+      VM.sysWriteln("GC Message: startupRendezvous  numParticipating = ", numParticipating);
+    }
+    if (verbose > 0) {
+      VM.sysWriteln("GC Message: startupRendezvous  designated proc leaving");
+    }
+  }  

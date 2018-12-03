@@ -1,0 +1,3 @@
+  public void resetConsole() {
+    throw new UnsupportedOperationException("Tried to call resetConsole on a Dummy");
+  }

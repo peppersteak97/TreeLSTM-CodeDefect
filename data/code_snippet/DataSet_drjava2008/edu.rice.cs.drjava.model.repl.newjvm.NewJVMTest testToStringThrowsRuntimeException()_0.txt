@@ -1,0 +1,11 @@
+  public void testToStringThrowsRuntimeException() throws Throwable {
+    debug.logStart();
+    _log.log("NewJVMTest.testToStringThrowsRuntimeException executing");
+    
+    _jvm.interpret("class A { public String toString() { throw new RuntimeException(); } };" +
+                   "new A()");
+    assertTrue("exception should have been thrown by toString",
+               _jvm.exceptionMsgBuf != null);
+    
+    debug.logEnd();
+  }

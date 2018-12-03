@@ -1,0 +1,8 @@
+    private void createTable() {
+        createTableModel();
+        m_fieldTable = m_isFixedWidth ? new FixedWidthFieldTable(
+                        (FixedWidthFieldTableModel) m_fieldModel)
+                        : new DelimitedFieldTable((DelimitedFieldTableModel) m_fieldModel);
+
+        m_fieldTable.addPropertyChangeListener(DocDefTable.TABLE_CONTENT_PROPERTY, this);
+    }

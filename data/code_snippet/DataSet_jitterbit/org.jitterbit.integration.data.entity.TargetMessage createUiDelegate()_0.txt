@@ -1,0 +1,3 @@
+    protected IIntegrationEntityUiDelegate createUiDelegate() {
+        return new TargetMessageBaseUi(this);
+    }

@@ -1,0 +1,26 @@
+  public void notifyActive() {
+    assert ! _mainFrame.isVisible() || EventQueue.isDispatchThread();
+    super.setDocument(_doc);
+    if (_doc.getUndoableEditListeners().length == 0) _resetUndo();
+    
+    int len = _doc.getLength();
+    if (len < _position || len < _selEnd) {
+      _position = len;
+      _selStart = len;
+      _selEnd = len;
+    }
+    if (_position == _selStart) {
+      setCaretPosition(_selEnd);
+      moveCaretPosition(_selStart);
+      _doc.setCurrentLocation(_selStart);
+    }
+    else {
+      setCaretPosition(_selStart);
+      moveCaretPosition(_selEnd);
+      _doc.setCurrentLocation(_selEnd);
+    }
+    _scrollPane.getVerticalScrollBar().setValue(_savedVScroll);
+    _scrollPane.getHorizontalScrollBar().setValue(_savedHScroll);
+    _scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+    _scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+  }

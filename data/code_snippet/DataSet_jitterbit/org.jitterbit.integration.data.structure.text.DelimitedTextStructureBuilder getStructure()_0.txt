@@ -1,0 +1,10 @@
+    public TextStructure getStructure() throws TextStructureBuilderException {
+        TextStructure s = null;
+        if (m_segments.size() == 1) {
+            s = createSimpleStructure();
+        }
+        else {
+            s = createComplexStructure();
+        }
+        return s;
+    }

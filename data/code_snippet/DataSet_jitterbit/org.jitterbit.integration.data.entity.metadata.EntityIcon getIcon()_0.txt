@@ -1,0 +1,3 @@
+    public Icon getIcon() {
+        return ImageLoader.getImageIcon(m_package, m_filename);
+    }

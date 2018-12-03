@@ -1,0 +1,4 @@
+    String getLocalFileName() {
+        File f = m_fileSelector.getSelectedFile();
+        return (f == null) ? "" : f.getAbsolutePath();
+    }

@@ -1,0 +1,13 @@
+  protected void handleSlaveConnected() {
+    _restart = true;
+    _cleanlyRestarting = false;
+    
+    Boolean allowAccess = DrJava.getConfig().getSetting(OptionConstants.ALLOW_PRIVATE_ACCESS);
+    setPrivateAccessible(allowAccess.booleanValue());
+    
+    _junitModel.junitJVMReady();
+    
+    _log.log("Main JVM Thread for slave connection is: " + Thread.currentThread());
+    
+    synchronized(_interpreterLock) { _interpreterLock.notifyAll(); } 
+  }

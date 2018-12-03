@@ -1,0 +1,4 @@
+	private void customize() {
+		setWrapStyleWord(true);
+		setLineWrap(true);
+	}

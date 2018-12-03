@@ -1,0 +1,19 @@
+    public static JitterbitWebPageFactory newInstance() {
+        return new JitterbitWebPageFactory() {
+
+            @Override
+            public IWebPage getForumsPage() {
+                return (FORUM_URL == null) ? null : new DefaultWebPage(FORUM_URL);
+            }
+
+            @Override
+            public IWebPage getHomePage() {
+                return (HOMEPAGE_URL == null) ? null : new DefaultWebPage(HOMEPAGE_URL);
+            }
+
+            @Override
+            public IWebPage getTutorialPage() {
+                return (QUICK_START_URL == null) ? null : new DefaultWebPage(QUICK_START_URL);
+            }
+        };
+    }

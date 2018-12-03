@@ -1,0 +1,9 @@
+    private String getPathRelativeToParent() {
+        if (m_parent == null) {
+        }
+        if (m_parent.m_parent == null) {
+            return m_path;
+        }
+        String parentPath = m_parent.m_path;
+        return m_path.substring(parentPath.length() + 1);
+    }

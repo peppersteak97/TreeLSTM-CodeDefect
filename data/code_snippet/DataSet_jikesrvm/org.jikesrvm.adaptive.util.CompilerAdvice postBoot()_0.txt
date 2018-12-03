@@ -1,0 +1,17 @@
+  public static void postBoot() {
+    CompilerAdviceAttribute.postBoot();
+    String compilerAdviceFileName = Controller.options.COMPILER_ADVICE_FILE_INPUT;
+    if (compilerAdviceFileName != null) {
+      VM.sysWrite("Compiler advice file name ");
+      VM.sysWriteln(compilerAdviceFileName);
+      List<CompilerAdviceAttribute> compilerAdviceInfoList =
+          CompilerAdviceInfoReader.readCompilerAdviceFile(compilerAdviceFileName);
+      CompilerAdviceAttribute.registerCompilerAdvice(compilerAdviceInfoList);
+    }
+    String dynamicCallFileName = Controller.options.DYNAMIC_CALL_FILE_INPUT;
+    if (dynamicCallFileName != null) {
+      VM.sysWrite("Dynamic call file name ");
+      VM.sysWriteln(dynamicCallFileName);
+      DynamicCallFileInfoReader.readDynamicCallFile(dynamicCallFileName, false);
+    }
+  }

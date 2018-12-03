@@ -1,0 +1,8 @@
+  public void testGetPosition() {
+    fullSetup();
+    
+    Position pos = model.getPosition(errors[1]);
+    assertEquals("Incorrect error Position.", 125, pos.getOffset());
+    pos = model.getPosition(errors[5]);
+    assertEquals("Incorrect error Position.", 38, pos.getOffset());
+  }

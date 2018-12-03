@@ -1,0 +1,3 @@
+    protected IIntegrationEntityUiDelegate getUiDelegate() {
+        return m_uiDelegate;
+    }

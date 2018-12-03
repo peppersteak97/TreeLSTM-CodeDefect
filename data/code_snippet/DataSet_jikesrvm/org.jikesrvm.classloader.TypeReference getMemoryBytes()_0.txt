@@ -1,0 +1,7 @@
+  public int getMemoryBytes() {
+    if (isLoaded()) {
+      return type.getMemoryBytes();
+    } else {
+      return BYTES_IN_ADDRESS;
+    }
+  }

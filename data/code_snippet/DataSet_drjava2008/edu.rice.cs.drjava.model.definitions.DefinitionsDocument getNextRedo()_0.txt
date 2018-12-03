@@ -1,0 +1,36 @@
+//    public UndoableEdit getNextRedo() {
+  
+  /** Formerly used to help track down memory leaks */
+  
+  /** This list of listeners to notify when we are finalized. */
+  private List<FinalizationListener<DefinitionsDocument>> _finalizationListeners = 
+    new LinkedList<FinalizationListener<DefinitionsDocument>>();
+  
+  /** Registers a finalization listener with the specific instance of the ddoc
+    * <p><b>NOTE:</b><i>This should only be used by test cases.  This is to ensure that
+    * we don't spring memory leaks by allowing our unit tests to keep track of 
+    * whether objects are being finalized (garbage collected)</i></p>
+    * @param fl the listener to register
+    */
+  public void addFinalizationListener(FinalizationListener<DefinitionsDocument> fl) {
+    synchronized(_finalizationListeners) { _finalizationListeners.add(fl); }
+  }
+  
+  public List<FinalizationListener<DefinitionsDocument>> getFinalizationListeners() {
+    return _finalizationListeners;
+  }
+  
+  /** This is called when this method is GC'd.  Since this class implements edu.rice.cs.drjava.model.Finalizable, it
+    * must notify its listeners
+    */
+  protected void finalize() {
+    FinalizationEvent<DefinitionsDocument> fe = new FinalizationEvent<DefinitionsDocument>(this);
+    synchronized(_finalizationListeners) {
+      for (FinalizationListener<DefinitionsDocument> fl: _finalizationListeners) {
+        fl.finalized(fe);
+      }
+    }
+  }
+  
+  public String toString() { return "ddoc for " + _odd; }
+}

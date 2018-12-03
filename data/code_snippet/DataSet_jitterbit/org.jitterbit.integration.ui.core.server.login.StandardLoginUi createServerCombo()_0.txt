@@ -1,0 +1,10 @@
+    private JComboBox createServerCombo() {
+        ComboBoxModel model = createServerComboModel();
+        JComboBox combo = ComponentFactories.comboBoxFactory().newComboBox(model);
+        combo.setEditable(true);
+        registerServerComboKeyBindings(combo);
+        customizeServerComboEditor(combo);
+        combo.addActionListener(new ComboListener());
+        combo.setToolTipText(PackageResources.SERVER_TOOLTIP);
+        return combo;
+    }

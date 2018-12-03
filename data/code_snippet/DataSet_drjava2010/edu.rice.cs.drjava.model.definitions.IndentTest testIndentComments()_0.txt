@@ -1,0 +1,20 @@
+  public void testIndentComments() throws BadLocationException {
+    String text =
+      "  foo();\n" +
+      "/**\n" +
+      "\n" +
+      "* Comment\n" +
+      "    * More comment\n" +
+      "code;\n" +
+      "* More comment\n" +
+      "\n" +
+      "*/\n" +
+      "\n";
+    
+    String indented =
+    
+    _doc.insertString(0, text, null);
+    _assertContents(text, _doc);
+    safeIndentLines(9, _doc.getLength());
+    _assertContents(indented, _doc);
+  }

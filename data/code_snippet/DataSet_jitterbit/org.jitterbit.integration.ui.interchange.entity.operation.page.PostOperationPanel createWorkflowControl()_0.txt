@@ -1,0 +1,7 @@
+    private void createWorkflowControl() {
+        m_workflowControl = new EntitySelectionControl(
+                        m_page,
+                        EntityType.Process,
+                        null,
+                        PackageResources.PostOperation.WORKFLOW);
+    }

@@ -1,0 +1,10 @@
+    private void addInputComponents() {
+        m_dailyPanel.addInputPanel(m_every_X_days_panel);
+        addInputPanel(m_typeSelectionPanel);
+        addInputPanel(m_dailyPanel);
+        addInputPanel(m_weeklyPanel);
+        addInputPanel(m_monthlyPanel);
+        addInputPanel(m_every_X_weeks_panel);
+        addInputPanel(m_monthly_A_panel);
+        addInputPanel(m_monthly_B_panel);
+    }

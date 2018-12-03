@@ -1,0 +1,58 @@
+  private static void generatePcThunkInstructions() {
+    Assembler asm = new ArchitectureSpecific.Assembler(0);
+    asm.emitMOV_Reg_RegInd(EAX, SP);
+    asm.emitRET();
+    pcThunkEAXInstructions = asm.getMachineCodes();
+    pcThunkInstructionsField[EAX.value()] =
+       EntrypointHelper.getField(OutOfLineMachineCode.class,
+         "pcThunkEAXInstructions", ArchitectureSpecific.CodeArray.class);
+
+    asm = new ArchitectureSpecific.Assembler(0);
+    asm.emitMOV_Reg_RegInd(EBX, SP);
+    asm.emitRET();
+    pcThunkEBXInstructions = asm.getMachineCodes();
+    pcThunkInstructionsField[EBX.value()] =
+       EntrypointHelper.getField(OutOfLineMachineCode.class,
+         "pcThunkEBXInstructions", ArchitectureSpecific.CodeArray.class);
+
+    asm = new ArchitectureSpecific.Assembler(0);
+    asm.emitMOV_Reg_RegInd(ECX, SP);
+    asm.emitRET();
+    pcThunkECXInstructions = asm.getMachineCodes();
+    pcThunkInstructionsField[ECX.value()] =
+       EntrypointHelper.getField(OutOfLineMachineCode.class,
+         "pcThunkECXInstructions", ArchitectureSpecific.CodeArray.class);
+
+    asm = new ArchitectureSpecific.Assembler(0);
+    asm.emitMOV_Reg_RegInd(EDX, SP);
+    asm.emitRET();
+    pcThunkEDXInstructions = asm.getMachineCodes();
+    pcThunkInstructionsField[EDX.value()] =
+       EntrypointHelper.getField(OutOfLineMachineCode.class,
+         "pcThunkEDXInstructions", ArchitectureSpecific.CodeArray.class);
+
+
+    asm = new ArchitectureSpecific.Assembler(0);
+    asm.emitMOV_Reg_RegInd(EBP, SP);
+    asm.emitRET();
+    pcThunkEBPInstructions = asm.getMachineCodes();
+    pcThunkInstructionsField[EBP.value()] =
+       EntrypointHelper.getField(OutOfLineMachineCode.class,
+         "pcThunkEBPInstructions", ArchitectureSpecific.CodeArray.class);
+
+    asm = new ArchitectureSpecific.Assembler(0);
+    asm.emitMOV_Reg_RegInd(ESI, SP);
+    asm.emitRET();
+    pcThunkESIInstructions = asm.getMachineCodes();
+    pcThunkInstructionsField[ESI.value()] =
+       EntrypointHelper.getField(OutOfLineMachineCode.class,
+         "pcThunkESIInstructions", ArchitectureSpecific.CodeArray.class);
+
+    asm = new ArchitectureSpecific.Assembler(0);
+    asm.emitMOV_Reg_RegInd(EDI, SP);
+    asm.emitRET();
+    pcThunkEDIInstructions = asm.getMachineCodes();
+    pcThunkInstructionsField[EDI.value()] =
+       EntrypointHelper.getField(OutOfLineMachineCode.class,
+         "pcThunkEDIInstructions", ArchitectureSpecific.CodeArray.class);
+  }

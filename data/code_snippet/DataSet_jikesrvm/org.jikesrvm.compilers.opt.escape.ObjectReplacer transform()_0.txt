@@ -1,0 +1,13 @@
+  public void transform() {
+    ArrayList<RVMField> fields = getFieldsAsArrayList(klass);
+    RegisterOperand[] scalars = new RegisterOperand[fields.size()];
+    RegisterOperand def = reg.defList;
+    Instruction defI = def.instruction;
+    for (int i = 0; i < fields.size(); i++) {
+      RVMField f = fields.get(i);
+      Operand defaultValue = IRTools.getDefaultOperand(f.getType());
+      scalars[i] = IRTools.moveIntoRegister(ir.regpool, defI, defaultValue);
+      scalars[i].setType(f.getType());
+    }
+    transform2(this.reg, defI, scalars, fields, null);
+  }

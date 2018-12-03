@@ -1,0 +1,3 @@
+    public boolean isDeployDirty() {
+        return hasMatchingChild(IntegrationEntityFilters.DEPLOY_DIRTY);
+    }

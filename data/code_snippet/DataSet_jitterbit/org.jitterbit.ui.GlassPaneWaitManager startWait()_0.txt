@@ -1,0 +1,3 @@
+    public void startWait() {
+        EventQueue.invokeLater(m_startWait);
+    }

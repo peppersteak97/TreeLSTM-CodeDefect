@@ -1,0 +1,7 @@
+    public void activated() {
+        if (!m_active) {
+            m_active = true;
+            m_titlePanel.activated();
+            fireActiveObjectChange();
+        }
+    }

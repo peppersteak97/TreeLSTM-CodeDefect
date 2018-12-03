@@ -1,0 +1,6 @@
+    void removeContent() {
+        m_stage.removeAll();
+        m_stage.invalidate();
+        m_stage.repaint();
+        IntegrationUiUtils.getFocusManager().removeFocusRoot(m_stage);
+    }

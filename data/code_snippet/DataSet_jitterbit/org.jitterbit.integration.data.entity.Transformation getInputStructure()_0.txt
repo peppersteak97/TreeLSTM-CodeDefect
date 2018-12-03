@@ -1,0 +1,22 @@
+    public DataStructure getInputStructure() {
+        DataStructureType type = getSourceType();
+        if (type == null) {
+            return null;
+        }
+        switch (type) {
+        case XML:
+            XmlStructure struct = new XmlStructure();
+            struct.setFilePath(getProperty(SOURCE_XML));
+            struct.setRootNodeName(getProperty(SOURCE_DTD_ROOT));
+            return struct;
+        case Database:
+        case Text:
+        case ComplexText:
+        case WebServiceRequest:
+        case WebServiceResponse:
+        case None:
+            return m_inputStructure;
+        default:
+            throw new IllegalStateException(
+        }
+    }

@@ -1,0 +1,4 @@
+  protected void stopAllRedirectors() {
+    _stdOutRedirector.setStopFlag();
+    _stdErrRedirector.setStopFlag();
+  }

@@ -1,0 +1,9 @@
+	public String getFeedbackModeName() {
+		for (int i = 0; i < _validFeedbackNames.length; i++) {
+			if (_activeFeedbackType == _validFeedbackModes[i]) {
+				return _validFeedbackNames[i];
+			}
+		}
+		throw new IllegalArgumentException("Unexpected internal mode: "
+				+ _activeFeedbackType);
+	}

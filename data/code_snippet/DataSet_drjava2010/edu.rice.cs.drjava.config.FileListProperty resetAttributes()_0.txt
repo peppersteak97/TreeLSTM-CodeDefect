@@ -1,0 +1,7 @@
+  public void resetAttributes() {
+    _attributes.clear();
+    _attributes.put("sep", _sep);
+    _attributes.put("rel", _dir);
+    _attributes.put("squote", null);
+    _attributes.put("dquote", null);
+  }

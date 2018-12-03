@@ -1,0 +1,5 @@
+    public String getInfo() {
+        String t = host.getText();
+        if (t != null && !t.equals("")) return t;
+        else return "(none)";
+    }

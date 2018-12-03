@@ -1,0 +1,16 @@
+  public JPanel _workDirectoryPanel() {
+    DirectoryChooser dirChooser = new DirectoryChooser(this);
+    dirChooser.setSelectedFile(_getWorkDir());
+    dirChooser.setDialogTitle("Select Working Directory");
+    dirChooser.setApproveButtonText("Select");
+    _workDirSelector = new DirectorySelectorComponent(this, dirChooser, 20, 12f) {
+      protected void _chooseFile() {
+        _mainFrame.removeModalWindowAdapter(ProjectPropertiesFrame.this);
+        super._chooseFile();
+        _mainFrame.installModalWindowAdapter(ProjectPropertiesFrame.this, LambdaUtil.NO_OP, CANCEL);
+      }
+    };
+
+    _workDirSelector.getFileField().getDocument().addDocumentListener(_applyListener);
+    return _workDirSelector;
+  }

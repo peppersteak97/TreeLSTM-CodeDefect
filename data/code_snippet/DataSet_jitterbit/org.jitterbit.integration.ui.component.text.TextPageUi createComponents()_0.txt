@@ -1,0 +1,5 @@
+    private void createComponents() {
+        KongaTextPane text = createTextComponent();
+        m_textPane = text;
+        m_textMarker = new TextMarker(m_textPane);
+    }

@@ -1,0 +1,1 @@
+ * to indicate an invalid input. {@link #getMessage()} will return a detailed message

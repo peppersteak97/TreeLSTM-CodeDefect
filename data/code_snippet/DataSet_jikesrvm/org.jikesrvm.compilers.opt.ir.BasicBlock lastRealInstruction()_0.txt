@@ -1,0 +1,7 @@
+  public final Instruction lastRealInstruction() {
+    if (isEmpty()) {
+      return null;
+    } else {
+      return end.getPrev();
+    }
+  }

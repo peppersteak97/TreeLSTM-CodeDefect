@@ -1,0 +1,16 @@
+    private DocumentListener createTextListener() {
+        return new DocumentListener() {
+
+            public void changedUpdate(DocumentEvent e) {
+                fireChangeEvent();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                fireChangeEvent();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                fireChangeEvent();
+            }
+        };
+    }

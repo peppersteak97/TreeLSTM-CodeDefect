@@ -1,0 +1,4 @@
+    public Object getSelectedEntity() {
+        return ((IntegrationEntityComboBox) m_entityBox.getInputComponent())
+                        .getSelectedEntity();
+    }

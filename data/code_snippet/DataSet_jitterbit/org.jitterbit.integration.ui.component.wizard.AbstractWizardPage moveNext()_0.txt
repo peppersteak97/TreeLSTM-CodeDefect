@@ -1,0 +1,6 @@
+    protected void moveNext() {
+        if (m_nextAction != null && m_nextAction.isEnabled()) {
+            m_nextAction.actionPerformed(new ActionEvent(this,
+                            ActionEvent.ACTION_PERFORMED, "move_next"));
+        }
+    }

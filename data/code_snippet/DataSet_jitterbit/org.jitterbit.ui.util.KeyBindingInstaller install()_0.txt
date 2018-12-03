@@ -1,0 +1,3 @@
+    public void install() {
+        install(m_component);
+    }

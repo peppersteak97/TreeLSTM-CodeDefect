@@ -1,0 +1,22 @@
+	public void deletePanel() {
+		int selectedValue = JOptionPane.showOptionDialog(targetPanel,
+				rbx.getString("QuestionA")+"\n"+rbx.getString("QuestionB"),
+				rbx.getString("DeleteVerifyTitle"),JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,null,
+				new Object[]{rbx.getString("ButtonYesDelete"),rbx.getString("ButtonNoCancel")},
+				rbx.getString("ButtonNoCancel"));
+		
+        InstanceManager.configureManagerInstance().deregister(this);
+		jmri.jmrit.display.PanelMenu.instance().deletePanel((Object)this);
+		setVisible(false);		
+        contents.clear();
+		turnoutList.clear();
+		trackList.clear();
+		pointList.clear();
+		xingList.clear();
+		turntableList.clear();
+        targetPanel = null;
+
+        this.removeAll();
+        super.dispose();
+    }

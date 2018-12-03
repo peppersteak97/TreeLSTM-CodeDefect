@@ -1,0 +1,3 @@
+    public void dispose() {
+        m_textField.setUI(m_originalUi);
+    }

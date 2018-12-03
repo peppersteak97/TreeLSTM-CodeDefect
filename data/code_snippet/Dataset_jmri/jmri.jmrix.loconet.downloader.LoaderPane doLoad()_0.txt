@@ -1,0 +1,14 @@
+    void doLoad() {
+        status.setText(res.getString("StatusDownloading"));
+        readButton.setEnabled(false);
+        readButton.setToolTipText(res.getString("TipDisabledDownload"));
+        loadButton.setEnabled(false);
+        loadButton.setToolTipText(res.getString("TipDisabledDownload"));
+        verifyButton.setEnabled(false);
+        verifyButton.setToolTipText(res.getString("TipDisabledDownload"));
+        abortButton.setEnabled(true);
+        abortButton.setToolTipText(res.getString("TipAbortEnabled"));
+
+        operation = PXCT2SENDDATA;
+        sendSequence();
+    }

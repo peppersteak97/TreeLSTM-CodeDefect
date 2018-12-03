@@ -1,0 +1,3 @@
+    public DatabaseDriverDescription getDriverDescription() {
+        return m_driver;
+    }

@@ -1,0 +1,10 @@
+    public void run() {
+        IntegrationUi.prepare();
+        m_delegate.initializeIntegrationServer();
+        m_delegate.initializeServerCacheManager();
+        m_delegate.readViewData();
+        m_delegate.initializeObjectStructure();
+        m_delegate.loadMetaData();
+        m_initializationLatch.countDown();
+        m_delegate.prepareWebServices();
+    }

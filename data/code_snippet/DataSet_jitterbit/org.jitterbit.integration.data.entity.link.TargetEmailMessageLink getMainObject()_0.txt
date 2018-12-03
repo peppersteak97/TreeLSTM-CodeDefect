@@ -1,0 +1,3 @@
+    public EmailMessage getMainObject() {
+        return (EmailMessage) super.getMainObject();
+    }

@@ -1,0 +1,3 @@
+  public void saveRecentFiles() {
+    DrJava.getConfig().setSetting(_settingConfigConstant, _recentFiles);
+  }

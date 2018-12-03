@@ -1,0 +1,8 @@
+	public Turnout getTurnout() {
+		if (turnout==null) {
+			turnout = jmri.InstanceManager.turnoutManagerInstance().
+							getTurnout(turnoutName);
+			if (turnout!=null) activateTurnout();
+		}
+		return turnout;
+	}

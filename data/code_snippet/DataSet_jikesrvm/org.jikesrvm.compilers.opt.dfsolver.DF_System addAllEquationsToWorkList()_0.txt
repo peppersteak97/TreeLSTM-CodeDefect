@@ -1,0 +1,6 @@
+  public void addAllEquationsToWorkList() {
+    for (Enumeration<DF_Equation> e = getEquations(); e.hasMoreElements();) {
+      DF_Equation eq = e.nextElement();
+      addToWorkList(eq);
+    }
+  }

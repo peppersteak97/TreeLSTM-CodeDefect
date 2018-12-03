@@ -1,0 +1,3 @@
+    void setTitle() {
+        f.setTitle(f.rb.getString("TitleSignalTable"));
+    }

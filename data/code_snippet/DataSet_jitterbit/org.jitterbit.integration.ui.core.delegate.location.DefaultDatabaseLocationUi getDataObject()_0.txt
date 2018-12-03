@@ -1,0 +1,3 @@
+    public DatabaseLocation getDataObject() {
+        return (DatabaseLocation)super.getDataObject();
+    }

@@ -1,0 +1,3 @@
+  public void resetFocus() {
+    _textField.requestFocus();
+  }

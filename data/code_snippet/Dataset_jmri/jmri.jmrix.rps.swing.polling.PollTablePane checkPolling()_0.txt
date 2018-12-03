@@ -1,0 +1,3 @@
+    void checkPolling() {
+        Engine.instance().setPolling(polling.isSelected());
+    }

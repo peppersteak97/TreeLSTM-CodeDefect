@@ -1,0 +1,22 @@
+  public static void report() {
+    if (!booted) return;
+    ControllerThread.report();
+    RuntimeMeasurements.report();
+
+    for (Enumeration<Organizer> e = organizers.elements(); e.hasMoreElements();) {
+      Organizer organizer = e.nextElement();
+      organizer.report();
+    }
+
+    if (options.FINAL_REPORT_LEVEL >= 2) {
+      EdgeCounts.dumpCounts();
+      dcg.dumpGraph();
+    }
+
+    if (options.REPORT_INTERRUPT_STATS) {
+      VM.sysWriteln("Timer Interrupt and Listener Stats");
+      VM.sysWriteln("\tTotal number of clock ticks ", RVMThread.timerTicks);
+      VM.sysWriteln("\tController clock ", controllerClock);
+      VM.sysWriteln("\tNumber of method samples taken ", (int) methodSamples.getTotalNumberOfSamples());
+    }
+  }

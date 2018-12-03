@@ -1,0 +1,4 @@
+    public boolean inputIsValid() {
+        IWsdlDefiner selected = m_inputPanel.getValue();
+        return (selected != null) && selected.isValid();
+    }

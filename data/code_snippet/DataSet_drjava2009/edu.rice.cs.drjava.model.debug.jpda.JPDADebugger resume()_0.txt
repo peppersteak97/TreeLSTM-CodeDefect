@@ -1,0 +1,5 @@
+  public /* synchronized */ void resume() throws DebugException {
+    assert EventQueue.isDispatchThread();
+    _ensureReady();
+    _resumeHelper(false);
+  }

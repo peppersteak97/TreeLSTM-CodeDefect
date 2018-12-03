@@ -1,0 +1,6 @@
+  public final String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(block);
+    sb.append(" (").append(low).append(", ").append(high).append(")");
+    return sb.toString();
+  }

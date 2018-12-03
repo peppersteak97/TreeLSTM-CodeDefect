@@ -1,0 +1,18 @@
+    public void run() {
+        File file = new File(m_filePath);
+        try {
+            setNewStatus(PackageResources.ProcessLocalFileJob.STATUS_PARSING);
+            setParsedInfo(WsdlUtils.parseLocalWsdl(file));
+        }
+        catch (WsdlParserException e) {
+            signalJobFailed(e);
+            return;
+        }
+        WsdlFile wsdl = new WsdlFile();
+        wsdl.putString(WsdlFile.WSDL_LOCATOR, file.getName());
+        setWsdlFile(wsdl);
+        
+        setNewStatus(PackageResources.ProcessLocalFileJob.STATUS_UPLOAD);
+        WsdlUtils.uploadWsdlFile(new File(m_filePath).getName(), 
+                        m_filePath, new UploadWsdlCallback(this));
+    }

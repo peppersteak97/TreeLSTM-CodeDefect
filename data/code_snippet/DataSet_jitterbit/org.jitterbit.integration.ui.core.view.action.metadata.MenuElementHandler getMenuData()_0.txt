@@ -1,0 +1,3 @@
+    public MenuMetaData getMenuData() {
+        return m_menuData;
+    }

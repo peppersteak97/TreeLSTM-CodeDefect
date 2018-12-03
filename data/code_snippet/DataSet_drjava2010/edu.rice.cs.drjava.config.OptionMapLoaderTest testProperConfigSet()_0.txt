@@ -1,0 +1,3 @@
+  public void testProperConfigSet() throws IOException {
+    checkSet(OPTION_DOC, Integer.valueOf(1), new File("foo"), 1);
+  }

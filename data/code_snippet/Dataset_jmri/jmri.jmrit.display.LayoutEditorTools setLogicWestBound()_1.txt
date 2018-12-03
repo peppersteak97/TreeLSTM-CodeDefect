@@ -1,0 +1,30 @@
+	private void setLogicWestBound() {
+		LayoutBlock westBlock = westTrack.getLayoutBlock();
+		Sensor westBlockOccupancy = westBlock.getOccupancySensor();
+		if (westBlockOccupancy==null) {
+			JOptionPane.showMessageDialog(setSignalsAtBoundaryFrame,
+				java.text.MessageFormat.format(rb.getString("InfoMessage4"),
+					new String[]{westBlock.getUserName()}), 
+						null,JOptionPane.INFORMATION_MESSAGE);			
+			return;
+		}
+		SignalHead nextHead = getNextSignalFromObject(westTrack,
+													(Object)boundary);
+		if ( (nextHead==null) && (!reachedEndBumper()) ) {
+			JOptionPane.showMessageDialog(setSignalsAtBoundaryFrame,
+				java.text.MessageFormat.format(rb.getString("InfoMessage5"),
+					new String[]{westBlock.getUserName()}), 
+						null,JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		if (!initializeBlockBossLogic(westBoundField.getText().trim())) return;
+		logic.setMode(BlockBossLogic.SINGLEBLOCK);
+		logic.setSensor1(westBlockOccupancy.getSystemName());
+		if (nextHead!=null) {
+			logic.setWatchedSignal1(nextHead.getSystemName(),false);
+		}
+		if (auxSignal!=null) {
+			logic.setWatchedSignal1Alt(auxSignal.getSystemName());
+		}
+		finalizeBlockBossLogic();
+	}

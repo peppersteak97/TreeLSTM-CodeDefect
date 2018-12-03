@@ -1,0 +1,13 @@
+    public int getRowCount() {
+      int nMax = SprogConstants.MAX_SLOTS;
+      if (_allSlots) {
+        return nMax;
+      }
+      int n = 0;
+      int nMin = 0;
+      for (int i=nMin; i<nMax; i++) {
+        SprogSlot s = SprogSlotManager.instance().slot(i);
+        if (s.isFree() != true) n++;
+      }
+      return n;
+    }

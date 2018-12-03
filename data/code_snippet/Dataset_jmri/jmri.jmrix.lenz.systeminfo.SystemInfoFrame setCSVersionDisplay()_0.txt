@@ -1,0 +1,21 @@
+    private void setCSVersionDisplay() {
+		CSSoftwareVersion.setText("" + XNetTrafficController.instance()
+                                                 .getCommandStation()
+                                                 .getCommandStationSoftwareVersion());
+                int cs_type=XNetTrafficController.instance()
+                                                 .getCommandStation()
+                                                 .getCommandStationType();
+                if(cs_type==0x00) {
+			CSType.setText("LZ100/LZV100");
+		}
+		else if(cs_type==0x01) {
+			CSType.setText("LH200");
+		     }
+		else if(cs_type==0x02) {
+			CSType.setText("Compact or Other");
+		     }
+		else if(cs_type==0x10) {
+			CSType.setText("multiMAUS");
+		     }
+        else CSType.setText("<unknown>");
+	}

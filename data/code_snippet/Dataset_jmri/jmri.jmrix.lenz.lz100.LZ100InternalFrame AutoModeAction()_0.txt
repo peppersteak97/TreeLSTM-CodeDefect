@@ -1,0 +1,6 @@
+     synchronized void AutoModeAction() {
+	    if(log.isDebugEnabled()) log.debug("Auto Mode Action Called");
+    	    isAutoMode.setSelected(true);
+	    isManualMode.setSelected(false);
+	    autoMode=true;
+     }

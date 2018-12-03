@@ -1,0 +1,20 @@
+  public void testOriginalCopyRemains() {
+    String entry = "some text";
+    String newEntry = "some different text";
+
+    _history.add(entry);
+    _history.movePrevious("");
+    _history.moveNext(newEntry);
+    _history.movePrevious("");
+    _history.add(newEntry);
+
+    _history.movePrevious("");
+    
+    Utilities.clearEventQueue();
+    assertEquals("Did not add edited entry to end of history.", newEntry, _history.getCurrent());
+
+    _history.movePrevious(newEntry);
+    
+    Utilities.clearEventQueue();
+    assertEquals("Did not keep a copy of the original entry.", entry, _history.getCurrent());
+  }

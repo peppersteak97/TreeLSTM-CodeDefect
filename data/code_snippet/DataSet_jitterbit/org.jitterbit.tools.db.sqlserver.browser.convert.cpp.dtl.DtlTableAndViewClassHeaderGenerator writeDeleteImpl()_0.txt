@@ -1,0 +1,5 @@
+    private void writeDeleteImpl() {
+        addLine("\tint Delete() {");
+        addLine("\t\treturn m_dtlRecSet.Delete();");
+        addLine("\t}");
+    }

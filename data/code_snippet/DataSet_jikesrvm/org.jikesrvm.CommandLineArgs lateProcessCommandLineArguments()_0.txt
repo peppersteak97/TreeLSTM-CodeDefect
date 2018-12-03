@@ -1,0 +1,72 @@
+  static String[] lateProcessCommandLineArguments() {
+    for (int i = 0; i < app_name_pos; i++) {
+      String arg = args[i];
+      PrefixType type = arg_types[i];
+      if (type == PrefixType.INVALID_ARG) continue;
+      Prefix p = findPrefix(type);
+      if (DEBUG) VM.sysWriteln(" CommandLineArgs.processCLA(" + p + arg + " - " + type + ")");
+      switch (type) {
+        {
+          int mid = arg.indexOf('=');
+          if (mid == -1 || mid + 1 == arg.length()) {
+            VM.sysWriteln("vm: bad property setting: \"", arg, "\"");
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          String name = arg.substring(0, mid);
+          String value = arg.substring(mid + 1);
+          System.getProperties().put(name, value);
+        }
+        break;
+
+          RVMClassLoader.setApplicationRepositories(arg);
+          break;
+
+          java.util.jar.Manifest mf = null;
+          try {
+            java.util.jar.JarFile jf = new java.util.jar.JarFile(arg);
+            mf = jf.getManifest();
+          } catch (Exception e) {
+            VM.sysWriteln("vm: IO Exception opening JAR file ", arg, ": ", e.getMessage());
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          if (mf == null) {
+            VM.sysWriteln("The jar file is missing the manifest entry for the main class: ", arg);
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          String s = mf.getMainAttributes().getValue("Main-Class");
+          if (s == null) {
+            VM.sysWriteln("The jar file is missing the manifest entry for the main class: ", arg);
+            VM.sysExit(VM.EXIT_STATUS_BOGUS_COMMAND_LINE_ARG);
+          }
+          RVMClassLoader.setApplicationRepositories(arg);
+
+          args[i] = s;
+          arg_types[i] = PrefixType.APPLICATION_ARG;
+          app_prefix.count++;
+          break;
+        case JAVAAGENT_ARG:
+          /* Extract jar file from the -javaagent:<jar>[=options] form */
+          int equalsPos = arg.indexOf("=");
+          String jarPath;
+          if (equalsPos != -1) {
+            jarPath = arg.substring(0, equalsPos);
+          } else {
+            jarPath = arg;
+          }
+          String newClassPath = RVMClassLoader.getApplicationRepositories() + File.pathSeparator + jarPath;
+          RVMClassLoader.setApplicationRepositories(newClassPath);
+          break;
+      }
+    }
+
+    String[] arglist = getArgs(PrefixType.APPLICATION_ARG);
+
+    if (DEBUG) {
+      VM.sysWrite("VM.CommandLineArgs(): application arguments " + arglist.length + "\n");
+      for (int i = 0; i < arglist.length; i++) {
+        VM.sysWrite(i + ": \"" + arglist[i] + "\"\n");
+      }
+    }
+
+    return arglist;
+  }

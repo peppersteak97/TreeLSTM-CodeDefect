@@ -1,0 +1,4 @@
+    public final boolean isInputValid() {
+        return getUserName().length() > 0 && getServerName().length() > 0 &&
+            m_portPanel.isInputValid();
+    }

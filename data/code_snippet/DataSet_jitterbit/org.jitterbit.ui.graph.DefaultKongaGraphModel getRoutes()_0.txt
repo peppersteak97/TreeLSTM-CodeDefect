@@ -1,0 +1,3 @@
+	public List<KongaGraphRoute> getRoutes() {
+		return new ArrayList<KongaGraphRoute>(m_liRoutes);
+	}

@@ -1,0 +1,7 @@
+  public File getFileFromField() {
+    String txt = _fileField.getText().trim();
+    if (txt.equals("")) _file = FileOps.NULL_FILE;
+    else _file = new File(txt);
+    
+    return _file;
+  }

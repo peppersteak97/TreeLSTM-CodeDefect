@@ -1,0 +1,3 @@
+    public TradingPartner getDataObject() {
+        return (TradingPartner)getKongaObject();
+    }

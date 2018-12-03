@@ -1,0 +1,4 @@
+  public void resetFileField() {
+    _textField.setText(convertFileToString(_file));
+    _textField.setCaretPosition(_textField.getText().length());
+  }

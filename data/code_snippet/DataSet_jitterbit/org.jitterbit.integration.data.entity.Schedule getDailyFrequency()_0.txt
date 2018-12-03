@@ -1,0 +1,3 @@
+    public ScheduleDailyFrequency getDailyFrequency() {
+        return new ScheduleDailyFrequency(getData());
+    }

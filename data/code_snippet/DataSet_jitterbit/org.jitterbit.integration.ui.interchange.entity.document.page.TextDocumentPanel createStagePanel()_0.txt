@@ -1,0 +1,5 @@
+    private void createStagePanel() {
+        stagePanel = new JPanel();
+        stagePanel.setOpaque(false);
+        stagePanel.setLayout(new CardLayout());
+    }

@@ -1,0 +1,4 @@
+    public JScrollPane newScrollPane() {
+        return newScrollPane(null, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    }

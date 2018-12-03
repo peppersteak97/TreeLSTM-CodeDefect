@@ -1,0 +1,18 @@
+   public void testEmbeddedBraceForms() throws BadLocationException {
+    /* (1) */
+    
+    _text =
+      "Foo f1 = x,\n" +
+      "  f2 = new int[]{1, 2, 3},\n" +
+      "  f3 = y;";
+     
+    _setDocText(_text);
+    
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 12, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, 22, Indenter.IndentReason.OTHER));
+    assertTrue("START has no brace.", !_rule.testApplyRule(_doc, _text.length() - 1, Indenter.IndentReason.OTHER));
+    
+    /* (2) */
+    
+  }

@@ -1,0 +1,3 @@
+  public void testFooLine() throws javax.swing.text.BadLocationException {
+    assertEquals(true, _rule.testApplyRule(_doc, 6, Indenter.IndentReason.OTHER));
+  }

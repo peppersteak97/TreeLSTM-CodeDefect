@@ -1,0 +1,8 @@
+    public TargetId getTargetId() {
+        try {
+            return new TargetId(id);
+        }
+        catch (IllegalArgumentException e) {
+            return null;
+        }
+    }

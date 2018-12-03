@@ -1,0 +1,25 @@
+  public void testRenameDocument() {
+    final String name = "MyTest.dj0";
+    final String newName = "MyTest.dj0*";
+    final DummyINavigatorItem item = new DummyINavigatorItem(name);
+    final DummyINavigatorItem newItem = new DummyINavigatorItem(newName);
+    Utilities.invokeAndWait(new Runnable() { public void run() { tree.addDocument(item, "folder3"); } });
+    InnerNode<?,?> folder3 = (InnerNode<?,?>)source.getChildAt(2);
+    assertEquals("folder3 should have 1 children", 1, folder3.getChildCount());
+    Utilities.invokeAndWait(new Runnable() { public void run() { tree.refreshDocument(item, "folder3"); } });
+    assertEquals("folder3 should have 1 children", 1, folder3.getChildCount());
+    LeafNode<?> node = (LeafNode<?>)folder3.getChildAt(0);
+    assertEquals("node should have correct name", name, node.toString());
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() { 
+        tree.removeDocument(item);
+        tree.addDocument(newItem, "folder3");
+      }
+    });
+    folder3 = (InnerNode<?,?>) source.getChildAt(2);
+    LeafNode<?> newNode = (LeafNode<?>) folder3.getChildAt(0);
+    
+    assertEquals("should have been renamed", newName, newNode.toString());
+    assertEquals("node should have same parent", folder3, newNode.getParent());
+    Utilities.invokeAndWait(new Runnable() { public void run() { tree.removeDocument(newItem); } });
+  }

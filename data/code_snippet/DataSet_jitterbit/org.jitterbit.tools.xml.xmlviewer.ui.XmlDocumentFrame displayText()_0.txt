@@ -1,0 +1,24 @@
+	private void displayText() {
+		new Thread() {
+            
+            @Override
+			public void run() {
+				if( m_textArea == null ) {
+                    m_textArea = new KongaTextPane();
+                    XmlTextViewer viewer = new XmlTextViewer(m_textArea);
+                    viewer.view(m_file.getFileObject());
+					m_textArea.setEditable(false);
+					m_copyAction = new CopyAction(m_textArea);
+				}
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						m_treeController.setTree(null);
+						m_panel.removeAll();
+						m_panel.add( new JScrollPane(m_textArea), BorderLayout.CENTER );
+						m_copyAction.setEnabled(true);
+						revalidate();
+					}
+				});
+			}
+		}.start();
+	}

@@ -1,0 +1,4 @@
+    protected IPopupMenuItem createItem() {
+        Action a = InterchangeActionFactory.EXPORT_SOURCE_AS_TARGET.get(m_view);
+        return new Item(a);
+    }

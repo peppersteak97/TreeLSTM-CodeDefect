@@ -1,0 +1,3 @@
+    void clear() {
+        measurementRepList = new ArrayList();
+    }

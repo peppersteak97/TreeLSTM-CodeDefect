@@ -1,0 +1,9 @@
+    public synchronized boolean cancel() {
+        boolean b = super.cancel();
+        if (b) {
+            setStatus(PackageResources.DownloadInfoJob.CANCELLED);
+            m_page.stopWait();
+            m_callback.cancelled();
+        }
+        return b;
+    }

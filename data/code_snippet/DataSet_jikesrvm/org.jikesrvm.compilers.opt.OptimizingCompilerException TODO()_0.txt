@@ -1,0 +1,3 @@
+  public static void TODO() throws OptimizingCompilerException {
+    throw new OptimizingCompilerException("Unsupported function in IA32 port");
+  }

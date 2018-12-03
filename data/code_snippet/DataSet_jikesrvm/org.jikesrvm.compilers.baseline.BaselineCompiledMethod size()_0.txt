@@ -1,0 +1,8 @@
+  public int size() {
+    TypeReference TYPE = TypeReference.findOrCreate(BaselineCompiledMethod.class);
+    int size = TYPE.peekType().asClass().getInstanceSize();
+    if (bytecodeMap != null) size += RVMArray.ByteArray.getInstanceSize(bytecodeMap.length);
+    if (eTable != null) size += RVMArray.IntArray.getInstanceSize(eTable.length);
+    if (referenceMaps != null) size += referenceMaps.size();
+    return size;
+  }

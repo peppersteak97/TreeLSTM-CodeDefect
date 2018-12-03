@@ -1,0 +1,3 @@
+  public void preparePrintJob() {
+    _book = new DrJavaBook(getDocText(0, getLength()), "Interactions", new PageFormat());
+  }

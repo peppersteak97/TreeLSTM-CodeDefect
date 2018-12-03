@@ -1,0 +1,19 @@
+    public void initComponents() {
+        setTitle(rb.getString("WindowTitle"));
+	
+	    setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+	    
+        Container contentPane = getContentPane();
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+			
+
+        p = new AlignTablePane(this);
+        p.initComponents();
+        contentPane.add(p);
+        
+    	addHelpMenu("package.jmri.jmrix.rps.aligntable.AlignTableFrame", true);
+
+        setShutDownTask();
+        
+        pack();
+    }

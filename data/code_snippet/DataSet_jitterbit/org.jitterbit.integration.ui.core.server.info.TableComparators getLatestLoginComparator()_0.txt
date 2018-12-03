@@ -1,0 +1,3 @@
+    public static Comparator<IServerProperties> getLatestLoginComparator() {
+        return ServerComparators.SORT_BY_LATEST_LOGIN;
+    }

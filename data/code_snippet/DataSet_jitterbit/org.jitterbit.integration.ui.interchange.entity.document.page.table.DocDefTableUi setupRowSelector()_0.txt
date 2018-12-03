@@ -1,0 +1,7 @@
+    private void setupRowSelector() {
+        setRowSelectionAllowed(true);
+        setColumnSelectionAllowed(true);
+        m_rowSelector = new RowMouseSelector(this);
+        addMouseListener(m_rowSelector);
+        getSelectionModel().addListSelectionListener(m_rowSelector);
+    }

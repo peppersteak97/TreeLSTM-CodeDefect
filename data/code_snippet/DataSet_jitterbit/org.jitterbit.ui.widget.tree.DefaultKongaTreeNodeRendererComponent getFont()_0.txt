@@ -1,0 +1,3 @@
+	public Font getFont() {
+		return (m_lblText != null) ? m_lblText.getFont() : super.getFont();
+	}

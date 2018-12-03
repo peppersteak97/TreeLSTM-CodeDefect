@@ -1,0 +1,5 @@
+  public String toString() {
+    ArrayList<BrowserDocumentRegion> future = new ArrayList<BrowserDocumentRegion>(_futureRegions);
+    Collections.reverse(future);
+    return "Past: "+_pastRegions.toString()+", Future: "+future.toString();
+  }

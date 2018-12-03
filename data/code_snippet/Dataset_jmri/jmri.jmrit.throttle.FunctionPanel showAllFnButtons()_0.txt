@@ -1,0 +1,8 @@
+    public void showAllFnButtons() {
+    	for (int i=0; i < NUM_FUNCTION_BUTTONS; i++) {
+    		functionButton[i].setDisplay(true);
+    		if (i<3)
+    			functionButton[i].setVisible(true);
+    	}
+    	buttonActionCmdPerformed();
+    }

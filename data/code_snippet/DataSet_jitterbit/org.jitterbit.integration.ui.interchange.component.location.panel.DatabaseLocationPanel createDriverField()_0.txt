@@ -1,0 +1,7 @@
+    private void createDriverField() {
+        String driverLabel = PackageResources.Database.Labels.DRIVER;
+        m_driverField = new DriverInputField(driverLabel);
+        m_driverField.getInputComponent().setEditable(false);
+        m_setDriverButton = ComponentFactories.buttonFactory().newButton(
+                new SelectDriverAction());
+    }

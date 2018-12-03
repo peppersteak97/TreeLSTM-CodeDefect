@@ -1,0 +1,3 @@
+  protected final synchronized boolean isEmpty() {
+    return numElements == 0;
+  }

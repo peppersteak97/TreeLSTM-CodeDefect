@@ -1,0 +1,4 @@
+    private String getPortNumberFromServerField() {
+        String server = m_serverField.getText().trim();
+        int index = server.indexOf(':');
+    }

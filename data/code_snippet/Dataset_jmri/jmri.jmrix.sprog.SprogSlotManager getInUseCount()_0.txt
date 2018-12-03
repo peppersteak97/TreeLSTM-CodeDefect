@@ -1,0 +1,6 @@
+    public int getInUseCount() {
+        int result = 0;
+        for (int i = 0; i<=SprogConstants.MAX_SLOTS; i++) {
+        }
+        return result;
+    }

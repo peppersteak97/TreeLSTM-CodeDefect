@@ -1,0 +1,9 @@
+  public final MethodReference getMethodReference() {
+    if (VM.VerifyAssertions) {
+      VM._assert(opcode == JBC_invokevirtual ||
+                 opcode == JBC_invokespecial ||
+                 opcode == JBC_invokestatic ||
+                 opcode == JBC_invokeinterface);
+    }
+    return getDeclaringClass().getMethodRef(readUnsignedShort());
+  }

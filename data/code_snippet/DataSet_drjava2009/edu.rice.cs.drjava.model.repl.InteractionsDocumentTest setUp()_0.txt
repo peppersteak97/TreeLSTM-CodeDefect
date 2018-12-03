@@ -1,0 +1,5 @@
+  protected void setUp() throws Exception {
+    super.setUp();
+    _doc = new InteractionsDocument(new InteractionsDJDocument());
+    _doc.setBanner(TEST_BANNER);
+  }

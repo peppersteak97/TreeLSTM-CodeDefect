@@ -1,0 +1,9 @@
+  public static void boot() {
+    if (VM.BuildForPowerOpenABI) {
+      for (int i = 0; i < JNIFunctions.length(); i++) {
+        AddressArray triplet = LinkageTriplets.get(i);
+        triplet.set(1, Magic.getTocPointer());
+        triplet.set(0, Magic.objectAsAddress(JNIFunctions.get(i)));
+      }
+    }
+  }

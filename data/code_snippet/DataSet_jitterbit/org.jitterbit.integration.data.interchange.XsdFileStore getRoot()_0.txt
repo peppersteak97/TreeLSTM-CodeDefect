@@ -1,0 +1,3 @@
+    public IFile getRoot() throws FileStoreException {
+        return m_fileStore.getFile(ROOT);
+    }

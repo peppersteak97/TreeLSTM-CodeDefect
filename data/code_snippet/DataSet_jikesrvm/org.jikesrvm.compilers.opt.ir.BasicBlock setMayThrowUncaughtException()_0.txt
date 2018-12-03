@@ -1,0 +1,3 @@
+  public final void setMayThrowUncaughtException() {
+    flags |= IMPLICIT_EXIT_EDGE;
+  }

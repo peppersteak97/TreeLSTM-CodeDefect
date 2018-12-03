@@ -1,0 +1,3 @@
+  public Instruction firstInstructionInCodeOrder() {
+    return firstBasicBlockInCodeOrder().firstInstruction();
+  }

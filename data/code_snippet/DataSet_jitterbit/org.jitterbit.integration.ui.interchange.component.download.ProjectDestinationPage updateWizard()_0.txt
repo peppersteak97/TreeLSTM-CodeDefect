@@ -1,0 +1,5 @@
+    private void updateWizard() {
+        DownloadProjectWizard wiz = getWizard();
+        wiz.setProjectToDownload(m_project);
+        wiz.setProjectFolder(getProjectLocation());
+    }

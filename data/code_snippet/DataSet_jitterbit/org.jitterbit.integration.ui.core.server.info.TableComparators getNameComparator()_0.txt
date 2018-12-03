@@ -1,0 +1,8 @@
+    public static Comparator<ServerName> getNameComparator() {
+        return new Comparator<ServerName>() {
+
+            public int compare(ServerName o1, ServerName o2) {
+                return o1.compareTo(o2);
+            }
+        };
+    }

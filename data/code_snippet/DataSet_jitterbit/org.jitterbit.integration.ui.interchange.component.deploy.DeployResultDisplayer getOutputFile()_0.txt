@@ -1,0 +1,7 @@
+    private File getOutputFile() {
+        IApplicationWindow window = IntegrationUi.getUi().getAppWin();
+        return IntegrationFileChooser.getInstance(window).getFileToSave(
+                        IntegrationUiUtils.getActiveFrame(), 
+                        new SuffixFileChooserFilter(new String[] { ".txt", ".xml" }),  
+                        LAST_SAVED_FILE);
+    }

@@ -1,0 +1,6 @@
+    public synchronized static RootNodeExtractor getSaxExtractor() {
+        if (s_saxImplementation == null) {
+            s_saxImplementation = new SaxRootNodeExtractor();
+        }
+        return s_saxImplementation;
+    }

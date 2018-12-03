@@ -1,0 +1,14 @@
+    protected void init() {
+        TurnoutManager tm = InstanceManager.turnoutManagerInstance();
+        SensorManager  sm = InstanceManager.sensorManagerInstance();
+        SignalHeadManager hm = InstanceManager.signalHeadManagerInstance();
+        if ( tm==null || sm==null || hm ==null) {
+            log.error("Can't function with missing managers");
+            return;
+        }
+
+        defineIO();
+
+        sig.setAppearance(SignalHead.RED);
+        setOutput();
+    }

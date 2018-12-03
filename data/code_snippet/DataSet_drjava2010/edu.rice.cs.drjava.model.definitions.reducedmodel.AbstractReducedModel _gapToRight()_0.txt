@@ -1,0 +1,3 @@
+      if (_gapToRight()) {
+        _cursor.next();
+      }

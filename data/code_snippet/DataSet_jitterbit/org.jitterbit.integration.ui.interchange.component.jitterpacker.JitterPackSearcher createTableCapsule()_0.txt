@@ -1,0 +1,11 @@
+    private OneColumnPanel createTableCapsule() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setFill(OneColumnPanel.NONE);
+        p.setWeightX(1.0);
+        p.setWeightY(1.0);
+        p.setInsets(2, 5, 2, 5);
+        p.add(IntegrationUiStyleSheet.DefaultText.makeJLabel(
+                        PackageResources.Searcher.TABLE_CAPTION));
+        p.add(m_table);
+        return p;
+    }

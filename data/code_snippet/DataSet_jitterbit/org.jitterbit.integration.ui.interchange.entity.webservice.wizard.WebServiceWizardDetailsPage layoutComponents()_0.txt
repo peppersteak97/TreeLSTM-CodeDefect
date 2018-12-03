@@ -1,0 +1,33 @@
+    private void layoutComponents() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setFill(OneColumnPanel.NONE);
+        p.setInsets(5, 5, 5, 5);
+
+        String caption = PackageResources.DetailsPage.Default.CAPTION;
+        if (caption != null && caption.length() > 0) {
+            p.add(IntegrationUiStyleSheet.AdminHint.makeJLabel(caption));
+        }
+
+        Box urlCapsule = Box.createHorizontalBox();
+        urlCapsule.add(m_webServiceUrlField);
+        urlCapsule.add(Box.createHorizontalStrut(10));
+        urlCapsule.add(m_defaultUrlButton);
+        JComponent urlComponent = InputFieldFactory.getLabeledComponent(urlCapsule,
+                        PackageResources.DetailsPage.Labels.URL);
+        p.add(urlComponent);
+
+        Box soapActionCapsule = Box.createHorizontalBox();
+        soapActionCapsule.add(m_soapActionField);
+        soapActionCapsule.add(Box.createHorizontalStrut(10));
+        soapActionCapsule.add(m_defaultSoapActionButton);
+        JComponent soapActionComponent = InputFieldFactory.getLabeledComponent(
+                        soapActionCapsule,
+                        PackageResources.DetailsPage.Labels.SOAP_ACTION,
+                        InputFieldFactory.VERTICAL);
+        p.add(soapActionComponent);
+
+        p.setFill(OneColumnPanel.HORIZONTAL);
+        p.add(m_securityPanel.getUi());
+        p.add(m_restrictionsPanel.getUi());
+        m_inputPanel = ComponentDecorFactory.invisible(p).getUi();
+    }

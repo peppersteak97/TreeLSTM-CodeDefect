@@ -1,0 +1,17 @@
+    public void validateCurrent() {
+        try {
+            currentLimit = Integer.parseInt(currentTextField.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid Current Limit Entered\n"
+                    + "Please enter a value in the range 200 - 1000",
+                    "SPROG Console", JOptionPane.ERROR_MESSAGE);
+            currentLimit = 996;
+            return;
+        }
+        if ((currentLimit > 1000) || (currentLimit < 200)) {
+            JOptionPane.showMessageDialog(null, "Invalid Current Limit Entered\n"
+                    + "Please enter a value in the range 200 - 999",
+                    "SPROG Console", JOptionPane.ERROR_MESSAGE);
+            currentLimit = 996;
+        }
+    }

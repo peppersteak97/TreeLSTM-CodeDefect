@@ -1,0 +1,11 @@
+    public final ITargetFilter getUniqueObjectFilter() {
+        if (m_uniqueObjectFilter == null) {
+            m_uniqueObjectFilter = new ITargetFilter() {
+
+                public boolean accept(Object o) {
+                    return !m_targetObjects.contains(o);
+                }
+            };
+        }
+        return m_uniqueObjectFilter;
+    }

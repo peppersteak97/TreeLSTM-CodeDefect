@@ -1,0 +1,6 @@
+  protected void _removePreviousHighlight() {
+    if (_matchHighlight != null) {
+      _matchHighlight.remove();
+      _matchHighlight = null;
+    }
+  }

@@ -1,0 +1,19 @@
+  public void testRightAfterBrace() throws BadLocationException {
+    
+    _text = 
+      "boolean method() {\n" +
+      "}";
+    
+    _setDocText(_text);
+    assertTrue("START immediately follows an open brace.", _rule.testApplyRule(_doc, 19, Indenter.IndentReason.OTHER));
+    
+    _text = 
+      "boolean method(\n" +
+      "    int[] a, String b)\n" +
+      "{\n" +
+      "}";
+    
+    _setDocText(_text); 
+    assertTrue("START immediately follows an open paren.", !_rule.testApplyRule(_doc, 40, Indenter.IndentReason.OTHER));
+    assertTrue("START immediately follows an open brace.", _rule.testApplyRule(_doc, 41, Indenter.IndentReason.OTHER));
+  }

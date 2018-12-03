@@ -1,0 +1,15 @@
+    private OneRowPanel getFieldsBox() {
+        OneRowPanel box = new OneRowPanel();
+        box.setInsets(0, 0, 0, 20);
+        JComponent capsule = InputFieldFactory.getLabeledComponent(
+                        delimiterField.getInputComponent(), 
+                        RESOURCES.getString("Label.Delimiter"),
+                        InputFieldFactory.HORIZONTAL_LABEL_LEFT);
+        box.add(capsule);
+        capsule = InputFieldFactory.getCapsule(stringQualifierField, InputFieldFactory.HORIZONTAL_LABEL_LEFT);
+        box.add(capsule);
+        capsule = InputFieldFactory.getCapsule(numberQualifierField, InputFieldFactory.HORIZONTAL_LABEL_LEFT);
+        box.setInsets(0, 0, 0, 0);
+        box.add(capsule);
+        return box;
+    }

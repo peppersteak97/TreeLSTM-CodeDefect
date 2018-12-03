@@ -1,0 +1,3 @@
+	public Iterator<String> getExtensions() {
+        return KongaCollectionUtils.getReadOnlyIterator(Arrays.asList(m_arExtensions));
+    }

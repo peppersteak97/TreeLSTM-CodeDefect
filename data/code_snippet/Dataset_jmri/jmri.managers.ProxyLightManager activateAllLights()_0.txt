@@ -1,0 +1,5 @@
+    public void activateAllLights() {
+        for (int i=0; i<mgrs.size(); i++) {
+            ((LightManager)mgrs.get(i)).activateAllLights();
+        }
+    }

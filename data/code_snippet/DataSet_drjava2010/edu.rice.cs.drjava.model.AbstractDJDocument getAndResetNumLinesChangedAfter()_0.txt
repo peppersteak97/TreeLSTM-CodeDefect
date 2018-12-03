@@ -1,0 +1,5 @@
+  public int getAndResetNumLinesChangedAfter() {
+    int result = _numLinesChangedAfter;
+    _numLinesChangedAfter = -1;
+    return result;
+  }

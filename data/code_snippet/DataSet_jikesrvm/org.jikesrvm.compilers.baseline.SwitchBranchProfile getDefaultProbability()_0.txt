@@ -1,0 +1,3 @@
+  public float getDefaultProbability() {
+    return getProbability(counts.length - 1);
+  }

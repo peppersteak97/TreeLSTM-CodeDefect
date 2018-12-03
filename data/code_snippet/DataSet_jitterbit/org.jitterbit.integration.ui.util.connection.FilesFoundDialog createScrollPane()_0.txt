@@ -1,0 +1,15 @@
+    private JComponent createScrollPane() {
+        JScrollPane scroll = ComponentFactories.scrollFactory().newScrollPane(m_textPane);
+        ComponentDecorator decorator = new ComponentDecorator(scroll) {
+            
+            @Override
+            public Dimension getPreferredSize() {
+                Dimension supDim = getDecoratee().getPreferredSize();
+                Dimension maxDim = getMaximumSize();
+                return new Dimension(Math.min(maxDim.width, supDim.width), Math.min(
+                                maxDim.height, supDim.height));
+            }
+        };
+        decorator.setMaximumSize(new Dimension(300, 400));
+        return decorator;
+    }

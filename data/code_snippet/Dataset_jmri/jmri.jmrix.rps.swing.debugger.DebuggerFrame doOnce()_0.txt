@@ -1,0 +1,20 @@
+    void doOnce() {
+        switch (mode.getSelectedIndex()) {
+            log.error("Did not expect selected mode "+mode.getSelectedIndex());
+            return;
+            doReadingFromTimeFields();
+            return;
+            doMeasurementFromPositionFields();
+            return;
+            try {
+                doLoadReadingFromFile();
+                doReadingFromTimeFields();
+            } catch (java.io.IOException e) {log.error("exception "+e);}
+            return;
+            try {
+                doLoadMeasurementFromFile();
+            } catch (java.io.IOException e) {log.error("exception "+e);}
+            return;
+         
+        }
+    }

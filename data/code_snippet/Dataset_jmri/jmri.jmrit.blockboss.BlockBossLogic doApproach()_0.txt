@@ -1,0 +1,8 @@
+    void doApproach() {
+        if (approachSensor1 != null && approachSensor1.getKnownState() == Sensor.INACTIVE) {
+            if (driveSignal.getLit()) driveSignal.setLit(false);
+        } else {
+            if (!driveSignal.getLit()) driveSignal.setLit(true);
+        }            
+        return;
+    }

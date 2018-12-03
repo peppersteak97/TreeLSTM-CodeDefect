@@ -1,0 +1,12 @@
+	void showSaveReminder() {
+		if (showReminder) {
+			showReminder = false;
+			showReminderCount++;
+			if (showReminderCount < 4) {
+				javax.swing.JOptionPane.showMessageDialog(editLogixFrame, rbx
+						.getString("Reminder1"),
+						rbx.getString("ReminderTitle"),
+						javax.swing.JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+	}

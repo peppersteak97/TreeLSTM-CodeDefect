@@ -1,0 +1,3 @@
+	public Desktop getDesktop() {
+	    return m_deskTop;
+	}

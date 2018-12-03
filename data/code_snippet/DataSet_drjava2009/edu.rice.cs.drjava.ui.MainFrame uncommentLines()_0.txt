@@ -1,0 +1,23 @@
+  public void uncommentLines() {
+    assert EventQueue.isDispatchThread();
+    
+    OpenDefinitionsDocument openDoc = _model.getActiveDocument();
+    int caretPos = _currentDefPane.getCaretPosition();
+    openDoc.setCurrentLocation(caretPos);
+    int start = _currentDefPane.getSelectionStart();
+    int end = _currentDefPane.getSelectionEnd();
+    _currentDefPane.endCompoundEdit();
+    
+    openDoc.setCurrentLocation(start);
+    Position startPos;
+    try { startPos = openDoc.createUnwrappedPosition(start); }
+    catch (BadLocationException e) { throw new UnexpectedException(e); }
+    
+    int startOffset = startPos.getOffset();        
+    final int newEnd = openDoc.uncommentLines(start, end);
+    if (startOffset != startPos.getOffset()) start -= 2;
+    final int f_start = start;
+    final boolean moveSelection = start != end;
+    _currentDefPane.setCaretPosition(f_start);
+    if (moveSelection) _currentDefPane.moveCaretPosition(newEnd);
+  }

@@ -1,0 +1,5 @@
+    public void synchronize() {
+        JMenu menu = m_menuManager.getJMenu(ApplicationWindowMenus.WINDOWS);
+        removeFromMenu(menu);
+        addToMenu(menu);
+    }

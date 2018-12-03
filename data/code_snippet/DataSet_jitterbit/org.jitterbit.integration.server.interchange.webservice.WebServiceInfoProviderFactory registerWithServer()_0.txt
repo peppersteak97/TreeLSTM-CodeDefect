@@ -1,0 +1,11 @@
+    private static void registerWithServer() {
+        IntegrationServer server = IntegrationServer.getInstance();
+        IServerCallFactory<IWebServiceInfoProvider> callFactory =
+            new IServerCallFactory<IWebServiceInfoProvider>() {
+
+                public IWebServiceInfoProvider get() {
+                    return new WebServiceInfoProviderWsImpl();
+                }
+        };
+        server.registerCallFactory(IWebServiceInfoProvider.class, callFactory);
+    }

@@ -1,0 +1,11 @@
+  public void testInsideString() {
+    assertEquals("#0.0", FREE, model0.getStateAtCurrent());
+    model0.insertChar('\"');
+    assertEquals("#0.1", INSIDE_DOUBLE_QUOTE, model0.getStateAtCurrent());
+    model1.insertChar('\"');
+    assertEquals("#0.2", INSIDE_DOUBLE_QUOTE, model1.getStateAtCurrent());
+    model1.insertChar('(');
+    assertEquals("#0.3", INSIDE_DOUBLE_QUOTE, model1.getStateAtCurrent());
+    model1.insertChar('\"');
+    assertEquals("#0.4", FREE, model1.getStateAtCurrent());
+  }

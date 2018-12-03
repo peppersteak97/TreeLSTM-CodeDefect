@@ -1,0 +1,4 @@
+    private boolean sourceFunctionMatches() {
+        IFunction fcn = functions.get(0);
+        return fcn != null && fcn.canGetInputFrom(source);
+    }

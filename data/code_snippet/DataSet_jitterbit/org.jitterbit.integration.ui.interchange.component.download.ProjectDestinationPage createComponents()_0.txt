@@ -1,0 +1,16 @@
+    private void createComponents() {
+        m_newProjectLocationDisplayer = ProjectLocationBrowser.getNewProjectLocationBrowser(
+                        m_currentProjectName, m_currentProjectLocation);
+        m_newProjectLocationDisplayer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                moveNext();
+            }
+        });
+        m_newProjectLocationDisplayer.addProjectNameListener(new ChangeListener() {
+            
+            public void stateChanged(ChangeEvent e) {
+                setNextPageEnabled(
+                        m_newProjectLocationDisplayer.getProjectName().length() > 0);
+            }
+        });
+    }

@@ -1,0 +1,6 @@
+    public boolean isRemote() {
+        String locator = getLocator();
+        if (locator == null) {
+            return false;
+        }
+    }

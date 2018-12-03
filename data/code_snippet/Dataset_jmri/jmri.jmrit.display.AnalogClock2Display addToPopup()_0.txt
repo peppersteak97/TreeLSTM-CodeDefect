@@ -1,0 +1,20 @@
+    protected void addToPopup() {
+        if (popup != null) {
+            popup.insert(new JMenuItem("Fast Clock"), 0);
+            JMenu rateMenu = new JMenu("Clock rate");
+            rateButtonGroup = new ButtonGroup();
+            addRateMenuEntry(rateMenu, 1);
+            addRateMenuEntry(rateMenu, 2);
+            addRateMenuEntry(rateMenu, 4);
+            addRateMenuEntry(rateMenu, 8);
+            popup.insert(rateMenu, 1);
+            runMenu = new JMenuItem(getRun() ? "Stop" : "Start");
+            runMenu.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    setRun(!getRun());
+                    update();
+                }
+            });
+            popup.insert(runMenu, 2);
+        }
+    }

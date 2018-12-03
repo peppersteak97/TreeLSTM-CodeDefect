@@ -1,0 +1,4 @@
+    public String getCurrentBaudRate() {
+        if (mBaudRate == null) return validBaudRates()[0];
+        return mBaudRate;
+    }

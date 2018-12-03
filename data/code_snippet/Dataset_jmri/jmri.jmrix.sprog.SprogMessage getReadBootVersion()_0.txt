@@ -1,0 +1,7 @@
+    static public SprogMessage getReadBootVersion() {
+      SprogMessage m = new SprogMessage(3);
+      m.setOpCode(RD_VER);
+      m.setLength(2);
+      m.setChecksum();
+      return m.frame();
+    }

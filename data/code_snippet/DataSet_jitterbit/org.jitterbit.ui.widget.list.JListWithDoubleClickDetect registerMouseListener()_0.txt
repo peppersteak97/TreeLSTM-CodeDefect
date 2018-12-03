@@ -1,0 +1,12 @@
+	private void registerMouseListener() {
+		addMouseListener(new AbstractDoubleClickDetector(this) {
+
+            @Override
+            public void onDoubleClick(int iSelectedIndex) {
+                if (m_doubleClickHandler != null) {
+                    m_doubleClickHandler.handleDoubleClick(
+                                    JListWithDoubleClickDetect.this, iSelectedIndex);
+                }
+            }
+        });
+	}

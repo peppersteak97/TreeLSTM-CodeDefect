@@ -1,0 +1,3 @@
+    public TargetMessageId getID() {
+        return (TargetMessageId) super.getID();
+    }

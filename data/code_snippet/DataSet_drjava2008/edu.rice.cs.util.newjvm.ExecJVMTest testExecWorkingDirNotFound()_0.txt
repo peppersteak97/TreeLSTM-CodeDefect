@@ -1,0 +1,27 @@
+  public void testExecWorkingDirNotFound() throws IOException, InterruptedException {
+    File tempFile = File.createTempFile("drjava-test", ".tmp").getCanonicalFile();
+    assertTrue("temp file exists", tempFile.exists());
+    boolean ret = tempFile.delete();
+    assertTrue("temp file delete succeeded", ret);
+
+    File tempDir = new File(tempFile.toString() + File.separatorChar);
+    ret = tempDir.mkdirs();
+    assertTrue("temp dir exists", tempDir.exists());
+    assertTrue("temp dir is dir", tempDir.isDirectory());
+    ret = tempDir.delete();
+    assertTrue("temp dir delete succeeded", ret);
+
+    String className = getClass().getName() + "$" + StringOps.getSimpleName(NoOp.class);
+    String tempName = tempFile.getAbsolutePath();
+    Process jvm = ExecJVM.runJVMPropagateClassPath(className, new String[] { tempName }, tempDir);
+
+    int result = jvm.waitFor();
+
+    try {
+      assertEquals("jvm exit code", 0, result);
+      assertTrue("jvm System.out not empty", jvm.getInputStream().read() == -1);
+      assertTrue("jvm System.err not empty", jvm.getErrorStream().read() == -1);
+    }
+    finally {
+    }
+  }

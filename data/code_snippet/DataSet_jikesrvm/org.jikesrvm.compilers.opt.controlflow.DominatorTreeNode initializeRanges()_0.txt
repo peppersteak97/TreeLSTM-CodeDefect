@@ -1,0 +1,9 @@
+  private void initializeRanges() {
+    DominatorTreeNode node = this;
+    DominatorTreeNode parent = (DominatorTreeNode) getParent();
+    while (parent != null) {
+      node = parent;
+      parent = (DominatorTreeNode) node.getParent();
+    }
+    node.initializeRanges(0);
+  }

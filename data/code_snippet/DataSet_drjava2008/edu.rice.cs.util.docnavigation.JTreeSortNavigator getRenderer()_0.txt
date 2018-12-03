@@ -1,0 +1,1 @@
+  public Component getRenderer() { return _renderer; }

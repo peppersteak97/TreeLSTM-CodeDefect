@@ -1,0 +1,9 @@
+    protected void tearDownEventHub() {
+        super.tearDownEventHub();
+        EventHub hub = getEventHub();
+        hub.removeActionRequestHandler(m_actionRequestHandler);
+        InterchangeTree tree = getTree();
+        tree.removeUiDelegateEventListener(hub);
+        hub.removePropertyChangeListener(IntegrationEntity.PROPERTY_NAME, tree);
+        hub.removeDistributedEventListener(tree);
+    }

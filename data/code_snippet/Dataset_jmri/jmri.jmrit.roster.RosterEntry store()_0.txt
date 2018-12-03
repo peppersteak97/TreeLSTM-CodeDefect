@@ -1,0 +1,25 @@
+    org.jdom.Element store() {
+        org.jdom.Element e = new org.jdom.Element("locomotive");
+        e.setAttribute("id", getId());
+        e.setAttribute("fileName", getFileName());
+        e.setAttribute("roadNumber",getRoadNumber());
+        e.setAttribute("roadName",getRoadName());
+        e.setAttribute("mfg",getMfg());
+        e.setAttribute("owner",getOwner());
+        e.setAttribute("model",getModel());
+        e.setAttribute("dccAddress",getDccAddress());
+        e.setAttribute("comment",getComment());
+
+        org.jdom.Element d = new org.jdom.Element("decoder");
+        d.setAttribute("model",getDecoderModel());
+        d.setAttribute("family",getDecoderFamily());
+        d.setAttribute("comment",getDecoderComment());
+
+        e.addContent(d);
+
+        if (_dccAddress.equals("")) {
+        } else {
+            e.addContent( (new jmri.configurexml.LocoAddressXml()).store(new DccLocoAddress(Integer.parseInt(_dccAddress), _isLongAddress)));
+        }
+        return e;
+    }

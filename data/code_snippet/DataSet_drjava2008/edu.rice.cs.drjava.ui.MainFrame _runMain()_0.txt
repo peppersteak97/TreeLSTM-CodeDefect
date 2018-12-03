@@ -1,0 +1,16 @@
+  private void _runMain() {
+    updateStatusField("Running main Method of Current Document");
+    
+    try { _model.getActiveDocument().runMain(); }
+    
+    catch (ClassNameNotFoundException e) {
+      String msg =
+        "DrJava could not find the top level class name in the\n" +
+        "current document, so it could not run the class.  Please\n" +
+        "make sure that the class is properly defined first.";
+      
+      JOptionPane.showMessageDialog(MainFrame.this, msg, "No Class Found", JOptionPane.ERROR_MESSAGE);
+    }
+    catch (FileMovedException fme) { _showFileMovedError(fme); }
+    catch (IOException ioe) { _showIOError(ioe); }
+  }

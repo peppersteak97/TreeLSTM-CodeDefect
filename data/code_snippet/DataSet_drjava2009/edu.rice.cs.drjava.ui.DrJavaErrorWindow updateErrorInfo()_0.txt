@@ -1,0 +1,71 @@
+  private void updateErrorInfo() {
+    getContentPane().remove(_errorInfo);
+    if (_error != null) {
+      final StringBuilder b = new StringBuilder();
+      if (_error instanceof DrJavaErrorHandler.LoggedCondition) {
+        b.append("Logged condition: ");
+        b.append(_error.getMessage());
+        b.append('\n');
+        boolean first = true;
+        for (StackTraceElement ste: _error.getStackTrace()) {
+          if (first) { first = false; continue; /* skip first frame, that's the log method itself */ }
+          b.append("\tat ");
+          b.append(ste);
+          b.append('\n');
+        }
+      }
+      else {
+        b.append(StringOps.getStackTrace(_error));
+        if (_error instanceof UnexpectedException) {
+          Throwable t = ((UnexpectedException)_error).getCause();
+          b.append("\nCaused by:\n");
+          b.append(StringOps.getStackTrace(t));
+        }
+      }
+      
+      b.append("\n\n");
+      b.append(getSystemAndDrJavaInfo());
+
+      _stackTrace.setText(b.toString());
+      _stackTrace.setCaretPosition(0);
+      
+      final StringBuilder b2 = new StringBuilder();
+      b2.append(HEADER_HTML);
+      b2.append(_errorCount);
+      b2.append(" error");
+      b2.append(((_errorCount>1)?"s":""));
+      b2.append(" occured!<br>");
+      b2.append(ERRORS_FOOTER_HTML);
+      _errorInfo = new JEditorPane("text/html", b2.toString());
+      _errorInfo.addHyperlinkListener(new HyperlinkListener() {
+        public void hyperlinkUpdate(HyperlinkEvent e) {
+          if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+            try {
+              PlatformFactory.ONLY.openURL(e.getURL());
+            } catch(Exception ex) { /* ignore, just not open web page */ }
+          }
+        }
+      });
+      _errorInfo.setEditable(false);
+      _errorInfo.setBackground(getContentPane().getBackground());
+      _indexLabel.setText("Error "+(_errorIndex+1)+" of "+(_errorCount));
+    }
+    else {
+      _errorInfo = new JEditorPane("text/html", HEADER_HTML+NO_ERRORS_HTML);
+      _errorInfo.addHyperlinkListener(new HyperlinkListener() {
+        public void hyperlinkUpdate(HyperlinkEvent e) {
+          if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+            try {
+              PlatformFactory.ONLY.openURL(e.getURL());
+            } catch(Exception ex) { /* ignore, just not open web page */ }
+          }
+        }
+      });
+      _errorInfo.setEditable(false);
+      _errorInfo.setBackground(getContentPane().getBackground());
+      _stackTrace.setText("");
+      _indexLabel.setText("");
+    }
+    getContentPane().add(_errorInfo, BorderLayout.NORTH);
+    validate();
+  }

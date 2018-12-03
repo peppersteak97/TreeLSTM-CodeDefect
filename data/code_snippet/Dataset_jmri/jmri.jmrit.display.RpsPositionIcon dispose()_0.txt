@@ -1,0 +1,7 @@
+    public void dispose() {
+        Distributor.instance().removeMeasurementListener(this);
+        active = null;
+        error = null;
+
+        super.dispose();
+    }

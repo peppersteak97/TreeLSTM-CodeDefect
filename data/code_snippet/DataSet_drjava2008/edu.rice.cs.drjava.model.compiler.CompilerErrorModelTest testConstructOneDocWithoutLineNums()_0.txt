@@ -1,0 +1,18 @@
+  public void testConstructOneDocWithoutLineNums() {
+    setupDoc();
+    errors = new CompilerError[] { 
+      new CompilerError(files[0], "Test error with File", false),
+      new CompilerError(files[0], "Test warning with File", true),
+      new CompilerError(files[0], "Test error with File", false) 
+    };
+    
+    CompilerError[] copy = new CompilerError[errors.length];
+    for (int i = 0; i < errors.length; i++)  copy[i] = errors[i];
+    model = new CompilerErrorModel(copy, getter);
+    
+    assertEquals("Should have 3 compiler errors.", 3, model.getNumErrors());
+    assertEquals("Should have 1 warning" , 1, model.getNumWarnings());
+    assertEquals("Should have 2 compiler errors" , 2, model.getNumCompErrors());
+    assertEquals("Errors should be sorted.", errors[1], model.getError(2));
+    assertTrue("hasOnlyWarnings should return false.", !model.hasOnlyWarnings());
+  }

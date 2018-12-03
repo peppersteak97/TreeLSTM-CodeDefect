@@ -1,0 +1,6 @@
+	public void removeAllPropertyPageListeners() {
+		if( m_liPropertyPageListeners != null ) {
+			m_liPropertyPageListeners.clear();
+			m_liPropertyPageListeners = null;
+		}
+	}

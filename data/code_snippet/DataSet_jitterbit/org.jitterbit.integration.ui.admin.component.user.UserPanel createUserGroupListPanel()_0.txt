@@ -1,0 +1,7 @@
+    private void createUserGroupListPanel() {
+        m_userGroupListPanel = new UserGroupListPanel(m_page, m_userManager);
+        m_userGroupListPanel.addChangeListener(m_inputSiteListener);
+        m_membersOfLabel = IntegrationUiStyleSheet.DefaultBold.makeJLabel(
+                        PackageResources.UserPanel.Labels.MEMBER_OF);
+        m_membersOfLabel.setEnabled(false);
+    }

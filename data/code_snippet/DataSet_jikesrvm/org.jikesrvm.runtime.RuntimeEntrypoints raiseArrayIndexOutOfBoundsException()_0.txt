@@ -1,0 +1,3 @@
+  static void raiseArrayIndexOutOfBoundsException() {
+    throw new java.lang.ArrayIndexOutOfBoundsException();
+  }

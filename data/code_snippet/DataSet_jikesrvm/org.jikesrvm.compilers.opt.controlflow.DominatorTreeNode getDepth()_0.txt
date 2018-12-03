@@ -1,0 +1,11 @@
+  int getDepth() {
+    if (depth == -1) {
+      DominatorTreeNode dad = (DominatorTreeNode) getParent();
+      if (dad == null) {
+        depth = 0;
+      } else {
+        depth = dad.getDepth() + 1;
+      }
+    }
+    return depth;
+  }

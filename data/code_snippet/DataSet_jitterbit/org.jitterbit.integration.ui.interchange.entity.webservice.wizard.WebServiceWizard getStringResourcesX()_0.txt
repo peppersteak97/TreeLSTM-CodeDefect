@@ -1,0 +1,7 @@
+    public static synchronized ResourceBundle getStringResourcesX() {
+        if (s_stringResources == null) {
+            s_stringResources = ResourceBundle
+                            .getBundle("org.jitterbit.integration.ui.interchange.entity.webservice.wizard.resources.Strings");
+        }
+        return s_stringResources;
+    }

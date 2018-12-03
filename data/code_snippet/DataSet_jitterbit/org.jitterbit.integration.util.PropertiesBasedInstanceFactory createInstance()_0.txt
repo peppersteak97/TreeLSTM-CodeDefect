@@ -1,0 +1,22 @@
+    public T createInstance() throws E {
+        try {
+            Class<?> clazz = Class.forName(className);
+            Object o = clazz.newInstance();
+            
+            T t = (T) o;
+            return t;
+        }
+        catch (ClassNotFoundException e) {
+            handle(e);
+        }
+        catch (InstantiationException e) {
+            handle(e);
+        }
+        catch (IllegalAccessException e) {
+            handle(e);
+        }
+        catch (ClassCastException e) {
+            handle(e);
+        }
+        return null;
+    }

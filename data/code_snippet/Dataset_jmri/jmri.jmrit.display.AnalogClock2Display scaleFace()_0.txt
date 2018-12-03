@@ -1,0 +1,42 @@
+    private void scaleFace() {
+        panelHeight = this.getSize().height;
+        panelWidth = this.getSize().width;
+        if (panelHeight > 0 && panelWidth > 0) {
+            size = Math.min(panelHeight, panelWidth);
+        }
+        faceSize = size;
+        if (faceSize == 0) {
+            faceSize = 1;
+        }
+
+        int logoScaleWidth = faceSize / 6;
+        int logoScaleHeight = (int) ( (float) logoScaleWidth *
+                                     (float) jmriIcon.getIconHeight() /
+                                     (float) jmriIcon.getIconWidth());
+        scaledLogo = logo.getScaledInstance(logoScaleWidth, logoScaleHeight,
+                                            Image.SCALE_SMOOTH);
+        scaledIcon.setImage(scaledLogo);
+        logoWidth = scaledIcon.getIconWidth();
+        logoHeight = scaledIcon.getIconHeight();
+
+        scaleRatio = (double) faceSize / 2.7 / (double) minuteHeight;
+        for (int i = 0; i < minuteX.length; i++) {
+            scaledMinuteX[i] = (int) ( (double) minuteX[i] * scaleRatio);
+            scaledMinuteY[i] = (int) ( (double) minuteY[i] * scaleRatio);
+            scaledHourX[i] = (int) ( (double) hourX[i] * scaleRatio);
+            scaledHourY[i] = (int) ( (double) hourY[i] * scaleRatio);
+        }
+        scaledHourHand = new Polygon(scaledHourX, scaledHourY,
+                                     scaledHourX.length);
+        scaledMinuteHand = new Polygon(scaledMinuteX, scaledMinuteY,
+                                       scaledMinuteX.length);
+
+        if (panelHeight > 0 && panelWidth > 0) {
+            centreX = panelWidth / 2;
+            centreY = panelHeight / 2;
+        }
+        else {
+            centreX = centreY = size / 2;
+        }
+        return;
+    }

@@ -1,0 +1,7 @@
+    private FilterUiDisplayerLauncher createLauncher() {
+        return new FilterUiDisplayerLauncher<T>(
+                        this, 
+                        new DisplayerListener(), 
+                        m_title, 
+                        IntegrationUi.getUi().getAppWin());
+    }

@@ -1,0 +1,11 @@
+    private void updateCvForAddrChange() {
+        for (int i=0; i<firstFreeSpace; i++) {
+            CvValue cv = ((CvValue)_cvVector.elementAt(cvNumbers[i]));
+            if (cvNumbers[i]!=cv.number())
+                log.error("CV numbers don't match: "
+                          +cvNumbers[i]+" "+cv.number());
+            cv.setToWrite(true);
+            cv.setState(EDITED);
+            if(log.isDebugEnabled()) log.debug("Mark to write " +cv.number());
+        }
+    }

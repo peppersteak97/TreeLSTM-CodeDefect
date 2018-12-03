@@ -1,0 +1,4 @@
+	public void dispose() {
+		MrcTrafficController.instance().removeMrcListener(this);
+		super.dispose();
+	}

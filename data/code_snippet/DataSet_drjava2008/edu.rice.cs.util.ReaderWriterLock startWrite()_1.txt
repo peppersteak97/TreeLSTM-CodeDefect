@@ -1,0 +1,17 @@
+  public synchronized void startWrite() {
+    _ensureNotAlreadyRunning();
+    
+    if ((_numActiveReaders > 0 || _numActiveWriters > 0) ||
+        (_numWaitingReaders > 0 || _numWaitingWriters > 0)) {
+      _numWaitingWriters++;
+      
+      
+      Writer w = new Writer();
+      w.startWaiting();
+      
+      _numWaitingWriters--;
+    }
+    
+    _numActiveWriters++;
+    _runningThreads.add(Thread.currentThread());
+  }

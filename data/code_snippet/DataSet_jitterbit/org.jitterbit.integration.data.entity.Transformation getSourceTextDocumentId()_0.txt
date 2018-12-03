@@ -1,0 +1,8 @@
+    public TextDocumentId getSourceTextDocumentId() {
+        try {
+            return new TextDocumentId(id);
+        }
+        catch (IllegalArgumentException e) {
+            return null;
+        }
+    }

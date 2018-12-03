@@ -1,0 +1,10 @@
+    private void applyStructure() throws IntegrationDataPanelException {
+        try {
+            for (TextDocumentDefiner definer : documentDefiners) {
+                definer.applyToTextDocument(document);
+            }
+        }
+        catch (TextDocumentDefinitionException ex) {
+            throw new IntegrationDataPanelException(ex.getMessage());
+        }
+    }

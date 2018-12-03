@@ -1,0 +1,14 @@
+    Permissions getPermissions() {
+        if (m_allowFullAccessCheck.isSelected()) {
+            return new Permissions(FULL_CONTROL, null);
+        }
+        if (m_denyFullAccessCheck.isSelected()) {
+            return new Permissions(null, FULL_CONTROL);
+        }
+        EnumSet<Permission> allow = EnumSet.noneOf(Permission.class);
+        EnumSet<Permission> deny = EnumSet.noneOf(Permission.class);
+        for (PermissionCheckBoxes cb : m_permissionChecks) {
+            cb.apply(allow, deny);
+        }
+        return new Permissions(allow, deny);
+    }

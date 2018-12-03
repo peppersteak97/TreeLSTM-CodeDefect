@@ -1,0 +1,6 @@
+    public String toString()
+    {
+        return "TimeStamp: " + mTimeStamp.toString() +
+            " Address: " + mLayoutAddress.toString() +
+            " State: " + getState() ;
+    }

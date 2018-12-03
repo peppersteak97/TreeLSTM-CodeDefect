@@ -1,0 +1,8 @@
+    public final List<?> getSourceObjects() {
+        List<Object> items = new ArrayList<Object>();
+        ListModel model = getSourceList().getJList().getModel();
+        for (int n = 0, size = model.getSize(); n < size; ++n) {
+            items.add(model.getElementAt(n));
+        }
+        return items;
+    }

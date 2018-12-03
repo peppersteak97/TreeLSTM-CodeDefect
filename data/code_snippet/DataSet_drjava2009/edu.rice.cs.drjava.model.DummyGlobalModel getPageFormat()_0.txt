@@ -1,0 +1,3 @@
+  public PageFormat getPageFormat() {
+    throw new UnsupportedOperationException("Tried to call getPageFormat on a Dummy");
+  }

@@ -1,0 +1,4 @@
+    protected String line1() {
+        return MessageFormat.format(rb.getString("LocoToolsVersionCredit"),
+                                new String[]{jmri.Version.name()});
+    }

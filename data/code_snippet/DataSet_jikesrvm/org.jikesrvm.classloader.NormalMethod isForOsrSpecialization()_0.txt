@@ -1,0 +1,5 @@
+  public boolean isForOsrSpecialization() {
+    synchronized(synthesizedBytecodes) {
+      return synthesizedBytecodes.get(this) != null;
+    }
+  }

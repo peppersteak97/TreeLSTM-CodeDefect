@@ -1,0 +1,6 @@
+    public List getSystemNameList() {
+        ArrayList result = new ArrayList();
+        for (int i = 0; i<mgrs.size(); i++)
+            result.addAll( ((Manager)mgrs.get(i)).getSystemNameList() );
+        return result;
+    }

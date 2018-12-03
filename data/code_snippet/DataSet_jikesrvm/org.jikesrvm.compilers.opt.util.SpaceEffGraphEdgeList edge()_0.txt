@@ -1,0 +1,3 @@
+  public SpaceEffGraphEdge edge() {
+    return _edge;
+  }

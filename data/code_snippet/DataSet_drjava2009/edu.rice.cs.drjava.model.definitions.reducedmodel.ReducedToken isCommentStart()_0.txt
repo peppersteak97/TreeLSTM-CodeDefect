@@ -1,0 +1,1 @@
+  public boolean isCommentStart() { return isBlockCommentStart() || isLineComment(); }

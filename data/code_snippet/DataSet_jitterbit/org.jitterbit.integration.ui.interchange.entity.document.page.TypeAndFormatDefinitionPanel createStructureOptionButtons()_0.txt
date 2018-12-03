@@ -1,0 +1,14 @@
+    private void createStructureOptionButtons() {
+        ButtonGroup group = new ButtonGroup();
+        IRadioButtonFactory factory = ComponentFactories.radioButtonFactory();
+        ActionListener lst = new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                updateModelStructureType();
+            }
+        };
+        flatOption = factory.newRadioButton(resources.getString("Label.SimpleTextOption"), true, group);
+        flatOption.addActionListener(lst);
+        complexOption = factory.newRadioButton(resources.getString("Label.ComplexTextOption"), false, group);
+        complexOption.addActionListener(lst);
+    }

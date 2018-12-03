@@ -1,0 +1,3 @@
+    protected Font getHeaderFont() {
+        return m_headerFont;
+    }

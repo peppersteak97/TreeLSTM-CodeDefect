@@ -1,0 +1,5 @@
+  protected void createModel() {
+    _model = new TestGlobalModel();
+    
+    _model.waitForInterpreter();
+  }

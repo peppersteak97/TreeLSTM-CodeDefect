@@ -1,0 +1,3 @@
+    public static KeyStroke getFindKey() {
+        return getCtrlDown(KeyEvent.VK_F);
+    }

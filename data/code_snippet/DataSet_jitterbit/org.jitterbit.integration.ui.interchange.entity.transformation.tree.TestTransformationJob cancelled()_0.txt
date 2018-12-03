@@ -1,0 +1,8 @@
+    public void cancelled() {
+        if (m_cancelHasBeenHandled) {
+            return;
+        }
+        m_treeMapper.stopWait();
+        m_cancelHasBeenHandled = true;
+        m_callback.cancelled(null);
+    }

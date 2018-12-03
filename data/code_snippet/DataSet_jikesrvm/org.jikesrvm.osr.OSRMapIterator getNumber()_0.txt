@@ -1,0 +1,3 @@
+  public char getNumber() {
+    return (char)((maps[curidx] & NUM_MASK) >> NUM_SHIFT);
+  }

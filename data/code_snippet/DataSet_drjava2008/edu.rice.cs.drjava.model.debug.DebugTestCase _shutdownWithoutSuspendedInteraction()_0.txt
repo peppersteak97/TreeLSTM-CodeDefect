@@ -1,0 +1,12 @@
+  protected void _shutdownWithoutSuspendedInteraction() throws Exception {
+    _log.log("Shutting down debugger in " + this + " without waiting");
+    _model.getBreakpointManager().clearRegions();
+    
+    _log.log("Shutting down...");
+    synchronized(_notifierLock) {
+      _debugger.shutdown();
+      while (_pendingNotifies > 0) _notifierLock.wait();
+    }
+    _log.log("Shut down.");
+    _log.log("Completed debugger shutdown for " + this);
+  }

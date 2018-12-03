@@ -1,0 +1,3 @@
+    public Transformation getDataObject() {
+        return (Transformation) getKongaObject();
+    }

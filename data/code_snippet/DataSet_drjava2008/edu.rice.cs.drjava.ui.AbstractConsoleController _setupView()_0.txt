@@ -1,0 +1,40 @@
+  protected void _setupView() {
+    KeyStroke beginLineKey = DrJava.getConfig().getSetting(OptionConstants.KEY_BEGIN_LINE);
+    _pane.addActionForKeyStroke(beginLineKey, gotoPromptPosAction);
+    _pane.addActionForKeyStroke(KeyBindingManager.ONLY.addShiftModifier(beginLineKey),
+                                selectToPromptPosAction);
+    KeyStroke endLineKey = DrJava.getConfig().getSetting(OptionConstants.KEY_END_LINE);
+    _pane.addActionForKeyStroke(endLineKey, gotoEndAction);
+    _pane.addActionForKeyStroke(KeyBindingManager.ONLY.addShiftModifier(endLineKey),
+                                selectToEndAction);
+
+    DrJava.getConfig().addOptionListener(OptionConstants.KEY_BEGIN_LINE,
+                                         new OptionListener<KeyStroke>() {
+      public void optionChanged(OptionEvent<KeyStroke> oe) {
+        _pane.addActionForKeyStroke(oe.value, gotoPromptPosAction);
+        _pane.addActionForKeyStroke(KeyBindingManager.ONLY.addShiftModifier(oe.value),
+                                    selectToPromptPosAction);
+     }
+    });
+    DrJava.getConfig().addOptionListener(OptionConstants.KEY_END_LINE,
+                                         new OptionListener<KeyStroke>() {
+      public void optionChanged(OptionEvent<KeyStroke> oe) {
+        _pane.addActionForKeyStroke(oe.value, gotoEndAction);
+        _pane.addActionForKeyStroke(KeyBindingManager.ONLY.addShiftModifier(oe.value),
+                                    selectToEndAction);
+     }
+    });
+    
+    _pane.addActionForKeyStroke(DrJava.getConfig().getSetting(OptionConstants.KEY_CUT), cutAction);
+    _pane.addActionForKeyStroke(DrJava.getConfig().getSetting(OptionConstants.KEY_COPY), copyAction);
+    DrJava.getConfig().addOptionListener(OptionConstants.KEY_CUT, new OptionListener<KeyStroke>() {
+      public void optionChanged(OptionEvent<KeyStroke> oe) {
+        _pane.addActionForKeyStroke(DrJava.getConfig().getSetting(OptionConstants.KEY_CUT), cutAction);
+     }
+    });
+    DrJava.getConfig().addOptionListener(OptionConstants.KEY_COPY, new OptionListener<KeyStroke>() {
+      public void optionChanged(OptionEvent<KeyStroke> oe) {
+        _pane.addActionForKeyStroke(DrJava.getConfig().getSetting(OptionConstants.KEY_COPY), copyAction);
+     }
+    });
+  }

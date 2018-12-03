@@ -1,0 +1,13 @@
+    String getTargetDtdUrl() throws WizardPageException {
+        if (m_copyFileOption.isSelected()) {
+            return null;
+        }
+        else if (m_currentLocationUrlOption.isSelected()) {
+            return "TODO: Implement the current location option.";
+        }
+        else if (m_customLocationUrlOption.isSelected()) {
+            return m_customLocationField.getText();
+        }
+        throw new WizardPageException("Must specify an option for how to link "
+                        + "to the target DTD/schema.");
+    }

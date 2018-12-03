@@ -1,0 +1,6 @@
+	public boolean canCorrectHardwareClock() {
+		if (DEBUG_SHOW_PUBLIC_CALLS && log.isDebugEnabled()){
+			log.debug("getHardwareClockName");
+		}
+		return false;
+	}

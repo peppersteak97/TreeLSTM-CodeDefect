@@ -1,0 +1,7 @@
+    private void writeMainClassPublic() {
+        addLine("public:");
+        writeMainClassCTOR();
+        writeMainClassFactory();
+        writeMainClassPublicMethods();
+        writeMainClassPublicFieldMethods();
+    }

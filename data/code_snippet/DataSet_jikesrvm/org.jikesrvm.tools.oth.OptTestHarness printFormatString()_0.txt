@@ -1,0 +1,3 @@
+  static void printFormatString() {
+    System.err.println("Format: rvm org.jikesrvm.tools.oth.OptTestHarness { <command> }");
+  }

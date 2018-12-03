@@ -1,0 +1,3 @@
+	public TreeItem<T> getRoot(){
+		return m_root;
+	}

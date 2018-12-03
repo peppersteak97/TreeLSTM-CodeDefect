@@ -1,0 +1,3 @@
+    public QueueStatusFilter getStatusFilter() {
+        return m_statusFilter.getFilter();
+    }

@@ -1,0 +1,5 @@
+    public void dispose() {
+        Distributor.instance().removeReadingListener(this);
+        Distributor.instance().removeMeasurementListener(this);
+        Engine.instance().removePropertyChangeListener(this);
+    }

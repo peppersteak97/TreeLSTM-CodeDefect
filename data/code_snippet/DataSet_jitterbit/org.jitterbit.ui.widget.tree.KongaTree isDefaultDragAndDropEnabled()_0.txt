@@ -1,0 +1,3 @@
+    public boolean isDefaultDragAndDropEnabled() {
+        return m_dragAndDropEnabled;
+    }

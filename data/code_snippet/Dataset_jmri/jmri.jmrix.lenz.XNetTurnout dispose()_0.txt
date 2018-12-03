@@ -1,0 +1,4 @@
+    public void dispose() {
+	    this.removePropertyChangeListener(_stateListener);
+	    super.dispose();
+    }

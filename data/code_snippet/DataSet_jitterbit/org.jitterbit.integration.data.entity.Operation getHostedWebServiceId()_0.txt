@@ -1,0 +1,12 @@
+    public WebServiceCallId getHostedWebServiceId() {
+        String s = getProperty(HOSTED_WEBSERVICE_ID);
+        if (s != null && s.length() > 0) {
+            try {
+                return new WebServiceCallId(s);
+            }
+            catch (IllegalArgumentException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return null;
+    }

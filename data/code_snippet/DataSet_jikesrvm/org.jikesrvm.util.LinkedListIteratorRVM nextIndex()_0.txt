@@ -1,0 +1,4 @@
+  public int nextIndex() {
+    if (VM.VerifyAssertions) VM._assert(false);
+    return 0;
+  }

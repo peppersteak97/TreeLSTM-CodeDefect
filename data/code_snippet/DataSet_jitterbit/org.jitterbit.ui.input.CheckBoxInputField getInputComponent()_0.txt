@@ -1,0 +1,3 @@
+    public JCheckBox getInputComponent() {
+        return (JCheckBox) super.getInputComponent();
+    }

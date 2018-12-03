@@ -1,0 +1,11 @@
+            public IIntegrationLink getLink() {
+                TargetId tgtId = m_op.getTargetId();
+                if (tgtId != null) {
+                    Target tgt = (Target) m_dataLookup.getInstance(tgtId);
+                    if (tgt != null) {
+                        return new OperationTargetLink(tgt, m_op);
+                    }
+                    logMissingLink(m_op, EntityType.Target, tgtId);
+                }
+                return null;
+            }

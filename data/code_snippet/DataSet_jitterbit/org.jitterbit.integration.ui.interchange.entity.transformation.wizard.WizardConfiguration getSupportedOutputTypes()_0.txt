@@ -1,0 +1,4 @@
+    public DataStructureType[] getSupportedOutputTypes() {
+        return m_supportedOutputTypes.toArray(
+                        new DataStructureType[m_supportedOutputTypes.size()]);
+    }

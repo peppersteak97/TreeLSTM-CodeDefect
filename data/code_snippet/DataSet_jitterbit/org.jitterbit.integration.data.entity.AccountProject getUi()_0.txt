@@ -1,0 +1,3 @@
+    public IAccountProjectUi getUi() {
+        return (IAccountProjectUi) super.getUi();
+    }

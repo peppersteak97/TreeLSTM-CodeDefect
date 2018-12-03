@@ -1,0 +1,7 @@
+    private void createCloseButton() {
+        if (!IntegrationUiUtils.USE_TABBED_PANE_CLOSE_BUTTON) {
+            JButton close = createToolBarButton(
+                            WindowActionFactory.CLOSE_PAGE.get(m_window));
+            addControl(close, Integer.MAX_VALUE);
+        }
+    }

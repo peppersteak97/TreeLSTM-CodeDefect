@@ -1,0 +1,3 @@
+  public void pinRegister() {
+    flags |= PINNED | TOUCHED;
+  }

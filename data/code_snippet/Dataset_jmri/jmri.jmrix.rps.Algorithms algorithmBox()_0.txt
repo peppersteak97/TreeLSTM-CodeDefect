@@ -1,0 +1,5 @@
+    public static JComboBox algorithmBox() {
+        JComboBox j = new JComboBox(names);
+        j.setSelectedIndex(3);
+        return j;
+    }

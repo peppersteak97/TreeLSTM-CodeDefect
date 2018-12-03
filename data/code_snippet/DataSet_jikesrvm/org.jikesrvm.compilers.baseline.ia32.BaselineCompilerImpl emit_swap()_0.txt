@@ -1,0 +1,6 @@
+  protected final void emit_swap() {
+    asm.emitPOP_Reg(T0);
+    asm.emitPOP_Reg(S0);
+    asm.emitPUSH_Reg(T0);
+    asm.emitPUSH_Reg(S0);
+  }

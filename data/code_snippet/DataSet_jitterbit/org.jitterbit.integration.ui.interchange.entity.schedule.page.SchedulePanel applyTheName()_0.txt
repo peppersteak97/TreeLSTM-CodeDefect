@@ -1,0 +1,8 @@
+    private void applyTheName() throws IntegrationDataPanelException {
+        try {
+            m_schedule.setName(m_topPanel.getScheduleName());
+        }
+        catch (IllegalNameException e) {
+            throw new IntegrationDataPanelException(e);
+        }
+    }

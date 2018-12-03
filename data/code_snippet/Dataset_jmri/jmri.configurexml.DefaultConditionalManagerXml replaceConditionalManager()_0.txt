@@ -1,0 +1,11 @@
+    protected void replaceConditionalManager() {
+        if (InstanceManager.conditionalManagerInstance().getClass().getName()
+                .equals(DefaultConditionalManager.class.getName()))
+            return;
+        if (InstanceManager.conditionalManagerInstance() != null)
+            InstanceManager.configureManagerInstance().deregister(
+                InstanceManager.conditionalManagerInstance() );
+        DefaultConditionalManager pManager = DefaultConditionalManager.instance();
+        InstanceManager.setConditionalManager(pManager);
+        InstanceManager.configureManagerInstance().registerConfig(pManager);
+    }

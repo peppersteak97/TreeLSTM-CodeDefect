@@ -1,0 +1,14 @@
+	public void updateMappingFlag(){
+		if(m_TreeMapper.m_targetTreeComponent.isEdiDocument())return;
+		m_TreeMapper.m_targetTreeComponent.m_root.clearRequireMappingFlag();
+		for(MapPairPanel mp:m_mapList){
+			TreeComponent.Node targetNode=m_TreeMapper.m_targetTreeComponent.findNode(mp.m_targetDE);
+			if(!targetNode.isFolder()){
+				targetNode.setMapped();
+			}
+		}
+		m_TreeMapper.m_targetTreeComponent.m_root.updateRequireMappingFlag();
+		m_TreeMapper.m_targetTreeComponent.m_root.clearMappedHihhenTypes();
+		m_TreeMapper.m_sourceTreeComponent.m_root.clearMappedHihhenTypes();
+		validate();
+	}

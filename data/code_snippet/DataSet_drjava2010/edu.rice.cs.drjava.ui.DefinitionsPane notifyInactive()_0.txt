@@ -1,0 +1,18 @@
+  public void notifyInactive() {
+    try {
+      updateCurrentLocationInDoc();
+      
+      removeErrorHighlight();
+      
+      _position = _doc.getCurrentLocation();
+      _selStart = super.getSelectionStart();
+      _selEnd = super.getSelectionEnd();
+
+      _savedVScroll = _scrollPane.getVerticalScrollBar().getValue();
+      _savedHScroll = _scrollPane.getHorizontalScrollBar().getValue();
+
+      super.setDocument(NULL_DOCUMENT);
+    }
+    catch(NoSuchDocumentException e) {
+    }
+  }

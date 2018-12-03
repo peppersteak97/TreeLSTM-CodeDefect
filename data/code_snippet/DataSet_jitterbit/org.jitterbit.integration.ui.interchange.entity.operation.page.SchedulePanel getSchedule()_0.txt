@@ -1,0 +1,3 @@
+    Schedule getSchedule() {
+        return (Schedule) m_scheduleControl.getSelectedEntity();
+    }

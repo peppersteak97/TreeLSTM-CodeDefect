@@ -1,0 +1,10 @@
+    void addMemory() {
+        MemoryIcon l = new MemoryIcon();
+        l.setMemory(nextMemory.getText());
+        setNextLocation(l);
+        l.setSize(l.getPreferredSize().width, l.getPreferredSize().height);
+        l.setDisplayLevel(MEMORIES);
+        putLabel(l);
+        l.setPositionable(true);
+        moveToFront(l);
+    }

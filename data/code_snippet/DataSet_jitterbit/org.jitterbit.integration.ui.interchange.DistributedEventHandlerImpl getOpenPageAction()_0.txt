@@ -1,0 +1,3 @@
+    private IApplicationAction getOpenPageAction() {
+        return InterchangeActionFactory.OPEN_PAGE.get(m_view);
+    }

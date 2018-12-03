@@ -1,0 +1,7 @@
+    private HostedWebServiceCallPanel getHostedWebServicePanel() {
+        if (m_hostedWsCallPanel == null) {
+            m_hostedWsCallPanel = new HostedWebServiceCallPanel(m_page);
+            addInputPanel(m_hostedWsCallPanel);
+        }
+        return m_hostedWsCallPanel;
+    }

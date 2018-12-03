@@ -1,0 +1,1 @@
+    public int getFromBlockDirection() { return _fromBlockDirection; }

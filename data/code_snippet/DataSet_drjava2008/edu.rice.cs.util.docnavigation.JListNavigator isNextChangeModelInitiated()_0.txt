@@ -1,0 +1,3 @@
+  public boolean isNextChangeModelInitiated() {
+    return getClientProperty(MODEL_INITIATED_PROPERTY_NAME) != null;
+  }

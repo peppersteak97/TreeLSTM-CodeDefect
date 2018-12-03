@@ -1,0 +1,1 @@
+    public int cvval()          { return snd+(ss2&2)*64; }

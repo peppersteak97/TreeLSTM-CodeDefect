@@ -1,0 +1,1 @@
+  public synchronized Iterable<File> getProjectFilesCP() { return IterUtil.snapshot(_projectFilesCP); }

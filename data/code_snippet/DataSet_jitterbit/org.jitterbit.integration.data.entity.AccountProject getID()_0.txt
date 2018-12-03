@@ -1,0 +1,3 @@
+    public ProjectId getID() {
+        return (ProjectId) super.getID();
+    }

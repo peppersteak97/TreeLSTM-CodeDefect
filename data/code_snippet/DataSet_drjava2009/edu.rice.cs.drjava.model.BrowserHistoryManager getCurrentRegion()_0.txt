@@ -1,0 +1,4 @@
+  public BrowserDocumentRegion getCurrentRegion() {
+    if (_pastRegions.isEmpty()) return null;
+    return _pastRegions.peek();
+  }

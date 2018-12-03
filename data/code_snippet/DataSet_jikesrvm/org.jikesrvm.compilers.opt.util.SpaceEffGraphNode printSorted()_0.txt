@@ -1,0 +1,5 @@
+  final void printSorted() {
+    for (SpaceEffGraphNode n = this; n != null; n = n.nextSorted) {
+      System.out.println(n);
+    }
+  }

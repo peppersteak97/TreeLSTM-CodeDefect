@@ -1,0 +1,3 @@
+    public int hashCode() {
+        return (m_folderName == null) ? 0 : m_folderName.hashCode();
+    }

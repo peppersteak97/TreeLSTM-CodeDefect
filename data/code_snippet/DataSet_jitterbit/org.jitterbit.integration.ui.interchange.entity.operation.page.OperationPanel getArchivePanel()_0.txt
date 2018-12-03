@@ -1,0 +1,8 @@
+    private ArchivePanel getArchivePanel() {
+        if (m_archivePanel == null) {
+            m_archivePanel = new ArchivePanel(m_page);
+            m_archivePanel.addPropertyChangeListener(m_optionsPanel.getSourceListener());
+            addInputPanel(m_archivePanel);
+        }
+        return m_archivePanel;
+    }

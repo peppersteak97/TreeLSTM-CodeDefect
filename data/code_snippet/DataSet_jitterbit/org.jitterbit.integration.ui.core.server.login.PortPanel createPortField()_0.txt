@@ -1,0 +1,9 @@
+    private void createPortField() {
+        JLabel label = IntegrationUiStyleSheet.InputLabelText.makeJLabel(
+                        PackageResources.PortPanel.MANUAL);
+        m_portNumberFieldListener = new PortNumberFieldListener();
+        m_portNumberField.getInputComponent().getDocument().addDocumentListener(
+                        m_portNumberFieldListener);
+        m_portNumberField.setValue(getPortNumberFromServerField());
+        m_portNumberField.setEnabled(!m_defaultCheck.isSelected());
+    }

@@ -1,0 +1,3 @@
+    public JPanel getUi() {
+        return m_ui;
+    }

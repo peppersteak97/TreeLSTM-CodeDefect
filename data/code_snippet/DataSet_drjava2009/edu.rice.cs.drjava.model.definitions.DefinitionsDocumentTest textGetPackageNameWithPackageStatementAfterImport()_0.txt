@@ -1,0 +1,5 @@
+  public void textGetPackageNameWithPackageStatementAfterImport() throws BadLocationException, InvalidPackageException {
+    String text = "import java.util.*;\npackage junk;\nclass Foo {}";
+    _doc.insertString(0, text, null);
+    assertEquals("Package name for text with package statement after import", "", _doc.getPackageName());
+  }

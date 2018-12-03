@@ -1,0 +1,2 @@
+          if ((w = wgt()) > 0.0)		{//     Add to averages
+            Ww += w;  Xw += w*x0;  Yw += w*y0;  Zw += w*z0;}}}}}

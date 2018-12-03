@@ -1,0 +1,16 @@
+    private void layoutComponents() {
+        OneColumnPanel col = new OneColumnPanel();
+        col.setInsets(5, 5, 5, 5);
+        col.add(getInputFieldForLayout(m_servers));
+        col.add(getInputFieldForLayout(m_sendTo));
+        col.add(getInputFieldForLayout(m_sentFrom));
+        col.setInsets(20, 5, 0, 5);
+        col.add(m_authenticationPanel);
+        col.add(getOptionalDetailsDropDown());
+        col.setInsets(20, 5, 5, 5);
+        col.add(getInputFieldForLayout(m_subject));
+        col.setInsets(5, 5, 5, 5);
+        col.add(getInputFieldForLayout(m_text));
+        col.setOpaque(false, false);
+        wrap(col);
+    }

@@ -1,0 +1,20 @@
+    private void initUi() {
+        m_frame = new LoginFrame();
+        m_frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+
+        createInputComponents();
+        m_frame.getContentPane().add( createMainPanel() );
+
+        if( m_comboServers.getModel().getSize() == 0 )
+            m_comboServers.requestFocusInWindow();
+        else if( m_textUser.getText().length() == 0 )
+            m_textUser.requestFocusInWindow();
+        else if( m_pwdField.getPassword().length == 0 )
+            m_pwdField.requestFocusInWindow();
+        else
+            m_okButton.requestFocusInWindow();
+        m_frame.getRootPane().setDefaultButton(m_okButton);
+        
+        m_frame.pack();
+        m_frame.setLocationRelativeTo(null);
+    }

@@ -1,0 +1,3 @@
+  public boolean hasDesignatedTarget() {
+    return this.designatedOffset;
+  }

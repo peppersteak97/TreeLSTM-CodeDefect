@@ -1,0 +1,10 @@
+    public String format() {
+        if (getNumDataElements() == 8) {
+            String result = "(2-part) ";
+            result += staticFormat(getElement(0)&0xff, getElement(1)&0xff, getElement(2)&0xff, getElement(3)&0xff);
+            result += "; ";
+            result += staticFormat(getElement(4)&0xff, getElement(5)&0xff, getElement(6)&0xff, getElement(7)&0xff);
+            return result;
+        }
+        else return staticFormat(getElement(0)&0xff, getElement(1)&0xff, getElement(2)&0xff, getElement(3)&0xff);
+    }

@@ -1,0 +1,6 @@
+    public static AdminActionsMetaData getInstance() {
+        if (s_instance == null) {
+            throw new IllegalStateException(
+        }
+        return s_instance;
+    }

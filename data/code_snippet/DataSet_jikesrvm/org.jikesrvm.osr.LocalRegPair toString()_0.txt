@@ -1,0 +1,19 @@
+  public String toString() {
+    StringBuilder buf = new StringBuilder("(");
+
+    buf.append(kind == LOCAL ? 'L' : 'S');
+    buf.append(num).append(" , ");
+
+    char tcode = (char) typeCode;
+
+    buf.append(tcode).append(" , ");
+    buf.append(valueType).append(" , ");
+    buf.append("0x").append(Long.toHexString(value.toLong())).append(" , ");
+    buf.append(operand).append(")");
+
+    if (VM.BuildFor32Addr && (tcode == LongTypeCode)) {
+      buf.append("(").append(_otherHalf.valueType).append(" , ");
+      buf.append("0x").append(Integer.toHexString(_otherHalf.value.toInt())).append(")");
+    }
+    return buf.toString();
+  }

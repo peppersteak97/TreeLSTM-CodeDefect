@@ -1,0 +1,9 @@
+    protected void onWizardDone() {
+        m_downloadStarted = true;
+        m_pageDisplayer.closePage(m_displayPage);
+        
+        IUiJob job = new DownloadProjectJob(m_projectToDownload, new JobExternalCallback());
+        IUiJobProgressDisplayer displayer = UiJobProgressDialogDisplayer.createDisplayer(job);
+        IntegrationUi.getUi().getJobManager().submitForParallellProcessing(
+                        job, KongaListUtils.asList(displayer));
+    }

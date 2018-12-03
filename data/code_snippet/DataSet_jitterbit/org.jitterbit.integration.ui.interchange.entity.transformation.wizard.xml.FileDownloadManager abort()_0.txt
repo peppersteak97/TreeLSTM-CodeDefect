@@ -1,0 +1,10 @@
+    private synchronized void abort() {
+        if (m_aborted) {
+            return;
+        }
+        m_aborted = true;
+        if (m_currentJobID != null) {
+            cancelCurrentJob();
+            m_currentJobID = null;
+        }
+    }

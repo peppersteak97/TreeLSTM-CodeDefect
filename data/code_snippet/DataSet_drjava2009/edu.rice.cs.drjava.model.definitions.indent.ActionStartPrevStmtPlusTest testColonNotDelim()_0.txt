@@ -1,0 +1,8 @@
+  public void testColonNotDelim() throws BadLocationException {
+    IndentRuleAction rule = new ActionStartPrevStmtPlus(0, false);
+    
+    rule.testIndentLine(_doc, 21, Indenter.IndentReason.OTHER);
+    assertEquals("Colon is not a delimiter",
+                 "foo();\n",
+                 _doc.getText());
+  }

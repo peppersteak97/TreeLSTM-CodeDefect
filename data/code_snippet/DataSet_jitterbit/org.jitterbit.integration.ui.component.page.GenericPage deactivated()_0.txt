@@ -1,0 +1,15 @@
+    protected void deactivated() {
+        IApplicationAction undo = getUndoAction();
+        if (undo != null) {
+            undo.setDelegate(null);
+        }
+        IApplicationAction redo = getRedoAction();
+        if (redo != null) {
+            redo.setDelegate(null);
+        }
+        resetUndoRedoRepresentations();
+        IApplicationAction save = getSaveAction();
+        if (save != null) {
+            save.setEnabled(false);
+        }
+    }

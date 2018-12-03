@@ -1,0 +1,3 @@
+    public ISourceUi getUi() {
+        return (ISourceUi) super.getUi();
+    }

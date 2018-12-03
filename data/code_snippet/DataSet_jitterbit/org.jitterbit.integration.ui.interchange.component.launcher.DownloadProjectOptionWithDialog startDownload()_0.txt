@@ -1,0 +1,14 @@
+    protected void startDownload() {
+        createDialog();
+        super.startDownload();
+        m_dialog.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                setEnabled(true);
+            }
+        });
+        
+        m_dialog.setSize(600, 500);
+        m_dialog.setVisible(true);
+    }

@@ -1,0 +1,11 @@
+    public void configure() {
+
+        Engine e = Engine.instance();
+        Distributor.instance().addReadingListener(e);
+        
+        readerThread = new Thread(new Reader());
+        readerThread.start();
+        
+        jmri.jmrix.rps.ActiveFlag.setActive();
+
+    }

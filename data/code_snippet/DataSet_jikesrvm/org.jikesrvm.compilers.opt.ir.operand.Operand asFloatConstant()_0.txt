@@ -1,0 +1,3 @@
+  public final FloatConstantOperand asFloatConstant() {
+    return (FloatConstantOperand) this;
+  }

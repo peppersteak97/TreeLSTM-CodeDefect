@@ -1,0 +1,7 @@
+    public void validateInput() throws InputPanelException {
+        String delimiter = delimiterField.getValue();
+        if (delimiter.length() == 0) {
+            throw new InputPanelException(RESOURCES.getString("Error.DelimiterMissing"));
+        }
+        super.validateInput();
+    }

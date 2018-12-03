@@ -1,0 +1,19 @@
+    private OneColumnPanel getCaptionPanel() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setFill(OneColumnPanel.NONE);
+        p.setInsets(2, 0, 4, 0);
+
+        JLabel top = IntegrationUiStyleSheet.InfoTextHeader.makeJLabel(
+                        PackageResources.ActiveDisplayer.TITLE);
+        top.setIcon(PackageResources.ACTIVE_ICON);
+        p.add(top);
+
+        String caption = PackageResources.ActiveDisplayer.CAPTION;
+        JTextArea text = ComponentFactories.textFactory().newTextArea(caption, 3, 40);
+        text.setEditable(false);
+        p.add(text);
+
+        p.setBackground(Color.WHITE);
+        p.setBorder(BorderUtils.getEmptyPaddedLineBorder(null, new Insets(5, 5, 5, 5)));
+        return p;
+    }

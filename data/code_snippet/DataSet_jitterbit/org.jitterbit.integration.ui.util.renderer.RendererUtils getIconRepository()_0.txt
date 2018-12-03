@@ -1,0 +1,12 @@
+    private static synchronized EntityIconRepository getIconRepository() {
+        if (s_icons == null) {
+            try {
+                IntegrationRuntime.getRuntime().waitForInitialization();
+                s_icons = EntityTypeMetaData.getInstance().getIconRepository();
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return s_icons;
+    }

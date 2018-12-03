@@ -1,0 +1,3 @@
+    public void stopWait() {
+        EventQueue.invokeLater(m_stopWait);
+    }

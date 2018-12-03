@@ -1,0 +1,9 @@
+    public EnumSet<EntityType> getSelection() {
+        EnumSet<EntityType> selected = EnumSet.noneOf(EntityType.class);
+        for (EntityType type : m_checks.keySet()) {
+            if (m_checks.get(type).isSelected()) {
+                selected.add(type);
+            }
+        }
+        return selected;
+    }

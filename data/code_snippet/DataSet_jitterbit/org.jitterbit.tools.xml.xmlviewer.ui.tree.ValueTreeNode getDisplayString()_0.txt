@@ -1,0 +1,3 @@
+	public String getDisplayString() {
+		return "[V] " + getValue();
+	}

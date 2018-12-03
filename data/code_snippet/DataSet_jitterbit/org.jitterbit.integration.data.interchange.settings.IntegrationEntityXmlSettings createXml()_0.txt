@@ -1,0 +1,9 @@
+    private XmlStringBuilder createXml() {
+        XmlStringBuilder xml = new XmlStringBuilder();
+        xml.addElement("EntityDataCache");
+        xml.addAttribute("Type", entityType.toString());
+        writeTypeSettingsToXml(xml);
+        writeEntitySettingsToXml(xml);
+        xml.closeElement();
+        return xml;
+    }

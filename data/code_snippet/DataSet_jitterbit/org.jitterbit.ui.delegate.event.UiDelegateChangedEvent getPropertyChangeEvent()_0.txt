@@ -1,0 +1,3 @@
+	public PropertyChangeEvent getPropertyChangeEvent() {
+		return m_originalPropertyChangeEvent;
+	}

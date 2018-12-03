@@ -1,0 +1,12 @@
+  public void textTopLevelClassNameMisleading() throws BadLocationException, ClassNameNotFoundException {
+    String weird = "package edu . rice\n./*comment!*/cs.drjava; \n" +
+      " {class X} \n" +
+      " interface thisInterface { \n" +
+      " class MyInnerClass {";
+    String result = "thisInterface";
+    _doc.insertString(0, weird, null);
+    
+    assertEquals("class name for interface: '" + weird + "'",
+                 result,
+                 _doc.getFirstTopLevelClassName());
+  }

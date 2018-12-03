@@ -1,0 +1,3 @@
+    void allEntitiesHaveBeenAdded() {
+        m_allEntitiesHaveBeenAdded = true;
+    }

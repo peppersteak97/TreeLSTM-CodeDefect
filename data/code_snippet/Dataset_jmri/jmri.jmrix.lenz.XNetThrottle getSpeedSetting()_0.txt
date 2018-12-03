@@ -1,0 +1,6 @@
+                                  this.getSpeedSetting()-((float)speedVal/(float)126))>=0.0079){
+                notifyPropertyChangeListener("SpeedSetting",
+                                             new Float(this.speedSetting),
+                                             new Float(this.speedSetting = 
+                                                       (float)speedVal/(float)126));
+            }

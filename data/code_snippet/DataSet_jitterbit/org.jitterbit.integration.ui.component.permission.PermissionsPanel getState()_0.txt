@@ -1,0 +1,4 @@
+    private State getState() {
+        return new State(getPermissions(), m_recursiveEnabled ? m_recursiveCheck
+                        .isSelected() : false);
+    }

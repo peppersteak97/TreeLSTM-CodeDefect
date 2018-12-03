@@ -1,0 +1,7 @@
+    private void validateDelimiter() {
+        String delimiter = m_document.getDelimiter();
+        if (delimiter == null || delimiter.length() == 0) {
+        }
+        else if (TextDocument.getDelimiterFromString(delimiter) == 0) {
+        }
+    }

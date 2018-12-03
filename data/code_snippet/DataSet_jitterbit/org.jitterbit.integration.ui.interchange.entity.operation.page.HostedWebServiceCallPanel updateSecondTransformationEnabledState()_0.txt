@@ -1,0 +1,13 @@
+    private void updateSecondTransformationEnabledState() {
+        if (m_selectedWsCall == null) {
+            return;
+        }
+        Transformation tf = 
+            (Transformation) m_firstTransformationControl.getSelectedEntity();
+        boolean enableSecond = false;
+        if (tf != null) {
+            enableSecond = !m_selectedWsCall.getOutputStructure().equals(
+                            tf.getOutputStructure());
+        }
+        m_secondTransformationControl.setEnabled(enableSecond);
+    }

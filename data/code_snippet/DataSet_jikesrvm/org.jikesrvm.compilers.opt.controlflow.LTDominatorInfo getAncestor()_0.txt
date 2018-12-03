@@ -1,0 +1,3 @@
+  public BasicBlock getAncestor() {
+    return ancestor;
+  }

@@ -1,0 +1,9 @@
+    public FtpTransferType getTransferType() {
+        try {
+            int id = Integer.parseInt(getProperty(PROPERTY_TRANSFER_TYPE));
+            return FtpTransferType.getFromId(id);
+        }
+        catch (NumberFormatException e) {
+            return DEFAULT_TRANSFER_TYPE;
+        }
+    }

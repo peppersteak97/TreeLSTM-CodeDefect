@@ -1,0 +1,9 @@
+  protected Action _getAddAction() {
+    return new AbstractAction("Add") {
+      public void actionPerformed(ActionEvent ae) {
+        chooseFile();
+        _list.setSelectedIndex(_listModel.getSize() - 1);
+        notifyChangeListeners();
+      }
+    };
+  }

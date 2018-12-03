@@ -1,0 +1,3 @@
+	public String getCurrentTextSelection() {
+	    return (m_textArea == null) ? "" : m_textArea.getSelectedText();
+	}

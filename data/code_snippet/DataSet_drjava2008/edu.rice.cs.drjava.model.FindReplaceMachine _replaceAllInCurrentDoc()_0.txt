@@ -1,0 +1,15 @@
+  private int _replaceAllInCurrentDoc() {
+    
+    assert EventQueue.isDispatchThread();
+    
+    if (_isForward) setPosition(0);
+    else setPosition(_doc.getLength());
+    
+    int count = 0;
+    
+    while (! fr.getWrapped()) {
+      replaceCurrent();
+      count++;
+    }
+    return count;
+  }

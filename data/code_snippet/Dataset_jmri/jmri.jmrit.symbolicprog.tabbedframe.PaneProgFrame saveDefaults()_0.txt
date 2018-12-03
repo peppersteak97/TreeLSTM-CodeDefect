@@ -1,0 +1,19 @@
+    protected void saveDefaults() {
+        int n = cvModel.getRowCount();
+        defaultCvValues = new int[n];
+        defaultCvNumbers = new int[n];
+
+        for (int i=0; i<n; i++) {
+            CvValue cv = cvModel.getCvByRow(i);
+            defaultCvValues[i] = cv.getValue();
+            defaultCvNumbers[i] = cv.number();
+        }
+
+        n = iCvModel.getRowCount();
+        defaultIndexedCvValues = new int[n];
+
+        for (int i=0; i<n; i++) {
+            CvValue cv = iCvModel.getCvByRow(i);
+            defaultIndexedCvValues[i] = cv.getValue();
+        }
+    }

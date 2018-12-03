@@ -1,0 +1,4 @@
+    private void publishProcessDisplayer() {
+        MainWindowProcessDisplayer pd = MainWindowProcessDisplayer.getDisplayer(m_appWin);
+        pd.setVisible(true);
+    }

@@ -1,0 +1,4 @@
+    public Date getLastAccesed() {
+        Date accessed = readDateProperty(InterchangeProjectFile.ACCESSED);
+        return (accessed != null) ? accessed : getLastModified();
+    }

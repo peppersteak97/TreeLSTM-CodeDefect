@@ -1,0 +1,4 @@
+    private void uploadFirstFile() throws InterruptedException {
+        List<File> files = queueFirstFile();
+        submitJob(null, files);
+    }

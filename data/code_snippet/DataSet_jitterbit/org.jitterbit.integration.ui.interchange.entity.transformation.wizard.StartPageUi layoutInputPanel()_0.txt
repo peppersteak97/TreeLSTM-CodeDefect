@@ -1,0 +1,9 @@
+    private void layoutInputPanel() {
+        TwoColumnPanel p = new TwoColumnPanel();
+        p.setLeftAnchor(TwoColumnPanel.WEST);
+        p.setRightFill(TwoColumnPanel.HORIZONTAL);
+        layoutNameField(p);
+        layoutComboBoxes(p);
+        p.setOpaque(false, true);
+        p.addToParent(m_inputPanel.getUi(), null);
+    }

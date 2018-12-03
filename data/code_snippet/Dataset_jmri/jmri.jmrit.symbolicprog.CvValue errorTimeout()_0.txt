@@ -1,0 +1,6 @@
+    void errorTimeout() {
+        setState(UNKNOWN);
+        if (log.isDebugEnabled()) log.debug("CV setting not busy on error reply");
+        _busy = false;
+        notifyBusyChange(true, _busy);
+    }

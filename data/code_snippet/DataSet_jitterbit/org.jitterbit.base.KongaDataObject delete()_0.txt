@@ -1,0 +1,8 @@
+	public void delete() {
+		if( !isDeleted() ) {
+			m_bDeleted = true;
+			firePropertyChange(PROPERTY_DELETED, false, true);
+			if( m_propChangeManager != null )
+				m_propChangeManager.removeAllPropertyChangeListeners();
+		}
+	}

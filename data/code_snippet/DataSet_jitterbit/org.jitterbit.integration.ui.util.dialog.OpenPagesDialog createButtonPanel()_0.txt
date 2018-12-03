@@ -1,0 +1,6 @@
+    private void createButtonPanel() {
+        JPanel buttons = getButtonPanel(OK_ONLY, 0);
+        buttons.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
+        m_listPanel.add(buttons, BorderLayout.SOUTH);
+        getRootPane().setDefaultButton(getOKButton());
+    }

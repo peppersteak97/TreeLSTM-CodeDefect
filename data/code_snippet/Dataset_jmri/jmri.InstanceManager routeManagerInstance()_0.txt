@@ -1,0 +1,5 @@
+    static public RouteManager routeManagerInstance()  {
+        if (instance().routeManager != null) return instance().routeManager;
+        instance().routeManager = new DefaultRouteManager();
+        return instance().routeManager;
+    }

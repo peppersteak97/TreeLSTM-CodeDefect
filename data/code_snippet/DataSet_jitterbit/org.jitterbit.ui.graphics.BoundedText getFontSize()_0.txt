@@ -1,0 +1,1 @@
+	public int getFontSize() { return m_iFontSize; }

@@ -1,0 +1,3 @@
+	public final int getIndex() {
+		return m_iIndex;
+	}

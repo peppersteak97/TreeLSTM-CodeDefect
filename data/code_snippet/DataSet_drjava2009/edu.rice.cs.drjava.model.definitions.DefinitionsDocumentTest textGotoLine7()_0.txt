@@ -1,0 +1,6 @@
+  public void textGotoLine7() throws BadLocationException {
+    final String s = "11111\n2222\n33333\n44444";
+    _doc.insertString(0, s, null);
+    _doc.gotoLine(3);
+    assertEquals("#0.0", 11, _doc.getCurrentLocation());
+  }

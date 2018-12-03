@@ -1,0 +1,26 @@
+  public void testConstructorWithFileName() throws Exception{
+    
+    XMLConfig xc = 
+      new XMLConfig(new StringReader(
+                                     "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><concutest>\n"
+                                       +" <name type=\"only\" value=\"true\"/>\n"
+                                       +" <thread value=\"false\" />\n"
+                                       +" <node value=\"on\" /> \n"
+                                       +" <dot value=\"off\" /> \n"
+                                       +" <class name=\"sample.threadCheck.ThreadCheckSample4\"/>\n"
+                                       +"</concutest>")); 
+    
+    File saveTo = File.createTempFile("drjava_test", "xml");
+    xc.save(saveTo);
+    
+    try{
+      XMLConfig xc2 = new XMLConfig("badfileName");
+    }
+    catch(XMLConfig.XMLConfigException e){}
+    
+    XMLConfig xc2 = new XMLConfig(saveTo.getAbsolutePath());
+    
+    Boolean b = xc.getBool("concutest/name.name",true);
+    Assert.assertTrue("Want to get default value", b);
+    
+  }

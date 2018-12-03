@@ -1,0 +1,30 @@
+    private void onShowStoredProcedures() {
+        if( m_currentType != BrowserObjectType.STORED_PROCEDURE ) {
+            if( m_spLock.isTrue() ) {
+                m_tablePanel.displayItems(m_liSPItems);
+                m_currentType = BrowserObjectType.STORED_PROCEDURE;
+            }
+            else {
+                m_waitMgr.startWait();
+                new SwingWorker() {
+                    
+                    @Override
+                    public Object construct() {
+                        try {
+                            m_spLock.waitUntilTrue();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+                    
+                    @Override
+                    public void finished() {
+                        m_tablePanel.displayItems(m_liSPItems);
+        	            m_waitMgr.stopWait();
+                        m_currentType = BrowserObjectType.STORED_PROCEDURE;
+                    }
+                }.start();
+            }
+        }
+    }

@@ -1,0 +1,11 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    _adapter = new InteractionsDJDocument();
+    _model = new TestInteractionsModel(_adapter);
+    _doc = _model.getDocument();
+    _pane = new InteractionsPane(_adapter) {
+      public int getPromptPos() { return _model.getDocument().getPromptPos(); }
+    };
+    _pane.setBeep(new TestBeep());
+    _controller = new InteractionsController(_model, _adapter, _pane);
+  }

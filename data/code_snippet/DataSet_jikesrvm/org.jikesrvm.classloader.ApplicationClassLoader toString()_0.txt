@@ -1,0 +1,6 @@
+  public String toString() {
+    return myName +
+           (createdAtBootImageWritingTime ? "-createdAtBootImageWritingTime" : "") +
+           (createdWithRunningVM ? "" : "-NOTcreatedWithRunningVM") +
+           (DBG ? "@" + VM.addressAsHexString(Magic.objectAsAddress(this)) : "");
+  }

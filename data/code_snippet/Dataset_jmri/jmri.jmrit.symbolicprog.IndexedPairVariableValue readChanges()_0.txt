@@ -1,0 +1,3 @@
+    public void readChanges() {
+        if (isChanged()) readAll();
+    }

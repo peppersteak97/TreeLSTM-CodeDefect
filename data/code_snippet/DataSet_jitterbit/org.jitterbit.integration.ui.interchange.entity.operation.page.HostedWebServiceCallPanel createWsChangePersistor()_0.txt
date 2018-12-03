@@ -1,0 +1,4 @@
+    private IEntityChangePersistor createWsChangePersistor() {
+        return new EntityChangePersistor(
+                        m_page.getView(), m_selectedWsCall);
+    }

@@ -1,0 +1,9 @@
+    public int getNumberOfSubFoldersRecursively() {
+        int n = 0;
+        for (IntegrationEntity e : getAllChildren()) {
+            if (e instanceof Folder) {
+                n += 1 + ((Folder) e).getNumberOfSubFoldersRecursively();
+            }
+        }
+        return n;
+    }

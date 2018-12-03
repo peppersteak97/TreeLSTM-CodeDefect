@@ -1,0 +1,1 @@
+  public UndoableEditListener[] getUndoableEditListeners() { throw new UnsupportedOperationException("Dummy method"); }

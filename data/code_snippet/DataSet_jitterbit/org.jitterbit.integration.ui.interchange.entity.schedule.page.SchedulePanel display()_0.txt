@@ -1,0 +1,6 @@
+    public void display() {
+        super.display();
+        if (TIMEZONE_SUPPORT) {
+            m_timeZoneSelector.display();
+        }
+    }

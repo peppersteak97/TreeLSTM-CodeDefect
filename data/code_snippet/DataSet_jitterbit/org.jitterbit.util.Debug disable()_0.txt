@@ -1,0 +1,8 @@
+    public static void disable() {
+        Throwable t = new Throwable();
+        String className = t.getStackTrace()[2].getClassName();
+        s_enabledClasses.remove(className);
+        s_enabledMethods.removeAll(className);
+        s_includeClassInfo.remove(className);
+        s_includeThreadInfo.remove(className);
+    }

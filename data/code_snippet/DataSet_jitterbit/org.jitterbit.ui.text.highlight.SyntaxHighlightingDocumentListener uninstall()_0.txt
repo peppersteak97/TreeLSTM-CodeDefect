@@ -1,0 +1,3 @@
+    private void uninstall() {
+        m_document.removeDocumentListener(m_listener);
+    }

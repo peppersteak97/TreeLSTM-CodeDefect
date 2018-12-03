@@ -1,0 +1,24 @@
+    protected void copyToOpsw() {
+        opsw[ 1]  = opsw1.isSelected();
+        opsw[ 2]  = opsw2.isSelected();
+        opsw[ 3]  = opsw3.isSelected();
+        opsw[ 4]  = opsw4.isSelected();
+        opsw[ 5]  = opsw5.isSelected();
+        opsw[ 6]  = opsw6.isSelected();
+        opsw[ 7]  = opsw7.isSelected();
+        opsw[ 8]  = opsw8.isSelected();
+        opsw[ 9]  = opsw9.isSelected();
+        opsw[ 10] = opsw10.isSelected();
+        opsw[ 11] = opsw11.isSelected();
+        opsw[ 12] = opsw12.isSelected();
+        opsw[ 13] = opsw13.isSelected();
+        opsw[ 14] = opsw14.isSelected();
+        opsw[ 15] = opsw15.isSelected();
+        opsw[ 16] = opsw16.isSelected();
+        opsw[ 17] = opsw17.isSelected();
+        opsw[ 18] = opsw18.isSelected();
+        opsw[ 19] = opsw19.isSelected();
+        opsw[ 20] = opsw20.isSelected();
+        opsw[ 21] = opsw21.isSelected();
+
+    }

@@ -1,0 +1,4 @@
+  private void _toggleMainClass() {
+    _mainClassField.setEnabled(_makeExecutable.isSelected() && _jarClasses.isSelected());
+    _mainClassLabel.setEnabled(_makeExecutable.isSelected() && _jarClasses.isSelected());
+  }

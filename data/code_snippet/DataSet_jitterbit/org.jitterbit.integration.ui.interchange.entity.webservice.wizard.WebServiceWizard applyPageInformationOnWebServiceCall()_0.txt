@@ -1,0 +1,16 @@
+    private boolean applyPageInformationOnWebServiceCall() {
+        try {
+            for (IWizardPage page : getAllApplicablePages()) {
+                if (page instanceof IWebServiceWizardPage) {
+                    ((IWebServiceWizardPage) page)
+                                    .applyToWebServiceCall(m_newWebServiceCall);
+                }
+            }
+            return true;
+        } 
+        catch (WizardPageException e) {
+            handlePageException(e.getMessage(), e);
+            onWizardCancelled();
+            return false;
+        }
+    }

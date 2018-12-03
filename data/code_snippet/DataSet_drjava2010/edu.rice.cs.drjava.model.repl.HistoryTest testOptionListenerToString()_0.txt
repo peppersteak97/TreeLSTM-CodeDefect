@@ -1,0 +1,7 @@
+  public void testOptionListenerToString(){
+   
+    History his = new History(10);
+    String toS = his.historyOptionListener.toString();
+    assertTrue("Did not return correct string representation",toS.startsWith("HISTORY_MAX_SIZE OptionListener #"));
+    
+  }

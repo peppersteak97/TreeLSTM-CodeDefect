@@ -1,0 +1,12 @@
+    private JTextField createUserField() {
+        JTextField field = new TextFieldWithChangeDetection(20);
+        field.addPropertyChangeListener(TextChangeDetector.TEXT_CHANGE_PROPERTY,
+            new PropertyChangeListener() {
+    
+                public void propertyChange(PropertyChangeEvent e) {
+                    onStateChanged();
+                }
+        });
+        TextComponentUtils.selectAllWhenFocused(field);
+        return field;
+    }

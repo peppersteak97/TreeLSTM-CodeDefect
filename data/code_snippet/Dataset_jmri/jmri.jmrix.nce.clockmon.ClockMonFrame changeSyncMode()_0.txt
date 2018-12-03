@@ -1,0 +1,47 @@
+    private void changeSyncMode() {
+        int oldMode = clockMode;
+        int newMode = SYNCMODE_OFF;
+        if (setSyncModeNceMaster.isSelected() == true) {
+            newMode = SYNCMODE_NCE_MASTER;
+        }
+        if (setSyncModeInternalMaster.isSelected() == true) {
+            newMode = SYNCMODE_INTERNAL_MASTER;
+        }
+        if (internalClock != null) {
+            if (log.isDebugEnabled()) {
+                log.debug("changeSyncMode(): New Mode: " + newMode + " Old Mode: " + oldMode);
+            }
+            if (oldMode != newMode) {
+                clockMode = SYNCMODE_OFF;
+                if (oldMode == SYNCMODE_OFF) {
+                    if (newMode == SYNCMODE_INTERNAL_MASTER) {
+                    	log.debug("starting Internal mode");
+                        internalSyncInitStateCounter = 1;
+                        internalSyncRunStateCounter = 0;
+                        internalSyncInitStates();
+                        clockMode = SYNCMODE_INTERNAL_MASTER;
+                    }
+                    if (newMode == SYNCMODE_NCE_MASTER) {
+                    	log.debug("starting NCE mode");
+                        nceSyncInitStateCounter = 1;
+                        nceSyncRunStateCounter = 0;
+                        nceSyncInitStates();
+                        clockMode = SYNCMODE_NCE_MASTER;
+                    }
+                } else {
+                    if (oldMode == SYNCMODE_NCE_MASTER) {
+                        nceSyncInitStateCounter = -1;
+                        nceSyncInitStates();
+                        internalSyncInitStateCounter = 1;
+                        internalSyncInitStates();
+                    }
+                    if (oldMode == SYNCMODE_INTERNAL_MASTER) {
+                        internalSyncInitStateCounter = -1;
+                        internalSyncInitStates();
+                        nceSyncInitStateCounter = 1;
+                        nceSyncInitStates();
+                    }
+                }
+            }
+        }
+    }

@@ -1,0 +1,9 @@
+  private void updateInfo() {
+    if (_info == null) return;
+    if (_matchList.getModel().getSize() > 0) {
+      @SuppressWarnings("unchecked") 
+      T item = (T)_matchList.getSelectedValue();
+      _infoLabel.setText("Path:   " + _info.value(item));
+    }
+    else _infoLabel.setText("No file selected");
+  }

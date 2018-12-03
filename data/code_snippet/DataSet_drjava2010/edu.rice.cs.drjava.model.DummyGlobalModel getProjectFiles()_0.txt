@@ -1,0 +1,3 @@
+  public File[] getProjectFiles() {
+    throw new UnsupportedOperationException("Tried to call getProjectFiles on a Dummy");
+  }

@@ -1,0 +1,1 @@
+    public boolean getInterlocked() { return interlocked; }

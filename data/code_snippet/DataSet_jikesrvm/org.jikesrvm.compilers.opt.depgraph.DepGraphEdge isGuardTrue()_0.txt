@@ -1,0 +1,1 @@
+  public boolean isGuardTrue() { return (scratch & GUARD_TRUE) != 0; }

@@ -1,0 +1,1 @@
+  public boolean isRegMayDef() { return (scratch & REG_MAY_DEF) != 0; }

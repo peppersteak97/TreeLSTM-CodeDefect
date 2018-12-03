@@ -1,0 +1,6 @@
+    private void uninstallDefaultAction() {
+        m_defaultAction.setSelectionSource(null);
+        m_defaultAction = null;
+        m_defaultActionHandler.uninstall();
+        m_defaultActionHandler = null;
+    }

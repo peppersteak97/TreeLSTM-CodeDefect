@@ -1,0 +1,22 @@
+	private void updateBlockInfo() {
+		LayoutBlock b1 = null;
+		LayoutBlock b2 = null;
+		if (blockAC!=null) blockAC.updatePaths();
+		if (connectA!=null) {
+			b1 = ((TrackSegment)connectA).getLayoutBlock();
+			if ((b1!=null)&&(b1!=blockAC)) b1.updatePaths();
+		}
+		if (connectC!=null) {
+			b2 = ((TrackSegment)connectC).getLayoutBlock();
+			if ((b2!=null)&&(b2!=blockAC)&&(b2!=b1)) b2.updatePaths();
+		}
+		if (blockBD!=null) blockBD.updatePaths();
+		if (connectB!=null) {
+			b1 = ((TrackSegment)connectB).getLayoutBlock();
+			if ((b1!=null)&&(b1!=blockBD)) b1.updatePaths();
+		}
+		if (connectD!=null) {
+			b2 = ((TrackSegment)connectD).getLayoutBlock();
+			if ((b2!=null)&&(b2!=blockBD)&&(b2!=b1)) b2.updatePaths();
+		}
+	}	

@@ -1,0 +1,21 @@
+    private void checkReplyInDispatch() {
+        int loopCount = 0;
+        while (replyInDispatch) {
+            try {
+                synchronized (xmtRunnable) {
+                    xmtRunnable.wait(DISPATCH_WAIT_INTERVAL);
+                }
+            } catch (InterruptedException e) {
+                log.error("transmitLoop interrupted");
+            }
+            loopCount++;
+            int currentDispatchTime = loopCount * DISPATCH_WAIT_INTERVAL;
+            if (currentDispatchTime > maxDispatchTime) {
+                maxDispatchTime = currentDispatchTime;
+                if (currentDispatchTime >= warningMessageTime){
+                    warningMessageTime = warningMessageTime + WARN_NEXT_TIME;
+                    log.debug("Max dispatch time is now " + currentDispatchTime);
+                }
+            }
+        }
+    }

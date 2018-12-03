@@ -1,0 +1,3 @@
+  public void dump() {
+    System.out.println(toString());
+  }

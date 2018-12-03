@@ -1,0 +1,3 @@
+    public int hashCode() {
+        return (m_tables == null ? 0 : m_tables.hashCode());
+    }

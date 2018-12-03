@@ -1,0 +1,14 @@
+    void update() {
+        if (isInProgress()) {
+            return;
+        }
+        IntegrationUi.getUi().startWait();
+        IUiWorker w = IntegrationUi.getUi().getUiWorker();
+        w.submitForParallell(new Runnable() {
+
+            public void run() {
+                IUserManager userMgr = ServerManager.getManager().getUserManager();
+                userMgr.updateUsersAndGroups(new CallbackImpl());
+            }
+        });
+    }

@@ -1,0 +1,12 @@
+  public final synchronized Offset findOrCreateJtocOffset() {
+    if (VM.VerifyAssertions) VM._assert(!isStatic() && !isObjectInitializer());
+    Offset jtocOffset = getJtocOffset();;
+    if (jtocOffset.EQ(Offset.zero())) {
+      jtocOffset = Statics.allocateReferenceSlot(true);
+      Statics.setSlotContents(jtocOffset, getCurrentEntryCodeArray());
+      synchronized(jtocOffsets) {
+        jtocOffsets.put(this, Integer.valueOf(jtocOffset.toInt()));
+      }
+    }
+    return jtocOffset;
+  }

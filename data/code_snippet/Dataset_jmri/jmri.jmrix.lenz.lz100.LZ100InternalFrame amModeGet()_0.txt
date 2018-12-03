@@ -1,0 +1,8 @@
+    synchronized void amModeGet() {
+	   XNetMessage msg=XNetTrafficController.instance()
+						.getCommandStation()
+						.getCSStatusRequestMessage();
+           XNetTrafficController.instance().sendXNetMessage(msg,this);
+	   amModeGetButton.setSelected(false);
+	   status.setText(rb.getString("LZ100StatusRetrieveMode"));
+    }

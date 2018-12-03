@@ -1,0 +1,4 @@
+    private void validateOccurrence() {
+        if (!m_schedule.getOccurrence().isValid()) {
+        }
+    }

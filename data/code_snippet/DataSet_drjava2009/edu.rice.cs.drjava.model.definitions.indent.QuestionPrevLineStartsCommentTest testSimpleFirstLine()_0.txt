@@ -1,0 +1,4 @@
+  public void testSimpleFirstLine() throws javax.swing.text.BadLocationException {
+    _setDocText(example1);
+    assertEquals(true, rule2.testApplyRule(_doc, 3, Indenter.IndentReason.OTHER));
+  }

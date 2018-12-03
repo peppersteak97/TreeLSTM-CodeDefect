@@ -1,0 +1,7 @@
+	private void createDisplayData() {
+		m_displayData = new KongaBubbleDisplayData();
+		Dimension d = m_displayData.getSize();
+		Point p = m_displayData.getLocation();
+		this.setSize(d.width, d.height);
+		this.setLocation(p.x, p.y);	
+	}

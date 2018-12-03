@@ -1,0 +1,7 @@
+    private void layoutInputPanel() {
+        OneColumnPanel col = new OneColumnPanel();
+        col.setInsets(2, 2, 20, 2);
+        addNamePanel(col);
+        addWsdlPanel(col);
+        m_inputPanel.wrap(col);
+    }

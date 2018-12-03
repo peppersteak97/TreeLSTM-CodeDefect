@@ -1,0 +1,3 @@
+	public FocusListener getFocusListener() {
+		return m_titlePanel;
+	}

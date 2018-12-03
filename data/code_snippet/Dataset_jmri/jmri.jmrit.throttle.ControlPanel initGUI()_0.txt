@@ -1,0 +1,252 @@
+    private void initGUI()
+    {
+        JPanel mainPanel = new JPanel();
+        this.setContentPane(mainPanel);
+        mainPanel.setLayout(new BorderLayout());
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        
+        speedControlPanel = new JPanel();
+        speedControlPanel.setLayout(new BoxLayout(speedControlPanel,BoxLayout.X_AXIS));
+        this.getContentPane().add(speedControlPanel,BorderLayout.CENTER);
+        sliderPanel = new JPanel();
+        sliderPanel.setLayout(new GridBagLayout());
+        
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.gridheight = 1;
+        constraints.gridwidth = 1;
+        constraints.ipadx = 0;
+        constraints.ipady = 0;
+        Insets insets = new Insets(2, 2, 2, 2);
+        constraints.insets = insets;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        
+        sliderPanel.add(speedSlider, constraints);
+        //this.getContentPane().add(sliderPanel,BorderLayout.CENTER);
+        speedControlPanel.add(sliderPanel);
+        speedSlider.setOrientation(JSlider.VERTICAL);
+        speedSlider.setMajorTickSpacing(MAX_SPEED/2);
+        java.util.Hashtable labelTable = new java.util.Hashtable();
+        labelTable.put(new Integer(MAX_SPEED/2), new JLabel("50%"));
+        labelTable.put(new Integer(MAX_SPEED), new JLabel("100%"));
+        labelTable.put(new Integer(0), new JLabel(rb.getString("LabelStop")));
+        speedSlider.setLabelTable(labelTable);
+        speedSlider.setPaintTicks(true);
+        speedSlider.setPaintLabels(true);
+        // remove old actions
+        speedSlider.addChangeListener(
+                                      new ChangeListener()
+                                      {
+                                          public void stateChanged(ChangeEvent e) {
+                                              if ( !internalAdjust) {
+                                                  boolean doIt = false;
+                                                  if (!speedSlider.getValueIsAdjusting()) {
+                                                      doIt = true;
+                                                      lastTrackedSliderMovementTime = System.currentTimeMillis() - trackSliderMinInterval;
+                                                  } else if (trackSlider &&
+                                                             System.currentTimeMillis() - lastTrackedSliderMovementTime >= trackSliderMinInterval) {
+                                                      doIt = true;
+                                                      lastTrackedSliderMovementTime = System.currentTimeMillis();
+                                                  }
+                                                  if (doIt) {
+                                                      float newSpeed = (speedSlider.getValue() / ( MAX_SPEED * 1.0f ) ) ;
+                                                      if (log.isDebugEnabled()) {log.debug( "stateChanged: slider pos: " + speedSlider.getValue() + " speed: " + newSpeed );}
+                                                      throttle.setSpeedSetting( newSpeed );
+                                                      if(speedSpinner!=null)
+                                                          JSpinnerUtil.setValue(speedSpinner, new Integer(speedSlider.getValue()));
+                                                  }
+                                              } else {
+                                                  internalAdjust=false;
+                                              }
+                                          }
+                                      });
+        
+        spinnerPanel = new JPanel();
+        spinnerPanel.setLayout(new GridBagLayout());
+        
+        if(speedSpinner!=null)
+            spinnerPanel.add(speedSpinner, constraints);
+        //this.getContentPane().add(spinnerPanel,BorderLayout.CENTER);
+        speedControlPanel.add(spinnerPanel);
+        // remove old actions
+        if(speedSpinner!=null)
+            JSpinnerUtil.addChangeListener(speedSpinner,
+                                           new ChangeListener()
+                                           {
+                                               public void stateChanged(ChangeEvent e)
+                                               {
+                                                   if ( !internalAdjust) {
+                                                       //if (!speedSpinner.getValueIsAdjusting())
+                                                       //{
+                                                       float newSpeed = ((Integer)JSpinnerUtil.getValue(speedSpinner)).floatValue() / ( MAX_SPEED * 1.0f );
+                                                       if (log.isDebugEnabled()) {log.debug( "stateChanged: spinner pos: " + JSpinnerUtil.getValue(speedSpinner) + " speed: " + newSpeed );}
+                                                       if (throttle != null) {
+                                                           throttle.setSpeedSetting( newSpeed );
+                                                           speedSlider.setValue(((Integer)JSpinnerUtil.getValue(speedSpinner)).intValue());
+                                                       } else {
+                                                           log.warn("no throttle object in stateChanged, ignoring change of speed to "+newSpeed);
+                                                       }
+                                                       //}
+                                                   } else {
+                                                       internalAdjust=false;
+                                                   }
+                                               }
+                                           });
+        
+        ButtonGroup speedStepButtons = new ButtonGroup();
+        speedStepButtons.add(SpeedStep128Button);
+        speedStepButtons.add(SpeedStep28Button);
+        speedStepButtons.add(SpeedStep27Button);
+        speedStepButtons.add(SpeedStep14Button);
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridy = 1;
+        spinnerPanel.add(SpeedStep128Button, constraints);
+        constraints.gridy = 2;
+        spinnerPanel.add(SpeedStep28Button, constraints);
+        constraints.gridy = 3;
+        spinnerPanel.add(SpeedStep27Button, constraints);
+        constraints.gridy = 4;
+        spinnerPanel.add(SpeedStep14Button, constraints);
+        
+        SpeedStep14Button.addActionListener(
+                                            new ActionListener()
+                                            {
+                                                public void actionPerformed(ActionEvent e)
+                                                {
+                                                    setSpeedSteps(DccThrottle.SpeedStepMode14);
+                                                    throttle.setSpeedStepMode(DccThrottle.SpeedStepMode14);
+                                                }
+                                            });
+        
+        SpeedStep27Button.addActionListener(
+                                            new ActionListener()
+                                            {
+                                                public void actionPerformed(ActionEvent e)
+                                                {
+                                                    setSpeedSteps(DccThrottle.SpeedStepMode27);
+                                                    throttle.setSpeedStepMode(DccThrottle.SpeedStepMode27);
+                                                }
+                                            });
+        
+        SpeedStep28Button.addActionListener(
+                                            new ActionListener()
+                                            {
+                                                public void actionPerformed(ActionEvent e)
+                                                {
+                                                    setSpeedSteps(DccThrottle.SpeedStepMode28);
+                                                    throttle.setSpeedStepMode(DccThrottle.SpeedStepMode28);
+                                                }
+                                            });
+        
+        SpeedStep128Button.addActionListener(
+                                             new ActionListener()
+                                             {
+                                                 public void actionPerformed(ActionEvent e)
+                                                 {
+                                                     setSpeedSteps(DccThrottle.SpeedStepMode128);
+                                                     throttle.setSpeedStepMode(DccThrottle.SpeedStepMode128);
+                                                 }
+                                             });
+        
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridBagLayout());
+        this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+        
+        ButtonGroup directionButtons = new ButtonGroup();
+        directionButtons.add(forwardButton);
+        directionButtons.add(reverseButton);
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridy = 1;
+        buttonPanel.add(forwardButton, constraints);
+        constraints.gridy = 2;
+        buttonPanel.add(reverseButton, constraints);
+        
+        forwardButton.addActionListener(
+                                        new ActionListener()
+                                        {
+                                            public void actionPerformed(ActionEvent e)
+                                            {
+                                                throttle.setIsForward(true);
+                                            }
+                                        });
+        
+        reverseButton.addActionListener(
+                                        new ActionListener()
+                                        {
+                                            public void actionPerformed(ActionEvent e)
+                                            {
+                                                throttle.setIsForward(false);
+                                            }
+                                        });
+        
+        stopButton = new JButton("STOP!");
+        constraints.gridy = 3;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        buttonPanel.add(stopButton, constraints);
+        stopButton.addActionListener(
+                                     new ActionListener()
+                                     {
+                                         public void actionPerformed(ActionEvent e)
+                                         {
+                                             stop();
+                                         }
+                                     });
+        
+        stopButton.addMouseListener(
+                                    new MouseListener()
+                                    {
+                                        public void mousePressed(MouseEvent e)
+                                        {
+                                            stop();
+                                        }
+                                        public void mouseExited(MouseEvent e) {}
+                                        public void mouseEntered(MouseEvent e) {}
+                                        public void mouseReleased(MouseEvent e) {}
+                                        public void mouseClicked(MouseEvent e) {}
+                                    });
+        
+        idleButton = new JButton(rb.getString("ButtonIdle"));
+        constraints.gridy = 4;
+        buttonPanel.add(idleButton, constraints);
+        idleButton.addActionListener(
+                                     new ActionListener()
+                                     {
+                                         public void actionPerformed(ActionEvent e)
+                                         {
+                                             speedSlider.setValue(0);
+                                             if(speedSpinner!=null)
+                                                 JSpinnerUtil.setValue(speedSpinner, new Integer(0));
+                                             throttle.setSpeedSetting(0);
+                                         }
+                                     });
+        
+        this.addComponentListener(
+                                  new ComponentAdapter()
+                                  {
+                                      public void componentResized(ComponentEvent e)
+                                      {
+                                          changeOrientation();
+                                      }
+                                  });
+        
+        JMenuItem propertiesItem = new JMenuItem("Properties");
+        propertiesItem.addActionListener(this);
+        propertiesPopup.add(propertiesItem);
+        
+        // Add a mouse listener all components to trigger the popup menu.
+        MouseInputAdapter popupListener = new PopupListener(propertiesPopup,this);
+        
+        MouseInputAdapterInstaller.installMouseInputAdapterOnAllComponents(
+                                                                           popupListener,this);
+        
+        // Install the Key bindings on all Components
+        KeyListenerInstaller.installKeyListenerOnAllComponents(
+                                                               new ControlPadKeyListener(), this);
+        
+        // set by default which speed selection method is on top
+        setSpeedController(_displaySlider);
+    }

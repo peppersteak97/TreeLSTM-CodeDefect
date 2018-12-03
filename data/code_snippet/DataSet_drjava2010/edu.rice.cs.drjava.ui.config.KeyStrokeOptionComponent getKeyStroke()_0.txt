@@ -1,0 +1,3 @@
+  public KeyStroke getKeyStroke() {
+    return _key;
+  }

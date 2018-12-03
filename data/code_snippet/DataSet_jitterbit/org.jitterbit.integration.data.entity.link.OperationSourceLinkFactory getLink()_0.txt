@@ -1,0 +1,11 @@
+            public IIntegrationLink getLink() {
+                SourceId srcId = m_op.getSourceId();
+                if (srcId != null) {
+                    Source src = (Source) m_dataLookup.getInstance(srcId);
+                    if (src != null) {
+                        return new OperationSourceLink(src, m_op);
+                    }
+                    logMissingLink(m_op, EntityType.Source, srcId);
+                }
+                return null;
+            }

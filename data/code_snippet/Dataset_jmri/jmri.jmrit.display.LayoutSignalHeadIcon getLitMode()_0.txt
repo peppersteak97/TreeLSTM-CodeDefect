@@ -1,0 +1,5 @@
+            else if (getLitMode() && !mHead.getLit()) {
+                if (text) super.setText("<dark>");
+                if (icon) super.setIcon(dark);
+                return;
+            }

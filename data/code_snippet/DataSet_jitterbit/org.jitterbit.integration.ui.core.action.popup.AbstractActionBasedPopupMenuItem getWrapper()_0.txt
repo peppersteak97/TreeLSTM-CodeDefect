@@ -1,0 +1,8 @@
+    private Action getWrapper() {
+        if (m_action instanceof IToggleAction) {
+            ToggleActionWrapper wrapper = new ToggleActionWrapper();
+            m_action.addPropertyChangeListener(wrapper);
+            return wrapper;
+        }
+        return new ActionWrapper();
+    }

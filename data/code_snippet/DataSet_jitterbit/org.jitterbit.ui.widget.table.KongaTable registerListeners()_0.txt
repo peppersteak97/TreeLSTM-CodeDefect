@@ -1,0 +1,4 @@
+    private void registerListeners() {
+        m_mouseClickListener = new MouseClickListener();
+        addMouseListener(m_mouseClickListener);
+    }

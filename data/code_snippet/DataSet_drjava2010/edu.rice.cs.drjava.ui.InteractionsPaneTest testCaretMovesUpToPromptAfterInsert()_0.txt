@@ -1,0 +1,6 @@
+  public void testCaretMovesUpToPromptAfterInsert() throws EditDocumentException {
+    _model.replSystemOutPrint("typed text");
+    _model.replSystemOutPrint("simulated output");
+    Utilities.clearEventQueue();
+    assertEquals("Caret is at the prompt after output inserted.", _doc.getPromptPos(), _pane.getCaretPosition());
+  }

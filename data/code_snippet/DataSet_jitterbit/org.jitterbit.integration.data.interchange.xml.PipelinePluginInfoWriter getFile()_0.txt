@@ -1,0 +1,6 @@
+    private File getFile() {
+        InterchangeProjectFile projectFile = m_project.getProjectFile();
+        String fileName = projectFile.getProperty(
+                        InterchangeProjectFile.PIPELINE_PLUGIN_INFO);
+        return new File(m_project.getLocation(), fileName);
+    }

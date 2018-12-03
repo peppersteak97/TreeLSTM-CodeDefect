@@ -1,0 +1,7 @@
+    public void collapseSelectedBranch() {
+    	TreePath path = getSelectionPath();
+    	if( path == null )
+    		collapseAll();
+    	else
+    		expandAll(path, false);
+    }

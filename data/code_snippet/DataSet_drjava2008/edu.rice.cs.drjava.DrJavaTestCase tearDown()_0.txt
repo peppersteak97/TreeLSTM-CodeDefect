@@ -1,0 +1,4 @@
+  protected void tearDown() throws Exception { 
+    DrJava.cleanUp();  
+    super.tearDown();
+  }

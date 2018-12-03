@@ -1,0 +1,43 @@
+  public void run() {
+    do {
+      try {
+        char[] cbuf = new char[BUFFER_SIZE];
+        int count;
+        while ((!stop) && ((count = in.read(cbuf, 0, BUFFER_SIZE)) >= 0)) {
+          try {
+            out.write(cbuf, 0, count);
+            out.flush();
+          }
+          catch (IOException exc) {
+            GeneralProcessCreator.LOG.log("StreamRedirectThread "+getName()+" had IOException while writing: "+exc);
+            throw new StreamRedirectException("An error occurred during stream redirection, while piping data into a process.",
+                                              exc);
+          }
+        }
+        GeneralProcessCreator.LOG.log("StreamRedirectThread "+getName()+" finished copying");
+        out.flush();
+        if (close) {
+          in.close();
+        }
+      }
+      catch (IOException exc) {
+        GeneralProcessCreator.LOG.log("StreamRedirectThread "+getName()+" had IOException: "+exc);
+        throw new StreamRedirectException("An error occurred during stream redirection, while piping data out of a process.",
+                                          exc);
+      }
+      if (keepRunning) {
+        while(!cm.attemptEnsureSignaled());
+        cm.reset();
+      }
+    } while(keepRunning && !close);
+    if (close) {
+      try {
+        out.close();
+      }
+      catch (IOException exc) {
+        GeneralProcessCreator.LOG.log("StreamRedirectThread "+getName()+" had IOException: "+exc);
+        throw new StreamRedirectException("An error occurred during stream redirection, while piping data out of a process.",
+                                          exc);
+      }
+    }
+  }

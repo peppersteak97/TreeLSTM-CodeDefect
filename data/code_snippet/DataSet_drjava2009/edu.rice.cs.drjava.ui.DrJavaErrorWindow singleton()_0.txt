@@ -1,0 +1,11 @@
+  public static DrJavaErrorWindow singleton() {
+    if (_parentChanged) {
+      synchronized(DrJavaErrorWindow.class) {
+        if (_parentChanged) {
+          _singletonInstance = new DrJavaErrorWindow();
+          _parentChanged = false;
+        }
+      }
+    }
+    return _singletonInstance;
+  }

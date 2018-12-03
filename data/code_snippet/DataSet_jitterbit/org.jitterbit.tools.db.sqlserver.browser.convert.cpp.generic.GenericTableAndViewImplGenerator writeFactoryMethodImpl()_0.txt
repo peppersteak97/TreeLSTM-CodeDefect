@@ -1,0 +1,10 @@
+    private void writeFactoryMethodImpl() {
+        addLine(getMainClassName() + "* " + getMainClassName() + "::MakeInstance(DbConnection* pConn)");
+        addLine("{");
+        addLine("\tDtlDbConnection* pDtlConn = dynamic_cast<DtlDbConnection*>(pConn);");
+        addLine("\tassert(pDtlConn != 0);");
+        addLine("\treturn new " + DtlCppUtils.getDtlTableNamespace(getNamespace()) + 
+                "::Dtl" + getMainClassName() + "(pDtlConn->GetDtlConnection());");
+        addLine("}");
+        addLine();
+    }

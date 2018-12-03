@@ -1,0 +1,16 @@
+    public IJitterPack getJitterPack() {
+        final File file = m_locationBrowser.getSelectedFile();
+        if (file == null) {
+            return null;
+        }
+        return new IJitterPack() {
+
+            public IJitterPackDescriptor getDescriptor() {
+                return IJitterPackDescriptor.UNKNOWN;
+            }
+
+            public File getFile() {
+                return file;
+            }
+        };
+    }

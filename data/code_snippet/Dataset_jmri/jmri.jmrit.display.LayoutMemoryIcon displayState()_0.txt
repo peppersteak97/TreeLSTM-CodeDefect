@@ -1,0 +1,51 @@
+    void displayState() {
+        log.debug("displayState");
+    	if (memory == null) {  
+    		setIcon(defaultIcon);
+    		updateSize();
+    		return;
+    	}
+		Object key = memory.getValue();
+		if (key != null) {
+		    if (map == null) {
+                Object val = memory.getValue();
+                if (val instanceof String) {
+                    setText((String) memory.getValue());
+                    setIcon(null);
+                    text = true;
+                    icon = false;
+    		        updateSize();
+                    return;
+                } else if (val instanceof javax.swing.ImageIcon) {
+                    setIcon((javax.swing.ImageIcon) memory.getValue());
+                    setText(null);
+                    text = false;
+                    icon = true;
+    		        updateSize();
+                    return;
+                } else log.warn("can't display current value of "+memory.getSystemName());
+		    } else {
+			    NamedIcon newicon = (NamedIcon) map.get(key.toString());
+			    if (newicon!=null) {
+                    setText(null);
+				    super.setIcon(newicon);
+                    text = false;
+                    icon = true;
+    		        updateSize();
+				    return;
+			    } else {
+		            setIcon(defaultIcon);
+                    setText(null);
+                    text = false;
+                    icon = true;
+    		        updateSize();
+			    }
+		    }
+		} else {
+		    setIcon(null);
+            setText(defaultText);
+            text = true;
+            icon = false;
+    		updateSize();
+        }
+    }

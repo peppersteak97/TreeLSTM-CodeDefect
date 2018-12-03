@@ -1,0 +1,4 @@
+    private void writeMainClassCTOR() {
+        addLine("\t" + getMainClassName() + "() {}");
+        addLine();
+    }

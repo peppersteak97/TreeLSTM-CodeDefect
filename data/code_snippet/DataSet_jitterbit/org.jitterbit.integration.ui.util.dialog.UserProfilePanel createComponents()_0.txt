@@ -1,0 +1,11 @@
+    private void createComponents() {
+        m_passwordAction = new PasswordAction();
+        
+        ITextComponentFactory textFactory = ComponentFactories.textFactory();
+        m_loginField = textFactory.newTextField(20);
+        m_loginField.setEditable(false);
+        m_firstNameField = textFactory.newTextField(20);
+        m_lastNameField = textFactory.newTextField(20);
+        m_emailField = textFactory.newTextField(30);
+        m_descriptionArea = textFactory.newTextArea(4, 30);
+    }

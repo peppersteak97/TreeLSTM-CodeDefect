@@ -1,0 +1,3 @@
+    public boolean isDecoratedDynamically() {
+        return m_bDecorateDynamically;
+    }

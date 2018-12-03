@@ -1,0 +1,3 @@
+    private String getDefinedMacro() {
+        return "KONGA_DTL_" + getDatabase().getName().toUpperCase()+ "_" + getObject().getName().toUpperCase() + "_H";
+    }

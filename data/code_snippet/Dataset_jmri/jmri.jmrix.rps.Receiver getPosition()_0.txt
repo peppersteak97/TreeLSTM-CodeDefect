@@ -1,0 +1,3 @@
+    public Point3d getPosition() {
+        return position;
+    }

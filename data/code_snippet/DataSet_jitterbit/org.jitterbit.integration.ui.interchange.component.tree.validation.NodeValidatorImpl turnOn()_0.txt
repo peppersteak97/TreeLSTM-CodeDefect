@@ -1,0 +1,9 @@
+    private void turnOn() {
+        if (m_eventHub == null) {
+            return;
+        }
+        if (!m_isActive) {
+            IUiWorker w = IntegrationUi.getUi().getUiWorker();
+            w.submitForParallell(new SwitchOnJob());
+        }
+    }

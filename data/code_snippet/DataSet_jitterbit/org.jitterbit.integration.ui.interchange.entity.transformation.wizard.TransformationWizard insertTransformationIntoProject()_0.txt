@@ -1,0 +1,10 @@
+    private void insertTransformationIntoProject() {
+        InterchangeProject project = m_view.getDataModelUi().getDataObject();
+        InterchangeProjectLock.lock();
+        try {
+            project.insertEntity(m_newTransformation, m_owner);
+        }
+        finally {
+            InterchangeProjectLock.unlock();
+        }
+    }

@@ -1,0 +1,1 @@
+  public LSTNode getParent() { return (LSTNode) inNodes().next(); }

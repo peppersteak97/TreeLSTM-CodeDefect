@@ -1,0 +1,9 @@
+    private void writeRowClassSetDirty() {
+        addLine("\tvoid SetDirty(bool b)");
+        addLine("\t{");
+        for( Column c : getValidColumns() ) {
+            addLine("\t\t" + CppUtils.getIsColumnDirtyMemberName(c) + " = b;");
+        }
+        addLine("\t}");
+        addLine();
+    }

@@ -1,0 +1,9 @@
+  protected final void emit_lor() {
+    popLong(T2, T0);
+    popLong(T3, T1);
+    asm.emitOR(T0, T1, T0);
+    if (VM.BuildFor32Addr) {
+      asm.emitOR(T1, T2, T3);
+    }
+    pushLong(T1, T0);
+  }

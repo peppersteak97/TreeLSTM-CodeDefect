@@ -1,0 +1,3 @@
+    String getTitle() {
+        return m_title;
+    }

@@ -1,0 +1,29 @@
+	private void updateToolTips() {
+		if( m_current == null ) {
+			return;
+		}
+		
+		if( m_undoAction != null ) {
+			ChangeEntry previous = m_current.getPrevious();
+			if (previous != null) {
+                setActionToolTip(m_current.getChange().getDescription(),
+                                 m_undoAction,
+			}
+			else {
+                setActionToolTip(null,
+                                 m_undoAction,
+			}
+		}
+		
+		if( m_redoAction != null ) {
+			ChangeEntry next = m_current.getNext();
+			if (next != null) {
+                setActionToolTip(next.getChange().getDescription(),
+                                 m_redoAction,
+			}
+			else {
+                setActionToolTip(null,
+                                 m_redoAction,
+			}
+		}
+	}

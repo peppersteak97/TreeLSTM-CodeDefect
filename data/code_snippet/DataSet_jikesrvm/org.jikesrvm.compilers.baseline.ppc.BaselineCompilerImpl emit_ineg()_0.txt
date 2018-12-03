@@ -1,0 +1,5 @@
+  protected final void emit_ineg() {
+    popInt(T0);
+    asm.emitNEG(T0, T0);
+    pushInt(T0);
+  }

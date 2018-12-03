@@ -1,0 +1,23 @@
+  public void textHighlightKeywords1() throws BadLocationException {
+    List<HighlightStatus> v;
+    final String s = "public class Foo {\n" +
+      "  private int _x = 0;\n" +
+      "}";
+    _doc.insertString(_doc.getLength(), s, null);
+    v = _doc.getHighlightStatus(0, _doc.getLength());
+    _checkHighlightStatusConsistent(v, 0, _doc.getLength());
+    assertEquals("vector length", 12, v.size());
+    assertEquals(HighlightStatus.KEYWORD, v.get(0).getState());
+    assertEquals(HighlightStatus.NORMAL, v.get(1).getState());
+    assertEquals(HighlightStatus.KEYWORD, v.get(2).getState());
+    assertEquals(HighlightStatus.NORMAL, v.get(3).getState());
+    assertEquals(HighlightStatus.TYPE, v.get(4).getState());
+    assertEquals(HighlightStatus.NORMAL, v.get(5).getState());
+    
+    assertEquals(HighlightStatus.KEYWORD, v.get(6).getState());
+    assertEquals(HighlightStatus.NORMAL, v.get(7).getState());
+    assertEquals(HighlightStatus.TYPE, v.get(8).getState());
+    assertEquals(HighlightStatus.NORMAL, v.get(9).getState());
+    assertEquals(HighlightStatus.NUMBER, v.get(10).getState());
+    assertEquals(HighlightStatus.NORMAL, v.get(11).getState());
+  }

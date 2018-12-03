@@ -1,0 +1,4 @@
+    public List<E> getSelectedObjects() {
+        return wasOkPressed() ? 
+                        m_table.getSelectedObjects() : new ArrayList<E>();
+    }

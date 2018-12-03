@@ -1,0 +1,8 @@
+  protected int getDebugPort() {
+    int port = -1;
+    try {  port = _interactionsModel.getDebugPort(); }
+    catch (IOException ioe) {
+      /* Can't find port; don't use debugger */
+    }
+    return port;
+  }

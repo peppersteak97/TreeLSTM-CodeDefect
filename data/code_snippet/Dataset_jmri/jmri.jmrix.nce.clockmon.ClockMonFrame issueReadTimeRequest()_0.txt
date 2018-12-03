@@ -1,0 +1,10 @@
+    private void issueReadTimeRequest() {
+        if (!waitingForCmdRead) {
+            byte [] cmd = jmri.jmrix.nce.NceBinaryCommand.accMemoryRead(CS_CLOCK_MEM_ADDR);
+            NceMessage cmdNce = jmri.jmrix.nce.NceMessage.createBinaryMessage(cmd, CS_CLOCK_MEM_SIZE);
+            waiting++;
+            waitingForCmdRead = true;
+            jmri.jmrix.nce.NceTrafficController.instance().sendNceMessage(cmdNce, this);
+        }
+        updateTimeFromRead = true;
+    }

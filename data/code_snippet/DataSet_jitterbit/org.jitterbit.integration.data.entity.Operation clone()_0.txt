@@ -1,0 +1,8 @@
+    public Operation clone() throws CloneNotSupportedException {
+        Operation clone = (Operation) super.clone();
+        clone.m_functionIds = new ArrayList<IntegrationId>();
+        for (IntegrationId id : m_functionIds) {
+            clone.m_functionIds.add(id);
+        }
+        return clone;
+    }

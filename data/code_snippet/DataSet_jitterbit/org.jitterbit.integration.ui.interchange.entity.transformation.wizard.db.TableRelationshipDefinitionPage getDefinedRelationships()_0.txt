@@ -1,0 +1,12 @@
+    private TableRelationship[] getDefinedRelationships() {
+        List<TableRelationship> retList = new ArrayList<TableRelationship>();
+        for (DatabaseObject dbO : m_relationships.keySet()) {
+            Set<TableRelationship> rels = m_relationships.get(dbO);
+            if (rels != null) {
+                for (TableRelationship r : rels) {
+                    retList.add(r);
+                }
+            }
+        }
+        return retList.toArray(new TableRelationship[retList.size()]);
+    }

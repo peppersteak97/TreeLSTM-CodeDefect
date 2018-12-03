@@ -1,0 +1,9 @@
+    public static synchronized InterchangeViewMetaData getInstance() {
+        if (s_instance == null) {
+            throw new IllegalStateException(
+                "The InterchangeViewMetaData instance has not been "
+                    + "initialized. The initialize() method must be called before "
+                    + "the instance can be retrieved.");
+        }
+        return s_instance;
+    }

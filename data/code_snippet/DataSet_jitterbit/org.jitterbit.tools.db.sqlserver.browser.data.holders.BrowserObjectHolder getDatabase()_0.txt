@@ -1,0 +1,3 @@
+    public Database getDatabase() {
+        return m_db;
+    }

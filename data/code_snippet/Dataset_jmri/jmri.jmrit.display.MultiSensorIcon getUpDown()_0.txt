@@ -1,0 +1,1 @@
+    public boolean getUpDown() { return updown; }

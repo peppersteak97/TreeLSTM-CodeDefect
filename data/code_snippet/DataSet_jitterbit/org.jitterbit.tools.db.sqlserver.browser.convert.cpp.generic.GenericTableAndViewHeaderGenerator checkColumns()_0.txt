@@ -1,0 +1,11 @@
+    protected void checkColumns() {
+        super.checkColumns();
+        for( String sCppType : getColumnCppTypes() ) {
+            if( sCppType.equals(CppUtils.STRING) ) {
+                m_setIncludes.add("<string>");
+            }
+            else if( sCppType.equals("TIMESTAMP_STRUCT") ) {
+                m_setIncludes.add("<sqltypes.h>");
+            }
+        }
+    }

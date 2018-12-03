@@ -1,0 +1,3 @@
+  public Iterator<ValueGraphVertex> iterator() {
+    return vertices.iterator();
+  }

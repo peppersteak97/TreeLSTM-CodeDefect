@@ -1,0 +1,7 @@
+    private IWindowSectionContentProvider getContentProvider() {
+        if (m_validationProviderFactory == null) {
+            m_validationProviderFactory = ValidationWindowProviderFactory.newFactory(
+                            m_validationContext);
+        }
+        return m_validationProviderFactory.newContentProvider();
+    }

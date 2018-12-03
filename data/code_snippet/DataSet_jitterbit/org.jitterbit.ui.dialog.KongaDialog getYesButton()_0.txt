@@ -1,0 +1,3 @@
+    public JButton getYesButton() {
+		return m_btnYes;
+	}

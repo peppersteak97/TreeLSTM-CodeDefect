@@ -1,0 +1,3 @@
+  public final void alignInvokeInterface() {
+    if (VM.VerifyAssertions) VM._assert(opcode == JBC_invokeinterface);
+  }

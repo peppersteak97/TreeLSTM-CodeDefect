@@ -1,0 +1,13 @@
+  public synchronized void reset() {
+    for(final OpenDefinitionsDocument doc: _enclosingClassNames.keySet()) {
+      final String old = _enclosingClassNames.get(doc);
+      Utilities.invokeLater(new Runnable() {
+        public void run() {
+          List<LightWeightParsingListener> listeners = getListeners();
+          for (LightWeightParsingListener l: listeners) { l.enclosingClassNameUpdated(doc, old, null); }
+        }
+      });
+    }
+    _enclosingClassNames.clear();
+    _lastUpdates.clear();
+  }

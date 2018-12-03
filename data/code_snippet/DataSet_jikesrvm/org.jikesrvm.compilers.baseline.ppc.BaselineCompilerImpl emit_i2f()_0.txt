@@ -1,0 +1,13 @@
+  protected final void emit_i2f() {
+    if (VM.BuildFor64Addr) {
+      pushLong(T0, T0);
+    } else {
+      asm.emitSTFDoffset(F0, THREAD_REGISTER, Entrypoints.scratchStorageField.getOffset());
+      asm.emitSTWoffset(T0, THREAD_REGISTER, Entrypoints.scratchStorageField.getOffset().plus(4));
+      ForwardReference fr = asm.emitForwardBC(GE);
+      asm.emitLIntOffset(T0, THREAD_REGISTER, Entrypoints.scratchStorageField.getOffset());
+      asm.emitSTWoffset(T0,
+                        THREAD_REGISTER,
+      fr.resolve(asm);
+    }
+  }

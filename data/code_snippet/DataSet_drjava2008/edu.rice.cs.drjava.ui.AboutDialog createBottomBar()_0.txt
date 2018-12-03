@@ -1,0 +1,23 @@
+  private JPanel createBottomBar() {
+    JPanel panel = new JPanel(new BorderLayout());
+    JPanel buttonPanel = new JPanel();
+    _copyButton = new JButton(new AbstractAction("Copy System Properties") {
+      public void actionPerformed(ActionEvent e) {
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection contents = new StringSelection(DrJavaErrorWindow.getSystemAndDrJavaInfo());
+        cb.setContents(contents, null);
+      }
+    });
+    _tabs.addChangeListener(new ChangeListener() {
+      public void stateChanged(ChangeEvent evt) {
+        _copyButton.setVisible(_tabs.getSelectedIndex()==_propertiesTabIndex);
+      }
+    });
+    _copyButton.setVisible(_tabs.getSelectedIndex()==_propertiesTabIndex);
+    _okButton.addActionListener(this);
+    buttonPanel.add(_copyButton);
+    buttonPanel.add(_okButton);
+    panel.add(buttonPanel,BorderLayout.EAST);
+    wrapBorder(panel,new EmptyBorder(5,5,5,5));
+    return panel;
+  }

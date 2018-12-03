@@ -1,0 +1,8 @@
+    private IPage createNewPage() {
+        if (m_pageFactory == null) {
+            m_pageFactory = new KnownServersPageFactory();
+        }
+        IPage page = m_pageFactory.createNewPage();
+        m_pageIdentifier = page.getId();
+        return page;
+    }

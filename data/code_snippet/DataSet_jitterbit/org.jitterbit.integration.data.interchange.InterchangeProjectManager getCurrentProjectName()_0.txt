@@ -1,0 +1,3 @@
+    public String getCurrentProjectName() {
+        return (m_currentProject == null) ? null : m_currentProject.getProject().getName();
+    }

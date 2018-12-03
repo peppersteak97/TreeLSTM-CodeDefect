@@ -1,0 +1,3 @@
+  public Iterable<File> getSourceRootSet() {
+    throw new UnsupportedOperationException("Tried to call getSourceRootSet on a Dummy");
+  } 

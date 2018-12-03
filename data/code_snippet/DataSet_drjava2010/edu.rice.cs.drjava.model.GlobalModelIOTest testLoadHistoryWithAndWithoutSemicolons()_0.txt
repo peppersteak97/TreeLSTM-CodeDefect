@@ -1,0 +1,31 @@
+  public void testLoadHistoryWithAndWithoutSemicolons() throws IOException, EditDocumentException, 
+    InterruptedException {
+    
+    final InteractionListener listener = new InteractionListener();
+    _model.addListener(listener);
+    File f1 = tempFile(1);
+    File f2 = tempFile(2);
+    FileSelector fs1 = new FileSelector(f1);
+    FileSelector fs2 = new FileSelector(f2);
+    String s1 = "int x = 5;";
+    String s2 = "System.out.println(\"x = \" + x)";
+    String s3 = "x = 5;";
+    String s4 = "System.out.println(\"x = \" + x)";
+    IOUtil.writeStringToFile(f1, s1 + '\n' + s2 + '\n');
+    IOUtil.writeStringToFile(f2, s3 + '\n' + s4 + '\n');
+    
+    listener.assertInteractionStartCount(0);
+    safeLoadHistory(fs1);
+    listener.waitInteractionDone();
+    
+    listener.logInteractionStart();
+    safeLoadHistory(fs2);
+    listener.waitInteractionDone();
+    
+    ConsoleDocument con = _model.getConsoleDocument();
+    assertEquals("Output of loaded history is not correct: " + con.getDocText(0, con.getLength()).trim(),
+                 "x = 5" + StringOps.EOL + "x = 5",
+                 con.getDocText(0, con.getLength()).trim());
+
+    _log.log("testLoadHistoryWithAndWithoutSemicolons completed");
+  }

@@ -1,0 +1,34 @@
+  public void run() {
+    _log.log("Debugger starting");
+    _debugger.notifyDebuggerStarted();
+    
+    EventQueue queue = _vm.eventQueue();
+    while (_connected) {
+      try {
+        try {
+          EventSet eventSet = queue.remove();
+          EventIterator it = eventSet.eventIterator();
+          
+          while (it.hasNext()) handleEvent(it.nextEvent());
+        }
+        catch (InterruptedException ie) {
+          _log("InterruptedException in main loop: " + ie);
+        }
+        catch (VMDisconnectedException de) {
+          handleDisconnectedException();
+          break;
+        }
+      }
+      catch (Exception e) {
+        _log("Exception in main event handler loop.", e);
+        _debugger.eventHandlerError(e);
+        _debugger.printMessage("An exception occurred in the event handler:\n" + e);
+        _debugger.printMessage("The debugger may have become unstable as a result.");
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        e.printStackTrace(new PrintWriter(baos, true));
+        _debugger.printMessage("Stack trace: "+baos.toString());
+      }
+    }
+    
+    _debugger.notifyDebuggerShutdown();
+  }

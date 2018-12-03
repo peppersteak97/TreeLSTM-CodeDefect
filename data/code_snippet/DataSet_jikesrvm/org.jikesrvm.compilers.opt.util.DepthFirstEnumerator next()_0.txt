@@ -1,0 +1,19 @@
+  public GraphNode next() {
+    if (stack == null) {
+      throw new NoSuchElementException("DepthFirstEnumerator");
+    }
+    while (!stack.isEmpty()) {
+      GraphNode node = stack.pop();
+      if (node.getScratch() != mark) {
+        for (Enumeration<GraphNode> e = node.outNodes(); e.hasMoreElements();) {
+          GraphNode n = e.nextElement();
+          if (n != null) {
+            stack.push(n);
+          }
+        }
+        node.setScratch(mark);
+        return node;
+      }
+    }
+    throw new NoSuchElementException("DepthFirstEnumerator");
+  }

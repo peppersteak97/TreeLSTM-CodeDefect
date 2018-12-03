@@ -1,0 +1,4 @@
+    public IWsdlProcessingJob getProcessingJob() {
+        String url = m_urlField.getText().trim();
+        return (url.length() > 0) ? new ProcessRemoteWsdlJob(url) : null;
+    }

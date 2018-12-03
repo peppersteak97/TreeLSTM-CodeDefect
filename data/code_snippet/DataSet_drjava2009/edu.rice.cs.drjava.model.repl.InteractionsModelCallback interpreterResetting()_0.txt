@@ -1,0 +1,1 @@
+   * Is sometimes preceded by a call to {@code interpreterResetting()}, but not when the interpreter is

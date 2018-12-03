@@ -1,0 +1,4 @@
+    private void initializeToolBarManager() {
+        m_toolBarManager.addTopLevelExtensionsToWindow();
+        m_toolBarManager.addToolBarLevelExtensionsToWindow();
+    }

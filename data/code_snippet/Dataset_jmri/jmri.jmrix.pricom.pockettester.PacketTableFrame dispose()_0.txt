@@ -1,0 +1,8 @@
+    public void dispose() {
+        if (source!=null) source.removeListener(this);
+        model.dispose();
+        model = null;
+        table = null;
+        scroll = null;
+        super.dispose();
+    }

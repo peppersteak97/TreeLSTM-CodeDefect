@@ -1,0 +1,4 @@
+    public boolean activeTransformationHasTargetData() {
+        return (m_activeTransformation != null)
+                        && m_hasTargetData.contains(m_activeTransformation.getID());
+    }

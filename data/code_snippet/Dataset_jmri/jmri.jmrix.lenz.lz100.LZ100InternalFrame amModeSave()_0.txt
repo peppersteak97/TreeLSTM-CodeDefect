@@ -1,0 +1,12 @@
+    synchronized void amModeSave() {
+	   if(log.isDebugEnabled()) {
+		if(autoMode) log.debug("Auto Mode True");
+		   else log.debug("Auto Mode False");
+	   }
+	   XNetMessage msg=XNetTrafficController.instance()
+						.getCommandStation()
+						.getCSAutoStartMessage(autoMode);
+           XNetTrafficController.instance().sendXNetMessage(msg,this);
+	   amModeSetButton.setSelected(false);
+	   status.setText(rb.getString("LZ100StatusSetMode"));
+    }

@@ -1,0 +1,20 @@
+  public void testRealError() throws Exception {
+    if (printMessages) System.out.println("----testRealError-----");
+    
+    OpenDefinitionsDocument doc = setupDocument(MONKEYTEST_ERROR_TEXT);
+    final File file = new File(_tempDir, "MonkeyTestError.java");
+    saveFile(doc, new FileSelector(file));
+    JUnitTestListener listener = new JUnitTestListener();
+    _model.addListener(listener);
+    
+    listener.compile(doc);
+    listener.checkCompileOccurred();
+    
+    listener.runJUnit(doc);
+    
+    assertEquals("test case has one error reported", 1, _model.getJUnitModel().getJUnitErrorModel().getNumErrors());
+    listener.assertJUnitEndCount(1);
+    _model.removeListener(listener);
+    
+    _log.log("testRealError completed");
+  }

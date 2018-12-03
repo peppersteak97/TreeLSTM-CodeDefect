@@ -1,0 +1,52 @@
+    void activate() {
+        
+        if (InstanceManager.signalHeadManagerInstance().getSignalHead(outSignalField.getText())==null) {
+            setTitle("Simple Signal Logic");
+            return;
+        }
+        
+        BlockBossLogic b = BlockBossLogic.getExisting(outSignalField.getText());
+        if (b==null) {
+            setTitle("Simple Signal Logic");
+            return;
+        }
+        
+        setTitle("Signal logic for "+outSignalField.getText());
+
+        approachSensorField1.setText(b.getApproachSensor1());
+        
+        sSensorField1.setText(b.getSensor1());
+        sSensorField2.setText(b.getSensor2());
+        sSensorField3.setText(b.getSensor3());
+        sSensorField4.setText(b.getSensor4());
+
+        tmProtectTurnoutField.setText(b.getTurnout());
+
+        sNextSignalField1.setText(b.getWatchedSignal1());
+        sNextSignalField1Alt.setText(b.getWatchedSignal1Alt());
+
+        fNextSignalField2.setText(b.getWatchedSignal2());
+        fNextSignalField2Alt.setText(b.getWatchedSignal2Alt());
+
+        fNextSensorField1.setText(b.getWatchedSensor1());
+        fNextSensorField1Alt.setText(b.getWatchedSensor1Alt());
+        fNextSensorField2.setText(b.getWatchedSensor2());
+        fNextSensorField2Alt.setText(b.getWatchedSensor2Alt());
+
+        sLimitBox.setSelected(b.getLimitSpeed1());
+        tdLimitBox.setSelected(b.getLimitSpeed2());
+        sFlashBox.setSelected(b.getUseFlash());
+        sDistantBox.setSelected(b.getDistantSignal());
+
+        int mode = b.getMode();
+        if (mode == BlockBossLogic.SINGLEBLOCK)
+            buttonSingle.setSelected(true);
+        else if (mode == BlockBossLogic.TRAILINGMAIN)
+            buttonTrailMain.setSelected(true);
+        else if (mode == BlockBossLogic.TRAILINGDIVERGING)
+            buttonTrailDiv.setSelected(true);
+        else if (mode == BlockBossLogic.FACING)
+            buttonFacing.setSelected(true);
+
+        buttonClicked();
+    }

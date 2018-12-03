@@ -1,0 +1,1 @@
+  private boolean _isCurrentBraceMatchable() { return _cursor.current().isMatchable(); }

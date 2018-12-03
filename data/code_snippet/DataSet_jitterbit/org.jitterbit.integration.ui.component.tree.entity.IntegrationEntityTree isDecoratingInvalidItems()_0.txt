@@ -1,0 +1,3 @@
+    public boolean isDecoratingInvalidItems() {
+        return m_decorateInvalidItems;
+    }

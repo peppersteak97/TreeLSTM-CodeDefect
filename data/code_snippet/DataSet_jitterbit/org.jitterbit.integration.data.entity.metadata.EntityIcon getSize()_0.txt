@@ -1,0 +1,3 @@
+    public EntityIconRepository.Size getSize() {
+        return m_size;
+    }

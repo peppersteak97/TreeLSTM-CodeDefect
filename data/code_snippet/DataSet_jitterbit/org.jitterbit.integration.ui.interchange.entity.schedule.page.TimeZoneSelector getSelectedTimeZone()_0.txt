@@ -1,0 +1,4 @@
+    public TimeZone getSelectedTimeZone() {
+        TimeZoneItem selected = (TimeZoneItem)m_timeZones.getSelectedItem();
+        return selected.getTimeZone();
+    }

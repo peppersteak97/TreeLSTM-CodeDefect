@@ -1,0 +1,4 @@
+    private void createUserList() {
+        m_userList = new UsersList();
+        installUserListKeyBindings();
+    }

@@ -1,0 +1,5 @@
+    private void createDatePicker() {
+        if (m_datePicker == null) {
+            m_datePicker = new DatePicker(m_initialDate);
+        }
+    }

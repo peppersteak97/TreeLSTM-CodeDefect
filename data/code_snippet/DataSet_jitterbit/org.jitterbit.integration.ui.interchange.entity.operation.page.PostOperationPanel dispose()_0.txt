@@ -1,0 +1,12 @@
+    public void dispose() {
+        if (OPERATIONS_SUPPORTED) {
+            m_operationControl.dispose();
+        }
+        if (EMAIL_MESSAGES_SUPPORTED) {
+            m_messageControl.dispose();
+        }
+        if (WORKFLOW_SUPPORTED) {
+            m_workflowControl.dispose();
+        }
+        super.dispose();
+    }

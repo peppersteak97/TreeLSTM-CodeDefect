@@ -1,0 +1,30 @@
+    public void initComponents() {
+        getContentPane().add(tabPane);
+        
+        int numAutoPane = Integer.parseInt(rb.getString("CSNumAutoPanes"));
+        
+        for (int i = 0; i<numAutoPane; i++) {
+            JPanel p = new JPanel();
+            tabPane.addTab(rb.getString("CS"+i+"Title"), p);
+            
+            int numVars = Integer.parseInt(rb.getString("CS"+i+"NumVars"));
+            for (int j = 0; j<numVars; j++) {
+                p.add(new JLabel(rb.getString("CS"+i+"Var"+j+"Name")));
+                JLabel val = new JLabel("-----");
+                displayHash.put(rb.getString("CS"+i+"Var"+j+"ID"),val);
+                formatHash.put(rb.getString("CS"+i+"Var"+j+"ID"),rb.getString("CS"+i+"Var"+j+"Format"));
+                p.add(val);
+            }
+        }
+        
+        tabPane.addChangeListener(new javax.swing.event.ChangeListener(){
+                public void stateChanged(javax.swing.event.ChangeEvent e) {
+                }
+            }
+        );
+        
+        pack();
+
+        timer.start();
+
+    }

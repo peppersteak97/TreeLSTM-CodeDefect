@@ -1,0 +1,8 @@
+    private ValidationViewFactory getValidationViewFactory() {
+        synchronized (this) {
+            if (m_viewFactory == null) {
+                m_viewFactory = ValidationViewFactory.newInstance();
+            }
+            return m_viewFactory;
+        }
+    }

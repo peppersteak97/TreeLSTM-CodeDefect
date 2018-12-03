@@ -1,0 +1,4 @@
+    static public SerialAdapter instance() {
+        if (mInstance == null) mInstance = new SerialAdapter();
+        return mInstance;
+    }

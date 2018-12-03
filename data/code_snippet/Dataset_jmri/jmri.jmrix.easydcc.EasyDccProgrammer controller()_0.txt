@@ -1,0 +1,6 @@
+    protected EasyDccTrafficController controller() {
+        if (_controller == null) {
+            _controller = EasyDccTrafficController.instance();
+        }
+        return _controller;
+    }

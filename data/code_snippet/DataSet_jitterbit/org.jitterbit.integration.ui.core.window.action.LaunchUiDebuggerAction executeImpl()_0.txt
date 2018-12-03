@@ -1,0 +1,4 @@
+    private void executeImpl() {
+        new DebugConsoleLauncher(getWindow()).launch();
+        succeeded(null);
+    }

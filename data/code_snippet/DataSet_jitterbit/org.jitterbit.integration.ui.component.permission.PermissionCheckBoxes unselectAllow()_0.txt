@@ -1,0 +1,3 @@
+    void unselectAllow() {
+        m_allowBox.setSelected(false);
+    }

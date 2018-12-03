@@ -1,0 +1,25 @@
+        while (!checkPromptNeeded()) {
+            Object[] possibleValues;
+            if (action!=null) possibleValues = new Object[] {rb.getString("ButtonContinue"), 
+                                       rb.getString("ButtonAbort"), 
+                                       action};
+            else possibleValues = new Object[] {rb.getString("ButtonContinue"), 
+                                       rb.getString("ButtonAbort")}; 
+
+            int selectedValue = JOptionPane.showOptionDialog(component,
+                                                             warning,
+                                                             rb.getString("ShutDownWarningTitle"),
+                                                             JOptionPane.DEFAULT_OPTION,
+                                                             JOptionPane.WARNING_MESSAGE, null,
+                                                             possibleValues, possibleValues[possibleValues.length-1]);
+            if (selectedValue == 1) {
+                return false;
+            } else if (selectedValue == 0) {
+                return true;
+            } else if (selectedValue == 2) {
+                return doPrompt();
+            } else {
+                log.error("unexpected selection: "+selectedValue);
+                return true;
+            }
+        }

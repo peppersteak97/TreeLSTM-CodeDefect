@@ -1,0 +1,3 @@
+    String getNewProjectName() {
+        return m_newProjectLocationDisplayer.getProjectName();
+    }

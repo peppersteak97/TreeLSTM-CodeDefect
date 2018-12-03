@@ -1,0 +1,3 @@
+    public synchronized boolean getValue() {
+        return m_bValue;
+    }

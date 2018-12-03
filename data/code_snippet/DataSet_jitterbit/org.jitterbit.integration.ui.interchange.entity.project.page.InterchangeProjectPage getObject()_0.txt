@@ -1,0 +1,3 @@
+    public IInterchangeProjectUi getObject() {
+        return (IInterchangeProjectUi) super.getObject();
+    }

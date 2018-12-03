@@ -1,0 +1,7 @@
+    List<JButton> getToolBarButtons() {
+        IButtonFactory factory = ComponentFactories.toolbarButtonFactory();
+        return KongaListUtils.asList(
+                        factory.newButton(m_actions.login()),
+                        factory.newButton(m_actions.refresh()),
+                        factory.newButton(m_actions.remove()));
+    }

@@ -1,0 +1,1 @@
+    public int pcmd()          	{ return _pcmd; }

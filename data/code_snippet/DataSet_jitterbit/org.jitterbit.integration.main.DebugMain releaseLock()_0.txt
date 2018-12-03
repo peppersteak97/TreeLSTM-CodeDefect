@@ -1,0 +1,13 @@
+    private void releaseLock() {
+        if (m_socket != null) {
+            try {
+                m_socket.close();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            finally {
+                m_socket = null;
+            }
+        }
+    }

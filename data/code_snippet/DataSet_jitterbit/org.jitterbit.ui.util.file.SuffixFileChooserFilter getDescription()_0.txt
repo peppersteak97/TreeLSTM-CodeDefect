@@ -1,0 +1,13 @@
+	public String getDescription() {
+		if (m_description == null) {
+            int n = 0;
+            for (Iterator<String> it = m_suffices.iterator(); it.hasNext(); ++n) {
+                if (n == 0) {
+                    m_description = it.next();
+                }
+                else {
+                }
+            }
+        }
+        return m_description;
+	}

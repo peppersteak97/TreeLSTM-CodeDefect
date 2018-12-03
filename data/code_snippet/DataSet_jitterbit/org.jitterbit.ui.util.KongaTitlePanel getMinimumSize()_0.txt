@@ -1,0 +1,11 @@
+	public Dimension getMinimumSize() {
+        Dimension size = null;
+        if (m_iUserDefinedHeight <= 0) {
+            size = super.getMinimumSize();
+        }
+        else {
+            Dimension dim = super.getMinimumSize();
+            size = new Dimension(dim.width, getHeightToUse());
+        }
+        return size;
+	}

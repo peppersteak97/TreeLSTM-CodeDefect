@@ -1,0 +1,6 @@
+    private void createCancelButton() {
+        m_cancelButton = ComponentFactories.toolbarButtonFactory().newButton(
+                null, PackageResources.Snapshot.Cancel.ICON);
+        m_cancelButton.setToolTipText(PackageResources.Snapshot.Cancel.TOOLTIP);
+        m_cancelButton.addActionListener(this);
+    }

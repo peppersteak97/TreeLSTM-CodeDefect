@@ -1,0 +1,3 @@
+    int length() {
+        return fileLength;
+    }

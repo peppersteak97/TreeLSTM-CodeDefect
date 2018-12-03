@@ -1,0 +1,9 @@
+    public DccLocoAddress getAddress() {
+        if (text.getText().equals("")) return null;
+        
+        int num = Integer.parseInt(text.getText());
+        setMode(num);
+        boolean isLong = false;
+        if (box.getSelectedIndex() == 2) isLong = true;
+        return new DccLocoAddress(num,isLong);
+    }

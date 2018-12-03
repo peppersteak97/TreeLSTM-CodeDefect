@@ -1,0 +1,15 @@
+    public void clear() {
+        for (IntegrationData d1 : m_mainToDependants.keySet()) {
+            for (IntegrationData d2 : m_mainToDependants.get(d1).keySet()) {
+                m_mainToDependants.get(d1, d2).delete();
+            }
+        }
+        m_mainToDependants.clear();
+
+        for (IntegrationData d1 : m_dependantToMains.keySet()) {
+            for (IntegrationData d2 : m_dependantToMains.get(d1).keySet()) {
+                m_dependantToMains.get(d1, d2).delete();
+            }
+        }
+        m_dependantToMains.clear();
+    }

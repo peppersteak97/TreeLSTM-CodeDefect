@@ -1,0 +1,78 @@
+	private boolean getBlockInformation() {
+		if (!boundaryFromMenu) {
+			block1 = getBlockFromEntry(block1NameField);
+			if (block1==null) return false;
+			block2 = getBlockFromEntry(block2NameField);
+			if (block2==null) return false;
+			PositionablePoint p = null;
+			boundary = null;
+			for (int i = 0;(i<layoutEditor.pointList.size()) && (boundary==null);i++) {
+				p = (PositionablePoint)layoutEditor.pointList.get(i);
+				if (p.getType() == PositionablePoint.ANCHOR) {
+					LayoutBlock bA = null;
+					LayoutBlock bB = null;
+					if (p.getConnect1()!=null) bA = p.getConnect1().getLayoutBlock();
+					if (p.getConnect2()!=null) bB = p.getConnect2().getLayoutBlock();
+					if ( (bA!=null) && (bB!=null) && (bA!=bB) ) {
+						if ( ( (bA==block1) && (bB==block2) ) ||
+									( (bA==block2) && (bB==block1) ) ) {
+							boundary = p;
+						}
+					}
+				}
+			}
+			if (boundary==null) {
+				JOptionPane.showMessageDialog(setSignalsAtBoundaryFrame,
+							rb.getString("SignalsError7"),
+									rb.getString("Error"),JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+		}
+		eastTrack = null;
+		westTrack = null;
+		TrackSegment track1 = boundary.getConnect1();
+		Point2D point1;
+		if (track1.getConnect1()==(Object)boundary) 
+			point1 = layoutEditor.getCoords(track1.getConnect2(),track1.getType2());
+		else 
+			point1 = layoutEditor.getCoords(track1.getConnect1(),track1.getType1());
+		TrackSegment track2 = boundary.getConnect2();
+		Point2D point2;
+		if (track2.getConnect1()==(Object)boundary) 
+			point2 = layoutEditor.getCoords(track2.getConnect2(),track2.getType2());
+		else 
+			point2 = layoutEditor.getCoords(track2.getConnect1(),track2.getType1());
+		double delX = point1.getX() - point2.getX();
+		double delY = point1.getY() - point2.getY();
+		trackVertical = false;
+		trackHorizontal = false;
+		if (java.lang.Math.abs(delX) > 2.0*java.lang.Math.abs(delY)) {
+			trackHorizontal = true;
+			if (delX>0.0) {
+				eastTrack = track1;
+				westTrack = track2;
+			}
+			else {
+				eastTrack = track2;
+				westTrack = track1;
+			}
+		}
+		if (java.lang.Math.abs(delY) > 2.0*java.lang.Math.abs(delX)) {
+			trackVertical = true;
+			if (delY>0.0) {
+			}
+			else {
+			}
+		}
+		if (eastTrack==null) {
+			if (delX>0.0) {
+				eastTrack = track1;
+				westTrack = track2;
+			}
+			else {
+				eastTrack = track2;
+				westTrack = track1;
+			}						
+		}
+		return true;
+	}		

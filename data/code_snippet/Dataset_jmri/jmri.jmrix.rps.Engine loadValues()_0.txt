@@ -1,0 +1,4 @@
+    void loadValues() {
+        setInitialAlignment();
+        loadInitialTransmitters();
+    }

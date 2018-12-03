@@ -1,0 +1,9 @@
+  public void _writerDelay() {
+    synchronized(_writerLock) {
+      try {
+        _writerLock.wait(_writeDelay);
+      }
+      catch (EditDocumentException e) { throw new UnexpectedException(e); }
+      catch (InterruptedException e) { /* Not a problem. continue */}
+    }
+  }

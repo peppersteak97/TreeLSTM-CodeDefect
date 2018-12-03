@@ -1,0 +1,7 @@
+    public void writeChanges() {
+        if (isChanged()) {
+            writingChanges = true;
+            amWriting = true;
+            continueWrite();
+        }
+    }

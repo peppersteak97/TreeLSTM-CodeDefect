@@ -1,0 +1,5 @@
+    public String toString() {
+        sb.append(m_serverGuid);
+        sb.append(m_serverName);
+        return sb.toString();
+    }

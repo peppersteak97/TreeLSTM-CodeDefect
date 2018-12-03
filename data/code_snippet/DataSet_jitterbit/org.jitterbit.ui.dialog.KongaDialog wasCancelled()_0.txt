@@ -1,0 +1,3 @@
+    public boolean wasCancelled() {
+        return m_wasCancelled;
+    }

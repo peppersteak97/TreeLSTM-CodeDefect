@@ -1,0 +1,8 @@
+    protected void windowOpened() {
+        if (m_getsInitialFocus != null) {
+            m_getsInitialFocus.requestFocusInWindow();
+        }
+        m_moveListener = new WindowMoveHandler(IntegrationUiUtils.getActiveFrame());
+
+        m_windowIsShowing = true;
+    }

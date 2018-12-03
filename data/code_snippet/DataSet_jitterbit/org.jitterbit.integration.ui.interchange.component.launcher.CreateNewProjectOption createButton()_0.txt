@@ -1,0 +1,3 @@
+    private void createButton() {
+        m_createButton = ComponentFactories.buttonFactory().newButton(m_createAction);
+    }

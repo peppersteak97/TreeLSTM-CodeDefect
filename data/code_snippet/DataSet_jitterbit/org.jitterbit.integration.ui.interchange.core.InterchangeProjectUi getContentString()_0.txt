@@ -1,0 +1,7 @@
+    public String getContentString() {
+        sb.append(LINE_BREAK);
+        for (IRootFolderUi f : m_mapRootFolderUis.values()) {
+            appendContentString(f, sb, 0);
+        }
+        return sb.toString();
+    }

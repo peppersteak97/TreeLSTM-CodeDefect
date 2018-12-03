@@ -1,0 +1,14 @@
+    public IWizardPage getNextPage() {
+        IWizardPage page = null;
+        if (isLastPage()) {
+            page = null;
+        }
+        else {
+            if (m_nextTargetPage == null) {
+                m_nextTargetPage = new XmlStructureFileLocationPage(getWizard());
+            }
+            m_nextTargetPage.setXmlStructure(createXmlStructure());
+            page = m_nextTargetPage;
+        }
+        return page;
+    }

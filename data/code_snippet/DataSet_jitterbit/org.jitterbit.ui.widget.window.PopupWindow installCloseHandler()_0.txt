@@ -1,0 +1,11 @@
+    private IDisposable installCloseHandler() {
+        final IDisposable mouseListener = installMouseListener();
+        final IDisposable escapeListener = installEscapeListener();
+        return new IDisposable() {
+
+            public void dispose() {
+                mouseListener.dispose();
+                escapeListener.dispose();
+            }
+        };
+    }

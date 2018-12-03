@@ -1,0 +1,7 @@
+    public int hashCode() {
+        int c = 17;
+        for (int i = 0; i < 4; ++i) {
+            c = 37 * c + m_rawAddress[i];
+        }
+        return c;
+    }

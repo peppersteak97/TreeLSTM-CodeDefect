@@ -1,0 +1,14 @@
+    private void setupKeyBindings() {
+        final String EDIT_FIELDS = "edit_fields";
+        getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(
+                        KeyUtils.ENTER, EDIT_FIELDS);
+        getActionMap().put(EDIT_FIELDS, new AbstractAction() {
+            
+            public void actionPerformed(ActionEvent evt) {
+                int[] selected = getSelectedRows();
+                if (selected.length == 1) {
+                    m_table.onDoubleClick(selected[0]);
+                }
+            }
+        });
+    }

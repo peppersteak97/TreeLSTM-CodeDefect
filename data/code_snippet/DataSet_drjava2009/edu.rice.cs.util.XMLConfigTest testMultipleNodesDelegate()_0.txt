@@ -1,0 +1,14 @@
+  public void testMultipleNodesDelegate() throws Exception {
+    XMLConfig xcParent = 
+      new XMLConfig(new StringReader(
+                                     "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><foo a=\"foo.a\">\n"
+                                       + "  <bar>abc</bar>\n"
+                                       + "  <bar>ghi</bar>\n"
+                                       + "  <fum fee=\"xyz\">def</fum>\n"
+                                       + "</foo>"));
+    XMLConfig xc = new XMLConfig(xcParent, xcParent.getNodes("foo").get(0));
+    List<String> r = xc.getMultiple("bar");
+    assertEquals(2, r.size());
+    assertEquals("abc", r.get(0));
+    assertEquals("ghi", r.get(1));
+  }

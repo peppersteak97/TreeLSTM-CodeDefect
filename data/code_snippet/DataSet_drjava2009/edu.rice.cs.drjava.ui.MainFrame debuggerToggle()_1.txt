@@ -1,0 +1,28 @@
+  public void debuggerToggle() {
+    assert EventQueue.isDispatchThread();
+    Debugger debugger = _model.getDebugger();
+    if (! debugger.isAvailable()) return;
+    
+    updateStatusField("Toggling Debugger Mode");
+    try { 
+      if (isDebuggerReady()) {
+        debugger.shutdown();
+      }
+      else {
+        hourglassOn();
+        try {
+          _model.refreshActiveDocument();
+          _updateDebugStatus();
+        }
+        finally { hourglassOff(); }
+      }
+    }
+    catch (DebugException de) { _showError(de, "Debugger Error", "Could not start the debugger."); }
+    catch (NoClassDefFoundError err) {
+      _showError(err, "Debugger Error",
+                 "Unable to find the JPDA package for the debugger.\n" +
+                 "Please make sure either tools.jar or jpda.jar is\n" +
+                 "in your classpath when you start DrJava.");
+      _setDebugMenuItemsEnabled(false);
+    }
+  }

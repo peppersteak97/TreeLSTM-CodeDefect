@@ -1,0 +1,14 @@
+    private void sendRequest() {
+        int i = tabPane.getSelectedIndex();
+        String prompt = rb.getString("CS"+i+"PromptChar");
+        if (log.isDebugEnabled()) log.debug("send "+prompt+" for pane "+i);
+        
+        if (source == null) {
+            log.error("DataSource should not be null in sendRequest");
+            timer.stop();
+            return;
+        }
+        
+        source.sendBytes(prompt.getBytes());
+        
+    }

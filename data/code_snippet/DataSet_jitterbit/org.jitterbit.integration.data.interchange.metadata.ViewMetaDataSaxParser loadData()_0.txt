@@ -1,0 +1,11 @@
+    public void loadData() throws InterchangeViewMetaDataXmlException {
+        try {
+            super.load(m_xmlResource);
+        }
+        catch (KongaSaxParserException ex) {
+            throw new InterchangeViewMetaDataXmlException(ex);
+        }
+        catch (InterchangeViewMetaDataXmlRuntimeException ex) {
+            throw new InterchangeViewMetaDataXmlException(ex);
+        }
+    }

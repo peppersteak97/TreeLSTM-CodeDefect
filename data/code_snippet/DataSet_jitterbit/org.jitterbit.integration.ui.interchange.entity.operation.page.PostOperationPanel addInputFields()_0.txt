@@ -1,0 +1,11 @@
+    private void addInputFields() {
+        if (OPERATIONS_SUPPORTED) {
+            addInputField(m_operationControl.asInputFieldForChangeDetection());
+        }
+        if (EMAIL_MESSAGES_SUPPORTED) {
+            addInputField(m_messageControl.asInputFieldForChangeDetection());
+        }
+        if (WORKFLOW_SUPPORTED) {
+            addInputField(m_workflowControl.asInputFieldForChangeDetection());
+        }
+    }

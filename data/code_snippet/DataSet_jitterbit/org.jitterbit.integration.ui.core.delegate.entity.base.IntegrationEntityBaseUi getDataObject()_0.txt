@@ -1,0 +1,3 @@
+    public IntegrationEntity getDataObject() {
+        return (IntegrationEntity)super.getDataObject();
+    }

@@ -1,0 +1,3 @@
+    public void dispose() {
+        m_table.getSelectionModel().removeListSelectionListener(m_selectionListener);
+    }

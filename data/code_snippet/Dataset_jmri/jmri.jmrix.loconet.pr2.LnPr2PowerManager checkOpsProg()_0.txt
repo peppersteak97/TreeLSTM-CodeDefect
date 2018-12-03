@@ -1,0 +1,3 @@
+	private void checkOpsProg() throws JmriException {
+		if (pm == null) throw new JmriException("Use PR2 power manager after dispose");
+	}

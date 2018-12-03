@@ -1,0 +1,3 @@
+    protected final EnumSet<WindowElementState> getState() {
+        return EnumSet.copyOf(m_state);
+    }

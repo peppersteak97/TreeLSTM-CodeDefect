@@ -1,0 +1,3 @@
+    public List<Column> getPrimaryKeys() {
+    	return new ArrayList<Column>(m_liPrimaryKeys);
+    }

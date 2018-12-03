@@ -1,0 +1,4 @@
+    public String toString() {
+        if (m_min == null) {
+        }
+    }

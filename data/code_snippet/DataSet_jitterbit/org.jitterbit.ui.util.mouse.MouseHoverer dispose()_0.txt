@@ -1,0 +1,1 @@
+     * {@link #dispose() disposed} results in an IllegalStateException being

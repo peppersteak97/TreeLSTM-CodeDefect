@@ -1,0 +1,7 @@
+  protected CompiledMethod genCode() throws VerifyError {
+    if (VM.writingBootImage) {
+      return BootImageCompiler.compile(this);
+    } else {
+      return RuntimeCompiler.compile(this);
+    }
+  }

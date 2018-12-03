@@ -1,0 +1,4 @@
+    static public LIUSBAdapter instance() {
+        if (mInstance == null) mInstance = new LIUSBAdapter();
+        return mInstance;
+    }

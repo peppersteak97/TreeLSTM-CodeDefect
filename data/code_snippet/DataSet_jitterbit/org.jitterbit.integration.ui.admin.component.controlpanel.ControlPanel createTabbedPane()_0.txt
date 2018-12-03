@@ -1,0 +1,10 @@
+    private static JTabbedPane createTabbedPane() {
+        StyleSheetTextClass titleSsc = IntegrationUiStyleSheet.DefaultBold;
+        JTabbedPane tp = new JTabbedPane();
+        tp.setFont(titleSsc.getFont());
+        tp.setForeground(titleSsc.getColor());
+        Border outside = BorderFactory.createEtchedBorder();
+        Border inside = BorderFactory.createEmptyBorder(10, 0, 10, 0);
+        tp.setBorder(BorderFactory.createCompoundBorder(outside, inside));
+        return tp;
+    }

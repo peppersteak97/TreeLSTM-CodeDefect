@@ -1,0 +1,3 @@
+            public IEntityCopyMachine create() {
+                return new EntityCopyMachineImpl();
+            }

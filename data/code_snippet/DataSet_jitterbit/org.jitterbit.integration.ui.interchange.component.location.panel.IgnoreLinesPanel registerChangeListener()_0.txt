@@ -1,0 +1,6 @@
+    private void registerChangeListener() {
+        m_ignoreFirst.addPropertyChangeListener(TextChangeDetector.TEXT_CHANGE_PROPERTY,
+                        this);
+        m_ignoreLast.addPropertyChangeListener(TextChangeDetector.TEXT_CHANGE_PROPERTY,
+                        this);
+    }

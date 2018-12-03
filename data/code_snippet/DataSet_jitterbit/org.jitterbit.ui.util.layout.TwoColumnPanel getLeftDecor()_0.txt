@@ -1,0 +1,6 @@
+    private IUiDecor getLeftDecor() {
+        if (m_leftDecor == null) {
+            m_leftDecor = ComponentDecorFactory.gridBag(getUi(), m_leftConstraints);
+        }
+        return m_leftDecor;
+    }

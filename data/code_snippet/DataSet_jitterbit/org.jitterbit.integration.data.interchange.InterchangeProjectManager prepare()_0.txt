@@ -1,0 +1,8 @@
+    public static void prepare() {
+        try {
+            Class.forName("org.jitterbit.integration.data.interchange.InterchangeProject");
+        }
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }

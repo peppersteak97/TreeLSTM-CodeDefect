@@ -1,0 +1,7 @@
+    static void display() {
+        JFrame parent = IntegrationUi.getUi().getActiveFrame();
+        String title = PackageResources.Dialog.TITLE;
+        ILogFileRepository repository = LogDirectory.asRepository();
+        ILogFileRepositoryUi logUi = new DefaultLogFileRepositoryUi(repository);
+        display(parent, title, logUi);
+    }

@@ -1,0 +1,4 @@
+  public Register getFirstReturnGPR() {
+    if (VM.VerifyAssertions) VM._assert(NUM_RETURN_GPRS > 0);
+    return getEAX();
+  }

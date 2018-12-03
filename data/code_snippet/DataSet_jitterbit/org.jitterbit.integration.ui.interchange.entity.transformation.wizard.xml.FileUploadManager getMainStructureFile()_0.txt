@@ -1,0 +1,3 @@
+    XmlStructureFile getMainStructureFile() {
+        return m_mainStructureFile;
+    }

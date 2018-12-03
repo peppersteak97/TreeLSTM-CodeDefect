@@ -1,0 +1,3 @@
+  public boolean hasMoreFrames() {
+    return upOneFrameInternal(false);
+  }

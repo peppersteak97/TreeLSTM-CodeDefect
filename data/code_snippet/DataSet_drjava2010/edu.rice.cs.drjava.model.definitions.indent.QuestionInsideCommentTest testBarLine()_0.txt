@@ -1,0 +1,3 @@
+  public void testBarLine() throws javax.swing.text.BadLocationException {
+    assertEquals(false, _rule.testApplyRule(_doc, 13, Indenter.IndentReason.OTHER));
+  }

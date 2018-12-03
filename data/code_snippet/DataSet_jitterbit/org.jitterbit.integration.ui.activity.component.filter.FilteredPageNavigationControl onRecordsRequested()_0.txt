@@ -1,0 +1,3 @@
+    public void onRecordsRequested() {
+        m_displayer.retrieveEntries();
+    }

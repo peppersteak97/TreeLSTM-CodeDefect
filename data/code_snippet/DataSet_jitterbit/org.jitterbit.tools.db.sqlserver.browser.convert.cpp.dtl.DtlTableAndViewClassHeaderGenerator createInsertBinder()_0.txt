@@ -1,0 +1,23 @@
+    private void createInsertBinder() {
+        if( getColumnOwner().hasAutoIncrementColumns() ) {
+            addLine();
+            addLine("class " + getInsertBinderClassName() + " : public CustomBinder<" + 
+                    getQualifiedRowClassName() + ">");
+            addLine("{");
+            addLine("public:");
+            addLine("\tvoid Bind()");
+            addLine("\t{");
+            addLine("\t\tdtl::BoundIOs& cols = *m_pBoundIOs;");
+            addLine("\t\t" + getQualifiedRowClassName() + "& rowbuf = *m_pRow;");
+            
+            for( Column c : getValidColumns() ) {
+                if( c.isAutoIncrement() ) {
+                    continue;
+                }
+                addLine("\t\t" + getColumnBindingRow(c, INPUT_BINDING));
+            }
+            addLine("\t}");
+            addLine("};");
+            addLine();
+        }
+    }

@@ -1,0 +1,25 @@
+    protected boolean handle() {
+
+        moveFwd = true;
+        throttle.setIsForward(moveFwd);
+        throttle.setSpeedSetting(0.50f);
+
+        log.debug("Waiting for state change");
+        while ((fwdState = fwdSensor.getKnownState()) != Sensor.ACTIVE) {
+            waitSensorChange(fwdState, fwdSensor);
+        }
+        log.debug("Forward sensor active");
+
+        moveFwd = false;
+        throttle.setIsForward(moveFwd);
+        throttle.setSpeedSetting(0.33f);
+
+        while ((revState = revSensor.getKnownState()) != Sensor.ACTIVE) {
+            waitSensorChange(revState, revSensor);
+        }
+        log.debug("Backward sensor active");
+
+        moveFwd = true;
+        throttle.setIsForward(moveFwd);
+
+    }

@@ -1,0 +1,3 @@
+  protected final Register getST0() {
+    return getIR().regpool.getPhysicalRegisterSet().getST0();
+  }

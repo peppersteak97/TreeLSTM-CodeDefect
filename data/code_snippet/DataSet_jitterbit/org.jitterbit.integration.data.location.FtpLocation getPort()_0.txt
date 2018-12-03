@@ -1,0 +1,9 @@
+    public int getPort() {
+        try {
+            return Integer.parseInt(getProperty(PROPERTY_PORT));
+        }
+        catch (NumberFormatException e) {
+            setProperty(PROPERTY_PORT, DEFAULT_PORT);
+            return DEFAULT_PORT;
+        }
+    }

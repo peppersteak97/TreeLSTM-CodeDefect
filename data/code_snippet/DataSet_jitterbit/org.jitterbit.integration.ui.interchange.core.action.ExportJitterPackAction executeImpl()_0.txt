@@ -1,0 +1,14 @@
+    private void executeImpl() {
+        Runnable executer = new Executer();
+        Runnable saveFailed = new Runnable() {
+            
+            public void run() {
+            }
+        };
+        Runnable saveCancelled = new Runnable() {
+            
+            public void run() {
+            }
+        };
+        m_view.saveAndRun(executer, saveFailed, saveCancelled);
+    }

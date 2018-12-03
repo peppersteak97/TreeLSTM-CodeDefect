@@ -1,0 +1,16 @@
+    private void createUiDelegateHierarchy() {
+        Collection<RootFolder> rootFolders = m_dataModel.getAllRootFolders();
+        m_mapRootFolderUis = new HashMap<EntityType, IRootFolderUi>(rootFolders.size());
+        for (RootFolder folder : rootFolders) {
+            IRootFolderUi folderUi = folder.getUi();
+            m_mapRootFolderUis.put(folder.getItemType(), folderUi);
+
+            EntityType itemType = folder.getItemType();
+            if (itemType != EntityType.SystemSource
+                            && itemType != EntityType.SystemTarget) {
+                createUiDelegates(folderUi);
+            }
+        }
+        createSystemSourcesUi();
+        createSystemTargetsUi();
+    }

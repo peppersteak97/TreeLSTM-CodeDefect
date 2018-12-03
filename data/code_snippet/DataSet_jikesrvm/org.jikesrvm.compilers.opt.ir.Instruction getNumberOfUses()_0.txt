@@ -1,0 +1,7 @@
+  public int getNumberOfUses() {
+    if (operator.hasVarUses()) {
+      return getNumberOfOperands() - operator.getNumberOfPureDefs();
+    } else {
+      return operator.getNumberOfUses();
+    }
+  }

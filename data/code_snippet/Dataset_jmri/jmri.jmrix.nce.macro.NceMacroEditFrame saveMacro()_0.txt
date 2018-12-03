@@ -1,0 +1,61 @@
+    private boolean saveMacro(){
+        int index = 0;
+        int accyNum = 0;
+        accyNum = getAccyRow (macroAccy, index, textAccy1, accyTextField1, cmdButton1);
+        	return false;
+        if (accyNum > 0)
+        	index+=2;
+        accyNum = getAccyRow (macroAccy, index, textAccy2, accyTextField2, cmdButton2);
+        if (accyNum < 0)
+        	return false;
+        if (accyNum > 0)
+        	index+=2;
+        accyNum = getAccyRow (macroAccy, index, textAccy3, accyTextField3, cmdButton3);
+        if (accyNum < 0)
+        	return false;
+        if (accyNum > 0)
+        	index+=2;
+        accyNum = getAccyRow (macroAccy, index, textAccy4, accyTextField4, cmdButton4);
+        if (accyNum < 0)
+        	return false;
+        if (accyNum > 0)
+        	index+=2;
+        accyNum = getAccyRow (macroAccy, index, textAccy5, accyTextField5, cmdButton5);
+        if (accyNum < 0)
+        	return false;
+        if (accyNum > 0)
+        	index+=2;
+        accyNum = getAccyRow (macroAccy, index, textAccy6, accyTextField6, cmdButton6);
+        if (accyNum < 0)
+        	return false;
+        if (accyNum > 0)
+        	index+=2;
+        accyNum = getAccyRow (macroAccy, index, textAccy7, accyTextField7, cmdButton7);
+        if (accyNum < 0)
+        	return false;
+        if (accyNum > 0)
+        	index+=2;
+        accyNum = getAccyRow (macroAccy, index, textAccy8, accyTextField8, cmdButton8);
+        if (accyNum < 0)
+        	return false;
+        if (accyNum > 0)
+        	index+=2;
+        accyNum = getAccyRow (macroAccy, index, textAccy9, accyTextField9, cmdButton9);
+        if (accyNum < 0)
+        	return false;
+        if (accyNum > 0)
+        	index+=2;
+        accyNum = getAccyRow (macroAccy, index, textAccy10, accyTextField10, cmdButton10);
+        if (accyNum < 0){
+			JOptionPane.showMessageDialog(NceMacroEditFrame.this,
+					"Enter macro number 1 to 255 in line 10", "NCE Macro",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+        }
+          
+        NceMessage m = writeMacroMemory(macroNum, macroAccy,  false);
+        NceTrafficController.instance().sendNceMessage(m, this);
+        NceMessage m2 = writeMacroMemory(macroNum, macroAccy,  true);
+        NceTrafficController.instance().sendNceMessage(m2, this);
+        return true;
+     }

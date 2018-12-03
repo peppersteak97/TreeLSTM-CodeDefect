@@ -1,0 +1,11 @@
+    public void persist() {
+        synchronized (lock) {
+            try {
+                XmlStringBuilder xml = createXml();
+                KongaIoUtils.write(getFile(), xml.getXml(), "UTF-8");
+            }
+            catch (IOException ex) {
+                logException(ex, "Failed to store entity data cache to " + getFile().getAbsolutePath());
+            }
+        }
+    }

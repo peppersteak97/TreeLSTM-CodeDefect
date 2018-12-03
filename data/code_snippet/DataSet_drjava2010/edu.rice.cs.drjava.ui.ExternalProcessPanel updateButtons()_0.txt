@@ -1,0 +1,15 @@
+  protected void updateButtons() {
+    boolean ended = true;
+    if (_p != null) {
+      try {
+        _p.exitValue();
+        ended = true;
+      }
+      catch(IllegalThreadStateException e) {
+        ended = false;
+      }
+    }
+    _abortButton.setEnabled((_is != null) && (_erris != null) && (!ended));
+    _updateNowButton.setEnabled((_is != null) && (_erris != null) && (!ended));
+    _runAgainButton.setEnabled((_is == null) || (_erris == null) || (ended));
+  }  

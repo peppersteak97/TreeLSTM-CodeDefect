@@ -1,0 +1,31 @@
+  public void cleanUpAndInsertEpilogue() {
+
+    Instruction inst = ir.firstInstructionInCodeOrder().nextInstructionInCodeOrder();
+    for (; inst != null; inst = inst.nextInstructionInCodeOrder()) {
+      switch (inst.getOpcode()) {
+        case IA32_MOV_opcode:
+          Operand result = MIR_Move.getResult(inst);
+          Operand val = MIR_Move.getValue(inst);
+          if (result.similar(val)) {
+            inst = inst.remove();
+          }
+          break;
+        case IA32_FMOV_opcode:
+        case IA32_MOVSS_opcode:
+        case IA32_MOVSD_opcode:
+          result = MIR_Move.getResult(inst);
+          val = MIR_Move.getValue(inst);
+          if (result.similar(val)) {
+            inst = inst.remove();
+          }
+          break;
+        case IA32_RET_opcode:
+          if (frameIsRequired()) {
+            insertEpilogue(inst);
+          }
+        default:
+          break;
+      }
+    }
+    rewriteStackLocations();
+  }

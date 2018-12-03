@@ -1,0 +1,23 @@
+	protected void updateButtons() {
+		int size = m_listModel.size();
+		if ( size == 0 ) {
+			m_removeButton.setEnabled(false);
+			m_upButton.setEnabled(false);
+			m_downButton.setEnabled(false);
+		}
+		else {
+			int[] selected = m_list.getSelectedIndices();
+			if ( selected.length > 0 ) {
+				m_removeButton.setEnabled(true);
+				m_editButton.setEnabled(true);
+				m_upButton.setEnabled( selected[0] > 0 );
+				m_downButton.setEnabled( selected[selected.length-1] < size-1 );
+			}
+			else {
+				m_removeButton.setEnabled(false);
+				m_editButton.setEnabled(false);
+				m_upButton.setEnabled(false);
+				m_downButton.setEnabled(false);
+			}
+		}
+	}

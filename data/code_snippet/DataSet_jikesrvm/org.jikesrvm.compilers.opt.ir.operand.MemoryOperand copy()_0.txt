@@ -1,0 +1,7 @@
+  public Operand copy() {
+    RegisterOperand newBase = (base != null) ? (RegisterOperand) base.copy() : null;
+    RegisterOperand newIndex = (index != null) ? (RegisterOperand) index.copy() : null;
+    LocationOperand newLoc = (loc != null) ? (LocationOperand) loc.copy() : null;
+    Operand newGuard = (guard != null) ? guard.copy() : null;
+    return new MemoryOperand(newBase, newIndex, scale, disp, size, newLoc, newGuard);
+  }

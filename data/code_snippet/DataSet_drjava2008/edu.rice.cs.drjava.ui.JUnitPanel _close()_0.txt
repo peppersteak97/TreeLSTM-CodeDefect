@@ -1,0 +1,5 @@
+  protected void _close() {
+    super._close();
+    getModel().getJUnitModel().resetJUnitErrors();
+    reset();
+  }

@@ -1,0 +1,3 @@
+    private List<String> getCurrentMappings() {
+        return (m_treeMapper == null) ? null : m_treeMapper.getCurrentMappings();
+    }

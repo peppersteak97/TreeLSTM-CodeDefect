@@ -1,0 +1,3 @@
+  public static PowerPCConditionOperand GREATER_EQUAL() {
+    return new PowerPCConditionOperand(GREATER_EQUAL);
+  }

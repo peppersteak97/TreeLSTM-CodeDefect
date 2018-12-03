@@ -1,0 +1,5 @@
+    public void dispose() {
+    	if (timer != null)
+			timer.stop();
+        super.dispose();
+    }

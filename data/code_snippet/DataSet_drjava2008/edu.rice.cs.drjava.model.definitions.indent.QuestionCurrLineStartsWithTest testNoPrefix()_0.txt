@@ -1,0 +1,12 @@
+  public void testNoPrefix() throws BadLocationException {
+    IndentRuleQuestion rule = new QuestionCurrLineStartsWith("{", null, null);
+    
+    _setDocText("foo();\n}\n");
+    assertTrue("no open brace", !rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+    assertTrue("line of close brace (no open brace)", !rule.testApplyRule(_doc, 7, Indenter.IndentReason.OTHER));
+    assertTrue("line after close brace (no open brace)", !rule.testApplyRule(_doc, 8, Indenter.IndentReason.OTHER));
+    
+    rule = new QuestionCurrLineStartsWith("}", null, null);
+    _setDocText("{\nfoo();");
+    assertTrue("no close brace", !rule.testApplyRule(_doc, 0, Indenter.IndentReason.OTHER));
+  }

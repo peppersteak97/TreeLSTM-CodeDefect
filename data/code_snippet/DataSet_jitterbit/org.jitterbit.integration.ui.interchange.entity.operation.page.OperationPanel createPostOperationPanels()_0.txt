@@ -1,0 +1,4 @@
+    private void createPostOperationPanels() {
+        m_onSuccessPanel = new OnSuccessPanel(m_page);
+        m_onFailurePanel = new OnFailurePanel(m_page);
+    }

@@ -1,0 +1,5 @@
+  public synchronized RVMMethod resolve() {
+    if (resolvedMember != null) return resolvedMember;
+
+    return resolveInternal((RVMClass) type.resolve());
+  }

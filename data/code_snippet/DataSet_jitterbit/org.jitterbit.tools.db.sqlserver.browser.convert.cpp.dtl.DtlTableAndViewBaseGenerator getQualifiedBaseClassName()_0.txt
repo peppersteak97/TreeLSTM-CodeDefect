@@ -1,0 +1,4 @@
+    protected final String getQualifiedBaseClassName() {
+        String sNamespace = getNamespace();
+        return sNamespace.length() > 0 ? sNamespace + "::" + getBaseClassName() : getBaseClassName();
+    }

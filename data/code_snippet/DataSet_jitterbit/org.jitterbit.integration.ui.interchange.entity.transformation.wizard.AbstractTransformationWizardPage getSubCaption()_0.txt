@@ -1,0 +1,4 @@
+    protected String getSubCaption() {
+        return TransformationWizard.getStringResources().getString(
+                        getClass().getSimpleName() + ".SubCaption");
+    }

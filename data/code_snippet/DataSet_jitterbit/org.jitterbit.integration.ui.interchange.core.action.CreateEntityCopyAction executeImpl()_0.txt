@@ -1,0 +1,10 @@
+    private void executeImpl() {
+        IIntegrationEntityUiDelegate original = getEntityToCopy();
+        if (original == null) {
+            return;
+        }
+        EntityCopyMachineFactory factory = EntityCopyMachineFactory.newInstance();
+        IEntityCopyMachine copyMachine = factory.create();
+        copyMachine.createAndInsertCopy(original.getDataObject(), 
+                        new InternalActionCallback(this));
+    }

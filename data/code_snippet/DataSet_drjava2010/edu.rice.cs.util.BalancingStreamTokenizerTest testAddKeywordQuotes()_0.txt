@@ -1,0 +1,11 @@
+  public void testAddKeywordQuotes(){
+    BalancingStreamTokenizer tok = make("abc def\\ ghi `key 123\n456");
+    tok.defaultThreeQuoteDollarCurlySetup();
+    try{
+      tok.addKeyword("`");
+    } catch (Exception e)
+    {
+      return;
+    }
+    fail("Expected Exception");
+  }

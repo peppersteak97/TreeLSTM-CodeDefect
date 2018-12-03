@@ -1,0 +1,1 @@
+  public Pair<Integer,Integer> getSelection() { return _sel; }

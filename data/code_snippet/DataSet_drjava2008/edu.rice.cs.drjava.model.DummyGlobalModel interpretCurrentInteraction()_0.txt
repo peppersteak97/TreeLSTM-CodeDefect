@@ -1,0 +1,3 @@
+  public void interpretCurrentInteraction() {
+    throw new UnsupportedOperationException("Tried to call interpretCurrentInteraction on a Dummy");
+  }

@@ -1,0 +1,3 @@
+    protected DocDefTableUi createTable() {
+        return new DocDefTableUi(this);
+    }

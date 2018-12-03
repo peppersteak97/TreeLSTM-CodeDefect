@@ -1,0 +1,9 @@
+    protected void onWizardDone() {
+        IntegrationUi.getUi().startWait();
+        try {
+            onWizardDoneImpl();
+        }
+        finally {
+            IntegrationUi.getUi().stopWait();
+        }
+    }

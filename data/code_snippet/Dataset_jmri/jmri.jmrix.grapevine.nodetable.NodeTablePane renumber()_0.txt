@@ -1,0 +1,5 @@
+    void renumber() {
+        RenumberFrame f = new RenumberFrame();
+        f.initComponents();
+        f.setVisible(true);
+    }

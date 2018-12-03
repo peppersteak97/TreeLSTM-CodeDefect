@@ -1,0 +1,7 @@
+    public void refresh() {
+        List<IntegrationEntity> allDeps = getAll();
+        m_mapChildrenByID.clear();
+        for (IntegrationEntity r : allDeps) {
+            add(r);
+        }
+    }

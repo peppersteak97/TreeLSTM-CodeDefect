@@ -1,0 +1,6 @@
+    public void resetMustSend() { 
+        for (int i = 0; i < outputBytes[nodeType]; i++) {
+            if (outputByteChanged[i]) return;
+        }
+        super.resetMustSend();
+    }

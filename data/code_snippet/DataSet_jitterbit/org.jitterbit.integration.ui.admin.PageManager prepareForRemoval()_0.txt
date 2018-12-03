@@ -1,0 +1,3 @@
+    void prepareForRemoval() {
+        m_view.getPageEditor().removePageEditorListener(this);
+    }

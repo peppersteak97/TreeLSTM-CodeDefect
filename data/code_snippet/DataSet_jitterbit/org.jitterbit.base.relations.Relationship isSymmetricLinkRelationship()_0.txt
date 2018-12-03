@@ -1,0 +1,3 @@
+	public boolean isSymmetricLinkRelationship() {
+		return isLinkRelationship() && m_bSymmetric;
+	}

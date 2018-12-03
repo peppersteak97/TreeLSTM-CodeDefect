@@ -1,0 +1,33 @@
+  protected ReducedModelControl setUpExample() {
+    ReducedModelControl model = new ReducedModelControl();
+    model.insertChar('{');
+    model.insertChar('\n');
+    insertGap(model, 3);
+    model.insertChar('\n');
+    model.insertChar('(');
+    insertGap(model, 2);
+    model.insertChar(')');
+    model.insertChar('\n');
+    insertGap(model, 3);
+    model.insertChar('/');
+    model.insertChar('/');
+    insertGap(model, 3);
+    model.insertChar('\n');
+    model.insertChar('\"');
+    insertGap(model, 1);
+    model.insertChar('{');
+    insertGap(model, 1);
+    model.insertChar('\"');
+    model.insertChar('/');
+    model.insertChar('*');
+    insertGap(model, 1);
+    model.insertChar('(');
+    insertGap(model, 1);
+    model.insertChar(')');
+    insertGap(model, 1);
+    model.insertChar('*');
+    model.insertChar('/');
+    model.insertChar('\n');
+    model.insertChar('}');
+    return  model;
+  }

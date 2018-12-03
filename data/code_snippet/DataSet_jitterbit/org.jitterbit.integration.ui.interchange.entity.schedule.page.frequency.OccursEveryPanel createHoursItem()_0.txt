@@ -1,0 +1,4 @@
+    private void createHoursItem() {
+        ResourceBundle res = SchedulePage.getResources();
+        m_hoursItem = new HM_Item(res.getString("Label.Hours"), 60);
+    }

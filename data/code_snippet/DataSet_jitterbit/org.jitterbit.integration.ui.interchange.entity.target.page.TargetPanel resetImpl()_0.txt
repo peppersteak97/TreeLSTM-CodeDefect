@@ -1,0 +1,8 @@
+    private void resetImpl() {
+        m_topPanel.setTarget(m_target);
+        DataLocationPanel locPanel = m_locationDisplayer.getCurrentLocationPanel();
+        if (locPanel != null) {
+            locPanel.reset();
+            showDataLocationPanel(locPanel);
+        }
+    }

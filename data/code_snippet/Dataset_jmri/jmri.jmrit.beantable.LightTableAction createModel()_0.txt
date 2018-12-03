@@ -1,0 +1,115 @@
+    void createModel() {
+        m = new BeanTableDataModel() {
+		    static public final int ENABLECOL = NUMCOLUMN;
+		    static public final int INTENSITYCOL = ENABLECOL+1;
+		    static public final int EDITCOL = INTENSITYCOL+1;
+			protected String enabledString = rb.getString("ColumnHeadEnabled");
+			protected String intensityString = rb.getString("ColumnHeadIntensity");
+    		public int getColumnCount( ){ return NUMCOLUMN+3;}
+    		public String getColumnName(int col) {
+    			if (col==INTENSITYCOL) return intensityString; 
+    			if (col==ENABLECOL) return enabledString;
+    			else return super.getColumnName(col);
+		    }
+    		public Class getColumnClass(int col) {
+    			if (col==EDITCOL) return JButton.class;
+    			if (col==INTENSITYCOL) return Double.class;
+    			if (col==ENABLECOL) return Boolean.class;
+    			else return super.getColumnClass(col);
+		    }
+			public int getPreferredWidth(int col) {
+				if (col==USERNAMECOL) return new JTextField(16).getPreferredSize().width;
+    			if (col==EDITCOL) return new JTextField(6).getPreferredSize().width;
+    			if (col==INTENSITYCOL) return new JTextField(6).getPreferredSize().width;
+    			if (col==ENABLECOL) return new JTextField(6).getPreferredSize().width;
+				else return super.getPreferredWidth(col);
+			}
+    		public boolean isCellEditable(int row, int col) {
+    			if (col==EDITCOL) return true;
+    			if (col==INTENSITYCOL) return ((Light)getBySystemName((String)getValueAt(row, SYSNAMECOL))).isIntensityVariable();
+    			if (col==ENABLECOL) return true;
+    			else return super.isCellEditable(row,col);
+			}    		
+            public String getValue(String name) {
+                int val = InstanceManager.lightManagerInstance().getBySystemName(name).getState();
+                switch (val) {
+                case Light.ON: return rbean.getString("LightStateOn");
+                case Light.INTERMEDIATE: return rbean.getString("LightStateIntermediate");
+                case Light.OFF: return rbean.getString("LightStateOff");
+                case Light.TRANSITIONINGTOFULLON: return rbean.getString("LightStateTransitioningToFullOn");
+                case Light.TRANSITIONINGHIGHER: return rbean.getString("LightStateTransitioningHigher");
+                case Light.TRANSITIONINGLOWER: return rbean.getString("LightStateTransitioningLower");
+                case Light.TRANSITIONINGTOFULLOFF: return rbean.getString("LightStateTransitioningToFullOff");
+                default: return "Unexpected value: "+val;
+                }
+            }
+    		public Object getValueAt(int row, int col) {
+    			if (col==EDITCOL) {
+					return rb.getString("ButtonEdit");
+    			} else if (col==INTENSITYCOL) {
+    				return new Double(((Light)getBySystemName((String)getValueAt(row, SYSNAMECOL))).getTargetIntensity());
+    			} else if (col==ENABLECOL) {
+    				return new Boolean(((Light)getBySystemName((String)getValueAt(row, SYSNAMECOL))).getEnabled());
+    			} else 
+    			    return super.getValueAt(row, col);
+			}    		
+    		public void setValueAt(Object value, int row, int col) {
+    			if (col==EDITCOL) {
+                    addPressed(null);
+                    systemName.setText((String)getValueAt(row, SYSNAMECOL));
+    			} else if (col==INTENSITYCOL) {
+                    Light l = (Light)getBySystemName((String)getValueAt(row, SYSNAMECOL));
+                    l.setTargetIntensity(((Double)value).doubleValue());
+    			} else if (col==ENABLECOL) {
+                    Light l = (Light)getBySystemName((String)getValueAt(row, SYSNAMECOL));
+                    boolean v = l.getEnabled();
+                    l.setEnabled(!v);
+    			} else 
+    			    super.setValueAt(value, row, col);
+    		}
+    		
+            /**
+             * Delete the bean after all the checking has been done.
+             * <P>
+             * Deactivate the light, then use the superclass to delete it.
+             */
+            void doDelete(NamedBean bean) {
+                ((Light)bean).deactivateLight();
+                super.doDelete(bean);
+            }
+
+            boolean matchPropertyName(java.beans.PropertyChangeEvent e) {
+                return true;
+            }
+
+            public Manager getManager() { 
+                return InstanceManager.lightManagerInstance(); 
+            }
+            public NamedBean getBySystemName(String name) { 
+                return InstanceManager.lightManagerInstance().getBySystemName(name);
+            }
+            public NamedBean getByUserName(String name) { 
+                return InstanceManager.lightManagerInstance().getByUserName(name);
+            }
+            public void clickOn(NamedBean t) {
+                int oldState = ((Light)t).getState();
+                int newState;
+                switch (oldState) {
+                    case Light.ON: 
+                        newState = Light.OFF; 
+                        break;
+                    case Light.OFF: 
+                        newState = Light.ON; 
+                        break;
+                    default: 
+                        newState = Light.OFF; 
+                        this.log.warn("Unexpected Light state "+oldState+" becomes OFF");
+                        break;
+                }
+               ((Light)t).setState(newState);
+            }
+            public JButton configureButton() {
+                return new JButton(" "+rbean.getString("LightStateOff")+" ");
+            }
+        };
+    }

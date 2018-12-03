@@ -1,0 +1,20 @@
+  public void interpretCurrentInteraction() {
+
+    Utilities.invokeLater(new Runnable() {
+      public void run() {
+        
+        
+        String text = _document.getCurrentInteraction();
+        String toEval = text.trim();
+        if (toEval.startsWith("java ")) toEval = _testClassCall(toEval);
+        final String evalText = toEval;
+
+        new Thread(new Runnable() { 
+          public void run() { 
+            try { interpret(evalText); } 
+            catch(Throwable t) { DrJavaErrorHandler.record(t); }
+          } 
+        }).start(); 
+      }
+    });
+  }

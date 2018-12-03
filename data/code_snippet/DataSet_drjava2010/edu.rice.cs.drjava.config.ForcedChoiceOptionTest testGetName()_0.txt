@@ -1,0 +1,5 @@
+  public void testGetName() {
+    ForcedChoiceOption fco = new ForcedChoiceOption("javadoc_access", "protected", null);
+    
+    assertEquals("javadoc_access", fco.getName());
+  }

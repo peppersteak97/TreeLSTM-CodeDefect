@@ -1,0 +1,12 @@
+    private void createDefaultDisplayer() {
+        AvailableProjectsListDisplayer d = new AvailableProjectsListDisplayer();
+        d.addPropertyChangeListener(m_displayerListener);
+        d.setDoubleClickListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (isNextPageEnabled()) {
+                    moveNext();
+                }
+            }
+        });
+        m_projectDisplayer = d;
+    }

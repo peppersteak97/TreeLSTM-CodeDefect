@@ -1,0 +1,15 @@
+    private void createComponents() {
+        m_definers = new IWsdlDefiner[] {
+                new ExistingWsdlFileDefiner(),
+                new RemoteWsdlFileDefiner(),
+                new LocalWsdlFileDefiner()
+        };
+        WsdlOption[] options = new WsdlOption[] {
+            new WsdlOption(m_definers[0], PackageResources.WsdlSelector.Choices.EXISTING),
+            new WsdlOption(m_definers[1], PackageResources.WsdlSelector.Choices.URL),
+            new WsdlOption(m_definers[2], PackageResources.WsdlSelector.Choices.LOCAL),
+        };
+        m_inputPanel = new InputOptionPanel<IWsdlDefiner>(options,
+                        ComponentFactories.radioButtonFactory());
+        m_inputPanel.setSelectedOption(options[0]);
+    }

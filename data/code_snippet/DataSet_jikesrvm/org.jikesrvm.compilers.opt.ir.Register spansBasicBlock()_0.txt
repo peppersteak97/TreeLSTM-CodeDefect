@@ -1,0 +1,1 @@
+  public boolean spansBasicBlock() { return (flags & SPAN_BASIC_BLOCK) != 0; }

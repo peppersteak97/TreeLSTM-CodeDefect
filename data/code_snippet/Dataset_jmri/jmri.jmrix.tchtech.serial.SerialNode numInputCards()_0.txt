@@ -1,0 +1,16 @@
+    public int numInputCards() {
+    	int result = 0;
+    	for (int i=0; i<cardTypeLocation.length; i++)
+    		if (cardTypeLocation[i]==INPUT_CARD) result++;
+
+    	if (nodeType==MICRO && result!=1)
+    		warn("Micro node with "+result+" input Tabs");
+    	if (nodeType==TERA && result>=MAXCARDLOCATIONBYTES)
+    		warn("Tera node with "+result+" input Tabs");
+        if (nodeType==PICO && result!=1)
+    		warn("Pico node with "+result+" input Tabs");
+        if (nodeType==MEGA && result!=3)
+    		warn("MEGA node with "+result+" input Tabs");
+
+    	return result;
+    }

@@ -1,0 +1,3 @@
+    public void redo() {
+        m_delegate.redo();
+    }

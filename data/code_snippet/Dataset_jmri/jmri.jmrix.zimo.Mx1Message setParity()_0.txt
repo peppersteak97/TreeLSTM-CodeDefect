@@ -1,0 +1,5 @@
+        public void setParity() {
+          javax.swing.JOptionPane.showMessageDialog(null, "B-Programma komt tot hier!");
+                int len = getNumDataElements();
+	        setElement(len-1, 0x0D);
+                }

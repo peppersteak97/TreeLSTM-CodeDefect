@@ -1,0 +1,20 @@
+  public void testDeleteFileBeforeCloseAll() 
+    throws IOException, OperationCanceledException, AlreadyOpenException {
+    final File[] files = new File[10];
+    for (int i = 0; i < 10; i++) {
+      String txt = "Text for file " + i;
+      files[i] = writeToNewTempFile(txt);
+    }
+    FileOpenSelector fos = new FileOpenSelector() {
+      public File[] getFiles() throws OperationCanceledException { return files; }
+    };
+    _model.openFiles(fos);
+    _log.log("Opened files " + Arrays.toString(files));
+    OpenDefinitionsDocument doc = _model.getSortedOpenDefinitionsDocuments().get(5);
+    _model.setActiveDocument(doc);
+    _log.log("Active document is: " + doc);
+    files[5].delete();
+    _log.log("Delected document: " + doc);
+    _model.closeAllFiles();
+    _log.log("testDeleteFileBeforeCloseAll completed");
+  }

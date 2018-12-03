@@ -1,0 +1,4 @@
+    public int hashCode() {
+        if (isLong) return 20000+number;
+        else return number;
+    }

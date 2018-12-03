@@ -1,0 +1,3 @@
+    public String getFieldName() {
+        return m_fieldName;
+    }

@@ -1,0 +1,8 @@
+    void clear() {
+        /*
+        for (int row : m_selectedRows) {
+            removeRowSelectionInterval(row, row);
+        }
+        */
+        m_selectedRows.clear();
+    }

@@ -1,0 +1,6 @@
+    private void setDefaultButton() {
+        JFrame frame = IntegrationUi.getUi().getActiveFrame();
+        JRootPane rp = frame.getRootPane();
+        m_savedDefaultButton = rp.getDefaultButton();
+        rp.setDefaultButton(getToolBar().getDefaultButton());
+    }

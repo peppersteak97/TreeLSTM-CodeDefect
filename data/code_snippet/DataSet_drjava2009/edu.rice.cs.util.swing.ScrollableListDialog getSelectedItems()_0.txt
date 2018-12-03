@@ -1,0 +1,6 @@
+  public List<T> getSelectedItems() {
+    ArrayList<T> l = new ArrayList<T>();
+    for (int i: list.getSelectedIndices())  l.add(listItems.get(i));
+
+    return l;
+  }

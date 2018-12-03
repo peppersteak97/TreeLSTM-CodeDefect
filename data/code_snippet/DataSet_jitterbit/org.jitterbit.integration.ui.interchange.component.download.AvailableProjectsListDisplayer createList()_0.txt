@@ -1,0 +1,4 @@
+    private void createList() {
+        m_projectList = new ProjectList();
+        m_projectList.setCellRenderer(new ProjectRenderer());
+    }

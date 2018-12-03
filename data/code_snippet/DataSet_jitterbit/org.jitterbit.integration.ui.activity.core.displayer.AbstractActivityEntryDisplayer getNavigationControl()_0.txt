@@ -1,0 +1,3 @@
+    protected FilteredPageNavigationControl<T> getNavigationControl() {
+        return m_navigationControl;
+    }

@@ -1,0 +1,1 @@
+    public boolean getRun() { return pauseTime == null; }

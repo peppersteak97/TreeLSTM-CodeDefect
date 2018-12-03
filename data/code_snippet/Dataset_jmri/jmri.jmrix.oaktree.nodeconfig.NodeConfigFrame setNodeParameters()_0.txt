@@ -1,0 +1,4 @@
+    void setNodeParameters() {
+        curNode.setNodeType(nodeType);
+        SerialTrafficController.instance().initializeSerialNode(curNode);
+    }

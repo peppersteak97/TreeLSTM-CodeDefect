@@ -1,0 +1,7 @@
+  public void resetOpenJavadocDialogPosition() {
+    initOpenJavadocDialog();
+    _openJavadocDialog.setFrameState("default");
+    if (DrJava.getConfig().getSetting(DIALOG_OPENJAVADOC_STORE_POSITION).booleanValue()) {
+      DrJava.getConfig().setSetting(DIALOG_OPENJAVADOC_STATE, "default");
+    }
+  }

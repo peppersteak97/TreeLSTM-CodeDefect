@@ -1,0 +1,36 @@
+  public BasicBlockEnumeration enumerator() {
+    return new BasicBlockEnumeration() {
+      private int cur_idx = 0;
+      private ExceptionHandlerBasicBlockBag cur_bag = null;
+
+      {
+        ExceptionHandlerBasicBlockBag c = ExceptionHandlerBasicBlockBag.this;
+        while (c != null && (c.local == null || c.local.length == 0)) { c = c.caller; }
+        if (c != null) {
+          cur_bag = c;
+        }
+      }
+
+      public boolean hasMoreElements() { return cur_bag != null; }
+
+      public BasicBlock nextElement() { return next(); }
+
+      public BasicBlock next() {
+        ExceptionHandlerBasicBlock ans;
+        try {
+          ans = cur_bag.local[cur_idx++];
+        } catch (NullPointerException e) {
+          throw new java.util.NoSuchElementException();
+        }
+        if (cur_idx == cur_bag.local.length) {
+          cur_bag = cur_bag.caller;
+          while (cur_bag != null && (cur_bag.local == null || cur_bag.local.length == 0)) {
+            cur_bag = cur_bag.caller;
+          }
+          if (cur_bag != null) {
+          }
+        }
+        return ans;
+      }
+    };
+  }

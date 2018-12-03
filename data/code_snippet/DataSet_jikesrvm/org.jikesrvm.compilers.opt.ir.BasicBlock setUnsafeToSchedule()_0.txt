@@ -1,0 +1,3 @@
+  public final void setUnsafeToSchedule() {
+    flags |= UNSAFE_TO_SCHEDULE;
+  }

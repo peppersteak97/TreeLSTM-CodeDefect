@@ -1,0 +1,4 @@
+        if (isProjectNameValid() && isNewProjectLocationValid()) {
+            updateWizard();
+            return true;
+        }

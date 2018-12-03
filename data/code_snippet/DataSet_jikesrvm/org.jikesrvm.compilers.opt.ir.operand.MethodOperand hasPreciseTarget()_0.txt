@@ -1,0 +1,3 @@
+  public boolean hasPreciseTarget() {
+    return target != null && isPreciseTarget;
+  }

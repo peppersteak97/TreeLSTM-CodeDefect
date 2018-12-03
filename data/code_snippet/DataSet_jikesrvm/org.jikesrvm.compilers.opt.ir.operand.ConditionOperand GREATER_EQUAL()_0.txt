@@ -1,0 +1,3 @@
+  public static ConditionOperand GREATER_EQUAL() {
+    return new ConditionOperand(GREATER_EQUAL);
+  }

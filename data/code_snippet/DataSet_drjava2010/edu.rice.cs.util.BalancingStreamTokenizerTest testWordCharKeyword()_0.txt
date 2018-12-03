@@ -1,0 +1,23 @@
+  public void testWordCharKeyword() throws IOException{
+    BalancingStreamTokenizer tok = make("Hello World anthem banana");
+    tok.defaultThreeQuoteDollarCurlySetup();
+    tok.addKeyword("apple");
+    tok.addKeyword("alabama");
+    tok.addKeyword("anthem");
+    tok.addKeyword("banana");
+    tok.addQuotes("a:",":a");
+    tok.addQuotes("b:",":b");
+    tok.wordChars(97);
+    String s = tok.getNextToken();
+    assertEquals("Hello", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("World", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals("anthem", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+     s = tok.getNextToken();
+    assertEquals("banana", s);
+    assertEquals(BalancingStreamTokenizer.Token.KEYWORD, tok.token());
+  }

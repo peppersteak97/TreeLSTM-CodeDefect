@@ -1,0 +1,4 @@
+    private void createComponents() {
+        m_wsTree = new SimpleTree();
+        m_panel = new JPanel(null);
+    }

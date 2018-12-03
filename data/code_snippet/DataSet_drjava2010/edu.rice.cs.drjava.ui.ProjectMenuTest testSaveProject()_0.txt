@@ -1,0 +1,34 @@
+  public void testSaveProject() throws IOException, MalformedProjectFileException {
+    
+    
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+        _frame.openProject(new FileOpenSelector() {
+          public File[] getFiles() throws OperationCanceledException { return new File[] {_projFile}; }
+        });
+        
+        _frame.open(new FileOpenSelector() {
+          public File[] getFiles() throws OperationCanceledException { return new File[] {_auxFile}; }
+        });
+        _frame._moveToAuxiliary();
+
+        List<OpenDefinitionsDocument> auxDocs = _model.getAuxiliaryDocuments();
+        assertEquals("One auxiliary document", 1, auxDocs.size());
+        _frame.saveProject();
+        _frame._closeProject();
+      } 
+    });
+    Utilities.clearEventQueue();
+    
+    List<OpenDefinitionsDocument> docs = _model.getOpenDefinitionsDocuments();
+    assertEquals("One empty document remaining", 1, docs.size());
+    assertEquals("Name is (Untitled)", "(Untitled)", _model.getActiveDocument().toString());
+    
+    ProjectFileIR pfir = ProjectFileParserFacade.ONLY.parse(_projFile);
+    DocFile[] src = pfir.getSourceFiles();
+    DocFile[] aux = pfir.getAuxiliaryFiles();
+    assertEquals("Number of saved src files", 2, src.length);
+    assertEquals("Number of saved aux files", 1, aux.length);
+    assertEquals("Wrong name for _file1", _file1.getCanonicalPath(), src[0].getCanonicalPath());
+    assertEquals("Wrong aux file", _auxFile.getCanonicalPath(), aux[0].getCanonicalPath());
+  }

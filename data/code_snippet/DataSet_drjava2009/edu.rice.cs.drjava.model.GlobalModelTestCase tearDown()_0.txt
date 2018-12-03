@@ -1,0 +1,15 @@
+  public void tearDown() throws Exception {
+    debug.logStart();
+    _log.log("Tearing down " + this);
+    _model.dispose();
+    _model.getInteractionsModel().removeAllInteractionListeners();
+
+    /*boolean ret =*/ IOUtil.deleteOnExitRecursively(_tempDir);
+
+    _tempDir = null;
+    _model = null;
+
+    super.tearDown();
+    _log.log("Completed tear down of " + this);
+    debug.logEnd();
+  }

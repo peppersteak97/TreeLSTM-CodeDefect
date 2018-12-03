@@ -1,0 +1,9 @@
+	public void textValueChanged(){
+		if (m_exp.during_insert == false) {
+            m_textAreaExpression_end_pos = getCaretPosition();
+            m_textAreaExpression_start_pos = m_textAreaExpression_end_pos;
+        }
+        repaint();
+        m_exp.updateButtonStatus();
+        requestFocus();
+	}

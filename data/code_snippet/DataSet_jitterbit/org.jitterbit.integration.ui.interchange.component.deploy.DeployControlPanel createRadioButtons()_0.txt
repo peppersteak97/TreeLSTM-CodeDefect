@@ -1,0 +1,26 @@
+    private void createRadioButtons() {
+        ButtonGroup bg = new ButtonGroup();
+        m_optionSelectors = new ArrayList<IOptionSelector<IDeployOption>>();
+        for (final IDeployOption o : m_options) {
+            final JRadioButton btn = createRadioButton(bg);
+            IOptionSelector<IDeployOption> selector =
+                OptionSelectorFactory.create(btn, o);
+            m_optionSelectors.add(selector);
+            if (o == m_defaultOption) {
+                btn.setSelected(true);
+                m_defaultFocusOwner = btn;
+                o.setActive(true);
+            }
+            else {
+                o.setActive(false);
+            }
+            btn.addItemListener(new ItemListener() {
+
+                public void itemStateChanged(ItemEvent e) {
+                    o.setActive(btn.isSelected());
+                }
+            });
+            bg.add(btn);
+            m_optionMap.put(btn, selector);
+        }
+    }

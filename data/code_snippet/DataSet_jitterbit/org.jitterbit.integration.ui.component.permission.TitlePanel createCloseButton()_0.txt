@@ -1,0 +1,3 @@
+    private JButton createCloseButton() {
+        return createToolBarButton(m_view.getCloseAction());
+    }

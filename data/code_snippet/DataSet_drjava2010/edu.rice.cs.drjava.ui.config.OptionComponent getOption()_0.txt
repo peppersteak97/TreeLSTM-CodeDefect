@@ -1,0 +1,1 @@
+  public Option<T> getOption() { return _option; }

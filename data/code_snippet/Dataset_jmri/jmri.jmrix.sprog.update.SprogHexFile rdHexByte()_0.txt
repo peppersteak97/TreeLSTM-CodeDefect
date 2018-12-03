@@ -1,0 +1,9 @@
+  private int rdHexByte() {
+    int hi = rdHexDigit();
+    int lo = rdHexDigit();
+    if ((hi < 16) && (lo < 16)) {
+      return (hi*16 + lo);
+    } else {
+      return 0;
+    }
+  }

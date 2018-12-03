@@ -1,0 +1,3 @@
+    public void updateSummary() {
+        if (lastEditor != null) instruction.setText(lastEditor.oneInstructionString());
+    }

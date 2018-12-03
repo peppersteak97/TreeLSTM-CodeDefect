@@ -1,0 +1,3 @@
+  static void disableInstrumentation() {
+    instrumentationEnabled = false;
+  }

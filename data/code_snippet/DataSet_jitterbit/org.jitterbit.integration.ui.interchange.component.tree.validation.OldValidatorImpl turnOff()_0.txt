@@ -1,0 +1,6 @@
+    private void turnOff() {
+        if (m_turnedOn) {
+            IUiWorker w = IntegrationUi.getUi().getUiWorker();
+            w.submitForParallell(new TurnOffJob());
+        }
+    }

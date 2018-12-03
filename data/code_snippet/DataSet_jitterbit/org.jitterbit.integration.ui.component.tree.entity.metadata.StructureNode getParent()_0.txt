@@ -1,0 +1,3 @@
+    public StructureNode getParent() {
+        return m_parent;
+    }

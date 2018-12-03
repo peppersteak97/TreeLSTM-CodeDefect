@@ -1,0 +1,8 @@
+    public void removeCompletedJobs() {
+        for (UiJobID jobID : m_completedJobs) {
+            JobSnapshot sh = m_idToJobSnapshot.remove(jobID);
+            m_jobSnapshots.remove(sh);
+        }
+        m_completedJobs.clear();
+        updateLayout();
+    }

@@ -1,0 +1,3 @@
+    public String getLogin() {
+        return getProperty(LOGIN_PROPERTY);
+    }

@@ -1,0 +1,4 @@
+  public ExceptionDeliverer getExceptionDeliverer() {
+    if (VM.VerifyAssertions) VM._assert(VM.BuildForIA32);
+    return deliverer;
+  }

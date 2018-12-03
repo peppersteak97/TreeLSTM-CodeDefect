@@ -1,0 +1,3 @@
+    public String getFilePath() {
+        return m_dtdFilePath;
+    }

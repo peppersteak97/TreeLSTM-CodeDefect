@@ -1,0 +1,20 @@
+    public void run() {
+        try {
+            setNewStatus(PackageResources.ProcessRemoteFileJob.STATUS_PARSING);
+            setParsedInfo(WsdlUtils.parseRemoteWsdl(m_wsdlUrl));
+        }
+        catch (WsdlParserException e) {
+            signalJobFailed(e);
+            return;
+        }
+        catch (MalformedURLException e) {
+            signalJobFailed(e);
+            return;
+        }
+        WsdlFile wsdl = new WsdlFile();
+        wsdl.putString(WsdlFile.WSDL_LOCATOR, m_wsdlUrl);
+        setWsdlFile(wsdl);
+        
+        setNewStatus(PackageResources.ProcessRemoteFileJob.STATUS_UPLOAD);
+        WsdlUtils.uploadRemoteWsdl(m_wsdlUrl, new UploadWsdlCallback(this));
+    }

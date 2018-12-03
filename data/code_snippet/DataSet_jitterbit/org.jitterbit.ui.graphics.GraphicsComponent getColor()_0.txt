@@ -1,0 +1,1 @@
+	public Color getColor() { return m_Color; }

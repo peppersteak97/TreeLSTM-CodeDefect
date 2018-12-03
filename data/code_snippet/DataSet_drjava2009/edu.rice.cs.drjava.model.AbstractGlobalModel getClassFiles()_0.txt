@@ -1,0 +1,6 @@
+    public List<File> getClassFiles() {
+      File dir = this.getBuildDirectory ();
+      LinkedList<File> acc = new LinkedList<File>();
+      getClassFilesHelper(dir, acc);
+      return acc;
+    }

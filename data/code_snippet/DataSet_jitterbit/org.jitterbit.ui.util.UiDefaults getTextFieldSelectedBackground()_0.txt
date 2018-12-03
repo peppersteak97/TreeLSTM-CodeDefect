@@ -1,0 +1,3 @@
+	public static Color getTextFieldSelectedBackground() {
+		return (c == null ) ? Color.black : c;
+	}

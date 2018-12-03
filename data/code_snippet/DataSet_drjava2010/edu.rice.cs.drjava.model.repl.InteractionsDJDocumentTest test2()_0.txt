@@ -1,0 +1,4 @@
+  public void test2() {
+    try { helpTestCannotAddNullStyleToList(); }
+    catch(Throwable t) { t.printStackTrace(); }
+  }

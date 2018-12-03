@@ -1,0 +1,5 @@
+	public String[] getFolderItemEntry() {
+		String[] values = new String[3];
+		values[2] = getID().toString();
+		return values;
+	}

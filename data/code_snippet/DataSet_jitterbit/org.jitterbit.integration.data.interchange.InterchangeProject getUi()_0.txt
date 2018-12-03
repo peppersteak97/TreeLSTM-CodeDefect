@@ -1,0 +1,3 @@
+    public IInterchangeProjectUi getUi() {
+        return (IInterchangeProjectUi) super.getUi();
+    }

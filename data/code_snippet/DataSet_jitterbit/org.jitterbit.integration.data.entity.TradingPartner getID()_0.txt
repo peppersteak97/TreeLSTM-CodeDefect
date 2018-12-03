@@ -1,0 +1,3 @@
+    public TradingPartnerId getID() {
+        return (TradingPartnerId) super.getID();
+    }

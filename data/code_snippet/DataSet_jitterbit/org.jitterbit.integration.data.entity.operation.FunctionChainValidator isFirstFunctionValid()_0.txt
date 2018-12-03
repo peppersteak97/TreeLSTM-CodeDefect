@@ -1,0 +1,3 @@
+    public boolean isFirstFunctionValid() {
+        return firstFunctionIsValid;
+    }

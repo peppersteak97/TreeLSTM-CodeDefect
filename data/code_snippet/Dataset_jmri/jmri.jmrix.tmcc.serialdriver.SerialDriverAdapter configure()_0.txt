@@ -1,0 +1,8 @@
+    public void configure() {
+        SerialTrafficController.instance().connectPort(this);
+
+        jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.tmcc.SerialTurnoutManager());
+        jmri.InstanceManager.setThrottleManager(new jmri.jmrix.tmcc.SerialThrottleManager());
+
+        jmri.jmrix.tmcc.ActiveFlag.setActive();
+    }

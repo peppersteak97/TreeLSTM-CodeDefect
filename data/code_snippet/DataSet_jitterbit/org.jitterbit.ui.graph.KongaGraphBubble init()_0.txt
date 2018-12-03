@@ -1,0 +1,9 @@
+	private void init() {
+		m_rect.setLeftMargin(3);
+		m_rect.setRightMargin(1);
+		m_rect.setTopMargin(0);
+		m_rect.setBottomMargin(4);
+
+		m_rect.setRounding(14);
+		m_rect.setFontSize(12);
+	}

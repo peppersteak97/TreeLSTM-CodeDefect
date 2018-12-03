@@ -1,0 +1,4 @@
+    public int headState() {
+        if (mHead==null) return 0;
+        else return mHead.getAppearance();
+    }

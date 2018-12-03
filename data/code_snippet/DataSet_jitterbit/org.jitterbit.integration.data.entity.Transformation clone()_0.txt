@@ -1,0 +1,11 @@
+    public Transformation clone() throws CloneNotSupportedException {
+        Transformation clone = (Transformation) super.clone();
+        if (m_inputStructure != null) {
+            clone.m_inputStructure = (DataStructure) m_inputStructure.clone();
+        }
+        if (m_outputStructure != null) {
+            clone.m_outputStructure = (DataStructure) m_outputStructure.clone();
+        }
+        clone.m_lstMaps = new ArrayList<String>(m_lstMaps);
+        return clone;
+    }

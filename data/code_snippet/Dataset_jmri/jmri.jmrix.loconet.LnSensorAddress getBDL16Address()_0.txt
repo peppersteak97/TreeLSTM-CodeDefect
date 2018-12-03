@@ -1,0 +1,21 @@
+    public String getBDL16Address() {
+        String letter = null;
+        String digit = null;
+        int n;
+
+        switch (asInt()&0x03) {
+            case 0: digit = "0"; break;
+            case 1: digit = "1"; break;
+            case 2: digit = "2"; break;
+            case 3: digit = "3"; break;
+            default: digit = "X"; log.error("Unexpected digit value: "+asInt());
+        }
+        switch ( (asInt()&0x0C)/4 ) {
+            case 0: letter = "A"; break;
+            case 1: letter = "B"; break;
+            case 2: letter = "C"; break;
+            case 3: letter = "D"; break;
+            default: letter = "X"; log.error("Unexpected letter value: "+asInt());
+        }
+        return "LS"+(asInt()/16)+letter+digit;
+    }

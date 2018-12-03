@@ -1,0 +1,8 @@
+  public void testInterpretJavaEscapedArgs() {
+    _log.log("testInterpretJavaEscapedArgs started");
+    _assertJavaTransformationTail("java Foo \\j", "Foo.main(new String[]{\"j\"});");
+    _assertJavaTransformationTail("java Foo \\\"", "Foo.main(new String[]{\"\\\"\"});");
+    _assertJavaTransformationTail("java Foo \\\\", "Foo.main(new String[]{\"\\\\\"});");
+    _assertJavaTransformationTail("java Foo a\\ b", "Foo.main(new String[]{\"a b\"});");
+    _log.log("testInterpretJavaEscapedArgs ended");
+  }

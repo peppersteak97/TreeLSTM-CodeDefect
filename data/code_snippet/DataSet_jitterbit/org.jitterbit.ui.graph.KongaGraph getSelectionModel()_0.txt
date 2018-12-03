@@ -1,0 +1,3 @@
+	public IKongaGraphSelectionModel getSelectionModel() {
+		return m_selectionModel;
+	}

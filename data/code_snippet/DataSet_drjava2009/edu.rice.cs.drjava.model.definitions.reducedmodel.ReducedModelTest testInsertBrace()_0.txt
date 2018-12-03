@@ -1,0 +1,17 @@
+  public void testInsertBrace() {
+    model1.insertChar('{');
+    assertTrue("#0.0", model1.atEnd());
+    model1.move(-1);
+    assertEquals("#1.0", 1, model1.currentToken().getSize());
+    assertEquals("#1.1", "{", model1.currentToken().getType());
+    model1.insertChar('(');
+    model1.insertChar('[');
+    assertEquals("#2.0", 1, model1.currentToken().getSize());
+    assertEquals("#2.1", "{", model1.currentToken().getType());
+    model1.move(-1);
+    assertEquals("#3.0", 1, model1.currentToken().getSize());
+    assertEquals("#3.1", "[", model1.currentToken().getType());
+    model1.move(-1);
+    assertEquals("#3.0", 1, model1.currentToken().getSize());
+    assertEquals("#3.1", "(", model1.currentToken().getType());
+  }

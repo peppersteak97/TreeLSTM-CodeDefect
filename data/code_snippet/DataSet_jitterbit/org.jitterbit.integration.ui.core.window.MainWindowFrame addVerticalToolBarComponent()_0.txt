@@ -1,0 +1,8 @@
+    private void addVerticalToolBarComponent() {
+        Box b = Box.createVerticalBox();
+        b.add(new JLabel(UiUtils.getEmptyIcon(16, 24)));
+        JPanel p = m_verticalToolBar.getPanel();
+        b.setBorder(BorderFactory.createEtchedBorder());
+        b.add(p);
+        m_frame.getContentPane().add(b, BorderLayout.WEST);
+    }

@@ -1,0 +1,4 @@
+    public boolean isDeployDirty() {
+        return super.isDeployDirty()
+                        || hasMatchingChild(IntegrationEntityFilters.DEPLOY_DIRTY);
+    }

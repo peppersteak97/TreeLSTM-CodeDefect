@@ -1,0 +1,171 @@
+    public void activateLight() {
+        if (!mActive) {
+            switch (mControlType) {
+                case SENSOR_CONTROL:
+                    mControlSensor = null;
+                    if (mControlSensorName.length()>0)
+                            mControlSensor= InstanceManager.sensorManagerInstance().
+                                                provideSensor(mControlSensorName);
+                    if (mControlSensor!=null) {
+						int kState = mControlSensor.getKnownState();
+						if (kState==Sensor.ACTIVE) { 
+							if (mControlSensorSense==Sensor.ACTIVE) {
+								setState(ON);
+							}
+							else {
+								setState(OFF);
+							}
+						}
+						else if (kState==Sensor.INACTIVE) {
+							if (mControlSensorSense==Sensor.INACTIVE) {
+								setState(ON);
+							}
+							else {
+								setState(OFF);
+							}
+						}
+					
+                        mControlSensor.addPropertyChangeListener(mSensorListener =
+                                                new java.beans.PropertyChangeListener() {
+                                public void propertyChange(java.beans.PropertyChangeEvent e) {
+                                    if (e.getPropertyName().equals("KnownState")) {
+                                        int now = mControlSensor.getKnownState();
+                                        if (now==Sensor.ACTIVE) { 
+                                            if (mControlSensorSense==Sensor.ACTIVE) {
+                                                setState(ON);
+                                            }
+                                            else {
+                                                setState(OFF);
+                                            }
+                                        }
+                                        else if (now==Sensor.INACTIVE) { 
+                                            if (mControlSensorSense==Sensor.INACTIVE) {
+                                                setState(ON);
+                                            }
+                                            else {
+                                                setState(OFF);
+                                            }
+                                        }
+                                    }
+                                }
+                        });
+                        mActive = true;
+                    }
+                    else {
+                        log.error("Light "+getSystemName()+" is linked to a Sensor that does not exist: "+
+                                             mControlSensorName);
+                        return;
+                    }
+                    break;
+                    
+                case FAST_CLOCK_CONTROL:
+					if (mClock==null) {
+						mClock = InstanceManager.timebaseInstance();
+					}
+					mTimeOn = mFastClockOnHour * 60 + mFastClockOnMin;
+					mTimeOff = mFastClockOffHour * 60 + mFastClockOffMin;
+					updateClockControlLight ();
+					mClock.addMinuteChangeListener( mTimebaseListener = 
+						new java.beans.PropertyChangeListener() {
+							public void propertyChange(java.beans.PropertyChangeEvent e) {
+								if (mEnabled) {  
+									updateClockControlLight();
+								}
+							}
+						});
+					mActive = true;
+                    break;
+                case TURNOUT_STATUS_CONTROL:
+                    mControlTurnout = InstanceManager.turnoutManagerInstance().
+                                            provideTurnout(mControlTurnoutName);
+                    if (mControlTurnout!=null) {
+						int tState = mControlTurnout.getKnownState();
+						if (tState==Turnout.CLOSED) { 
+							if (mTurnoutState==Turnout.CLOSED) {
+								setState(ON);
+							}
+							else {
+								setState(OFF);
+							}
+						}
+						else if (tState==Turnout.THROWN) { 
+							if (mTurnoutState==Turnout.THROWN) {
+								setState(ON);
+							}
+							else {
+								setState(OFF);
+							}
+						}
+						
+                        mControlTurnout.addPropertyChangeListener(mTurnoutListener =
+                                                new java.beans.PropertyChangeListener() {
+                                public void propertyChange(java.beans.PropertyChangeEvent e) {
+									if (e.getPropertyName().equals("KnownState")) {
+                                        int now = mControlTurnout.getKnownState();
+                                        if (now==Turnout.CLOSED) { 
+                                            if (mTurnoutState==Turnout.CLOSED) {
+                                                setState(ON);
+                                            }
+                                            else {
+                                                setState(OFF);
+                                            }
+                                        }
+                                        else if (now==Turnout.THROWN) { 
+                                            if (mTurnoutState==Turnout.THROWN) {
+                                                setState(ON);
+                                            }
+                                            else {
+                                                setState(OFF);
+                                            }
+                                        }
+                                    }
+                                }
+                        });
+                        mActive = true;
+                    }
+                    else {
+                        log.error("Light "+getSystemName()+" is linked to a Turnout that does not exist: "+
+                                             mControlSensorName);
+                        return;
+                    }
+                    break;
+                case TIMED_ON_CONTROL:
+                    mTimedControlSensor = InstanceManager.sensorManagerInstance().
+                                            provideSensor(mTimedSensorName);
+                    if (mTimedControlSensor!=null) {
+						setState(OFF);
+                        mTimedControlSensor.addPropertyChangeListener(mTimedSensorListener =
+                                                new java.beans.PropertyChangeListener() {
+                                public void propertyChange(java.beans.PropertyChangeEvent e) {
+									if (e.getPropertyName().equals("KnownState")) {
+                                        int now = mTimedControlSensor.getKnownState();
+										if (!mLightOnTimerActive) {
+											if (now==Sensor.ACTIVE) { 
+                                                setState(ON);
+												if (mTimedControlTimer==null) {
+													mTimedControlListener = new TimeLight();
+													mTimedControlTimer = new Timer(mTimeOnDuration,
+															mTimedControlListener);
+												}
+												mLightOnTimerActive = true;
+												mTimedControlTimer.start();
+                                            }
+                                        }
+                                    }
+                                }
+                        });
+                        mActive = true;
+                    }
+                    else {
+                        log.error("Light "+getSystemName()+" is linked to a Sensor that does not exist: "+
+                                             mTimedSensorName);
+                        return;
+                    }
+                    break;
+                case NO_CONTROL:
+                    break;
+                default:
+                    log.warn("Unexpected control type when activating Light: "+getSystemName());
+            }
+        }    
+    }

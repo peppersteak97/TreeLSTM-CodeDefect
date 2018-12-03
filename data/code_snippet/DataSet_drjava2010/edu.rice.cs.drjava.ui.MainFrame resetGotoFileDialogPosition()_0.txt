@@ -1,0 +1,7 @@
+  public void resetGotoFileDialogPosition() {
+    initGotoFileDialog();
+    _gotoFileDialog.setFrameState("default");
+    if (DrJava.getConfig().getSetting(DIALOG_GOTOFILE_STORE_POSITION).booleanValue()) {
+      DrJava.getConfig().setSetting(DIALOG_GOTOFILE_STATE, "default");
+    }
+  }

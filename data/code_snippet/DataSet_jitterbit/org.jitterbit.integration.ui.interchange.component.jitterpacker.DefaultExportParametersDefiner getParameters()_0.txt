@@ -1,0 +1,16 @@
+    public IPackingParameters getParameters() {
+        final char[] password = securityDefiner.getPassword();
+        boolean includeTestData = includeTestDataSelector.isSelected();
+        final PackingFileFilter fileFilter = new DefaultPackingFileFilter(
+                        project.getLocationOnDisk(), includeTestData);
+        return new IPackingParameters() {
+
+            public PackingFileFilter getFileFilter() {
+                return fileFilter;
+            }
+
+            public char[] getPassword() {
+                return password;
+            }
+        };
+    }

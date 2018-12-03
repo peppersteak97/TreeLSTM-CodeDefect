@@ -1,0 +1,8 @@
+  void findPrevious() {
+    _frame.updateStatusField("Finding Previous");
+    _machine.setSearchBackwards(true);
+    _findLabelBot.setText("Prev");
+    _doFind();
+    if (DrJava.getConfig().getSetting(OptionConstants.FIND_REPLACE_FOCUS_IN_DEFPANE).booleanValue()) {
+    }
+  }

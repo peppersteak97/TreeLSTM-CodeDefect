@@ -1,0 +1,13 @@
+  public synchronized String toString() {
+    final StringBuilder sb = new StringBuilder(" --> ");
+    sb.append("Dumping Queue with ");
+    sb.append(numElements);
+    sb.append(" elements:\n");
+    if (numElements >= 1) sb.append("\t");
+
+    for (int i = 1; i <= numElements; i++) {
+      sb.append(queue[i].toString());
+      if (i < numElements) sb.append("\n\t");
+    }
+    return sb.toString();
+  }

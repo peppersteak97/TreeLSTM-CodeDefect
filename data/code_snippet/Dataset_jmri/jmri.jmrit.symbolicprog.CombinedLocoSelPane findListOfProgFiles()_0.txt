@@ -1,0 +1,2 @@
+        programmerBox = new JComboBox(ProgDefault.findListOfProgFiles());
+        programmerBox.setSelectedIndex(0);

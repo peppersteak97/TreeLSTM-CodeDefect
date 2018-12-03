@@ -1,0 +1,3 @@
+  public final LongConstantOperand asLongConstant() {
+    return (LongConstantOperand) this;
+  }

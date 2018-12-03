@@ -1,0 +1,3 @@
+    ProjectLocation getSelectedProject() {
+        return m_table.getSelectedProject();
+    }

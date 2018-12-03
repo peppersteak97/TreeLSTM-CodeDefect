@@ -1,0 +1,8 @@
+  public void testFindMultiLine() throws BadLocationException {
+    _doc.insertString(0, FIND_WHOLE_WORD_TEST_1, null);
+    _initFrm(0);
+    _frm.setFindWord(FIND_MULTI_LINE_SEARCH_STR);
+    _frm.setSearchBackwards(false);
+    
+    _testFindNextSucceeds(_frm, 0, 19);
+  }

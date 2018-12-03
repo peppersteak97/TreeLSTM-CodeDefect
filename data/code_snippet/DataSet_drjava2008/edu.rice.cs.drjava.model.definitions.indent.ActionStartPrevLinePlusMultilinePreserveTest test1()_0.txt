@@ -1,0 +1,5 @@
+  public void test1() throws BadLocationException {
+    helperCommentTest("/**\n",
+                      4, 7,
+                      "/**\n * \n */");
+  }

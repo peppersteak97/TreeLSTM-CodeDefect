@@ -1,0 +1,3 @@
+	public void clearSelection() {
+		m_selectionModel.clearSelection();
+	}

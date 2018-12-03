@@ -1,0 +1,21 @@
+    private String getCachedFileContents() {
+        ServerInfo server = ServerManager.getManager().getCurrentServerInfo();
+        if (server == null) {
+            return null;
+        }
+        WsdlFileCache cache = getFileCache(server);
+        if (cache == null) {
+            return null;
+        }
+        try {
+            return cache.retrieve(getWsdlFile().getLocator());
+        }
+        catch (DataCacheException e) {
+            String msg = "Failed to retrieved a cached WSDL file (\"" +
+                getWsdlFile().getLocator() + "\"). Reason: ";
+            msg += System.getProperty("line.separator");
+            msg += ExceptionUtils.getStackTrace(e);
+            ApplicationLog.getMainLogger().warning(msg);
+            return null;
+        }
+    }

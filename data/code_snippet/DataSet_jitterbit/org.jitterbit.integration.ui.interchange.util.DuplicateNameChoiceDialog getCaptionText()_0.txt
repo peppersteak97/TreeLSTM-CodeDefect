@@ -1,0 +1,3 @@
+    private String getCaptionText() {
+        return PackageResources.DuplicateNameDialog.getCaption(m_newOwner, m_toMove);
+    }

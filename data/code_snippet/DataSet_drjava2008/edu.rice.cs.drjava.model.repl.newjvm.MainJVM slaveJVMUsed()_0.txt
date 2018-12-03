@@ -1,0 +1,1 @@
+  public boolean slaveJVMUsed() { return _slaveJVMUsed; }

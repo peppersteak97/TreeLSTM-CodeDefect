@@ -1,0 +1,1 @@
+  public void setLocal() { flags |= LOCAL; }

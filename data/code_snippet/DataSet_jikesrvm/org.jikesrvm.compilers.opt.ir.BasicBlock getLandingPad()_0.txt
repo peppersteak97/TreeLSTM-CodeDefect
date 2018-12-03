@@ -1,0 +1,3 @@
+  public final boolean getLandingPad() {
+    return (flags & LANDING_PAD) != 0;
+  }

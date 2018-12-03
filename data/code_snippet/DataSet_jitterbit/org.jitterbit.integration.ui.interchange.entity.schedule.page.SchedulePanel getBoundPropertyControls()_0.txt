@@ -1,0 +1,3 @@
+    Collection<IBoundProperty> getBoundPropertyControls() {
+        return KongaListUtils.asList(m_topPanel.getBoundPropertyControls());
+    }

@@ -1,0 +1,6 @@
+    public void requestFocus() {
+        for (JCheckBox b : m_checkBoxes.keySet()) {
+            b.requestFocusInWindow();
+            return;
+        }
+    }

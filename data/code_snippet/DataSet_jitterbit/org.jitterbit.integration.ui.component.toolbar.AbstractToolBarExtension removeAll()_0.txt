@@ -1,0 +1,15 @@
+    public final void removeAll() {
+        ToolBar tb = m_toolBarManager.getToolBar(m_toolBarID);
+        if (tb == null) {
+            return;
+        }
+        
+        for (ToolBarExtensionPoint p : ToolBarExtensionPoint.values()) {
+            tb.removeExtension(p, m_extensionButtons.get(p));
+        }
+        
+        JToolBar jtb = m_toolBarManager.getJToolBar(m_toolBarID);
+        if (jtb != null) {
+            tb.populate(jtb);
+        }
+    }

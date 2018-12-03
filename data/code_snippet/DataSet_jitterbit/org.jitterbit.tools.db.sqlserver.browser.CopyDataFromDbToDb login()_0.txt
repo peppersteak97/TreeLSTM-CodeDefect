@@ -1,0 +1,19 @@
+    private boolean login() {
+        m_connections = new DatabaseConnections(m_sServer, m_sUser, m_sPassword);
+        try {
+            m_connections.connect();
+            System.out.println("m_connections connected.");
+            return true;
+        } 
+        catch (SqlServerBrowserException e) {
+            String sMessage = e.getMessage();
+            Throwable cause = e.getCause();
+            while( cause != null ) {
+                sMessage += KongaIoUtils.LINE_BREAK;
+                sMessage += cause;
+                cause = cause.getCause();
+            }
+            JOptionPane.showMessageDialog(null, sMessage, "Failed to Connect", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }

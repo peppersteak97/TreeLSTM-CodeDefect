@@ -1,0 +1,3 @@
+    public List<MenuItemMetaData> getItemMetaData() {
+        return new ArrayList<MenuItemMetaData>(m_itemData);
+    }

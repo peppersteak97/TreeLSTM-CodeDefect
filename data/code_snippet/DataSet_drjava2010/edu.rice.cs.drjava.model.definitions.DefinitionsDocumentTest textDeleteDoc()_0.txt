@@ -1,0 +1,12 @@
+  public void textDeleteDoc() throws BadLocationException {
+    _doc.insertString(0, "a/*bc */", null);
+    _doc.remove(3, 3);
+    assertEquals("#0.0", "a/**/", _doc.getText(0, 5));
+    assertEquals("#0.1", 3, _doc.getCurrentLocation());
+    BraceReduction _reduced = _doc.getReduced();
+    assertEquals("1.0", "*/", _reduced.currentToken().getType());
+    _reduced.move(-2);
+    assertEquals("1.2", "/*", _reduced.currentToken().getType());
+    _reduced.move(2);
+    assertEquals("1.3", ReducedToken.INSIDE_BLOCK_COMMENT, _reduced.getStateAtCurrent());
+  }

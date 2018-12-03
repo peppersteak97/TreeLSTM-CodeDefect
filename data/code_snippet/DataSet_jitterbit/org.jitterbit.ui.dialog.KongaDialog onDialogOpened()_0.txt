@@ -1,0 +1,5 @@
+    protected void onDialogOpened() {
+        if (m_focusedComponent != null) {
+            m_focusedComponent.requestFocusInWindow();
+        }
+    }

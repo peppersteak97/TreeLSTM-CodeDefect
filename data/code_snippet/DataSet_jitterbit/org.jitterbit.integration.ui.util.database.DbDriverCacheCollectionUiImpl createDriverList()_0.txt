@@ -1,0 +1,4 @@
+    private void createDriverList() {
+        DriverListListener lst = new DriverListListener();
+        m_availableDriversList = new AvailableDriversList(m_cacheCollection, lst, lst);
+    }

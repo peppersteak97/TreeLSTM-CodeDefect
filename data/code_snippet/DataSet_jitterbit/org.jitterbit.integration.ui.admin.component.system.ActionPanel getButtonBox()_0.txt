@@ -1,0 +1,11 @@
+    private JComponent getButtonBox() {
+        Box box = Box.createHorizontalBox();
+        IButtonFactory factory = ComponentFactories.buttonFactory();
+        JButton startButton = factory.newButton(m_startEngineAction);
+        box.add(startButton);
+        m_defaultFocusOwner = startButton;
+        box.add(Box.createHorizontalStrut(10));
+        box.add(factory.newButton(m_stopEngineAction));
+        box.setBorder(BorderFactory.createEmptyBorder(15, 20, 5, 5));
+        return box;
+    }

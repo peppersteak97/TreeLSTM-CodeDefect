@@ -1,0 +1,3 @@
+	public Object getDisplayedValue() {
+		return getCheckBox().isSelected() ? Boolean.TRUE : Boolean.FALSE;
+	}

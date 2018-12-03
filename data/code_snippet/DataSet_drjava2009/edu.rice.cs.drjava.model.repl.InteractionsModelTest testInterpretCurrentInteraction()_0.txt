@@ -1,0 +1,28 @@
+  public void testInterpretCurrentInteraction() throws Exception {
+    _log.log("testInterpretCurrentInteraction started");
+    assertTrue(_model instanceof TestInteractionsModel);
+    final TestInteractionsModel model = (TestInteractionsModel) _model;
+    final InteractionsDocument doc = model.getDocument();
+    model._logInteractionStart();
+    model.interpretCurrentInteraction();
+    model._waitInteractionDone();
+    Utilities.clearEventQueue();
+    assertEquals("string being interpreted", "", model.toEval);
+    
+    final String code = "int x = 3;";
+    Utilities.invokeAndWait(new Runnable() { 
+      public void run() { 
+      } 
+    });
+    Utilities.clearEventQueue();
+    assertTrue("Code appended correctly to interactions document", doc.getText().endsWith(code));
+    Utilities.clearEventQueue();
+    assertTrue("Current interaction text is correct", doc.getCurrentInteraction().equals(code));
+    
+    model._logInteractionStart();
+    model._waitInteractionDone();
+
+    Utilities.clearEventQueue();
+    assertEquals("string being interpreted", code, model.toEval);
+    _log.log("testInterpretCurrentInteraction ended");
+  }

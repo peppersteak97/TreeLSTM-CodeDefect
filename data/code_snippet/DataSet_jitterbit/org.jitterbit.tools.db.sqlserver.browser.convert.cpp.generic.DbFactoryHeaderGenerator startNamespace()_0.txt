@@ -1,0 +1,7 @@
+    private void startNamespace() {
+        if( getNamespace().length() > 0 ) {
+            addLine("namespace " + getNamespace());
+            addLine("{");
+            addLine();
+        }
+    }

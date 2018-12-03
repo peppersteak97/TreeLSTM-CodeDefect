@@ -1,0 +1,13 @@
+  public final int getBranchOffset() {
+    if (VM.VerifyAssertions) {
+      VM._assert((opcode >= JBC_ifeq && opcode <= JBC_ifle) ||
+                 (opcode >= JBC_if_icmpeq && opcode <= JBC_if_icmple) ||
+                 opcode == JBC_if_acmpeq ||
+                 opcode == JBC_if_acmpne ||
+                 opcode == JBC_ifnull ||
+                 opcode == JBC_ifnonnull ||
+                 opcode == JBC_goto ||
+                 opcode == JBC_jsr);
+    }
+    return readSignedShort();
+  }

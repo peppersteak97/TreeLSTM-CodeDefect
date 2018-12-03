@@ -1,0 +1,9 @@
+    public void dispose() {
+        removeActionListener(l1);
+        _box.removeActionListener(l2);
+        _var.removePropertyChangeListener(p1);
+        l1 = l2 = null;
+        p1 = null;
+        _var = null;
+        _box = null;
+    }

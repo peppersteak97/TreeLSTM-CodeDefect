@@ -1,0 +1,9 @@
+	void fireEventImmediately() {
+		if (m_delayer != null) {
+			m_delayer.cancel();
+		}
+		if( !m_bEventHasBeenSent ) {
+			m_tree.fireTreeSelectionChanged();
+			m_bEventHasBeenSent = true;
+		}
+	}

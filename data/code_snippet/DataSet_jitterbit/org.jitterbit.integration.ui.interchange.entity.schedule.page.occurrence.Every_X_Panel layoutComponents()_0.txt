@@ -1,0 +1,8 @@
+    private void layoutComponents() {
+        setLayout(new BoxLayout(this.getUi(), BoxLayout.LINE_AXIS));
+        if (m_frontLabel != null) {
+            add(m_frontLabel);
+        }
+        add(InputFieldFactory.getCapsule(m_input,
+                        InputFieldFactory.HORIZONTAL_LABEL_RIGHT));
+    }

@@ -1,0 +1,3 @@
+    public String pattern() {
+        return m_pattern;
+    }

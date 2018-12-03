@@ -1,0 +1,17 @@
+    public void configure() {
+        MrcTrafficController.instance().connectPort(this);
+
+/*         jmri.InstanceManager.setProgrammerManager( */
+/*                 new EasyDccProgrammerManager( */
+/*                     new EasyDccProgrammer())); */
+/*  */
+/*         jmri.InstanceManager.setPowerManager(new jmri.jmrix.easydcc.EasyDccPowerManager()); */
+/*  */
+/*         jmri.InstanceManager.setTurnoutManager(new jmri.jmrix.easydcc.EasyDccTurnoutManager()); */
+/*  */
+/* 		jmri.InstanceManager.setThrottleManager(new jmri.jmrix.easydcc.EasyDccThrottleManager()); */
+/*  */
+/*         jmri.InstanceManager.setConsistManager(new jmri.jmrix.easydcc.EasyDccConsistManager()); */
+
+        jmri.jmrix.mrc.ActiveFlag.setActive();
+    }

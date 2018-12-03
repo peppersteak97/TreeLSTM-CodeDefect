@@ -1,0 +1,3 @@
+    public String getDatabase() {
+        return m_databaseField.getValue().trim();
+    }

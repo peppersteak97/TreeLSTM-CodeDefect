@@ -1,0 +1,8 @@
+    private void installKeyBindings() {
+        m_ui.installKeyBindings(m_displayer);
+        m_keyBindingInstaller = new KeyBindingInstaller(m_displayer,
+                        JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        m_keyBindingInstaller.addBinding(KeyUtils.getCtrlDown(KeyEvent.VK_F4), 
+                        "close", getCloseAction());
+        m_keyBindingInstaller.install();
+    }

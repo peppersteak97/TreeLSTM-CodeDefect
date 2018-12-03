@@ -1,0 +1,1 @@
+  public InteractionsController getController() { return _controller; }

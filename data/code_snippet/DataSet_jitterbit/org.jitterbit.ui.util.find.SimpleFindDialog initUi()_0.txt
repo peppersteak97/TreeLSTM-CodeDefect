@@ -1,0 +1,7 @@
+    private void initUi() {
+        setResizable(false);
+        Container cp = getContentPane();
+        cp.setLayout(new BorderLayout());
+        cp.add(new MainPanel(), BorderLayout.CENTER);
+        pack();
+    }

@@ -1,0 +1,10 @@
+  public Iterable<File> getClassPath() {
+    if (_restart) {
+      
+      InterpreterJVMRemoteI slave = ensureInterpreterConnected();
+      
+      try { return slave.getClassPath(); }
+      catch (RemoteException re) { _threwException(re); return IterUtil.empty(); }
+    }
+    else { return IterUtil.empty(); }
+  }

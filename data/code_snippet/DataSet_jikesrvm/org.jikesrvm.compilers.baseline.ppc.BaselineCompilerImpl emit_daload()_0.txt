@@ -1,0 +1,4 @@
+  protected final void emit_daload() {
+    genBoundsCheck();
+    pushDouble(F0);
+  }

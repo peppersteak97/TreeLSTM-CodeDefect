@@ -1,0 +1,9 @@
+    private void registerListeners() {
+        FieldListener fieldListener = new FieldListener();
+        m_name.addPropertyChangeListener(TextChangeDetector.TEXT_CHANGE_PROPERTY,
+                        fieldListener);
+        ((JTextField) m_name.getInputComponent()).addActionListener(fieldListener);
+        
+        m_wsdlSelector.addChangeListener(fieldListener);
+        m_wsdlSelector.addActionListener(fieldListener);
+    }

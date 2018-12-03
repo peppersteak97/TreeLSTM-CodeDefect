@@ -1,0 +1,8 @@
+    void addIcon() {
+        PositionableLabel l = new PositionableLabel(iconEditor.getIcon(0) );
+        setNextLocation(l);
+        l.setDisplayLevel(ICONS);
+        putLabel(l);
+        l.setPositionable(true);
+        moveToFront(l);
+    }

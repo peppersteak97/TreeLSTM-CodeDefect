@@ -1,0 +1,28 @@
+  public final synchronized void quit() {
+    
+    beforeQuit();
+    
+    _slaveExited = false;
+    
+    Thread t = new Thread(_quitSlaveThreadName) {
+      public void run() {
+        try {
+          synchronized(_slaveJVMLock) { 
+            while (! _slaveExited) {
+              _slaveJVMLock.wait(); 
+            }
+          }
+          shutdown();
+        }
+        catch(Throwable t) { 
+          _log.log(this + ".quit() failed!");
+          quitFailed(t); 
+        }
+      }
+    };
+    
+    t.start();
+    synchronized(_slaveJVMLock) { 
+      _slaveExited = true; 
+    }
+  }

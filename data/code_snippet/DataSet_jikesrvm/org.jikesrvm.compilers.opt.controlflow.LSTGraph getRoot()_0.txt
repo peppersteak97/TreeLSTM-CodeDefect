@@ -1,0 +1,3 @@
+  public LSTNode getRoot() {
+    return rootNode;
+  }

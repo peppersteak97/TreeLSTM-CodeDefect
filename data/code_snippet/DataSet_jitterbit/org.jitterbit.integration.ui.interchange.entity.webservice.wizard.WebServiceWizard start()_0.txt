@@ -1,0 +1,36 @@
+    public void start() {
+        
+        IIntegrationEntityFactoryCallback factoryCallback = new IIntegrationEntityFactoryCallback() {
+
+            public void creationCancelled(Object reason) {
+                fireWizardCancelled(reason);
+                dispose();
+            }
+
+            public void creationFailed(Throwable cause) {
+                fireWizardFailed(cause);
+                dispose();
+            }
+
+            public void creationSucceeded(IntegrationEntity entity, IntegrationEntity parent) {
+                m_newWebServiceCall = (WebServiceCall) entity;
+                m_newWebServiceCallUi = m_newWebServiceCall.getUi();
+                m_owner = parent;
+                m_startPage = new WebServiceWizardStartPage(WebServiceWizard.this,
+                                m_newWebServiceCall, m_owner);
+                WebServiceWizard.super.start(m_view.getWindow(), m_startPage);
+
+                m_bWebServiceHasBeenSaved = false;
+
+                m_displayPage = new WizardDisplayPage(m_startPage);
+                UiUtils.runOnEventThread(new Runnable() {
+                    
+                    public void run() {
+                        m_view.displayPage(m_displayPage);
+                    }
+                });
+            }
+        };
+        
+        m_view.createIntegrationEntity(EntityType.WebServiceCall, factoryCallback);
+    }

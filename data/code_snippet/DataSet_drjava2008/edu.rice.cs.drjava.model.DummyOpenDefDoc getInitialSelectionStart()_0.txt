@@ -1,0 +1,1 @@
+  public int getInitialSelectionStart() { throw new UnsupportedOperationException("Dummy method"); }

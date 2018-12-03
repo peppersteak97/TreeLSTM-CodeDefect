@@ -1,0 +1,29 @@
+    public void release() {
+        if (!active) log.warn("release called when not active");
+        int value = 0;
+ 
+        byte[] result = jmri.NmraPacket.speedStep128Packet(address.getNumber(), 
+                                         address.isLongAddress(), value, isForward);
+    	EasyDccMessage m = new EasyDccMessage(7);
+        m.setElement(i++, 'D');
+
+        if (address.isLongAddress()) {
+            m.setElement(i++, ' ');
+            m.addIntAsTwoHex(result[0]&0xFF,i);
+            i = i+2;
+            m.setElement(i++, ' ');
+            m.addIntAsTwoHex(result[1]&0xFF,i);
+            i = i+2;
+
+        } else { 
+            m.setElement(i++, ' ');
+            m.addIntAsTwoHex(0,i);
+            i = i+2;
+            m.setElement(i++, ' ');
+            m.addIntAsTwoHex(result[0]&0xFF,i);
+            i = i+2;
+        }
+        
+        EasyDccTrafficController.instance().sendEasyDccMessage(m, null);
+        
+    }

@@ -1,0 +1,5 @@
+    private WaitRequest getVoidedRequest() {
+        WaitRequest req = new WaitRequest();
+        req.m_startsAt = Long.MAX_VALUE;
+        return req;
+    }

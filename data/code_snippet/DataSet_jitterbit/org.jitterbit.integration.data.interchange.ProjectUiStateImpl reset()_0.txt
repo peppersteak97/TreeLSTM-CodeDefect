@@ -1,0 +1,9 @@
+    public void reset() {
+        if (m_displayOnStartUp != null) {
+            m_displayOnStartUp.clear();
+        }
+        m_activeOnStartUp = null;
+        if (m_expandedOnStartUp != null) {
+            m_expandedOnStartUp.clear();
+        }
+    }

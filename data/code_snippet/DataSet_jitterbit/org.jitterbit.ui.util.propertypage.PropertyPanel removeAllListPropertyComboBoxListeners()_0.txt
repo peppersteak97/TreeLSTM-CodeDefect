@@ -1,0 +1,6 @@
+	public final void removeAllListPropertyComboBoxListeners() {
+		if( m_listPropertyListeners != null ) {
+			m_listPropertyListeners.clear();
+			m_listPropertyListeners = null;
+		}
+	}

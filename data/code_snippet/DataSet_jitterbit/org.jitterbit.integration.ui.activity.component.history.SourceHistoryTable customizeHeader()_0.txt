@@ -1,0 +1,8 @@
+    private void customizeHeader() {
+        IntegrationUiStyleSheet.LogTableHeader.makeOver(this);
+
+        KongaTableSorter sorter = getTableSorter();
+        for (int col = 0; col < getColumnCount(); ++col) {
+            sorter.setHeaderHorizontalAlignment(col, SwingConstants.LEFT);
+        }
+    }

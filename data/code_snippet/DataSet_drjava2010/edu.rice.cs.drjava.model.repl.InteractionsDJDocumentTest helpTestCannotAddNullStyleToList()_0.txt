@@ -1,0 +1,14 @@
+  public void helpTestCannotAddNullStyleToList() throws EditDocumentException {
+    assertEquals("StylesList before insert should contain 2 pairs", 2, _adapter.getStyles().length);
+
+    _doc.append("5", InteractionsDocument.NUMBER_RETURN_STYLE);
+    Utilities.clearEventQueue();
+
+    assertEquals("StylesList should contain 3 pairs", 3, _adapter.getStyles().length);
+
+    _doc.append("6", null);
+     Utilities.clearEventQueue();
+
+    assertEquals("StylesList should still contain 3 pairs - null string should not have been inserted",
+                 3, _adapter.getStyles().length);
+  }

@@ -1,0 +1,27 @@
+  private void _setupRegionTree() {
+    _rootNode = new DefaultMutableTreeNode(_title);
+    _regTreeModel = new DefaultTreeModel(_rootNode);
+    _regTree = new RegionTree(_regTreeModel);
+    _regTree.setEditable(false);
+    _regTree.getSelectionModel().setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
+    _regTree.setShowsRootHandles(true);
+    _regTree.setRootVisible(false);
+    _regTree.putClientProperty("JTree.lineStyle", "Angled");
+    _regTree.setScrollsOnExpand(true);
+    _regTree.addTreeSelectionListener(new TreeSelectionListener() {
+      public void valueChanged(TreeSelectionEvent e) { updateButtons(); }
+    });
+    _regTree.addKeyListener(new KeyAdapter() {
+      public void keyPressed(KeyEvent e) { if (e.getKeyCode() == KeyEvent.VK_ENTER) { performDefaultAction(); } } 
+    });
+    
+    dtcr = new RegionRenderer();
+    dtcr.setOpaque(false);
+    _regTree.setCellRenderer(dtcr);
+    
+    _leftPane.add(new JScrollPane(_regTree));
+    
+    _initPopup();
+    
+    ToolTipManager.sharedInstance().registerComponent(_regTree);
+  }

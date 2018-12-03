@@ -1,0 +1,3 @@
+    public IActiveObjectProviderListener getActiveObjectProviderListener() {
+        return m_view;
+    }

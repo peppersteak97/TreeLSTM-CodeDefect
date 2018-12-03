@@ -1,0 +1,7 @@
+  private int _uncommentLine() throws BadLocationException {
+    int pos2 = getFirstNonWSCharPos(_currentLocation, true);
+    if (pos1 != pos2) return NO_COMMENT_OFFSET;
+    
+    remove(pos1, 2);
+    return WING_COMMENT_OFFSET;
+  }

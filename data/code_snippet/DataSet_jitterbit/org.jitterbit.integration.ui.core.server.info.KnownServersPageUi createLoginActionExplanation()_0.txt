@@ -1,0 +1,11 @@
+    private void createLoginActionExplanation() {
+        JTextArea expl = ComponentFactories.textFactory().newTextArea(3, 40);
+        if (expl instanceof IEnhancedTextComponent) {
+            ((IEnhancedTextComponent) expl).disableContextMenu();
+        }
+        expl.setText(PackageResources.Actions.Login.EXPLANATION);
+        expl.setEditable(false);
+        expl.setEnabled(false);
+        IntegrationUiStyleSheet.AdminHint.makeOver(expl);
+        m_loginExplanation = expl;
+    }

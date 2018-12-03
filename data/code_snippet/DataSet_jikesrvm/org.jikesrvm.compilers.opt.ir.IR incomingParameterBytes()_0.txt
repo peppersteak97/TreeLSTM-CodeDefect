@@ -1,0 +1,5 @@
+  public int incomingParameterBytes() {
+    int nWords = method.getParameterWords();
+    if (!method.isStatic()) nWords++;
+    return nWords << 2;
+  }

@@ -1,0 +1,11 @@
+    protected void onOk() {
+        try {
+            m_tableModel.validateModel();
+            Vector<Field> fields = m_tableModel.getFields();
+            m_segment.m_fieldList = fields;
+            super.onOk();
+        }
+        catch (TextDocumentDefinitionException e) {
+            ErrorLogger.getDefaultLogger().logAndShow(this, e.getMessage(), e);
+        }
+    }

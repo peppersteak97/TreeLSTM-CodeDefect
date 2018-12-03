@@ -1,0 +1,1 @@
+    public Element getModelElement() { return _element; }

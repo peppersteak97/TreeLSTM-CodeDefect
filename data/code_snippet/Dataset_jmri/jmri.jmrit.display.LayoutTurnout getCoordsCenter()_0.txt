@@ -1,0 +1,1 @@
+	public Point2D getCoordsCenter() {return center;}

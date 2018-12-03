@@ -1,0 +1,14 @@
+    public static synchronized IUiDelegateDeletedHandler getInstance() {
+        if( s_instance == null ) {
+            try {
+                s_instance = s_instanceClass.newInstance();
+            } 
+            catch (InstantiationException e) {
+                throw new RuntimeException(e);
+            } 
+            catch (IllegalAccessException e) {
+                throw new RuntimeException(e);            
+            }
+        }
+        return s_instance;
+    }

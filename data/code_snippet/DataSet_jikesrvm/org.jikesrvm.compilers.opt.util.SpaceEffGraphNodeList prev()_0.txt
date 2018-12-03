@@ -1,0 +1,3 @@
+  SpaceEffGraphNodeList prev() {
+    return _prev;
+  }

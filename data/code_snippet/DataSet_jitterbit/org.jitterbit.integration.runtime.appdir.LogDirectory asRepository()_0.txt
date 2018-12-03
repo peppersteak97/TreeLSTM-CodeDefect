@@ -1,0 +1,23 @@
+    public static synchronized ILogFileRepository asRepository() {
+        if (s_asRepository == null) {
+            s_asRepository = new ILogFileRepository() {
+
+                public File[] getLogFiles() {
+                    return getCurrentLogFilesImpl();
+                }
+
+                public File getSystemErr() {
+                    return s_systemErr;
+                }
+
+                public File getSystemOut() {
+                    return s_systemOut;
+                }
+
+                public boolean isFromCurrentSession(File file) {
+                    return isFromCurrentSessionImpl(file);
+                }
+            };
+        }
+        return s_asRepository;
+    }

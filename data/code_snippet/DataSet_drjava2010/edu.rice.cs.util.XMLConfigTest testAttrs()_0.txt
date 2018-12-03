@@ -1,0 +1,9 @@
+  public void testAttrs() throws Exception {
+    XMLConfig xc = new XMLConfig(new StringReader(
+                                                  "<?xml version=\"1.0\" encoding=\"UTF-8\"?><foo a=\"foo.a\">\n"
+                                                    + "  <bar>abc</bar>\n"
+                                                    + "  <fum fee=\"xyz\">def</fum>\n"
+                                                    + "</foo>"));
+    assertEquals("foo.a", xc.get("foo.a"));
+    assertEquals("xyz", xc.get("foo/fum.fee"));
+  }

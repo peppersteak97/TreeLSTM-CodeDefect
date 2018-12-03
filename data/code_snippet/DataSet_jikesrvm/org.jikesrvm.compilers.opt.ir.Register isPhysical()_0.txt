@@ -1,0 +1,1 @@
+  public boolean isPhysical() { return (flags & PHYSICAL) != 0; }

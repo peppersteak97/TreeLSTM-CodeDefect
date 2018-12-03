@@ -1,0 +1,3 @@
+    public Action refresh() {
+        return m_refreshAction;
+    }

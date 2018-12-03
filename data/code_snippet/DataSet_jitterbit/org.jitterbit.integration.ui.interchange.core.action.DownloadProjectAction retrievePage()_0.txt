@@ -1,0 +1,11 @@
+    private IPage retrievePage() {
+        if (m_invoker == null) {
+            m_invoker = new WizardInvoker();
+        }
+        for (IPage p : m_view.getOpenPages()) {
+            if (p.getObject() == m_invoker) {
+                return p;
+            }
+        }
+        return null;
+    }

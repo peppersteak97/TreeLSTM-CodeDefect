@@ -1,0 +1,12 @@
+    private void layoutComponents() {
+        OneColumnPanel p = new OneColumnPanel();
+        p.setInsets(5, 5, 5, 5);
+        p.add(m_caption);
+        p.add(m_availableServersCombo);
+        p.setInsets(10, 5, 5, 5);
+        p.setFillOut();
+        p.add(getDriversPanel());
+        
+        IComponentDecor decor = ComponentDecorFactory.invisible(p);
+        m_displayer = decor.getUi();
+    }

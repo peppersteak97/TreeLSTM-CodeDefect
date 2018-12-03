@@ -1,0 +1,7 @@
+    private JComponent createDisplayer() {
+        JPanel cp = new JPanel(new BorderLayout(10, 10));
+        cp.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        addCaption(cp);
+        addListView(cp);
+        return cp;
+    }

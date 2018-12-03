@@ -1,0 +1,8 @@
+    private void rebuildIndexMap() {
+        m_idToIndex.clear();
+        int index = 0;
+        for (IWindowSectionContent c : m_contents) {
+            m_idToIndex.put(c.getId(), index);
+            ++index;
+        }
+    }

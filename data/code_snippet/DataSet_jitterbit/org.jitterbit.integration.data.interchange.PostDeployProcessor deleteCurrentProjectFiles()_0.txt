@@ -1,0 +1,9 @@
+    private void deleteCurrentProjectFiles() {
+        File root = m_currentProject.getLocation();
+        for (File f : root.listFiles()) {
+            if (shouldBeDeleted(f)) {
+                if (!delete(f)) {
+                }
+            }
+        }
+    }

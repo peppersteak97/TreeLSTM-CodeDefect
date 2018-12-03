@@ -1,0 +1,11 @@
+    private static void registerWithServer() {
+        IntegrationServer server = IntegrationServer.getInstance();
+        IServerCallFactory<IFileDownloader> factory = 
+            new IServerCallFactory<IFileDownloader>() {
+
+                public IFileDownloader get() {
+                	return new FileManagementWsImpl();
+                }
+        };
+        server.registerCallFactory(IFileDownloader.class, factory);
+    }

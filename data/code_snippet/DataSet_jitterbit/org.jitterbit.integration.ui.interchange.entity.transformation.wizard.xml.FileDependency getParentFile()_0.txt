@@ -1,0 +1,3 @@
+    ParentFile getParentFile() {
+        return m_parentFile;
+    }

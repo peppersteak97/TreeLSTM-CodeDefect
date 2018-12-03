@@ -1,0 +1,3 @@
+    public List<Relation> getRelations() {
+        return new ArrayList<Relation>(m_fieldRelations);
+    }

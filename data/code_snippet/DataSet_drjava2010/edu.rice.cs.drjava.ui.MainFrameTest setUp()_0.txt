@@ -1,0 +1,10 @@
+  public void setUp() throws Exception {
+    super.setUp();
+    Utilities.invokeAndWait(new Runnable() {
+      public void run() {
+        
+        _frame  = new MainFrame();
+        EventQueue.invokeLater(new Runnable() { public void run() { _frame.pack(); } });
+      }
+    });
+  }

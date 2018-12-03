@@ -1,0 +1,29 @@
+  public synchronized void enable()
+  {
+    Registry localRegistry = null ;
+    try
+    {
+      log.debug("Create RMI Registry for: " + serviceName);
+      localRegistry = LocateRegistry.createRegistry( Registry.REGISTRY_PORT ) ;
+    }
+    catch( java.rmi.RemoteException ex )
+    {
+    }
+    try
+    {
+      if( localRegistry == null )
+      {
+        log.warn("Could not Create RMI Registry, Attempting to Locate existing Registry for: " + serviceName );
+        localRegistry = LocateRegistry.getRegistry( Registry.REGISTRY_PORT ) ;
+      }
+
+      log.debug("Register LocoNet Server: " + serviceName + " with RMI Registry" );
+      localRegistry.rebind( serviceName, self ) ;
+
+      log.debug("Register LocoNet Server Complete");
+    }
+    catch( Exception ex )
+    {
+      log.warn( "LnMessageServer: " + ex );
+    }
+  }

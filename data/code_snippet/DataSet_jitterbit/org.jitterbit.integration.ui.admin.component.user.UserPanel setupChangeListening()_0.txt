@@ -1,0 +1,8 @@
+    private void setupChangeListening() {
+        m_inputSiteListener = new ChangeListener() {
+
+            public void stateChanged(ChangeEvent evt) {
+                fireChangeEvent(evt);
+            }
+        };
+    }

@@ -1,0 +1,7 @@
+    public void testUncaught() {
+      Thread t = new Thread(new Runnable() {
+        public void run() { throw new RuntimeException(); }
+      });
+      t.start();
+      join(t);
+    }

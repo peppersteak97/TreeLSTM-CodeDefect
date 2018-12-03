@@ -1,0 +1,5 @@
+    public DataInputStream getInputStream() {
+        if (pin == null)
+            log.error("getInputStream: called before load(), stream not available");
+        return pin;
+    }

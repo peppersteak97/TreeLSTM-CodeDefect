@@ -1,0 +1,5 @@
+    private JToolBar createEmptyToolBar() {
+        JToolBar tb = new JToolBar(m_orientation);
+        customizeToolBar(tb);
+        return tb;
+    }

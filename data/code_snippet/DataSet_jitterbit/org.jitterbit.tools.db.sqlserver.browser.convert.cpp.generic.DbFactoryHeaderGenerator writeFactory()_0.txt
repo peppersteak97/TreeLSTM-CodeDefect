@@ -1,0 +1,23 @@
+    private void writeFactory() {
+        addLine("namespace " + getFactoryName());
+        addLine("{");
+        addLine("\tkonga::DbConnection* GetDbConnection(bool bOpen = true);");
+        addLine();
+        try {
+            for( Table t : getTables() ) {
+                addLine("\t" + t.getName() + "* Get" + t.getName() + "(konga::DbConnection* pConn);");
+                addLine();
+            }
+            for( View v : getViews() ) {
+                addLine("\t" + v.getName() + "* Get" + v.getName() + "(konga::DbConnection* pConn);");
+                addLine();
+            }
+        } catch (SqlServerBrowserException e) {
+            e.printStackTrace();
+            logError( getObject(), null, e.toString() );
+            return;
+        }
+        addLine();
+        addLine("}  
+        addLine();
+    }

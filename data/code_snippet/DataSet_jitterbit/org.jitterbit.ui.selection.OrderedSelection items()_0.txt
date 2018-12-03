@@ -1,0 +1,3 @@
+    public Iterator<? extends Object> items() {
+        return new ArrayIterator<Object>(m_items);
+    }

@@ -1,0 +1,16 @@
+    public Element getXml()
+    {
+        Element me = new Element("ThrottleFrame");
+        me.setAttribute("title", titleText);
+        me.setAttribute("titleType", titleTextType);
+        java.util.ArrayList children =
+            new java.util.ArrayList(1);
+        WindowPreferences wp = new WindowPreferences();
+        
+        children.add(wp.getPreferences(this));
+        children.add(controlPanel.getXml());
+        children.add(functionPanel.getXml());
+        children.add(addressPanel.getXml());
+        me.setContent(children);
+        return me;
+    }

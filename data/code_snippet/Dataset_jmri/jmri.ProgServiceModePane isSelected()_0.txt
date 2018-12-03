@@ -1,0 +1,5 @@
+    public boolean isSelected() {
+        return (addressButton.isSelected() || pagedButton.isSelected()
+                || directBitButton.isSelected() || directByteButton.isSelected()
+                || registerButton.isSelected() );
+    }

@@ -1,0 +1,17 @@
+    public JComponent getDisplayer() {
+        final JPanel titlePanel = createTitlePanel();
+        final JScrollPane scroll = createScrollPane();
+        JPanel displayer = new JPanel(new BorderLayout()) {
+            
+            @Override
+            public Dimension getPreferredSize() {
+                Dimension titleSize = titlePanel.getPreferredSize();
+                Dimension listSize = scroll.getPreferredSize();
+                return new Dimension(Math.max(titleSize.width, listSize.width),
+                                     titleSize.height + listSize.height);
+            }
+        };
+        displayer.add(titlePanel, BorderLayout.NORTH);
+        displayer.add(scroll, BorderLayout.CENTER);
+        return displayer;
+    }

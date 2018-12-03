@@ -1,0 +1,5 @@
+    private JComponent createButtons() {
+        JComponent buttons = getButtonPanel(OK_CANCEL, 10);
+        getRootPane().setDefaultButton(getOKButton());
+        return buttons;
+    }

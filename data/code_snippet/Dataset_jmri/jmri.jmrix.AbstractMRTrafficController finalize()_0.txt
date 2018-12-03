@@ -1,0 +1,15 @@
+    protected void finalize() {
+        if(log.isDebugEnabled()) log.debug("Cleanup Starts");
+        AbstractMRMessage modeMsg=enterNormalMode();
+        if(modeMsg!=null) {
+            synchronized(selfLock) {
+                forwardToPort(modeMsg, null);
+                try {
+                    if (xmtRunnable!=null)
+                        synchronized(xmtRunnable) {
+                            if (modeMsg!=null) xmtRunnable.wait(modeMsg.getTimeout());
+                        }
+                } catch (InterruptedException e) { log.error("transmit interrupted"); }
+            }
+        }
+    }

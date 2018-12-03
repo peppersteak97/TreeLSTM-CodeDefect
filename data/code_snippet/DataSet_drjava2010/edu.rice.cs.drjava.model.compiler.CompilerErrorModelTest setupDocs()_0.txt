@@ -1,0 +1,21 @@
+  private void setupDocs() {
+    files = new File[] { 
+      new File("/tmp/nowhere1"),
+      new File("/tmp/nowhere2"),
+      new File("/tmp/nowhere3"),
+      new File("/tmp/nowhere4"),
+      new File("/tmp/nowhere5") 
+    };
+    texts = new String[] { 
+      "This is the first block of test text.\n" + "It doesn't matter what goes in here.\n" +
+                 "But it does matter if it is manipulated properly!\n",
+      "This is the second block of test text.\n" + "It doesn't matter what goes in here.\n" +
+                 "But it does matter if it is manipulated properly!\n",
+      "This is the third block of test text.\n" + "It doesn't matter what goes in here.\n" +
+                 "But it does matter if it is manipulated properly!\n",
+      "This is the fourth block of test text.\n" + "It doesn't matter what goes in here.\n" +
+                 "But it does matter if it is manipulated properly!\n",
+      "This is the fifth block of test text.\n" + "It doesn't matter what goes in here.\n" +
+                 "But it does matter if it is manipulated properly!\n" };
+    getter = new TestDocGetter(files, texts);
+  }

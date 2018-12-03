@@ -1,0 +1,32 @@
+	private void updateBlockInfo() {
+		LayoutBlock bA = null;
+		LayoutBlock bB = null;
+		LayoutBlock bC = null;
+		LayoutBlock bD = null;
+		layoutEditor.auxTools.setBlockConnectivityChanged();
+		if (block!=null) block.updatePaths();
+		if (connectA!=null) {
+			bA = ((TrackSegment)connectA).getLayoutBlock();
+			if ((bA!=null) && (bA!=block)) bA.updatePaths();
+		}
+		if ((blockB!=null) && (blockB!=block) && (blockB!=bA)) blockB.updatePaths();
+		if (connectB!=null) {
+			bB = ((TrackSegment)connectB).getLayoutBlock();
+			if ((bB!=null) && (bB!=block) && (bB!=bA) && (bB!=blockB)) bB.updatePaths();
+		}
+		if ((blockC!=null) && (blockC!=block) && (blockC!=bA) &&
+				(blockC!=bB) && (blockC!=blockB)) blockC.updatePaths();
+		if (connectC!=null) {
+			bC = ((TrackSegment)connectC).getLayoutBlock();
+			if ((bC!=null) && (bC!=block) && (bC!=bA) && (bC!=blockB) && (bC!=bB) &&
+					(bC!=blockC)) bC.updatePaths();
+		}
+		if ((blockD!=null) && (blockD!=block) && (blockD!=bA) &&
+				(blockD!=bB) && (blockD!=blockB) && (blockD!=bC) &&
+					(blockD!=blockC)) blockD.updatePaths();
+		if (connectD!=null) {
+			bD = ((TrackSegment)connectD).getLayoutBlock();
+			if ((bD!=null) && (bD!=block) && (bD!=bA) && (bD!=blockB) && (bD!=bB) &&
+				(bD!=blockC) && (bD!=bC) && (bD!=blockD)) bD.updatePaths();
+		}
+	}	

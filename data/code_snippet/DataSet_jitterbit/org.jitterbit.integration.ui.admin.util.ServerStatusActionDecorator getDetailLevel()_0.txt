@@ -1,0 +1,3 @@
+    public StatusDetail getDetailLevel() {
+        return m_detailLevel;
+    }

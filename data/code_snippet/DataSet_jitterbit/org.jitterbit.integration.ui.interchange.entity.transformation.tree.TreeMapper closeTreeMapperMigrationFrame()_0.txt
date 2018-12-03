@@ -1,0 +1,4 @@
+	public void closeTreeMapperMigrationFrame(){
+		m_Migration.dispose();
+		m_Migration=null;
+	}

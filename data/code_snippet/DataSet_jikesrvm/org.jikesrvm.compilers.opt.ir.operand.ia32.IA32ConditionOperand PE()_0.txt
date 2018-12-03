@@ -1,0 +1,3 @@
+  public static IA32ConditionOperand PE() {
+    return new IA32ConditionOperand(PE);
+  }

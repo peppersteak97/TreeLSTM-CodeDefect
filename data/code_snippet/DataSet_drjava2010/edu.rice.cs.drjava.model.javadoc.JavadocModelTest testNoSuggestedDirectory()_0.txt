@@ -1,0 +1,15 @@
+  public void testNoSuggestedDirectory() {
+    GlobalModel getDocs = new DummyGlobalModel() {
+      public boolean hasModifiedDocuments() { return false;  /* pretend all docs are saved */ }
+      public boolean hasUntitledDocuments() { return false;  /* pretend no docs are untitled */ }
+    };
+    JavadocModel jModel = new DefaultJavadocModel(getDocs, null, null);
+    OpenDefinitionsDocument doc = new DummyOpenDefDoc() {
+      public File getSourceRoot() throws InvalidPackageException {
+        throw new InvalidPackageException(-1, "invalid package");
+      }
+    };
+
+    File suggestion = jModel.suggestJavadocDestination(doc);
+    assertNull("suggestion should be null", suggestion);
+  }

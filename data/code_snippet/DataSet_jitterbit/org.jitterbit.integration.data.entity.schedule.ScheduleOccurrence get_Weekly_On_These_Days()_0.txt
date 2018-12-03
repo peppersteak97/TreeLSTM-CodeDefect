@@ -1,0 +1,18 @@
+    public DayOfTheWeek[] get_Weekly_On_These_Days() {
+        int n = 0;
+        for (boolean b : m_Weekly_On_This_Day) {
+            if (b) {
+                ++n;
+            }
+        }
+        DayOfTheWeek[] ret = new DayOfTheWeek[n];
+        n = 0;
+        int index = 0;
+        for (DayOfTheWeek day : DayOfTheWeek.values()) {
+            if (m_Weekly_On_This_Day[n]) {
+                ret[index++] = day;
+            }
+            ++n;
+        }
+        return ret;
+    }

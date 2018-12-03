@@ -1,0 +1,20 @@
+    private void createRootSelector() {
+        FileSelectorPanelFactory factory = FileSelectorFactory.getFactory();
+        m_rootSelector = factory.recentFilesPanel(
+                        IntegrationFileChooser.getInstance(m_window),
+                        IFileSelectorPanel.OPEN, 
+                        PackageResources.Searcher.FOLDER_CAPTION, 
+                        null,
+                        getRecentFileStore());
+        m_rootSelector.setSelectionMode(IFileChooser.DIRECTORIES_ONLY);
+        m_rootSelector.addActionListener(m_startStopAction);
+        m_rootSelector.addInputChangeListener(new IInputChangeListener() {
+
+            public void inputChanged(InputChangeEvent e) {
+                updateStartStopActionEnabledState();
+            }
+        });
+        ILabelDecorator titleDecorator = IntegrationUiStyleSheet.DefaultText.asLabelDecorator(
+                        PackageResources.Searcher.FOLDER_ICON);
+        m_rootSelector.decorateTitle(titleDecorator);
+    }

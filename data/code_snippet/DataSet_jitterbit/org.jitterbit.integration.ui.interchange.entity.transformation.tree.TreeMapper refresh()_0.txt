@@ -1,0 +1,4 @@
+    public void refresh() throws TreeMapperException {
+        m_MapListPanel.init(m_Transformation.getMapList());
+        m_MapListPanel.repaint();
+    }  

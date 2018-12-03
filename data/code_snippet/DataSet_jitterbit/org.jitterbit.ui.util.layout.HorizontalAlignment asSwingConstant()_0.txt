@@ -1,0 +1,3 @@
+    public int asSwingConstant() {
+        return m_swingConstant;
+    }

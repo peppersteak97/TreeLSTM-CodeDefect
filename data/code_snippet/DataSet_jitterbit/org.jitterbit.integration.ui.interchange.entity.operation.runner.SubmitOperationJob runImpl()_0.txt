@@ -1,0 +1,22 @@
+    protected void runImpl() throws InterruptedException {
+        if (isCancelled()) {
+            return;
+        }
+        Runnable task = new Runnable() {
+            
+            public void run() {
+                IntegrationServer server = IntegrationServer.getInstance();
+                IJobControl call = server.getServerCall(IJobControl.class);
+                for (int n = 0; n < m_timesToRun; ++n) {
+                    if (isCancelled()) {
+                        break;
+                    }
+                    setStatus(PackageResources.RunOperation.getSendRequestMessage(
+                                    (n+1), m_timesToRun));
+                    call.runOperation(m_operation.getID(), m_callback);
+                }
+            }
+        };
+        IUiWorker worker = IntegrationUi.getUi().getUiWorker();
+        worker.submitForParallellAndWait(task, m_callback);
+    }

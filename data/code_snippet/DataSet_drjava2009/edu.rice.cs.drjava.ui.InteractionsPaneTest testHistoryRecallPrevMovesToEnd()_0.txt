@@ -1,0 +1,9 @@
+  public void testHistoryRecallPrevMovesToEnd() {
+    Utilities.invokeAndWait(new Runnable() {  
+      public void run() {
+        _pane.setCaretPosition(1);
+        _controller.historyPrevAction.actionPerformed(null);
+      }
+    });
+    assertEquals("Caret not moved to end on up arrow.", _doc.getLength(), _pane.getCaretPosition());
+  }

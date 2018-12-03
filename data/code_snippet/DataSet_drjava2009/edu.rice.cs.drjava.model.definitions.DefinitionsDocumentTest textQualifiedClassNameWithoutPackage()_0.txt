@@ -1,0 +1,15 @@
+  public void textQualifiedClassNameWithoutPackage() throws BadLocationException, ClassNameNotFoundException {
+    String classes =
+    _doc.insertString(0, classes, null);
+    
+    assertEquals("qualified class name without pos", "C1", _doc.getQualifiedClassName());
+    assertEquals("qualified class name with pos in C1", "C1", _doc.getQualifiedClassName(10));
+    assertEquals("qualified class name with pos in C2", "C2", _doc.getQualifiedClassName(22));
+    
+    try {
+      _doc.getQualifiedClassName(15);
+      fail("no qualified class name should be found outside classes");
+    }
+    catch (ClassNameNotFoundException cnnfe) {
+    }
+  }

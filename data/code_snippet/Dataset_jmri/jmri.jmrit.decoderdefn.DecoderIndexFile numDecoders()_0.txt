@@ -1,0 +1,1 @@
+    public int numDecoders() { return decoderList.size(); }

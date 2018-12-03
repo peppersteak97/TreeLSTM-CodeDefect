@@ -1,0 +1,8 @@
+    public static <T> Iterable<T> getEmptyIterable() {
+        return new Iterable<T>() {
+
+            public Iterator<T> iterator() {
+                return getEmptyIterator();
+            }
+        };
+    }

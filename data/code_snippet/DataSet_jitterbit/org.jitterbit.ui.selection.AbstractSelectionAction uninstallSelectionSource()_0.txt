@@ -1,0 +1,5 @@
+    private void uninstallSelectionSource() {
+        m_selectionSource.removeSelectionListener(m_selectionListener);
+        m_selectionSource = null;
+        m_selection = null;
+    }

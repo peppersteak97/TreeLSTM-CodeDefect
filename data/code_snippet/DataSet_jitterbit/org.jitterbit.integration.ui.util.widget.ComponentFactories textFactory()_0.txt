@@ -1,0 +1,3 @@
+    public static ITextComponentFactory textFactory() {
+        return TEXT_FACTORY;
+    }

@@ -1,0 +1,10 @@
+    private void writeMainClassPrivate() {
+        addLine("private:");
+        if( getColumnOwner().hasAutoIncrementColumns() ) {
+            addLine("\t" + getInsertBinderClassName() + " m_insertBinder;");
+        }
+        addLine("\t" + getDeleteBinderClassName() + " m_deleteBinder;");
+        addLine("\tDtlDbRecordSet<" + getQualifiedBaseClassName() + ", " +
+                getQualifiedRowClassName() + "> m_dtlRecSet;");
+        addLine();
+    }

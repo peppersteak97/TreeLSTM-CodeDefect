@@ -1,0 +1,13 @@
+  public void testCancelDoesNotChangeConfig() {
+
+    Boolean testBoolean = new Boolean (!DrJava.getConfig().getSetting(OptionConstants.LINEENUM_ENABLED).booleanValue());
+
+    _option.setValue(testBoolean);
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    Utilities.clearEventQueue();
+    assertEquals("Cancel (resetToCurrent) should not change the config",
+                 OptionConstants.LINEENUM_ENABLED.getDefault(),
+                 DrJava.getConfig().getSetting(OptionConstants.LINEENUM_ENABLED));
+
+  }

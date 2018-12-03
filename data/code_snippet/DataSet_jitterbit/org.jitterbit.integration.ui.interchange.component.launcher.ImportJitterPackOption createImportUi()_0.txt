@@ -1,0 +1,5 @@
+    private IImportJitterPackUi createImportUi() {
+        IImportJitterPackUi importUi = new ImportJitterPackUi(m_launcher.getWindow());
+        customizeImportUiBeforeUse(importUi);
+        return importUi;
+    }

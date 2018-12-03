@@ -1,0 +1,7 @@
+  public String getCurrent() {
+    Integer cursor = Integer.valueOf(_cursor);
+    if (_editedEntries.containsKey(cursor))  return _editedEntries.get(cursor);
+
+    if (hasNext()) return _vector.get(_cursor);
+    return "";
+  }

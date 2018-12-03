@@ -1,0 +1,4 @@
+	public Map<String, Object> getAttributes() {
+		Map<String, Object> map = super.getAttributes();
+		return map;
+	}

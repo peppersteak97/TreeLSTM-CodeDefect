@@ -1,0 +1,7 @@
+  public void reset() {
+    CompilerErrorModel model = getModel().getJavadocModel().getJavadocErrorModel();
+    if (model != null) _numErrors = model.getNumErrors();
+    else _numErrors = 0;
+
+    _errorListPane.updateListPane(true);
+  }

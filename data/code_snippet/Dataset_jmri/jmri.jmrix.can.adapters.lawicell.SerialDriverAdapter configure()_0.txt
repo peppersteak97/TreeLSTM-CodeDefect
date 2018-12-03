@@ -1,0 +1,29 @@
+    public void configure() {
+
+        for (int i = 0; i<validForOption1.length; i++ ) {
+            if (validForOption1[i].equals(mOpt1)) {
+                p = validOption1Values[i];
+            }
+        }
+        CanMessage.setProtocol(p);
+
+        TrafficController.instance();
+        
+        log.debug("Connecting port");
+        TrafficController.instance().connectPort(this);
+    
+        log.debug("send version request");
+        jmri.jmrix.can.CanMessage m = 
+            new jmri.jmrix.can.CanMessage(new int[]{'V', 13, 'S', '5', 13, 'O', 13});
+        m.setTranslated(true);
+        TrafficController.instance().sendCanMessage(m, null);
+
+
+
+
+
+
+        
+        setActive();
+
+    }

@@ -1,0 +1,5 @@
+  public boolean checkNewVersion() {
+    Box<Boolean> availableRef = new SimpleBox<Boolean>(false);
+    getMessage(availableRef);
+    return availableRef.value();
+  }

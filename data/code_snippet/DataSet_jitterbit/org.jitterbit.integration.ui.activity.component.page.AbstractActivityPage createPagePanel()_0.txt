@@ -1,0 +1,9 @@
+    private void createPagePanel() {
+        if (m_displayPanel == null) {
+        }
+        m_pagePanel = new JPanel(new BorderLayout());
+        IntegrationUiStyleSheet.GenericPageCanvas.makeOver(m_pagePanel);
+        m_pagePanel.add(m_displayPanel, BorderLayout.CENTER);
+        FocusUtils.makeComponentMouseFocusable(m_pagePanel);
+        FocusUtils.makeComponentMouseFocusable(m_displayPanel);
+    }

@@ -1,0 +1,3 @@
+    private Field createNewFirstField() {
+        return new Field(0, "", "String", "", "", 0, 1, 1, null);
+    }

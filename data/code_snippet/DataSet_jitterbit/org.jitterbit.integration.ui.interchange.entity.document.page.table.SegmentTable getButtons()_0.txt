@@ -1,0 +1,5 @@
+    protected List<JButton> getButtons() {
+        List<JButton> buttons = super.getButtons();
+        buttons.add(1, getButton(m_defineFieldsAction));
+        return buttons;
+    }

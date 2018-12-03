@@ -1,0 +1,4 @@
+    void remove() {
+		deactivateBlock();
+        active = false;
+    }

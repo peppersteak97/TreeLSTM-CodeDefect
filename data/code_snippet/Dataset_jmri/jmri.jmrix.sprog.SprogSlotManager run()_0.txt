@@ -1,0 +1,70 @@
+    public void run() {
+      log.debug("Slot thread starts");
+      byte [] p;
+      int [] statusA = new int [4];
+      int statusIdx = 0;
+      int state = 0;
+      SprogMessage m = SprogMessage.getStatus();
+      while (true) {
+        try {
+          Thread.sleep(3);
+        } catch (InterruptedException i) {
+          log.error("Sprog slot thread interrupted\n"+i);
+        }
+        switch(state) {
+          case 0: {
+            log.debug("Slot thread state 0");
+            p = getNextPacket();
+            if (p != null) {
+              sendPacket(p);
+              synchronized(this) {
+                  replyReceived = false;
+                  awaitingReply = true;
+              }
+              state = 1;
+            }
+            break;
+          }
+          case 1: {
+            log.debug("Slot thread state 1");
+            if (replyReceived) {
+              if (++statusDue > 20) {
+                state = 2;
+              } else {
+                state = 0;
+              }
+            }
+            break;
+          }
+          case 2: {
+            log.debug("Slot thread state 2");
+            SprogTrafficController.instance().sendSprogMessage(m, this);
+            log.debug("Send status request");
+            synchronized(this) {
+              replyReceived = false;
+              awaitingReply = true;
+            }
+            statusDue = 0;
+            state = 3;
+            break;
+          }
+          case 3: {
+            log.debug("Slot thread state 3");
+            if (replyReceived) {
+              if (SprogSlotMonFrame.instance() != null) {
+                String s = replyForMe.toString();
+                log.debug("Reply received whilst waiting for status");
+                int i = s.indexOf('h');
+                int milliAmps = ((Integer.decode("0x"+s.substring(i+7, i+11)).intValue())*488)/47;
+                statusA[0] = milliAmps;
+                String ampString;
+                ampString = Float.toString((float)statusA[0]/1000);
+                SprogSlotMonFrame.instance().updateStatus(ampString);
+              }
+              state = 0;
+              break;
+            }
+          }
+        }
+      }
+    }

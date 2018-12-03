@@ -1,0 +1,6 @@
+    protected void sendMomentaryFunctionGroup2()
+    {
+          if(log.isDebugEnabled())
+		log.debug("Momentary function request not supported by Elite.");
+          return;
+    }

@@ -1,0 +1,7 @@
+    private void layoutComponents() {
+        TwoColumnPanel p = new TwoColumnPanel();
+        p.addRow(m_caption);
+        p.addRow(m_occursOnceSelector, m_onceAtTime);
+        p.addRow(m_occursEverySelector, m_occursEveryPanel.getUi());
+        wrap(p);
+    }

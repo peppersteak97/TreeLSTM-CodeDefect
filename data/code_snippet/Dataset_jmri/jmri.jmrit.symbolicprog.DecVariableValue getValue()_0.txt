@@ -1,0 +1,8 @@
+    public Component getValue()  {
+        if (getReadOnly())  {
+            JLabel r = new JLabel(_value.getText());
+            updateRepresentation(r);
+            return r;
+        } else
+            return _value;
+    }

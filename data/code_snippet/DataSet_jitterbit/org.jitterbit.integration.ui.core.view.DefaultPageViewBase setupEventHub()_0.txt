@@ -1,0 +1,4 @@
+    protected void setupEventHub() {
+        m_eventSenderSupport.addUiDelegateEventListener(m_eventHub);
+        m_eventHub.addDistributedEventListener(this);
+    }

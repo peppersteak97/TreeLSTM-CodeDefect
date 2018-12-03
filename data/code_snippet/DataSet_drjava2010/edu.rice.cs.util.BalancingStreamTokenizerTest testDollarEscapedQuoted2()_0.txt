@@ -1,0 +1,11 @@
+  public void testDollarEscapedQuoted2() throws IOException {
+    BalancingStreamTokenizer tok = make("abc $${xxx}xyz", '$');
+    tok.wordRange(0,255);
+    tok.addQuotes("${", "}");
+    String s = tok.getNextToken();
+    assertEquals("abc ${xxx}xyz", s);
+    assertEquals(BalancingStreamTokenizer.Token.NORMAL, tok.token());
+    s = tok.getNextToken();
+    assertEquals(null, s);
+    assertEquals(BalancingStreamTokenizer.Token.END, tok.token());
+  }

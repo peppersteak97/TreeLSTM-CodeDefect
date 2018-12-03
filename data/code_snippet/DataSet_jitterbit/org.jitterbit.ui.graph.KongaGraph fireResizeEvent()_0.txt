@@ -1,0 +1,9 @@
+	protected final void fireResizeEvent() {
+		if( m_liGraphListeners == null )
+			return;
+
+		KongaGraphEvent evt = new KongaGraphEvent(this);
+		for( IKongaGraphListener lst : m_liGraphListeners ) {
+			lst.canvasResized(evt);
+		}
+	}

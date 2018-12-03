@@ -1,0 +1,7 @@
+  public double elapsedTime() {
+    double total = 0.0;
+    for (OptimizationPlanElement myElement : myElements) {
+      total += myElement.elapsedTime();
+    }
+    return total;
+  }

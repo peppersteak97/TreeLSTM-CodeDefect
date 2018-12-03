@@ -1,0 +1,3 @@
+  public static Address getSlots() {
+    return Magic.objectAsAddress(slots).plus(middleOfTable << LOG_BYTES_IN_INT);
+  }

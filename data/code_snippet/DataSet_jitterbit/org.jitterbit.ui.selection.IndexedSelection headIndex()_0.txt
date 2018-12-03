@@ -1,0 +1,3 @@
+    public int headIndex() {
+        return isEmpty() ? -1 : m_indeces[0];
+    }

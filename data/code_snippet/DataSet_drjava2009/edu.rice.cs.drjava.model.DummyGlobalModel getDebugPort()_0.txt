@@ -1,0 +1,3 @@
+  public int getDebugPort() throws IOException {
+    throw new UnsupportedOperationException("Tried to call getDebugPort on a Dummy");
+  }

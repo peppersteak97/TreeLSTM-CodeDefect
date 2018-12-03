@@ -1,0 +1,4 @@
+        for (InterchangeActionFactory factory : getActions()) {
+            IApplicationAction a = factory.get(m_view);
+            btns.add(ToolBar.createButton(a, InterchangeActionDictionary.DICTIONARY));
+        }

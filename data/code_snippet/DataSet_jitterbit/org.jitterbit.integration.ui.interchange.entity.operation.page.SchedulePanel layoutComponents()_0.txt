@@ -1,0 +1,7 @@
+    private void layoutComponents() {
+        InputField scheduleLayout = m_scheduleControl.asInputFieldForLayout();
+        m_label = scheduleLayout.getLabel();
+        RendererUtils.decorateRenderer(m_label, EntityType.Schedule);
+        InputField[] fields = { scheduleLayout };
+        InputFieldLayoutUtils.layoutOneColumn(this, fields, false, true);
+    }    

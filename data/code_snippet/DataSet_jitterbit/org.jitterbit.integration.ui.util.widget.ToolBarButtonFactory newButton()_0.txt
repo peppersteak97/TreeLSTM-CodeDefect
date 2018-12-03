@@ -1,0 +1,4 @@
+    public JButton newButton() {
+        JButton b = m_delegate.newButton();
+        return IntegrationUiStyleSheet.configureButtonForToolBar(b);
+    }

@@ -1,0 +1,6 @@
+    public void cancelled() {
+        if (m_cancelHasBeenHandled) {
+            return;
+        }
+        m_cancelHasBeenHandled = true;
+    }

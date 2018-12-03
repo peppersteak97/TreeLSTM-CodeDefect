@@ -1,0 +1,8 @@
+    private void createSubFilters() {
+        m_transferSizeFilter = new TransferSizeFilterUi<IOperationHistoryEntry>(
+                        PackageResources.OperationFilter.TRANSFER_SIZE);
+        m_timeWindowFilter = new TimeWindowFilterUi<IOperationHistoryEntry>();
+
+        addFilter(m_transferSizeFilter);
+        addFilter(m_timeWindowFilter);
+    }

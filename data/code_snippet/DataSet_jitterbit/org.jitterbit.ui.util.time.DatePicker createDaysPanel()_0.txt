@@ -1,0 +1,3 @@
+    private void createDaysPanel() {
+        m_daysPanel = new DaysPanel(m_calendar);
+    }

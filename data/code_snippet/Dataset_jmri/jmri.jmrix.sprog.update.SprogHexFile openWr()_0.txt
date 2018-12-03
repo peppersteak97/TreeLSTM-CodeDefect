@@ -1,0 +1,11 @@
+  public boolean openWr() {
+    read = false;
+    try {
+      out = new FileOutputStream(file);
+      buffOut = new BufferedOutputStream(out);
+      return true;
+    }
+    catch (IOException e) {
+      return false;
+    }
+  }

@@ -1,0 +1,1 @@
+  public boolean isSuspended() { return safeIsSuspended(_thread); }

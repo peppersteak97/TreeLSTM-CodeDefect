@@ -1,0 +1,45 @@
+    private void recomputeInternalSync() {
+        Date now = internalClock.getTime();
+        double sumDiff = 0;
+        double currError = 0;
+        double diffError = 0;
+        double avgDiff = 0;
+        if (priorDiffs.size() > 0) {
+            currError = ((Double) priorDiffs.get(priorDiffs.size() - 1)).doubleValue();
+            diffError = ((Double) priorDiffs.get(priorDiffs.size() - 1)).doubleValue() - ((Double) priorDiffs.get(0)).doubleValue();
+        }
+        for (int i = 0; i < priorDiffs.size(); i++) {
+            sumDiff = sumDiff + ((Double) priorDiffs.get(i)).doubleValue();
+        }
+        double corrDiff = 0;
+        if (priorCorrections.size() > 0) {
+            corrDiff = ((Double) priorCorrections.get(priorCorrections.size() - 1)).doubleValue() - ((Double) priorCorrections.get(0)).doubleValue();
+        }
+        double pCorr = currError * intPidGainPv;
+        double iCorr = sumDiff * intPidGainIv;
+        double dCorr = corrDiff * intPidGainDv;
+        double newRateAdj = pCorr + iCorr + dCorr;
+        while (priorCorrections.size() >= MAX_ERROR_ARRAY) {
+            priorCorrections.remove(0);
+        }
+        priorCorrections.add(new Double(newRateAdj));
+        syncInterval = syncInterval + newRateAdj;
+        if (syncInterval > 57) {
+            syncInterval = 57;
+        }
+        if (syncInterval < 40) {
+            syncInterval = 40;
+        }
+        if (log.isDebugEnabled() && false) {
+            String txt = "";
+            for (int i = 0; i < priorDiffs.size(); i++) {
+                txt = txt + " " + priorDiffs.get(i);
+            }
+            log.debug("priorDiffs: " + txt);
+            log.debug("syncInterval: " + syncInterval +
+                      " pCorr: " + fiveDigits.format(pCorr) +
+                      " iCorr: " + fiveDigits.format(iCorr) +
+                      " dCorr: " + fiveDigits.format(dCorr)
+                      );
+        }
+    }

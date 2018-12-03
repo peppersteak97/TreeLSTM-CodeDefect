@@ -1,0 +1,20 @@
+    private void createRadioPanel() {
+        OneColumnPanel col = new OneColumnPanel();
+        col.setAnchor(OneColumnPanel.WEST);
+        col.setInsets(2, 2, 0, 2);
+        String[] labels = getRadioButtonLabels();
+        JRadioButton[] buttons = ButtonUtils.getExclusiveRadioButtons(labels);
+        for (JRadioButton btn : buttons) {
+            IntegrationUiStyleSheet.DefaultRadioButtonText.makeOver(btn);
+            col.add(btn);
+        }
+        m_insertUpdateRadio = buttons[0];
+        m_insertOnlyRadio = buttons[1];
+        m_updateOnlyRadio = buttons[2];
+        if (UPDATE_INSERT_SUPPORTED) {
+            m_updateInsertRadio = buttons[3];
+        }
+
+        m_radioPanel = ComponentDecorFactory.invisible(col).getUi();
+        UiUtils.setOpaqueRecursively(m_radioPanel, false);
+    }

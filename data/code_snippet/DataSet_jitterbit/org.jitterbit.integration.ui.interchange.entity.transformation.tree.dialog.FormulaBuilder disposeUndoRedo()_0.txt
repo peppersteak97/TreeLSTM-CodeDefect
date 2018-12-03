@@ -1,0 +1,10 @@
+    private void disposeUndoRedo() {
+        if (m_undoRedoController != null) {
+            m_undoActionDecorator.dispose();
+            m_undoActionDecorator = null;
+            m_redoActionDecorator.dispose();
+            m_redoActionDecorator = null;
+            m_undoRedoController.dispose();
+            m_undoRedoController = null;
+        }
+    }

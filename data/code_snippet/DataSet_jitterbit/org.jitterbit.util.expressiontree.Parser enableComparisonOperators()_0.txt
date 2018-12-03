@@ -1,0 +1,8 @@
+	public void enableComparisonOperators() {
+		enableOperator(new EqualsOperator(m_operations));
+		enableOperator(new NotEqualsOperator(m_operations));
+		enableOperator(new LessThanOperator(m_operations));
+		enableOperator(new LessThanEqualsOperator(m_operations));
+		enableOperator(new GreaterThanOperator(m_operations));
+		enableOperator(new GreaterThanEqualsOperator(m_operations));
+	}

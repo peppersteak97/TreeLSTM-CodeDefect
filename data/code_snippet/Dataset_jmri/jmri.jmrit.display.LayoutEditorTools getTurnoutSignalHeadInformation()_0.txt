@@ -1,0 +1,10 @@
+	private boolean getTurnoutSignalHeadInformation() {
+		throatContinuingHead = getSignalHeadFromEntry(throatContinuingField,true,setSignalsFrame);
+		if (throatContinuingHead==null) return false;
+		throatDivergingHead = getSignalHeadFromEntry(throatDivergingField,false,setSignalsFrame);
+		continuingHead = getSignalHeadFromEntry(continuingField,true,setSignalsFrame);
+		if (continuingHead==null) return false;
+		divergingHead = getSignalHeadFromEntry(divergingField,true,setSignalsFrame);
+		if (divergingHead==null) return false;
+		return true;
+	}

@@ -1,0 +1,8 @@
+    private JSplitPane createSplitPane() {
+        JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+        split.setTopComponent(createTopComponent());
+        split.setBottomComponent(createDetailsPanel());
+        split.setDividerSize(2);
+        split.setDividerLocation(0.5);
+        return split;
+    }

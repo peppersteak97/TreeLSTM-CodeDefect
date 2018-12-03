@@ -1,0 +1,4 @@
+    public Date getStartDate() {
+        Date date = getDateFromString(m_startDate);
+        return (date == null) ? new Date() : date;
+    }
