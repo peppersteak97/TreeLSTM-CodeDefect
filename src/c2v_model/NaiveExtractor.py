@@ -1,5 +1,6 @@
-from ..preprocess.FeatureExtractor import Extractor
-from ..preprocess.interpreter import Interpreter
+from preprocess.FeatureExtractor import Extractor
+from preprocess.SingleInterpreter import SingleInterpreter
+from Config import Config
 
 
 class NaiveExtractor:
@@ -8,8 +9,10 @@ class NaiveExtractor:
 
     def extract_paths(self, path):
         out, err = Extractor.extract(path)
+        interpreter = SingleInterpreter()
+        out = interpreter(out, err)
         # Here we use the extracted paths from our extractor.
-        output = out.decode().splitlines()
+        output = out.splitlines()
         if len(output) == 0:
             err = err.decode()
             raise ValueError(err)
@@ -43,3 +46,9 @@ class NaiveExtractor:
         for c in s:
             h = (31 * h + ord(c)) & 0xFFFFFFFF
         return ((h + 0x80000000) & 0xFFFFFFFF) - 0x80000000
+
+
+if __name__ == "__main__":
+    ne = NaiveExtractor(config=Config.get_default_config())
+    ne.extract_paths("/Users/LeonWong/Desktop/Test.java")
+

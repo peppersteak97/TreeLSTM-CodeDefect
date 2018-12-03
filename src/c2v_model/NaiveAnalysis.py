@@ -4,9 +4,6 @@ from NaiveExtractor import NaiveExtractor
 from Model import Model
 
 SHOW_TOP_CONTEXTS = 10
-MAX_PATH_LENGTH = 8
-MAX_PATH_WIDTH = 2
-JAR_PATH = 'JavaExtractor/JPredict/target/JavaExtractor-0.0.1-SNAPSHOT.jar'
 
 
 class PathAnalysis(object):
@@ -32,4 +29,4 @@ class PathAnalysis(object):
 
 if __name__ == "__main__":
     path_analysis = PathAnalysis()
-    print(path_analysis.predict_file("test.java"))
+    print(path_analysis.predict_file("/Users/LeonWong/Desktop/Test.java"))

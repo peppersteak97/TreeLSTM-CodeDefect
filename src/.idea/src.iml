@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/c2v_model" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/nn" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/preprocess" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/c2v_model/preprocess" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

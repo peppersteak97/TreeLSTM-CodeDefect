@@ -58,6 +58,10 @@ class SingleInterpreter(object):
         self._hash_tree = {}
 
     def __call__(self, out, err):
+        if isinstance(out, bytes):
+            out = out.decode()
+        if isinstance(err, bytes):
+            err = err.decode()
         assert isinstance(out, str)
         assert isinstance(err, str)
         self.__init__()

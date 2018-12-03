@@ -406,7 +406,7 @@ class Model:
             pickle.dump(self.path_vocab_size, file)
 
     def load_model(self, sess):
-        if not sess is None:
+        if sess is not None:
             print('Loading model weights from: ' + self.config.LOAD_PATH)
             self.saver.restore(sess, self.config.LOAD_PATH)
             print('Done')

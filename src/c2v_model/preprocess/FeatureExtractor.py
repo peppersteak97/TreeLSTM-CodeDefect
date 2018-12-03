@@ -6,7 +6,7 @@ from threading import Timer
 
 class Extractor(object):
     @staticmethod
-    def extract(file_path, path_to_extractor="Extractor.jar", max_path_length="8", max_path_width="2"):
+    def extract(file_path, path_to_extractor="preprocess/Extractor.jar", max_path_length="8", max_path_width="2"):
         command = ["java", "-cp", path_to_extractor, "JavaExtractor.App", "--max_path_length", max_path_length,
                    "--max_path_width", max_path_width, "--file", file_path, "--no_hash"]
         # kill = lambda process: process.kill()
