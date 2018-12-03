@@ -105,3 +105,11 @@ venv.bak/
 
 # Ignore PyCharm Project Files
 /.idea/
+models/java14_model/dictionaries.bin
+models/java14_model/saved_model_iter8.release.data-00000-of-00001
+models/java14_model/saved_model_iter8.release.meta
+models/java14_model/saved_model_iter8.release.index
+src/c2v_model/models/java14_model/dictionaries.bin
+src/c2v_model/models/java14_model/saved_model_iter8.release.data-00000-of-00001
+src/c2v_model/models/java14_model/saved_model_iter8.release.index
+src/c2v_model/models/java14_model/saved_model_iter8.release.meta
