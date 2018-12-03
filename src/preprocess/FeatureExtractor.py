@@ -31,5 +31,16 @@ class Extractor(object):
         #         print("File Extracting Time Out: " + file_path, file=sys.stderr)
         return out, err;
 
+    @staticmethod
+    def java_string_hashcode(s):
+        """
+        Imitating Java's String#hashCode, because the model is trained on hashed paths but we wish to
+        Present the path attention on un-hashed paths.
+        """
+        h = 0
+        for c in s:
+            h = (31 * h + ord(c)) & 0xFFFFFFFF
+        return ((h + 0x80000000) & 0xFFFFFFFF) - 0x80000000
+
 if __name__ == "__main__":
     print(Extractor.extract("/Users/LeonWong/Desktop/Test.java"))
