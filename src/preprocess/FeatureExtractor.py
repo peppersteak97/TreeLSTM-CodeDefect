@@ -7,8 +7,8 @@ from threading import Timer
 class Extractor(object):
     @staticmethod
     def extract(file_path, path_to_extractor="Extractor.jar", max_path_length="8", max_path_width="2"):
-        command = ["java", "-cp", path_to_extractor, "JavaExtractor.App", "--max_path_length", max_path_length, "--max_path_width", max_path_width, \
-        "--file", file_path, "--no_hash"]
+        command = ["java", "-cp", path_to_extractor, "JavaExtractor.App", "--max_path_length", max_path_length,
+                   "--max_path_width", max_path_width, "--file", file_path, "--no_hash"]
         # kill = lambda process: process.kill()
         # Now start extracting
         sleeper = subprocess.Popen(command, stdout=PIPE, stderr=PIPE)
@@ -29,7 +29,7 @@ class Extractor(object):
         #         print(err, file=sys.stderr)
         #     else:
         #         print("File Extracting Time Out: " + file_path, file=sys.stderr)
-        return out, err;
+        return out, err
 
     @staticmethod
     def java_string_hashcode(s):

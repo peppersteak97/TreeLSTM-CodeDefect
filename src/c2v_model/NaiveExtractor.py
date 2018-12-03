@@ -1,18 +1,14 @@
-import subprocess
+from ..preprocess.FeatureExtractor import Extractor
+from ..preprocess.interpreter import Interpreter
 
 
-class Extractor:
-    def __init__(self, config, jar_path, max_path_length, max_path_width):
+class NaiveExtractor:
+    def __init__(self, config):
         self.config = config
-        self.max_path_length = max_path_length
-        self.max_path_width = max_path_width
-        self.jar_path = jar_path
 
     def extract_paths(self, path):
-        command = ['java', '-cp', self.jar_path, 'JavaExtractor.App', '--max_path_length',
-                   str(self.max_path_length), '--max_path_width', str(self.max_path_width), '--file', path, '--no_hash']
-        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        out, err = process.communicate()
+        out, err = Extractor.extract(path)
+        # Here we use the extracted paths from our extractor.
         output = out.decode().splitlines()
         if len(output) == 0:
             err = err.decode()

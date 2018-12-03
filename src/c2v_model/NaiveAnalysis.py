@@ -1,6 +1,6 @@
 from Common import Common
 from Config import Config
-from NaiveExtractor import Extractor
+from NaiveExtractor import NaiveExtractor
 from Model import Model
 
 SHOW_TOP_CONTEXTS = 10
@@ -12,8 +12,7 @@ JAR_PATH = 'JavaExtractor/JPredict/target/JavaExtractor-0.0.1-SNAPSHOT.jar'
 class PathAnalysis(object):
     def __init__(self, model_path="models/java14_model/saved_model_iter8.release", config=None):
         self._config = config if config is not None else Config.get_default_config(load_path=model_path)
-        self._path_extractor = Extractor(self._config, jar_path=JAR_PATH,
-                                         max_path_length=MAX_PATH_LENGTH, max_path_width=MAX_PATH_WIDTH)
+        self._path_extractor = NaiveExtractor(self._config)
         self._model = Model(self._config)
 
     @property

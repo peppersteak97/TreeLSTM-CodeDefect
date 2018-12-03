@@ -1,6 +1,7 @@
 import os
 import re
 
+
 class Interpreter:
     def __init__(self, file_path):
         self._data_path = file_path
